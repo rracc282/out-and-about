@@ -11,6 +11,7 @@ const KIND = process.env.KIND || "daily";
 const { SUPABASE_URL, SUPABASE_SECRET_KEY, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY } = process.env;
 if (!SUPABASE_SECRET_KEY || !VAPID_PRIVATE_KEY) { console.error("Missing SUPABASE_SECRET_KEY or VAPID_PRIVATE_KEY secret"); process.exit(1); }
 webpush.setVapidDetails("mailto:noreply@out-and-about.app", VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY);
+const _k = SUPABASE_SECRET_KEY; console.log("key shape:", _k.slice(0, 10), "len", _k.length, "ws", /\s/.test(_k));
 const db = createClient(SUPABASE_URL, SUPABASE_SECRET_KEY, { auth: { persistSession: false } });
 
 /* run the app once to get the expanded event list exactly as the page shows it */

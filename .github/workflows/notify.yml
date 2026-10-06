@@ -19,7 +19,7 @@ jobs:
       - run: npm install --no-save web-push@3 @supabase/supabase-js@2 jsdom@24
       - run: |
           set -o pipefail
-          node scripts/notify.mjs 2>&1 | tee out.txt || { tail -6 out.txt | sed "s/^/::warning::/"; exit 1; }
+          node scripts/notify.mjs 2>&1 | tee out.txt || { grep -m4 -iE "error|key shape" out.txt | sed "s/^/::warning::/"; exit 1; }
         env:
           TZ: Europe/Zurich
           KIND: ${{ github.event.inputs.kind || (github.event.schedule == '0 10 * * 1' && 'weekly' || 'daily') }}
