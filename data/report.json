@@ -265,14 +265,6 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/les-amis-zurich/events/",
-   "status": 200,
-   "bytes": 59556,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/les-amis-geneva/events/",
    "status": 200,
    "bytes": 59554,
@@ -281,9 +273,17 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-expats/events/",
+   "url": "https://www.meetup.com/les-amis-zurich/events/",
    "status": 200,
-   "bytes": 59546,
+   "bytes": 59556,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-social-club/events/",
+   "status": 200,
+   "bytes": 59568,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -297,9 +297,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-social-club/events/",
+   "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
-   "bytes": 59568,
+   "bytes": 59546,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -321,14 +321,6 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-hiking/events/",
-   "status": 200,
-   "bytes": 59544,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/geneva-hiking-group/events/",
    "status": 200,
    "bytes": 59572,
@@ -337,7 +329,15 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/",
+   "url": "https://www.meetup.com/zurich-hiking/events/",
+   "status": 200,
+   "bytes": 59544,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -345,7 +345,7 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -369,7 +369,7 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=3",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -385,7 +385,7 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=3",
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -395,7 +395,7 @@
   {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 57696,
+   "bytes": 58066,
    "found": 0,
    "followed": 12,
    "markers": "ld+json"
@@ -405,7 +405,7 @@
    "status": 200,
    "bytes": 587617,
    "found": 0,
-   "followed": 40,
+   "followed": 34,
    "markers": ""
   },
   {
@@ -413,7 +413,15 @@
    "status": 200,
    "bytes": 590082,
    "found": 0,
-   "followed": 34,
+   "followed": 40,
+   "markers": ""
+  },
+  {
+   "url": "https://newinzurich.com/events/",
+   "status": 202,
+   "bytes": 178,
+   "found": 0,
+   "followed": 0,
    "markers": ""
   },
   {
@@ -430,14 +438,6 @@
    "bytes": 31892,
    "found": 0,
    "followed": 3,
-   "markers": ""
-  },
-  {
-   "url": "https://newinzurich.com/events/",
-   "status": 202,
-   "bytes": 178,
-   "found": 0,
-   "followed": 0,
    "markers": ""
   },
   {
@@ -481,20 +481,20 @@
    "markers": "ld+json"
   },
   {
-   "url": "https://www.geneve.com/fr/agenda",
-   "status": 404,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://www.comedykiss.ch/",
    "status": 200,
    "bytes": 1238191,
    "found": 0,
    "followed": 1,
    "markers": "ld+json"
+  },
+  {
+   "url": "https://www.geneve.com/fr/agenda",
+   "status": "TypeError",
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
   },
   {
    "url": "https://www.theater11.ch/",
@@ -506,8 +506,8 @@
   },
   {
    "url": "https://www.geneva-arena.ch/",
-   "status": 200,
-   "bytes": 57596,
+   "status": "TypeError",
+   "bytes": 0,
    "found": 0,
    "followed": 0,
    "markers": ""
@@ -515,7 +515,7 @@
   {
    "url": "https://www.gtg.ch/saison-26-27/",
    "status": 200,
-   "bytes": 218472,
+   "bytes": 218477,
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
@@ -577,63 +577,64 @@
    "markers": "ld+json wp-json"
   }
  ],
- "kept": 251,
+ "kept": 225,
  "dropped": {
-  "unknown place": 229,
+  "later than 2 weeks": 402,
+  "already in app": 68,
   "past": 512,
-  "later than 2 weeks": 300,
-  "already in app": 62,
-  "duplicate": 72,
+  "duplicate": 81,
   "far future": 82,
-  "not relevant": 9
+  "weekday daytime": 53,
+  "unknown place": 87,
+  "not relevant": 17
  },
  "byCity": {
-  "ge": 142,
-  "zh": 109
+  "ge": 118,
+  "zh": 107
  },
  "samples": {
   "unknown place": [
    [
-    "Tuesday but Funny - English Comedy",
-    "2026-10-13T20:00:00+02:00",
-    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
+    "Season Start Saas-Fee ❄️⛷️☃️🏂🎲☀️🍻🥾 🧖 👨‍🍳",
+    "2026-10-31T19:00:00+01:00",
+    "Dorfblick, Dorfblick, Mischistrasse 10, 3906 Saas-Fee, Switzerland, Sa",
     "",
-    "https://www.meetup.com/comedyclub13/events/"
+    "https://www.meetup.com/connect-lausanne/events/"
    ],
    [
-    "Tuesday but Funny - English Comedy",
-    "2026-10-20T20:00:00+02:00",
-    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
+    "Season Start Saas-Fee ❄️⛷️☃️🏂🎲☀️🍻🥾 🧖 👨‍🍳",
+    "2026-11-06T07:00:00+01:00",
+    "Dorfblick, Dorfblick, Mischistrasse 10, 3906 Saas-Fee, Switzerland, Sa",
     "",
-    "https://www.meetup.com/comedyclub13/events/"
+    "https://www.meetup.com/connect-lausanne/events/"
    ],
    [
-    "Tuesday but Funny - English Comedy",
-    "2026-10-27T20:00:00+01:00",
-    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
+    "Season Start Saas-Fee ❄️⛷️☃️🏂🎲☀️🍻🥾 🧖 👨‍🍳",
+    "2026-11-13T07:00:00+01:00",
+    "Dorfblick, Dorfblick, Mischistrasse 10, 3906 Saas-Fee, Switzerland, Sa",
     "",
-    "https://www.meetup.com/comedyclub13/events/"
+    "https://www.meetup.com/connect-lausanne/events/"
    ],
    [
-    "Tuesday but Funny - English Comedy",
-    "2026-10-06T20:00:00+02:00",
-    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
+    "Season Start Saas-Fee ❄️⛷️☃️🏂🎲☀️🍻🥾 🧖 👨‍🍳",
+    "2026-10-31T19:00:00+01:00",
+    "Dorfblick, Dorfblick, Mischistrasse 10, 3906 Saas-Fee, Switzerland, Sa",
     "",
-    "https://www.meetup.com/comedyclub13/events/"
+    "https://www.meetup.com/connect-lausanne/events/"
    ],
    [
-    "Tuesday but Funny - English Comedy",
-    "2026-10-13T20:00:00+02:00",
-    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
+    "Season Start Saas-Fee ❄️⛷️☃️🏂🎲☀️🍻🥾 🧖 👨‍🍳",
+    "2026-11-06T07:00:00+01:00",
+    "Dorfblick, Dorfblick, Mischistrasse 10, 3906 Saas-Fee, Switzerland, Sa",
     "",
-    "https://www.meetup.com/comedyclub13/events/"
+    "https://www.meetup.com/connect-lausanne/events/"
    ],
    [
-    "Tuesday but Funny - English Comedy",
-    "2026-10-20T20:00:00+02:00",
-    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
+    "Season Start Saas-Fee ❄️⛷️☃️🏂🎲☀️🍻🥾 🧖 👨‍🍳",
+    "2026-11-13T07:00:00+01:00",
+    "Dorfblick, Dorfblick, Mischistrasse 10, 3906 Saas-Fee, Switzerland, Sa",
     "",
-    "https://www.meetup.com/comedyclub13/events/"
+    "https://www.meetup.com/connect-lausanne/events/"
    ]
   ]
  }
