@@ -20,13 +20,13 @@ const nice = d => `${DN[dow(d)]} ${+d.slice(8)} ${MN[+d.slice(5, 7) - 1]}`;
 const MON = addD(TODAY, -((dow(TODAY) + 6) % 7));
 const range = (a, b) => a.slice(5, 7) === b.slice(5, 7) ? `${DN[dow(a)]} ${+a.slice(8)} – ${nice(b)}` : `${nice(a)} – ${nice(b)}`;
 const periods = [
-  { id: "wd1", kind: "weekday", title: "This week", from: MON, to: addD(MON, 4) },
-  { id: "we1", kind: "weekend", title: "This weekend", from: addD(MON, 5), to: addD(MON, 6) },
-  { id: "wd2", kind: "weekday", title: "Next week", from: addD(MON, 7), to: addD(MON, 11) },
-  { id: "we2", kind: "weekend", title: "Next weekend", from: addD(MON, 12), to: addD(MON, 13) },
+  { id: "wd1", kind: "weekday", title: "This week", from: MON, to: addD(MON, 3) },
+  { id: "we1", kind: "weekend", title: "This weekend", from: addD(MON, 4), to: addD(MON, 6) },
+  { id: "wd2", kind: "weekday", title: "Next week", from: addD(MON, 7), to: addD(MON, 10) },
+  { id: "we2", kind: "weekend", title: "Next weekend", from: addD(MON, 11), to: addD(MON, 13) },
 ].map(p => ({ ...p, range: range(p.from, p.to), note: "" }));
 const LAST = periods[3].to, BIG_UNTIL = addD(TODAY, 150);
-const periodOf = d => { const wk = dow(d) > 0 && dow(d) < 6; const p = periods.find(q => d >= q.from && d <= q.to && (q.kind === "weekday") === wk); return p ? p.id : null; };
+const periodOf = d => { const p = periods.find(q => d >= q.from && d <= q.to); return p ? p.id : null; }; /* weekends run Fri–Sun */
 
 /* ---------- places ---------- */
 const CITY = { ge: [46.2044, 6.1432], zh: [47.3769, 8.5417] };
@@ -179,7 +179,7 @@ for (const x of raw) {
   else if (day <= LAST) { p = periodOf(day); if (!p) { drop("outside weeks"); continue; } }
   else if (x.src.big && day <= BIG_UNTIL) p = "big";
   else { drop("later than 2 weeks"); continue; }
-  if ((p === "wd1" || p === "wd2") && s.time && s.time < "17:30" && !multi) { drop("weekday daytime"); continue; }
+  if (dow(day) >= 1 && dow(day) <= 5 && s.time && s.time < "17:30" && !multi) { drop("weekday daytime"); continue; }
   const url = (x.url || x.src.url).replace(/[?#].*$/, "");
   const key = day + "|" + norm(title);
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
