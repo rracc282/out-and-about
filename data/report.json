@@ -4,7 +4,7 @@
    "url": "https://lesgenevois.com/calendrier/ce-weekend",
    "status": 200,
    "bytes": 2401096,
-   "found": 210,
+   "found": 208,
    "followed": 0,
    "markers": "ld+json schema.org/Event"
   },
@@ -12,22 +12,6 @@
    "url": "https://www.meetup.com/lausanne-acroyoga/events/",
    "status": 200,
    "bytes": 244886,
-   "found": 80,
-   "followed": 0,
-   "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/http-www-freewalk-ch-geneva-index-php/events/",
-   "status": 200,
-   "bytes": 230045,
-   "found": 80,
-   "followed": 0,
-   "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/connect-lausanne/events/",
-   "status": 200,
-   "bytes": 229538,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -65,9 +49,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-fun-gamers/events/",
+   "url": "https://www.meetup.com/connect-lausanne/events/",
    "status": 200,
-   "bytes": 289265,
+   "bytes": 229538,
+   "found": 78,
+   "followed": 0,
+   "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/http-www-freewalk-ch-geneva-index-php/events/",
+   "status": 200,
+   "bytes": 230045,
    "found": 76,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -76,6 +68,14 @@
    "url": "https://www.meetup.com/afterwork-bachata-salsa-2-jours-de-initiation-gratuit/events/",
    "status": 200,
    "bytes": 182241,
+   "found": 74,
+   "followed": 0,
+   "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-fun-gamers/events/",
+   "status": 200,
+   "bytes": 289265,
    "found": 74,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -95,6 +95,14 @@
    "found": 68,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
+   "status": 200,
+   "bytes": 246273,
+   "found": 50,
+   "followed": 0,
+   "markers": "ld+json schema.org/Event"
   },
   {
    "url": "https://www.opernhaus.ch/spielplan/kalendarium/",
@@ -241,14 +249,6 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.tempslibre.ch/geneve/manifestations/ce-week-end",
-   "status": 200,
-   "bytes": 89697,
-   "found": 13,
-   "followed": 38,
-   "markers": "ld+json"
-  },
-  {
    "url": "https://www.kulturzueri.ch/",
    "status": 200,
    "bytes": 147992,
@@ -265,14 +265,6 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/les-amis-geneva/events/",
-   "status": 200,
-   "bytes": 59554,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/les-amis-zurich/events/",
    "status": 200,
    "bytes": 59556,
@@ -281,25 +273,17 @@
    "markers": "__NEXT_DATA__"
   },
   {
+   "url": "https://www.meetup.com/les-amis-geneva/events/",
+   "status": 200,
+   "bytes": 59554,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
    "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
    "bytes": 59546,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/internations-zurich/events/",
-   "status": 200,
-   "bytes": 59570,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/zurich-language-exchange/events/",
-   "status": 200,
-   "bytes": 59588,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -316,6 +300,22 @@
    "url": "https://www.meetup.com/zurich-social-club/events/",
    "status": 200,
    "bytes": 59568,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/internations-zurich/events/",
+   "status": 200,
+   "bytes": 59570,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "status": 200,
+   "bytes": 59588,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -353,7 +353,7 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=3",
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -361,7 +361,7 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/",
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=3",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -395,25 +395,49 @@
   {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 58192,
+   "bytes": 57696,
    "found": 0,
    "followed": 12,
    "markers": "ld+json"
-  },
-  {
-   "url": "https://eventfrog.ch/de/events/zuerich.html",
-   "status": 200,
-   "bytes": 590082,
-   "found": 0,
-   "followed": 40,
-   "markers": ""
   },
   {
    "url": "https://eventfrog.ch/fr/events/geneve.html",
    "status": 200,
    "bytes": 587617,
    "found": 0,
+   "followed": 40,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/de/events/zuerich.html",
+   "status": 200,
+   "bytes": 590082,
+   "found": 0,
    "followed": 34,
+   "markers": ""
+  },
+  {
+   "url": "https://www.tempslibre.ch/geneve/manifestations/ce-week-end",
+   "status": 403,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
+   "url": "https://www.guidle.com/de/veranstaltungen/zuerich",
+   "status": 200,
+   "bytes": 31892,
+   "found": 0,
+   "followed": 3,
+   "markers": ""
+  },
+  {
+   "url": "https://newinzurich.com/events/",
+   "status": 202,
+   "bytes": 178,
+   "found": 0,
+   "followed": 0,
    "markers": ""
   },
   {
@@ -425,27 +449,11 @@
    "markers": ""
   },
   {
-   "url": "https://newinzurich.com/events/",
-   "status": 200,
-   "bytes": 165137,
-   "found": 0,
-   "followed": 3,
-   "markers": "ld+json wp-json"
-  },
-  {
    "url": "https://www.zuerichunbezahlbar.ch/",
    "status": 200,
    "bytes": 67252,
    "found": 0,
    "followed": 25,
-   "markers": ""
-  },
-  {
-   "url": "https://www.guidle.com/de/veranstaltungen/zuerich",
-   "status": "TypeError",
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
    "markers": ""
   },
   {
@@ -507,7 +515,7 @@
   {
    "url": "https://www.gtg.ch/saison-26-27/",
    "status": 200,
-   "bytes": 218470,
+   "bytes": 218472,
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
@@ -537,19 +545,19 @@
    "markers": ""
   },
   {
-   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
-   "status": 406,
+   "url": "https://www.kunsthaus.ch/en/exhibitions/",
+   "status": 403,
    "bytes": 0,
    "found": 0,
    "followed": 0,
    "markers": ""
   },
   {
-   "url": "https://www.kunsthaus.ch/en/exhibitions/",
-   "status": 403,
-   "bytes": 0,
+   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
+   "status": 200,
+   "bytes": 302404,
    "found": 0,
-   "followed": 0,
+   "followed": 12,
    "markers": ""
   },
   {
@@ -567,71 +575,63 @@
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
-  },
-  {
-   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
-   "status": 200,
-   "bytes": 302404,
-   "found": 0,
-   "followed": 12,
-   "markers": ""
   }
  ],
- "kept": 160,
+ "kept": 251,
  "dropped": {
-  "unknown place": 682,
-  "past": 514,
+  "unknown place": 229,
+  "past": 512,
+  "later than 2 weeks": 300,
+  "already in app": 62,
+  "duplicate": 72,
   "far future": 82,
-  "not relevant": 9,
-  "already in app": 10,
-  "later than 2 weeks": 3,
-  "duplicate": 27
+  "not relevant": 9
  },
  "byCity": {
-  "ge": 137,
-  "zh": 23
+  "ge": 142,
+  "zh": 109
  },
  "samples": {
   "unknown place": [
    [
     "Tuesday but Funny - English Comedy",
     "2026-10-13T20:00:00+02:00",
-    "",
+    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
     "",
     "https://www.meetup.com/comedyclub13/events/"
    ],
    [
     "Tuesday but Funny - English Comedy",
     "2026-10-20T20:00:00+02:00",
-    "",
+    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
     "",
     "https://www.meetup.com/comedyclub13/events/"
    ],
    [
     "Tuesday but Funny - English Comedy",
     "2026-10-27T20:00:00+01:00",
-    "",
+    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
     "",
     "https://www.meetup.com/comedyclub13/events/"
    ],
    [
     "Tuesday but Funny - English Comedy",
     "2026-10-06T20:00:00+02:00",
-    "",
+    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
     "",
     "https://www.meetup.com/comedyclub13/events/"
    ],
    [
     "Tuesday but Funny - English Comedy",
     "2026-10-13T20:00:00+02:00",
-    "",
+    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
     "",
     "https://www.meetup.com/comedyclub13/events/"
    ],
    [
     "Tuesday but Funny - English Comedy",
     "2026-10-20T20:00:00+02:00",
-    "",
+    "Comedy club, Rue Cité-Devant 10  Rue Cité-Devant 10 1005,, Lausanne",
     "",
     "https://www.meetup.com/comedyclub13/events/"
    ]
