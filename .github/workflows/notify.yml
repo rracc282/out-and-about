@@ -1,0 +1,27 @@
+name: Notifications
+on:
+  schedule:
+    - cron: "0 7 * * *"   # daily reminders: 09:00 Zurich in summer, 08:00 in winter
+    - cron: "0 10 * * 1"  # Monday "New this week": 12:00 / 11:00 Zurich
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: "daily, weekly or test"
+        default: "test"
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-save web-push@3 @supabase/supabase-js@2 jsdom@24
+      - run: node scripts/notify.mjs
+        env:
+          TZ: Europe/Zurich
+          KIND: ${{ github.event.inputs.kind || (github.event.schedule == '0 10 * * 1' && 'weekly' || 'daily') }}
+          SUPABASE_URL: https://qcjtzjtkmothocfiwgxf.supabase.co
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          VAPID_PUBLIC_KEY: BBTVEmUtIJUCFM6sUR-hZLQiHAqvoat4Qb3JBid-bEPR4aFrn_UY0zjOHhOfpKRxVoISXcg_kRaj46J1X2jgU1E
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
