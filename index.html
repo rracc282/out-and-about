@@ -468,7 +468,7 @@ body.city-both .pick .pcity{display:inline}
   <div class="themepanel" id="acctpanel" hidden role="dialog" aria-label="Sign in and notifications">
     <p class="lbl">Your plans</p>
     <div id="acctbox"></div>
-    <p class="lbl" style="margin-top:14px">Notifications</p>
+    <p class="lbl" style="margin-top:14px" id="pushlbl" hidden>Notifications</p>
     <div id="pushbox"></div>
     <p class="lbl" style="margin-top:14px">Install</p>
     <p class="acctnote" id="installnote"></p>
@@ -1898,34 +1898,37 @@ setCity(ui.city);renderGroups();
 function renderAcct(){const el=document.getElementById("acctbox");if(!el)return;
   if(R.uid){el.innerHTML='<p class="acctnote">Signed in as <b>'+esc(R.email||"")+'</b>. Your plans, ratings and weekend choices sync to every device where you sign in.</p><button class="linkbtn" id="signout">Sign out</button>'}
   else if(!SB){el.innerHTML='<p class="acctnote">Your plans are saved on this device.</p>'}
-  else if(ui.otpMail){el.innerHTML='<p class="acctnote">We emailed <b>'+esc(ui.otpMail)+'</b>. Don\'t tap the link in the email: <b>press and hold</b> it, choose <b>Copy Link</b>, then paste it here. (If the email shows a 6-digit code, you can type that instead.)</p><form class="acctrow" id="otpform"><input type="text" id="otpcode" autocomplete="one-time-code" placeholder="Paste the link or type the code" style="flex:1 1 160px;min-width:0;font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)"><button>Sign in</button></form><p class="acctnote" id="otpmsg" style="margin-top:6px"></p><button class="linkbtn" id="otpback">Use another email</button>'}
-  else{el.innerHTML='<p class="acctnote">Your plans are saved on this device. Sign in with your email to sync them between phone and laptop and to get reminders on days you\'re going.</p><form class="acctrow" id="signin"><input type="email" id="signinmail" required placeholder="you@example.com" autocomplete="email"><button>Email me a sign-in link</button></form>'}
-  renderPush()}
-async function pushState(){if(!("serviceWorker" in navigator)||!("PushManager" in window))return "unsupported";if(Notification.permission==="denied")return "denied";
-  try{const reg=await navigator.serviceWorker.ready;const sub=await reg.pushManager.getSubscription();return sub?"on":"off"}catch(e){return "off"}}
-async function renderPush(){const el=document.getElementById("pushbox");if(!el)return;const st=await pushState();
-  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent),standalone=(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||navigator.standalone;
-  if(st==="unsupported"){el.innerHTML='<p class="acctnote">'+(ios&&!standalone?'On iPhone, first add this page to your Home Screen (Share → Add to Home Screen), then open it from there to turn on notifications.':'This browser can\'t receive notifications.')+'</p>';return}
-  if(st==="denied"){el.innerHTML='<p class="acctnote">Notifications are blocked for this site in your browser settings.</p>';return}
-  let owned=null;try{owned=localStorage.getItem("oa-push-uid")}catch(e){}
-  if(st==="on"&&R.uid&&owned!==R.uid){el.innerHTML='<p class="acctnote">✓ "New this week" is on for this device.</p><button class="pushbtn" id="pushrem">Add reminders for days I\'m going</button><p class="acctnote" style="margin-top:8px"><button class="linkbtn" id="pushoff">Turn all notifications off</button></p>';return}
-  if(st==="on"){el.innerHTML='<p class="acctnote">✓ Notifications are on for this device: '+(R.uid&&owned===R.uid?'"New this week" and reminders on days you\'re going':'"New this week". Sign in above to also get reminders on days you\'re going')+'.</p><button class="linkbtn" id="pushoff">Turn off on this device</button>';return}
-  el.innerHTML='<label class="pushopt"><input type="checkbox" id="pw" checked> <span><b>New this week</b> · Monday lunchtime, the week\'s picks for both cities</span></label>'+
-    '<label class="pushopt"><input type="checkbox" id="pr" '+(R.uid?'checked':'disabled')+'> <span><b>Reminders</b> · the morning of anything you\'re going to, with time and place'+(R.uid?'':' (sign in above first)')+'</span></label>'+
-    '<button class="pushbtn" id="pushon">Turn on notifications</button>'}
+  else{el.innerHTML='<p class="acctnote">Sign in to sync your plans between phone and laptop and to turn on notifications. First time? Choose a password and this creates your account.</p>'+
+    '<form id="signin" style="display:grid;gap:8px"><input type="email" id="signinmail" required placeholder="Email" autocomplete="email" style="font:inherit;font-size:15px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)">'+
+    '<input type="password" id="signinpw" required minlength="8" placeholder="Password (8+ characters)" autocomplete="current-password" style="font:inherit;font-size:15px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)">'+
+    '<button class="pushbtn">Sign in</button><p class="acctnote" id="signinmsg" style="margin:0"></p></form>'}
+  document.getElementById("pushlbl").hidden=!R.uid;renderPush()}
+async function pushState(){if(!("serviceWorker" in navigator)||!("PushManager" in window)||!("Notification" in window))return "unsupported";if(Notification.permission==="denied")return "denied";
+  const reg=await Promise.race([navigator.serviceWorker.ready,new Promise(r=>setTimeout(()=>r(null),4000))]);if(!reg)return "unsupported";
+  try{const sub=await reg.pushManager.getSubscription();return sub?"on":"off"}catch(e){return "off"}}
+function pushPrefs(){try{const p=JSON.parse(localStorage.getItem("oa-push")||"null");return p&&p.uid===R.uid?p:null}catch(e){return null}}
+async function renderPush(){const el=document.getElementById("pushbox");if(!el)return;if(!R.uid){el.innerHTML="";return}
+  const st=await pushState(),ios=/iphone|ipad|ipod/i.test(navigator.userAgent),standalone=(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||navigator.standalone;
+  if(st==="unsupported"){el.innerHTML='<p class="acctnote">'+(ios&&!standalone?'On iPhone, notifications work in the app on your Home Screen: Share → Add to Home Screen, then open it from there.':'This browser can\'t receive notifications.')+'</p>';return}
+  if(st==="denied"){el.innerHTML='<p class="acctnote">Notifications are blocked for this app in your phone\'s settings.</p>';return}
+  const pr=pushPrefs(),on=st==="on"&&pr&&!ui.pushEdit;
+  if(on){el.innerHTML='<p class="acctnote">✓ On for this device: '+[pr.weekly?'New this week':'',pr.rem?'reminders on days you\'re going':''].filter(Boolean).join(' and ')+'.</p><button class="linkbtn" id="pushedit">Change</button>';return}
+  const w=pr?pr.weekly:true,r=pr?pr.rem:true;
+  el.innerHTML='<label class="pushopt"><input type="checkbox" id="pw"'+(w?' checked':'')+'> <span><b>New this week</b> · Monday lunchtime, the week\'s picks for both cities</span></label>'+
+    '<label class="pushopt"><input type="checkbox" id="pr"'+(r?' checked':'')+'> <span><b>Reminders</b> · the morning of anything you\'re going to, with time and place</span></label>'+
+    '<button class="pushbtn" id="pushsave">'+(st==="on"?'Save':'Turn on notifications')+'</button>'}
 function b64u(s){const p="=".repeat((4-s.length%4)%4),b=atob((s+p).replace(/-/g,"+").replace(/_/g,"/"));return Uint8Array.from([...b].map(c=>c.charCodeAt(0)))}
-async function pushOn(){try{const perm=await Notification.requestPermission();if(perm!=="granted"){renderPush();return}
-  const reg=await navigator.serviceWorker.ready;let sub=await reg.pushManager.getSubscription();if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64u(VAPID_PUBLIC)});
-  const j=sub.toJSON(),weekly=!!(document.getElementById("pw")||{}).checked,rem=!!(document.getElementById("pr")||{}).checked&&!!R.uid;
-  if(SB){const {error}=await SB.from("push_subscriptions").insert({endpoint:j.endpoint,p256dh:j.keys.p256dh,auth:j.keys.auth,user_id:R.uid||null,weekly,reminders:rem});if(error&&error.code!=="23505")throw error;if(R.uid&&rem){try{localStorage.setItem("oa-push-uid",R.uid)}catch(e){}}}
-  reg.showNotification("Out & About",{body:"Notifications are on. You'll hear from us"+(rem?" on days you're going and":"")+" on Mondays.",icon:"icon-192.png"});toast("Notifications are on")}
+async function pushSave(){const weekly=!!(document.getElementById("pw")||{}).checked,rem=!!(document.getElementById("pr")||{}).checked;
+  try{if(!weekly&&!rem){await pushOff();return}
+    const perm=await Notification.requestPermission();if(perm!=="granted"){renderPush();return}
+    const reg=await navigator.serviceWorker.ready;const old=await reg.pushManager.getSubscription();if(old){const ep=old.endpoint;await old.unsubscribe();await SB.from("push_subscriptions").delete().eq("endpoint",ep)}
+    const sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64u(VAPID_PUBLIC)}),j=sub.toJSON();
+    const {error}=await SB.from("push_subscriptions").insert({endpoint:j.endpoint,p256dh:j.keys.p256dh,auth:j.keys.auth,user_id:R.uid,weekly,reminders:rem});if(error)throw error;
+    try{localStorage.setItem("oa-push",JSON.stringify({uid:R.uid,weekly,rem}))}catch(e){}ui.pushEdit=false;
+    reg.showNotification("Out & About",{body:"Notifications are on"+(rem?": you'll get the time and place on the morning of anything you're going to":"")+".",icon:"icon-192.png"});toast("Notifications are on")}
   catch(e){toast("Couldn't turn on notifications")}renderPush()}
-async function pushRem(){try{const reg=await navigator.serviceWorker.ready;const old=await reg.pushManager.getSubscription();if(old)await old.unsubscribe();
-  const sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64u(VAPID_PUBLIC)}),j=sub.toJSON();
-  const {error}=await SB.from("push_subscriptions").insert({endpoint:j.endpoint,p256dh:j.keys.p256dh,auth:j.keys.auth,user_id:R.uid,weekly:true,reminders:true});if(error&&error.code!=="23505")throw error;
-  try{localStorage.setItem("oa-push-uid",R.uid)}catch(e){}reg.showNotification("Out & About",{body:"Reminders are on: you'll get the time and place on the morning of anything you're going to.",icon:"icon-192.png"});toast("Reminders are on")}
-  catch(e){toast("Couldn't add reminders")}renderPush()}
-async function pushOff(){try{localStorage.removeItem("oa-push-uid")}catch(e){}try{const reg=await navigator.serviceWorker.ready;const sub=await reg.pushManager.getSubscription();if(sub){const ep=sub.endpoint;await sub.unsubscribe();if(SB&&R.uid)await SB.from("push_subscriptions").delete().eq("endpoint",ep)}}catch(e){}renderPush()}
+async function pushOff(){try{localStorage.removeItem("oa-push")}catch(e){}ui.pushEdit=false;
+  try{const reg=await navigator.serviceWorker.ready;const sub=await reg.pushManager.getSubscription();if(sub){const ep=sub.endpoint;await sub.unsubscribe();if(SB&&R.uid)await SB.from("push_subscriptions").delete().eq("endpoint",ep)}}catch(e){}toast("Notifications are off");renderPush()}
 let deferredInstall=null;window.addEventListener("beforeinstallprompt",ev=>{ev.preventDefault();deferredInstall=ev;renderInstall()});
 function renderInstall(){const el=document.getElementById("installnote");if(!el)return;const standalone=(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||navigator.standalone;
   if(standalone){el.textContent="Installed ✓";return}
@@ -1934,24 +1937,18 @@ function renderInstall(){const el=document.getElementById("installnote");if(!el)
 document.getElementById("acctbtn").addEventListener("click",ev=>{const p=document.getElementById("acctpanel"),o=p.hidden;p.hidden=!o;ev.currentTarget.setAttribute("aria-expanded",o);if(o){document.getElementById("themepanel").hidden=true;renderAcct();renderInstall()}});
 document.getElementById("acctpanel").addEventListener("click",async ev=>{
   if(ev.target.closest("#signout")){await SB.auth.signOut();applySession(null);return}
-  if(ev.target.closest("#pushon")){pushOn();return}
-  if(ev.target.closest("#pushoff")){pushOff();return}
-  if(ev.target.closest("#pushrem")){pushRem();return}
-  if(ev.target.closest("#otpback")){ui.otpMail=null;renderAcct();return}
+  if(ev.target.closest("#pushsave")){pushSave();return}
+  if(ev.target.closest("#pushedit")){ui.pushEdit=true;renderPush();return}
   if(ev.target.closest("#installbtn")&&deferredInstall){deferredInstall.prompt();deferredInstall=null;renderInstall()}});
 document.getElementById("acctpanel").addEventListener("submit",async ev=>{ev.preventDefault();if(!SB)return;
-  if(ev.target.id==="otpform"){const raw=document.getElementById("otpcode").value.trim();const msg=document.getElementById("otpmsg");let q=null;
-    if(/token=|access_token=/.test(raw)){try{const u=new URL(raw);const h=new URLSearchParams(u.hash.slice(1));
-      if(h.get("access_token")&&h.get("refresh_token")){msg.textContent="Checking…";const {data,error}=await SB.auth.setSession({access_token:h.get("access_token"),refresh_token:h.get("refresh_token")});if(error){msg.textContent="That link didn't work ("+error.message+").";return}ui.otpMail=null;applySession(data.session);toast("Signed in");return}
-      const t=u.searchParams.get("token")||u.searchParams.get("token_hash");if(t)q={token_hash:t,type:(u.searchParams.get("type")==="signup"?"signup":"magiclink")}}catch(e){}}
-    else{const code=raw.replace(/\D/g,"");if(code.length>=6)q={email:ui.otpMail,token:code,type:"email"}}
-    if(!q){msg.textContent="Paste the whole link from the email (press and hold it → Copy Link), or type the code.";return}
-    msg.textContent="Checking…";const {data,error}=await SB.auth.verifyOtp(q);
-    if(error){msg.textContent="That code didn't work ("+error.message+"). Use the link from the most recent email, or ask for a new one.";return}ui.otpMail=null;applySession(data.session);toast("Signed in");return}
-  const m=document.getElementById("signinmail").value.trim();if(!m)return;
-  const {error}=await SB.auth.signInWithOtp({email:m,options:{emailRedirectTo:location.origin+location.pathname}});
-  if(error){document.getElementById("acctbox").insertAdjacentHTML("beforeend",'<p class="acctnote">Couldn\'t send the code: '+esc(error.message)+'</p>');return}
-  ui.otpMail=m;renderAcct();const c=document.getElementById("otpcode");if(c)c.focus()});
+  const email=document.getElementById("signinmail").value.trim(),password=document.getElementById("signinpw").value,msg=document.getElementById("signinmsg");
+  msg.textContent="Signing in…";let {data,error}=await SB.auth.signInWithPassword({email,password});
+  if(error&&/invalid login credentials/i.test(error.message)){const r=await SB.auth.signUp({email,password});
+    if(r.error){msg.textContent=/already registered/i.test(r.error.message)?"Wrong password for this email.":"Couldn't sign in: "+r.error.message;return}
+    if(!r.data.session){msg.textContent="Account created, but it needs email confirmation, which is switched off for this app. Ask Claude to check the Supabase setting.";return}
+    data=r.data;error=null}
+  if(error){msg.textContent="Couldn't sign in: "+error.message;return}
+  applySession(data.session);toast("Signed in")});
 document.addEventListener("click",ev=>{const p=document.getElementById("acctpanel");if(!p.hidden&&!ev.target.closest("#acctpanel")&&!ev.target.closest("#acctbtn"))p.hidden=true});
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 render();
