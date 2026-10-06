@@ -8,6 +8,9 @@ on:
       kind:
         description: "daily, weekly or test"
         default: "test"
+      message:
+        description: "Text for kind=message (sent to every device)"
+        default: ""
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -22,6 +25,7 @@ jobs:
           node scripts/notify.mjs 2>&1 | tee out.txt || { grep -m3 -B3 "at new SupabaseClient" out.txt | sed "s/^/::warning::/"; exit 1; }
         env:
           TZ: Europe/Zurich
+          MESSAGE: ${{ github.event.inputs.message }}
           KIND: ${{ github.event.inputs.kind || (github.event.schedule == '0 10 * * 1' && 'weekly' || 'daily') }}
           SUPABASE_URL: https://qcjtzjtkmothocfiwgxf.supabase.co
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}

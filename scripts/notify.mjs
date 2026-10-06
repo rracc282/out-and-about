@@ -35,6 +35,10 @@ async function send(sub, payload) {
   }
 }
 
+if (KIND === "message" && process.env.MESSAGE) {
+  for (const s of subs) await send(s, { title: "Out & About", body: process.env.MESSAGE, tag: "msg-" + Date.now() });
+}
+
 if (KIND === "test") {
   for (const s of subs) await send(s, { title: "Out & About", body: "Test: notifications work on this device.", tag: "test" });
 }
