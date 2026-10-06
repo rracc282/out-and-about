@@ -40,10 +40,18 @@ function placeOf(geo, text, srcCity) {
     return { city, zone: k <= 9 ? city : k <= 50 ? "45" : "90", trip: k <= 9 ? (city === "ge" ? "Geneva" : "Zurich") : `≈ ${Math.round(k)} km away` };
   }
   for (const c of ["ge", "zh"]) if (LOCAL[c].test(text || "")) return { city: c, zone: c, trip: c === "ge" ? "Geneva" : "Zurich" };
+  for (const [re, city, zone, trip] of NEAR) if (re.test(text || "")) return { city, zone, trip };
   if (srcCity && !text) return { city: srcCity, zone: srcCity, trip: srcCity === "ge" ? "Geneva" : "Zurich" };
   return null;
 }
 
+const NEAR = [
+  [/\b(nyon|ferney|divonne|gex|saint-julien|st-julien|annemasse|coppet|rolle|gland|thoiry|saint-genis)\b/i, "ge", "45", "≈ 30 min from Geneva"],
+  [/\b(lausanne|morges|annecy|thonon|[eé]vian|vevey|montreux|pully|renens)\b/i, "ge", "45", "≈ 45 min from Geneva"],
+  [/\b(fribourg|neuch[aâ]tel|gruy[eè]res|bulle|yverdon|chamonix|sion)\b/i, "ge", "90", "≈ 1h30 from Geneva"],
+  [/\b(winterthur|baden|zug|uster|w[aä]denswil|rapperswil|thalwil|horgen|k[uü]snacht|meilen|kloten|dietikon|bülach|wetzikon)\b/i, "zh", "45", "≈ 30 min from Zurich"],
+  [/\b(luzern|lucerne|aarau|schaffhausen|st\.? ?gallen|frauenfeld|einsiedeln|konstanz|basel|olten)\b/i, "zh", "90", "≈ 1h from Zurich"],
+];
 /* ---------- categories ---------- */
 const CATS = [
   ["rencontre", /meet ?up|social|language exchange|tandem|expat|networking|ap[eé]ro|afterwork|after-work|rencontre|stammtisch|board ?game|jeux de soci|spieleabend|quiz|speed friend|circle|newcomer|internations|mixer|meet new|make friends|conversation|philosoph|book club|lesekreis|club de lecture|walk ?& ?talk|les amis/i],
@@ -54,7 +62,7 @@ const CATS = [
   ["corps", /yoga|\brun\b|running|hike|hiking|randonn|wander|salsa|bachata|kizomba|tango|swing|dance class|cours de danse|tanzkurs|climb|grimp|kletter|swim|pilates|meditation|m[eé]ditation|bike|v[eé]lo|velo|sauna|walk\b|balade|spaziergang/i],
   ["chien", /\bdog|chien|hund/i],
 ];
-const BAD = /webinar|online only|virtual|zoom|livestream|kids?\b|children|enfants?\b|kinder|family day|familien|baby|b[eé]b[eé]|crypto|forex|trading|investor|invest |mlm|real estate|immobilier|sales training|job fair|career fair|recruit|bootcamp|certification|hackathon|church service|messe\b|gottesdienst|culte\b|speed dating|singles? (party|night)/i;
+const BAD = /webinar|online only|virtual|zoom|livestream|kids?\b|children|enfants?\b|kinder|family day|familien|baby|b[eé]b[eé]|crypto|forex|trading|investor|invest |mlm|real estate|immobilier|sales training|job fair|career fair|recruit|bootcamp|certification|hackathon|church service|messe\b|gottesdienst|culte\b|speed dating|singles? (party|night)|jeune public|d[eè]s \d+ ans|ab \d+ jahren|f[uü]r kinder|marionnette|puppentheater|conte pour|contes pour|bébés lecteurs|seniors?\b|retrait[eé]s|employer une/i;
 const catsOf = (t, d, srcKind) => { const s = t + " " + (d || "").slice(0, 300); const c = CATS.filter(([, re]) => re.test(s)).map(([k]) => k); if (!c.length) c.push(srcKind === "meetup" ? "rencontre" : "culture"); return c.slice(0, 3); };
 
 /* ---------- parsing ---------- */
@@ -171,6 +179,7 @@ for (const x of raw) {
   else if (day <= LAST) { p = periodOf(day); if (!p) { drop("outside weeks"); continue; } }
   else if (x.src.big && day <= BIG_UNTIL) p = "big";
   else { drop("later than 2 weeks"); continue; }
+  if ((p === "wd1" || p === "wd2") && s.time && s.time < "17:30" && !multi) { drop("weekday daytime"); continue; }
   const url = (x.url || x.src.url).replace(/[?#].*$/, "");
   const key = day + "|" + norm(title);
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
