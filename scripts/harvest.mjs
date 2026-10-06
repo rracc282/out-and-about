@@ -86,11 +86,14 @@ function microdata(page) {
   return out;
 }
 function fromTribe(j) { return (j.events || []).map(e => ({ title: clean(e.title), start: e.start_date.replace(" ", "T"), end: (e.end_date || "").replace(" ", "T"), url: e.url, place: e.venue ? [e.venue.venue, e.venue.address, e.venue.city].filter(Boolean).join(", ") : "", geo: e.venue && e.venue.geo_lat ? [+e.venue.geo_lat, +e.venue.geo_lng] : null, price: /free|gratuit/i.test(e.cost || "") ? 0 : (String(e.cost || "").match(/\d+/) || [])[0], desc: e.description })); }
+let REFS = {};
+const deref = v => (v && v.__ref ? REFS[v.__ref] || {} : v || {});
 function fromApp(o) { /* Meetup-style app data */
   if (!o.title || !o.dateTime || !(o.eventUrl || o.link)) return null;
-  const v = o.venue || {}; const la = v.lat ?? v.latitude, lo = v.lng ?? v.lon ?? v.longitude; const geo = la ? [+la, +lo] : null;
+  const v = deref(o.venue); const la = v.lat ?? v.latitude, lo = v.lng ?? v.lon ?? v.longitude; const geo = la ? [+la, +lo] : null;
   if (/online/i.test(v.name || "") || o.eventType === "ONLINE") return null;
-  return { title: o.title, start: o.dateTime, end: o.endTime, url: o.eventUrl || o.link, place: [v.name, v.address, v.city].filter(Boolean).join(", "), geo, price: o.feeSettings ? o.feeSettings.amount : 0, cur: o.feeSettings && o.feeSettings.currency, desc: o.description, organizer: o.group && o.group.name };
+  const fs_ = deref(o.feeSettings); const grp = deref(o.group);
+  return { title: o.title, start: o.dateTime, end: o.endTime, url: o.eventUrl || o.link, place: [v.name, v.address, v.city].filter(Boolean).join(", "), geo, price: fs_.amount || 0, cur: fs_.currency, desc: o.description, organizer: grp.name };
 }
 function fromIcs(txt) {
   const out = []; txt = txt.replace(/\r?\n[ \t]/g, "");
@@ -113,7 +116,11 @@ async function harvest(src) {
   const r = await get(src.url); let items = [];
   if (r.body) {
     if (src.kind === "ics" || /^BEGIN:VCALENDAR/.test(r.body)) items = fromIcs(r.body);
-    else for (const b of blobs(r.body)) walk(b, o => { const x = fromLd(o) || fromApp(o); if (x) items.push(x); });
+    else for (const b of blobs(r.body)) { REFS = {}; walk(b, o => { for (const [k, v] of Object.entries(o)) if (/^[A-Z]\w+:[\w-]+$/.test(k) && v && typeof v === "object") REFS[k] = v; if (o.__typename && o.id) REFS[o.__typename + ":" + o.id] = REFS[o.__typename + ":" + o.id] || o; });
+      const got = []; walk(b, o => { const x = fromApp(o) || fromLd(o); if (x) got.push(x); });
+      /* JSON-LD and app data often describe the same event: keep the richer one */
+      const byKey = new Map(); for (const x of got) { const k = String(x.start).slice(0, 16) + clean(x.title).slice(0, 30); const old = byKey.get(k); if (!old || (!old.geo && x.geo) || (!old.place && x.place)) byKey.set(k, x); }
+      items.push(...byKey.values()); }
   }
   if (r.body && src.kind !== "meetup" && items.length < 3) {
     items.push(...microdata(r.body));
@@ -157,7 +164,8 @@ for (const x of raw) {
   if (lastDay < TODAY) { drop("past"); continue; }
   if (s.day > BIG_UNTIL) { drop("far future"); continue; }
   const exhibit = /Exhibition/i.test(x.type || "") || (multi && (Date.parse(e.day) - Date.parse(s.day)) / 864e5 >= 6);
-  const pl = placeOf(x.geo, x.place, x.src.city); if (!pl) { drop(x.geo ? "too far" : "unknown place", x); continue; }
+  const gc = x.src.kind === "meetup" ? (/z[uü]e?rich/i.test(x.src.url) ? "zh" : /lausanne/i.test(x.src.url) ? null : /gen[eè]v|geneva/i.test(x.src.url) ? "ge" : x.src.city) : x.src.city;
+  const pl = placeOf(x.geo, x.place, gc) || (gc && /^\s*$/.test(x.place || "") ? null : null); if (!pl) { drop(x.geo ? "too far" : "unknown place", x); continue; }
   let p, day = s.day < TODAY && multi ? TODAY : s.day;
   if (exhibit) { p = "on"; }
   else if (day <= LAST) { p = periodOf(day); if (!p) { drop("outside weeks"); continue; } }

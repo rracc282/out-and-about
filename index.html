@@ -1291,8 +1291,8 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
 /* Repeat recurring events in every week they fall in (weekly / every other week; monthly ones stay single). */
 /* Nightly data (auto.js): roll the weeks forward, add collected events, weather and the weekly curation. */
 (function applyAuto(){const A=window.AUTO;if(!A||!A.periods)return;
-  const fixed=PERIODS.filter(p=>!p.from);PERIODS.length=0;A.periods.forEach(p=>PERIODS.push(p));fixed.forEach(p=>PERIODS.push(p));
-  Object.keys(NOTES_ZH).forEach(k=>delete NOTES_ZH[k]);Object.assign(NOTES_ZH,A.notesZh||{});
+  if(A.week!=="2026-10-05"){const fixed=PERIODS.filter(p=>!p.from);PERIODS.length=0;A.periods.forEach(p=>PERIODS.push(p));fixed.forEach(p=>PERIODS.push(p));
+  Object.keys(NOTES_ZH).forEach(k=>delete NOTES_ZH[k]);Object.assign(NOTES_ZH,A.notesZh||{})}
   if(A.wx){Object.assign(WX,A.wx.ge||{});Object.assign(WX_ZH,A.wx.zh||{})}
   const dated=PERIODS.filter(p=>p.from);
   const per=d=>{const w=new Date(d+"T12:00:00").getDay(),wk=w>0&&w<6;const p=dated.find(q=>d>=q.from&&d<=q.to&&(q.kind==="weekday")===wk);return p?p.id:"later"};
