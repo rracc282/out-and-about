@@ -162,7 +162,7 @@ const existingUrl = new Set([...html.matchAll(/"url": ?"([^"]+)"/g)].map(m => m[
 const slug = s => clean(s).toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
 const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
 const SRCNAME = { "meetup.com": "Meetup", "eventbrite.ch": "Eventbrite", "eventbrite.com": "Eventbrite", "eventfrog.ch": "Eventfrog", "songkick.com": "Songkick" };
-const out = new Map();
+const out = new Map(), seenVenue = new Set();
 for (const x of raw) {
   const s = when(x.start); if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s.day)) { drop("no date"); continue; }
   const e = when(x.end); const title = clean(x.title).slice(0, 110);
@@ -184,6 +184,8 @@ for (const x of raw) {
   const key = day + "|" + norm(title);
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
   if (out.has(key)) { drop("duplicate"); continue; }
+  const vkey = day + "|" + (s.time || "") + "|" + norm(String(x.place || "").split(",")[0]);
+  if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate"); continue; } seenVenue.add(vkey);
   const free = x.isFree === true || x.price === 0 || x.price === "0" || /\b(free|gratuit|gratis|kostenlos)\b/i.test(title);
   const price = free ? "Free" : x.price ? `${x.cur || "CHF"} ${Math.round(+x.price) || x.price}` : "Price to check";
   const cat = catsOf(title, x.desc, x.src.kind);
