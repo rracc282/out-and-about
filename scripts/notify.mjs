@@ -3,7 +3,9 @@ import fs from "node:fs";
 import webpush from "web-push";
 import { createClient } from "@supabase/supabase-js";
 import { JSDOM } from "jsdom";
+const _ce = console.error; console.error = (...a) => _ce("::warning::" + a.map(x => x && x.message ? x.message : typeof x === "object" ? JSON.stringify(x) : String(x)).join(" ").slice(0, 900));
 process.on("unhandledRejection", e => console.error("page warning:", e && e.message));
+process.on("uncaughtException", e => { _ce("::error::" + (e && (e.stack || e.message))); process.exit(1); });
 
 const KIND = process.env.KIND || "daily";
 const { SUPABASE_URL, SUPABASE_SECRET_KEY, VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY } = process.env;
