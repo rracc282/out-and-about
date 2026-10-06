@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0e6b80"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Out &amp; About"><meta name="description" content="What to do in Geneva and Zurich this week: evenings, weekends, big nights, exhibitions and day trips."><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0e6b80"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Out &amp; About"><meta name="description" content="What to do in Geneva and Zurich this week: evenings, weekends, big nights, exhibitions and day trips."><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auto.js"></script></head><body>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Out &amp; About</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -888,7 +888,7 @@ function readLS(k){try{return localStorage.getItem(k)}catch(e){return null}}
   goingSet.forEach(id=>ensureHist(id));
 })();
 function fromS(){stars=new Set(S.stars||[]);hidden=new Set(S.hidden||[]);goingSet=new Set(S.going||[]);S.hist=S.hist||{};S.deleted=S.deleted||{};applyDeleted()}
-function ensureHist(id){const e=EVENTS.find(x=>x.id===id);if(!e||S.hist[id])return;S.hist[id]={t:e.title,g:GRP[id]||"",d:e.day,w:e.when}}
+function ensureHist(id){const e=EVENTS.find(x=>x.id===id);if(!e||S.hist[id])return;S.hist[id]={t:e.title,g:GRP[id]||"",d:e.day,w:e.when,c:e.cat||[],pl:(e.place||"").split(",")[0],o:e.grp||GRP[e.rep||id]||e.src||""}}
 function persist(){
   S.stars=[...stars];S.hidden=[...hidden];S.going=[...goingSet];S.updated=Date.now();
   try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}
@@ -1289,6 +1289,21 @@ function cityOf(e){return e.city||"ge"}
 function isLocal(e){return e.zone==="ge"||e.zone==="zh"}
 function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
 /* Repeat recurring events in every week they fall in (weekly / every other week; monthly ones stay single). */
+/* Nightly data (auto.js): roll the weeks forward, add collected events, weather and the weekly curation. */
+(function applyAuto(){const A=window.AUTO;if(!A||!A.periods)return;
+  const fixed=PERIODS.filter(p=>!p.from);PERIODS.length=0;A.periods.forEach(p=>PERIODS.push(p));fixed.forEach(p=>PERIODS.push(p));
+  Object.keys(NOTES_ZH).forEach(k=>delete NOTES_ZH[k]);Object.assign(NOTES_ZH,A.notesZh||{});
+  if(A.wx){Object.assign(WX,A.wx.ge||{});Object.assign(WX_ZH,A.wx.zh||{})}
+  const dated=PERIODS.filter(p=>p.from);
+  const per=d=>{const w=new Date(d+"T12:00:00").getDay(),wk=w>0&&w<6;const p=dated.find(q=>d>=q.from&&d<=q.to&&(q.kind==="weekday")===wk);return p?p.id:"later"};
+  EVENTS.forEach(e=>{if(e.p!=="big"&&e.p!=="on"&&e.day)e.p=per(e.day)});
+  const nm=t=>(t||"").toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g,"").slice(0,28);
+  const seen=new Set(EVENTS.map(e=>e.day+"|"+nm(e.title))),urls=new Set(EVENTS.map(e=>e.url));
+  (A.events||[]).forEach(e=>{if(urls.has(e.url)||seen.has(e.day+"|"+nm(e.title)))return;seen.add(e.day+"|"+nm(e.title));
+    if(e.p!=="big"&&e.p!=="on")e.p=per(e.day);if(e.grp&&!GRP[e.id])GRP[e.id]=e.grp;EVENTS.push(e)});
+  const dr=new Set(A.drop||[]);for(let i=EVENTS.length-1;i>=0;i--)if(dr.has(EVENTS[i].id))EVENTS.splice(i,1);
+  Object.entries(A.edits||{}).forEach(([id,f])=>{const e=EVENTS.find(x=>x.id===id);if(e)Object.assign(e,f)});
+})();
 (function expandRecurring(){
   const iso=x=>x.getFullYear()+"-"+pad(x.getMonth()+1)+"-"+pad(x.getDate());
   const add=(d,n)=>{const x=new Date(d+"T12:00:00");x.setDate(x.getDate()+n);return iso(x)};
@@ -1482,7 +1497,29 @@ function renderWeekly(){
     return '<div class="wk-row"><div class="d">'+DAYNAMES[r[0]%7]+(st!=="00:00"?'<br>'+st:'')+'</div><div><a href="'+e.url+'" target="_blank" rel="noopener">'+esc(e.title)+'</a><br><span>'+esc(shortPlace(e))+' · '+freq(r[1].replace(/ until.*/,""))+(u?' · '+u:'')+'</span><br>'+nextHTML(e.id)+'</div></div>'}).join("");
   el.open=open;
 }
-function injectZhPicks(){const blocks=document.querySelectorAll("#picks .pick-block");
+/* Short list from the weekly curation (AUTO.picks), or the best-scoring events when there is none yet. */
+function buildAutoPicks(){const sec=document.getElementById("picks");if(!sec)return;sec.querySelectorAll(".pick-block").forEach(b=>b.remove());
+  const P=id=>PERIODS.find(p=>p.id===id),we=P("we1"),nx=P("wd2");if(!we||!nx)return;
+  const DNL=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const nice=d=>{const x=new Date(d+"T12:00:00");return DNL[x.getDay()].slice(0,3)+" "+x.getDate()+" "+MO[x.getMonth()]};
+  const fri=isoAdd(we.from,-1);
+  const blocks=[{id:"we1",label:"This weekend",rng:nice(fri)+" – "+nice(we.to),ok:e=>e.day>=fri&&e.day<=we.to&&e.p!=="big"&&e.p!=="on"},
+                {id:"wd2",label:"Next week",rng:nice(nx.from)+" – "+nice(nx.to),ok:e=>e.p==="wd2"}];
+  const cur=(AUTO.picks||[]);const sc=e=>{try{return evScore(e)}catch(x){return 0}};
+  const label=e=>{const d=DNL[new Date(e.day+"T12:00:00").getDay()];const t=(e.when.match(/(\d{1,2}):\d{2}/)||[])[1];return d+(t&&+t>=17?" evening":"")};
+  const why=e=>{const d=(e.desc||"").split(/(?<=[.!?])\s/)[0];return d.length>150?d.slice(0,147)+"…":d};
+  let html="";
+  blocks.forEach(b=>{const pool=EVENTS.filter(e=>b.ok(e)&&!isPast(e)&&!isDel(e));let items=[];
+    const mine=cur.filter(x=>x.block===b.id);
+    if(mine.length)items=mine.map(x=>({e:pool.find(e=>e.id===x.id),k:x.k,why:x.why})).filter(x=>x.e);
+    else ["ge","zh"].forEach(c=>pool.filter(e=>cityOf(e)===c&&e.zone!=="far"&&!hidden.has(e.id)).sort((a,z)=>sc(z)-sc(a)).slice(0,3).forEach(e=>items.push({e})));
+    if(!items.length)return;
+    html+='<div class="pick-block"><div class="pick-sep"><span>'+b.label+'</span><em>'+b.rng+'</em></div><div class="picks-grid">'+items.map(({e,k,why:w})=>{const c=cityOf(e);
+      const t=(e.when.match(/\d{1,2}:\d{2}/)||[""])[0];const sub=[t,(e.place||"").split(",")[0],e.price].filter(Boolean).join(" · ");
+      return '<div class="pick" data-city="'+c+'" data-ev="'+esc(e.id)+'"><div class="k"><span class="pcity">'+(c==="zh"?"Zurich":"Geneva")+' · </span>'+esc(k||label(e))+'</div><b>'+(e.dog?DOGICON:'')+esc(e.title)+'</b><span>'+esc(sub)+'</span><span class="why">'+esc(w||why(e))+'</span></div>'}).join("")+'</div></div>'});
+  sec.insertAdjacentHTML("beforeend",html)}
+function injectZhPicks(){if(window.AUTO&&AUTO.week&&AUTO.week!=="2026-10-05"){try{buildAutoPicks()}catch(err){console.error(err)}return}
+  const blocks=document.querySelectorAll("#picks .pick-block");
   document.querySelectorAll('#picks .pick:not([data-city])').forEach(p=>{p.dataset.city="ge";const k=p.querySelector(".k");if(k)k.insertAdjacentHTML("afterbegin",'<span class="pcity">Geneva · </span>')});
   PICKS_ZH.forEach(([bi,id,k,dog,t,sub,why])=>{const g=blocks[bi]&&blocks[bi].querySelector(".picks-grid");if(!g)return;
     g.insertAdjacentHTML("beforeend",'<div class="pick" data-city="zh" data-ev="'+id+'"><div class="k"><span class="pcity">Zurich · </span>'+esc(k)+'</div><b>'+(dog?DOGICON:'')+esc(t)+'</b><span>'+esc(sub)+'</span><span class="why">'+esc(why)+'</span></div>')})}
@@ -1538,7 +1575,13 @@ function evScore(e){let s=0;const c=e.cat||[];
   const w=wxOf(e.day,cityOf(e));if(w&&w[1]>=50)s+=isIndoor(e)?2:-1.5;
   if(e.free)s+=1;s+=isLocal(e)?2:(({"45":1,"90":0,far:-1})[e.zone]||0);
   const g=GRP[e.rep||e.id];if(g){const hs=Object.values(S.hist).filter(h=>h.g===g);if(hs.some(h=>h.r==="up"))s+=3;else if(hs.some(h=>h.r==="skip"))s+=2;if(hs.some(h=>h.r==="down"))s-=4}
-  if(document.querySelector('.pick[data-ev="'+e.id+'"]'))s+=2;return s}
+  if(document.querySelector('.pick[data-ev="'+e.id+'"]'))s+=2;return s+prefBonus(e)}
+/* learns from her ratings (👍/👎) and deletions: kind of event, venue and organiser */
+function prefBonus(e){const H=Object.values(S.hist||{}).filter(h=>h.r==="up"||h.r==="down"),D=Object.values(S.deleted||{});if(!H.length&&!D.length)return 0;
+  const c=e.cat||[],pl=(e.place||"").split(",")[0].trim().toLowerCase(),o=String(e.grp||GRP[e.rep||e.id]||e.src||"").toLowerCase();let b=0,cb=0;
+  H.forEach(h=>{const v=h.r==="up"?1:-1.4;if((h.c||[]).some(x=>c.includes(x)))cb+=v*.6;if(pl&&(h.pl||"").trim().toLowerCase()===pl)b+=v*2;if(o&&!GRP[e.rep||e.id]&&String(h.o||"").toLowerCase()===o)b+=v*1.5});
+  D.forEach(d=>{if(pl&&String(d.p||"").split(",")[0].trim().toLowerCase()===pl)b-=1.5;if(o&&String(d.g||"").toLowerCase()===o)b-=1.5;if((d.c||[]).some(x=>c.includes(x)))cb-=.3});
+  return b+Math.max(-3,Math.min(3,cb))}
 function topPicks(arr,key,n){
   if(state.q||activeFilters()||state.hidden||arr.length<=n+1)return {show:arr,rest:0,far:0,open:false};
   if(ui.dayOpen.has(key))return {show:arr,rest:0,far:0,open:true};
@@ -1673,7 +1716,7 @@ function onAgendaClick(ev){
   if(dl){const id=dl.dataset.del;
     if(ui.delArm!==id){ui.delArm=id;render();return}
     const e=ALL_EVENTS.find(x=>x.id===id);ui.delArm=null;if(!e)return;const k=delKey(e);
-    S.deleted=S.deleted||{};S.deleted[k]={t:e.title,g:GRP[k]||e.src||"",p:e.place,d:TODAY};
+    S.deleted=S.deleted||{};S.deleted[k]={t:e.title,g:GRP[k]||e.grp||e.src||"",p:e.place,c:e.cat||[],d:TODAY};
     ALL_EVENTS.filter(x=>delKey(x)===k).forEach(x=>{goingSet.delete(x.id);hidden.delete(x.id)});
     ui.more=null;applyDeleted();persist();render();return}
   const h=ev.target.closest(".hide");

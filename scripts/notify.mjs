@@ -15,7 +15,8 @@ const _k = SUPABASE_SECRET_KEY; console.log("key shape:", _k.slice(0, 10), "len"
 const db = createClient(SUPABASE_URL, SUPABASE_SECRET_KEY, { auth: { persistSession: false } });
 
 /* run the app once to get the expanded event list exactly as the page shows it */
-const html = fs.readFileSync(new URL("../index.html", import.meta.url), "utf8");
+let html = fs.readFileSync(new URL("../index.html", import.meta.url), "utf8");
+try { const auto = fs.readFileSync(new URL("../auto.js", import.meta.url), "utf8"); html = html.replace('<script src="auto.js"></script>', () => "<script>" + auto + "</script>"); } catch {}
 const dom = new JSDOM(html, { runScripts: "dangerously", url: "https://example.org/", beforeParse(w) { w.scrollTo = () => {}; w.HTMLElement.prototype.scrollIntoView = () => {}; } });
 await new Promise(r => setTimeout(r, 1500));
 const W = dom.window;

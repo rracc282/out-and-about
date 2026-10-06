@@ -6,7 +6,8 @@ const rd = p => fs.readFileSync(new URL(p, root), "utf8");
 const cfg = JSON.parse(rd("scripts/sources.json"));
 const html = rd("index.html");
 const report = { sources: [], kept: 0, dropped: {} };
-const drop = why => { report.dropped[why] = (report.dropped[why] || 0) + 1; };
+const samples = {};
+const drop = (why, x) => { report.dropped[why] = (report.dropped[why] || 0) + 1; if (x) { const a = samples[why] = samples[why] || []; if (a.length < 6) a.push([x.title, x.start, x.place, x.geo, x.src && x.src.url].map(v => String(v ?? "").slice(0, 70))); } };
 
 /* ---------- dates (Europe/Zurich) ---------- */
 const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Zurich", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false });
@@ -76,9 +77,18 @@ function fromLd(o) {
   const off = [].concat(o.offers || [])[0] || {}; const pr = off.price ?? off.lowPrice;
   return { title: o.name, start: o.startDate, end: o.endDate, url: o.url || (off && off.url), place: [loc.name, addr].filter(Boolean).join(", "), geo, price: pr, cur: off.priceCurrency, isFree: o.isAccessibleForFree, desc: o.description, type: [].concat(o["@type"]).join(), organizer: ([].concat(o.organizer || [])[0] || {}).name };
 }
+function microdata(page) {
+  const out = [];
+  for (const m of page.matchAll(/itemtype=["']https?:\/\/schema\.org\/(\w*Event)["']([\s\S]{0,6000}?)(?=itemtype=["']https?:\/\/schema\.org\/\w*Event["']|$)/g)) {
+    const b = m[2]; const prop = k => { const r = b.match(new RegExp(`itemprop=["']${k}["'][^>]*?(?:content|datetime|href)=["']([^"']+)`)) || b.match(new RegExp(`itemprop=["']${k}["'][^>]*>([^<]{2,200})<`)); return r ? clean(r[1]) : ""; };
+    const name = prop("name"), start = prop("startDate"); if (name && start) out.push({ title: name, start, end: prop("endDate"), url: prop("url"), place: [prop("name\"[^>]*itemprop=\"location") , prop("streetAddress"), prop("addressLocality")].filter(Boolean).join(", "), desc: prop("description"), type: m[1] });
+  }
+  return out;
+}
+function fromTribe(j) { return (j.events || []).map(e => ({ title: clean(e.title), start: e.start_date.replace(" ", "T"), end: (e.end_date || "").replace(" ", "T"), url: e.url, place: e.venue ? [e.venue.venue, e.venue.address, e.venue.city].filter(Boolean).join(", ") : "", geo: e.venue && e.venue.geo_lat ? [+e.venue.geo_lat, +e.venue.geo_lng] : null, price: /free|gratuit/i.test(e.cost || "") ? 0 : (String(e.cost || "").match(/\d+/) || [])[0], desc: e.description })); }
 function fromApp(o) { /* Meetup-style app data */
   if (!o.title || !o.dateTime || !(o.eventUrl || o.link)) return null;
-  const v = o.venue || {}; const geo = v.lat ? [+v.lat, +(v.lng ?? v.lon)] : null;
+  const v = o.venue || {}; const la = v.lat ?? v.latitude, lo = v.lng ?? v.lon ?? v.longitude; const geo = la ? [+la, +lo] : null;
   if (/online/i.test(v.name || "") || o.eventType === "ONLINE") return null;
   return { title: o.title, start: o.dateTime, end: o.endTime, url: o.eventUrl || o.link, place: [v.name, v.address, v.city].filter(Boolean).join(", "), geo, price: o.feeSettings ? o.feeSettings.amount : 0, cur: o.feeSettings && o.feeSettings.currency, desc: o.description, organizer: o.group && o.group.name };
 }
@@ -105,7 +115,25 @@ async function harvest(src) {
     if (src.kind === "ics" || /^BEGIN:VCALENDAR/.test(r.body)) items = fromIcs(r.body);
     else for (const b of blobs(r.body)) walk(b, o => { const x = fromLd(o) || fromApp(o); if (x) items.push(x); });
   }
-  report.sources.push({ url: src.url, status: r.status, bytes: r.body.length, found: items.length });
+  if (r.body && src.kind !== "meetup" && items.length < 3) {
+    items.push(...microdata(r.body));
+    if (/tribe-events|wp-json/.test(r.body)) { const t = await get(new URL("/wp-json/tribe/events/v1/events?per_page=50&start_date=" + TODAY, src.url).href); try { items.push(...fromTribe(JSON.parse(t.body))); } catch {} }
+  }
+  let followed = 0;
+  if (r.body && src.kind !== "meetup" && items.length < 3) { /* open the individual event pages */
+    const base = new URL(src.url); const seen = new Set();
+    for (const m of r.body.matchAll(/href=["']([^"'#]+)["']/g)) { let u; try { u = new URL(m[1].replace(/&amp;/g, "&"), base); } catch { continue; }
+      if (u.hostname !== base.hostname || u.href === base.href || seen.has(u.href)) continue;
+      if (!/(event|evenement|[eé]v[eé]nement|veranstaltung|agenda|manifestation|spectacle|konzert|concert|show|ausstellung|exposition|exhibition|termin|programm|spielplan|kalender|\/e\/|\/p\/|idE=)/i.test(u.pathname + u.search)) continue;
+      if (/\.(jpg|png|pdf|css|js)$/i.test(u.pathname) || u.pathname.split("/").filter(Boolean).length < 2 && !u.search) continue;
+      seen.add(u.href); if (seen.size >= 40) break; }
+    const list = [...seen];
+    for (let i = 0; i < list.length; i += 8) await Promise.all(list.slice(i, i + 8).map(async u => { const d = await get(u); if (!d.body) return; followed++;
+      for (const b of blobs(d.body)) walk(b, o => { const x = fromLd(o) || fromApp(o); if (x) { x.url = x.url || u; items.push(x); } });
+      microdata(d.body).forEach(x => { x.url = x.url || u; items.push(x); }); }));
+  }
+  const mk = r.body ? ["ld+json", "schema.org/Event", "__NEXT_DATA__", "__NUXT__", "tribe-events", ".ics", "wp-json"].filter(k => r.body.includes(k)).join(" ") : "";
+  report.sources.push({ url: src.url, status: r.status, bytes: r.body.length, found: items.length, followed, markers: mk });
   items.forEach(x => raw.push({ ...x, src: src }));
 }
 const groups = new Set([...html.matchAll(/meetup\.com\/([A-Za-z0-9_-]+)\/events/g)].map(m => m[1]).concat(cfg.meetupExtra || []));
@@ -127,8 +155,9 @@ for (const x of raw) {
   const multi = e && e.day > s.day;
   const lastDay = multi ? e.day : s.day;
   if (lastDay < TODAY) { drop("past"); continue; }
+  if (s.day > BIG_UNTIL) { drop("far future"); continue; }
   const exhibit = /Exhibition/i.test(x.type || "") || (multi && (Date.parse(e.day) - Date.parse(s.day)) / 864e5 >= 6);
-  const pl = placeOf(x.geo, x.place, x.src.city); if (!pl) { drop("too far / unknown place"); continue; }
+  const pl = placeOf(x.geo, x.place, x.src.city); if (!pl) { drop(x.geo ? "too far" : "unknown place", x); continue; }
   let p, day = s.day < TODAY && multi ? TODAY : s.day;
   if (exhibit) { p = "on"; }
   else if (day <= LAST) { p = periodOf(day); if (!p) { drop("outside weeks"); continue; } }
@@ -175,6 +204,7 @@ fs.mkdirSync(new URL("data/", root), { recursive: true });
 fs.writeFileSync(new URL("auto.js", root), "window.AUTO=" + JSON.stringify(AUTO) + ";\n");
 fs.writeFileSync(new URL("data/auto.json", root), JSON.stringify({ week: MON, periods, events: AUTO.events.map(({ id, p, day, when, title, place, price, cat, city, zone, src, desc, url }) => ({ id, p, day, when, title, place, price, cat, city, zone, src, desc: desc.slice(0, 160), url })) }, null, 0).replace(/\},\{/g, "},\n{"));
 report.byCity = { ge: events.filter(e => e.city === "ge").length, zh: events.filter(e => e.city === "zh").length };
+report.samples = samples;
 report.sources.sort((a, b) => b.found - a.found);
 fs.writeFileSync(new URL("data/report.json", root), JSON.stringify(report, null, 1));
 console.log(`kept ${events.length} (ge ${report.byCity.ge}, zh ${report.byCity.zh})`, JSON.stringify(report.dropped));
