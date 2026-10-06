@@ -1898,8 +1898,8 @@ setCity(ui.city);renderGroups();
 function renderAcct(){const el=document.getElementById("acctbox");if(!el)return;
   if(R.uid){el.innerHTML='<p class="acctnote">Signed in as <b>'+esc(R.email||"")+'</b>. Your plans, ratings and weekend choices sync to every device where you sign in.</p><button class="linkbtn" id="signout">Sign out</button>'}
   else if(!SB){el.innerHTML='<p class="acctnote">Your plans are saved on this device.</p>'}
-  else if(ui.otpMail){el.innerHTML='<p class="acctnote">We emailed a 6-digit code to <b>'+esc(ui.otpMail)+'</b>. Type it here (no need to open any link).</p><form class="acctrow" id="otpform"><input type="text" id="otpcode" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="123456" style="flex:1 1 120px;min-width:0;font:inherit;font-size:18px;letter-spacing:.2em;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)"><button>Sign in</button></form><p class="acctnote" id="otpmsg" style="margin-top:6px"></p><button class="linkbtn" id="otpback">Use another email</button>'}
-  else{el.innerHTML='<p class="acctnote">Your plans are saved on this device. Sign in with your email to sync them between phone and laptop and to get reminders on days you\'re going.</p><form class="acctrow" id="signin"><input type="email" id="signinmail" required placeholder="you@example.com" autocomplete="email"><button>Send me a code</button></form>'}
+  else if(ui.otpMail){el.innerHTML='<p class="acctnote">We emailed <b>'+esc(ui.otpMail)+'</b>. Don\'t tap the link in the email: <b>press and hold</b> it, choose <b>Copy Link</b>, then paste it here. (If the email shows a 6-digit code, you can type that instead.)</p><form class="acctrow" id="otpform"><input type="text" id="otpcode" autocomplete="one-time-code" placeholder="Paste the link or type the code" style="flex:1 1 160px;min-width:0;font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)"><button>Sign in</button></form><p class="acctnote" id="otpmsg" style="margin-top:6px"></p><button class="linkbtn" id="otpback">Use another email</button>'}
+  else{el.innerHTML='<p class="acctnote">Your plans are saved on this device. Sign in with your email to sync them between phone and laptop and to get reminders on days you\'re going.</p><form class="acctrow" id="signin"><input type="email" id="signinmail" required placeholder="you@example.com" autocomplete="email"><button>Email me a sign-in link</button></form>'}
   renderPush()}
 async function pushState(){if(!("serviceWorker" in navigator)||!("PushManager" in window))return "unsupported";if(Notification.permission==="denied")return "denied";
   try{const reg=await navigator.serviceWorker.ready;const sub=await reg.pushManager.getSubscription();return sub?"on":"off"}catch(e){return "off"}}
@@ -1940,9 +1940,14 @@ document.getElementById("acctpanel").addEventListener("click",async ev=>{
   if(ev.target.closest("#otpback")){ui.otpMail=null;renderAcct();return}
   if(ev.target.closest("#installbtn")&&deferredInstall){deferredInstall.prompt();deferredInstall=null;renderInstall()}});
 document.getElementById("acctpanel").addEventListener("submit",async ev=>{ev.preventDefault();if(!SB)return;
-  if(ev.target.id==="otpform"){const code=document.getElementById("otpcode").value.replace(/\D/g,"");const msg=document.getElementById("otpmsg");if(code.length<6){msg.textContent="Enter the code from the email.";return}
-    msg.textContent="Checking…";const {data,error}=await SB.auth.verifyOtp({email:ui.otpMail,token:code,type:"email"});
-    if(error){msg.textContent="That code didn't work ("+error.message+"). Check the latest email or ask for a new code.";return}ui.otpMail=null;applySession(data.session);toast("Signed in");return}
+  if(ev.target.id==="otpform"){const raw=document.getElementById("otpcode").value.trim();const msg=document.getElementById("otpmsg");let q=null;
+    if(/token=|access_token=/.test(raw)){try{const u=new URL(raw);const h=new URLSearchParams(u.hash.slice(1));
+      if(h.get("access_token")&&h.get("refresh_token")){msg.textContent="Checking…";const {data,error}=await SB.auth.setSession({access_token:h.get("access_token"),refresh_token:h.get("refresh_token")});if(error){msg.textContent="That link didn't work ("+error.message+").";return}ui.otpMail=null;applySession(data.session);toast("Signed in");return}
+      const t=u.searchParams.get("token")||u.searchParams.get("token_hash");if(t)q={token_hash:t,type:(u.searchParams.get("type")==="signup"?"signup":"magiclink")}}catch(e){}}
+    else{const code=raw.replace(/\D/g,"");if(code.length>=6)q={email:ui.otpMail,token:code,type:"email"}}
+    if(!q){msg.textContent="Paste the whole link from the email (press and hold it → Copy Link), or type the code.";return}
+    msg.textContent="Checking…";const {data,error}=await SB.auth.verifyOtp(q);
+    if(error){msg.textContent="That code didn't work ("+error.message+"). Use the link from the most recent email, or ask for a new one.";return}ui.otpMail=null;applySession(data.session);toast("Signed in");return}
   const m=document.getElementById("signinmail").value.trim();if(!m)return;
   const {error}=await SB.auth.signInWithOtp({email:m,options:{emailRedirectTo:location.origin+location.pathname}});
   if(error){document.getElementById("acctbox").insertAdjacentHTML("beforeend",'<p class="acctnote">Couldn\'t send the code: '+esc(error.message)+'</p>');return}
