@@ -59,6 +59,11 @@ if (KIND === "daily") {
       const body = time + " · " + place + (e.price ? " · " + e.price : "");
       for (const s of mine) await send(s, { title: label + ": " + e.title, body, url: "./#ev-" + encodeURIComponent(e.id), tag: "ev-" + e.id });
     }
+    /* the morning after: ask how it was (one per day, the first unrated plan) */
+    const y = new Date(TODAY + "T12:00:00"); y.setDate(y.getDate() - 1); const YDAY = y.toISOString().slice(0, 10);
+    const hist = st.hist || {};
+    const past = ALL.find(e => going.has(e.id) && (e.dayEnd || e.day) === YDAY && !(hist[e.id] && hist[e.id].r));
+    if (past) for (const s of mine) await send(s, { title: "How was " + past.title + "?", body: "Tap to rate it — the app learns what you like.", url: "./#rate", rate: past.id, tag: "rate-" + past.id });
     for (const [tid, d] of Object.entries(st.trips || {})) {
       if (d !== TODAY) continue;
       const t = TRIPS.find(x => x.id === tid); if (!t) continue;
