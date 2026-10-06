@@ -3,7 +3,7 @@
   {
    "url": "https://lesgenevois.com/calendrier/ce-weekend",
    "status": 200,
-   "bytes": 2401096,
+   "bytes": 2401099,
    "found": 208,
    "followed": 0,
    "markers": "ld+json schema.org/Event"
@@ -95,14 +95,6 @@
    "found": 68,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
-   "status": 200,
-   "bytes": 246273,
-   "found": 50,
-   "followed": 0,
-   "markers": "ld+json schema.org/Event"
   },
   {
    "url": "https://www.opernhaus.ch/spielplan/kalendarium/",
@@ -251,7 +243,7 @@
   {
    "url": "https://www.kulturzueri.ch/",
    "status": 200,
-   "bytes": 147992,
+   "bytes": 148046,
    "found": 10,
    "followed": 12,
    "markers": ""
@@ -281,9 +273,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-expats/events/",
+   "url": "https://www.meetup.com/zurich-social-club/events/",
    "status": 200,
-   "bytes": 59546,
+   "bytes": 59568,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -305,9 +297,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-social-club/events/",
+   "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
-   "bytes": 59568,
+   "bytes": 59546,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -353,14 +345,6 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=3",
    "status": 405,
    "bytes": 0,
@@ -369,7 +353,7 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--lausanne/all-events/",
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -378,6 +362,14 @@
   },
   {
    "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
+   "url": "https://www.eventbrite.ch/d/switzerland--lausanne/all-events/",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -395,9 +387,9 @@
   {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 58080,
+   "bytes": 58057,
    "found": 0,
-   "followed": 13,
+   "followed": 12,
    "markers": "ld+json"
   },
   {
@@ -405,15 +397,23 @@
    "status": 200,
    "bytes": 587617,
    "found": 0,
-   "followed": 40,
+   "followed": 38,
    "markers": ""
   },
   {
    "url": "https://eventfrog.ch/de/events/zuerich.html",
    "status": 200,
-   "bytes": 590082,
+   "bytes": 589733,
    "found": 0,
-   "followed": 34,
+   "followed": 36,
+   "markers": ""
+  },
+  {
+   "url": "https://newinzurich.com/events/",
+   "status": 202,
+   "bytes": 177,
+   "found": 0,
+   "followed": 0,
    "markers": ""
   },
   {
@@ -441,14 +441,6 @@
    "markers": ""
   },
   {
-   "url": "https://newinzurich.com/events/",
-   "status": 200,
-   "bytes": 165137,
-   "found": 0,
-   "followed": 3,
-   "markers": "ld+json wp-json"
-  },
-  {
    "url": "https://www.zuerichunbezahlbar.ch/",
    "status": 200,
    "bytes": 67252,
@@ -473,14 +465,6 @@
    "markers": "ld+json"
   },
   {
-   "url": "https://www.comedykiss.ch/",
-   "status": 200,
-   "bytes": 1238191,
-   "found": 0,
-   "followed": 1,
-   "markers": "ld+json"
-  },
-  {
    "url": "https://lesamis.cc/",
    "status": 200,
    "bytes": 98339,
@@ -495,6 +479,14 @@
    "found": 0,
    "followed": 0,
    "markers": ""
+  },
+  {
+   "url": "https://www.comedykiss.ch/",
+   "status": 200,
+   "bytes": 1252011,
+   "found": 0,
+   "followed": 1,
+   "markers": "ld+json"
   },
   {
    "url": "https://www.theater11.ch/",
@@ -515,7 +507,7 @@
   {
    "url": "https://www.gtg.ch/saison-26-27/",
    "status": 200,
-   "bytes": 218473,
+   "bytes": 218472,
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
@@ -537,6 +529,14 @@
    "markers": "ld+json"
   },
   {
+   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
+   "status": 406,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
    "url": "https://www.songkick.com/metro-areas/28889-switzerland-geneva",
    "status": 406,
    "bytes": 0,
@@ -550,14 +550,6 @@
    "bytes": 0,
    "found": 0,
    "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
-   "status": 200,
-   "bytes": 302404,
-   "found": 0,
-   "followed": 12,
    "markers": ""
   },
   {
@@ -575,22 +567,30 @@
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
+  },
+  {
+   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
+   "status": 200,
+   "bytes": 302404,
+   "found": 0,
+   "followed": 12,
+   "markers": ""
   }
  ],
- "kept": 220,
+ "kept": 170,
  "dropped": {
   "later than 2 weeks": 402,
   "already in app": 68,
   "past": 512,
-  "duplicate": 95,
+  "duplicate": 94,
   "far future": 82,
   "weekday daytime": 53,
   "unknown place": 87,
-  "not relevant": 17
+  "not relevant": 18
  },
  "byCity": {
   "ge": 116,
-  "zh": 104
+  "zh": 54
  },
  "samples": {
   "unknown place": [
