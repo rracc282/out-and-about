@@ -1630,7 +1630,10 @@ ui.dayOpen=new Set();
 ui.city=(function(){try{const v=localStorage.getItem("sorties-city");return v==="ge"||v==="zh"||v==="both"?v:(S.home||"both")}catch(e){return S.home||"both"}})();
 function inCity(e){return ui.city==="both"||cityOf(e)===ui.city||(state.going&&goingSet.has(e.id))}
 function setCity(c){ui.city=c;try{localStorage.setItem("sorties-city",c)}catch(e){}document.querySelectorAll("#cityseg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.city===c));document.body.classList.toggle("city-both",c==="both")}
-function isIndoor(e){if(e.indoor!==undefined)return !!e.indoor;if(e.p==="on"||e.p==="big")return true;const c=e.cat||[];return !(e.dog&&(c.includes("fete")||c.includes("marche")||(c.includes("chien")&&!c.includes("culture"))))}
+function isIndoor(e){if(e.indoor!==undefined)return !!e.indoor;
+  const t=(e.title+" "+(e.titleEn||"")+" "+(e.place||"")).toLowerCase();
+  if(/brocken|brocki|museum|musée|exhibition|ausstellung|exposition|theat|théâtre|kino|cinema|cinéma|opera|oper\b|opernhaus|tonhalle|concert hall|saal|salle|halle\b|hall\b|club|bar\b|café|cafe|studio|atelier|workshop|kurs|cours|library|bibliot|gallery|galerie|kunsthaus|volkshaus|church|kirche|église|temple|indoor/.test(t))return true;
+  if(/open[- ]?air|outdoor|hike|wander|randonn|walk|balade|spaziergang|farm|hof\b|juckerhof|pumpkin|kürbis|chilbi|kilbi|alp|désalpe|cow|kuh|vieh|parade|garden|garten|jardin|park\b|parc\b|lake|see\b|lac\b|flohmarkt|flea market|marché aux puces|puces|vide-grenier|street|strasse fest|fête de rue|braderie|mittelalter|medieval|harvest|vendange|market|markt|marché/.test(t))return false;if(e.p==="on"||e.p==="big")return true;const c=e.cat||[];return !(e.dog&&(c.includes("fete")||c.includes("marche")||(c.includes("chien")&&!c.includes("culture"))))}
 function isDuo(e){if(e.duo!==undefined)return !!e.duo;const c=e.cat||[];return !(c.length===1&&c[0]==="rencontre")}
 /* where she is each weekend: S.zw maps a Saturday (YYYY-MM-DD) to "ge"|"zh"; unset weekends alternate from the nearest set one */
 function zwStatus(d){const m=S.zw||{};if(m[d])return {v:m[d],inf:false};const ks=Object.keys(m).filter(k=>m[k]);if(!ks.length)return {v:null,inf:false};
@@ -1655,9 +1658,9 @@ function prefBonus(e){const H=Object.values(S.hist||{}).filter(h=>h.r==="up"||h.
 function topPicks(arr,key,n){
   if(state.q||activeFilters()||state.hidden||arr.length<=n+1)return {show:arr,rest:0,far:0,open:false};
   if(ui.dayOpen.has(key))return {show:arr,rest:0,far:0,open:true};
-  const must=arr.filter(e=>goingSet.has(e.id)||ui.open.has(e.id)||!!document.querySelector('.pick[data-ev="'+e.id+'"]:not([hidden])'));
+  const must=arr.filter(e=>goingSet.has(e.id)||ui.open.has(e.id)||(!wetOf(e)&&!!document.querySelector('.pick[data-ev="'+e.id+'"]:not([hidden])')));
   const near=e=>isLocal(e)||e.zone==="45";
-  const pool=arr.filter(e=>!must.includes(e)).sort((a,b)=>(near(b)-near(a))||evScore(b)-evScore(a));
+  const pool=arr.filter(e=>!must.includes(e)).sort((a,b)=>evScore(b)-evScore(a)||(near(b)-near(a)));
   const top=new Set(must.concat(pool.slice(0,Math.max(0,n-must.length))));
   const rest=arr.filter(e=>!top.has(e));
   return {show:arr.filter(e=>top.has(e)),rest:rest.length,far:rest.filter(e=>!near(e)).length,open:false};
