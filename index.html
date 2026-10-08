@@ -1368,6 +1368,7 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
   const SPOKEN=/theater|theatre|schauspiel|kabarett|cabaret|komödie|lesung|vortrag|führung|poetry slam|hörspiel|improtheater|podium|diskussion|play\b/i;
   for(let i=EVENTS.length-1;i>=0;i--){const e=EVENTS[i],t=e.title+" "+(e.desc||"").slice(0,300);if(NICHE.test(t)||(cityOf(e)==="zh"&&(DEONLY.test(t)||(SPOKEN.test(e.title)&&/[äöü]|\b(der|die|das|und)\b/i.test(e.title)&&!/english|englisch|übertitel|surtit/i.test(t)))))EVENTS.splice(i,1)}
   EVENTS.forEach(e=>{if(e.p==="on"&&!e.dayEnd&&e.day){const x=new Date(e.day+"T12:00:00");x.setDate(x.getDate()+90);e.dayEnd=x.toISOString().slice(0,10)}});
+  if(A.tEn)EVENTS.forEach(e=>{const t=A.tEn[e.rep||e.id];if(t&&!e.titleEn)e.titleEn=t});
   const dr=new Set(A.drop||[]);for(let i=EVENTS.length-1;i>=0;i--)if(dr.has(EVENTS[i].id))EVENTS.splice(i,1);
   Object.entries(A.edits||{}).forEach(([id,f])=>{const e=EVENTS.find(x=>x.id===id);if(e)Object.assign(e,f)});
 })();
