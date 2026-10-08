@@ -156,6 +156,12 @@ const groups = new Set([...html.matchAll(/meetup\.com\/([A-Za-z0-9_-]+)\/events/
 const jobs = [...[...groups].map(g => ({ url: `https://www.meetup.com/${g}/events/`, kind: "meetup" })), ...cfg.pages];
 for (let i = 0; i < jobs.length; i += 6) await Promise.all(jobs.slice(i, i + 6).map(harvest));
 
+const DE = /\b(und|der|die|das|mit|für|ein|eine|im|zum|zur|auf|bei|wir|ihr|nicht|oder|auch|ab|uhr|eintritt|anmeldung|führung|abend|kinder|markt)\b/gi;
+const FR = /\b(et|le|la|les|des|du|avec|pour|une|un|dans|sur|nous|vous|soirée|entrée|libre|atelier|inscription|marché|gratuit|au|aux)\b/gi;
+const EN = /\b(the|and|with|for|of|to|in|on|at|is|are|you|your|this|our|join|free|night|event)\b/gi;
+const langOf = t => { const d = (t.match(DE) || []).length, f = (t.match(FR) || []).length, e = (t.match(EN) || []).length; if (e >= d && e >= f) return "en"; return d > f ? "de" : f > d ? "fr" : (/[äöüß]/i.test(t) ? "de" : /[éèêàç]/i.test(t) ? "fr" : "en"); };
+const DEONLY = /\b(auf|in) (deutsch|deutscher sprache|mundart|schweizerdeutsch|dialekt)\b|sprache:? ?deutsch|\bin german\b|german[- ]language|\bmundart\b|züritüütsch|schwiizerdütsch|schweizerdeutsch|in swiss german|german only/i;
+const SPOKEN = /theater|theatre|schauspiel|kabarett|cabaret|komödie|comedy|stand-?up|lesung|vortrag|führung|poetry slam|slam|hörspiel|musical|improtheater|podium|diskussion|lecture|talk\b/i;
 /* ---------- normalise ---------- */
 const norm = t => clean(t).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "").slice(0, 28);
 const existing = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})"[^{}]*?"title": ?"([^"]+)"/g)].map(m => m[1] + "|" + norm(m[2])));
@@ -175,6 +181,8 @@ for (const x of raw) {
   if (s.day > BIG_UNTIL) { drop("far future"); continue; }
   const exhibit = /Exhibition/i.test(x.type || "") || (multi && (Date.parse(e.day) - Date.parse(s.day)) / 864e5 >= 6);
   const gc = x.src.kind === "meetup" ? (/z[uü]e?rich/i.test(x.src.url) ? "zh" : /lausanne/i.test(x.src.url) ? null : /gen[eè]v|geneva/i.test(x.src.url) ? "ge" : x.src.city) : x.src.city;
+  const ptmp = placeOf(x.geo, x.place, gc);
+  if (ptmp && ptmp.city === "zh") { const t = title + " " + clean(x.desc).slice(0, 400); if (DEONLY.test(t) || (SPOKEN.test(t) && langOf(t) === "de" && !/english|englisch|übertitel|surtit/i.test(t))) { drop("Zurich: German-only spoken event", x); continue; } }
   const pl = placeOf(x.geo, x.place, gc) || (gc && /^\s*$/.test(x.place || "") ? null : null); if (!pl) { drop(x.geo ? "too far" : "unknown place", x); continue; }
   let p, day = s.day < TODAY && multi ? TODAY : s.day;
   if (exhibit) { p = "on"; }
@@ -246,9 +254,28 @@ for (const p of periods) for (const c of ["ge", "zh"]) notes[c][p.id] = (fresh &
 periods.forEach(p => { p.note = notes.ge[p.id]; });
 const add = (cur.add || []).filter(e => (e.dayEnd || e.day) >= TODAY).map(e => ({ ...e, p: e.p === "big" || e.p === "on" ? e.p : periodOf(e.day) || "later" }));
 
+/* ---------- English: translate German/French titles and descriptions (free MyMemory API, cached in data/tr.json) ---------- */
+let TR = {}; try { TR = JSON.parse(rd("data/tr.json")); } catch {}
+let budget = 40000, trCount = 0;
+async function toEn(t) {
+  t = String(t || "").trim(); if (!t) return t;
+  const l = langOf(t); if (l === "en") return null;
+  const key = l + ":" + t; if (key in TR) return TR[key];
+  if (budget - t.length < 0) return null; budget -= t.length;
+  const r = await get(`https://api.mymemory.translated.net/get?langpair=${l}|en&de=bot%40users.noreply.github.com&q=${encodeURIComponent(t.slice(0, 480))}`);
+  try { const j = JSON.parse(r.body); const out = j.responseData && j.responseData.translatedText; if (out && !/MYMEMORY WARNING|QUERY LENGTH/i.test(out) && j.responseStatus == 200) { TR[key] = clean(out); trCount++; return TR[key]; } } catch {}
+  return null;
+}
+for (const e of events.concat(add)) {
+  const tt = await toEn(e.title); if (tt && norm(tt) !== norm(e.title)) e.titleEn = tt.slice(0, 110);
+  if (e.desc) { const dd = await toEn(e.desc); if (dd) e.desc = dd; }
+}
+report.translated = trCount;
+
 const AUTO = { generated: new Date().toISOString(), week: MON, periods, notesZh: notes.zh, wx, twx, tgeo, geo: Object.fromEntries(Object.entries(GEO).filter(([, v]) => v)), events: events.concat(add), edits: cur.edits || {}, drop: cur.drop || [], picks: fresh ? cur.picks || [] : [] };
 fs.mkdirSync(new URL("data/", root), { recursive: true });
 fs.writeFileSync(new URL("data/geo.json", root), JSON.stringify(GEO));
+fs.writeFileSync(new URL("data/tr.json", root), JSON.stringify(TR));
 fs.writeFileSync(new URL("auto.js", root), "window.AUTO=" + JSON.stringify(AUTO) + ";\n");
 fs.writeFileSync(new URL("data/auto.json", root), JSON.stringify({ week: MON, periods, events: AUTO.events.map(({ id, p, day, when, title, place, price, cat, city, zone, src, desc, url }) => ({ id, p, day, when, title, place, price, cat, city, zone, src, desc: desc.slice(0, 160), url })) }, null, 0).replace(/\},\{/g, "},\n{"));
 report.byCity = { ge: events.filter(e => e.city === "ge").length, zh: events.filter(e => e.city === "zh").length };
