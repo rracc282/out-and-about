@@ -3,7 +3,7 @@
   {
    "url": "https://lesgenevois.com/calendrier/ce-weekend",
    "status": 200,
-   "bytes": 2417635,
+   "bytes": 2417638,
    "found": 208,
    "followed": 0,
    "markers": "ld+json schema.org/Event"
@@ -91,18 +91,10 @@
   {
    "url": "https://www.meetup.com/social-circle-zurich/events/",
    "status": 200,
-   "bytes": 252867,
+   "bytes": 252865,
    "found": 66,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
-   "status": 200,
-   "bytes": 241558,
-   "found": 50,
-   "followed": 0,
-   "markers": "ld+json schema.org/Event"
   },
   {
    "url": "https://www.opernhaus.ch/spielplan/kalendarium/",
@@ -201,17 +193,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/samba-workshops-zurich/events/",
+   "url": "https://www.meetup.com/philosophical_minds_zurich/events/",
    "status": 200,
-   "bytes": 130788,
+   "bytes": 157955,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/philosophical_minds_zurich/events/",
+   "url": "https://www.meetup.com/samba-workshops-zurich/events/",
    "status": 200,
-   "bytes": 157955,
+   "bytes": 130788,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -289,14 +281,6 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-expats/events/",
-   "status": 200,
-   "bytes": 59548,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/zurich-social-club/events/",
    "status": 200,
    "bytes": 59568,
@@ -305,9 +289,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
-   "bytes": 59592,
+   "bytes": 59548,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -316,6 +300,14 @@
    "url": "https://www.meetup.com/geneva-language-exchange/events/",
    "status": 200,
    "bytes": 59590,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "status": 200,
+   "bytes": 59592,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -335,6 +327,14 @@
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
   },
   {
    "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/",
@@ -361,22 +361,6 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://www.eventbrite.ch/d/switzerland--lausanne/all-events/",
    "status": 405,
    "bytes": 0,
@@ -393,9 +377,17 @@
    "markers": ""
   },
   {
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 76189,
+   "bytes": 76244,
    "found": 0,
    "followed": 14,
    "markers": "ld+json"
@@ -417,17 +409,17 @@
    "markers": ""
   },
   {
-   "url": "https://newinzurich.com/events/",
-   "status": 202,
-   "bytes": 177,
+   "url": "https://www.tempslibre.ch/geneve/manifestations/ce-week-end",
+   "status": 403,
+   "bytes": 0,
    "found": 0,
    "followed": 0,
    "markers": ""
   },
   {
-   "url": "https://www.tempslibre.ch/geneve/manifestations/ce-week-end",
-   "status": 403,
-   "bytes": 0,
+   "url": "https://newinzurich.com/events/",
+   "status": 202,
+   "bytes": 179,
    "found": 0,
    "followed": 0,
    "markers": ""
@@ -481,20 +473,20 @@
    "markers": "ld+json"
   },
   {
+   "url": "https://www.comedykiss.ch/",
+   "status": 200,
+   "bytes": 1452208,
+   "found": 0,
+   "followed": 1,
+   "markers": "ld+json"
+  },
+  {
    "url": "https://www.geneve.com/fr/agenda",
    "status": 404,
    "bytes": 0,
    "found": 0,
    "followed": 0,
    "markers": ""
-  },
-  {
-   "url": "https://www.comedykiss.ch/",
-   "status": 200,
-   "bytes": 1451964,
-   "found": 0,
-   "followed": 1,
-   "markers": "ld+json"
   },
   {
    "url": "https://www.theater11.ch/",
@@ -515,7 +507,7 @@
   {
    "url": "https://www.gtg.ch/saison-26-27/",
    "status": 200,
-   "bytes": 228655,
+   "bytes": 228651,
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
@@ -537,6 +529,14 @@
    "markers": "ld+json"
   },
   {
+   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
+   "status": 406,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
    "url": "https://www.songkick.com/metro-areas/28889-switzerland-geneva",
    "status": 406,
    "bytes": 0,
@@ -550,6 +550,14 @@
    "bytes": 0,
    "found": 0,
    "followed": 0,
+   "markers": ""
+  },
+  {
+   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
+   "status": 200,
+   "bytes": 303952,
+   "found": 0,
+   "followed": 12,
    "markers": ""
   },
   {
@@ -567,35 +575,27 @@
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
-  },
-  {
-   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
-   "status": 200,
-   "bytes": 303952,
-   "found": 0,
-   "followed": 12,
-   "markers": ""
   }
  ],
- "kept": 194,
+ "kept": 145,
  "dropped": {
   "later than 2 weeks": 398,
   "past": 510,
-  "duplicate": 64,
+  "duplicate": 63,
   "far future": 80,
   "already in app": 48,
   "weekday daytime": 42,
-  "unknown place": 86,
+  "unknown place": 85,
   "niche (card games, wargaming…)": 51,
   "Zurich: German-only spoken event": 23,
   "not relevant": 20,
   "children's event": 7
  },
  "geocoded": 0,
- "translated": 55,
+ "translated": 0,
  "byCity": {
-  "ge": 110,
-  "zh": 84
+  "ge": 109,
+  "zh": 36
  },
  "samples": {
   "unknown place": [
