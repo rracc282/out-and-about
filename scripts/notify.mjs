@@ -122,5 +122,10 @@ if (KIND === "nudge" || (AUTOK && H === nudgeHour && !(DOW === 1 && H === 12))) 
     if (msg) for (const s of subs.filter(s => s.user_id === uid && s.weekly)) await send(s, { ...msg, tag: "nudge-" + TODAY });
   }
 }
+if (KIND === "check") { /* privacy-safe status: only whether things are set, never the values */
+  const { data: rows } = await db.from("state").select("user_id,data,updated_at");
+  for (const r of rows || []) { const d = r.data || {}, a = d.addr || {};
+    console.log("::notice::user " + String(r.user_id).slice(0, 6) + "… home=" + (d.home || "-") + " likes=" + (d.likes || []).length + " addrGeneva=" + (a.ge ? (a.ge.ll ? "saved+located" : "saved, NOT located") : "none") + " addrZurich=" + (a.zh ? (a.zh.ll ? "saved+located" : "saved, NOT located") : "none") + " going=" + (d.going || []).length + " subs=" + subs.filter(s => s.user_id === r.user_id).length); }
+}
 console.log(KIND, "sent", sent, "removed", dropped, "subscriptions", subs.length);
 process.exit(0);
