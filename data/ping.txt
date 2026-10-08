@@ -1,0 +1,10 @@
+Connection test: 2026-10-08 18:13:37 UTC
+
+Step 1:
+pwd -> /home/claude/out-and-about
+ls /home/claude -> out-and-about
+remote -> origin https://github.com/rracc282/out-and-about (fetch/push)
+
+Step 2 (repo existed; git pull tail):
+ sw.js               |  2 +-
+ 3 files changed, 41 insertions(+), 4 deletions(-)
