@@ -486,6 +486,20 @@ body.city-both .pick .pcity{display:inline}
 .wetb{margin-left:8px;font-size:11px;font-weight:700;background:rgba(255,255,255,.2);border-radius:999px;padding:1px 7px;letter-spacing:0}
 .trip-why{display:block;font-size:12.5px;margin-top:6px;opacity:.85}
 #onb input{width:100%;box-sizing:border-box;font:inherit;padding:9px 11px;border:1px solid var(--line,#ccc);border-radius:10px;margin:0 0 8px;background:transparent;color:inherit}
+.top .stamp{display:none!important}
+.period-note{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+.period-note.open{-webkit-line-clamp:unset;display:block}
+#fullgate{text-align:center;margin:14px 0 6px}
+.fullbtn{font:inherit;font-weight:600;font-size:14.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:10px 20px;cursor:pointer}
+.alltrips{display:block;margin:12px auto;font:inherit;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:9px 18px;cursor:pointer}
+#swipe{position:fixed;inset:0;z-index:120;background:rgba(10,20,30,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;color:#fff;touch-action:pan-y}
+.sw-top{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.sw-top .sw-close{background:none;border:0;color:#fff;font-size:22px;cursor:pointer}
+.sw-card{background:var(--surface,#fff);color:var(--ink,#14212b);border-radius:18px;padding:22px;max-width:380px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,.4);transition:transform .15s;user-select:none}
+.sw-card h3{margin:6px 0 6px;font-size:22px}.sw-card small{opacity:.7}.sw-pl{font-weight:600;opacity:.8;margin:0 0 10px}
+.sw-btns{display:flex;gap:10px;margin-top:18px}.sw-btns button,.sw-end button{font:inherit;font-weight:600;border:0;border-radius:999px;padding:12px 16px;cursor:pointer}
+.sw-no{background:#fff;color:#14212b}.sw-skip{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)!important}.sw-yes{background:#DA291C;color:#fff}
+.sw-hint{font-size:12.5px;opacity:.6;margin-top:12px}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -539,7 +553,7 @@ body.city-both .pick .pcity{display:inline}
 <nav class="tabs" role="tablist" aria-label="Choose a period">
   <button role="tab" data-tab="this" aria-selected="true">This week</button>
   <button role="tab" data-tab="next" aria-selected="false">Next week</button>
-  <button role="tab" data-tab="big" aria-selected="false">Big nights<span class="tl-long"> &amp; exhibitions</span></button>
+  <button role="tab" data-tab="big" aria-selected="false">Later</button>
   <button role="tab" data-tab="trips" aria-selected="false">Day trips</button>
   <button class="tab-plans" id="tabplans" aria-pressed="false">✓ My plans</button>
 </nav>
@@ -570,7 +584,7 @@ body.city-both .pick .pcity{display:inline}
 </section>
 <div class="filterpanel" id="filterpanel">
   <div class="searchrow"><input type="search" id="q" placeholder="Search events, places, groups" aria-label="Search all events" autocomplete="off"><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
-<div class="quickrow" id="quick"><button class="chip" data-q="f-free" aria-pressed="false">Free</button><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rainy day</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs welcome</button><button class="chip pickme" id="pickme">🎲 Pick for me</button></div>
+<div class="quickrow" id="quick"><button class="chip" data-q="f-free" aria-pressed="false">Free</button><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rainy day</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs welcome</button><button class="chip" id="swipebtn">🃏 Swipe the weekend</button><button class="chip pickme" id="pickme">🎲 Pick for me</button></div>
   <div id="chipbox"><div class="sheethead"><span>Filters</span><span><button class="aclear" id="sheetclear">Clear</button> <button id="sheetdone">Done</button></span></div>
   <div class="filters" role="group" aria-label="Filter by type">
     <span class="lbl">Type</span>
@@ -1330,7 +1344,6 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
     if(e.p!=="big"&&e.p!=="on")e.p=per(e.day);if(e.grp&&!GRP[e.id])GRP[e.id]=e.grp;EVENTS.push(e)});
   const NICHE=/pok[eé]mon|yu-?gi-?oh|magic:? the gathering|\bmtg\b|commander (event|night|league|game)|trading card|\btcg\b|card game|kartenspiel|jeux? de cartes|flesh and blood|lorcana|one piece card|digimon|warhammer|kill team|age of sigmar|\b40k\b|wargam|miniature painting|\blarp\b|cosplay|anime|manga/i;
   for(let i=EVENTS.length-1;i>=0;i--){const e=EVENTS[i];if(NICHE.test(e.title+" "+(e.desc||"").slice(0,300)))EVENTS.splice(i,1)}
-  if(A.twx)Object.assign(TWX,A.twx);
   const dr=new Set(A.drop||[]);for(let i=EVENTS.length-1;i>=0;i--)if(dr.has(EVENTS[i].id))EVENTS.splice(i,1);
   Object.entries(A.edits||{}).forEach(([id,f])=>{const e=EVENTS.find(x=>x.id===id);if(e)Object.assign(e,f)});
 })();
@@ -1470,7 +1483,7 @@ function evHTML(e,p){
     (g?'<span class="going-badge" style="margin:10px 0 0 4px">✓ You\'re going</span>':'')+
     '<button class="ev-sum" data-toggle="'+e.id+'" aria-expanded="'+open+'" aria-controls="det-'+e.id+'">'+
       '<span class="when">'+whenShort(e,p)+'</span>'+
-      '<span class="ev-main"><span class="ev-t">'+(isNew(e)&&!isPast(e)?'<span class="newdot" title="New since your last visit"></span>':'')+(ui.city==="both"&&!ui.inCol?'<span class="cbadge">'+(cityOf(e)==="zh"?"ZRH":"GVA")+'</span>':'')+esc(e.title)+'</span><span class="ev-s">'+sub+'</span></span>'+
+      '<span class="ev-main"><span class="ev-t">'+(isNew(e)&&!isPast(e)?'<span class="newdot" title="New since your last visit"></span>':'')+(ui.city==="both"&&!ui.inCol?'<span class="cbadge">'+(cityOf(e)==="zh"?"ZRH":"GVA")+'</span>':'')+esc(e.title)+'</span>'+(open?'<span class="ev-s">'+sub+'</span>':'')+'</span>'+
       '<span class="ev-ic">'+icons+'<span class="chev">▾</span></span>'+
     '</button>'+det+'</article>';
 }
@@ -1654,13 +1667,13 @@ function render(){
       list.forEach(e=>{if(isFlexible(e))flex.push(e);else (byDay[e.day]=byDay[e.day]||[]).push(e)});
       body=Object.keys(byDay).sort().map(d=>{const dt=new Date(d+"T12:00:00");const isT=d===TODAY;if(isT)todayId="day-"+d;
         const k=p.id+"|"+d,lbl=(isT?'today':'on '+DAYNAMES[dt.getDay()]),head=(isT?'Today · ':'')+DAYNAMES[dt.getDay()]+' '+dt.getDate()+' '+MON[dt.getMonth()];
-        if(ui.city==="both"&&!state.going){const here=hereCity(d);ui.inCol=true;const cols=cityOrder(here).map(c=>{const evs=byDay[d].filter(e=>cityOf(e)===c);const t=topPicks(evs,k+"|"+c,4);const w=wxOf(d,c);
+        if(ui.city==="both"&&!state.going){const here=hereCity(d);ui.inCol=true;const cols=cityOrder(here).map(c=>{const evs=byDay[d].filter(e=>cityOf(e)===c);const t=topPicks(evs,k+"|"+c,2);const w=wxOf(d,c);
             return '<div class="citycol"><h4>'+(here===c?'<span class="here">📍 </span>':'')+CITY[c].name+(w&&w[1]>=50?' <span class="rainy">☔ indoor first</span>':'')+wxHTML(d,c)+'</h4>'+(evs.length?t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k+"|"+c,t,lbl+' in '+CITY[c].name):'<p class="empty">Nothing listed.</p>')+'</div>'}).join("");ui.inCol=false;
           return '<div class="day"><h3 id="day-'+d+'"'+(isT?' class="today"':'')+'>'+head+'</h3><div class="citycols">'+cols+'</div></div>'}
-        const t=topPicks(byDay[d],k,5),c1=ui.city==="both"?null:ui.city,w=c1&&wxOf(d,c1);
+        const t=topPicks(byDay[d],k,2),c1=ui.city==="both"?null:ui.city,w=c1&&wxOf(d,c1);
         return '<div class="day"><h3 id="day-'+d+'"'+(isT?' class="today"':'')+'>'+head+(w&&w[1]>=50?' <span class="rainy">☔ indoor first</span>':'')+(c1?wxHTML(d,c1):'')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,lbl)+'</div>'}).join("");
-      if(flex.length){const k=p.id+"|flex",t=topPicks(flex,k,3);body+='<div class="day"><h3>'+(p.kind==="weekday"?'Any evening this week':'Across the weekend')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,p.kind==="weekday"?"this week":"across the weekend")+'</div>'}
-    } else {const k=p.id+"|all",t=topPicks(list,k,p.id==="big"?8:6);body='<div class="day">'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,p.id==="big"?"big nights":"exhibitions")+'</div>'}
+      if(flex.length){const k=p.id+"|flex",t=topPicks(flex,k,2);body+='<div class="day"><h3>'+(p.kind==="weekday"?'Any evening this week':'Across the weekend')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,p.kind==="weekday"?"this week":"across the weekend")+'</div>'}
+    } else {const k=p.id+"|all",t=topPicks(list,k,p.id==="big"?5:4);body='<div class="day">'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,p.id==="big"?"big nights":"exhibitions")+'</div>'}
     if(p.kind==="weekend"&&p.from&&!state.q){const z=zwStatus(p.from);if(z.v&&ui.city!=="both"&&z.v!==ui.city)body='<p class="zwnote">📍 You\'re in '+CITY[z.v].name+' this weekend.<button class="zwgo" data-gocity="'+z.v+'">Show '+CITY[z.v].name+'</button><button class="zwgo" data-gocity="both">Compare both</button></p>'+body}
     if(nFiltered&&activeFilters()){body+='<button class="filtered" data-clearfilters="1">'+nFiltered+' more not matching your filters · Clear filters</button>'}
     if(nHidden&&!state.hidden){body+='<button class="reveal" data-p="'+p.id+'">'+(openP.has(p.id)?'Collapse hidden events':nHidden+' hidden · Show')+'</button>'}
@@ -1851,10 +1864,11 @@ function renderTrips(){
   const nTF=(ui.tripLen!=="all")+(ui.tripType!=="all");
   el.innerHTML='<div class="filters"><span class="lbl">Best for</span>'+[0,1].map(n=>'<button class="chip" data-twe="'+n+'" aria-pressed="'+(ui.tripWe===n)+'">'+(n?"Next weekend":"This weekend")+'</button>').join("")+'<small style="opacity:.7;margin-left:6px">'+dLbl(isoAdd(nextSat(),7*ui.tripWe))+'–'+dLbl(isoAdd(nextSat(),7*ui.tripWe+1))+'</small></div>'+'<details class="tripfold"'+(ui.tripFold?' open':'')+'><summary>Sort: '+(ui.tripSort==="best"?"Best this weekend":"Closest first")+' · Filters'+(nTF?' ('+nTF+')':'')+' <small>· '+list.length+' trips</small></summary><div class="filters"><span class="lbl">Length</span>'+chip("tripLen","all","All")+chip("tripLen","1h","≤ 1h")+chip("tripLen","2h","≤ 2h")+chip("tripLen","long","Long days")+chip("tripLen","weekend","Weekends")+'</div>'+
     '<div class="filters"><span class="lbl">Type</span>'+chip("tripType","all","All")+chip("tripType","lake","Lakes")+chip("tripType","mountain","Mountains & hikes")+chip("tripType","city","Cities")+chip("tripType","village","Villages & wine")+chip("tripType","rainy","Rainy day")+'</div><div class="filters"><span class="lbl">Sort</span>'+chip("tripSort","best","Best this weekend")+chip("tripSort","near","Closest first")+'</div></details>'+
-    (list.length?'<div class="tripgrid">'+list.map(tripTile).join("")+'</div>':'<p class="empty">No trips match these filters.</p>');
+    (list.length?'<div class="tripgrid">'+(ui.tripSort==="best"&&!ui.tripAll?list.slice(0,3):list).map(tripTile).join("")+'</div>'+(ui.tripSort==="best"&&!ui.tripAll&&list.length>3?'<button class="alltrips" data-alltrips>All trips ('+list.length+')</button>':''):'<p class="empty">No trips match these filters.</p>');
 }
 document.getElementById("trips").addEventListener("click",ev=>{
   const c=ev.target.closest("[data-tf]");if(c){ui[c.dataset.tf]=c.dataset.v;renderTrips();return}
+  if(ev.target.closest("[data-alltrips]")){ui.tripAll=true;renderTrips();return}
   const tw=ev.target.closest("[data-twe]");if(tw){ui.tripWe=+tw.dataset.twe;ui.tripSort="best";renderTrips();return}
   const j=ev.target.closest("[data-jump]");if(j){focusEvent(j.dataset.jump);return}
   const pl=ev.target.closest("[data-tripplan]");if(pl){const id=pl.dataset.tripplan,inp=document.getElementById("td-"+id);const d=inp&&inp.value;if(!d||d<TODAY)return;S.trips=S.trips||{};S.trips[id]=d;persist();render();return}
@@ -2104,6 +2118,43 @@ function tripWhy(t){const [,sat,sun]=tripWeekend();const w=TWX[t.id]||{};const d
   if(food>=3){s+=1;why.push("🍽 "+food+" places to eat")}
   if(t.kind==="weekend")s-=1.5;
   return {s,why}}
+
+/* ---------- lighter layout ---------- */
+ui.full=false;
+/* short list = "Tonight & this weekend": max 4 cards (2 per city in Both), next-week block lives in the Next week tab */
+function capPicks(){const blocks=[...document.querySelectorAll("#picks .pick-block")];
+  blocks.forEach((b,i)=>{if(i>0){b.hidden=true;return}b.hidden=false;
+    let tn=b.querySelector(".pick.tonight");
+    const today=EVENTS.filter(e=>e.day===TODAY&&!isPast(e)&&inCity(e)&&!hidden.has(e.id)&&e.p!=="big"&&e.p!=="on"&&+((e.when.match(/(\d{1,2}):\d{2}/)||[])[1]||0)>=17).sort((a,z)=>evScore(z)-evScore(a))[0];
+    if(today&&!tn&&!b.querySelector('.pick[data-ev="'+today.id+'"]')){const c=cityOf(today);const t=(today.when.match(/\d{1,2}:\d{2}/)||[""])[0];
+      b.querySelector(".picks-grid").insertAdjacentHTML("afterbegin",'<div class="pick tonight" data-city="'+c+'" data-ev="'+esc(today.id)+'"><div class="k"><span class="pcity">'+(c==="zh"?"Zurich":"Geneva")+' · </span>Tonight</div><b>'+(today.dog?DOGICON:'')+esc(today.title)+'</b><span>'+esc([t,(today.place||"").split(",")[0],today.price].filter(Boolean).join(" · "))+'</span><span class="why">'+esc(((today.desc||"").split(/(?<=[.!?])\s/)[0]||"").slice(0,140))+'</span></div>')}
+    const sep=b.querySelector(".pick-sep span");if(sep)sep.textContent="Tonight & this weekend";
+    const per={ge:0,zh:0};let n=0;b.querySelectorAll(".pick").forEach(p=>{if(p.hidden)return;const c=p.dataset.city||"ge";const lim=ui.city==="both"?(per[c]>=2):(n>=4);if(lim){p.hidden=true;return}per[c]++;n++})});
+}
+{const _rp2=renderPicks;renderPicks=function(){_rp2.apply(this,arguments);try{capPicks()}catch(e){}}}
+/* week list one tap away on This week */
+function fullGate(){const ag=document.getElementById("agenda");let g=document.getElementById("fullgate");
+  const gate=ui.tab==="this"&&!ui.full&&!state.q&&!activeFilters()&&!state.going;
+  if(!g){ag.insertAdjacentHTML("beforebegin",'<div id="fullgate"><button class="fullbtn">Show the full week ▾</button></div>');g=document.getElementById("fullgate");g.addEventListener("click",()=>{ui.full=true;fullGate()})}
+  g.hidden=!gate;ag.hidden=gate}
+{const _r=render;render=function(){_r.apply(this,arguments);try{fullGate()}catch(e){}}}
+document.addEventListener("click",ev=>{const n=ev.target.closest(".period-note");if(n)n.classList.toggle("open")});
+
+/* ---------- swipe mode: this weekend one card at a time ---------- */
+function swipeList(){const P=PERIODS.find(p=>p.id==="we1");return EVENTS.filter(e=>P&&e.day>=P.from&&e.day<=P.to&&inCity(e)&&!isPast(e)&&!hidden.has(e.id)&&!goingSet.has(e.id)&&!isDel(e)).sort((a,z)=>evScore(z)-evScore(a)).slice(0,25)}
+function openSwipe(){const L=swipeList();let i=0;const o=document.createElement("div");o.id="swipe";document.body.appendChild(o);
+  const draw=()=>{const e=L[i];if(!e){o.innerHTML='<div class="sw-card sw-end"><h3>That\'s everything for this weekend</h3><p>Your saved ones are in ✓ My plans.</p><button class="sw-close">Done</button></div>';return}
+    const w=wxOf(e.day,cityOf(e));o.innerHTML='<div class="sw-top"><span>'+(i+1)+' / '+L.length+'</span><button class="sw-close" aria-label="Close">✕</button></div><div class="sw-card" id="swc"><small>'+esc(dateLbl(e))+' · '+esc((e.when.split(" · ")[1]||""))+(w?' · '+wxIcon(w[1])+' '+w[0]+'°':'')+'</small><h3>'+(e.dog?'🐕 ':'')+esc(e.title)+'</h3><p class="sw-pl">'+esc(e.place||"")+' · '+(e.free?'Free':esc(e.price||""))+'</p><p>'+esc((e.desc||"").slice(0,260))+'</p></div><div class="sw-btns"><button class="sw-no">👎 Not for me</button><button class="sw-skip">Skip</button><button class="sw-yes">✓ I\'m going</button></div><p class="sw-hint">Swipe right to go, left for not for me</p>'};
+  const act=v=>{const e=L[i];if(!e)return;if(v==="yes"){goingSet.add(e.id);hidden.delete(e.id);ensureHist(e.id)}else if(v==="no"){hidden.add(e.id);S.nope=S.nope||{};S.nope[e.id]={c:e.cat||[],p:e.place||"",g:e.grp||GRP[e.rep||e.id]||e.src||""}}persist();i++;draw()};
+  draw();
+  o.addEventListener("click",ev=>{if(ev.target.closest(".sw-close")){o.remove();render();return}if(ev.target.closest(".sw-yes"))act("yes");else if(ev.target.closest(".sw-no"))act("no");else if(ev.target.closest(".sw-skip"))act("skip")});
+  let x0=null;o.addEventListener("pointerdown",ev=>{if(ev.target.closest("#swc"))x0=ev.clientX});o.addEventListener("pointermove",ev=>{if(x0===null)return;const c=document.getElementById("swc");if(c)c.style.transform="translateX("+(ev.clientX-x0)+"px) rotate("+((ev.clientX-x0)/25)+"deg)"});
+  o.addEventListener("pointerup",ev=>{if(x0===null)return;const dx=ev.clientX-x0;x0=null;const c=document.getElementById("swc");if(c)c.style.transform="";if(dx>90)act("yes");else if(dx<-90)act("no")});
+}
+document.getElementById("swipebtn").addEventListener("click",openSwipe);
+setTimeout(()=>{try{render()}catch(e){}},0);
+
+if(window.AUTO&&AUTO.twx)Object.assign(TWX,AUTO.twx);try{renderTrips()}catch(e){}
 </script>
 
 
