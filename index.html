@@ -2190,7 +2190,7 @@ function GLs(){return [[/flohmarkt|brocante|vide-grenier|puces|brocki/i,"Flea ma
 function gloss(e){const ico=(wetOf(e)?'☔ ':'');
   const low=x=>(x||"").toLowerCase().normalize("NFD").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
   if(e.src==="Songkick"||/ @ /.test(e.titleOrig||e.title))return ico+'Live concert'+(e.free?' · free':'');
-  let d=(e.desc||"").split(/(?<=[.!?])\s/)[0]||"";const tl=low(e.title);
+  let d=((e.desc||"").replace(/\*\*|__|#+/g,"").replace(/[\u2190-\u2BFF\u{1F000}-\u{1FFFF}\uFE0F]/gu,"").replace(/^[^A-Za-zÀ-ÿ0-9]+/,"").replace(/^(EN|DE|FR|PR)(\s*\/\s*(EN|DE|FR|PR))+\s*/,"").split(/(?<=[.!?])\s/)[0])||"";const tl=low(e.title);
   if(d&&low(d).startsWith(tl.slice(0,25)))d=d.slice(e.title.length).replace(/^[\s:—–,.-]+/,"");
   if(d.length>12&&!/[äöü]|\b(der|die|das|und|mit|le|la|les|avec|pour)\b/i.test(d)){const sh=d.length>78?d.slice(0,76).replace(/\s\S*$/,"")+"…":d;return ico+esc(sh)}
   {const t0=e.title+" "+(e.desc||"").slice(0,80);const g0=(GLs().find(([re])=>re.test(t0))||[])[1];if(g0&&low(e.title).includes(low(g0).split(" ")[0]))return ico+esc([(e.place||"").split(",")[0],e.free?"free":e.price].filter(Boolean).join(" · "))}
