@@ -2082,7 +2082,7 @@ function openSetup(){if(document.getElementById("onb"))return;const L=new Set(S.
   const d=document.createElement("div");d.id="onb";
   const draw=()=>{d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About"><h2>Welcome to Out & About</h2><p>Where are you based?</p><div class="opts">'+
     [["ge","Geneva"],["zh","Zurich"]].map(([k,n])=>'<button data-home="'+k+'" aria-pressed="'+(home===k)+'">'+n+'</button>').join("")+'</div><p>Pick up to 3 things you enjoy most</p><div class="opts">'+
-    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><p>Optional, private: your address, so travel times start from home</p><input id="addr-ge" placeholder="Address in Geneva (street and number)" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><input id="addr-zh" placeholder="Address in Zurich" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time under 🔔 → Preferences.</p></div>'};
+    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><p>Optional: your postcode in each city, so travel times start near home</p><input id="addr-ge" inputmode="numeric" maxlength="4" placeholder="Postcode in Geneva, e.g. 1202" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><input id="addr-zh" inputmode="numeric" maxlength="4" placeholder="Postcode in Zurich, e.g. 8005" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time under 🔔 → Preferences.</p></div>'};
   draw();document.body.appendChild(d);
   d.addEventListener("click",ev=>{const h=ev.target.closest("[data-home]"),l=ev.target.closest("[data-like]");
     if(h){home=h.dataset.home;draw();return}
@@ -2131,7 +2131,7 @@ function fromHome(e){const c=cityOf(e),h=homeLL(c),ll=evLL(e);if(!h)return "";
 function tripFromHome(t){const c=t.city||"ge",h=homeLL(c);return h?cityMin(kmBetween(h,STN[c])).m:0}
 async function geocode(q){try{const r=await fetch("https://photon.komoot.io/api/?limit=1&q="+encodeURIComponent(q));const j=await r.json();const f=j.features&&j.features[0];return f?f.geometry.coordinates.slice().reverse():null}catch(e){return null}}
 async function saveAddr(ge,zh){S.addr=S.addr||{};for(const [c,q0,city] of [["ge",ge,"Genève"],["zh",zh,"Zürich"]]){const q=(q0||"").trim();if(!q){delete S.addr[c];continue}
-  if(S.addr[c]&&S.addr[c].q===q&&S.addr[c].ll)continue;const ll=await geocode(q+", "+city+", Switzerland");S.addr[c]={q,ll}}persist();render();try{renderTrips()}catch(e){}}
+  if(S.addr[c]&&S.addr[c].q===q&&S.addr[c].ll)continue;const ll=await geocode((/^\d{4}$/.test(q)?q+" "+city:q+", "+city)+", Switzerland");S.addr[c]={q,ll}}persist();render();try{renderTrips()}catch(e){}}
 
 /* day trips: best for the chosen weekend — weather there, events on, time from home, food, rainy-day fit */
 ui.tripWe=0;
