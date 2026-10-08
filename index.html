@@ -521,12 +521,16 @@ body.city-both .pick .pcity{display:inline}
   body{padding-bottom:84px}
 }
 .quickrow{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+
+#cityseg,#jumps{display:none!important}
+.citytog{font:inherit;font-family:system-ui,-apple-system,sans-serif;font-size:14px;font-weight:700;vertical-align:middle;margin-left:6px;border:1.5px solid var(--ink,#14212b);background:var(--surface,#fff);color:var(--ink,#14212b);border-radius:999px;padding:4px 11px;cursor:pointer;white-space:nowrap}
+.top h1{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
 <div class="wrap">
 <header class="top">
-  <div class="tl"><h1>Out &amp; About</h1>
+  <div class="tl"><h1>Out &amp; About <button class="citytog" id="citytog" aria-label="Switch city">Geneva ⇄</button></h1>
   <div class="stamp"><span hidden>Geneva updated Mon 5 Oct</span><span id="stamp-zh" hidden></span><span class="sync" id="sync"><i></i><span>On this device</span></span> <button class="legend-btn" id="legendbtn" aria-expanded="false" aria-controls="legend" title="What the icons mean">?</button></div></div>
   <button class="themebtn" id="acctbtn" aria-expanded="false" aria-controls="acctpanel" title="Sign in and notifications" aria-label="Sign in and notifications">🔔</button>
   <button class="themebtn" id="themebtn" aria-expanded="false" aria-controls="themepanel" title="Colours and dark mode" aria-label="Colours and dark mode">🎨</button>
@@ -627,6 +631,7 @@ body.city-both .pick .pcity{display:inline}
   </div>
   <div class="filters" role="group" aria-label="Other filters">
     <span class="lbl">Show</span>
+    <button class="chip" id="f-both" aria-pressed="false">Both cities</button>
     <button class="chip" id="f-free" aria-pressed="false">Free only</button>
     <button class="chip" id="f-going" aria-pressed="false">✓ My plans only</button>
     <button class="chip" id="f-new" aria-pressed="false">● New</button>
@@ -2196,6 +2201,13 @@ function gloss(e){const ico=(wetOf(e)?'☔ ':'');
   {const t0=e.title+" "+(e.desc||"").slice(0,80);const g0=(GLs().find(([re])=>re.test(t0))||[])[1];if(g0&&low(e.title).includes(low(g0).split(" ")[0]))return ico+esc([(e.place||"").split(",")[0],e.free?"free":e.price].filter(Boolean).join(" · "))}
   const t=e.title+" "+(e.desc||"").slice(0,80);const g=(GLs().find(([re])=>re.test(t))||[])[1];const c=(e.cat||[])[0];
   return ico+esc(g||({rencontre:"Social meetup",creatif:"Arts & crafts",marche:"Market",fete:"Festival / fair",culture:"Culture",corps:"Sports & wellbeing",chien:"Dog-friendly outing"})[c]||"Event")+(e.free?' · free':'')}
+
+/* city: one button next to the title swaps Geneva ⇄ Zurich; "Both cities" lives in Filters */
+function syncCityTog(){const b=document.getElementById("citytog");if(b)b.textContent=(ui.city==="both"?"Both":ui.city==="zh"?"Zurich":"Geneva")+" ⇄";const f=document.getElementById("f-both");if(f)f.setAttribute("aria-pressed",String(ui.city==="both"))}
+function pickCity(c){const b=document.querySelector('#cityseg [data-city="'+c+'"]');if(b)b.click();else{setCity(c);render()}setTimeout(syncCityTog,0)}
+document.getElementById("citytog").addEventListener("click",()=>{pickCity(ui.city==="zh"?"ge":ui.city==="ge"?"zh":(S.home==="zh"?"ge":"zh"))});
+document.getElementById("f-both").addEventListener("click",()=>{pickCity(ui.city==="both"?(S.home||"ge"):"both")});
+setTimeout(syncCityTog,50);document.addEventListener("click",()=>setTimeout(syncCityTog,0));
 </script>
 
 
