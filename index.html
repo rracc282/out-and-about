@@ -525,6 +525,29 @@ body.city-both .pick .pcity{display:inline}
 #cityseg,#jumps{display:none!important}
 .citytog{font:inherit;font-family:system-ui,-apple-system,sans-serif;font-size:14px;font-weight:700;vertical-align:middle;margin-left:6px;border:1.5px solid var(--ink,#14212b);background:var(--surface,#fff);color:var(--ink,#14212b);border-radius:999px;padding:4px 11px;cursor:pointer;white-space:nowrap}
 .top h1{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+
+.addrsug{display:flex;flex-direction:column;gap:2px;margin:-4px 0 6px}
+.addrsug button{font:inherit;font-size:13.5px;text-align:left;border:1px solid var(--line,#ccc);background:var(--surface,#fff);color:inherit;border-radius:8px;padding:7px 10px;cursor:pointer}
+.addrok{font-size:12.5px;margin:-4px 0 8px;min-height:0}.addrok.ok{color:#1d7a3a}.addrok.bad{color:#b3261e}
+.top{align-items:center!important;padding:0 6px}
+.top .tl{padding-left:4px}
+.themebtn{width:34px!important;height:34px!important;font-size:17px!important}
+.top h1{font-size:clamp(24px,6.4vw,32px)!important;line-height:1.15}
+
+[data-pal="classic"]{--sun:#e0675a;--sun-soft:#fbe7e3}
+[data-pal="lake"]{--sun:#3a9fbf;--sun-soft:#ddf0f6}
+[data-pal="atelier"]{--sun:#6f8a2a;--sun-soft:#ecf2dc}
+[data-pal="city"]{--bg:#f6f6f5;--lake:#DA291C;--band:#DA291C;--lake-soft:#fde5e3;--sun:#2b2f38;--sun-soft:#e9ebee}
+[data-pal="lavender"]{--bg:#f5f3fa;--surface:#ffffff;--ink:#231d33;--muted:#6d6585;--line:#e2dcef;--lake:#6a4fa3;--lake-soft:#ece6f7;--sun:#d4618f;--sun-soft:#fbe4ee;--red:#b3402e;--night:#3a4f8a;--night-soft:#e2e7f4;--go:#2e7d5b;--go-soft:#e0f1e8;--band:#4f3a80;--band-ink:#fff;--band-card:rgba(255,255,255,.13)}
+[data-pal="forest"]{--bg:#f2f5f1;--surface:#ffffff;--ink:#17261b;--muted:#5d6f61;--line:#d7e2d8;--lake:#2f6b45;--lake-soft:#dfeee4;--sun:#e2a21b;--sun-soft:#fbf0d4;--red:#b3402e;--night:#3a4f8a;--night-soft:#e2e7f4;--go:#2e7d5b;--go-soft:#e0f1e8;--band:#24533a;--band-ink:#fff;--band-card:rgba(255,255,255,.13)}
+[data-pal="custom"]{--lake:var(--c1,#0e6b80);--band:var(--c1,#0e6b80);--lake-soft:color-mix(in srgb,var(--c1,#0e6b80) 14%,white);--sun:var(--c2,#e0675a);--sun-soft:color-mix(in srgb,var(--c2,#e0675a) 16%,white);--band-ink:#fff;--band-card:rgba(255,255,255,.13)}
+.custompal{display:flex;gap:10px;align-items:center;margin:8px 0 4px;font-size:13px}.custompal input{width:38px;height:30px;border:0;padding:0;background:none}
+
+.searchrow{margin-top:16px!important}
+.quickrow{margin-bottom:0!important}
+.toolbar:has(.activechips:empty){margin:0!important;min-height:0}
+#pickresult:empty,#rate:empty{display:none}
+#agenda>section:first-child,#agenda>.period:first-child{margin-top:10px!important}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -547,11 +570,15 @@ body.city-both .pick .pcity{display:inline}
   <div class="themepanel" id="themepanel" hidden role="dialog" aria-label="Colours and dark mode">
     <p class="lbl">Colours</p>
     <div class="pals">
-      <button data-pal="classic"><span class="sw"><i style="background:#0e6b80"></i><i style="background:#a86d12"></i><i style="background:#f3f5f6"></i></span>Classic</button>
-      <button data-pal="lake"><span class="sw"><i style="background:#163f52"></i><i style="background:#b8742b"></i><i style="background:#eef4f6"></i></span>Lake &amp; Alps</button>
-      <button data-pal="atelier"><span class="sw"><i style="background:#8a3c22"></i><i style="background:#a8771b"></i><i style="background:#f6f0e8"></i></span>Atelier</button>
-      <button data-pal="city"><span class="sw"><i style="background:#c8102e"></i><i style="background:#121212"></i><i style="background:#f4f4f3"></i></span>City</button>
+      <button data-pal="classic"><span class="sw"><i style="background:#0e6b80"></i><i style="background:#e0675a"></i><i style="background:#f3f5f6"></i></span>Classic</button>
+      <button data-pal="lake"><span class="sw"><i style="background:#163f52"></i><i style="background:#3a9fbf"></i><i style="background:#eef4f6"></i></span>Lake &amp; Alps</button>
+      <button data-pal="atelier"><span class="sw"><i style="background:#8a3c22"></i><i style="background:#6f8a2a"></i><i style="background:#f6f0e8"></i></span>Atelier</button>
+      <button data-pal="city"><span class="sw"><i style="background:#DA291C"></i><i style="background:#2b2f38"></i><i style="background:#f6f6f5"></i></span>Swiss red</button>
+      <button data-pal="lavender"><span class="sw"><i style="background:#4f3a80"></i><i style="background:#d4618f"></i><i style="background:#f5f3fa"></i></span>Lavender</button>
+      <button data-pal="forest"><span class="sw"><i style="background:#24533a"></i><i style="background:#e2a21b"></i><i style="background:#f2f5f1"></i></span>Forest</button>
+      <button data-pal="custom"><span class="sw"><i id="cs1" style="background:#0e6b80"></i><i id="cs2" style="background:#e0675a"></i><i style="background:#f3f5f6"></i></span>Custom</button>
     </div>
+    <div class="custompal" id="custompal"><span>Custom:</span><label>Main <input type="color" id="cc1" value="#0e6b80"></label><label>Accent <input type="color" id="cc2" value="#e0675a"></label></div>
     <p class="lbl">Mode</p>
     <div class="modes"><button data-mode="auto">Auto</button><button data-mode="light">☀️ Light</button><button data-mode="dark">🌙 Dark</button></div>
   </div>
@@ -609,7 +636,7 @@ body.city-both .pick .pcity{display:inline}
 </section>
 <div class="filterpanel" id="filterpanel">
   <div class="searchrow"><input type="search" id="q" placeholder="Search events, places, groups" aria-label="Search all events" autocomplete="off"><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
-<div class="quickrow" id="quick"><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rain</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs</button><button class="chip" id="swipebtn">🃏 Swipe</button><button class="chip pickme" id="pickme">🎲 Pick</button></div>
+<div class="quickrow" id="quick"><button class="chip" data-q="f-rain" aria-pressed="false">🏠 Indoors</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs</button><button class="chip" id="swipebtn">🃏 Swipe</button><button class="chip pickme" id="pickme">🎲 Pick</button></div>
   <div id="chipbox"><div class="sheethead"><span>Filters</span><span><button class="aclear" id="sheetclear">Clear</button> <button id="sheetdone">Done</button></span></div>
   <div class="filters" role="group" aria-label="Filter by type">
     <span class="lbl">Type</span>
@@ -2087,7 +2114,7 @@ function openSetup(){if(document.getElementById("onb"))return;const L=new Set(S.
   const d=document.createElement("div");d.id="onb";
   const draw=()=>{d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About"><h2>Welcome to Out & About</h2><p>Where are you based?</p><div class="opts">'+
     [["ge","Geneva"],["zh","Zurich"]].map(([k,n])=>'<button data-home="'+k+'" aria-pressed="'+(home===k)+'">'+n+'</button>').join("")+'</div><p>Pick up to 3 things you enjoy most</p><div class="opts">'+
-    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><p>Optional: your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="street-address" placeholder="Geneva: street and number" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><input id="addr-zh" autocomplete="street-address" placeholder="Zurich: street and number" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><p style="font-size:12.5px;margin:-2px 0 12px">Use the full street address. Times in the list are estimates; “Directions from home” on an event opens the exact public-transport route in Google Maps. Your address stays private to your account.</p><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time under 🔔 → Preferences.</p></div>'};
+    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><p>Optional: your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Use the full street address. Times in the list are estimates; “Directions from home” on an event opens the exact public-transport route in Google Maps. Your address stays private to your account.</p><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time under 🔔 → Preferences.</p></div>'};
   draw();document.body.appendChild(d);
   d.addEventListener("click",ev=>{const h=ev.target.closest("[data-home]"),l=ev.target.closest("[data-like]");
     if(h){home=h.dataset.home;draw();return}
@@ -2135,8 +2162,9 @@ function fromHome(e){const c=cityOf(e),h=homeLL(c),ll=evLL(e);if(!h)return "";
   const acc=cityMin(kmBetween(h,STN[c])).m;const tm=(e.trip||"").match(/(\d+)\s*h\s*(\d+)?|(\d+)\s*min/);if(!tm)return "";const base=tm[3]?+tm[3]:(+tm[1])*60+(+(tm[2]||0));return "≈ "+hm(base+acc)+" from home"}
 function tripFromHome(t){const c=t.city||"ge",h=homeLL(c);return h?cityMin(kmBetween(h,STN[c])).m:0}
 async function geocode(q){try{const r=await fetch("https://photon.komoot.io/api/?limit=1&q="+encodeURIComponent(q));const j=await r.json();const f=j.features&&j.features[0];return f?f.geometry.coordinates.slice().reverse():null}catch(e){return null}}
-async function saveAddr(ge,zh){S.addr=S.addr||{};for(const [c,q0,city] of [["ge",ge,"Genève"],["zh",zh,"Zürich"]]){const q=(q0||"").trim();if(!q){delete S.addr[c];continue}
-  if(S.addr[c]&&S.addr[c].q===q&&S.addr[c].ll)continue;const ll=await geocode((/^\d{4}$/.test(q)?q+" "+city:q+", "+city)+", Switzerland");S.addr[c]={q,ll}}persist();render();try{renderTrips()}catch(e){}}
+async function saveAddr(ge,zh){S.addr=S.addr||{};const pick={};["ge","zh"].forEach(c=>{const i=document.getElementById("addr-"+c);if(i&&i.dataset.ll)pick[c]={ll:i.dataset.ll.split(",").map(Number),label:i.dataset.lab}});for(const [c,q0,city] of [["ge",ge,"Genève"],["zh",zh,"Zürich"]]){const q=(q0||"").trim();if(!q){delete S.addr[c];continue}
+  if(pick[c]){S.addr[c]={q,ll:pick[c].ll,label:pick[c].label};continue}
+  if(S.addr[c]&&S.addr[c].q===q&&S.addr[c].ll)continue;const ll=await geocode((/^\d{4}$/.test(q)?q+" "+city:q+", "+city)+", Switzerland");S.addr[c]={q,ll,label:q}}persist();try{const n=["ge","zh"].filter(c=>S.addr[c]&&S.addr[c].ll).length,bad=["ge","zh"].filter(c=>S.addr[c]&&!S.addr[c].ll).length;if(n||bad)toast(bad?"⚠ One address wasn't found — open 🔔 → Home city & interests and pick a suggestion":"✓ "+(n===2?"Both addresses":"Address")+" saved")}catch(e){}render();try{renderTrips()}catch(e){}}
 
 /* day trips: best for the chosen weekend — weather there, events on, time from home, food, rainy-day fit */
 ui.tripWe=0;
@@ -2208,6 +2236,23 @@ function pickCity(c){const b=document.querySelector('#cityseg [data-city="'+c+'"
 document.getElementById("citytog").addEventListener("click",()=>{pickCity(ui.city==="zh"?"ge":ui.city==="ge"?"zh":(S.home==="zh"?"ge":"zh"))});
 document.getElementById("f-both").addEventListener("click",()=>{pickCity(ui.city==="both"?(S.home||"ge"):"both")});
 setTimeout(syncCityTog,50);document.addEventListener("click",()=>setTimeout(syncCityTog,0));
+
+/* address suggestions (free OpenStreetMap search) + confirmation */
+function addrState(c){const a=(S.addr||{})[c];return a&&a.ll?'<span class="ok">✓ Saved'+(a.label?': '+esc(a.label):'')+'</span>':a?'<span class="bad">⚠ Saved, but not found on the map — pick a suggestion</span>':''}
+const CC={ge:[46.2044,6.1432],zh:[47.3769,8.5417]};let sugT=null;
+document.addEventListener("input",ev=>{const inp=ev.target.closest("#onb input[data-city]");if(!inp)return;const c=inp.dataset.city;inp.dataset.ll="";
+  clearTimeout(sugT);sugT=setTimeout(async()=>{const q=inp.value.trim();const box=document.getElementById("sug-"+c);if(!box)return;if(q.length<4){box.innerHTML="";return}
+    try{const r=await fetch("https://photon.komoot.io/api/?limit=4&lang=en&lat="+CC[c][0]+"&lon="+CC[c][1]+"&q="+encodeURIComponent(q));const j=await r.json();
+      box.innerHTML=(j.features||[]).filter(f=>f.properties.countrycode==="CH"||f.properties.country==="Switzerland").map(f=>{const p=f.properties;const lab=[[p.street||p.name,p.housenumber].filter(Boolean).join(" "),[p.postcode,p.city||p.town||p.village].filter(Boolean).join(" ")].filter(Boolean).join(", ");return '<button type="button" data-ll="'+f.geometry.coordinates[1]+','+f.geometry.coordinates[0]+'" data-lab="'+esc(lab)+'">📍 '+esc(lab)+'</button>'}).join("")}catch(e){}},350)});
+document.addEventListener("click",ev=>{const b=ev.target.closest(".addrsug [data-ll]");if(!b)return;const box=b.parentElement,c=box.id.slice(4),inp=document.getElementById("addr-"+c);
+  inp.value=b.dataset.lab;inp.dataset.ll=b.dataset.ll;inp.dataset.lab=b.dataset.lab;box.innerHTML="";const ok=document.getElementById("ok-"+c);if(ok)ok.innerHTML='<span class="ok">✓ Found: '+esc(b.dataset.lab)+'</span>'},true);
+
+/* custom colours */
+function applyCustom(){let t={};try{t=JSON.parse(localStorage.getItem("sorties-theme")||"{}")}catch(e){}const r=document.documentElement;
+  if(t.c1){r.style.setProperty("--c1",t.c1);const a=document.getElementById("cc1");if(a)a.value=t.c1;const s1=document.getElementById("cs1");if(s1)s1.style.background=t.c1}
+  if(t.c2){r.style.setProperty("--c2",t.c2);const b=document.getElementById("cc2");if(b)b.value=t.c2;const s2=document.getElementById("cs2");if(s2)s2.style.background=t.c2}}
+["cc1","cc2"].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.addEventListener("input",()=>{let t={};try{t=JSON.parse(localStorage.getItem("sorties-theme")||"{}")}catch(e){}t[id==="cc1"?"c1":"c2"]=el.value;t.pal="custom";try{localStorage.setItem("sorties-theme",JSON.stringify(t))}catch(e){}document.documentElement.setAttribute("data-pal","custom");applyCustom();document.querySelectorAll(".pals [data-pal]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal==="custom")))})});
+applyCustom();
 </script>
 
 
