@@ -175,6 +175,7 @@ for (const x of raw) {
   const e = when(x.end); const title = clean(x.title).slice(0, 110);
   if (!title || BAD.test(title + " " + (x.organizer || ""))) { drop("not relevant"); continue; }
   if (NICHE.test(title + " " + (x.organizer || "") + " " + String(x.desc || "").slice(0, 300))) { drop("niche (card games, wargaming…)"); continue; }
+  if (/suitable for children|for children aged|für kinder|kinder ab|ab \d+ jahren|dès \d+ ans|pour enfants|jeune public|familienführung|for kids/i.test(String(x.desc || "").slice(0, 400))) { drop("children's event"); continue; }
   const multi = e && e.day > s.day;
   const lastDay = multi ? e.day : s.day;
   if (lastDay < TODAY) { drop("past"); continue; }
