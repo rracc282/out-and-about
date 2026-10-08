@@ -540,7 +540,7 @@ body.city-both .pick .pcity{display:inline}
 [data-pal="city"]{--bg:#f6f6f5;--lake:#DA291C;--band:#DA291C;--lake-soft:#fde5e3;--sun:#2b2f38;--sun-soft:#e9ebee}
 [data-pal="lavender"]{--bg:#f5f3fa;--surface:#ffffff;--ink:#231d33;--muted:#6d6585;--line:#e2dcef;--lake:#6a4fa3;--lake-soft:#ece6f7;--sun:#d4618f;--sun-soft:#fbe4ee;--red:#b3402e;--night:#3a4f8a;--night-soft:#e2e7f4;--go:#2e7d5b;--go-soft:#e0f1e8;--band:#4f3a80;--band-ink:#fff;--band-card:rgba(255,255,255,.13)}
 [data-pal="forest"]{--bg:#f2f5f1;--surface:#ffffff;--ink:#17261b;--muted:#5d6f61;--line:#d7e2d8;--lake:#2f6b45;--lake-soft:#dfeee4;--sun:#e2a21b;--sun-soft:#fbf0d4;--red:#b3402e;--night:#3a4f8a;--night-soft:#e2e7f4;--go:#2e7d5b;--go-soft:#e0f1e8;--band:#24533a;--band-ink:#fff;--band-card:rgba(255,255,255,.13)}
-[data-pal="custom"]{--lake:var(--c1,#0e6b80);--band:var(--c1,#0e6b80);--lake-soft:color-mix(in srgb,var(--c1,#0e6b80) 14%,white);--sun:var(--c2,#e0675a);--sun-soft:color-mix(in srgb,var(--c2,#e0675a) 16%,white);--band-ink:#fff;--band-card:rgba(255,255,255,.13)}
+[data-pal="custom"]{--lake:var(--c1,#00a35c);--band:var(--c1,#00a35c);--lake-soft:color-mix(in srgb,var(--c1,#00a35c) 14%,white);--sun:var(--c2,#ff8a00);--sun-soft:color-mix(in srgb,var(--c2,#ff8a00) 16%,white);--band-ink:#fff;--band-card:rgba(255,255,255,.13)}
 .custompal{display:flex;gap:10px;align-items:center;margin:8px 0 4px;font-size:13px}.custompal input{width:38px;height:30px;border:0;padding:0;background:none}
 
 .searchrow{margin-top:16px!important}
@@ -548,6 +548,15 @@ body.city-both .pick .pcity{display:inline}
 .toolbar:has(.activechips:empty){margin:0!important;min-height:0}
 #pickresult:empty,#rate:empty{display:none}
 #agenda>section:first-child,#agenda>.period:first-child{margin-top:10px!important}
+
+.quickrow{grid-template-columns:repeat(4,auto)!important;justify-content:start}
+.quickrow .chip,.quickrow .pickme{overflow:visible;text-overflow:clip;padding:6px 10px!important}
+@media (max-width:360px){.quickrow .chip,.quickrow .pickme{font-size:11.5px!important;padding:5px 7px!important}}
+[data-pal="city"]{--lake:#c8102e;--band:#c8102e;--lake-soft:#fbe4e7;--sun:#121212;--sun-soft:#ececec;--bg:#f4f4f3}
+[data-pal="ocean"]{--bg:#f1f7fc;--surface:#fff;--ink:#0d2236;--muted:#56708a;--line:#d6e6f3;--lake:#0077d9;--band:#0077d9;--lake-soft:#dcedfb;--sun:#ff8a00;--sun-soft:#ffecd6;--band-ink:#fff;--band-card:rgba(255,255,255,.16)}
+[data-pal="sunset"]{--bg:#fff6f2;--surface:#fff;--ink:#2a1414;--muted:#7d5c5c;--line:#f2dcd5;--lake:#ff5a4e;--band:#ff5a4e;--lake-soft:#ffe3df;--sun:#7b2cbf;--sun-soft:#efe1fa;--band-ink:#fff;--band-card:rgba(255,255,255,.18)}
+[data-pal="lavender"]{--bg:#f7f3ff;--surface:#fff;--ink:#1e1236;--muted:#6a5c8a;--line:#e5dcf7;--lake:#6d2ff2;--band:#6d2ff2;--lake-soft:#ebe2fe;--sun:#00b8a9;--sun-soft:#d6f5f2;--band-ink:#fff;--band-card:rgba(255,255,255,.16)}
+[data-pal="berry"]{--bg:#fdf3f8;--surface:#fff;--ink:#2b0f1f;--muted:#7a5468;--line:#f2d7e6;--lake:#c2185b;--band:#c2185b;--lake-soft:#fbe0ec;--sun:#ffb300;--sun-soft:#fff1cc;--band-ink:#fff;--band-card:rgba(255,255,255,.16)}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -571,14 +580,12 @@ body.city-both .pick .pcity{display:inline}
     <p class="lbl">Colours</p>
     <div class="pals">
       <button data-pal="classic"><span class="sw"><i style="background:#0e6b80"></i><i style="background:#e0675a"></i><i style="background:#f3f5f6"></i></span>Classic</button>
-      <button data-pal="lake"><span class="sw"><i style="background:#163f52"></i><i style="background:#3a9fbf"></i><i style="background:#eef4f6"></i></span>Lake &amp; Alps</button>
       <button data-pal="atelier"><span class="sw"><i style="background:#8a3c22"></i><i style="background:#6f8a2a"></i><i style="background:#f6f0e8"></i></span>Atelier</button>
-      <button data-pal="city"><span class="sw"><i style="background:#DA291C"></i><i style="background:#2b2f38"></i><i style="background:#f6f6f5"></i></span>Swiss red</button>
-      <button data-pal="lavender"><span class="sw"><i style="background:#4f3a80"></i><i style="background:#d4618f"></i><i style="background:#f5f3fa"></i></span>Lavender</button>
+      <button data-pal="city"><span class="sw"><i style="background:#c8102e"></i><i style="background:#121212"></i><i style="background:#f4f4f3"></i></span>Red</button>
       <button data-pal="forest"><span class="sw"><i style="background:#24533a"></i><i style="background:#e2a21b"></i><i style="background:#f2f5f1"></i></span>Forest</button>
-      <button data-pal="custom"><span class="sw"><i id="cs1" style="background:#0e6b80"></i><i id="cs2" style="background:#e0675a"></i><i style="background:#f3f5f6"></i></span>Custom</button>
+      <button data-pal="custom"><span class="sw"><i id="cs1" style="background:#00a35c"></i><i id="cs2" style="background:#ff8a00"></i><i style="background:#f3f5f6"></i></span>Custom</button>
     </div>
-    <div class="custompal" id="custompal"><span>Custom:</span><label>Main <input type="color" id="cc1" value="#0e6b80"></label><label>Accent <input type="color" id="cc2" value="#e0675a"></label></div>
+    <div class="custompal" id="custompal"><span>Custom:</span><label>Main <input type="color" id="cc1" value="#00a35c"></label><label>Accent <input type="color" id="cc2" value="#ff8a00"></label></div>
     <p class="lbl">Mode</p>
     <div class="modes"><button data-mode="auto">Auto</button><button data-mode="light">☀️ Light</button><button data-mode="dark">🌙 Dark</button></div>
   </div>
@@ -613,7 +620,7 @@ body.city-both .pick .pcity{display:inline}
 <div id="rate"></div>
 <section class="picks" id="picks" aria-labelledby="picks-h">
   <div>
-    <h2 id="picks-h">The short list</h2><button class="rainbtn" id="rainbtn" aria-pressed="false" title="Hide outdoor picks on days when rain is likely">☔ Rain-proof</button>
+    <h2 id="picks-h">The short list</h2><button class="rainbtn" id="rainbtn" aria-pressed="false" title="Hide outdoor picks on days when rain is likely">☔ Rainproof</button>
   </div>
   <div class="pick-block">
     <div class="pick-sep"><span>This weekend</span><em>Fri 9 – Sun 11 Oct</em></div>
@@ -636,7 +643,7 @@ body.city-both .pick .pcity{display:inline}
 </section>
 <div class="filterpanel" id="filterpanel">
   <div class="searchrow"><input type="search" id="q" placeholder="Search events, places, groups" aria-label="Search all events" autocomplete="off"><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
-<div class="quickrow" id="quick"><button class="chip" data-q="f-rain" aria-pressed="false">🏠 Indoors</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs</button><button class="chip" id="swipebtn">🃏 Swipe</button><button class="chip pickme" id="pickme">🎲 Pick</button></div>
+<div class="quickrow" id="quick"><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rainproof</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs</button><button class="chip" id="swipebtn">🃏 Swipe</button><button class="chip pickme" id="pickme">🎲 Pick</button></div>
   <div id="chipbox"><div class="sheethead"><span>Filters</span><span><button class="aclear" id="sheetclear">Clear</button> <button id="sheetdone">Done</button></span></div>
   <div class="filters" role="group" aria-label="Filter by type">
     <span class="lbl">Type</span>
