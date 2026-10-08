@@ -574,7 +574,7 @@ body.city-both .pick .pcity{display:inline}
 <nav class="tabs" role="tablist" aria-label="Choose a period">
   <button role="tab" data-tab="this" aria-selected="true">This week</button>
   <button role="tab" data-tab="next" aria-selected="false">Next week</button>
-  <button role="tab" data-tab="big" aria-selected="false">Later</button>
+  <button role="tab" data-tab="big" aria-selected="false">Shows &amp; expos</button>
   <button role="tab" data-tab="trips" aria-selected="false">Day trips</button>
   <button class="tab-plans" id="tabplans" aria-pressed="false">My plans</button>
 </nav>
@@ -1369,6 +1369,7 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
   for(let i=EVENTS.length-1;i>=0;i--){const e=EVENTS[i],t=e.title+" "+(e.desc||"").slice(0,300);if(NICHE.test(t)||(cityOf(e)==="zh"&&(DEONLY.test(t)||(SPOKEN.test(e.title)&&/[äöü]|\b(der|die|das|und)\b/i.test(e.title)&&!/english|englisch|übertitel|surtit/i.test(t)))))EVENTS.splice(i,1)}
   EVENTS.forEach(e=>{if(e.p==="on"&&!e.dayEnd&&e.day){const x=new Date(e.day+"T12:00:00");x.setDate(x.getDate()+90);e.dayEnd=x.toISOString().slice(0,10)}});
   if(A.tEn)EVENTS.forEach(e=>{const t=A.tEn[e.rep||e.id];if(t&&!e.titleEn)e.titleEn=t});
+  EVENTS.forEach(e=>{if(e.titleEn&&e.titleEn!==e.title){e.titleOrig=e.title;e.title=e.titleEn}});
   const dr=new Set(A.drop||[]);for(let i=EVENTS.length-1;i>=0;i--)if(dr.has(EVENTS[i].id))EVENTS.splice(i,1);
   Object.entries(A.edits||{}).forEach(([id,f])=>{const e=EVENTS.find(x=>x.id===id);if(e)Object.assign(e,f)});
 })();
@@ -1672,7 +1673,7 @@ function activeFilters(){return (state.cat!=="all")+(state.zone!=="all")+(state.
 const ENERGY={"m-choir":"low","m-saleve":"low","bachata-pre":"high","theatre":"high","m-fuck-small-talk-oct13":"high","m-bonjour-geneve-oct17":"low","m-philo-cafe":"low","m-drink-draw-morges-oct17":"low","m-social-roulette-lausanne-oct17":"high","lalinea-modele-academique-oct17":"low","lalinea-modele-cosplay-oct10":"low","red-mic-pickwicks-oct9":"high","m-salsa-bachata-mon":"high","samba-trabalhador-recyclables-oct12":"high","lexmadone-ancetres-du-futur":"low","cma-prepro-keysha-sylvan-oct12":"low","slackers-ptr-oct13":"high","cma-rock-on-stage-godin-oct13":"high","amr-train-concert-debat-oct13":"low","cma-jazz-night-latina-oct14":"low","french-mon-amour-chatnoir-oct15":"low","forro-41-oct15":"high","ejma-amr-coplateau-oct15":"low","bdg-salsa-thursday-oct15":"high","perro-actor-recyclables-oct15":"low","country-queer-groove-oct15":"high","amr-benares-oct16":"low","pickwick-affaire-tournesoul-oct16":"high","electron-club-tour-oct16":"high","electron-comedie-oct17":"high","loca-mia-village-du-soir-oct17":"high","blind-test-chatnoir-oct17":"high","alepok-moulin-fabry-oct17":"high","flowers-for-the-dead-urgence-disk-oct18":"low","m-dogs-nov7":"low","linea-nov6":"low","boums-70-80-90-calvinus":"high","acroyoga-jam-lausanne":"low"};
 Object.assign(ENERGY,ENERGY_ZH);
 function energyOf(e){const b=ENERGY[e.rep||e.id];if(b)return b;if(e.p==="big"||e.zone==="90"||e.zone==="far"||e.cat.includes("rencontre"))return "high";return "low"}
-function qOk(e){if(!state.q)return true;const h=(e.title+" "+e.place+" "+(e.desc||"")+" "+(GRP[e.rep||e.id]||"")+" "+(e.src||"")+" "+e.cat.map(c=>CATLBL[c]||"").join(" ")).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");return state.q.split(/\s+/).every(w=>h.includes(w))}
+function qOk(e){if(!state.q)return true;const h=(e.title+" "+(e.titleOrig||"")+" "+e.place+" "+(e.desc||"")+" "+(GRP[e.rep||e.id]||"")+" "+(e.src||"")+" "+e.cat.map(c=>CATLBL[c]||"").join(" ")).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");return state.q.split(/\s+/).every(w=>h.includes(w))}
 function filterOk(e){return inCity(e)&&(!state.rain||isIndoor(e))&&(!state.duo||isDuo(e))&&(state.cat==="all"||e.cat.includes(state.cat))&&zoneOk(e)&&(state.energy==="all"||energyOf(e)===state.energy)&&(!state.free||e.free)&&(!state.going||goingSet.has(e.id))&&(!state.new||isNew(e))&&qOk(e)}
 function render(){
   const ok=filterOk;
@@ -2186,7 +2187,7 @@ if(window.AUTO&&AUTO.twx)Object.assign(TWX,AUTO.twx);try{renderTrips()}catch(e){
 
 /* plain-English hint under each title: translation if the title isn't English, else what kind of event it is */
 function GLs(){return [[/flohmarkt|brocante|vide-grenier|puces|brocki/i,"Flea market"],[/markt|marché|market/i,"Market"],[/ausstellung|exposition|exhibition|expo\b/i,"Exhibition"],[/vernissage/i,"Exhibition opening"],[/konzert|concert|récital|recital/i,"Concert"],[/lesung|lecture publique/i,"Reading"],[/führung|visite guidée/i,"Guided tour"],[/workshop|atelier|kurs|cours/i,"Workshop / class"],[/theater|théâtre/i,"Theatre"],[/comedy|stand-?up|humour/i,"Comedy"],[/kino|cinéma|film/i,"Film"],[/fest\b|festival|fête|chilbi|kilbi/i,"Festival / fair"],[/party|soirée|disco|club/i,"Party"],[/tanz|danse|dance|salsa|bachata|tango|swing/i,"Dance"],[/yoga|meditation|méditation/i,"Yoga / wellbeing"],[/wanderung|randonnée|hike|walk|balade/i,"Walk / hike"],[/apéro|stammtisch|social|meetup|rencontre|language exchange|tandem/i,"Social meetup"],[/quiz/i,"Quiz night"],[/jam\b|open mic/i,"Jam / open mic"],[/oper|opéra|opera/i,"Opera"],[/chor|chorale|choir/i,"Choir"]]}
-function gloss(e){const ico=(wetOf(e)?'☔ ':'');if(e.titleEn&&e.titleEn!==e.title)return ico+esc(e.titleEn);
+function gloss(e){const ico=(wetOf(e)?'☔ ':'');
   const t=e.title+" "+(e.desc||"").slice(0,80);const g=(GLs().find(([re])=>re.test(t))||[])[1];const c=(e.cat||[])[0];
   return ico+esc(g||({rencontre:"Social meetup",creatif:"Arts & crafts",marche:"Market",fete:"Festival / fair",culture:"Culture",corps:"Sports & wellbeing",chien:"Dog-friendly outing"})[c]||"Event")+(e.free?' · free':'')}
 </script>
