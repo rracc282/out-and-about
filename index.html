@@ -501,6 +501,13 @@ body.city-both .pick .pcity{display:inline}
 .sw-no{background:#fff;color:#14212b}.sw-skip{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)!important}.sw-yes{background:#DA291C;color:#fff}
 .sw-hint{font-size:12.5px;opacity:.6;margin-top:12px}
 .ev-en{font-style:normal;opacity:.75}
+
+.top{column-gap:6px!important}#themebtn{margin-left:0!important}
+.quickrow{flex-wrap:wrap;overflow:visible;gap:6px}
+.quickrow .chip{font-size:13px;padding:5px 10px}
+#fullgate{display:none!important}
+.quickrow .pickme{font-size:13px!important;padding:5px 10px!important;margin:0!important;width:auto!important;font-weight:inherit}
+.quickrow{gap:5px}.quickrow .chip,.quickrow .pickme{padding:5px 9px!important}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -585,7 +592,7 @@ body.city-both .pick .pcity{display:inline}
 </section>
 <div class="filterpanel" id="filterpanel">
   <div class="searchrow"><input type="search" id="q" placeholder="Search events, places, groups" aria-label="Search all events" autocomplete="off"><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
-<div class="quickrow" id="quick"><button class="chip" data-q="f-free" aria-pressed="false">Free</button><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rainy day</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs welcome</button><button class="chip" id="swipebtn">🃏 Swipe the weekend</button><button class="chip pickme" id="pickme">🎲 Pick for me</button></div>
+<div class="quickrow" id="quick"><button class="chip" data-q="f-free" aria-pressed="false">Free</button><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rain</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs</button><button class="chip" id="swipebtn">🃏 Swipe</button><button class="chip pickme" id="pickme">🎲 Pick</button></div>
   <div id="chipbox"><div class="sheethead"><span>Filters</span><span><button class="aclear" id="sheetclear">Clear</button> <button id="sheetdone">Done</button></span></div>
   <div class="filters" role="group" aria-label="Filter by type">
     <span class="lbl">Type</span>
@@ -2124,7 +2131,7 @@ function tripWhy(t){const [,sat,sun]=tripWeekend();const w=TWX[t.id]||{};const d
   return {s,why}}
 
 /* ---------- lighter layout ---------- */
-ui.full=false;
+ui.full=true;
 /* short list = "Tonight & this weekend": max 4 cards (2 per city in Both), next-week block lives in the Next week tab */
 function capPicks(){const blocks=[...document.querySelectorAll("#picks .pick-block")];
   blocks.forEach((b,i)=>{if(i>0){b.hidden=true;return}b.hidden=false;
