@@ -1456,7 +1456,7 @@ function inviteURL(e){
   const t=(e.when.split(" · ").slice(1).join(" · ")||"");
   const when=(e.dayEnd||isFlexible(e))?e.when:dateLbl(e)+(t?" · "+t:"");
   const map=MAPQ[e.id]?"\nMap: https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(MAPQ[e.id]):"";
-  const msg="Fancy coming along? "+e.title+"\n"+when+"\n"+e.place+(e.free?"\nFree":(e.price?"\n"+e.price:""))+"\n"+siteOf(e)+map;
+  const d0=(e.desc||"").split(/(?<=[.!?])\s/).slice(0,2).join(" ");const msg="Fancy coming along? "+e.title+(e.titleEn&&e.titleEn!==e.title?" ("+e.titleEn+")":"")+"\n"+when+"\n"+e.place+(e.free?"\nFree":(e.price?"\n"+e.price:""))+(d0?"\n\n"+d0:"")+"\n\n"+siteOf(e)+map;
   return "https://wa.me/?text="+encodeURIComponent(msg);
 }
 function evHTML(e,p){
