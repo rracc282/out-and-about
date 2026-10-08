@@ -216,10 +216,11 @@ const wetNote = (c, p) => { const wet = []; for (let d = p.from; d <= p.to; d = 
 /* ---------- places on the map (free Photon geocoder, cached in data/geo.json) ---------- */
 let GEO = {}; try { GEO = JSON.parse(rd("data/geo.json")); } catch {}
 const want = new Set();
+const TRIPMAP = {}; for (const m of html.matchAll(/\{"id": ?"((?:zh-)?[a-z0-9-]+)", ?"name": ?"[^"]*", ?"kind"[\s\S]{0,6000}?"map": ?"([^"]+)"/g)) { TRIPMAP[m[1]] = m[2]; want.add(m[2]); }
 const mq = html.match(/const MAPQ\s*=\s*(\{[\s\S]*?\});/); try { Object.values(JSON.parse(mq[1])).forEach(v => want.add(v)); } catch {}
 const mqz = html.match(/const MAPQ_ZH\s*=\s*(\{[\s\S]*?\});/); try { Object.values(JSON.parse(mqz[1])).forEach(v => want.add(v)); } catch {}
 for (const m of html.matchAll(/"place": ?"([^"]{6,140})"/g)) want.add(m[1]);
-const TRIPMAP = {}; for (const m of html.matchAll(/\{"id": ?"((?:zh-)?[a-z0-9-]+)", ?"name": ?"[^"]*", ?"kind"[\s\S]{0,6000}?"map": ?"([^"]+)"/g)) { TRIPMAP[m[1]] = m[2]; want.add(m[2]); }
+
 let looked = 0;
 for (const q of want) {
   if (q in GEO || looked >= 250) continue; looked++;
