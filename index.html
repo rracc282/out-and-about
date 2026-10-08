@@ -571,6 +571,11 @@ body.city-both .pick .pcity{display:inline}
 .custompal input[type=color]::-moz-color-swatch{border:none;border-radius:50%}
 .top h1{flex-wrap:nowrap!important;white-space:nowrap;font-size:clamp(26px,8.2vw,36px)!important}.citytog{margin-left:clamp(6px,2.5vw,14px)!important;font-size:clamp(13px,3.9vw,16px)!important;padding:5px 11px!important}.top .tl{min-width:0;flex:1 1 auto}
 .top h1{font-size:clamp(22px,7vw,36px)!important}.citytog{font-size:clamp(12.5px,3.6vw,16px)!important;padding:4px 10px!important;margin-left:clamp(6px,2vw,14px)!important}#acctbtn{margin-left:auto!important;flex:0 0 auto}.top{gap:6px!important}
+
+.custompal{justify-content:space-between!important;border:1px solid var(--line,#ddd);border-radius:12px;padding:10px 14px!important;margin:10px 0 6px!important;background:var(--surface,#fff)}
+.custompal .cps{display:flex;gap:14px;align-items:center}
+.custompal>span:first-child{font-size:14px;font-weight:600}
+:root[data-pal="custom"] .custompal{border:2px solid var(--ink,#14212b);padding:9px 13px!important}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -597,9 +602,8 @@ body.city-both .pick .pcity{display:inline}
       <button data-pal="atelier"><span class="sw"><i style="background:#8a3c22"></i><i style="background:#6f8a2a"></i><i style="background:#f6f0e8"></i></span>Atelier</button>
       <button data-pal="city"><span class="sw"><i style="background:#c8102e"></i><i style="background:#121212"></i><i style="background:#f4f4f3"></i></span>Red</button>
       <button data-pal="forest"><span class="sw"><i style="background:#24533a"></i><i style="background:#e2a21b"></i><i style="background:#f2f5f1"></i></span>Forest</button>
-      <button data-pal="custom"><span class="sw"><i id="cs1" style="background:#00a35c"></i><i id="cs2" style="background:#ff8a00"></i><i style="background:#f3f5f6"></i></span>Custom</button>
     </div>
-    <div class="custompal" id="custompal"><span>Custom:</span><label>Main <input type="color" id="cc1" value="#00a35c"></label><label>Accent <input type="color" id="cc2" value="#ff8a00"></label></div>
+    <div class="custompal" id="custompal"><span>Your own</span><span class="cps"><label>Main <input type="color" id="cc1" value="#00a35c"></label><label>Accent <input type="color" id="cc2" value="#ff8a00"></label></span></div>
     <p class="lbl">Mode</p>
     <div class="modes"><button data-mode="auto">Auto</button><button data-mode="light">☀️ Light</button><button data-mode="dark">🌙 Dark</button></div>
   </div>
