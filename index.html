@@ -508,6 +508,19 @@ body.city-both .pick .pcity{display:inline}
 #fullgate{display:none!important}
 .quickrow .pickme{font-size:13px!important;padding:5px 10px!important;margin:0!important;width:auto!important;font-weight:inherit}
 .quickrow{gap:5px}.quickrow .chip,.quickrow .pickme{padding:5px 9px!important}
+
+.quickrow{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px!important;flex-wrap:nowrap}
+.quickrow .chip,.quickrow .pickme{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;justify-content:center;padding:6px 4px!important;font-size:12.5px!important}
+@media (max-width:700px){
+  nav.tabs{background:var(--surface,#fff)!important;border-top:2px solid var(--ink,#14212b)!important;box-shadow:0 -6px 18px rgba(0,0,0,.12);padding-top:6px!important}
+  nav.tabs button{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px!important;font-weight:600;color:var(--ink,#14212b)!important;opacity:.7;border:0!important;background:none}
+  nav.tabs button::before{font-size:20px;line-height:1}
+  nav.tabs [data-tab="this"]::before{content:"📅"}nav.tabs [data-tab="next"]::before{content:"🗓️"}nav.tabs [data-tab="big"]::before{content:"🎭"}nav.tabs [data-tab="trips"]::before{content:"🚆"}nav.tabs .tab-plans::before{content:"✅"}
+  nav.tabs button[aria-selected="true"],nav.tabs .tab-plans[aria-pressed="true"]{opacity:1;color:#DA291C!important;background:rgba(218,41,28,.08)!important;border-radius:12px}
+  nav.tabs button[aria-selected="true"]::after{display:none}
+  body{padding-bottom:84px}
+}
+.quickrow{grid-template-columns:repeat(4,minmax(0,1fr))!important}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -563,7 +576,7 @@ body.city-both .pick .pcity{display:inline}
   <button role="tab" data-tab="next" aria-selected="false">Next week</button>
   <button role="tab" data-tab="big" aria-selected="false">Later</button>
   <button role="tab" data-tab="trips" aria-selected="false">Day trips</button>
-  <button class="tab-plans" id="tabplans" aria-pressed="false">✓ My plans</button>
+  <button class="tab-plans" id="tabplans" aria-pressed="false">My plans</button>
 </nav>
 <div class="jumps" id="jumps"></div>
 <div id="rate"></div>
@@ -592,7 +605,7 @@ body.city-both .pick .pcity{display:inline}
 </section>
 <div class="filterpanel" id="filterpanel">
   <div class="searchrow"><input type="search" id="q" placeholder="Search events, places, groups" aria-label="Search all events" autocomplete="off"><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
-<div class="quickrow" id="quick"><button class="chip" data-q="f-free" aria-pressed="false">Free</button><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rain</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs</button><button class="chip" id="swipebtn">🃏 Swipe</button><button class="chip pickme" id="pickme">🎲 Pick</button></div>
+<div class="quickrow" id="quick"><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rain</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs</button><button class="chip" id="swipebtn">🃏 Swipe</button><button class="chip pickme" id="pickme">🎲 Pick</button></div>
   <div id="chipbox"><div class="sheethead"><span>Filters</span><span><button class="aclear" id="sheetclear">Clear</button> <button id="sheetdone">Done</button></span></div>
   <div class="filters" role="group" aria-label="Filter by type">
     <span class="lbl">Type</span>
