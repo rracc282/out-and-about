@@ -268,9 +268,9 @@ async function toEn(t) {
   return null;
 }
 async function titleEn(t, city) {
-  t = String(t || "").trim(); if (t.length < 4) return null;
+  t = String(t || "").trim(); if (t.length < 4 || / @ /.test(t)) return null;
   if ((t.match(EN) || []).length) return null;
-  const l = langOf(t) !== "en" ? langOf(t) : (city === "zh" ? "de" : "fr");
+  const l = city === "zh" ? "de" : "fr";
   const key = l + ":" + t; if (key in TR) return TR[key];
   if (budget - t.length < 0) return null; budget -= t.length;
   const r = await get(`https://api.mymemory.translated.net/get?langpair=${l}|en&de=bot%40users.noreply.github.com&q=${encodeURIComponent(t)}`);
@@ -284,7 +284,7 @@ for (const m of html.matchAll(/\{"id": ?"([a-z0-9@-]+)", ?"p": ?"[^"]*"[^{}]*?"t
   if (t && norm(t) !== norm(m[2])) tEn[m[1]] = t.slice(0, 110);
 }
 for (const e of events.concat(add)) {
-  const tt = (await toEn(e.title)) || (await titleEn(e.title, e.city)); if (tt && norm(tt) !== norm(e.title)) e.titleEn = tt.slice(0, 110);
+  const tt = (e.src === "Songkick" || / @ /.test(e.title)) ? null : ((await toEn(e.title)) || (await titleEn(e.title, e.city))); if (tt && norm(tt) !== norm(e.title)) e.titleEn = tt.slice(0, 110);
   if (e.desc) { const dd = await toEn(e.desc); if (dd) e.desc = dd; }
 }
 report.translated = trCount;

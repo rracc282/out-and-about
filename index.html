@@ -2188,6 +2188,12 @@ if(window.AUTO&&AUTO.twx)Object.assign(TWX,AUTO.twx);try{renderTrips()}catch(e){
 /* plain-English hint under each title: translation if the title isn't English, else what kind of event it is */
 function GLs(){return [[/flohmarkt|brocante|vide-grenier|puces|brocki/i,"Flea market"],[/markt|marché|market/i,"Market"],[/ausstellung|exposition|exhibition|expo\b/i,"Exhibition"],[/vernissage/i,"Exhibition opening"],[/konzert|concert|récital|recital/i,"Concert"],[/lesung|lecture publique/i,"Reading"],[/führung|visite guidée/i,"Guided tour"],[/workshop|atelier|kurs|cours/i,"Workshop / class"],[/theater|théâtre/i,"Theatre"],[/comedy|stand-?up|humour/i,"Comedy"],[/kino|cinéma|film/i,"Film"],[/fest\b|festival|fête|chilbi|kilbi/i,"Festival / fair"],[/party|soirée|disco|club/i,"Party"],[/tanz|danse|dance|salsa|bachata|tango|swing/i,"Dance"],[/yoga|meditation|méditation/i,"Yoga / wellbeing"],[/wanderung|randonnée|hike|walk|balade/i,"Walk / hike"],[/apéro|stammtisch|social|meetup|rencontre|language exchange|tandem/i,"Social meetup"],[/quiz/i,"Quiz night"],[/jam\b|open mic/i,"Jam / open mic"],[/oper|opéra|opera/i,"Opera"],[/chor|chorale|choir/i,"Choir"]]}
 function gloss(e){const ico=(wetOf(e)?'☔ ':'');
+  const low=x=>(x||"").toLowerCase().normalize("NFD").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+  if(e.src==="Songkick"||/ @ /.test(e.titleOrig||e.title))return ico+'Live concert'+(e.free?' · free':'');
+  let d=(e.desc||"").split(/(?<=[.!?])\s/)[0]||"";const tl=low(e.title);
+  if(d&&low(d).startsWith(tl.slice(0,25)))d=d.slice(e.title.length).replace(/^[\s:—–,.-]+/,"");
+  if(d.length>12&&!/[äöü]|\b(der|die|das|und|mit|le|la|les|avec|pour)\b/i.test(d)){const sh=d.length>78?d.slice(0,76).replace(/\s\S*$/,"")+"…":d;return ico+esc(sh)}
+  {const t0=e.title+" "+(e.desc||"").slice(0,80);const g0=(GLs().find(([re])=>re.test(t0))||[])[1];if(g0&&low(e.title).includes(low(g0).split(" ")[0]))return ico+esc([(e.place||"").split(",")[0],e.free?"free":e.price].filter(Boolean).join(" · "))}
   const t=e.title+" "+(e.desc||"").slice(0,80);const g=(GLs().find(([re])=>re.test(t))||[])[1];const c=(e.cat||[])[0];
   return ico+esc(g||({rencontre:"Social meetup",creatif:"Arts & crafts",marche:"Market",fete:"Festival / fair",culture:"Culture",corps:"Sports & wellbeing",chien:"Dog-friendly outing"})[c]||"Event")+(e.free?' · free':'')}
 </script>
