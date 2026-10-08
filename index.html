@@ -474,6 +474,18 @@ body.city-both .pick .pcity{display:inline}
 #onb .opts button[aria-pressed="true"]{background:#DA291C;border-color:#DA291C;color:#fff}
 #onb .go{width:100%;padding:12px;border:0;border-radius:10px;background:#DA291C;color:#fff;font:inherit;font-weight:600;cursor:pointer}
 #onb .go:disabled{opacity:.4}
+.top{justify-content:flex-start!important}#acctbtn{margin-left:auto}#themebtn{margin-left:8px}
+.quickrow{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:8px 0 2px;padding-bottom:2px}
+.quickrow::-webkit-scrollbar{display:none}
+.quickrow .chip{flex:0 0 auto;white-space:nowrap;font-size:13.5px;padding:6px 12px}
+.quickrow .pickme{border-style:dashed}
+.searchrow{display:flex;gap:8px;align-items:stretch}.searchrow input{flex:1 1 auto;min-width:0}
+.rainbtn{font:inherit;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.55);background:transparent;color:inherit;border-radius:999px;padding:4px 11px;cursor:pointer}
+.rainbtn[aria-pressed="true"]{background:#fff;color:#0e6b80}
+#picks>div:first-child{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.wetb{margin-left:8px;font-size:11px;font-weight:700;background:rgba(255,255,255,.2);border-radius:999px;padding:1px 7px;letter-spacing:0}
+.trip-why{display:block;font-size:12.5px;margin-top:6px;opacity:.85}
+#onb input{width:100%;box-sizing:border-box;font:inherit;padding:9px 11px;border:1px solid var(--line,#ccc);border-radius:10px;margin:0 0 8px;background:transparent;color:inherit}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -535,7 +547,7 @@ body.city-both .pick .pcity{display:inline}
 <div id="rate"></div>
 <section class="picks" id="picks" aria-labelledby="picks-h">
   <div>
-    <h2 id="picks-h">The short list</h2>
+    <h2 id="picks-h">The short list</h2><button class="rainbtn" id="rainbtn" aria-pressed="false" title="Hide outdoor picks on days when rain is likely">☔ Rain-proof</button>
   </div>
   <div class="pick-block">
     <div class="pick-sep"><span>This weekend</span><em>Fri 9 – Sun 11 Oct</em></div>
@@ -557,7 +569,8 @@ body.city-both .pick .pcity{display:inline}
   </div>
 </section>
 <div class="filterpanel" id="filterpanel">
-  <div class="searchrow"><input type="search" id="q" placeholder="Search events, places, groups" aria-label="Search all events" autocomplete="off"><span class="quick" id="quick"><button class="chip" data-q="f-free" aria-pressed="false">Free</button><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rainy day</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs welcome</button></span><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
+  <div class="searchrow"><input type="search" id="q" placeholder="Search events, places, groups" aria-label="Search all events" autocomplete="off"><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
+<div class="quickrow" id="quick"><button class="chip" data-q="f-free" aria-pressed="false">Free</button><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rainy day</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs welcome</button><button class="chip pickme" id="pickme">🎲 Pick for me</button></div>
   <div id="chipbox"><div class="sheethead"><span>Filters</span><span><button class="aclear" id="sheetclear">Clear</button> <button id="sheetdone">Done</button></span></div>
   <div class="filters" role="group" aria-label="Filter by type">
     <span class="lbl">Type</span>
@@ -591,7 +604,6 @@ body.city-both .pick .pcity{display:inline}
 <div id="sheetbg" hidden></div>
 
 <div class="toolbar" id="toolbar">
-  <button class="pickme" id="pickme">🎲 Pick for me</button>
   <div class="activechips" id="activechips"></div>
 </div>
 <div id="pickresult"></div>
@@ -923,7 +935,7 @@ async function flush(){if(R.writing)return;R.writing=true;
   while(R.dirty){R.dirty=false;try{const {error}=await SB.from("state").upsert({user_id:R.uid,data:JSON.parse(JSON.stringify(S)),updated_at:new Date().toISOString()});if(error)throw error;setSync(true)}catch(e){setSync("warn","Couldn't save to your account; kept on this device")}}
   R.writing=false}
 function mergeHist(x,y){const o={};x=x||{};y=y||{};new Set([...Object.keys(x),...Object.keys(y)]).forEach(k=>{const a=x[k]||{},b=y[k]||{};o[k]=Object.assign({},b,a);["r","m","n"].forEach(f=>{if(o[k][f]==null||o[k][f]===false||o[k][f]==="")if(b[f]!=null&&b[f]!==false&&b[f]!=="")o[k][f]=b[f]})});return o}
-function adopt(b){const keepH=S.hist,keepD=S.deleted||{},keepT=S.trips||{};S={stars:b.stars||[],hidden:b.hidden||[],going:b.going||[],hist:mergeHist(b.hist,keepH),deleted:Object.assign({},keepD,b.deleted||{}),zw:b.zw||S.zw||{},home:b.home||S.home,likes:b.likes||S.likes,nope:Object.assign({},S.nope||{},b.nope||{}),trips:Object.assign({},keepT,b.trips||{}),me:b.me||[],updated:b.updated||0};fromS();try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}}
+function adopt(b){const keepA=S.addr,keepH=S.hist,keepD=S.deleted||{},keepT=S.trips||{};S={stars:b.stars||[],hidden:b.hidden||[],going:b.going||[],hist:mergeHist(b.hist,keepH),deleted:Object.assign({},keepD,b.deleted||{}),zw:b.zw||S.zw||{},home:b.home||S.home,likes:b.likes||S.likes,addr:b.addr||keepA,nope:Object.assign({},S.nope||{},b.nope||{}),trips:Object.assign({},keepT,b.trips||{}),me:b.me||[],updated:b.updated||0};fromS();try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}}
 async function pull(){if(!R.uid)return;try{const {data,error}=await SB.from("state").select("data").eq("user_id",R.uid).maybeSingle();if(error)throw error;
     const b=data&&data.data;if(b&&(b.updated||0)>(S.updated||0)){adopt(b);render()}else if(!b||(b.updated||0)<(S.updated||0)){if(b){S.hist=mergeHist(S.hist,b.hist);S.deleted=Object.assign({},b.deleted||{},S.deleted||{});S.trips=Object.assign({},b.trips||{},S.trips||{});fromS()}R.dirty=true;flush()}
     setSync(true)}catch(e){setSync("warn","Couldn't reach your account; using this device")}}
@@ -1316,6 +1328,9 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
   const seen=new Set(EVENTS.map(e=>e.day+"|"+nm(e.title))),urls=new Set(EVENTS.map(e=>e.url));
   (A.events||[]).forEach(e=>{if(urls.has(e.url)||seen.has(e.day+"|"+nm(e.title)))return;seen.add(e.day+"|"+nm(e.title));
     if(e.p!=="big"&&e.p!=="on")e.p=per(e.day);if(e.grp&&!GRP[e.id])GRP[e.id]=e.grp;EVENTS.push(e)});
+  const NICHE=/pok[eé]mon|yu-?gi-?oh|magic:? the gathering|\bmtg\b|commander (event|night|league|game)|trading card|\btcg\b|card game|kartenspiel|jeux? de cartes|flesh and blood|lorcana|one piece card|digimon|warhammer|kill team|age of sigmar|\b40k\b|wargam|miniature painting|\blarp\b|cosplay|anime|manga/i;
+  for(let i=EVENTS.length-1;i>=0;i--){const e=EVENTS[i];if(NICHE.test(e.title+" "+(e.desc||"").slice(0,300)))EVENTS.splice(i,1)}
+  if(A.twx)Object.assign(TWX,A.twx);
   const dr=new Set(A.drop||[]);for(let i=EVENTS.length-1;i>=0;i--)if(dr.has(EVENTS[i].id))EVENTS.splice(i,1);
   Object.entries(A.edits||{}).forEach(([id,f])=>{const e=EVENTS.find(x=>x.id===id);if(e)Object.assign(e,f)});
 })();
@@ -1350,7 +1365,7 @@ function siteOf(e){return SITE[e.id]||e.url}
 function moreHTML(e){
   const g=goingSet.has(e.id);
   const site=siteOf(e);const out=[];
-  if(MAPQ[e.id])out.push('<a class="lnk" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(MAPQ[e.id])+'" target="_blank" rel="noopener">Google Maps ↗</a>');
+  {const q=MAPQ[e.id]||e.place;const a=(S.addr||{})[cityOf(e)];if(q)out.push('<a class="lnk" href="'+(a?"https://www.google.com/maps/dir/?api=1&travelmode=transit&origin="+encodeURIComponent(a.q+", "+(cityOf(e)==="zh"?"Zürich":"Genève"))+"&destination="+encodeURIComponent(q):"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q))+'" target="_blank" rel="noopener">'+(a?"Directions from home ↗":"Google Maps ↗")+'</a>')}
   if(!isLocal(e)){const town=sbbTown(e);if(town)out.push('<a class="lnk" href="https://www.sbb.ch/en?von='+encodeURIComponent(CITY[cityOf(e)].st)+'&nach='+encodeURIComponent(town)+'" target="_blank" rel="noopener">Train times (SBB) ↗</a>')}
   if(TICKETS[e.id]!==site)out.push('<a class="lnk" href="'+site+'" target="_blank" rel="noopener">'+(e.src?e.src+' page':'Website')+' ↗</a>');
   if(g)out.push('<a class="lnk" href="'+calURL(e)+'" target="_blank" rel="noopener">Add to calendar again ↗</a>');
@@ -1435,7 +1450,7 @@ function evHTML(e,p){
   let det='';
   if(open){
     const away=awayH(e), been=beenCount(e);
-    const meta=[esc(e.trip)];
+    const fh=fromHome(e);const meta=[fh?esc(fh):esc(e.trip)];
     if(e.src)meta.push(esc(e.src));
     if(been)meta.push('Been '+been+'× with this group');
     if(away&&away>=4.5)meta.push('≈ '+Math.round(away)+'h away from home');
@@ -1541,6 +1556,7 @@ function injectZhPicks(){if(window.AUTO&&AUTO.week&&AUTO.week!=="2026-10-05"){tr
 injectZhPicks();
 function renderPicks(){
   document.getElementById("picks").hidden=ui.tab!=="this"||!!state.q;
+  const rb=document.getElementById("rainbtn");if(rb)rb.setAttribute("aria-pressed",String(!!state.rain));
   document.querySelectorAll(".pick[data-ev]").forEach(p=>{
     const id=p.dataset.ev;
     p.hidden=(ui.city!=="both"&&p.dataset.city!==ui.city&&!goingSet.has(id))||(hidden.has(id)&&!goingSet.has(id))||!EVENTS.some(e=>e.id===id&&!isPast(e));
@@ -1782,7 +1798,8 @@ function wxIcon(r){return r>=50?"🌧️":r>=25?"⛅":"☀️"}
 function tripWx(t){const w=TWX[t.id]||{};return Object.keys(w).filter(d=>d>=TODAY).sort().slice(0,2).map(d=>{const x=w[d];return '<span title="Forecast '+dLbl(d)+'">'+DAYNAMES[new Date(d+"T12:00:00").getDay()].slice(0,3)+' '+wxIcon(x[1])+' '+x[0]+'°</span>'}).join("")}
 function tripCost(t){const c=COST[t.id];if(!c)return null;const day=c[0]+c[1]+c[3];if(t.kind==="weekend"){return {total:c[0]+c[1]+2*c[3]+(c[4]||0),txt:"≈ CHF "+(c[0]+c[1]+2*c[3]+(c[4]||0))+" for the weekend",det:"train ≈ CHF "+c[0]+(c[1]?" · "+c[2]+" ≈ CHF "+c[1]:"")+" · food ≈ CHF "+(2*c[3])+" · 1 night ≈ CHF "+(c[4]||"?")}}
   return {total:day,txt:"≈ CHF "+day+" for the day",det:"train ≈ CHF "+c[0]+(c[1]?" · "+c[2]+" ≈ CHF "+c[1]:"")+" · lunch & coffee ≈ CHF "+c[3]}}
-function tripScore(t){const ag=tripAgenda(t),n=ag.length+tripEvents(t,ag).length;const w=Object.entries(TWX[t.id]||{}).filter(([d])=>d>=TODAY).slice(0,2);const wet=w.length?w.reduce((a,[,x])=>a+x[1],0)/w.length:30;return n*2+(wet<25?3:wet<45?1:-2)-(t.train.min/60)-(t.kind==="weekend"?2:0)}
+function tripScore(t){return tripWhy(t).s}
+function tripScoreOld(t){const ag=tripAgenda(t),n=ag.length+tripEvents(t,ag).length;const w=Object.entries(TWX[t.id]||{}).filter(([d])=>d>=TODAY).slice(0,2);const wet=w.length?w.reduce((a,[,x])=>a+x[1],0)/w.length:30;return n*2+(wet<25?3:wet<45?1:-2)-(t.train.min/60)-(t.kind==="weekend"?2:0)}
 const TCITY={"vevey-lavaux":"","neuchatel-creux-du-van":"","glacier-3000":"","mont-saleve":"","rochers-de-naye":"Montreux"};
 function routeURL(steps,t){
   const mp=(t.links.map||t.name).split(",").map(x=>x.trim());const town=(mp.length>=3?mp.slice(-2):mp).join(", ");const tw0=town.split(",")[0].toLowerCase();const seen=new Set();const pts=[];
@@ -1822,8 +1839,8 @@ function tripTile(t){
   const cst=tripCost(t),wxh=tripWx(t);
   return '<article class="trip'+(d?' is-planned':'')+(open?' open':'')+'" id="trip-'+t.id+'" style="border-top:4px solid '+TTYPE[tPrim(t)][1]+'"><button class="trip-sum" data-trip="'+t.id+'" aria-expanded="'+open+'">'+
     '<span class="trip-top"><span class="trip-name"><span class="trip-ic" aria-hidden="true">'+TTYPE[tPrim(t)][0]+'</span> '+esc(t.name)+'</span><span class="trip-flags">'+(FLAG[t.country]||"")+'</span></span>'+
-    '<span class="trip-hook">'+esc(t.hook)+'</span>'+
-    '<span class="trip-meta"><span>🚆 '+hm(t.train.min)+(t.train.changes?'':' · direct')+'</span>'+(t.car?'<span>🚗 '+hm(t.car.min)+'</span>':'')+(cst?'<span>'+cst.txt.replace(' for the day','').replace(' for the weekend',' / weekend')+'</span>':'')+'</span>'+(wxh?'<span class="trip-wx">'+wxh+'</span>':'')+
+    '<span class="trip-hook">'+esc(t.hook)+'</span>'+(ui.tripSort==="best"?'<span class="trip-why">'+tripWhy(t).why.join(" · ")+'</span>':'')+
+    '<span class="trip-meta"><span>🚆 '+hm(t.train.min+tripFromHome(t))+(tripFromHome(t)?' from home':'')+(t.train.changes?'':' · direct')+'</span>'+(t.car?'<span>🚗 '+hm(t.car.min)+'</span>':'')+(cst?'<span>'+cst.txt.replace(' for the day','').replace(' for the weekend',' / weekend')+'</span>':'')+'</span>'+(wxh?'<span class="trip-wx">'+wxh+'</span>':'')+
     '<span class="trip-badges">'+(ui.city==="both"?'<span class="tb from">From '+CITY[t.city||"ge"].name+'</span>':'')+(t.kind!=="day"?'<span class="tb kind">'+KINDLBL[t.kind]+'</span>':'')+(d?'<span class="tb go">✓ '+dLbl(d)+'</span>':'')+(ag?'<span class="tb">'+ag+' event'+(ag>1?'s':'')+' on</span>':'')+'</span>'+
     '</button>'+(open?tripDetail(t):'')+'</article>';
 }
@@ -1832,12 +1849,13 @@ function renderTrips(){
   const chip=(k,v,l)=>'<button class="chip" data-tf="'+k+'" data-v="'+v+'" aria-pressed="'+(ui[k]===v)+'">'+l+'</button>';
   const list=TRIPS.filter(t=>ui.city==="both"||t.city===ui.city).filter(tripOk).sort(ui.tripSort==="best"?(a,b)=>tripScore(b)-tripScore(a):(a,b)=>({day:0,long:1,weekend:2}[a.kind]-{day:0,long:1,weekend:2}[b.kind])||a.train.min-b.train.min);
   const nTF=(ui.tripLen!=="all")+(ui.tripType!=="all");
-  el.innerHTML='<details class="tripfold"'+(ui.tripFold?' open':'')+'><summary>Sort: '+(ui.tripSort==="best"?"Best this weekend":"Closest first")+' · Filters'+(nTF?' ('+nTF+')':'')+' <small>· '+list.length+' trips</small></summary><div class="filters"><span class="lbl">Length</span>'+chip("tripLen","all","All")+chip("tripLen","1h","≤ 1h")+chip("tripLen","2h","≤ 2h")+chip("tripLen","long","Long days")+chip("tripLen","weekend","Weekends")+'</div>'+
+  el.innerHTML='<div class="filters"><span class="lbl">Best for</span>'+[0,1].map(n=>'<button class="chip" data-twe="'+n+'" aria-pressed="'+(ui.tripWe===n)+'">'+(n?"Next weekend":"This weekend")+'</button>').join("")+'<small style="opacity:.7;margin-left:6px">'+dLbl(isoAdd(nextSat(),7*ui.tripWe))+'–'+dLbl(isoAdd(nextSat(),7*ui.tripWe+1))+'</small></div>'+'<details class="tripfold"'+(ui.tripFold?' open':'')+'><summary>Sort: '+(ui.tripSort==="best"?"Best this weekend":"Closest first")+' · Filters'+(nTF?' ('+nTF+')':'')+' <small>· '+list.length+' trips</small></summary><div class="filters"><span class="lbl">Length</span>'+chip("tripLen","all","All")+chip("tripLen","1h","≤ 1h")+chip("tripLen","2h","≤ 2h")+chip("tripLen","long","Long days")+chip("tripLen","weekend","Weekends")+'</div>'+
     '<div class="filters"><span class="lbl">Type</span>'+chip("tripType","all","All")+chip("tripType","lake","Lakes")+chip("tripType","mountain","Mountains & hikes")+chip("tripType","city","Cities")+chip("tripType","village","Villages & wine")+chip("tripType","rainy","Rainy day")+'</div><div class="filters"><span class="lbl">Sort</span>'+chip("tripSort","best","Best this weekend")+chip("tripSort","near","Closest first")+'</div></details>'+
     (list.length?'<div class="tripgrid">'+list.map(tripTile).join("")+'</div>':'<p class="empty">No trips match these filters.</p>');
 }
 document.getElementById("trips").addEventListener("click",ev=>{
   const c=ev.target.closest("[data-tf]");if(c){ui[c.dataset.tf]=c.dataset.v;renderTrips();return}
+  const tw=ev.target.closest("[data-twe]");if(tw){ui.tripWe=+tw.dataset.twe;ui.tripSort="best";renderTrips();return}
   const j=ev.target.closest("[data-jump]");if(j){focusEvent(j.dataset.jump);return}
   const pl=ev.target.closest("[data-tripplan]");if(pl){const id=pl.dataset.tripplan,inp=document.getElementById("td-"+id);const d=inp&&inp.value;if(!d||d<TODAY)return;S.trips=S.trips||{};S.trips[id]=d;persist();render();return}
   const un=ev.target.closest("[data-tripundo]");if(un){delete (S.trips||{})[un.dataset.tripundo];persist();render();return}
@@ -2021,12 +2039,12 @@ function openSetup(){if(document.getElementById("onb"))return;const L=new Set(S.
   const d=document.createElement("div");d.id="onb";
   const draw=()=>{d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About"><h2>Welcome to Out & About</h2><p>Where are you based?</p><div class="opts">'+
     [["ge","Geneva"],["zh","Zurich"]].map(([k,n])=>'<button data-home="'+k+'" aria-pressed="'+(home===k)+'">'+n+'</button>').join("")+'</div><p>Pick up to 3 things you enjoy most</p><div class="opts">'+
-    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time under 🔔 → Preferences.</p></div>'};
+    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><p>Optional, private: your address, so travel times start from home</p><input id="addr-ge" placeholder="Address in Geneva (street and number)" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><input id="addr-zh" placeholder="Address in Zurich" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time under 🔔 → Preferences.</p></div>'};
   draw();document.body.appendChild(d);
   d.addEventListener("click",ev=>{const h=ev.target.closest("[data-home]"),l=ev.target.closest("[data-like]");
     if(h){home=h.dataset.home;draw();return}
     if(l){const k=l.dataset.like;if(L.has(k))L.delete(k);else if(L.size<3)L.add(k);draw();return}
-    if(ev.target.closest(".go")&&home&&L.size){S.home=home;S.likes=[...L];try{localStorage.setItem("oa-home",home)}catch(e){}d.remove();setCity(home);persist();render()}});
+    if(ev.target.closest(".go")&&home&&L.size){S.home=home;S.likes=[...L];saveAddr(d.querySelector("#addr-ge").value,d.querySelector("#addr-zh").value);try{localStorage.setItem("oa-home",home)}catch(e){}d.remove();setCity(home);persist();render()}});
 }
 (function(){let h=null;try{h=localStorage.getItem("oa-home")}catch(e){}if(!S.home&&h)S.home=h;if(!S.home||!(S.likes||[]).length)setTimeout(openSetup,300);})();
 
@@ -2049,6 +2067,43 @@ function handleRateHash(){const h=decodeURIComponent(location.hash||"");const m=
   if(h==="#rate"){const r=document.getElementById("rate");if(r)setTimeout(()=>r.scrollIntoView({behavior:"smooth",block:"start"}),400)}}
 window.addEventListener("hashchange",handleRateHash);document.getElementById("prefsbtn").addEventListener("click",()=>{document.getElementById("acctpanel").hidden=true;openSetup()});setTimeout(handleRateHash,600);
 setTimeout(syncQuick,700);
+
+/* rain on the short list: badge on outdoor picks; Rain-proof hides them (same switch as the ☔ Rainy day chip) */
+function wetOf(e){const w=e&&e.day?wxOf(e.day,cityOf(e)):null;return w&&w[1]>=50&&!isIndoor(e)?w[1]:0}
+function rainPicks(){document.querySelectorAll("#picks .pick[data-ev]").forEach(p=>{const e=EVENTS.find(x=>x.id===p.dataset.ev);const wet=wetOf(e);
+  let b=p.querySelector(".wetb");if(wet&&!b){const k=p.querySelector(".k");if(k)k.insertAdjacentHTML("beforeend",'<span class="wetb">☔ '+wet+'%</span>')}if(!wet&&b)b.remove();
+  if(state.rain&&wet)p.hidden=true})}
+document.getElementById("rainbtn").addEventListener("click",()=>{const x=document.getElementById("f-rain");if(x)x.click();setTimeout(()=>{syncQuick();renderPicks()},0)});
+{const _rp=renderPicks;renderPicks=function(){_rp.apply(this,arguments);try{rainPicks()}catch(e){}}}
+
+/* ---------- travel times from the user's own address (kept privately in their account) ---------- */
+const STN={ge:[46.2102,6.1424],zh:[47.3779,8.5403]};
+function kmBetween(a,b){const R=6371,r=x=>x*Math.PI/180,dl=r(b[0]-a[0]),dn=r(b[1]-a[1]);const h=Math.sin(dl/2)**2+Math.cos(r(a[0]))*Math.cos(r(b[0]))*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
+function homeLL(c){const a=(S.addr||{})[c];return a&&a.ll?a.ll:null}
+function cityMin(km){km*=1.3;return km<1.3?{m:Math.max(3,Math.round(km*13)),i:"🚶"}:{m:Math.round(7+km*3.2),i:"🚋"}}
+function evLL(e){if(e.geo)return e.geo;const G=(window.AUTO&&AUTO.geo)||{};return G[MAPQ[e.id]]||G[e.place]||null}
+function fromHome(e){const c=cityOf(e),h=homeLL(c),ll=evLL(e);if(!h)return "";
+  if(isLocal(e)){if(!ll)return "";const t=cityMin(kmBetween(h,ll));return t.i+" ≈ "+t.m+" min from home"}
+  const acc=cityMin(kmBetween(h,STN[c])).m;const tm=(e.trip||"").match(/(\d+)\s*h\s*(\d+)?|(\d+)\s*min/);if(!tm)return "";const base=tm[3]?+tm[3]:(+tm[1])*60+(+(tm[2]||0));return "≈ "+hm(base+acc)+" from home"}
+function tripFromHome(t){const c=t.city||"ge",h=homeLL(c);return h?cityMin(kmBetween(h,STN[c])).m:0}
+async function geocode(q){try{const r=await fetch("https://photon.komoot.io/api/?limit=1&q="+encodeURIComponent(q));const j=await r.json();const f=j.features&&j.features[0];return f?f.geometry.coordinates.slice().reverse():null}catch(e){return null}}
+async function saveAddr(ge,zh){S.addr=S.addr||{};for(const [c,q0,city] of [["ge",ge,"Genève"],["zh",zh,"Zürich"]]){const q=(q0||"").trim();if(!q){delete S.addr[c];continue}
+  if(S.addr[c]&&S.addr[c].q===q&&S.addr[c].ll)continue;const ll=await geocode(q+", "+city+", Switzerland");S.addr[c]={q,ll}}persist();render();try{renderTrips()}catch(e){}}
+
+/* day trips: best for the chosen weekend — weather there, events on, time from home, food, rainy-day fit */
+ui.tripWe=0;
+function tripWeekend(){const sat=isoAdd(nextSat(),7*ui.tripWe);return [isoAdd(sat,-1),sat,isoAdd(sat,1)]}
+function tripWhy(t){const [,sat,sun]=tripWeekend();const w=TWX[t.id]||{};const days=[sat,sun].filter(d=>w[d]);
+  const rain=days.length?days.reduce((a,d)=>a+w[d][1],0)/days.length:null,temp=days.length?Math.round(days.reduce((a,d)=>a+w[d][0],0)/days.length):null;
+  const ty=t.types||[];const outdoor=ty.some(x=>/mountain|hike|lake|village/.test(x));const rainy=ty.includes("rainy")||ty.includes("city");
+  const ag=tripAgenda(t);const evs=ag.length+tripEvents(t,ag).length;const fh=tripFromHome(t),mins=t.train.min+fh;const food=(t.eat||[]).length;
+  let s=0;const why=[];
+  if(rain!==null){if(rain<30){s+=outdoor?4:2;why.push("☀️ dry, "+temp+"°")}else if(rain<55){s+=outdoor?0:1;why.push("⛅ "+Math.round(rain)+"% rain")}else{s+=rainy?2:outdoor?-5:-1;why.push(rainy?"☔ good if it rains":"🌧 "+Math.round(rain)+"% rain")}}
+  if(evs){s+=Math.min(evs,3)*2;why.push("🎪 "+evs+" event"+(evs>1?"s":"")+" on")}
+  s-=mins/50;why.push("🚆 "+hm(mins)+(fh?" from home":""));
+  if(food>=3){s+=1;why.push("🍽 "+food+" places to eat")}
+  if(t.kind==="weekend")s-=1.5;
+  return {s,why}}
 </script>
 
 
