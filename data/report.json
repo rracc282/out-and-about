@@ -3,7 +3,7 @@
   {
    "url": "https://lesgenevois.com/calendrier/ce-weekend",
    "status": 200,
-   "bytes": 2417608,
+   "bytes": 2417620,
    "found": 208,
    "followed": 0,
    "markers": "ld+json schema.org/Event"
@@ -11,7 +11,7 @@
   {
    "url": "https://www.meetup.com/lausanne-acroyoga/events/",
    "status": 200,
-   "bytes": 244886,
+   "bytes": 244888,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -35,7 +35,7 @@
   {
    "url": "https://www.meetup.com/zurichtogether/events/",
    "status": 200,
-   "bytes": 285229,
+   "bytes": 285221,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -91,7 +91,7 @@
   {
    "url": "https://www.meetup.com/social-circle-zurich/events/",
    "status": 200,
-   "bytes": 252865,
+   "bytes": 252867,
    "found": 66,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -99,8 +99,8 @@
   {
    "url": "https://www.opernhaus.ch/spielplan/kalendarium/",
    "status": 200,
-   "bytes": 99661,
-   "found": 50,
+   "bytes": 97327,
+   "found": 48,
    "followed": 0,
    "markers": "ld+json"
   },
@@ -147,7 +147,7 @@
   {
    "url": "https://www.meetup.com/geneva-networking/events/",
    "status": 200,
-   "bytes": 169671,
+   "bytes": 169669,
    "found": 24,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -177,14 +177,6 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/meetnewpeoplegeneva/events/",
-   "status": 200,
-   "bytes": 190485,
-   "found": 22,
-   "followed": 0,
-   "markers": "ld+json __NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/artists-meetup-group-english-speaking/events/",
    "status": 200,
    "bytes": 136203,
@@ -193,9 +185,9 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/samba-workshops-zurich/events/",
+   "url": "https://www.meetup.com/meetnewpeoplegeneva/events/",
    "status": 200,
-   "bytes": 130788,
+   "bytes": 190485,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -204,6 +196,14 @@
    "url": "https://www.meetup.com/philosophical_minds_zurich/events/",
    "status": 200,
    "bytes": 157955,
+   "found": 22,
+   "followed": 0,
+   "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/samba-workshops-zurich/events/",
+   "status": 200,
+   "bytes": 130788,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -243,8 +243,8 @@
   {
    "url": "https://www.kulturzueri.ch/",
    "status": 200,
-   "bytes": 148233,
-   "found": 12,
+   "bytes": 148062,
+   "found": 10,
    "followed": 12,
    "markers": ""
   },
@@ -257,7 +257,7 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/les-amis-geneva/events/",
+   "url": "https://www.meetup.com/les-amis-zurich/events/",
    "status": 200,
    "bytes": 59554,
    "found": 0,
@@ -265,7 +265,7 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/les-amis-zurich/events/",
+   "url": "https://www.meetup.com/les-amis-geneva/events/",
    "status": 200,
    "bytes": 59554,
    "found": 0,
@@ -276,6 +276,14 @@
    "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
    "bytes": 59548,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/internations-zurich/events/",
+   "status": 200,
+   "bytes": 59572,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -297,14 +305,6 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/internations-zurich/events/",
-   "status": 200,
-   "bytes": 59572,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/zurich-social-club/events/",
    "status": 200,
    "bytes": 59568,
@@ -313,17 +313,17 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/geneva-hiking-group/events/",
+   "url": "https://www.meetup.com/zurich-hiking/events/",
    "status": 200,
-   "bytes": 59570,
+   "bytes": 59546,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-hiking/events/",
+   "url": "https://www.meetup.com/geneva-hiking-group/events/",
    "status": 200,
-   "bytes": 59546,
+   "bytes": 59570,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -345,14 +345,6 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=3",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/",
    "status": 405,
    "bytes": 0,
@@ -361,15 +353,7 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=3",
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=3",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -385,9 +369,25 @@
    "markers": ""
   },
   {
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=3",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 76249,
+   "bytes": 76143,
    "found": 0,
    "followed": 14,
    "markers": "ld+json"
@@ -395,17 +395,17 @@
   {
    "url": "https://eventfrog.ch/fr/events/geneve.html",
    "status": 200,
-   "bytes": 616919,
+   "bytes": 616967,
    "found": 0,
-   "followed": 39,
+   "followed": 40,
    "markers": ""
   },
   {
    "url": "https://eventfrog.ch/de/events/zuerich.html",
    "status": 200,
-   "bytes": 616644,
+   "bytes": 616886,
    "found": 0,
-   "followed": 35,
+   "followed": 34,
    "markers": ""
   },
   {
@@ -457,19 +457,19 @@
    "markers": ""
   },
   {
-   "url": "https://inyourfacecomedy.ch/",
+   "url": "https://lesamis.cc/",
    "status": 200,
-   "bytes": 46197,
+   "bytes": 98339,
    "found": 0,
    "followed": 0,
    "markers": "ld+json"
   },
   {
-   "url": "https://www.comedykiss.ch/",
+   "url": "https://inyourfacecomedy.ch/",
    "status": 200,
-   "bytes": 1451969,
+   "bytes": 46197,
    "found": 0,
-   "followed": 1,
+   "followed": 0,
    "markers": "ld+json"
   },
   {
@@ -481,11 +481,11 @@
    "markers": ""
   },
   {
-   "url": "https://lesamis.cc/",
+   "url": "https://www.comedykiss.ch/",
    "status": 200,
-   "bytes": 98339,
+   "bytes": 1452208,
    "found": 0,
-   "followed": 0,
+   "followed": 1,
    "markers": "ld+json"
   },
   {
@@ -505,20 +505,20 @@
    "markers": ""
   },
   {
+   "url": "https://www.gtg.ch/saison-26-27/",
+   "status": 200,
+   "bytes": 228654,
+   "found": 0,
+   "followed": 0,
+   "markers": "ld+json wp-json"
+  },
+  {
    "url": "https://www.tonhalle-orchester.ch/en/concerts/calendar/",
    "status": 404,
    "bytes": 0,
    "found": 0,
    "followed": 0,
    "markers": ""
-  },
-  {
-   "url": "https://www.gtg.ch/saison-26-27/",
-   "status": 200,
-   "bytes": 228649,
-   "found": 0,
-   "followed": 0,
-   "markers": "ld+json wp-json"
   },
   {
    "url": "https://hallenstadion.ch/events/",
@@ -553,14 +553,6 @@
    "markers": ""
   },
   {
-   "url": "https://museesdegeneve.ch/",
-   "status": 200,
-   "bytes": 66169,
-   "found": 0,
-   "followed": 0,
-   "markers": "ld+json wp-json"
-  },
-  {
    "url": "https://www.sallemetropole.ch/",
    "status": 200,
    "bytes": 243399,
@@ -569,30 +561,40 @@
    "markers": "ld+json wp-json"
   },
   {
+   "url": "https://museesdegeneve.ch/",
+   "status": 200,
+   "bytes": 64907,
+   "found": 0,
+   "followed": 0,
+   "markers": "ld+json wp-json"
+  },
+  {
    "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
    "status": 200,
-   "bytes": 302541,
+   "bytes": 303900,
    "found": 0,
    "followed": 12,
    "markers": ""
   }
  ],
- "kept": 160,
+ "kept": 151,
  "dropped": {
-  "later than 2 weeks": 401,
-  "past": 511,
-  "duplicate": 77,
+  "later than 2 weeks": 398,
+  "past": 510,
+  "duplicate": 65,
   "far future": 80,
   "already in app": 48,
-  "weekday daytime": 44,
+  "weekday daytime": 42,
   "unknown place": 85,
   "niche (card games, wargaming…)": 51,
+  "Zurich: German-only spoken event": 23,
   "not relevant": 20
  },
- "geocoded": 159,
+ "geocoded": 0,
+ "translated": 144,
  "byCity": {
   "ge": 113,
-  "zh": 47
+  "zh": 38
  },
  "samples": {
   "unknown place": [
@@ -637,6 +639,50 @@
     "Dorfblick, Dorfblick, Mischistrasse 10, 3906 Saas-Fee, Switzerland, Sa",
     "",
     "https://www.meetup.com/connect-lausanne/events/"
+   ]
+  ],
+  "Zurich: German-only spoken event": [
+   [
+    "LONG NIGHT OF PHILOSOPHY: The \"und\" Problem",
+    "2026-11-20T20:00:00+01:00",
+    "Kirchgemeindehaus Wiedikon, Bühlstrasse 9/11, 8055 Zürich, Zurich",
+    "",
+    "https://www.meetup.com/philosophical_minds_zurich/events/"
+   ],
+   [
+    "LONG NIGHT OF PHILOSOPHY: The \"und\" Problem",
+    "2026-11-20T20:00:00+01:00",
+    "Kirchgemeindehaus Wiedikon, Bühlstrasse 9/11, 8055 Zürich, Zurich",
+    "",
+    "https://www.meetup.com/philosophical_minds_zurich/events/"
+   ],
+   [
+    "Open Sharing Circle ✨ (Deutsch)",
+    "2026-10-11T12:00:00+02:00",
+    "Roy's Atelier Paradeis, Kanzleistrasse 78, 8004 Zürich",
+    "",
+    "https://www.meetup.com/dare-to-live-zurich/events/"
+   ],
+   [
+    "Open Sharing Circle ✨ (Deutsch)",
+    "2026-10-11T12:00:00+02:00",
+    "Roy's Atelier Paradeis, Kanzleistrasse 78, 8004 Zürich",
+    "",
+    "https://www.meetup.com/dare-to-live-zurich/events/"
+   ],
+   [
+    "Chreis Cheib Slam #1",
+    "2026-10-15",
+    "Plaza Klub, Badenerstrasse 109, Zürich",
+    "",
+    "https://www.kulturzueri.ch/"
+   ],
+   [
+    "Führung Maskenbildnerei",
+    "2026-10-10T15:30",
+    "Opernhaus, Falkenstrasse 1, Zürich",
+    "",
+    "https://www.opernhaus.ch/spielplan/kalendarium/"
    ]
   ]
  }
