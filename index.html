@@ -2312,6 +2312,11 @@ document.getElementById("acctpanel").addEventListener("submit",async ev=>{ev.pre
   if(error){msg.textContent="Couldn't sign in: "+error.message;return}
   applySession(data.session);toast("Signed in")});
 document.addEventListener("click",ev=>{const p=document.getElementById("acctpanel");if(!p.hidden&&!ev.target.closest("#acctpanel")&&!ev.target.closest("#acctbtn"))p.hidden=true});
+/* multi-day events written as "7–17 Oct" or "30 Sep–4 Oct": keep them until their last day */
+(function(){const M={Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+  const L=[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))];
+  L.forEach(e=>{if(!e||e.dayEnd||!e.when||!e.day)return;const m=String(e.when).match(/^\s*(?:[A-Z][a-z]{2}\s+)?\d{1,2}(?:\s+[A-Z][a-z]{2})?\s*[–-]\s*(?:[A-Z][a-z]{2}\s+)?(\d{1,2})\s+([A-Z][a-z]{2})/);if(!m||!M[m[2]])return;
+    let y=+e.day.slice(0,4);if(M[m[2]]<+e.day.slice(5,7))y++;const end=y+"-"+String(M[m[2]]).padStart(2,"0")+"-"+String(+m[1]).padStart(2,"0");if(end>e.day)e.dayEnd=end})})();
 if("serviceWorker" in navigator){const hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{try{r.update()}catch(e){}}).catch(()=>{});let reloaded=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(hadSW&&!reloaded){reloaded=true;location.reload()}});document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")navigator.serviceWorker.getRegistration().then(r=>r&&r.update()).catch(()=>{})})}
 render();
 /* deep links from notifications: #ev-<id> or #trip-<id> */

@@ -1,5 +1,5 @@
 /* Out & About service worker: offline copy of the app + push notifications */
-const CACHE = "oa-v47";
+const CACHE = "oa-v48";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL.map(u => new Request(u, { cache: "reload" }))))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
