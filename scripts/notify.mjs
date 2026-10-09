@@ -67,7 +67,7 @@ if (KIND === "daily" || (AUTOK && H === 9)) {
     const past = ALL.find(e => going.has(e.id) && (e.dayEnd || e.day) === YDAY && !(hist[e.id] && hist[e.id].r));
     if (past) for (const s of mine) await send(s, { title: "How was " + past.title + "?", body: "Tap to rate it — the app learns what you like.", url: "./#rate", rate: past.id, tag: "rate-" + past.id });
     for (const [tid, d] of Object.entries(st.trips || {})) {
-      if (d !== TODAY) continue;
+      if (!(Array.isArray(d) ? d.includes(TODAY) : d === TODAY)) continue;
       const t = TRIPS.find(x => x.id === tid); if (!t) continue;
       const first = (t.day || [])[0];
       const body = (first ? first.t + " " + first.do : t.hook) + " · " + t.train.route;
