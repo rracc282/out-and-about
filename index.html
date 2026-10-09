@@ -616,6 +616,16 @@ body{background:var(--bg)!important;color:var(--ink)}
 .ev-en{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .allwe h3{background:var(--sun-soft)}.allwe-sub{font-family:var(--body);font-size:12.5px;font-weight:500;opacity:.7;margin-left:6px}
 .acts{display:flex!important;flex-wrap:nowrap!important;gap:8px;align-items:stretch}.acts>*{margin:0!important;white-space:nowrap}.acts .gocta,.acts .goundo{flex:1 1 auto;text-align:center;justify-content:center}.acts .morebtn{flex:0 0 auto;min-width:44px;padding-left:12px!important;padding-right:12px!important;font-size:18px;line-height:1}
+
+.trip-facts{display:block;font-size:13.5px;color:var(--muted);margin-top:8px;font-family:var(--body)}
+.trip-badges:empty{display:none}
+.trip-detail .trip-acts{display:flex;flex-wrap:nowrap;gap:8px;align-items:stretch;margin:10px 0 6px}
+.trip-detail .trip-acts input[type=date]{flex:1 1 auto;min-width:0}
+.trip-detail .trip-acts .plan,.trip-detail .trip-acts .tshare{flex:0 0 auto;white-space:nowrap}
+.trip-detail .tshare{display:inline-flex;align-items:center;padding:0 14px;border:1px solid var(--line);border-radius:10px;color:var(--lake);text-decoration:none;font-weight:600;background:var(--surface)}
+.triplinks{display:flex;flex-wrap:wrap;gap:4px 0;margin:4px 0 10px;font-size:14px}
+.triplinks a{border:0!important;background:none!important;padding:0!important;color:var(--lake);font-weight:600;text-decoration:none}
+.triplinks a+a::before{content:"·";color:var(--muted);margin:0 8px;font-weight:400}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -1961,15 +1971,15 @@ function itinHTML(list){return '<ol class="itin">'+list.map(x=>'<li><span class=
 function tripDetail(t){
   const d=tripPlan(t), ag=tripAgenda(t);
   const plan=d?'<span class="planned">✓ Planned for '+dLbl(d)+(t.kind==="weekend"?" – "+dLbl(isoAdd(d,1)):"")+'</span><a class="lnk" href="'+tripCal(t,d)+'" target="_blank" rel="noopener">Add to calendar ↗</a><button class="undo" data-tripundo="'+t.id+'">Undo</button>'
-    :'<input type="date" id="td-'+t.id+'" min="'+TODAY+'" value="'+nextSat()+'" aria-label="Date"><button class="plan" data-tripplan="'+t.id+'">Plan it</button>';
+    :'<input type="date" id="td-'+t.id+'" min="'+TODAY+'" value="'+isoAdd(nextSat(),7*(ui.tripWe||0))+'" aria-label="Date"><button class="plan" data-tripplan="'+t.id+'">Plan it</button>';
   const sec=(title,sub,body,open)=>'<details'+(open?' open':'')+'><summary>'+title+(sub?'<small>'+sub+'</small>':'<small></small>')+'</summary>'+body+'</details>';
-  const wxd=tripWx(t);let h='<div class="trip-detail"><p class="trip-season">'+esc(t.season||"")+'</p>'+(wxd?'<p class="trip-wxline">Forecast there: '+wxd+'</p>':'')+'<div class="trip-acts">'+plan+'</div>';
-  h+='<div class="triplinks"><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">🚆 Train times</a>'+(t.links.map?'<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(t.links.map)+'" target="_blank" rel="noopener">Map</a>':'')+(t.links.tourism?'<a href="'+esc(t.links.tourism)+'" target="_blank" rel="noopener">Tourism site</a>':'')+(t.links.hike?'<a href="'+esc(t.links.hike)+'" target="_blank" rel="noopener">Hike route</a>':'')+'<a href="'+tripInvite(t)+'" target="_blank" rel="noopener">Invite a friend</a></div>';
+  let h='<div class="trip-detail">'+(t.season?'<p class="trip-season">'+esc(t.season)+'</p>':'')+'<div class="trip-acts">'+plan+'<a class="tshare" href="'+tripInvite(t)+'" target="_blank" rel="noopener">Share</a></div>';
+  h+='<div class="triplinks"><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">🚆 Train times</a>'+(t.links.map?'<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(t.links.map)+'" target="_blank" rel="noopener">Map</a>':'')+(t.links.tourism?'<a href="'+esc(t.links.tourism)+'" target="_blank" rel="noopener">Tourism site</a>':'')+(t.links.hike?'<a href="'+esc(t.links.hike)+'" target="_blank" rel="noopener">Hike route</a>':'')+'</div>';
   const rl=(st)=>{const u=routeURL(st,t);return u?'<p class="maproute"><a href="'+u+'" target="_blank" rel="noopener">📍 Open all stops in Google Maps ↗</a><small>Save it in the app to have the pins offline.</small></p>':''};
   h+=sec(t.kind==="weekend"?"Show the full plan · Day 1":"Show the full plan",(t.day||[]).length+" stops",rl(t.day||[])+itinHTML(t.day||[]),false);
   if(t.day2&&t.day2.length)h+=sec("Day 2",t.day2.length+" stops",rl(t.day2)+itinHTML(t.day2),false);
   if(t.stay&&t.stay.length)h+=sec("Where to stay",t.stay.length+" dog-friendly options",'<div class="tiles">'+t.stay.map(x=>'<div class="tile"><b>'+linkOrText(x.name,x.url)+'</b><p>'+esc(x.why||"")+'</p><div class="f">'+(x.price?'<span>'+esc(x.price)+'</span>':'')+dogTag(x.dogs)+'</div></div>').join("")+'</div>',false);
-  h+=sec("Where to eat",t.eat.length+" places",'<div class="tiles">'+t.eat.map(x=>'<div class="tile"><span class="k">'+esc(x.kind||"")+'</span><b>'+linkOrText(x.name,x.url)+'</b><p>'+esc(x.why||"")+'</p><div class="f">'+(x.price?'<span>'+esc(x.price)+'</span>':'')+dogTag(x.dogs)+'</div>'+(x.address?'<div class="f" style="margin-top:4px">'+esc(x.address)+'</div>':'')+'</div>').join("")+'</div>',false);
+  if((t.eat||[]).length)h+=sec("Where to eat",t.eat.length+(t.eat.length===1?" place":" places"),'<div class="tiles">'+t.eat.map(x=>'<div class="tile"><span class="k">'+esc(x.kind||"")+'</span><b>'+linkOrText(x.name,x.url)+'</b><p>'+esc(x.why||"")+'</p><div class="f">'+(x.price?'<span>'+esc(x.price)+'</span>':'')+dogTag(x.dogs)+'</div>'+(x.address?'<div class="f" style="margin-top:4px">'+esc(x.address)+'</div>':'')+'</div>').join("")+'</div>',false);
   const tev=tripEvents(t,ag);const evs=tev.map(x=>'<div class="tile"><span class="k">'+esc(x.when||"")+'</span><b>'+linkOrText(x.title,x.url)+'</b><p>'+esc(x.desc||"")+'</p></div>').join("")+ag.map(e=>'<div class="tile"><span class="k">'+esc(dLbl(e.day))+' · in your agenda</span><b><button class="agjump" data-jump="'+e.id+'">'+esc(e.title)+'</button></b><p>'+esc(e.desc||"")+'</p></div>').join("");
   const nEv=tev.length+ag.length;
   h+=sec("On while you're there",nEv?nEv+" events & exhibitions":"nothing special these two weeks",nEv?'<div class="tiles">'+evs+'</div>':'<p class="info" style="color:var(--muted)">Nothing special listed for the next two weeks. The Monday refresh checks again.</p>',false);
@@ -1979,12 +1989,17 @@ function tripDetail(t){
 }
 function tripTile(t){
   const d=tripPlan(t),open=ui.tripOpen===t.id,_ag=tripAgenda(t),ag=_ag.length+tripEvents(t,_ag).length;
-  const cst=tripCost(t),wxh=tripWx(t);
-  return '<article class="trip'+(d?' is-planned':'')+(open?' open':'')+'" id="trip-'+t.id+'" style="border-top:4px solid '+TTYPE[tPrim(t)][1]+'"><button class="trip-sum" data-trip="'+t.id+'" aria-expanded="'+open+'">'+
+  const cst=tripCost(t),sat=isoAdd(nextSat(),7*(ui.tripWe||0)),w=TWX[t.id]||{};
+  const ic=r=>r>=50?"🌧":r>=25?"⛅":"☀️";
+  const wx=[sat,isoAdd(sat,1)].filter(x=>w[x]).map(x=>(x===sat?"Sat ":"Sun ")+ic(w[x][1])+" "+w[x][0]+"°").join(" · ");
+  const wet=[sat,isoAdd(sat,1)].some(x=>w[x]&&w[x][1]>=50);const ty=t.types||[];const rainproof=wet&&(ty.includes("rainy")||ty.includes("city"));
+  const facts=['🚆 '+hm(t.train.min+tripFromHome(t)),cst?'CHF '+cst.total+(t.kind==="weekend"?' / weekend':''):'',wx].filter(Boolean).join(' · ');
+  const tags=(ui.city==="both"?'<span class="tb from">From '+CITY[t.city||"ge"].name+'</span>':'')+(t.kind!=="day"?'<span class="tb kind">'+KINDLBL[t.kind]+'</span>':'')+(d?'<span class="tb go">✓ '+dLbl(d)+'</span>':'')+(ag?'<span class="tb">'+ag+' event'+(ag>1?'s':'')+' on</span>':'')+(rainproof?'<span class="tb">☔ rainproof</span>':'');
+  return '<article class="trip'+(d?' is-planned':'')+(open?' open':'')+'" id="trip-'+t.id+'" style="border-top:4px solid var(--lake)"><button class="trip-sum" data-trip="'+t.id+'" aria-expanded="'+open+'">'+
     '<span class="trip-top"><span class="trip-name"><span class="trip-ic" aria-hidden="true">'+TTYPE[tPrim(t)][0]+'</span> '+esc(t.name)+'</span><span class="trip-flags">'+(FLAG[t.country]||"")+'</span></span>'+
-    '<span class="trip-hook">'+esc(t.hook)+'</span>'+(ui.tripSort==="best"?'<span class="trip-why">'+tripWhy(t).why.join(" · ")+'</span>':'')+
-    '<span class="trip-meta"><span>🚆 '+hm(t.train.min+tripFromHome(t))+(tripFromHome(t)?' from home':'')+(t.train.changes?'':' · direct')+'</span>'+(t.car?'<span>🚗 '+hm(t.car.min)+'</span>':'')+(cst?'<span>'+cst.txt.replace(' for the day','').replace(' for the weekend',' / weekend')+'</span>':'')+'</span>'+(wxh?'<span class="trip-wx">'+wxh+'</span>':'')+
-    '<span class="trip-badges">'+(ui.city==="both"?'<span class="tb from">From '+CITY[t.city||"ge"].name+'</span>':'')+(t.kind!=="day"?'<span class="tb kind">'+KINDLBL[t.kind]+'</span>':'')+(d?'<span class="tb go">✓ '+dLbl(d)+'</span>':'')+(ag?'<span class="tb">'+ag+' event'+(ag>1?'s':'')+' on</span>':'')+'</span>'+
+    '<span class="trip-hook">'+esc(t.hook)+'</span>'+
+    '<span class="trip-facts">'+facts+'</span>'+
+    (tags?'<span class="trip-badges">'+tags+'</span>':'')+
     '</button>'+(open?tripDetail(t):'')+'</article>';
 }
 function renderTrips(){
