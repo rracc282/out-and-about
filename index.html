@@ -1742,7 +1742,7 @@ function evScore(e){let s=0;const c=e.cat||[];
   const L=S.likes||[];if(L.length){s+=c.filter(x=>L.includes(x)).length*3+(c.includes("rencontre")&&!L.includes("rencontre")?-.5:0)}
   else if(cityOf(e)==="zh"){if(c.includes("rencontre"))s+=1;if(c.includes("creatif"))s+=3;if(c.includes("culture"))s+=2;if(c.includes("chien"))s+=1.5;if(c.includes("marche"))s+=1.5;if(c.includes("fete"))s+=2;if(c.includes("corps"))s+=.5;if(isDuo(e))s+=1.5}
   else{if(c.includes("rencontre"))s+=3;if(c.includes("creatif"))s+=3;if(c.includes("chien"))s+=1.5;if(c.includes("marche"))s+=1;if(c.includes("fete"))s+=1;if(c.includes("corps"))s+=.5;if(e.src)s+=.5}
-  const w=wxOf(e.day,cityOf(e));if(w&&w[1]>=40){const ind=isIndoor(e);if(w[1]>=60)s+=ind?2:-5;else s+=ind?1:-2}
+  const w=wxEv(e);if(w&&w[1]>=40){const ind=isIndoor(e);if(w[1]>=60)s+=ind?2:-5;else s+=ind?1:-2}
   if(e.free)s+=1;s+=isLocal(e)?2:(({"45":1,"90":0,far:-1})[e.zone]||0);
   const g=GRP[e.rep||e.id];if(g){const hs=Object.values(S.hist).filter(h=>h.g===g);if(hs.some(h=>h.r==="up"))s+=3;else if(hs.some(h=>h.r==="skip"))s+=2;if(hs.some(h=>h.r==="down"))s-=4}
   if(document.querySelector('.pick[data-ev="'+e.id+'"]'))s+=2;return s+prefBonus(e)}
@@ -2209,7 +2209,14 @@ window.addEventListener("hashchange",handleRateHash);document.getElementById("pr
 setTimeout(syncQuick,700);
 
 /* rain on the short list: badge on outdoor picks; Rain-proof hides them (same switch as the ☔ Rainy day chip) */
-function wetOf(e){const w=e&&e.day?wxOf(e.day,cityOf(e)):null;return w&&w[1]>=50&&!isIndoor(e)?w[1]:0}
+/* forecast for an event: its own location if outside the city, and the evening slot for evening events */
+function wxEv(e){if(!e||!e.day)return null;let d=e.day;
+  if(e.dayEnd&&e.day<TODAY)d=TODAY;{const sat=nextSat();if(e.dayEnd&&e.day<=sat&&e.dayEnd>=sat&&d<sat&&new Date(d+"T12:00:00").getDay()!==5)d=sat}
+  const G=(window.AUTO&&AUTO.gw)||{};let w=null;
+  if(e.geo&&!isLocal(e)){const k=(Math.round(e.geo[0]*10)/10).toFixed(1)+","+(Math.round(e.geo[1]*10)/10).toFixed(1);w=(G[k]||{})[d]||null}
+  if(!w)w=wxOf(d,cityOf(e));if(!w)return null;
+  const h=+((e.when||"").match(/(\d{1,2}):\d{2}/)||[])[1];const ev=h>=17&&w.length>2;return [w[0],ev?w[2]:w[1]]}
+function wetOf(e){const w=wxEv(e);return w&&w[1]>=50&&!isIndoor(e)?w[1]:0}
 function rainPicks(){document.querySelectorAll("#picks .pick[data-ev]").forEach(p=>{const e=EVENTS.find(x=>x.id===p.dataset.ev);const wet=wetOf(e);
   let b=p.querySelector(".wetb");if(wet&&!b){const k=p.querySelector(".k");if(k)k.insertAdjacentHTML("beforeend",'<span class="wetb">🌧 '+wet+'%</span>')}if(!wet&&b)b.remove();
   if(state.rain&&wet)p.hidden=true})}
