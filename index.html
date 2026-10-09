@@ -659,6 +659,8 @@ body{background:var(--bg)!important;color:var(--ink)}
 .searchrow{margin-bottom:8px!important}
 #agenda>.period+.period{margin-top:0!important}
 details.foot{padding-top:12px;padding-bottom:12px}
+@keyframes flashbg{0%{background:var(--lake-soft)}100%{background:transparent}}.ev.flash{animation:flashbg 1.8s ease-out;border-radius:10px}
+#picks .pick{cursor:pointer;-webkit-tap-highlight-color:rgba(255,255,255,.15)}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -1876,7 +1878,7 @@ function focusEvent(id){
   if(p){ui.dayOpen.add(p.id+"|"+(isFlexible(e)?"flex":(p.id==="big"||p.id==="on"?"all":e.day)))}
   ui.open.add(id);ui.closed.delete(id);state.view="all";
   document.querySelectorAll(".views button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.view==="all"));
-  render();const el=document.getElementById("ev-"+id);if(el)el.scrollIntoView({block:"center"});
+  render();const go=()=>{const el=document.getElementById("ev-"+id);if(!el)return;const y=el.getBoundingClientRect().top+window.scrollY-80;window.scrollTo({top:Math.max(0,y),behavior:"smooth"});el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1800)};requestAnimationFrame(()=>setTimeout(go,30));
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{ui.tab=b.dataset.tab;ui.more=null;if(state.q){state.q="";document.getElementById("q").value=""}document.getElementById("pickresult").innerHTML="";render();window.scrollTo({top:0})}));
 document.querySelectorAll(".views button").forEach(b=>b.addEventListener("click",()=>{
@@ -2271,7 +2273,7 @@ function wxEv(e){if(!e||!e.day)return null;let d=e.day;
   const G=(window.AUTO&&AUTO.gw)||{};let w=null;
   {const ll=!isLocal(e)&&(e.geo||evLL(e));if(ll){const k=(Math.round(ll[0]*10)/10).toFixed(1)+","+(Math.round(ll[1]*10)/10).toFixed(1);w=(G[k]||{})[d]||null}}
   if(!w)w=wxOf(d,cityOf(e));if(!w)return null;
-  const h=+((e.when||"").match(/(\d{1,2}):\d{2}/)||[])[1];const ev=h>=17&&w.length>2;return [w[0],ev?w[2]:w[1]]}
+  if((e.dayEnd||isFlexible(e)||/\d{1,2}\s*[–-]\s*\d{1,2}\s+[A-Z][a-z]{2}/.test(e.when||""))&&w.length>2)return [w[0],Math.max(w[1],w[2])];const h=+((e.when||"").match(/(\d{1,2}):\d{2}/)||[])[1];const ev=h>=17&&w.length>2;return [w[0],ev?w[2]:w[1]]}
 function wetOf(e){const w=wxEv(e);return w&&w[1]>=50&&!isIndoor(e)?w[1]:0}
 function rainPicks(){document.querySelectorAll("#picks .pick[data-ev]").forEach(p=>{const e=EVENTS.find(x=>x.id===p.dataset.ev);const wet=wetOf(e);
   let b=p.querySelector(".wetb");if(wet&&!b){const k=p.querySelector(".k");if(k)k.insertAdjacentHTML("beforeend",'<span class="wetb">🌧 '+wet+'%</span>')}if(!wet&&b)b.remove();
