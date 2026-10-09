@@ -2286,7 +2286,7 @@ document.getElementById("acctpanel").addEventListener("submit",async ev=>{ev.pre
   if(error){msg.textContent="Couldn't sign in: "+error.message;return}
   applySession(data.session);toast("Signed in")});
 document.addEventListener("click",ev=>{const p=document.getElementById("acctpanel");if(!p.hidden&&!ev.target.closest("#acctpanel")&&!ev.target.closest("#acctbtn"))p.hidden=true});
-if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+if("serviceWorker" in navigator){const hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{try{r.update()}catch(e){}}).catch(()=>{});let reloaded=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(hadSW&&!reloaded){reloaded=true;location.reload()}});document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")navigator.serviceWorker.getRegistration().then(r=>r&&r.update()).catch(()=>{})})}
 render();
 /* deep links from notifications: #ev-<id> or #trip-<id> */
 (function(){const h=decodeURIComponent(location.hash||"");if(h.startsWith("#ev-")){const id=h.slice(4);if(EVENTS.some(e=>e.id===id)){if(!inCity(EVENTS.find(e=>e.id===id)))setCity("both");focusEvent(id)}}
