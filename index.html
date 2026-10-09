@@ -613,6 +613,7 @@ body{background:var(--bg)!important;color:var(--ink)}
 .citytog{background:var(--ink)!important;color:var(--surface)!important;border-color:var(--ink)!important}
 #acctpanel{max-height:78vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 #acctpanel #themepanel[hidden]{display:block!important}
+.ev-en{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -2281,16 +2282,55 @@ setTimeout(()=>{try{render()}catch(e){}},0);
 if(window.AUTO&&AUTO.twx)Object.assign(TWX,AUTO.twx);try{renderTrips()}catch(e){}
 
 /* plain-English hint under each title: translation if the title isn't English, else what kind of event it is */
-function GLs(){return [[/flohmarkt|brocante|vide-grenier|puces|brocki/i,"Flea market"],[/markt|marché|market/i,"Market"],[/ausstellung|exposition|exhibition|expo\b/i,"Exhibition"],[/vernissage/i,"Exhibition opening"],[/konzert|concert|récital|recital/i,"Concert"],[/lesung|lecture publique/i,"Reading"],[/führung|visite guidée/i,"Guided tour"],[/workshop|atelier|kurs|cours/i,"Workshop / class"],[/theater|théâtre/i,"Theatre"],[/comedy|stand-?up|humour/i,"Comedy"],[/kino|cinéma|film/i,"Film"],[/fest\b|festival|fête|chilbi|kilbi/i,"Festival / fair"],[/party|soirée|disco|club/i,"Party"],[/tanz|danse|dance|salsa|bachata|tango|swing/i,"Dance"],[/yoga|meditation|méditation/i,"Yoga / wellbeing"],[/wanderung|randonnée|hike|walk|balade/i,"Walk / hike"],[/apéro|stammtisch|social|meetup|rencontre|language exchange|tandem/i,"Social meetup"],[/quiz/i,"Quiz night"],[/jam\b|open mic/i,"Jam / open mic"],[/oper|opéra|opera/i,"Opera"],[/chor|chorale|choir/i,"Choir"]]}
-function gloss(e){const ico=(wetOf(e)?'☔ ':'');
-  const low=x=>(x||"").toLowerCase().normalize("NFD").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
-  if(e.src==="Songkick"||/ @ /.test(e.titleOrig||e.title))return ico+'Live concert'+(e.free?' · free':'');
-  let d=((e.desc||"").replace(/\*\*|__|#+/g,"").replace(/[\u2190-\u2BFF\u{1F000}-\u{1FFFF}\uFE0F]/gu,"").replace(/^[^A-Za-zÀ-ÿ0-9]+/,"").replace(/^(EN|DE|FR|PR)(\s*\/\s*(EN|DE|FR|PR))+\s*/,"").split(/(?<=[.!?])\s/)[0])||"";const tl=low(e.title);
-  if(d&&low(d).startsWith(tl.slice(0,25)))d=d.slice(e.title.length).replace(/^[\s:—–,.-]+/,"");
-  if(d.length>12&&!/[äöü]|\b(der|die|das|und|mit|le|la|les|avec|pour)\b/i.test(d)){const sh=d.length>78?d.slice(0,76).replace(/\s\S*$/,"")+"…":d;return ico+esc(sh)}
-  {const t0=e.title+" "+(e.desc||"").slice(0,80);const g0=(GLs().find(([re])=>re.test(t0))||[])[1];if(g0&&low(e.title).includes(low(g0).split(" ")[0]))return ico+esc([(e.place||"").split(",")[0],e.free?"free":e.price].filter(Boolean).join(" · "))}
-  const t=e.title+" "+(e.desc||"").slice(0,80);const g=(GLs().find(([re])=>re.test(t))||[])[1];const c=(e.cat||[])[0];
-  return ico+esc(g||({rencontre:"Social meetup",creatif:"Arts & crafts",marche:"Market",fete:"Festival / fair",culture:"Culture",corps:"Sports & wellbeing",chien:"Dog-friendly outing"})[c]||"Event")+(e.free?' · free':'')}
+function GLs(){return [
+ [/medieval|mittelalter|médiéval/i,"Medieval fair"],
+ [/forró|forro|salsa|bachata|kizomba|tango|swing|lindy|bal folk|ecstatic dance/i,"Dance night"],
+ [/open studio|offenes atelier|atelier ouvert/i,"Art workshop"],
+ [/stand-?up|comedy|humou?r|kabarett|cabaret|impro\b|improv/i,"Comedy show"],
+ [/\bopera\b|\boper\b|opéra|opernhaus|la rondine|tannhäuser|tannhauser/i,"Opera"],
+ [/ballet|ballett/i,"Ballet"],
+ [/musical\b/i,"Musical"],
+ [/theat|théâtre|schauspiel|play\b|pièce|spectacle/i,"Theatre play"],
+ [/chamber|kammer|symphon|orchestr|philharmon|recital|récital|quartet|quatuor|tonhalle|classical|klassik/i,"Classical concert"],
+ [/jazz/i,"Jazz concert"],
+ [/jam\b|open stage|open mic|scène ouverte/i,"Jam session"],
+ [/forró|forro|salsa|bachata|kizomba|tango|swing|lindy|bal folk|\bbal\b|ball\b|ecstatic dance|dance night|soirée dansante/i,"Dance night"],
+ [/dance class|cours de danse|tanzkurs|initiation/i,"Dance class"],
+ [/brocki|brockenhaus|second-?hand|thrift|vintage/i,"Second-hand market"],
+ [/flohmarkt|flea market|brocante|vide-grenier|puces|trödel/i,"Flea market"],
+ [/christmas market|weihnachtsmarkt|marché de noël/i,"Christmas market"],
+ [/craft|handwerk|artisan|makers|créateurs|kunst- und handwerk/i,"Craft market"],
+ [/farmers|bauernmarkt|marché paysan|produce|terroir/i,"Farmers' market"],
+ [/markt|market|marché|braderie|bazar|bazaar|messe\b|fair\b|foire|määs|olma/i,"Market / fair"],
+ [/pumpkin|kürbis|harvest|vendange|désalpe|alpabzug|cattle|vieh|chilbi|kilbi/i,"Country festival"],
+ [/festival|fête|fest\b/i,"Festival"],
+ [/exhibition|ausstellung|exposition|expo\b|vernissage|museum|musée|galerie|gallery|immersive|photo|installation|360°/i,"Exhibition"],
+ [/film|cinema|cinéma|kino|screening|short film/i,"Film screening"],
+ [/life drawing|aktzeichnen|croquis|drawing|zeichnen|sketch/i,"Drawing session"],
+ [/ceramic|céramique|pottery|poterie|töpfer|clay/i,"Ceramics workshop"],
+ [/paint|peinture|malen|aquarel|watercolou?r/i,"Painting workshop"],
+ [/workshop|atelier|kurs\b|cours\b|class\b|studio for all/i,"Workshop"],
+ [/language exchange|tandem|sprachaustausch|mundo ?lingo|lingoes/i,"Language exchange"],
+ [/board game|jeux de société|spieleabend|brettspiel|gamers/i,"Board games"],
+ [/quiz/i,"Quiz night"],
+ [/pub crawl/i,"Pub crawl"],
+ [/philosoph|book club|lesekreis|club de lecture|debate/i,"Discussion group"],
+ [/afterwork|apéro|aperitif|mixer|social|meetup|meet new|expat|networking|newcomer|circle|friends|rencontre|stammtisch|drinks/i,"Social meetup"],
+ [/breathwork|meditation|méditation|yoga|pilates|wellbeing|bien-être|sauna/i,"Wellbeing session"],
+ [/hike|hiking|wander|randonn|trek/i,"Hike"],
+ [/walk|balade|spaziergang|stroll|promenade/i,"Walk"],
+ [/choir|chor\b|chorale|singing|samba|bateria|drumming/i,"Music group"],
+ [/tour|führung|visite guidée/i,"Guided tour"],
+ [/reading|lesung|lecture publique|poetry|slam/i,"Reading / poetry"],
+ [/talk|vortrag|conférence|lecture\b|podium/i,"Talk"],
+ [/wine|wein|vin\b|tasting|dégustation|food|street food|dinner|brunch|cuisine/i,"Food & drink"],
+ [/party|disco|club night|clubbing|dj\b|soirée|night\b/i,"Party"],
+ [/concert|konzert|live music|band\b|gig|rapper|singer|songwriter|\bduo\b|\btrio\b|\brock\b|\bsoul\b|metal\b|hip-?hop|shoegaze|electronic|chanson|acoustic|\blive\b/i,"Concert"]]}
+function gloss(e){const ico=(wetOf(e)?'☔ ':'');let k=e.kind;
+  if(!k){if(e.src==="Songkick"||/ @ /.test(e.titleOrig||e.title))k="Concert";
+    else{const t=e.title+" "+(e.titleOrig||"")+" "+(e.place||"").split(",")[0]+" "+(e.desc||"").slice(0,160);k=(GLs().find(([re])=>re.test(e.title+" "+(e.titleOrig||"")))||GLs().find(([re])=>re.test(t))||[])[1]}}
+  if(!k)k=({rencontre:"Social meetup",creatif:"Workshop",marche:"Market / fair",fete:"Festival",culture:"Culture",corps:"Sport & wellbeing",chien:"Dog-friendly outing"})[(e.cat||[])[0]]||"Event";
+  return ico+esc(k)+(e.free?' · free':'')}
 
 /* city: one button next to the title swaps Geneva ⇄ Zurich; "Both cities" lives in Filters */
 function syncCityTog(){const b=document.getElementById("citytog");if(b)b.textContent=(ui.city==="both"?"Both":ui.city==="zh"?"Zurich":"Geneva")+" ⇄";const f=document.getElementById("f-both");if(f)f.setAttribute("aria-pressed",String(ui.city==="both"))}
