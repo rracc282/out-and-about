@@ -2213,7 +2213,7 @@ setTimeout(syncQuick,700);
 function wxEv(e){if(!e||!e.day)return null;let d=e.day;
   if(e.dayEnd&&e.day<TODAY)d=TODAY;{const sat=nextSat();if(e.dayEnd&&e.day<=sat&&e.dayEnd>=sat&&d<sat&&new Date(d+"T12:00:00").getDay()!==5)d=sat}
   const G=(window.AUTO&&AUTO.gw)||{};let w=null;
-  if(e.geo&&!isLocal(e)){const k=(Math.round(e.geo[0]*10)/10).toFixed(1)+","+(Math.round(e.geo[1]*10)/10).toFixed(1);w=(G[k]||{})[d]||null}
+  {const ll=!isLocal(e)&&(e.geo||evLL(e));if(ll){const k=(Math.round(ll[0]*10)/10).toFixed(1)+","+(Math.round(ll[1]*10)/10).toFixed(1);w=(G[k]||{})[d]||null}}
   if(!w)w=wxOf(d,cityOf(e));if(!w)return null;
   const h=+((e.when||"").match(/(\d{1,2}):\d{2}/)||[])[1];const ev=h>=17&&w.length>2;return [w[0],ev?w[2]:w[1]]}
 function wetOf(e){const w=wxEv(e);return w&&w[1]>=50&&!isIndoor(e)?w[1]:0}
