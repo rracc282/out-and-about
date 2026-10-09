@@ -615,6 +615,7 @@ body{background:var(--bg)!important;color:var(--ink)}
 #acctpanel #themepanel[hidden]{display:block!important}
 .ev-en{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .allwe h3{background:var(--sun-soft)}.allwe-sub{font-family:var(--body);font-size:12.5px;font-weight:500;opacity:.7;margin-left:6px}
+.acts{display:flex!important;flex-wrap:nowrap!important;gap:8px;align-items:stretch}.acts>*{margin:0!important;white-space:nowrap}.acts .gocta,.acts .goundo{flex:1 1 auto;text-align:center;justify-content:center}.acts .morebtn{flex:0 0 auto;min-width:44px;padding-left:12px!important;padding-right:12px!important;font-size:18px;line-height:1}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -1596,10 +1597,10 @@ function evHTML(e,p){
     const also=others.length?'<p class="also">'+others.map(id=>esc((R.names[id]&&R.names[id].name)||"A friend")).join(", ")+(others.length>1?' are':' is')+' going too</p>':'';
     const site=siteOf(e);
     const tix=TICKETS[e.id]?'<a class="lnk tix" href="'+TICKETS[e.id]+'" target="_blank" rel="noopener">'+(TICKETS[e.id]===site?'Tickets & info ↗':'Tickets ↗')+'</a>':(e.book?'<a class="lnk tix" href="'+site+'" target="_blank" rel="noopener">Book ↗</a>':'');
-    const go=g?'<button class="goundo" data-go="'+e.id+'">✓ Going · Undo</button>':'<a class="gocta" data-go="'+e.id+'" href="'+calURL(e)+'" target="_blank" rel="noopener">I\'m going + add to calendar</a>';
+    const go=g?'<button class="goundo" data-go="'+e.id+'">✓ Going · Undo</button>':'<a class="gocta" data-go="'+e.id+'" href="'+calURL(e)+'" target="_blank" rel="noopener">✓ I\'m going + calendar</a>';
     const moreOpen=ui.more===e.id;
     det='<div class="ev-detail" id="det-'+e.id+'"><p class="desc">'+esc(e.desc)+'</p><div class="ev-meta">'+meta.map(m=>'<span>'+m+'</span>').join("")+'</div>'+clash+also+
-      '<div class="acts">'+go+tix+'<a class="lnk" data-share="'+e.id+'" href="'+inviteURL(e)+'" target="_blank" rel="noopener">Share ↗</a>'+(e.src||!TICKETS[e.id]?'':'')+'<button class="morebtn" data-more="'+e.id+'" aria-expanded="'+moreOpen+'">⋯ More</button></div>'+(moreOpen?moreHTML(e):'')+noteHTML(e)+'</div>';
+      '<div class="acts">'+go+tix+'<a class="lnk" data-share="'+e.id+'" href="'+inviteURL(e)+'" target="_blank" rel="noopener">Share</a>'+(e.src||!TICKETS[e.id]?'':'')+'<button class="morebtn" data-more="'+e.id+'" aria-expanded="'+moreOpen+'" aria-label="More options">⋯</button></div>'+(moreOpen?moreHTML(e):'')+noteHTML(e)+'</div>';
   }
   return '<article class="ev'+(g?' is-going':'')+(hidden.has(e.id)?' is-hidden':'')+(isPast(e)&&!g?' is-past':'')+'" id="ev-'+e.id+'">'+
     (g?'<span class="going-badge" style="margin:10px 0 0 4px">✓ You\'re going</span>':'')+
