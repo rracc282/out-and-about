@@ -626,6 +626,17 @@ body{background:var(--bg)!important;color:var(--ink)}
 .triplinks{display:flex;flex-wrap:wrap;gap:4px 0;margin:4px 0 10px;font-size:14px}
 .triplinks a{border:0!important;background:none!important;padding:0!important;color:var(--lake);font-weight:600;text-decoration:none}
 .triplinks a+a::before{content:"·";color:var(--muted);margin:0 8px;font-weight:400}
+
+/* joined button rows: no gaps between boxes */
+.trip-detail .trip-acts,.acts{gap:0!important}
+.trip-detail .trip-acts>*,.acts>*{border-radius:0!important;margin:0!important}
+.trip-detail .trip-acts>*+*,.acts>*+*{margin-left:-1px!important}
+.trip-detail .trip-acts>:first-child,.acts>:first-child{border-radius:10px 0 0 10px!important}
+.trip-detail .trip-acts>:last-child,.acts>:last-child{border-radius:0 10px 10px 0!important}
+.trip-detail .trip-acts input[type=date]{border:1px solid var(--line)}
+.trip-detail .trip-acts .plan{border:1px solid var(--lake)}
+.acts .gocta,.acts .goundo{border:1px solid var(--lake)}
+.acts>a,.acts>button{border:1px solid var(--line)}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -1974,7 +1985,7 @@ function tripDetail(t){
     :'<input type="date" id="td-'+t.id+'" min="'+TODAY+'" value="'+isoAdd(nextSat(),7*(ui.tripWe||0))+'" aria-label="Date"><button class="plan" data-tripplan="'+t.id+'">Plan it</button>';
   const sec=(title,sub,body,open)=>'<details'+(open?' open':'')+'><summary>'+title+(sub?'<small>'+sub+'</small>':'<small></small>')+'</summary>'+body+'</details>';
   let h='<div class="trip-detail">'+(t.season?'<p class="trip-season">'+esc(t.season)+'</p>':'')+'<div class="trip-acts">'+plan+'<a class="tshare" href="'+tripInvite(t)+'" target="_blank" rel="noopener">Share</a></div>';
-  h+='<div class="triplinks"><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">🚆 Train times</a>'+(t.links.map?'<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(t.links.map)+'" target="_blank" rel="noopener">Map</a>':'')+(t.links.tourism?'<a href="'+esc(t.links.tourism)+'" target="_blank" rel="noopener">Tourism site</a>':'')+(t.links.hike?'<a href="'+esc(t.links.hike)+'" target="_blank" rel="noopener">Hike route</a>':'')+'</div>';
+  h+='<div class="triplinks"><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">🚆 Train times</a>'+(t.links.map?'<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(t.links.map)+'" target="_blank" rel="noopener">Map</a>':'')+(t.links.hike?'<a href="'+esc(t.links.hike)+'" target="_blank" rel="noopener">Hike route</a>':'')+'</div>';
   const rl=(st)=>{const u=routeURL(st,t);return u?'<p class="maproute"><a href="'+u+'" target="_blank" rel="noopener">📍 Open all stops in Google Maps ↗</a><small>Save it in the app to have the pins offline.</small></p>':''};
   h+=sec(t.kind==="weekend"?"Show the full plan · Day 1":"Show the full plan",(t.day||[]).length+" stops",rl(t.day||[])+itinHTML(t.day||[]),false);
   if(t.day2&&t.day2.length)h+=sec("Day 2",t.day2.length+" stops",rl(t.day2)+itinHTML(t.day2),false);
