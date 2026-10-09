@@ -720,7 +720,26 @@ body[data-view="plans"] #picks,body[data-view="plans"] .searchrow,body[data-view
 .mp-prow .mp-rate,.mp-prow .mp-rated{grid-column:2;grid-row:1/3;font-size:13px;color:var(--muted)}
 .mp-rate button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:5px 8px;margin-left:-1px;cursor:pointer}
 .mp-rate button:first-child{border-radius:8px 0 0 8px;margin-left:0}.mp-rate button:last-child{border-radius:0 8px 8px 0}
-body:not([data-view="this"]) #todayplan{display:none!important}body[data-view="trips"] #agenda,body[data-view="trips"] #picks{display:none!important}.trip-inplans{margin:0 0 8px;font-size:14px;color:var(--p)}.lnkbtn{border:0;background:none;color:inherit;font:inherit;text-decoration:underline;padding:0;cursor:pointer}.mp-trip{padding:4px 12px 12px}.mp-trip .mp-k{margin-top:10px}.mp-evs,.mp-steps{margin:4px 0 8px;padding-left:20px;font-size:14px;line-height:1.5}.top{padding:12px 0 0!important}.top .tl{padding-left:0!important}.mp-head{margin:4px 0 12px!important}.mp-head h2{font-family:inherit!important;font-size:19px!important;font-weight:700!important;letter-spacing:0}.mp-head span{font-size:13px}.mp-next .mp-acts{padding:0!important}</style>
+body:not([data-view="this"]) #todayplan{display:none!important}body[data-view="trips"] #agenda,body[data-view="trips"] #picks{display:none!important}.trip-inplans{margin:0 0 8px;font-size:14px;color:var(--p)}.lnkbtn{border:0;background:none;color:inherit;font:inherit;text-decoration:underline;padding:0;cursor:pointer}.mp-trip{padding:4px 12px 12px}.mp-trip .mp-k{margin-top:10px}.mp-evs,.mp-steps{margin:4px 0 8px;padding-left:20px;font-size:14px;line-height:1.5}.top{padding:12px 0 0!important}.top .tl{padding-left:0!important}.mp-head{margin:4px 0 12px!important}.mp-head h2{font-family:inherit!important;font-size:19px!important;font-weight:700!important;letter-spacing:0}.mp-head span{font-size:13px}.mp-next .mp-acts{padding:0!important}
+/* ---- layout polish: one left edge, one 12px rhythm between blocks, rows that fill the width ---- */
+#todayplan.todayplan{margin:10px 0 12px!important}
+#picks,#quick,#agenda>.period,#weekly,#netbox,#trips>*{margin-bottom:12px!important}
+#weekly{margin-top:0!important}
+.searchrow{margin-bottom:8px!important}
+#quick{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;padding:0!important}
+#quick>.chip{width:100%;min-width:0;text-align:center;padding:7px 2px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-style:solid!important;margin:0!important}
+#netbox{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 16px!important}
+#netbox>summary,#weekly>summary{padding-left:0!important;margin-left:0!important}
+.acts>a,.acts>button{flex:1 1 auto;text-align:center;justify-content:center}
+.acts>.more,.acts>[data-more],.acts>button:last-child:not(:first-child):is([aria-label*="ore"]){flex:0 0 auto}
+.mp-acts{display:flex!important}.mp-acts>a,.mp-acts>button{flex:1 1 auto;text-align:center}
+#trips>.filters{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:8px!important}
+#trips>.filters small{flex-basis:100%;margin:2px 0 0!important;opacity:.7}
+#acctpanel .lbl{margin:16px 0 6px!important}#acctpanel>.lbl:first-child,#acctpanel .lbl:first-of-type{margin-top:0!important}
+#acctpanel #prefsbtn{padding:2px 0!important;margin:0!important}
+#acctpanel .themepanel{margin:0!important}
+#quick>.pickme{border:1px solid var(--line)!important;font-size:13px!important;padding:7px 2px!important;font-weight:inherit}.period-head+.day,.period-note+.day{margin-top:6px!important}.period-head+.period-note{margin-top:2px!important}
+</style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
 <div class="wrap">
@@ -1173,7 +1192,14 @@ async function flush(){if(R.writing)return;R.writing=true;
 function mergeHist(x,y){const o={};x=x||{};y=y||{};new Set([...Object.keys(x),...Object.keys(y)]).forEach(k=>{const a=x[k]||{},b=y[k]||{};o[k]=Object.assign({},b,a);["r","m","n"].forEach(f=>{if(o[k][f]==null||o[k][f]===false||o[k][f]==="")if(b[f]!=null&&b[f]!==false&&b[f]!=="")o[k][f]=b[f]})});return o}
 function adopt(b){const keepA=S.addr,keepH=S.hist,keepD=S.deleted||{},keepT=S.trips||{};S={stars:b.stars||[],hidden:b.hidden||[],going:b.going||[],hist:mergeHist(b.hist,keepH),deleted:Object.assign({},keepD,b.deleted||{}),zw:b.zw||S.zw||{},home:b.home||S.home,likes:b.likes||S.likes,addr:b.addr||keepA,nope:Object.assign({},S.nope||{},b.nope||{}),trips:Object.assign({},keepT,b.trips||{}),me:b.me||[],updated:b.updated||0};fromS();try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}}
 async function pull(){if(!R.uid)return;try{const {data,error}=await SB.from("state").select("data").eq("user_id",R.uid).maybeSingle();if(error)throw error;
-    const b=data&&data.data;if(b&&(b.updated||0)>(S.updated||0)){adopt(b);render()}else if(!b||(b.updated||0)<(S.updated||0)){if(b){S.hist=mergeHist(S.hist,b.hist);S.deleted=Object.assign({},b.deleted||{},S.deleted||{});S.trips=Object.assign({},b.trips||{},S.trips||{});fromS()}R.dirty=true;flush()}
+    const b=data&&data.data;let mk=null;try{mk=localStorage.getItem("oa-synced")}catch(e){}
+    if(b&&mk!==R.uid){/* first sign-in on this device: combine, never let a fresh install wipe the account */
+      const U=(x,y)=>[...new Set([...(x||[]),...(y||[])])];const tr={};
+      new Set([...Object.keys(b.trips||{}),...Object.keys(S.trips||{})]).forEach(k=>{const v=[].concat((b.trips||{})[k]||[],(S.trips||{})[k]||[]).filter(Boolean);tr[k]=[...new Set(v)].sort()});
+      S={...S,...b,stars:U(b.stars,[...stars]),hidden:U(b.hidden,[...hidden]),going:U(b.going,[...goingSet]),me:U(b.me,S.me),hist:mergeHist(b.hist,S.hist),deleted:Object.assign({},S.deleted||{},b.deleted||{}),nope:Object.assign({},S.nope||{},b.nope||{}),trips:tr,zw:b.zw||S.zw||{},home:b.home||S.home,likes:(b.likes&&b.likes.length)?b.likes:S.likes,addr:Object.assign({},S.addr||{},b.addr||{})};
+      fromS();try{localStorage.setItem("oa-synced",R.uid)}catch(e){}persist();render();setSync(true);return}
+    try{localStorage.setItem("oa-synced",R.uid)}catch(e){}
+    if(b&&(b.updated||0)>(S.updated||0)){adopt(b);render()}else if(!b||(b.updated||0)<(S.updated||0)){if(b){S.hist=mergeHist(S.hist,b.hist);S.deleted=Object.assign({},b.deleted||{},S.deleted||{});S.trips=Object.assign({},b.trips||{},S.trips||{});fromS()}R.dirty=true;flush()}
     setSync(true)}catch(e){setSync("warn","Couldn't reach your account; using this device")}}
 function applySession(ses){const u=ses&&ses.user;if(!u){R.uid=null;R.email=null;setSync(false,"Saved on this device. Sign in to sync your plans across devices.");renderAcct();return}
   if(R.uid===u.id){renderAcct();return}R.uid=u.id;R.email=u.email;renderAcct();pull()}
@@ -1713,7 +1739,7 @@ function evHTML(e,p){
   return '<article class="ev'+(g?' is-going':'')+(hidden.has(e.id)?' is-hidden':'')+(isPast(e)&&!g?' is-past':'')+'" id="ev-'+e.id+'">'+
     (g?'<span class="going-badge" style="margin:10px 0 0 4px">✓ You\'re going</span>':'')+
     '<button class="ev-sum" data-toggle="'+e.id+'" aria-expanded="'+open+'" aria-controls="det-'+e.id+'">'+
-      '<span class="when">'+whenShort(e,p)+'</span>'+
+      '<span class="when">'+String(whenShort(e,p)).replace(' · ','<br>')+'</span>'+
       '<span class="ev-main"><span class="ev-t">'+(isNew(e)&&!isPast(e)?'<span class="newdot" title="New since your last visit"></span>':'')+(ui.city==="both"&&!ui.inCol?'<span class="cbadge">'+(cityOf(e)==="zh"?"ZRH":"GVA")+'</span>':'')+esc(e.title)+'</span>'+(open?'<span class="ev-s">'+sub+'</span>':'<span class="ev-s ev-en">'+gloss(e)+'</span>')+'</span>'+
       '<span class="ev-ic">'+icons+'<span class="chev">▾</span></span>'+
     '</button>'+det+'</article>';
