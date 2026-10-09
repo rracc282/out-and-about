@@ -637,6 +637,28 @@ body{background:var(--bg)!important;color:var(--ink)}
 .trip-detail .trip-acts .plan{border:1px solid var(--lake)}
 .acts .gocta,.acts .goundo{border:1px solid var(--lake)}
 .acts>a,.acts>button{border:1px solid var(--line)}
+
+/* ===== layout pass ===== */
+.day h3{display:flex!important;align-items:center;justify-content:space-between;gap:10px;white-space:nowrap;flex-wrap:nowrap!important}
+.day h3 .dh{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.day h3 .dwx{flex:0 0 auto;font-family:var(--body);font-size:13px;font-weight:600;color:var(--muted)}
+.day h3 .wx,.day h3 .rainy{display:none}
+.ev-sum[aria-expanded="false"] .ev-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ev-sum .ev-main{min-width:0}
+/* trip detail lists: one joined list, no gaps */
+.trip-detail .tiles{display:flex!important;flex-direction:column;gap:0!important;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:6px 0 10px}
+.trip-detail .tile{border:0!important;border-radius:0!important;margin:0!important;padding:10px 12px!important;background:var(--surface)!important;box-shadow:none!important}
+.trip-detail .tile+.tile{border-top:1px solid var(--line)!important}
+.trip-detail .tile p{margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.trip-detail .tile .k{font-size:11.5px}
+.trip-detail details{margin:0!important}
+.trip-detail details>summary{padding:12px 0!important}
+.trip-detail .itin,.trip-detail .info{margin-top:4px}
+/* one rhythm between sections */
+#picks,.searchrow,.quickrow,#agenda>.period,#trips,#weekly,details.foot{margin-top:0!important;margin-bottom:16px!important}
+.searchrow{margin-bottom:8px!important}
+#agenda>.period+.period{margin-top:0!important}
+details.foot{padding-top:12px;padding-bottom:12px}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -1479,7 +1501,8 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
   EVENTS.forEach(e=>{if(e.p!=="big"&&e.p!=="on"&&e.day)e.p=per(e.day)});
   const nm=t=>(t||"").toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g,"").slice(0,28);
   const seen=new Set(EVENTS.map(e=>e.day+"|"+nm(e.title))),urls=new Set(EVENTS.map(e=>e.url));
-  (A.events||[]).forEach(e=>{if(urls.has(e.url)||seen.has(e.day+"|"+nm(e.title)))return;seen.add(e.day+"|"+nm(e.title));
+  const tbase=t=>nm(String(t||"").split(/ @ | — | - |\(/)[0]).slice(0,10);const seenB=new Set(EVENTS.map(e=>e.day+"|"+cityOf(e)+"|"+tbase(e.title)));
+  (A.events||[]).forEach(e=>{if(urls.has(e.url)||seen.has(e.day+"|"+nm(e.title)))return;if(tbase(e.title).length>=4&&seenB.has(e.day+"|"+(e.city||"ge")+"|"+tbase(e.title)))return;seen.add(e.day+"|"+nm(e.title));
     if(e.p!=="big"&&e.p!=="on")e.p=per(e.day);if(e.grp&&!GRP[e.id])GRP[e.id]=e.grp;EVENTS.push(e)});
   const NICHE=/pok[eé]mon|yu-?gi-?oh|magic:? the gathering|\bmtg\b|commander (event|night|league|game)|trading card|\btcg\b|card game|kartenspiel|jeux? de cartes|flesh and blood|lorcana|one piece card|digimon|warhammer|kill team|age of sigmar|\b40k\b|wargam|miniature painting|\blarp\b|cosplay|anime|manga/i;
   const DEONLY=/\b(auf|in) (deutsch|deutscher sprache|mundart|schweizerdeutsch|dialekt)\b|sprache:? ?deutsch|\bin german\b|german[- ]language|\bmundart\b|züritüütsch|schwiizerdütsch|schweizerdeutsch|\bin swiss german\b|german only/i;
@@ -1518,7 +1541,10 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
 ALL_EVENTS=EVENTS.slice();applyDeleted();
 function sbbTown(e){const src=(MAPQ[e.id]||e.place||"").split(",").map(x=>x.trim()).filter(Boolean);let t=src[src.length-1]||"";
   if(/^(France|Switzerland|Suisse)$/i.test(t))t=src[src.length-2]||"";t=t.replace(/\b\d{4,5}\b/g,"").replace(/\((VD|FR|F|VS|GE|ZH|SG|LU|ZG|SZ|AG|TG|SH)\)/g,"").trim();return t}
-function siteOf(e){return SITE[e.id]||e.url}
+function isDead(u){const D=(window.AUTO&&AUTO.dead)||[];return !u||D.includes(u)||/songkick\.com/.test(u)}
+function searchURL(e){return "https://www.google.com/search?q="+encodeURIComponent((e.titleOrig||e.title)+" "+(e.place||"").split(",").slice(-1)[0]+" "+(e.day||"").slice(0,4))}
+function ticketSearch(e){return "https://www.google.com/search?q="+encodeURIComponent((e.titleOrig||e.title).replace(/ @ /," ")+" tickets "+(e.day||"").slice(0,7))}
+function siteOf(e){const a=SITE[e.id],b=e.url;if(/songkick\.com/.test(a||b||""))return ticketSearch(e);if(a&&!isDead(a))return a;if(b&&!isDead(b))return b;return searchURL(e)}
 function moreHTML(e){
   const g=goingSet.has(e.id);
   const site=siteOf(e);const out=[];
@@ -1617,7 +1643,7 @@ function evHTML(e,p){
     const others=R.others[e.id]||[];
     const also=others.length?'<p class="also">'+others.map(id=>esc((R.names[id]&&R.names[id].name)||"A friend")).join(", ")+(others.length>1?' are':' is')+' going too</p>':'';
     const site=siteOf(e);
-    const tix=TICKETS[e.id]?'<a class="lnk tix" href="'+TICKETS[e.id]+'" target="_blank" rel="noopener">'+(TICKETS[e.id]===site?'Tickets & info ↗':'Tickets ↗')+'</a>':(e.book?'<a class="lnk tix" href="'+site+'" target="_blank" rel="noopener">Book ↗</a>':'');
+    const tk=TICKETS[e.id]&&!isDead(TICKETS[e.id])?TICKETS[e.id]:null;const tix=tk?'<a class="lnk tix" href="'+tk+'" target="_blank" rel="noopener">'+(tk===site?'Tickets & info ↗':'Tickets ↗')+'</a>':(e.book?'<a class="lnk tix" href="'+site+'" target="_blank" rel="noopener">Book ↗</a>':'');
     const go=g?'<button class="goundo" data-go="'+e.id+'">✓ Going · Undo</button>':'<a class="gocta" data-go="'+e.id+'" href="'+calURL(e)+'" target="_blank" rel="noopener">✓ I\'m going + calendar</a>';
     const moreOpen=ui.more===e.id;
     det='<div class="ev-detail" id="det-'+e.id+'"><p class="desc">'+esc(e.desc)+'</p><div class="ev-meta">'+meta.map(m=>'<span>'+m+'</span>').join("")+'</div>'+clash+also+
@@ -1814,12 +1840,12 @@ function render(){
       const byDay={},flex=[];
       list.forEach(e=>{if(isFlexible(e))flex.push(e);else (byDay[e.day]=byDay[e.day]||[]).push(e)});
       body=Object.keys(byDay).sort().map(d=>{const dt=new Date(d+"T12:00:00");const isT=d===TODAY;if(isT)todayId="day-"+d;
-        const k=p.id+"|"+d,lbl=(isT?'today':'on '+DAYNAMES[dt.getDay()]),head=(isT?'Today · ':'')+DAYNAMES[dt.getDay()]+' '+dt.getDate()+' '+MON[dt.getMonth()];
+        const k=p.id+"|"+d,lbl=(isT?'today':'on '+DAYNAMES[dt.getDay()]),head='<span class="dh">'+(isT?'Today · ':'')+DAYNAMES[dt.getDay()].slice(0,3)+' '+dt.getDate()+' '+MON[dt.getMonth()]+'</span>';
         if(ui.city==="both"&&!state.going){const here=hereCity(d);ui.inCol=true;const cols=cityOrder(here).map(c=>{const evs=byDay[d].filter(e=>cityOf(e)===c);const t=topPicks(evs,k+"|"+c,2);const w=wxOf(d,c);
             return '<div class="citycol"><h4>'+(here===c?'<span class="here">📍 </span>':'')+CITY[c].name+(w&&w[1]>=50?' <span class="rainy">☔ indoor first</span>':'')+wxHTML(d,c)+'</h4>'+(evs.length?t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k+"|"+c,t,lbl+' in '+CITY[c].name):'<p class="empty">Nothing listed.</p>')+'</div>'}).join("");ui.inCol=false;
           return '<div class="day"><h3 id="day-'+d+'"'+(isT?' class="today"':'')+'>'+head+'</h3><div class="citycols">'+cols+'</div></div>'}
         const t=topPicks(byDay[d],k,2),c1=ui.city==="both"?null:ui.city,w=c1&&wxOf(d,c1);
-        return '<div class="day"><h3 id="day-'+d+'"'+(isT?' class="today"':'')+'>'+head+(w&&w[1]>=50?' <span class="rainy">☔ indoor first</span>':'')+(c1?wxHTML(d,c1):'')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,lbl)+'</div>'}).join("");
+        return '<div class="day"><h3 id="day-'+d+'"'+(isT?' class="today"':'')+'>'+head+(c1?dayWx(d,c1):'')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,lbl)+'</div>'}).join("");
       if(flex.length){const k=p.id+"|flex",we=p.kind==="weekend",t=topPicks(flex,k,we?3:2);const blk='<div class="day'+(we?' allwe':'')+'"><h3>'+(we?'All weekend <span class="allwe-sub">go any day</span>':'Any evening this week')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,we?"all weekend":"this week")+'</div>';if(we)body=blk+body;else body+=blk}
     } else {const k=p.id+"|all",t=topPicks(list,k,p.id==="big"?5:4);body='<div class="day">'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,p.id==="big"?"big nights":"exhibitions")+'</div>'}
     if(p.kind==="weekend"&&p.from&&!state.q){const z=zwStatus(p.from);if(z.v&&ui.city!=="both"&&z.v!==ui.city)body='<p class="zwnote">📍 You\'re in '+CITY[z.v].name+' this weekend.<button class="zwgo" data-gocity="'+z.v+'">Show '+CITY[z.v].name+'</button><button class="zwgo" data-gocity="both">Compare both</button></p>'+body}
@@ -1977,10 +2003,10 @@ function tripOk(t){
   const map={lake:["lake"],mountain:["mountain","hike"],city:["city"],village:["village","wine"],rainy:["rainy"]};
   return lenOk&&(T==="all"||t.types.some(x=>map[T].includes(x)));
 }
-function linkOrText(name,url){return url?'<a href="'+esc(url)+'" target="_blank" rel="noopener">'+esc(name)+'</a>':esc(name)}
+function linkOrText(name,url){if(url&&isDead(url))url="https://www.google.com/search?q="+encodeURIComponent(name);return url?'<a href="'+esc(url)+'" target="_blank" rel="noopener">'+esc(name)+'</a>':esc(name)}
 function itinHTML(list){return '<ol class="itin">'+list.map(x=>'<li><span class="t">'+esc(x.t||"")+'</span><span>'+(x.url?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener" style="color:var(--ink)">'+esc(x.do)+'</a>':esc(x.do))+'<span class="w">'+esc(x.where||"")+'</span></span></li>').join("")+'</ol>'}
 function tripDetail(t){
-  const d=tripPlan(t), ag=tripAgenda(t);
+  const d=tripPlan(t);let ag=tripAgenda(t);
   const plan=d?'<span class="planned">✓ Planned for '+dLbl(d)+(t.kind==="weekend"?" – "+dLbl(isoAdd(d,1)):"")+'</span><a class="lnk" href="'+tripCal(t,d)+'" target="_blank" rel="noopener">Add to calendar ↗</a><button class="undo" data-tripundo="'+t.id+'">Undo</button>'
     :'<input type="date" id="td-'+t.id+'" min="'+TODAY+'" value="'+isoAdd(nextSat(),7*(ui.tripWe||0))+'" aria-label="Date"><button class="plan" data-tripplan="'+t.id+'">Plan it</button>';
   const sec=(title,sub,body,open)=>'<details'+(open?' open':'')+'><summary>'+title+(sub?'<small>'+sub+'</small>':'<small></small>')+'</summary>'+body+'</details>';
@@ -1991,7 +2017,7 @@ function tripDetail(t){
   if(t.day2&&t.day2.length)h+=sec("Day 2",t.day2.length+" stops",rl(t.day2)+itinHTML(t.day2),false);
   if(t.stay&&t.stay.length)h+=sec("Where to stay",t.stay.length+" dog-friendly options",'<div class="tiles">'+t.stay.map(x=>'<div class="tile"><b>'+linkOrText(x.name,x.url)+'</b><p>'+esc(x.why||"")+'</p><div class="f">'+(x.price?'<span>'+esc(x.price)+'</span>':'')+dogTag(x.dogs)+'</div></div>').join("")+'</div>',false);
   if((t.eat||[]).length)h+=sec("Where to eat",t.eat.length+(t.eat.length===1?" place":" places"),'<div class="tiles">'+t.eat.map(x=>'<div class="tile"><span class="k">'+esc(x.kind||"")+'</span><b>'+linkOrText(x.name,x.url)+'</b><p>'+esc(x.why||"")+'</p><div class="f">'+(x.price?'<span>'+esc(x.price)+'</span>':'')+dogTag(x.dogs)+'</div>'+(x.address?'<div class="f" style="margin-top:4px">'+esc(x.address)+'</div>':'')+'</div>').join("")+'</div>',false);
-  const tev=tripEvents(t,ag);const evs=tev.map(x=>'<div class="tile"><span class="k">'+esc(x.when||"")+'</span><b>'+linkOrText(x.title,x.url)+'</b><p>'+esc(x.desc||"")+'</p></div>').join("")+ag.map(e=>'<div class="tile"><span class="k">'+esc(dLbl(e.day))+' · in your agenda</span><b><button class="agjump" data-jump="'+e.id+'">'+esc(e.title)+'</button></b><p>'+esc(e.desc||"")+'</p></div>').join("");
+  const _nm=x=>(x||'').toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g,'').slice(0,14);const _ag=ag.filter(e=>(e.dayEnd||e.day)>=TODAY);const _seen=new Set(_ag.flatMap(e=>[_nm(e.title),_nm(e.titleOrig)]));const tev=tripEvents(t,ag).filter(x=>{const k=_nm(x.title);if(_seen.has(k))return false;_seen.add(k);return true});ag=_ag;const evs=tev.map(x=>'<div class="tile"><span class="k">'+esc(x.when||"")+'</span><b>'+linkOrText(x.title,x.url)+'</b><p>'+esc(x.desc||"")+'</p></div>').join("")+ag.map(e=>'<div class="tile"><span class="k">'+esc(dLbl(e.day))+' · in your agenda</span><b><button class="agjump" data-jump="'+e.id+'">'+esc(e.title)+'</button></b><p>'+esc(e.desc||"")+'</p></div>').join("");
   const nEv=tev.length+ag.length;
   h+=sec("On while you're there",nEv?nEv+" events & exhibitions":"nothing special these two weeks",nEv?'<div class="tiles">'+evs+'</div>':'<p class="info" style="color:var(--muted)">Nothing special listed for the next two weeks. The Monday refresh checks again.</p>',false);
   if(t.see&&t.see.length)h+=sec("Also worth seeing",t.see.length+" ideas",'<div class="tiles">'+t.see.map(x=>'<div class="tile"><b>'+linkOrText(x.name,x.url)+'</b><p>'+esc(x.why||"")+'</p><div class="f">'+dogTag(x.dogs)+'</div></div>').join("")+'</div>',false);
@@ -2401,6 +2427,8 @@ applyCustom();
   const fb=tp.querySelector(".lbl");if(fb&&/colou?rs/i.test(fb.textContent))fb.remove();})();
 
 themeOpen=function(){const t=document.getElementById("themepanel");if(t)t.hidden=false};
+
+function dayWx(d,c){const w=wxOf(d,c);if(!w)return "";const wet=w[1]>=50;return '<span class="dwx" title="'+(wet?'Rain likely: indoor events first':'Forecast')+'">'+(wet?'☔':w[1]>=25?'⛅':'☀️')+' '+w[0]+'° · '+w[1]+'%</span>'}
 </script>
 
 

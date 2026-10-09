@@ -294,7 +294,8 @@ let SEEN = {}; try { SEEN = JSON.parse(rd("data/seen.json")); } catch {}
 const allNow = events.concat(add); allNow.forEach(e => { if (!SEEN[e.id]) SEEN[e.id] = TODAY; });
 const liveIds = new Set(allNow.map(e => e.id)); for (const k in SEEN) if (!liveIds.has(k) && SEEN[k] < addD(TODAY, -30)) delete SEEN[k];
 allNow.forEach(e => { e.seen = SEEN[e.id]; });
-const AUTO = { tEn, generated: new Date().toISOString(), week: MON, periods, notesZh: notes.zh, wx, twx, tgeo, geo: Object.fromEntries(Object.entries(GEO).filter(([, v]) => v)), events: events.concat(add), edits: cur.edits || {}, drop: cur.drop || [], picks: fresh ? cur.picks || [] : [] };
+let dead = []; try { const L = JSON.parse(rd("data/links.json")); dead = Object.entries(L).filter(([, [st]]) => st === "ERR" || (st >= 400 && ![401, 403, 405, 406, 429].includes(st))).map(([u]) => u); } catch {}
+const AUTO = { tEn, dead, generated: new Date().toISOString(), week: MON, periods, notesZh: notes.zh, wx, twx, tgeo, geo: Object.fromEntries(Object.entries(GEO).filter(([, v]) => v)), events: events.concat(add), edits: cur.edits || {}, drop: cur.drop || [], picks: fresh ? cur.picks || [] : [] };
 fs.mkdirSync(new URL("data/", root), { recursive: true });
 fs.writeFileSync(new URL("data/geo.json", root), JSON.stringify(GEO));
 fs.writeFileSync(new URL("data/tr.json", root), JSON.stringify(TR));
