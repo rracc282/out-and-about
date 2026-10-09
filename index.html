@@ -614,6 +614,7 @@ body{background:var(--bg)!important;color:var(--ink)}
 #acctpanel{max-height:78vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 #acctpanel #themepanel[hidden]{display:block!important}
 .ev-en{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.allwe h3{background:var(--sun-soft)}.allwe-sub{font-family:var(--body);font-size:12.5px;font-weight:500;opacity:.7;margin-left:6px}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -1667,7 +1668,7 @@ function buildAutoPicks(){const sec=document.getElementById("picks");if(!sec)ret
   const DNL=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const nice=d=>{const x=new Date(d+"T12:00:00");return DNL[x.getDay()].slice(0,3)+" "+x.getDate()+" "+MO[x.getMonth()]};
   const fri=we.from;
-  const blocks=[{id:"we1",label:"This weekend",rng:nice(fri)+" – "+nice(we.to),ok:e=>e.day>=fri&&e.day<=we.to&&e.p!=="big"&&e.p!=="on"},
+  const blocks=[{id:"we1",label:"This weekend",rng:nice(fri)+" – "+nice(we.to),ok:e=>(e.dayEnd||e.day)>=fri&&e.day<=we.to&&e.p!=="big"&&e.p!=="on"},
                 {id:"wd2",label:"Next week",rng:nice(nx.from)+" – "+nice(nx.to),ok:e=>e.p==="wd2"}];
   const cur=(AUTO.picks||[]);const sc=e=>{try{return evScore(e)}catch(x){return 0}};
   const label=e=>{const d=DNL[new Date(e.day+"T12:00:00").getDay()];const t=(e.when.match(/(\d{1,2}):\d{2}/)||[])[1];return d+(t&&+t>=17?" evening":"")};
@@ -1797,7 +1798,7 @@ function render(){
           return '<div class="day"><h3 id="day-'+d+'"'+(isT?' class="today"':'')+'>'+head+'</h3><div class="citycols">'+cols+'</div></div>'}
         const t=topPicks(byDay[d],k,2),c1=ui.city==="both"?null:ui.city,w=c1&&wxOf(d,c1);
         return '<div class="day"><h3 id="day-'+d+'"'+(isT?' class="today"':'')+'>'+head+(w&&w[1]>=50?' <span class="rainy">☔ indoor first</span>':'')+(c1?wxHTML(d,c1):'')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,lbl)+'</div>'}).join("");
-      if(flex.length){const k=p.id+"|flex",t=topPicks(flex,k,2);body+='<div class="day"><h3>'+(p.kind==="weekday"?'Any evening this week':'Across the weekend')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,p.kind==="weekday"?"this week":"across the weekend")+'</div>'}
+      if(flex.length){const k=p.id+"|flex",we=p.kind==="weekend",t=topPicks(flex,k,we?3:2);const blk='<div class="day'+(we?' allwe':'')+'"><h3>'+(we?'All weekend <span class="allwe-sub">go any day</span>':'Any evening this week')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,we?"all weekend":"this week")+'</div>';if(we)body=blk+body;else body+=blk}
     } else {const k=p.id+"|all",t=topPicks(list,k,p.id==="big"?5:4);body='<div class="day">'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,p.id==="big"?"big nights":"exhibitions")+'</div>'}
     if(p.kind==="weekend"&&p.from&&!state.q){const z=zwStatus(p.from);if(z.v&&ui.city!=="both"&&z.v!==ui.city)body='<p class="zwnote">📍 You\'re in '+CITY[z.v].name+' this weekend.<button class="zwgo" data-gocity="'+z.v+'">Show '+CITY[z.v].name+'</button><button class="zwgo" data-gocity="both">Compare both</button></p>'+body}
     if(nFiltered&&activeFilters()){body+='<button class="filtered" data-clearfilters="1">'+nFiltered+' more not matching your filters · Clear filters</button>'}
