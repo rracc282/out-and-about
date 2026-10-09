@@ -1929,7 +1929,7 @@ function render(){
   document.getElementById("trips").hidden=!tr;if(tr)renderTrips();
   renderJumps();renderTodayPlan();renderPlans();renderRate();renderWeekly();renderDeleted();renderPast();renderPicks();renderActive();
   if(noteEdit){const i=document.getElementById("note-"+noteEdit);if(i)i.focus()}
-  if(!ui.scrolled){ui.scrolled=true;const first=document.querySelector("#agenda .day h3");if(todayId&&first&&first.id!==todayId){const t=document.getElementById(todayId);if(t)t.scrollIntoView({block:"start"})}}
+  if(!ui.scrolled){ui.scrolled=true;const first=document.querySelector("#agenda .day h3");}
 }
 function focusEvent(id){
   const e=EVENTS.find(x=>x.id===id);if(!e)return;
@@ -2540,6 +2540,10 @@ document.addEventListener("click",ev=>{if(!ui.plans)return;
   const ra=ev.target.closest("[data-mprate]");if(ra){const id=ra.dataset.mprate;ensureHist(id);if(S.hist[id]){S.hist[id].r=ra.dataset.v;persist()}renderMyPlans();return}});
 document.querySelectorAll("nav.tabs [data-tab]").forEach(b=>b.addEventListener("click",()=>{if(ui.plans){ui.plans=false;document.getElementById("tabplans").setAttribute("aria-pressed","false");document.body.dataset.view=ui.tab}},true));
 {const _r4=render;render=function(){if(ui.plans){renderMyPlans();return}_r4.apply(this,arguments);try{placeFooter()}catch(e){}}}
+
+/* always open at the top of This week (unless opened from a notification link) */
+try{history.scrollRestoration="manual"}catch(e){}
+if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}catch(e){}window.scrollTo(0,0)},0);window.addEventListener("load",()=>setTimeout(()=>window.scrollTo(0,0),60));window.addEventListener("pageshow",()=>{if(!location.hash)window.scrollTo(0,0)})}
 </script>
 
 
