@@ -105,14 +105,6 @@
    "markers": "ld+json"
   },
   {
-   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
-   "status": 200,
-   "bytes": 242867,
-   "found": 50,
-   "followed": 0,
-   "markers": "ld+json schema.org/Event"
-  },
-  {
    "url": "https://www.meetup.com/pubphilosophy/events/",
    "status": 200,
    "bytes": 177101,
@@ -177,17 +169,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/meetnewpeoplegeneva/events/",
+   "url": "https://www.meetup.com/artists-meetup-group-english-speaking/events/",
    "status": 200,
-   "bytes": 190485,
+   "bytes": 136203,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/artists-meetup-group-english-speaking/events/",
+   "url": "https://www.meetup.com/meetnewpeoplegeneva/events/",
    "status": 200,
-   "bytes": 136203,
+   "bytes": 190485,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -251,8 +243,8 @@
   {
    "url": "https://www.kulturzueri.ch/",
    "status": 200,
-   "bytes": 148558,
-   "found": 11,
+   "bytes": 148219,
+   "found": 10,
    "followed": 12,
    "markers": ""
   },
@@ -289,9 +281,17 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-expats/events/",
+   "url": "https://www.meetup.com/internations-zurich/events/",
    "status": 200,
-   "bytes": 59546,
+   "bytes": 59570,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "status": 200,
+   "bytes": 59590,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -305,17 +305,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/internations-zurich/events/",
+   "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
-   "bytes": 59570,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/zurich-language-exchange/events/",
-   "status": 200,
-   "bytes": 59590,
+   "bytes": 59546,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -395,7 +387,7 @@
   {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 76349,
+   "bytes": 76287,
    "found": 0,
    "followed": 17,
    "markers": "ld+json"
@@ -403,9 +395,9 @@
   {
    "url": "https://eventfrog.ch/de/events/zuerich.html",
    "status": 200,
-   "bytes": 616921,
+   "bytes": 616856,
    "found": 0,
-   "followed": 38,
+   "followed": 40,
    "markers": ""
   },
   {
@@ -413,15 +405,7 @@
    "status": 200,
    "bytes": 618168,
    "found": 0,
-   "followed": 36,
-   "markers": ""
-  },
-  {
-   "url": "https://newinzurich.com/events/",
-   "status": 202,
-   "bytes": 178,
-   "found": 0,
-   "followed": 0,
+   "followed": 34,
    "markers": ""
   },
   {
@@ -443,10 +427,18 @@
   {
    "url": "https://www.ladecadanse.ch/",
    "status": 200,
-   "bytes": 893840,
+   "bytes": 893806,
    "found": 0,
    "followed": 40,
    "markers": ""
+  },
+  {
+   "url": "https://newinzurich.com/events/",
+   "status": 200,
+   "bytes": 165137,
+   "found": 0,
+   "followed": 3,
+   "markers": "ld+json wp-json"
   },
   {
    "url": "https://www.zuerichunbezahlbar.ch/",
@@ -467,7 +459,7 @@
   {
    "url": "https://inyourfacecomedy.ch/",
    "status": 200,
-   "bytes": 46197,
+   "bytes": 46249,
    "found": 0,
    "followed": 0,
    "markers": "ld+json"
@@ -515,7 +507,7 @@
   {
    "url": "https://www.gtg.ch/saison-26-27/",
    "status": 200,
-   "bytes": 228653,
+   "bytes": 228657,
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
@@ -535,6 +527,14 @@
    "found": 0,
    "followed": 13,
    "markers": "ld+json"
+  },
+  {
+   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
+   "status": 406,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
   },
   {
    "url": "https://www.songkick.com/metro-areas/28889-switzerland-geneva",
@@ -571,31 +571,31 @@
   {
    "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
    "status": 200,
-   "bytes": 303535,
+   "bytes": 303643,
    "found": 0,
    "followed": 12,
    "markers": ""
   }
  ],
- "kept": 185,
+ "kept": 138,
  "dropped": {
-  "later than 2 weeks": 404,
-  "past": 514,
-  "duplicate": 62,
+  "later than 2 weeks": 405,
+  "past": 511,
+  "duplicate": 61,
   "far future": 80,
   "already in app": 40,
   "weekday daytime": 41,
   "niche (card games, wargaming…)": 51,
-  "unknown place": 86,
+  "unknown place": 85,
   "Zurich: German-only spoken event": 23,
   "not relevant": 23,
   "children's event": 9
  },
  "geocoded": 0,
- "translated": 6,
+ "translated": 2,
  "byCity": {
   "ge": 102,
-  "zh": 83
+  "zh": 36
  },
  "samples": {
   "unknown place": [
