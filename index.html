@@ -1935,8 +1935,11 @@ function tripInvite(t){const d=tripPlan(t),c=tripCost(t);
 const TTYPE={lake:["⛵","var(--lake)"],mountain:["⛰️","var(--go)"],city:["🏛️","var(--night)"],village:["🏡","var(--sun)"],wine:["🍇","var(--red)"]};
 function tPrim(t){const p=TPRIM[t.id]||t.types[0];return TTYPE[p]?p:(p==="hike"?"mountain":p==="rainy"?"city":"lake")}
 function wxIcon(r){return r>=50?"🌧️":r>=25?"⛅":"☀️"}
-function tripWx(t){const w=TWX[t.id]||{};return Object.keys(w).filter(d=>d>=TODAY).sort().slice(0,2).map(d=>{const x=w[d];return '<span title="Forecast '+dLbl(d)+'">'+DAYNAMES[new Date(d+"T12:00:00").getDay()].slice(0,3)+' '+wxIcon(x[1])+' '+x[0]+'°</span>'}).join("")}
-function tripCost(t){const c=COST[t.id];if(!c)return null;const day=c[0]+c[1]+c[3];if(t.kind==="weekend"){return {total:c[0]+c[1]+2*c[3]+(c[4]||0),txt:"≈ CHF "+(c[0]+c[1]+2*c[3]+(c[4]||0))+" for the weekend",det:"train ≈ CHF "+c[0]+(c[1]?" · "+c[2]+" ≈ CHF "+c[1]:"")+" · food ≈ CHF "+(2*c[3])+" · 1 night ≈ CHF "+(c[4]||"?")}}
+function tripWx(t){const w=TWX[t.id]||{};const sat=isoAdd(nextSat(),7*(ui.tripWe||0));return [sat,isoAdd(sat,1)].filter(d=>w[d]).map(d=>{const x=w[d];return '<span title="Forecast '+dLbl(d)+'">'+DAYNAMES[new Date(d+"T12:00:00").getDay()].slice(0,3)+' '+wxIcon(x[1])+' '+x[0]+'°</span>'}).join("")}
+function localFare(t){const c=t.city||"ge",h=homeLL(c);if(!h)return 0;const km=kmBetween(h,STN[c])*1.3;return km<1.3?0:(c==="zh"?2*4.6:2*3)}
+function tripCost(t){const r=tripCost0(t);if(!r)return r;const lf=localFare(t);if(!lf)return r;const tot=Math.round(r.total+lf);
+  return {total:tot,txt:r.txt.replace(/CHF \d+/,"CHF "+tot),det:r.det+" · "+(t.city==="zh"?"tram/bus":"tram/bus")+" to the station and back ≈ CHF "+lf.toFixed(lf%1?1:0)}}
+function tripCost0(t){const c=COST[t.id];if(!c)return null;const day=c[0]+c[1]+c[3];if(t.kind==="weekend"){return {total:c[0]+c[1]+2*c[3]+(c[4]||0),txt:"≈ CHF "+(c[0]+c[1]+2*c[3]+(c[4]||0))+" for the weekend",det:"train ≈ CHF "+c[0]+(c[1]?" · "+c[2]+" ≈ CHF "+c[1]:"")+" · food ≈ CHF "+(2*c[3])+" · 1 night ≈ CHF "+(c[4]||"?")}}
   return {total:day,txt:"≈ CHF "+day+" for the day",det:"train ≈ CHF "+c[0]+(c[1]?" · "+c[2]+" ≈ CHF "+c[1]:"")+" · lunch & coffee ≈ CHF "+c[3]}}
 function tripScore(t){return tripWhy(t).s}
 function tripScoreOld(t){const ag=tripAgenda(t),n=ag.length+tripEvents(t,ag).length;const w=Object.entries(TWX[t.id]||{}).filter(([d])=>d>=TODAY).slice(0,2);const wet=w.length?w.reduce((a,[,x])=>a+x[1],0)/w.length:30;return n*2+(wet<25?3:wet<45?1:-2)-(t.train.min/60)-(t.kind==="weekend"?2:0)}
@@ -2248,8 +2251,8 @@ function tripWhy(t){const [,sat,sun]=tripWeekend();const w=TWX[t.id]||{};const d
   const ag=tripAgenda(t);const evs=ag.length+tripEvents(t,ag).length;const fh=tripFromHome(t),mins=t.train.min+fh;const food=(t.eat||[]).length;
   let s=0;const why=[];
   if(rain!==null){if(rain<30){s+=outdoor?4:2;why.push("☀️ dry, "+temp+"°")}else if(rain<55){s+=outdoor?0:1;why.push("⛅ "+Math.round(rain)+"% rain")}else{s+=rainy?2:outdoor?-5:-1;why.push(rainy?"☔ good if it rains":"🌧 "+Math.round(rain)+"% rain")}}
-  if(evs){s+=Math.min(evs,3)*2;why.push("🎪 "+evs+" event"+(evs>1?"s":"")+" on")}
-  s-=mins/50;why.push("🚆 "+hm(mins)+(fh?" from home":""));
+  if(evs){s+=Math.min(evs,3)*2}
+  s-=mins/50;
   if(food>=3){s+=1;why.push("🍽 "+food+" places to eat")}
   if(t.kind==="weekend")s-=1.5;
   return {s,why}}
