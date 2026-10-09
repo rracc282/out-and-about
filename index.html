@@ -576,6 +576,43 @@ body.city-both .pick .pcity{display:inline}
 .custompal .cps{display:flex;gap:14px;align-items:center}
 .custompal>span:first-child{font-size:14px;font-weight:600}
 :root[data-pal="custom"] .custompal{border:2px solid var(--ink,#14212b);padding:9px 13px!important}
+/* ===== design system: every template = one main colour + one accent on shared neutrals ===== */
+html:root{--p:#0f6e7f;--a:#e2725b;--bg0:#f4f6f7}
+html:root[data-pal="atelier"]{--p:#a24a2a;--a:#5f7d34;--bg0:#f8f3ee}
+html:root[data-pal="city"]{--p:#c8102e;--a:#1d2433;--bg0:#f6f5f4}
+html:root[data-pal="forest"]{--p:#275c41;--a:#d39b2a;--bg0:#f2f5f1}
+html:root[data-pal="custom"]{--p:var(--c1,#00a35c);--a:var(--c2,#ff8a00);--bg0:#f4f6f6}
+html:root,html:root[data-pal]{
+  --bg:var(--bg0);--surface:#ffffff;--ink:#17202a;--muted:#5d6874;--line:#e2e7eb;
+  --lake:var(--p);--band:var(--p);--night:var(--p);--go:var(--p);--sun:var(--a);
+  --lake-soft:color-mix(in srgb,var(--p) 9%,#fff);--night-soft:var(--lake-soft);--go-soft:var(--lake-soft);
+  --sun-soft:color-mix(in srgb,var(--a) 12%,#fff);
+  --red:#c2412d;--band-ink:#ffffff;--band-card:rgba(255,255,255,.14)}
+html:root:root:root[data-theme="dark"]{
+  --bg:#111619;--surface:#1a2024;--ink:#e9eef1;--muted:#9aa6af;--line:#2b3338;
+  --lake:color-mix(in srgb,var(--p) 60%,#fff);--night:var(--lake);--go:var(--lake);--sun:color-mix(in srgb,var(--a) 70%,#fff);
+  --lake-soft:color-mix(in srgb,var(--p) 20%,#1a2024);--night-soft:var(--lake-soft);--go-soft:var(--lake-soft);--sun-soft:color-mix(in srgb,var(--a) 13%,#1a2024);
+  --band:color-mix(in srgb,var(--p) 82%,#000);--red:#ef8a7a}
+@media (prefers-color-scheme:dark){html:root:root:root:not([data-theme="light"]){
+  --bg:#111619;--surface:#1a2024;--ink:#e9eef1;--muted:#9aa6af;--line:#2b3338;
+  --lake:color-mix(in srgb,var(--p) 60%,#fff);--night:var(--lake);--go:var(--lake);--sun:color-mix(in srgb,var(--a) 70%,#fff);
+  --lake-soft:color-mix(in srgb,var(--p) 20%,#1a2024);--night-soft:var(--lake-soft);--go-soft:var(--lake-soft);--sun-soft:color-mix(in srgb,var(--a) 13%,#1a2024);
+  --band:color-mix(in srgb,var(--p) 82%,#000);--red:#ef8a7a}}
+body{background:var(--bg)!important;color:var(--ink)}
+/* one settings button */
+#themebtn{display:none!important}
+#acctbtn{color:var(--ink);display:inline-flex;align-items:center;justify-content:center;width:38px!important;height:38px!important}
+#acctbtn svg{width:20px;height:20px}
+#acctpanel #themepanel{position:static!important;box-shadow:none!important;border:0!important;padding:0!important;margin:0!important;width:auto!important;background:none!important}
+#acctpanel .looklbl{margin-top:16px}
+/* shared accents use the template, not fixed colours */
+#onb .opts button[aria-pressed="true"]{background:var(--p)!important;border-color:var(--p)!important}
+#onb .go,.sw-yes{background:var(--p)!important}
+.rainbtn[aria-pressed="true"]{color:var(--p)!important}
+@media (max-width:700px){nav.tabs button[aria-selected="true"],nav.tabs .tab-plans[aria-pressed="true"]{color:var(--p)!important;background:var(--lake-soft)!important}}
+.citytog{background:var(--ink)!important;color:var(--surface)!important;border-color:var(--ink)!important}
+#acctpanel{max-height:78vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#acctpanel #themepanel[hidden]{display:block!important}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -583,7 +620,7 @@ body.city-both .pick .pcity{display:inline}
 <header class="top">
   <div class="tl"><h1>Out &amp; About <button class="citytog" id="citytog" aria-label="Switch city">Geneva ⇄</button></h1>
   <div class="stamp"><span hidden>Geneva updated Mon 5 Oct</span><span id="stamp-zh" hidden></span><span class="sync" id="sync"><i></i><span>On this device</span></span> <button class="legend-btn" id="legendbtn" aria-expanded="false" aria-controls="legend" title="What the icons mean">?</button></div></div>
-  <button class="themebtn" id="acctbtn" aria-expanded="false" aria-controls="acctpanel" title="Sign in and notifications" aria-label="Sign in and notifications">🔔</button>
+  <button class="themebtn" id="acctbtn" aria-expanded="false" aria-controls="acctpanel" title="Settings" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
   <button class="themebtn" id="themebtn" aria-expanded="false" aria-controls="themepanel" title="Colours and dark mode" aria-label="Colours and dark mode">🎨</button>
   <div class="themepanel" id="acctpanel" hidden role="dialog" aria-label="Sign in and notifications">
     <p class="lbl">Your plans</p>
@@ -598,10 +635,10 @@ body.city-both .pick .pcity{display:inline}
   <div class="themepanel" id="themepanel" hidden role="dialog" aria-label="Colours and dark mode">
     <p class="lbl">Colours</p>
     <div class="pals">
-      <button data-pal="classic"><span class="sw"><i style="background:#0e6b80"></i><i style="background:#e0675a"></i><i style="background:#f3f5f6"></i></span>Classic</button>
-      <button data-pal="atelier"><span class="sw"><i style="background:#8a3c22"></i><i style="background:#6f8a2a"></i><i style="background:#f6f0e8"></i></span>Atelier</button>
-      <button data-pal="city"><span class="sw"><i style="background:#c8102e"></i><i style="background:#121212"></i><i style="background:#f4f4f3"></i></span>Red</button>
-      <button data-pal="forest"><span class="sw"><i style="background:#24533a"></i><i style="background:#e2a21b"></i><i style="background:#f2f5f1"></i></span>Forest</button>
+      <button data-pal="classic"><span class="sw"><i style="background:#0f6e7f"></i><i style="background:#e2725b"></i><i style="background:#f4f6f7"></i></span>Classic</button>
+      <button data-pal="atelier"><span class="sw"><i style="background:#a24a2a"></i><i style="background:#5f7d34"></i><i style="background:#f8f3ee"></i></span>Atelier</button>
+      <button data-pal="city"><span class="sw"><i style="background:#c8102e"></i><i style="background:#1d2433"></i><i style="background:#f6f5f4"></i></span>Red</button>
+      <button data-pal="forest"><span class="sw"><i style="background:#275c41"></i><i style="background:#d39b2a"></i><i style="background:#f2f5f1"></i></span>Forest</button>
     </div>
     <div class="custompal" id="custompal"><span>Your own</span><span class="cps"><label>Main <input type="color" id="cc1" value="#00a35c"></label><label>Accent <input type="color" id="cc2" value="#ff8a00"></label></span></div>
     <p class="lbl">Mode</p>
@@ -2111,7 +2148,7 @@ function renderInstall(){const el=document.getElementById("installnote");if(!el)
   if(standalone){el.textContent="Installed ✓";return}
   if(deferredInstall){el.innerHTML='<button class="pushbtn" id="installbtn">Install the app</button>';return}
   el.textContent=/iphone|ipad|ipod/i.test(navigator.userAgent)?"iPhone: tap Share, then Add to Home Screen.":"Use your browser's menu → Install app / Add to Home Screen."}
-document.getElementById("acctbtn").addEventListener("click",ev=>{const p=document.getElementById("acctpanel"),o=p.hidden;p.hidden=!o;ev.currentTarget.setAttribute("aria-expanded",o);if(o){document.getElementById("themepanel").hidden=true;renderAcct();renderInstall()}});
+document.getElementById("acctbtn").addEventListener("click",ev=>{const p=document.getElementById("acctpanel"),o=p.hidden;p.hidden=!o;ev.currentTarget.setAttribute("aria-expanded",o);if(o){document.getElementById("themepanel").hidden=false;renderAcct();renderInstall()}});
 document.getElementById("acctpanel").addEventListener("click",async ev=>{
   if(ev.target.closest("#signout")){await SB.auth.signOut();applySession(null);return}
   if(ev.target.closest("#pushsave")){pushSave();return}
@@ -2278,6 +2315,13 @@ function applyCustom(){let t={};try{t=JSON.parse(localStorage.getItem("sorties-t
   if(t.c2){r.style.setProperty("--c2",t.c2);const b=document.getElementById("cc2");if(b)b.value=t.c2;const s2=document.getElementById("cs2");if(s2)s2.style.background=t.c2}}
 ["cc1","cc2"].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.addEventListener("input",()=>{let t={};try{t=JSON.parse(localStorage.getItem("sorties-theme")||"{}")}catch(e){}t[id==="cc1"?"c1":"c2"]=el.value;t.pal="custom";try{localStorage.setItem("sorties-theme",JSON.stringify(t))}catch(e){}document.documentElement.setAttribute("data-pal","custom");applyCustom();document.querySelectorAll(".pals [data-pal]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal==="custom")))})});
 applyCustom();
+
+/* settings: colours & mode live inside the one settings panel */
+(function(){const ap=document.getElementById("acctpanel"),tp=document.getElementById("themepanel");if(!ap||!tp)return;
+  const h=document.createElement("p");h.className="lbl looklbl";h.textContent="Look";ap.appendChild(h);ap.appendChild(tp);tp.hidden=false;tp.removeAttribute("role");
+  const fb=tp.querySelector(".lbl");if(fb&&/colou?rs/i.test(fb.textContent))fb.remove();})();
+
+themeOpen=function(){const t=document.getElementById("themepanel");if(t)t.hidden=false};
 </script>
 
 
