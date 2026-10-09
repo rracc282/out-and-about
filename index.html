@@ -676,6 +676,14 @@ input,select,textarea{font-size:16px!important}
   nav.tabs button[aria-selected="true"]::after,nav.tabs .tab-plans[aria-pressed="true"]::after{content:"";display:block!important;position:absolute;top:-7px;left:28%;right:28%;height:3px;border-radius:0 0 3px 3px;background:var(--p)}
   body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))!important}
 }
+
+body:not([data-view="this"]) #weekly,body:not([data-view="this"]) #netbox{display:none!important}
+body:not([data-view="plans"]) #pastbox,body:not([data-view="plans"]) #deletedbox{display:none!important}
+body[data-view="plans"] #picks,body[data-view="plans"] #quick{display:none!important}
+#acctpanel .aboutbox{margin:0!important;padding:4px 0!important;border:0!important}
+
+body[data-view="plans"] .filtered,body[data-view="plans"] #plans,body[data-view="plans"] .activechips,body[data-view="plans"] #filtersbtn,body[data-view="plans"] [data-clearfilters]:not(.filtered){display:none!important}
+body[data-view="plans"] .searchrow input{width:100%}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -1755,7 +1763,7 @@ function injectZhPicks(){if(window.AUTO&&AUTO.week&&AUTO.week!=="2026-10-05"){tr
     g.insertAdjacentHTML("beforeend",'<div class="pick" data-city="zh" data-ev="'+id+'"><div class="k"><span class="pcity">Zurich · </span>'+esc(k)+'</div><b>'+(dog?DOGICON:'')+esc(t)+'</b><span>'+esc(sub)+'</span><span class="why">'+esc(why)+'</span></div>')})}
 injectZhPicks();
 function renderPicks(){
-  document.getElementById("picks").hidden=ui.tab!=="this"||!!state.q;
+  document.getElementById("picks").hidden=ui.tab!=="this"||!!state.q||!!state.going;
   const rb=document.getElementById("rainbtn");if(rb)rb.setAttribute("aria-pressed",String(!!state.rain));
   document.querySelectorAll(".pick[data-ev]").forEach(p=>{
     const id=p.dataset.ev;
@@ -1842,7 +1850,7 @@ function render(){
   document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===ui.tab));
   let html="",todayId=null;
   PERIODS.forEach(p=>{
-    if(!state.q&&tabOf(p)!==ui.tab)return;
+    if(!state.q&&!state.going&&tabOf(p)!==ui.tab)return;
     if(state.q&&!EVENTS.some(e=>e.p===p.id&&ok(e)))return;
     if(!state.q&&!EVENTS.some(e=>e.p===p.id&&!isPast(e)&&inCity(e)))return;
     const all=EVENTS.filter(e=>e.p===p.id&&!isPast(e)&&inCity(e)&&(state.hidden||!hidden.has(e.id)));
@@ -2446,6 +2454,19 @@ applyCustom();
 themeOpen=function(){const t=document.getElementById("themepanel");if(t)t.hidden=false};
 
 function dayWx(d,c){const w=wxOf(d,c);if(!w)return "";const wet=w[1]>=50;return '<span class="dwx" title="'+(wet?'Rain likely: indoor events first':'Forecast')+'">'+(wet?'☔':w[1]>=25?'⛅':'☀️')+' '+w[0]+'° · '+w[1]+'%</span>'}
+
+/* My plans = every plan in every week; footer sections live where they belong */
+(function(){
+  const net=document.getElementById("groups");if(net){const d=net.closest("details");if(d)d.id="netbox"}
+  const src=document.getElementById("sources");if(src){const d=src.closest("details");const ap=document.getElementById("acctpanel");if(d&&ap){const h=document.createElement("p");h.className="lbl";h.textContent="About";ap.appendChild(h);d.classList.add("aboutbox");ap.appendChild(d)}}
+  document.getElementById("tabplans").addEventListener("click",()=>{if(state.going&&ui.tab==="trips"){ui.tab="this";render()}},true);
+  document.querySelectorAll('nav.tabs [data-tab]').forEach(b=>b.addEventListener("click",()=>{if(state.going){const x=document.getElementById("f-going");if(x)x.click()}}));
+})();
+function placeFooter(){const plans=!!state.going,tab=plans?"plans":ui.tab;document.body.dataset.view=tab;
+  if(ui.tab==="trips"&&plans){ui.tab="this"}
+  const ag=document.getElementById("agenda");if(plans&&ag&&!EVENTS.some(e=>goingSet.has(e.id)&&!isPast(e)))ag.innerHTML='<p class="empty">No plans yet. Tap <b>✓ I\'m going</b> on any event and it appears here, with a reminder on the day.</p>'}
+{const _r3=render;render=function(){_r3.apply(this,arguments);try{placeFooter()}catch(e){}}}
+setTimeout(placeFooter,50);
 </script>
 
 
