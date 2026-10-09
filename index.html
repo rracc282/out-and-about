@@ -2363,7 +2363,7 @@ function wxEv(e){if(!e||!e.day)return null;let d=e.day;
   if((e.dayEnd||isFlexible(e)||/\d{1,2}\s*[–-]\s*\d{1,2}\s+[A-Z][a-z]{2}/.test(e.when||""))&&w.length>2)return [w[0],Math.max(w[1],w[2])];const h=+((e.when||"").match(/(\d{1,2}):\d{2}/)||[])[1];const ev=h>=17&&w.length>2;return [w[0],ev?w[2]:w[1]]}
 function wetOf(e){const w=wxEv(e);return w&&w[1]>=50&&!isIndoor(e)?w[1]:0}
 function rainPicks(){document.querySelectorAll("#picks .pick[data-ev]").forEach(p=>{const e=EVENTS.find(x=>x.id===p.dataset.ev);const wet=wetOf(e);
-  let b=p.querySelector(".wetb");if(wet&&!b){const k=p.querySelector(".k");if(k)k.insertAdjacentHTML("beforeend",'<span class="wetb">🌧 '+wet+'%</span>')}if(!wet&&b)b.remove();
+  let b=p.querySelector(".wetb");if(wet&&!b){const k=p.querySelector(".k");if(k)k.insertAdjacentHTML("beforeend",'<span class="wetb">💧 '+wet+'%</span>')}if(!wet&&b)b.remove();
   if(state.rain&&wet)p.hidden=true})}
 document.getElementById("rainbtn").addEventListener("click",()=>{const x=document.getElementById("f-rain");if(x)x.click();setTimeout(()=>{syncQuick();renderPicks()},0)});
 {const _rp=renderPicks;renderPicks=function(){_rp.apply(this,arguments);try{rainPicks()}catch(e){}}}
@@ -2517,7 +2517,7 @@ applyCustom();
 
 themeOpen=function(){const t=document.getElementById("themepanel");if(t)t.hidden=false};
 
-function dayWx(d,c){const w=wxOf(d,c);if(!w)return "";const wet=w[1]>=50;return '<span class="dwx" title="'+(wet?'Rain likely: indoor events first':'Forecast')+'">'+(wet?'☔':w[1]>=25?'⛅':'☀️')+' '+w[0]+'° · '+w[1]+'%</span>'}
+function dayWx(d,c){const w=wxOf(d,c);if(!w)return "";const wet=w[1]>=50;return '<span class="dwx" title="'+(wet?'Rain likely: indoor events first':'Forecast · 💧 = chance of rain')+'">'+(wet?'☔':w[1]>=25?'⛅':'☀️')+' '+w[0]+'° · 💧'+w[1]+'%</span>'}
 
 /* My plans = every plan in every week; footer sections live where they belong */
 (function(){
@@ -2545,7 +2545,7 @@ function dirURL(e){const q=MAPQ[e.id]||e.place||"";const a=(S.addr||{})[cityOf(e
 /* a trip in My plans: the guide tailored to the chosen date */
 function tripPlanBody(t,d){const w=(TWX[t.id]||{})[d];const end=t.kind==="weekend"?isoAdd(d,1):d;
   const evs=tripAgenda(t).filter(e=>e.day<=end&&(e.dayEnd||e.day)>=d).slice(0,4);
-  const facts=['🚆 '+hm(t.train.min+tripFromHome(t))+' from home',(tripCost(t)||{}).total?'CHF '+tripCost(t).total+' pp':'',w?wxIcon(w[1])+' '+w[0]+'° · rain '+w[1]+'%':'Forecast closer to the day'].filter(Boolean).join(' · ');
+  const facts=['🚆 '+hm(t.train.min+tripFromHome(t))+' from home',(tripCost(t)||{}).total?'CHF '+tripCost(t).total+' pp':'',w?wxIcon(w[1])+' '+w[0]+'° · 💧'+w[1]+'% rain':'Forecast closer to the day'].filter(Boolean).join(' · ');
   const steps=(t.day||[]).slice(0,6).map(x=>'<li><b>'+esc(x.t||"")+'</b> '+esc(x.do)+'</li>').join("");
   return '<div class="mp-trip"><div class="mp-pl">'+facts+'</div>'+(evs.length?'<div class="mp-k">On that day</div><ul class="mp-evs">'+evs.map(e=>'<li>'+esc(e.title)+'</li>').join("")+'</ul>':'')+(steps?'<div class="mp-k">Plan</div><ol class="mp-steps">'+steps+'</ol>':'')+
   '<div class="mp-acts"><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">Train times</a><a href="'+tripCal(t,d)+'" target="_blank" rel="noopener">Calendar</a><a href="'+tripInvite(t,d)+'" target="_blank" rel="noopener">Share</a><button data-mptrip="'+t.id+'">Full guide</button><button class="mp-rm" data-mptriprm="'+esc(t.id+"|"+d)+'">Remove</button></div></div>'}
