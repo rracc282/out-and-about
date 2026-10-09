@@ -1,5 +1,5 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0e6b80"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Out &amp; About"><meta name="description" content="What to do in Geneva and Zurich this week: evenings, weekends, big nights, exhibitions and day trips."><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auto.js"></script></head><body>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0e6b80"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Out &amp; About"><meta name="description" content="What to do in Geneva and Zurich this week: evenings, weekends, big nights, exhibitions and day trips."><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auto.js"></script></head><body>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Out &amp; About</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -661,6 +661,21 @@ body{background:var(--bg)!important;color:var(--ink)}
 details.foot{padding-top:12px;padding-bottom:12px}
 @keyframes flashbg{0%{background:var(--lake-soft)}100%{background:transparent}}.ev.flash{animation:flashbg 1.8s ease-out;border-radius:10px}
 #picks .pick{cursor:pointer;-webkit-tap-highlight-color:rgba(255,255,255,.15)}
+
+/* no zoom, no sideways drift */
+html,body{overflow-x:hidden;max-width:100%;touch-action:pan-y;-webkit-text-size-adjust:100%}
+input,select,textarea{font-size:16px!important}
+/* bottom bar: calm, evenly spaced, clear of the iPhone home bar */
+@media (max-width:700px){
+  nav.tabs{border-top:1px solid var(--line)!important;box-shadow:0 -4px 14px rgba(0,0,0,.06)!important;background:var(--surface)!important;
+    padding:6px 6px calc(max(env(safe-area-inset-bottom,0px) - 8px, 8px))!important;grid-template-columns:repeat(5,1fr)!important}
+  nav.tabs button{gap:3px!important;padding:4px 0 2px!important;font-size:11px!important;font-weight:600;opacity:.62;background:none!important;border-radius:0!important;position:relative}
+  nav.tabs button::before{font-size:21px!important;filter:grayscale(1);opacity:.8}
+  nav.tabs button[aria-selected="true"],nav.tabs .tab-plans[aria-pressed="true"]{opacity:1;background:none!important;color:var(--p)!important}
+  nav.tabs button[aria-selected="true"]::before,nav.tabs .tab-plans[aria-pressed="true"]::before{filter:none;opacity:1}
+  nav.tabs button[aria-selected="true"]::after,nav.tabs .tab-plans[aria-pressed="true"]::after{content:"";display:block!important;position:absolute;top:-7px;left:28%;right:28%;height:3px;border-radius:0 0 3px 3px;background:var(--p)}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))!important}
+}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -715,7 +730,7 @@ details.foot{padding-top:12px;padding-bottom:12px}
 <nav class="tabs" role="tablist" aria-label="Choose a period">
   <button role="tab" data-tab="this" aria-selected="true">This week</button>
   <button role="tab" data-tab="next" aria-selected="false">Next week</button>
-  <button role="tab" data-tab="big" aria-selected="false">Shows &amp; expos</button>
+  <button role="tab" data-tab="big" aria-selected="false">Shows</button>
   <button role="tab" data-tab="trips" aria-selected="false">Day trips</button>
   <button class="tab-plans" id="tabplans" aria-pressed="false">My plans</button>
 </nav>
