@@ -1752,8 +1752,9 @@ function prefBonus(e){const H=Object.values(S.hist||{}).filter(h=>h.r==="up"||h.
   D.forEach(d=>{if(pl&&String(d.p||"").split(",")[0].trim().toLowerCase()===pl)b-=1.5;if(o&&String(d.g||"").toLowerCase()===o)b-=1.5;if((d.c||[]).some(x=>c.includes(x)))cb-=.3});
   return b+Math.max(-3,Math.min(3,cb))}
 function topPicks(arr,key,n){
-  if(state.q||activeFilters()||state.hidden||arr.length<=n+1)return {show:arr,rest:0,far:0,open:false};
-  if(ui.dayOpen.has(key))return {show:arr,rest:0,far:0,open:true};
+  const rainOrder=a=>a.some(e=>wetOf(e))?a.filter(e=>!wetOf(e)).concat(a.filter(e=>wetOf(e))):a;
+  if(state.q||activeFilters()||state.hidden||arr.length<=n+1)return {show:rainOrder(arr),rest:0,far:0,open:false};
+  if(ui.dayOpen.has(key)){const wetDay=arr.some(e=>wetOf(e));const show=wetDay?arr.filter(e=>!wetOf(e)).concat(arr.filter(e=>wetOf(e))):arr;return {show,rest:0,far:0,open:true}}
   const must=arr.filter(e=>goingSet.has(e.id)||ui.open.has(e.id)||(!wetOf(e)&&!!document.querySelector('.pick[data-ev="'+e.id+'"]:not([hidden])')));
   const near=e=>isLocal(e)||e.zone==="45";
   const pool=arr.filter(e=>!must.includes(e)).sort((a,b)=>evScore(b)-evScore(a)||(near(b)-near(a)));
@@ -2209,7 +2210,7 @@ setTimeout(syncQuick,700);
 /* rain on the short list: badge on outdoor picks; Rain-proof hides them (same switch as the ☔ Rainy day chip) */
 function wetOf(e){const w=e&&e.day?wxOf(e.day,cityOf(e)):null;return w&&w[1]>=50&&!isIndoor(e)?w[1]:0}
 function rainPicks(){document.querySelectorAll("#picks .pick[data-ev]").forEach(p=>{const e=EVENTS.find(x=>x.id===p.dataset.ev);const wet=wetOf(e);
-  let b=p.querySelector(".wetb");if(wet&&!b){const k=p.querySelector(".k");if(k)k.insertAdjacentHTML("beforeend",'<span class="wetb">☔ '+wet+'%</span>')}if(!wet&&b)b.remove();
+  let b=p.querySelector(".wetb");if(wet&&!b){const k=p.querySelector(".k");if(k)k.insertAdjacentHTML("beforeend",'<span class="wetb">🌧 '+wet+'%</span>')}if(!wet&&b)b.remove();
   if(state.rain&&wet)p.hidden=true})}
 document.getElementById("rainbtn").addEventListener("click",()=>{const x=document.getElementById("f-rain");if(x)x.click();setTimeout(()=>{syncQuick();renderPicks()},0)});
 {const _rp=renderPicks;renderPicks=function(){_rp.apply(this,arguments);try{rainPicks()}catch(e){}}}
@@ -2326,11 +2327,11 @@ function GLs(){return [
  [/wine|wein|vin\b|tasting|dégustation|food|street food|dinner|brunch|cuisine/i,"Food & drink"],
  [/party|disco|club night|clubbing|dj\b|soirée|night\b/i,"Party"],
  [/concert|konzert|live music|band\b|gig|rapper|singer|songwriter|\bduo\b|\btrio\b|\brock\b|\bsoul\b|metal\b|hip-?hop|shoegaze|electronic|chanson|acoustic|\blive\b/i,"Concert"]]}
-function gloss(e){const ico=(wetOf(e)?'☔ ':'');let k=e.kind;
+function gloss(e){const ico='';const wetTag=wetOf(e)?' · 🌧 outdoors':'';let k=e.kind;
   if(!k){if(e.src==="Songkick"||/ @ /.test(e.titleOrig||e.title))k="Concert";
     else{const t=e.title+" "+(e.titleOrig||"")+" "+(e.place||"").split(",")[0]+" "+(e.desc||"").slice(0,160);k=(GLs().find(([re])=>re.test(e.title+" "+(e.titleOrig||"")))||GLs().find(([re])=>re.test(t))||[])[1]}}
   if(!k)k=({rencontre:"Social meetup",creatif:"Workshop",marche:"Market / fair",fete:"Festival",culture:"Culture",corps:"Sport & wellbeing",chien:"Dog-friendly outing"})[(e.cat||[])[0]]||"Event";
-  return ico+esc(k)+(e.free?' · free':'')}
+  return ico+esc(k)+(e.free?' · free':'')+wetTag}
 
 /* city: one button next to the title swaps Geneva ⇄ Zurich; "Both cities" lives in Filters */
 function syncCityTog(){const b=document.getElementById("citytog");if(b)b.textContent=(ui.city==="both"?"Both":ui.city==="zh"?"Zurich":"Geneva")+" ⇄";const f=document.getElementById("f-both");if(f)f.setAttribute("aria-pressed",String(ui.city==="both"))}
