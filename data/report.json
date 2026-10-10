@@ -67,7 +67,7 @@
   {
    "url": "https://infomaniak.events/en-ch/comedy/geneva",
    "status": 200,
-   "bytes": 421258,
+   "bytes": 421257,
    "found": 78,
    "followed": 40,
    "markers": ""
@@ -75,7 +75,7 @@
   {
    "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
    "status": 200,
-   "bytes": 421258,
+   "bytes": 421257,
    "found": 78,
    "followed": 40,
    "markers": ""
@@ -201,17 +201,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/samba-workshops-zurich/events/",
+   "url": "https://www.meetup.com/philosophical_minds_zurich/events/",
    "status": 200,
-   "bytes": 130789,
+   "bytes": 157957,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/philosophical_minds_zurich/events/",
+   "url": "https://www.meetup.com/samba-workshops-zurich/events/",
    "status": 200,
-   "bytes": 157957,
+   "bytes": 130789,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -297,14 +297,6 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-social-club/events/",
-   "status": 200,
-   "bytes": 59568,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
    "bytes": 59546,
@@ -313,9 +305,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "url": "https://www.meetup.com/zurich-social-club/events/",
    "status": 200,
-   "bytes": 59590,
+   "bytes": 59568,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -329,36 +321,12 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/",
-   "status": 405,
-   "bytes": 0,
+   "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "status": 200,
+   "bytes": 59590,
    "found": 0,
    "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=3",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
+   "markers": "__NEXT_DATA__"
   },
   {
    "url": "https://www.meetup.com/geneva-hiking-group/events/",
@@ -377,6 +345,46 @@
    "markers": "__NEXT_DATA__"
   },
   {
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=3",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
    "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=3",
    "status": 405,
    "bytes": 0,
@@ -393,35 +401,35 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 104489,
+   "bytes": 104602,
    "found": 0,
    "followed": 20,
    "markers": "ld+json"
-  },
-  {
-   "url": "https://eventfrog.ch/fr/events/geneve.html",
-   "status": 200,
-   "bytes": 619352,
-   "found": 0,
-   "followed": 40,
-   "markers": ""
   },
   {
    "url": "https://eventfrog.ch/de/events/zuerich.html",
    "status": 200,
    "bytes": 618176,
    "found": 0,
-   "followed": 34,
+   "followed": 35,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/fr/events/geneve.html",
+   "status": 200,
+   "bytes": 619352,
+   "found": 0,
+   "followed": 39,
+   "markers": ""
+  },
+  {
+   "url": "https://newinzurich.com/events/",
+   "status": 202,
+   "bytes": 175,
+   "found": 0,
+   "followed": 0,
    "markers": ""
   },
   {
@@ -439,14 +447,6 @@
    "found": 0,
    "followed": 3,
    "markers": ""
-  },
-  {
-   "url": "https://newinzurich.com/events/",
-   "status": 200,
-   "bytes": 165137,
-   "found": 0,
-   "followed": 3,
-   "markers": "ld+json wp-json"
   },
   {
    "url": "https://www.ladecadanse.ch/",
@@ -473,6 +473,14 @@
    "markers": ""
   },
   {
+   "url": "https://www.comedykiss.ch/",
+   "status": 200,
+   "bytes": 1440685,
+   "found": 0,
+   "followed": 1,
+   "markers": "ld+json"
+  },
+  {
    "url": "https://lesamis.cc/",
    "status": 200,
    "bytes": 98339,
@@ -486,14 +494,6 @@
    "bytes": 46137,
    "found": 0,
    "followed": 0,
-   "markers": "ld+json"
-  },
-  {
-   "url": "https://www.comedykiss.ch/",
-   "status": 200,
-   "bytes": 1452458,
-   "found": 0,
-   "followed": 1,
    "markers": "ld+json"
   },
   {
@@ -521,20 +521,20 @@
    "markers": ""
   },
   {
+   "url": "https://www.gtg.ch/saison-26-27/",
+   "status": 200,
+   "bytes": 228658,
+   "found": 0,
+   "followed": 0,
+   "markers": "ld+json wp-json"
+  },
+  {
    "url": "https://www.tonhalle-orchester.ch/en/concerts/calendar/",
    "status": 404,
    "bytes": 0,
    "found": 0,
    "followed": 0,
    "markers": ""
-  },
-  {
-   "url": "https://www.gtg.ch/saison-26-27/",
-   "status": 200,
-   "bytes": 228653,
-   "found": 0,
-   "followed": 0,
-   "markers": "ld+json wp-json"
   },
   {
    "url": "https://hallenstadion.ch/events/",
@@ -569,6 +569,14 @@
    "markers": ""
   },
   {
+   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
+   "status": 200,
+   "bytes": 304165,
+   "found": 0,
+   "followed": 12,
+   "markers": ""
+  },
+  {
    "url": "https://www.sallemetropole.ch/",
    "status": 200,
    "bytes": 243386,
@@ -585,17 +593,9 @@
    "markers": "ld+json wp-json"
   },
   {
-   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
-   "status": 200,
-   "bytes": 304165,
-   "found": 0,
-   "followed": 12,
-   "markers": ""
-  },
-  {
    "url": "https://infomaniak.events/en-ch/comedy/zurich",
    "status": 200,
-   "bytes": 135930,
+   "bytes": 135929,
    "found": 0,
    "followed": 0,
    "markers": ""
@@ -616,7 +616,7 @@
   "children's event": 8
  },
  "geocoded": 0,
- "translated": 13,
+ "translated": 1,
  "byCity": {
   "ge": 74,
   "zh": 34
