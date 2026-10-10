@@ -1,40 +1,175 @@
 {
   "_help": "Pages the nightly collector reads. kind: page = any web page with schema.org event data (JSON-LD or embedded app data); ics = calendar feed. city = which city's list it belongs to if the event has no map position. big = concerts/shows to book ahead. Meetup groups already in the app are added automatically.",
-  "meetupExtra": ["les-amis-zurich", "les-amis-geneva", "zurich-expats", "zurich-social-club", "geneva-social-club", "internations-zurich", "zurich-language-exchange", "geneva-language-exchange", "zurich-hiking", "geneva-hiking-group"],
+  "meetupExtra": [
+    "les-amis-zurich",
+    "les-amis-geneva",
+    "zurich-expats",
+    "zurich-social-club",
+    "geneva-social-club",
+    "internations-zurich",
+    "zurich-language-exchange",
+    "geneva-language-exchange",
+    "zurich-hiking",
+    "geneva-hiking-group"
+  ],
   "pages": [
-    {"url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/", "city": "zh"},
-    {"url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2", "city": "zh"},
-    {"url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=3", "city": "zh"},
-    {"url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/", "city": "ge"},
-    {"url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2", "city": "ge"},
-    {"url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=3", "city": "ge"},
-    {"url": "https://www.eventbrite.ch/d/switzerland--lausanne/all-events/", "city": "ge"},
-    {"url": "https://eventfrog.ch/de/events/zuerich.html", "city": "zh"},
-    {"url": "https://eventfrog.ch/fr/events/geneve.html", "city": "ge"},
-    {"url": "https://zuri.net/de/zurich/agenda/", "city": "zh"},
-    {"url": "https://www.zuerichunbezahlbar.ch/", "city": "zh"},
-    {"url": "https://newinzurich.com/events/", "city": "zh"},
-    {"url": "https://www.kulturzueri.ch/", "city": "zh"},
-    {"url": "https://www.guidle.com/de/veranstaltungen/zuerich", "city": "zh"},
-    {"url": "https://www.ladecadanse.ch/", "city": "ge"},
-    {"url": "https://www.tempslibre.ch/geneve/manifestations/ce-week-end", "city": "ge"},
-    {"url": "https://lesgenevois.com/calendrier/ce-weekend", "city": "ge"},
-    {"url": "https://www.loisirs.ch/agenda/l-agenda-du-week-end-en-suisse-romande/", "city": "ge"},
-    {"url": "https://www.geneve.com/fr/agenda", "city": "ge"},
-    {"url": "https://lesamis.cc/", "city": "zh"},
-    {"url": "https://inyourfacecomedy.ch/", "city": "zh", "big": true},
-    {"url": "https://www.comedykiss.ch/", "city": "zh"},
-    {"url": "https://hallenstadion.ch/events/", "city": "zh", "big": true},
-    {"url": "https://www.theater11.ch/", "city": "zh", "big": true},
-    {"url": "https://www.opernhaus.ch/spielplan/kalendarium/", "city": "zh", "big": true},
-    {"url": "https://www.tonhalle-orchester.ch/en/concerts/calendar/", "city": "zh", "big": true},
-    {"url": "https://www.geneva-arena.ch/", "city": "ge", "big": true},
-    {"url": "https://www.gtg.ch/saison-26-27/", "city": "ge", "big": true},
-    {"url": "https://www.sallemetropole.ch/", "city": "ge", "big": true},
-    {"url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich", "city": "zh", "big": true},
-    {"url": "https://www.songkick.com/metro-areas/28889-switzerland-geneva", "city": "ge", "big": true},
-    {"url": "https://www.kunsthaus.ch/en/exhibitions/", "city": "zh"},
-    {"url": "https://museesdegeneve.ch/", "city": "ge"},
-    {"url": "https://www.artageneve.com/galeries-musees/programme-des-expositions", "city": "ge"}
+    {
+      "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/",
+      "city": "zh"
+    },
+    {
+      "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
+      "city": "zh"
+    },
+    {
+      "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=3",
+      "city": "zh"
+    },
+    {
+      "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/",
+      "city": "ge"
+    },
+    {
+      "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
+      "city": "ge"
+    },
+    {
+      "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=3",
+      "city": "ge"
+    },
+    {
+      "url": "https://www.eventbrite.ch/d/switzerland--lausanne/all-events/",
+      "city": "ge"
+    },
+    {
+      "url": "https://eventfrog.ch/de/events/zuerich.html",
+      "city": "zh"
+    },
+    {
+      "url": "https://eventfrog.ch/fr/events/geneve.html",
+      "city": "ge"
+    },
+    {
+      "url": "https://zuri.net/de/zurich/agenda/",
+      "city": "zh"
+    },
+    {
+      "url": "https://www.zuerichunbezahlbar.ch/",
+      "city": "zh"
+    },
+    {
+      "url": "https://newinzurich.com/events/",
+      "city": "zh"
+    },
+    {
+      "url": "https://www.kulturzueri.ch/",
+      "city": "zh"
+    },
+    {
+      "url": "https://www.guidle.com/de/veranstaltungen/zuerich",
+      "city": "zh"
+    },
+    {
+      "url": "https://www.ladecadanse.ch/",
+      "city": "ge"
+    },
+    {
+      "url": "https://www.tempslibre.ch/geneve/manifestations/ce-week-end",
+      "city": "ge"
+    },
+    {
+      "url": "https://lesgenevois.com/calendrier/ce-weekend",
+      "city": "ge"
+    },
+    {
+      "url": "https://www.loisirs.ch/agenda/l-agenda-du-week-end-en-suisse-romande/",
+      "city": "ge"
+    },
+    {
+      "url": "https://www.geneve.com/fr/agenda",
+      "city": "ge"
+    },
+    {
+      "url": "https://lesamis.cc/",
+      "city": "zh"
+    },
+    {
+      "url": "https://inyourfacecomedy.ch/",
+      "city": "zh",
+      "big": true
+    },
+    {
+      "url": "https://www.comedykiss.ch/",
+      "city": "zh"
+    },
+    {
+      "url": "https://hallenstadion.ch/events/",
+      "city": "zh",
+      "big": true
+    },
+    {
+      "url": "https://www.theater11.ch/",
+      "city": "zh",
+      "big": true
+    },
+    {
+      "url": "https://www.opernhaus.ch/spielplan/kalendarium/",
+      "city": "zh",
+      "big": true
+    },
+    {
+      "url": "https://www.tonhalle-orchester.ch/en/concerts/calendar/",
+      "city": "zh",
+      "big": true
+    },
+    {
+      "url": "https://www.geneva-arena.ch/",
+      "city": "ge",
+      "big": true
+    },
+    {
+      "url": "https://www.gtg.ch/saison-26-27/",
+      "city": "ge",
+      "big": true
+    },
+    {
+      "url": "https://www.sallemetropole.ch/",
+      "city": "ge",
+      "big": true
+    },
+    {
+      "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
+      "city": "zh",
+      "big": true
+    },
+    {
+      "url": "https://www.songkick.com/metro-areas/28889-switzerland-geneva",
+      "city": "ge",
+      "big": true
+    },
+    {
+      "url": "https://www.kunsthaus.ch/en/exhibitions/",
+      "city": "zh"
+    },
+    {
+      "url": "https://museesdegeneve.ch/",
+      "city": "ge"
+    },
+    {
+      "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
+      "city": "ge"
+    },
+    {
+      "url": "https://infomaniak.events/en-ch/comedy/geneva",
+      "city": "ge"
+    },
+    {
+      "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
+      "city": "ge"
+    },
+    {
+      "url": "https://infomaniak.events/en-ch/comedy/zurich",
+      "city": "zh"
+    }
   ]
 }

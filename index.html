@@ -2312,6 +2312,14 @@ document.getElementById("acctpanel").addEventListener("submit",async ev=>{ev.pre
   if(error){msg.textContent="Couldn't sign in: "+error.message;return}
   applySession(data.session);toast("Signed in")});
 document.addEventListener("click",ev=>{const p=document.getElementById("acctpanel");if(!p.hidden&&!ev.target.closest("#acctpanel")&&!ev.target.closest("#acctbtn"))p.hidden=true});
+/* concert listings ("sessa @ Bogen F"): readable title, short type, clean description */
+(function(){const cap=x=>x&&x===x.toLowerCase()?x.replace(/(^|[\s-])(\p{L})/gu,(m,a,b)=>a+b.toUpperCase()):x;
+  [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;const t=e.titleOrig||e.title;
+    if(!/ @ /.test(t))return;const [art,ven0]=t.split(" @ ");const ven=(ven0||(e.place||"").split(",")[0]||"").split("|")[0].trim();
+    e.titleOrig=t;e.title=cap(art.trim());e.kind="Concert"+(ven?" · "+ven:"");
+    if(/^Price to check$/i.test(e.price||""))e.price="";
+    if(e.when&&!/\d{1,2}:\d{2}/.test(e.when)&&!/evening/i.test(e.when))e.when+=" · evening";
+    if(!e.desc||/ at \d{4}-\d{2}-\d{2}/.test(e.desc)){const who=(e.desc||art).replace(/ at \d{4}-\d{2}-\d{2}\S*/,"").replace(/ at [^,]*$/,"");e.desc="Live concert: "+cap(who.trim())+(ven?" at "+ven:"")+". Check the venue site for times and tickets."}})})();
 /* multi-day events written as "7–17 Oct" or "30 Sep–4 Oct": keep them until their last day */
 (function(){const M={Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
   const L=[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))];
@@ -2486,8 +2494,9 @@ function GLs(){return [
  [/party|disco|club night|clubbing|dj\b|soirée|night\b/i,"Party"],
  [/concert|konzert|live music|band\b|gig|rapper|singer|songwriter|\bduo\b|\btrio\b|\brock\b|\bsoul\b|metal\b|hip-?hop|shoegaze|electronic|chanson|acoustic|\blive\b/i,"Concert"]]}
 function gloss(e){const ico='';const wetTag=wetOf(e)?' · 🌧 outdoors':'';let k=e.kind;
-  if(!k){if(e.src==="Songkick"||/ @ /.test(e.titleOrig||e.title))k="Concert";
+  if(!k){if(/ @ /.test(e.titleOrig||e.title))k="Concert";
     else{const t=e.title+" "+(e.titleOrig||"")+" "+(e.place||"").split(",")[0]+" "+(e.desc||"").slice(0,160);k=(GLs().find(([re])=>re.test(e.title+" "+(e.titleOrig||"")))||GLs().find(([re])=>re.test(t))||[])[1]}}
+  if(!k&&e.src==="Songkick")k="Concert";
   if(!k)k=({rencontre:"Social meetup",creatif:"Workshop",marche:"Market / fair",fete:"Festival",culture:"Culture",corps:"Sport & wellbeing",chien:"Dog-friendly outing"})[(e.cat||[])[0]]||"Event";
   return ico+esc(k)+(e.free?' · free':'')+wetTag}
 
