@@ -263,7 +263,7 @@ const fresh = cur.week === MON;
 const notes = { ge: {}, zh: {} };
 for (const p of periods) for (const c of ["ge", "zh"]) notes[c][p.id] = (fresh && cur.notes && cur.notes[c] && cur.notes[c][p.id]) || wetNote(c, p);
 periods.forEach(p => { p.note = notes.ge[p.id]; });
-const add = (cur.add || []).filter(e => (e.dayEnd || e.day) >= TODAY).map(e => ({ ...e, p: e.p === "big" || e.p === "on" ? e.p : periodOf(e.day) || "later" }));
+const add = (cur.add || []).filter(e => (e.dayEnd || e.day) >= TODAY).map(e => ({ ...e, p: e.p === "big" || e.p === "on" ? e.p : periodOf(e.day < TODAY ? TODAY : e.day) || "later" }));
 
 /* ---------- English: translate German/French titles and descriptions (free MyMemory API, cached in data/tr.json) ---------- */
 let TR = {}; try { TR = JSON.parse(rd("data/tr.json")); } catch {}

@@ -768,7 +768,12 @@ nav.tabs [data-tab="big"][aria-selected="true"] .cnote{color:#e0a100}
 .cine .acts{margin-top:10px}
 .cine .more{display:block;width:100%;text-align:left;font:inherit;font-weight:600;font-size:14px;color:var(--p);background:none;border:0;padding:12px 4px;cursor:pointer}
 .cine .clinks{font-size:13px;color:var(--muted);margin:8px 4px 0;line-height:1.6}.cine .clinks a{color:var(--muted)}
-#quick{grid-template-columns:repeat(2,minmax(0,1fr))!important}#quick>.pickme[hidden]{display:none!important}.sw-pick{display:block;margin:10px auto 0;font:inherit;font-size:14px;font-weight:600;color:var(--p);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}</style>
+#quick{grid-template-columns:repeat(2,minmax(0,1fr))!important}#quick>.pickme[hidden]{display:none!important}.sw-pick{display:block;margin:10px auto 0;font:inherit;font-size:14px;font-weight:600;color:var(--p);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}.searchrow{display:flex!important;gap:6px!important;align-items:stretch}.searchrow input{flex:1 1 auto;min-width:0}
+.searchrow .iconbtn{flex:0 0 auto;width:44px;min-width:44px;padding:0!important;display:flex;align-items:center;justify-content:center;font-size:19px;border-radius:12px!important;border:1px solid var(--line)!important;background:var(--surface);margin:0!important}
+.searchrow .iconbtn[aria-pressed="true"]{background:var(--p)!important;border-color:var(--p)!important}
+#quick[hidden]{display:none!important}
+body[data-view="big"] #chipbox .filters[aria-label="Filter by type"]{display:none!important}
+</style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
 <div class="wrap">
@@ -852,8 +857,8 @@ nav.tabs [data-tab="big"][aria-selected="true"] .cnote{color:#e0a100}
   </div>
 </section>
 <div class="filterpanel" id="filterpanel">
-  <div class="searchrow"><input type="search" id="q" placeholder="Search events, places, groups" aria-label="Search all events" autocomplete="off"><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
-<div class="quickrow" id="quick"><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rainproof</button><button class="chip" id="swipebtn">🃏 Help me choose</button><button class="chip pickme" id="pickme" hidden>🎲 Pick</button></div>
+  <div class="searchrow"><input type="search" id="q" placeholder="Search" aria-label="Search all events" autocomplete="off"><button class="chip iconbtn" data-q="f-rain" aria-pressed="false" aria-label="Rainproof only" title="Rainproof only">☔</button><button class="chip iconbtn" id="swipebtn" aria-label="Help me choose" title="Help me choose">🃏</button><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
+<div class="quickrow" id="quick" hidden><button class="chip pickme" id="pickme" hidden>🎲 Pick</button></div>
   <div id="chipbox"><div class="sheethead"><span>Filters</span><span><button class="aclear" id="sheetclear">Clear</button> <button id="sheetdone">Done</button></span></div>
   <div class="filters" role="group" aria-label="Filter by type">
     <span class="lbl">Type</span>
@@ -2353,7 +2358,8 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
 (function(){const M={Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
   const L=[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))];
   L.forEach(e=>{if(!e||e.dayEnd||!e.when||!e.day)return;const m=String(e.when).match(/^\s*(?:[A-Z][a-z]{2}\s+)?\d{1,2}(?:\s+[A-Z][a-z]{2})?\s*[–-]\s*(?:[A-Z][a-z]{2}\s+)?(\d{1,2})\s+([A-Z][a-z]{2})/);if(!m||!M[m[2]])return;
-    let y=+e.day.slice(0,4);if(M[m[2]]<+e.day.slice(5,7))y++;const end=y+"-"+String(M[m[2]]).padStart(2,"0")+"-"+String(+m[1]).padStart(2,"0");if(end>e.day)e.dayEnd=end})})();
+    let y=+e.day.slice(0,4);if(M[m[2]]<+e.day.slice(5,7))y++;const end=y+"-"+String(M[m[2]]).padStart(2,"0")+"-"+String(+m[1]).padStart(2,"0");if(end>e.day)e.dayEnd=end});
+  L.forEach(e=>{if(!e||!e.dayEnd||e.dayEnd<TODAY||e.day>=TODAY||e.p==="big"||e.p==="on")return;const P=PERIODS.find(x=>x.from&&x.from<=TODAY&&TODAY<=x.to)||PERIODS.find(x=>x.from&&x.from>TODAY);if(P&&!PERIODS.some(x=>x.id===e.p&&x.from&&x.to>=TODAY))e.p=P.id})})();
 if("serviceWorker" in navigator){const hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{try{r.update()}catch(e){}}).catch(()=>{});let reloaded=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(hadSW&&!reloaded){reloaded=true;location.reload()}});document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")navigator.serviceWorker.getRegistration().then(r=>r&&r.update()).catch(()=>{})})}
 render();
 /* deep links from notifications: #ev-<id> or #trip-<id> */
@@ -2376,9 +2382,9 @@ function openSetup(){if(document.getElementById("onb"))return;const L=new Set(S.
 (function(){let h=null;try{h=localStorage.getItem("oa-home")}catch(e){}if(!S.home&&h)S.home=h;if(!S.home||!(S.likes||[]).length)setTimeout(openSetup,300);})();
 
 /* quick filter chips */
-function syncQuick(){document.querySelectorAll("#quick [data-q]").forEach(b=>{const q=b.dataset.q;b.setAttribute("aria-pressed",q==="dog"?String(state.cat==="chien"):((document.getElementById(q)||{}).getAttribute?document.getElementById(q).getAttribute("aria-pressed"):"false"))});
+function syncQuick(){document.querySelectorAll(".searchrow [data-q]").forEach(b=>{const q=b.dataset.q;b.setAttribute("aria-pressed",q==="dog"?String(state.cat==="chien"):((document.getElementById(q)||{}).getAttribute?document.getElementById(q).getAttribute("aria-pressed"):"false"))});
   const tp=document.getElementById("tabplans");if(tp)tp.setAttribute("aria-pressed",String(!!ui.plans))}
-document.getElementById("quick").addEventListener("click",ev=>{const b=ev.target.closest("[data-q]");if(!b)return;const q=b.dataset.q;
+document.querySelector(".searchrow").addEventListener("click",ev=>{const b=ev.target.closest("[data-q]");if(!b)return;const q=b.dataset.q;
   if(q==="dog"){const c=document.querySelector('.chip[data-f="cat"][data-v="'+(state.cat==="chien"?"all":"chien")+'"]');if(c)c.click()}else{const x=document.getElementById(q);if(x)x.click()}setTimeout(syncQuick,0)});
 document.getElementById("tabplans").addEventListener("click",()=>{openPlans(true)});
 document.addEventListener("click",ev=>{if(ev.target.closest(".chip,#sheetclear,[data-clearfilters]"))setTimeout(syncQuick,0)});
