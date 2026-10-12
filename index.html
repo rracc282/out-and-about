@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0e6b80"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Out &amp; About"><meta name="description" content="What to do in Geneva and Zurich this week: evenings, weekends, big nights, exhibitions and day trips."><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auto.js"></script></head><body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0e6b80"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Out &amp; About"><meta name="description" content="What to do in Geneva and Zurich this week: evenings, weekends, big nights, exhibitions and day trips."><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="auto.js"></script><script src="cine.js"></script></head><body>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Out &amp; About</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -739,6 +739,35 @@ body:not([data-view="this"]) #todayplan{display:none!important}body[data-view="t
 #acctpanel #prefsbtn{padding:2px 0!important;margin:0!important}
 #acctpanel .themepanel{margin:0!important}
 #quick>.pickme{border:1px solid var(--line)!important;font-size:13px!important;padding:7px 2px!important;font-weight:inherit}.period-head+.day,.period-note+.day{margin-top:6px!important}.period-head+.period-note{margin-top:2px!important}
+
+/* ---- Culture tab: icon, switch, cinema ---- */
+nav.tabs [data-tab="big"]{position:relative}
+nav.tabs [data-tab="big"]::before{content:"🎬"!important}
+nav.tabs [data-tab="big"] .cnote{display:block!important;visibility:visible!important;z-index:2;position:absolute;left:50%;top:13px;margin-left:5px;font:700 18px/1 "Helvetica Neue",Arial,sans-serif;color:#9a9a9a;text-shadow:0 0 2px var(--surface,#fff),0 0 2px var(--surface,#fff);pointer-events:none}
+nav.tabs [data-tab="big"][aria-selected="true"] .cnote{color:#e0a100}
+.cine .acts>a,.cine .acts>button{display:flex;align-items:center;justify-content:center;font:inherit;font-size:14px;font-weight:600;padding:8px 10px;color:var(--p)!important;background:var(--surface);text-decoration:none!important;cursor:pointer}
+.cine .acts>[data-filmgo]{background:var(--p)!important;color:#fff!important;border-color:var(--p)!important}
+.seg3{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);margin:0 0 12px}
+.seg3 button{flex:1 1 auto;font:inherit;font-size:13.5px;font-weight:600;padding:10px 6px;border:0;background:none;color:var(--muted);cursor:pointer}
+.seg3 button+button{border-left:1px solid var(--line)}
+.seg3 button[aria-pressed="true"]{background:var(--ink);color:var(--surface,#fff)}
+.cine .period-head{align-items:center}
+.datebtn{position:relative;display:inline-flex;gap:6px;align-items:center;font-size:14px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--surface);color:var(--ink);cursor:pointer}
+.datebtn input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;font-size:16px}
+.cine .lang{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;padding:2px 7px;border-radius:999px;background:var(--sun-soft);color:var(--p);white-space:nowrap}
+.cine .shows{padding:0 4px 14px 74px}
+@media (max-width:560px){.cine .shows{padding:0 4px 14px 4px}}
+.cine .shows .desc{margin:0 0 8px;font-size:14px}
+.cine .cdh{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:10px 0 2px}
+.cine .cin{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.cine .cin b{font-weight:600;display:block}.cine .cin small{color:var(--muted);font-size:12px}
+.cine .tms{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.cine .tm{font:inherit;border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-family:var(--mono);font-size:12.5px;color:var(--p);background:var(--surface);cursor:pointer}
+.cine .tm[aria-pressed="true"]{background:var(--p);color:#fff;border-color:var(--p)}
+.cine .hint{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+.cine .acts{margin-top:10px}
+.cine .more{display:block;width:100%;text-align:left;font:inherit;font-weight:600;font-size:14px;color:var(--p);background:none;border:0;padding:12px 4px;cursor:pointer}
+.cine .clinks{font-size:13px;color:var(--muted);margin:8px 4px 0;line-height:1.6}.cine .clinks a{color:var(--muted)}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -1739,7 +1768,7 @@ function evHTML(e,p){
   return '<article class="ev'+(g?' is-going':'')+(hidden.has(e.id)?' is-hidden':'')+(isPast(e)&&!g?' is-past':'')+'" id="ev-'+e.id+'">'+
     (g?'<span class="going-badge" style="margin:10px 0 0 4px">✓ You\'re going</span>':'')+
     '<button class="ev-sum" data-toggle="'+e.id+'" aria-expanded="'+open+'" aria-controls="det-'+e.id+'">'+
-      '<span class="when">'+String(whenShort(e,p)).replace(' · ','<br>')+'</span>'+
+      '<span class="when">'+(w=>{const [a,b]=w.split(' · ');return b&&b.length<=12?a+'<br>'+b:a})(String(whenShort(e,p)))+'</span>'+
       '<span class="ev-main"><span class="ev-t">'+(isNew(e)&&!isPast(e)?'<span class="newdot" title="New since your last visit"></span>':'')+(ui.city==="both"&&!ui.inCol?'<span class="cbadge">'+(cityOf(e)==="zh"?"ZRH":"GVA")+'</span>':'')+esc(e.title)+'</span>'+(open?'<span class="ev-s">'+sub+'</span>':'<span class="ev-s ev-en">'+gloss(e)+'</span>')+'</span>'+
       '<span class="ev-ic">'+icons+'<span class="chev">▾</span></span>'+
     '</button>'+det+'</article>';
@@ -2569,12 +2598,14 @@ function renderMyPlans(){let el=document.getElementById("myplans");if(!el){el=do
   if(!it.length)h+='<p class="mp-empty">No plans yet. Tap <b>✓ I\'m going</b> on anything that catches your eye and it appears here, with a reminder on the day.</p>';
   else{const n=it[0];
     if(n.k==="ev"){const e=n.e;h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+(n.t?' · '+n.t:'')+'</div><b>'+esc(e.title)+'</b><div class="mp-pl">'+esc(e.place||"")+'</div><div class="mp-acts"><a href="'+dirURL(e)+'" target="_blank" rel="noopener">Directions</a><button data-mpdetail="'+esc(e.id)+'">Details</button><a href="'+inviteURL(e)+'" target="_blank" rel="noopener" data-share="'+esc(e.id)+'">Share</a></div></div>'}
+    else if(n.k==="film"){const x=n.x,c=(window.CINE&&CINE.cinemas[x.c])||{n:x.cn,q:""};h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+' · '+x.tm+'</div><b>🎬 '+esc(x.t)+'</b><div class="mp-pl">'+esc(c.n+(c.q?", "+c.q:""))+'</div><div class="mp-acts"><a href="'+mapsURL(c.n+", "+(c.q||""))+'" target="_blank" rel="noopener">Directions</a>'+(x.u?'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">Book</a>':'')+'</div></div>'}
     else{const t=n.t0;h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+'</div><b>'+(t.kind==="weekend"?"Weekend in ":"Day trip to ")+esc(t.name)+'</b><div class="mp-pl">'+esc(t.hook||"")+'</div>'+tripPlanBody(t,n.day)+'</div>'}
     let cur="";h+='<div class="mp-list">';
     it.forEach((x,i)=>{if(x.day!==cur){cur=x.day;h+='<div class="mp-day">'+dayHead(x.day)+'</div>'}
       if(x.k==="ev"){const e=x.e,op=ui.mpOpen===e.id;
         h+='<div class="mp-row'+(op?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(e.id)+'"><span class="mp-t">'+(x.t||'All day')+'</span><span class="mp-main"><span class="mp-title">'+esc(e.title)+'</span><span class="mp-sub">'+esc((e.place||"").split(",")[0])+'</span></span>'+city(cityOf(e))+'</button>'+
           (op?'<div class="mp-acts"><a href="'+dirURL(e)+'" target="_blank" rel="noopener">Directions</a><a href="'+inviteURL(e)+'" target="_blank" rel="noopener" data-share="'+esc(e.id)+'">Share</a><button data-mpdetail="'+esc(e.id)+'">Details</button><button class="mp-rm" data-mprm="'+esc(e.id)+'">Remove</button></div>':'')+'</div>'}
+      else if(x.k==="film"){h+=filmPlanRow(x.x,ui.mpOpen===x.x.k)}
       else{const t=x.t0,op=ui.mpOpen===x.key;h+='<div class="mp-row'+(op?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(x.key)+'"><span class="mp-t">'+(t.kind==="weekend"?"2 days":"Trip")+'</span><span class="mp-main"><span class="mp-title">'+(t.kind==="weekend"?"Weekend in ":"Day trip to ")+esc(t.name)+'</span><span class="mp-sub">🚆 '+hm(t.train.min)+'</span></span>'+city(t.city||"ge")+'</button>'+(op?tripPlanBody(t,x.day):'')+'</div>'}});
     h+='</div>'}
   const past=EVENTS.filter(e=>goingSet.has(e.id)&&(e.dayEnd||e.day)<TODAY&&(e.dayEnd||e.day)>=isoAdd(TODAY,-30)).sort((a,b)=>b.day.localeCompare(a.day));
@@ -2591,6 +2622,94 @@ document.addEventListener("click",ev=>{if(!ui.plans)return;
 document.querySelectorAll("nav.tabs [data-tab]").forEach(b=>b.addEventListener("click",()=>{if(ui.plans){ui.plans=false;document.getElementById("tabplans").setAttribute("aria-pressed","false");document.body.dataset.view=ui.tab}},true));
 {const _r4=render;render=function(){if(ui.plans){renderMyPlans();return}_r4.apply(this,arguments);try{placeFooter()}catch(e){}}}
 
+
+/* ===== Culture tab (was "Shows"): Concerts & theatre | Cinema | Exhibitions ===== */
+(function(){
+  const tabBtn=document.querySelector('nav.tabs [data-tab="big"]');if(tabBtn)tabBtn.innerHTML='Culture<span class="cnote" aria-hidden="true">♫</span>';
+  let saved="live";try{saved=localStorage.getItem("oa-cult")||"live"}catch(e){}
+  ui.cult=saved;ui.cineDay=null;ui.cineOpen=null;ui.cineSel=null;
+  const CN=()=>window.CINE||{films:[],cinemas:{},links:[],days:[]};
+  const hmin=m=>m?(Math.floor(m/60)+"h"+String(m%60).padStart(2,"0")):"";
+  const nowHM=()=>{const d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
+  const cityNow=()=>ui.city==="both"?null:ui.city;
+  const okCin=id=>{const c=CN().cinemas[id];return c&&(!cityNow()||c.c===cityNow())};
+  const upcoming=s=>s[1]>TODAY||(s[1]===TODAY&&s[2]>=nowHM());
+  const langLbl=l=>l==="en"?"English":"EN subs";
+  function travel(cid){const c=CN().cinemas[cid];if(!c||!c.ll)return "";const h=homeLL(c.c);if(!h)return "";const r=cityMin(kmBetween(h,c.ll));return r.i+" "+r.m+" min"}
+  function dist(cid){const c=CN().cinemas[cid];const h=c&&homeLL(c.c);return h&&c.ll?kmBetween(h,c.ll):99}
+  function filmRow(f,shows,mode){
+    const open=ui.cineOpen===f.id,first=shows[0];const lang=shows.some(s=>s[3]==="en")?"en":"sub";
+    const when=mode==="search"?(first[1]===TODAY?"Today":dLbl(first[1]).split(" ").slice(0,2).join(" "))+"<br>"+first[2]:first[2];
+    let h='<article class="ev cfilm" id="film-'+esc(f.id)+'"><button class="ev-sum" data-film="'+esc(f.id)+'" aria-expanded="'+open+'"><span class="when">'+when+'</span><span class="ev-main"><span class="ev-t">'+(ui.city==="both"?'<span class="cbadge">'+(CN().cinemas[first[0]].c==="zh"?"ZRH":"GVA")+'</span>':'')+esc(f.t)+'</span><span class="ev-s ev-en">'+esc([f.k,hmin(f.m)].filter(Boolean).join(" · ")||"Film")+'</span></span><span class="ev-ic"><span class="lang">'+langLbl(lang)+'</span><span class="chev">▾</span></span></button>';
+    if(open){
+      h+='<div class="shows">'+(f.d?'<p class="desc">'+esc(f.d)+'</p>':'');
+      const days=[...new Set(shows.map(s=>s[1]))].slice(0,mode==="search"?3:1);
+      days.forEach(d=>{if(mode==="search")h+='<div class="cdh">'+(d===TODAY?"Today":dLbl(d))+'</div>';
+        const byC={};shows.filter(s=>s[1]===d).forEach(s=>{(byC[s[0]]=byC[s[0]]||[]).push(s)});
+        Object.keys(byC).sort((a,b)=>dist(a)-dist(b)).forEach(cid=>{const c=CN().cinemas[cid];const L=byC[cid];const tv=travel(cid);
+          h+='<div class="cin"><span><b>'+esc(c.n)+'</b><small>'+[tv,langLbl(L.some(s=>s[3]==="en")?"en":"sub")].filter(Boolean).join(" · ")+'</small></span><span class="tms">'+L.map(s=>{const k=f.id+"|"+cid+"|"+s[1]+"|"+s[2];return '<button class="tm" data-tm="'+esc(k)+'" aria-pressed="'+(ui.cineSel===k)+'">'+s[2]+'</button>'}).join("")+'</span></div>'})});
+      const sel=ui.cineSel&&ui.cineSel.startsWith(f.id+"|")?ui.cineSel.split("|"):null;
+      const selShow=sel&&shows.find(s=>s[0]===sel[1]&&s[1]===sel[2]&&s[2]===sel[3]);
+      const going=sel&&(S.films||[]).some(x=>x.k===ui.cineSel);
+      h+=sel&&selShow?'<div class="acts"><button data-filmgo="'+esc(ui.cineSel)+'">'+(going?'✓ Going · Undo':'✓ I\'m going '+sel[3])+'</button><a href="'+esc(selShow[4])+'" target="_blank" rel="noopener">Book ↗</a><button data-filmshare="'+esc(f.id)+'">Share</button></div>'
+        :'<p class="hint">Tap a time to book it or add it to My plans.</p><div class="acts"><button data-filmshare="'+esc(f.id)+'">Share</button><a href="https://www.youtube.com/results?search_query='+encodeURIComponent(f.t+" trailer")+'" target="_blank" rel="noopener">Trailer ↗</a></div>';
+      h+='</div>'}
+    return h+'</article>'}
+  function dayList(){const D=CN().days||[];return D.length?D:[TODAY]}
+  function cinemaSection(){
+    const C=CN(),day=ui.cineDay||TODAY,cn=cityNow();const cityName=cn?CITY[cn].name:"Geneva & Zurich";
+    const list=C.films.map(f=>({f,sh:f.shows.filter(s=>s[1]===day&&okCin(s[0])&&upcoming(s))})).filter(x=>x.sh.length).sort((a,b)=>a.sh[0][2].localeCompare(b.sh[0][2]));
+    const D=dayList();const inRange=D.includes(day);
+    let h='<section class="period weekend cine"><div class="period-head"><h2>Cinema · '+cityName+'</h2><label class="datebtn">📅 '+(day===TODAY?"Today":dLbl(day))+' ▾<input type="date" id="cineday" value="'+day+'" min="'+TODAY+'"></label></div><p class="period-note">English original or English subtitles only</p>';
+    if(!inRange)h+='<p class="empty">Times for this day aren\'t out yet. Cinemas usually publish about a week ahead.</p>';
+    else if(!list.length)h+='<p class="empty">No English screenings left on this day.</p>';
+    else{const showAll=ui.cineAll;h+='<div class="day">'+list.slice(0,showAll?99:6).map(x=>filmRow(x.f,x.sh,"day")).join("")+'</div>'+(!showAll&&list.length>6?'<button class="more" data-cineall>+'+(list.length-6)+' more films on this day</button>':'')}
+    const L=(C.links||[]).filter(l=>!cn||l.c===cn);
+    if(L.length)h+='<p class="clinks">Also check: '+L.map(l=>'<a href="'+esc(l.u)+'" target="_blank" rel="noopener">'+esc(l.n)+'</a>').join(" · ")+'</p>';
+    return h+'</section>'}
+  function searchSection(q){
+    const C=CN();q=String(q||"").toLowerCase().trim();if(q.length<2)return "";
+    const n=x=>String(x).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+    const list=C.films.filter(f=>n(f.t).includes(n(q))).map(f=>({f,sh:f.shows.filter(s=>okCin(s[0])&&upcoming(s))})).filter(x=>x.sh.length);
+    if(!list.length)return "";
+    return '<section class="period weekend cine"><div class="period-head"><h2>🎬 Films matching “'+esc(q)+'”</h2></div><p class="period-note">English original or English subtitles · '+(cityNow()?CITY[cityNow()].name:"both cities")+'</p><div class="day">'+list.map(x=>filmRow(x.f,x.sh,"search")).join("")+'</div></section>'}
+  function decorate(){
+    const ag=document.getElementById("agenda");if(!ag||ui.plans)return;
+    if(state.q){const sx=searchSection(state.q);if(sx){const em=ag.querySelector(':scope > p.empty');if(em)em.remove();const sn=ag.querySelector(':scope > p.searchnote');if(sn)sn.insertAdjacentHTML("afterend",sx);else ag.insertAdjacentHTML("afterbegin",sx)}return}
+    if(ui.tab!=="big")return;
+    const secs=[...ag.querySelectorAll(":scope > section.period")];
+    secs.forEach(sec=>{const t=(sec.querySelector("h2")||{}).textContent||"";sec.dataset.cult=/^Exhibitions/i.test(t)?"expo":"live";sec.hidden=sec.dataset.cult!==ui.cult});
+    ag.insertAdjacentHTML("afterbegin",'<div class="seg3" role="tablist"><button data-cult="live" aria-pressed="'+(ui.cult==="live")+'">Concerts &amp; theatre</button><button data-cult="cine" aria-pressed="'+(ui.cult==="cine")+'">Cinema</button><button data-cult="expo" aria-pressed="'+(ui.cult==="expo")+'">Exhibitions</button></div>');
+    if(ui.cult==="cine")ag.insertAdjacentHTML("beforeend",cinemaSection());
+  }
+  const _render=render;render=function(){const r=_render.apply(this,arguments);try{decorate()}catch(e){console.error(e)}return r};
+  const rerender=()=>{const y=scrollY;render();window.scrollTo(0,y)};
+  document.addEventListener("click",ev=>{
+    const c=ev.target.closest("[data-cult]");if(c&&c.closest(".seg3")){ui.cult=c.dataset.cult;try{localStorage.setItem("oa-cult",ui.cult)}catch(e){}ui.cineOpen=null;rerender();return}
+    const f=ev.target.closest("[data-film]");if(f){ui.cineOpen=ui.cineOpen===f.dataset.film?null:f.dataset.film;ui.cineSel=null;rerender();return}
+    const t=ev.target.closest("[data-tm]");if(t){ui.cineSel=ui.cineSel===t.dataset.tm?null:t.dataset.tm;rerender();return}
+    if(ev.target.closest("[data-cineall]")){ui.cineAll=true;rerender();return}
+    const g=ev.target.closest("[data-filmgo]");if(g){const k=g.dataset.filmgo;const [fid,cid,d,tm]=k.split("|");S.films=S.films||[];const i=S.films.findIndex(x=>x.k===k);
+      if(i>=0){S.films.splice(i,1);toast("Removed from your plans")}else{const fl=CN().films.find(x=>x.id===fid),sh=fl&&fl.shows.find(s=>s[0]===cid&&s[1]===d&&s[2]===tm);S.films.push({k,id:fid,t:fl?fl.t:fid,c:cid,cn:(CN().cinemas[cid]||{}).n||"",city:(CN().cinemas[cid]||{}).c||"ge",d,tm,u:sh?sh[4]:""});toast("Added to My plans · "+dLbl(d)+" "+tm)}
+      persist();rerender();return}
+    const sh=ev.target.closest("[data-filmshare]");if(sh){const fl=CN().films.find(x=>x.id===sh.dataset.filmshare);if(!fl)return;const sel=ui.cineSel&&ui.cineSel.split("|");
+      const s0=sel&&sel[0]===fl.id?fl.shows.find(s=>s[0]===sel[1]&&s[1]===sel[2]&&s[2]===sel[3]):fl.shows.find(s=>okCin(s[0])&&upcoming(s));
+      const msg="Fancy seeing "+fl.t+"?"+(s0?" "+CN().cinemas[s0[0]].n+", "+(s0[1]===TODAY?"today":dLbl(s0[1]))+" at "+s0[2]+" ("+langLbl(s0[3])+").":"")+(fl.d?"\n\n"+fl.d:"")+(s0&&s0[4]?"\n\nTickets: "+s0[4]:"");
+      if(navigator.share){navigator.share({text:msg}).catch(()=>{})}else window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");return}
+  });
+  document.addEventListener("change",ev=>{if(ev.target&&ev.target.id==="cineday"&&ev.target.value){ui.cineDay=ev.target.value<TODAY?TODAY:ev.target.value;ui.cineOpen=null;ui.cineSel=null;ui.cineAll=false;rerender()}});
+  /* My plans: films you're going to */
+  const _myItems=myItems;myItems=function(){const it=_myItems();(S.films||[]).forEach(x=>{if(x.d>TODAY||(x.d===TODAY&&x.tm>=nowHM()))it.push({k:"film",x,day:x.d,t:x.tm})});return it.sort((a,b)=>a.day.localeCompare(b.day)||String(a.t).localeCompare(String(b.t)))};
+  window.filmPlanRow=function(x,open){const c=CN().cinemas[x.c]||{n:x.cn,q:x.cn,c:x.city};const dir="https://www.google.com/maps/dir/?api=1&travelmode=transit"+(homeLL(c.c)?"&origin="+encodeURIComponent((S.addr[c.c].q||"")+", "+(c.c==="zh"?"Zürich":"Genève")):"")+"&destination="+encodeURIComponent(c.n+", "+(c.q||""));
+    return '<div class="mp-row'+(open?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(x.k)+'"><span class="mp-t">'+x.tm+'</span><span class="mp-main"><span class="mp-title">🎬 '+esc(x.t)+'</span><span class="mp-sub">'+esc(c.n)+'</span></span><span class="mp-city">'+(c.c==="zh"?"ZRH":"GVA")+'</span></button>'+
+      (open?'<div class="mp-acts"><a href="'+dir+'" target="_blank" rel="noopener">Directions</a>'+(x.u?'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">Book</a>':'')+'<button class="mp-rm" data-mpfilmrm="'+esc(x.k)+'">Remove</button></div>':'')+'</div>'};
+  document.addEventListener("click",ev=>{const r=ev.target.closest("[data-mpfilmrm]");if(!r)return;S.films=(S.films||[]).filter(x=>x.k!==r.dataset.mpfilmrm);ui.mpOpen=null;persist();renderMyPlans();toast("Removed from your plans")});
+  /* today card on This week: films tonight */
+  const _rtp=renderTodayPlan;renderTodayPlan=function(){_rtp();const el=document.getElementById("todayplan");if(!el||ui.tab!=="this"||ui.plans)return;
+    const fs=(S.films||[]).filter(x=>x.d===TODAY&&x.tm>=nowHM()).sort((a,b)=>a.tm.localeCompare(b.tm));if(!fs.length)return;
+    el.className="todayplan";el.insertAdjacentHTML("beforeend",fs.map(x=>{const c=CN().cinemas[x.c]||{n:x.cn,q:""};return '<div class="tp-item"><div class="k">✓ Today · '+x.tm+'</div><b>🎬 '+esc(x.t)+'</b><span class="w">'+esc(c.n+(c.q?", "+c.q:""))+'</span><div class="links"><a class="lnk" href="'+mapsURL(c.n+", "+(c.q||""))+'" target="_blank" rel="noopener">Maps ↗</a>'+(x.u?'<a class="lnk" href="'+esc(x.u)+'" target="_blank" rel="noopener">Tickets ↗</a>':'')+'</div></div>'}).join(""))};
+  try{render()}catch(e){}
+})();
 /* always open at the top of This week (unless opened from a notification link) */
 try{history.scrollRestoration="manual"}catch(e){}
 if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}catch(e){}window.scrollTo(0,0)},0);window.addEventListener("load",()=>setTimeout(()=>window.scrollTo(0,0),60));window.addEventListener("pageshow",()=>{if(!location.hash)window.scrollTo(0,0)})}
