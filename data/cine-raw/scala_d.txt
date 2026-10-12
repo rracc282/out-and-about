@@ -1,0 +1,1674 @@
+200 https://les-scala.ch/fr/a-l-affiche?dDate=2026-10-14
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="https://les-scala.ch" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+  
+ 
+ 
+ 
+
+<title>À l’affiche</title>
+<meta name="robots" content="index, follow" />
+<meta name="keywords" content="cinema cinéma films indépendant genève geneve programme à l'affiche" lang="fr" />
+<meta name="description" content="Retrouvez tous les films à l'affiche dans nos 3 cinémas !" lang="fr" />
+	
+<meta property="og:title" content="À l’affiche"/>
+<meta property="og:image" content="https://les-scala.ch/img/logo_oeil_2.png"/>
+<meta property="og:description" content="Retrouvez tous les films à l'affiche dans nos 3 cinémas !"/>
+<meta property="og:site_name" content="Les Scala"/>
+	
+	
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="À l’affiche">
+<meta name="twitter:description" content="Retrouvez tous les films à l'affiche dans nos 3 cinémas !">
+<meta name="twitter:url" content="https://les-scala.ch/">
+<meta name="twitter:image" content="https://les-scala.ch/img/logo_oeil_2.png">		
+
+
+
+
+<link rel="icon" type="image/png" href="favicon.png" />
+   <meta content="width=486" name="viewport"></meta>
+
+
+<link href="/css/lesscala.css?ck=16102023_5" rel="stylesheet" type="text/css" />
+<link href="/css/menu.css" rel="stylesheet" type="text/css" />
+<link href="/css/menu_footer.css" rel="stylesheet" type="text/css" />
+<link href="/css/autocomplet.css" rel="stylesheet" type="text/css" />
+<link href="/css/qTip2.css" rel="stylesheet" type="text/css" />
+<link href="/js/cookieconsent/cookieconsent.css" rel="stylesheet" type="text/css" />
+    
+<link href="/js/selectric/selectric.css" rel="stylesheet" type="text/css" />
+<link href="/js/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/devices.css?ck=16102023_4" rel="stylesheet" type="text/css" />
+
+<script src="/js/jquery-1.11.0.min.js"></script>
+<script src="/js/jquery-migrate-1.2.1.min.js"></script>
+
+<script src="/js/jquery.imgr.min.js"></script>
+<script src="/js/jquery.matchHeight-min.js"></script>
+<script src="/js/qTip2.js"></script>
+<script src="/js/jquery.addplaceholder.min.js"></script>
+<script src="/js/fancybox/jquery.fancybox.js"></script>
+<script src="/js/sticky/jquery.sticky.js"></script>
+
+
+<script src="/js/jquery.cycle2.min.js"></script>
+<script src="/js/jquery.cycle2.carousel.min.js"></script>
+<script src="/js/jquery.cycle2-swipe.js"></script>
+<script src="/js/jquery.cycle2-swipe-ios6.js"></script>
+
+<script src="/js/jquery.scrollTo.min.js"></script>
+
+<script src="/js/cookieconsent/cookieconsent.min.js"></script>
+    
+<script src="/js/selectric/jquery.selectric.js"></script>
+ 
+<script src="/js/les_scala.js?ck=16102023_2"></script>
+
+	
+	
+<script>
+	
+	
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+	"popup": {
+	  "background": "#413996",
+	  "text":"#fff"
+	},
+	"button": {
+	  "background": "#ffffff",
+	  "text":"#413996"
+	}
+  },
+  "theme": "classic",
+  "content": {
+	"message": "Notre site utilise des cookies uniquement à des fins statistiques. En naviguant sur notre site sans bloquer les cookies vous en acceptez l’utilisation. Nous ne stockons pas de donnée personnelle vous concernant ni ne les communiquons à des tiers. ",
+	"dismiss": "OK",
+	"link": "Plus d'information",
+	"href": " http://www.les-scala.ch/fr/cookie"
+  }
+})});
+</script>	
+	
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-32272646-27', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body >
+
+ 
+<div id="header" class="no-mobile">
+
+
+	<div class="inside">
+    <div id="logo"><a href="fr/home-page"><img src="../img/logo.svg" width="402"  alt="Cinémas Les Scala - Le City - Le Nord-Sud à Genève : Films à l'affiche, avant-premières, réservations en ligne" border="0"/></a></div>
+     <div id="menu_top">
+     <ul class="menu_top">
+                
+                    <li class="menutop first "><a class="menutop first " href="fr/ecoles" >Écoles</a></li>
+                 
+                
+                    <li class="menutop  "><a class="menutop  " href="fr/newsletter" >Newsletter</a></li>
+                 
+                
+                    <li class="menutop  "><a class="menutop  " href="fr/archives" >Archives</a></li>
+                 
+                
+                    <li class="menutop   last"><a class="menutop   last" href="fr/liens" >Liens</a></li>
+                 
+               <li><a class="icon_menu_top" href="https://instagram.com/cinemalesscala/" target="_blank"><img src="/img/picto_instagram.svg"  height="16" border="0" /></a></li>
+              
+                <li><a class="icon_menu_top" href="https://www.facebook.com/CinemaLesScalaGeneve/" target="_blank"><img src="/img/picto_facebook.svg"  height="16" border="0" /></a></li>
+       
+</ul>
+     </div>
+
+    </div>
+    
+    <div id="menu_barre">
+    
+    <div class="inside">
+    <ul class="menu">
+                
+                    <li class="menu first  current_menu"><a class="menu first  current_menu" href="fr/a-l-affiche" >À l’affiche</a></li>
+                 
+                
+                    <li class="menu  "><a class="menu  " href="fr/prochainement" >Prochainement</a></li>
+                 
+                
+                    <li class="menu  "><a class="menu  " href="fr/evenements" >Événements</a></li>
+                 
+                
+                    <li class="menu  "><a class="menu  " href="fr/infos-pratiques" >Infos pratiques</a></li>
+                 
+                
+                    <li class="menu   last whatson"><a class="menu   last whatson" href="fr/what-s-on" >What’s on</a></li>
+                 
+    
+</ul>
+     <div id="mysearch"><form><div class="input_container"><ul id="myfilm_list_id"></ul><input type="text" id="myfilm_id"  placeholder="Rechercher un film" autocomplete="off"></div></form></div>
+    </div>
+    
+    </div>
+    
+    
+</div>
+
+
+
+<div id="headermobile" class="mobile"><a href="fr/home-page"><img src="/img/logo_mobile.svg" height="40" alt="" id="mobilelogo" border="0" style="margin-top: 10px" /></a><a href="#" id="mobilemenubtn"><img src="/img/icone_menu.svg"  height="20" border="0" /></a></div>
+
+
+
+
+<div id="content" class="inside">
+	
+
+ <div id="menu_sous" style="text-align:left">
+ <ul class="menu_sous">
+<li><a  class="current_menu" href="fr/a-l-affiche?dDate=2026-10-14" >Tous les films</a></li>
+	    
+     <li><a  href="fr/a-l-affiche?cinemaID=256&dDate=2026-10-14" >Les Scala</a></li>
+     
+    
+     <li><a  href="fr/a-l-affiche?cinemaID=254&dDate=2026-10-14" >Le City</a></li>
+     
+    
+     <li><a  href="fr/a-l-affiche?cinemaID=258&dDate=2026-10-14" >Le Nord-Sud</a></li>
+     
+</ul>
+
+
+
+<div id="mydateselector" style="position: absolute; right:0px; top:0px" >
+
+				
+<a href="fr/a-l-affiche?cinemaID=&dDate=2026-10-13" style="float:left"><img src="../img/fleche_violet_back.png" width="8" height="30" border="0" /></a>			
+<span class="date_select">mercredi 14 oct. 2026</span>				
+<a href="fr/a-l-affiche?cinemaID=&dDate=2026-10-15" style="float: right" ><img src="../img/fleche_violet_next.png" width="8" height="30" border="0" /></a>			
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="infobox infobox_large">
+<p class="infobox_titre">Pour acheter vos billets en ligne,</p>
+<p> cliquez sur l’horaire de votre choix.</p>
+</div>
+
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1jtiaqoko110j1arho4v1fs1m0e4.jpeg&w=390&h=259.86943620178&zc=1&q=100&fltr[]=crop|0|0|0.053370786516854|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204921" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204921">Digger</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 14 ans +&nbsp;/ &nbsp; Age suggéré 16 ans +" >
+	14 +&nbsp;&nbsp;16 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204921"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204921"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204921"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Alejandro González Iñárritu</br><strong>Avec </strong> Tom Cruise,  Sandra Hüller,  John Goodman</br></p><p class="film_duree">Action / 2h09  / Etats-Unis</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_10_film_204921">
+<a href="fr/infos-pratiques?cinemaID=258" class="liste_cinema_titre" style="background-color:#005a64">Le Nord-Sud</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VO</span><span class="qtip_pop" alt=" Sous-titres : FR, DE"><img src="/img/sous_titre.svg" class="sous_titre" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141810654" style="color:#005a64">18h10</a></div>
+
+
+
+
+</div>        
+        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_1_film_204921">
+<a href="fr/infos-pratiques?cinemaID=256" class="liste_cinema_titre" style="background-color:#413996">Les Scala</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VO</span><span class="qtip_pop" alt=" Sous-titres : FR, DE"><img src="/img/sous_titre.svg" class="sous_titre" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610142040222" style="color:#413996">20h40</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204921">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1jqlmu25g1c811htn1k9m1fgst5b4.jpg&w=390&h=259.8557312253&zc=1&q=100&fltr[]=crop|0|0|0.053320860617399|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204867" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204867">Fjord</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 14 ans +&nbsp;/ &nbsp; Age suggéré 16 ans +" >
+	14 +&nbsp;&nbsp;16 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204867"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204867"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204867"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Cristian Mungiu</br><strong>Avec </strong> Renate Reinsve,  Sebastian Stan</br></p><p class="film_duree">Drame / 2h26  / Roumanie,  Norvège,  France</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_10_film_204867">
+<a href="fr/infos-pratiques?cinemaID=258" class="liste_cinema_titre" style="background-color:#005a64">Le Nord-Sud</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VO</span><span class="qtip_pop" alt=" Sous-titres : FR, EN"><img src="/img/sous_titre.svg" class="sous_titre" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610142030224" style="color:#005a64">20h30</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204867">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1jtdka21l1svd1kmp1pd96c2svb4.jpg&w=588.67924528302&h=246&zc=1&q=100&fltr[]=crop|0.281875|0.055625|0|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204908" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204908">Garance</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 14 ans +&nbsp;/ &nbsp; Age suggéré 14 ans +" >
+	14 +&nbsp;&nbsp;14 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204908"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204908"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204908"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Jeanne Herry</br><strong>Avec </strong> Adèle Exarchopoulos,  Sara Giraudeau</br></p><p class="film_duree">Drame / 1h56  / France</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_10_film_204908">
+<a href="fr/infos-pratiques?cinemaID=258" class="liste_cinema_titre" style="background-color:#005a64">Le Nord-Sud</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VF</span><span><img src="/img/sans_sous_titre.png" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141800224" style="color:#005a64">18h00</a></div>
+
+
+
+
+</div>        
+        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_1_film_204908">
+<a href="fr/infos-pratiques?cinemaID=256" class="liste_cinema_titre" style="background-color:#413996">Les Scala</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VF</span><span><img src="/img/sans_sous_titre.png" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141605222" style="color:#413996">16h05</a><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610142045221" style="color:#413996">20h45</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204908">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1k1j23erc1vf112ink371t9p1nt94.jpg&w=407.94979079498&h=246&zc=1&q=100&fltr[]=crop|0|0.044|0|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204910" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204910">L'espèce explosive</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 16 ans +&nbsp;/ &nbsp; Age suggéré 16 ans +" >
+	16 +&nbsp;&nbsp;16 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204910"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204910"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204910"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Sarah Arnold</br><strong>Avec </strong> Alexis Manenti,  Ella Rumpf,  Vincent Dedienne</br></p><p class="film_duree">Policier,  Comédie dramatique / 1h36  / France</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_10_film_204910">
+<a href="fr/infos-pratiques?cinemaID=258" class="liste_cinema_titre" style="background-color:#005a64">Le Nord-Sud</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VF</span><span class="qtip_pop" alt=" Sous-titres : EN"><img src="/img/sous_titre.svg" class="sous_titre" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141605654" style="color:#005a64">16h05</a><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610142050654" style="color:#005a64">20h50</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204910">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1job1okj1bbc1pmhvuh1f39fe74.jpg&w=390&h=259.88316831683&zc=1&q=100&fltr[]=crop|0|0|0.053420805998126|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204785" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204785">La bataille de Gaulle - Partie 1 : l'âge de fer</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 12 ans +&nbsp;/ &nbsp; Age suggéré 14 ans +" >
+	12 +&nbsp;&nbsp;14 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204785"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204785"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204785"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Antonin Baudry</br><strong>Avec </strong> Simon Abkarian,  Simon Russell Beale,  Florian Lessieur</br></p><p class="film_duree">Biographie,  Thriller / 2h38  / France</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_1_film_204785">
+<a href="fr/infos-pratiques?cinemaID=256" class="liste_cinema_titre" style="background-color:#413996">Les Scala</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VF</span><span><img src="/img/sans_sous_titre.png" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141300222" style="color:#413996">13h00</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204785">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1job3nbpq18cc1joc1j17f21kd24.jpg&w=394.93670886076&h=246&zc=1&q=100&fltr[]=crop|0.001875|0.010625|0|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204787" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204787">La bataille de Gaulle - Partie 2 : J'écris ton nom</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 12 ans +&nbsp;/ &nbsp; Age suggéré 14 ans +" >
+	12 +&nbsp;&nbsp;14 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204787"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204787"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204787"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Antonin Baudry</br><strong>Avec </strong> Simon Abkarian,  Simon Russell Beale,  Florian Lessieur</br></p><p class="film_duree">Biographie,  Thriller / 2h40  / France</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_1_film_204787">
+<a href="fr/infos-pratiques?cinemaID=256" class="liste_cinema_titre" style="background-color:#413996">Les Scala</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VF</span><span><img src="/img/sans_sous_titre.png" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141535221" style="color:#413996">15h35</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204787">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1ju6r6gn7bjkujrqt81k324jt4.jpg&w=390&h=259.88316831683&zc=1&q=100&fltr[]=crop|0|0|0|0.053420805998126);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204898" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204898">La vie d'une femme</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 14 ans +&nbsp;/ &nbsp; Age suggéré 14 ans +" >
+	14 +&nbsp;&nbsp;14 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204898"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204898"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204898"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Charline Bourgeois-Tacquet</br><strong>Avec </strong> Léa Drucker,  Mélanie Thierry,  Charles Berling</br></p><p class="film_duree">Drame / 1h39  / France,  Belgique</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_10_film_204898">
+<a href="fr/infos-pratiques?cinemaID=258" class="liste_cinema_titre" style="background-color:#005a64">Le Nord-Sud</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VF</span><span><img src="/img/sans_sous_titre.png" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141545224" style="color:#005a64">15h45</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204898">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1jvliki8e9qs936s2e16169oc4.jpg&w=437.58765778401&h=246&zc=1&q=100&fltr[]=crop|0|0.10875|0|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204952" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204952">Le corset</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 6 ans +&nbsp;/ &nbsp; Age suggéré 10 ans +" >
+	6 +&nbsp;&nbsp;10 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204952"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204952"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204952"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Louis Clichy</br><strong>Avec </strong> Gary Clichy,  Rod Paradot,  Brune Moulin</br></p><p class="film_duree">Animation / 1h30  / France,  Belgique</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_1_film_204952">
+<a href="fr/infos-pratiques?cinemaID=256" class="liste_cinema_titre" style="background-color:#413996">Les Scala</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VF</span><span><img src="/img/sans_sous_titre.png" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141335221" style="color:#413996">13h35</a><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141845221" style="color:#413996">18h45</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204952">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1k2i1496u10ukcmnd28123jli4.jpg&w=437.58765778401&h=246&zc=1&q=100&fltr[]=crop|0|0.10875|0|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204951" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204951">Minotaure</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 14 ans +&nbsp;/ &nbsp; Age suggéré 16 ans +" >
+	14 +&nbsp;&nbsp;16 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204951"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204951"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204951"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Andreï Zviaguintsev</br><strong>Avec </strong> Dmitriy Mazurov,  Iris Lebedeva,  Boris Kudrin</br></p><p class="film_duree">Drame / 2h22  / Allemagne,  France,  Lettonie</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_2_film_204951">
+<a href="fr/infos-pratiques?cinemaID=254" class="liste_cinema_titre" style="background-color:#9e1a1b">Le City</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VO</span><span class="qtip_pop" alt=" Sous-titres : FR, DE"><img src="/img/sous_titre.svg" class="sous_titre" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141420218" style="color:#9e1a1b">14h20</a><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141730218" style="color:#9e1a1b">17h30</a><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610142040218" style="color:#9e1a1b">20h40</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204951">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1k2kjld901s3v1odv18o7gtstlb5.jpg&w=468.11702925731&h=263.57142857143&zc=1&q=100&fltr[]=crop|0|0.166875|0.033333333333333|0.033333333333333);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=205034" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=205034">Naza</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 16 ans +&nbsp;/ &nbsp; Age suggéré 18 ans +" >
+	16 +&nbsp;&nbsp;18 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_205034"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_205034"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_205034"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Yuval Abraham,  Rachel Szor</br></p><p class="film_duree">Documentaire / 1h17  / Grande-Bretagne,  Etats-Unis</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_10_film_205034">
+<a href="fr/infos-pratiques?cinemaID=258" class="liste_cinema_titre" style="background-color:#005a64">Le Nord-Sud</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VO</span><span class="qtip_pop" alt=" Sous-titres : FR, EN"><img src="/img/sous_titre.svg" class="sous_titre" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141355224" style="color:#005a64">13h55</a></div>
+
+
+
+
+</div>        
+        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_1_film_205034">
+<a href="fr/infos-pratiques?cinemaID=256" class="liste_cinema_titre" style="background-color:#413996">Les Scala</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VO</span><span class="qtip_pop" alt=" Sous-titres : FR, EN"><img src="/img/sous_titre.svg" class="sous_titre" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141830222" style="color:#413996">18h30</a><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610142100220" style="color:#413996">21h00</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=205034">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1jqbncjjk1b0s5v7v5l3r107o4.jpg&w=390&h=259.91071428571&zc=1&q=100&fltr[]=crop|0|0|0.053521126760563|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204866" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204866">Soudain</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 12 ans +&nbsp;/ &nbsp; Age suggéré 14 ans +" >
+	12 +&nbsp;&nbsp;14 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204866"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204866"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204866"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Ryūsuke Hamaguchi</br><strong>Avec </strong> Virginie Efira,  Tao Okamoto,  Gabriel Dahmani</br></p><p class="film_duree">Drame / 3h17  / France,  Japon,  Allemagne,  Belgique</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_1_film_204866">
+<a href="fr/infos-pratiques?cinemaID=256" class="liste_cinema_titre" style="background-color:#413996">Les Scala</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VO</span><span class="qtip_pop" alt=" Sous-titres : FR"><img src="/img/sous_titre.svg" class="sous_titre" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141330220" style="color:#413996">13h30</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204866">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+	
+<div class="container_liste" >
+    
+    
+    
+
+    <div class="film_img"  style="background-image:url(/phpThumb/phpThumb.php?src=/useruploads/module_galleries/p1jtdlf3oh194n1vou69ngql14687.jpg&w=436.05870020964&h=246&zc=1&q=100&fltr[]=crop|0|0.105625|0|0);">
+         <a class="fancybox fancyboxIframe"  href="/templates/bande_annonce.php?filmID=204909" data-fancybox-type="iframe">
+         <div class="vignette_player" style=" position:absolute; left:0px; right:0px; top:0px; bottom:0px; background-image:url(/img/img_play_vignette.png); background-repeat:no-repeat; background-position:center center;">
+     <!--vide-->
+    </div>
+    </a>
+      <!--vide-->
+  
+     </div>
+     
+     <div class="film_titre">
+    
+    <h2><a href="fr/a-l-affiche?dDate=2026-10-14&filmID=204909">Time and Water</a></h2> 
+    
+    <span class="film_age qtip_pop2" alt="Age légal 8 ans +&nbsp;/ &nbsp; Age suggéré 12 ans +" >
+	8 +&nbsp;&nbsp;12 +</span>
+    
+    
+    
+    
+    <div class="container_cinema_barre_color" >
+ 	        <div style="background-color:#005a64" class="cinema_barre_color" id="cinema_10_film_204909"> <!--vide--> </div>
+	        <div style="background-color:#413996" class="cinema_barre_color" id="cinema_1_film_204909"> <!--vide--> </div>
+	        <div style="background-color:#9e1a1b" class="cinema_barre_color" id="cinema_2_film_204909"> <!--vide--> </div>
+	    </div>
+	
+	
+    
+     </div>
+     
+     
+    
+<div class="film_text">
+<div class="film_text_txt">
+
+
+
+
+
+
+<p><strong>Réalisé par </strong> Sara Dosa</br></p><p class="film_duree">Documentaire / 1h33  / Islande,  Etats-Unis</p></div>
+    </div>
+    
+ <div class="myhoraire" >   
+    
+<div class="clear"> <!--vide--> </div>
+<div id="tabs-container" style="width:100%; position:relative;">
+    
+    <div class="tab">
+        
+        <div id="tab-1" class="tab-content">
+		        
+        
+        
+<div class="tab_liste_film">
+
+
+
+<div class="tab_liste_film_titre" rel="cinema_10_film_204909">
+<a href="fr/infos-pratiques?cinemaID=258" class="liste_cinema_titre" style="background-color:#005a64">Le Nord-Sud</a>
+</div>
+
+<div class="tab_liste_film_date">
+<span class="bullet_version">VO</span><span class="qtip_pop" alt=" Sous-titres : FR, DE"><img src="/img/sous_titre.svg" class="sous_titre" /> </span><a class="btn_buy fancyboxIframe" data-fancybox-type="iframe"  target="_blank" href="https://scala-city.ticketack.com/screening/buy/202610141400654" style="color:#005a64">14h00</a></div>
+
+
+
+
+</div>        
+      
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+      <div class="clear"> <!--vide--> </div>
+</div>
+
+
+
+
+
+<a class="plus_info" href="fr/a-l-affiche?dDate=2026-10-14&filmID=204909">+ d'infos</a>
+  </div>  
+  
+  
+     <div class="clear"><!-- --></div>
+    
+    
+    </div>
+   
+	
+
+    <div class="clear"> <!--vide--> </div>
+</div>
+
+ <div id="footer" ><div class=" inside">
+
+<div style="position:absolute; top:50px; right:0px; width:240px;" class="footer_newsletter">
+<a href="fr/newsletter"  style="color:#FFF;"><b>Inscrivez-vous</b> à la newsletter</a>
+
+</div>
+<div style="border-bottom:1px solid #a7a9ac; display:inline-block; padding-bottom:17px; margin-bottom:17px; padding-top:33px;" class="no-mobile ">
+    <ul class="footernav menufooter1">
+        
+        
+       <li><a class="  first current" href="fr/a-l-affiche" >À l’affiche</a></li>
+        
+        
+       <li><a class=" " href="fr/prochainement" >Prochainement</a></li>
+        
+        
+       <li><a class=" " href="fr/evenements" >Événements</a></li>
+        
+        
+       <li><a class=" " href="fr/infos-pratiques" >Infos pratiques</a></li>
+        
+        
+       <li><a class=" " href="fr/what-s-on" >What’s on</a></li>
+        
+   
+    </ul>
+</div>    
+    
+   
+<div class="no-mobile ">
+    <ul class="footernav menufooter2">
+        
+        
+       <li><a class=" " href="fr/ecoles" >Écoles</a></li>
+        
+        
+       <li><a class=" " href="fr/newsletter" >Newsletter</a></li>
+        
+        
+       <li><a class=" " href="fr/archives" >Archives</a></li>
+        
+        
+       <li><a class=" " href="fr/liens" >Liens</a></li>
+        
+   
+    </ul>
+</div>   
+    
+
+    
+    
+    
+    <div class="footer_content" style="text-align:center; color:#FFF; padding-top:70px">
+    
+    <img src="/img/logo_cine_independant.png" width="130" height="35" />
+    <p style="margin-top:20px; padding-bottom:0px; ">
+    <a href="https://www.monoloco.ch" target="_blank" style="font-size:12px; color:#FFF">Développé par monoloco</a> | <a href="https://www.krolstudio.com/" target="_blank" style="font-size:12px; color:#FFF">Design  par krolstudio</a>
+    </p>
+    </div>
+    
+</div></div>
+<div id="mobilemenu" class="mobile"><ul class="mainnavmobile">
+    			
+		<li class="menu first  current"><a class="menu first  current" href="fr/a-l-affiche" >À l’affiche</a></li>
+        
+    			
+		<li class="menu  "><a class="menu  " href="fr/prochainement" >Prochainement</a></li>
+        
+    			
+		<li class="menu  "><a class="menu  " href="fr/evenements" >Événements</a></li>
+        
+    			
+		<li class="menu  "><a class="menu  " href="fr/infos-pratiques" >Infos pratiques</a></li>
+        
+    			
+		<li class="menu   last"><a class="menu   last" href="fr/what-s-on" >What’s on</a></li>
+        
+    	
+	
+ <li class="has-submenu" ><a class="has-submenu" style="border-top: 1px solid #d5d5d5; width:200px; height:20px; display:block" > <!--vide--> </a></li>
+	
+	        <ul class="main_sous_navmobile">
+         
+        <li class="menu_sous  first "><a class="menu_sous  first " href="fr/ecoles" >Écoles</a></li>
+          
+        <li class="menu_sous "><a class="menu_sous " href="fr/newsletter" >Newsletter</a></li>
+          
+        <li class="menu_sous "><a class="menu_sous " href="fr/archives" >Archives</a></li>
+          
+        <li class="menu_sous "><a class="menu_sous " href="fr/liens" >Liens</a></li>
+                </ul>
+        
+               
+	
+	<li>
+
+</ul><div id="menumobilecoords">
+<div class="clear"><!-- --></div>
+<p><br /> <!--vide--> </p>
+<div class="clear"><!-- --></div>
+<div style="border-top:1px solid #d5d5d5; margin-top:10px; margin-bottom:10px;"><!-- --></div>
+<p>Cinéma Les Scala</p>
+<p>23, rue des Eaux-Vives <br />
+1207 Genève</p>
+<p>Tel. <a href="tel:+41 22 736 04 22" style=" text-decoration:none">+41 22 736 04 22</a> </p><p> <a href="mailto:mailing@les-scala.ch" style="color:#FFF; text-decoration:none">mailing@les-scala.ch</a></p>
+<div style="border-top:1px solid #d5d5d5; margin-top:10px;"><!-- --></div>
+</div></div>
+
+
+</body>
+</html>

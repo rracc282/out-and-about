@@ -1,0 +1,2 @@
+404 https://www.pathe.ch/api/show/the-invite-52031/showtimes?language=en
+{"code":"HTTP_404","message":"No route found for \"GET https:\/\/www.pathe.ch\/api\/show\/the-invite-52031\/showtimes\""}

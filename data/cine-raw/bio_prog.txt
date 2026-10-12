@@ -1,0 +1,1058 @@
+200 https://www.cinema-bio.ch/programme
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" prefix="og: https://ogp.me/ns#">
+	<head>
+		<meta charset="utf-8" />
+<meta name="geo.placename" content="Carouge" />
+<meta name="geo.region" content="CH-GE" />
+<link rel="canonical" href="https://www.cinema-bio.ch/programme" />
+<meta name="Generator" content="Drupal 11 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+        <link rel="icon" type="image/png" href="/themes/custom/plusb/favicon/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/svg+xml" href="/themes/custom/plusb/favicon/favicon.svg">
+        <link rel="shortcut icon" href="/themes/custom/plusb/favicon/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/themes/custom/plusb/favicon/apple-touch-icon.png">
+        <link rel="manifest" href="/themes/custom/plusb/favicon/site.webmanifest">
+
+        <title>Programme | Cinéma Bio</title>
+        
+        <link rel="stylesheet" media="all" href="/sites/default/files/css/css_z25rkmzWCnPUw4Ve3BeHZaTo7FDviVGY58rdgFyDQos.css?delta=0&amp;language=fr&amp;theme=plusb&amp;include=eJwryCktTtJPLi0uyc_VKa4sLknN1U9KLE7VKctMLS_WB5N6ufkppTmpAHa1EPc" />
+<link rel="stylesheet" media="all" href="//cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_Rf6vG7UMLa5srzoizzBiQA6_spyvSU5oSb4_jV8PtIU.css?delta=2&amp;language=fr&amp;theme=plusb&amp;include=eJwryCktTtJPLi0uyc_VKa4sLknN1U9KLE7VKctMLS_WB5N6ufkppTmpAHa1EPc" />
+<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Syne:wght@400..800&amp;display=swap" />
+<link rel="stylesheet" media="all" href="//cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_DfbJIVl63Jig7wBhkcxBYx8Kj3YHEooU3l_HcC9cM2M.css?delta=5&amp;language=fr&amp;theme=plusb&amp;include=eJwryCktTtJPLi0uyc_VKa4sLknN1U9KLE7VKctMLS_WB5N6ufkppTmpAHa1EPc" />
+
+        
+    </head>
+    <body class="node-806 path-node page-node-type-portail">
+                <a href="#main-content" class="visually-hidden focusable skip-link">
+            Aller au contenu principal
+        </a>
+        
+          <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+
+    <header class="site-header fixed-top" role="banner">
+        <div class="container-fluid max-width">
+            <div class="row-wrapper">
+                  <div class="region region-header">
+    <div id="block-plusb-site-branding" class="col block block-system block-system-branding-block">
+  
+    
+        <a href="/" rel="home" class="site-logo">
+      <img src="/themes/custom/plusb/logo.svg" alt="Accueil" fetchpriority="high" />
+    </a>
+      </div>
+<nav role="navigation" aria-labelledby="block-plusb-main-menu-menu" id="block-plusb-main-menu" class="col block block-menu navigation menu--main">
+            
+  <h2 class="visually-hidden" id="block-plusb-main-menu-menu">Navigation principale</h2>
+  
+
+        
+							<ul class="navbar-nav">
+								                        <li class="nav-item">
+                <a href="/" class="nav-link" data-drupal-link-system-path="&lt;front&gt;">Accueil</a>
+                            </li>
+        			                        <li class="nav-item active">
+                <a href="/programme" class="nav-link active is-active" data-drupal-link-system-path="node/806" aria-current="page">Programme</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/prochainement" class="nav-link" data-drupal-link-system-path="node/1199">Prochainement</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/evenements" class="nav-link" data-drupal-link-system-path="node/807">Événements</a>
+                            </li>
+        			                        <li class="nav-item menu-item--expanded">
+                <a href="/cine-clubs" class="nav-link dropdown-toggle" data-drupal-link-system-path="node/803">Ciné-clubs</a>
+                                    							<ul>
+							                        <li class="nav-item">
+                <a href="/cine-clubs/cine-art" class="nav-link" data-drupal-link-system-path="taxonomy/term/9">Ciné-Art</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cine-clubs/cine-enfants" class="nav-link" data-drupal-link-system-path="taxonomy/term/6">Ciné-Enfants</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cine-clubs/cinemad" class="nav-link" data-drupal-link-system-path="taxonomy/term/8">CinéMàD</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cine-clubs/cine-seniors" class="nav-link" data-drupal-link-system-path="taxonomy/term/7">Ciné-Seniors</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cine-clubs/cap-sur-le-monde" class="nav-link" data-drupal-link-system-path="taxonomy/term/13">Cap Sur le Monde</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/evenements/2426-bio-sous-les-etoiles" class="nav-link" data-drupal-link-system-path="node/2426">Bio sous les étoiles</a>
+                            </li>
+        		</ul>
+	
+                            </li>
+        			                        <li class="nav-item menu-item--expanded">
+                <a href="/infos-pratiques" class="nav-link dropdown-toggle" data-drupal-link-system-path="node/808">Infos pratiques</a>
+                                    							<ul>
+							                        <li class="nav-item">
+                <a href="https://www.advance-ticket.ch/omniticket/cinema-bio" class="nav-link">Billetterie</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cafe-du-bio" class="nav-link" data-drupal-link-system-path="node/815">Café du Bio</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cinemargand" class="nav-link" data-drupal-link-system-path="node/816">CinéMargand</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/les-amies-du-cinema-bio" class="nav-link" data-drupal-link-system-path="node/1971">Les Ami.e.s du Cinéma Bio</a>
+                            </li>
+        		</ul>
+	
+                            </li>
+        		</ul>
+	
+
+
+  </nav>
+<div id="block-plusb-offcanvasbutton" class="col block block-block-content block-block-contentf96c49d0-4d7d-4a56-bcc5-5a27b3ad4332">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div id="p-offcanvasbtn">
+    <button class="p-btn">
+        <span>Menu</span>
+    </button>
+</div></div>
+      
+  </div>
+
+  </div>
+
+            </div>
+        </div>
+    </header>
+
+<div id="page-wrapper">
+	<div id="page">
+        <div id="page-inner">
+
+		<main role="main">
+
+			
+
+			<a id="main-content" tabindex="-1"></a>
+			
+			<div class="main-content container-fluid max-width">
+				
+
+				  <div class="region region-content">
+    <div id="block-plusb-content" class="block block-system block-system-main-block">
+  
+    
+      <div class="row b-portail ds-2col-stacked clearfix">
+
+  
+
+  <div class="col-12 group-header">
+    <div class="field field--name-node-title field--label-hidden"><h1 class="display-1">
+  Programme
+</h1>
+</div>
+
+  </div>
+
+  <div class="col-lg-8 group-left">
+    
+  </div>
+
+  <div class="col-lg-4 group-right">
+    
+  </div>
+
+  <div class="col-12 group-footer">
+    
+  </div>
+
+</div>
+
+
+  </div>
+<div class="views-element-container block block-views block-views-blockprogramme-block-prog" id="block-plusb-views-block-prog">
+  
+    
+      <div><div class="b-prog b-prog-page swiper swiper-prog view view-programme view-id-programme view-display-id-block_prog js-view-dom-id-c875efefa43d1a053e86b02d95a739f6fb548da846eccc658a56fe10863bd6ff">
+  
+    
+      <div class="view-header">
+      <p class="b-salles small"><span class="b-salle-1">Grande salle</span> <span class="b-salle-2">Salle P. Plattner</span></p>
+    </div>
+      
+      <div class="view-content">
+      <div class="view-grouping">
+  <div class="view-grouping-header"><div class="label">Lundi 12 octobre
+</div></div>
+  <div class="view-grouping-content"><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2957-garance" hreflang="fr">Garance</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2957-garance" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/garance.jpg.webp?itok=oI1HfrL8" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">105'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/331744" rel="nofollow" target="_blank">14:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr">Freedom - Le Destin de Shewit</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/mv5bmgu4ytczy2qtmzm2mc00zdeyltgwmmutyzzlngyxmtq3mmi3xkeyxkfqcgc-v1_fmjpg_ux1000_.jpg.webp?itok=jl9_YIKg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">87'</div> <div class="b-info">12 (14)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/778373" rel="nofollow" target="_blank">16:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3048-notre-salut" hreflang="fr">Notre Salut</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3048-notre-salut" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/notresalut-poster-fr-640.webp?itok=TN1_FzqL" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vo</div> <div class="b-info">150'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/567461" rel="nofollow" target="_blank">17:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3314-la-frappe" hreflang="fr">La Frappe</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3314-la-frappe" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/l_120x160-la-frappe-sd.jpg.webp?itok=5e3Shq6V" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">116'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/784504" rel="nofollow" target="_blank">18:15</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3305-recreations" hreflang="fr">Récréations</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3305-recreations" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/5988285.jpg.webp?itok=u_tpxMP5" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">57'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/828947" rel="nofollow" target="_blank">20:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr">Ah que le bonheur est proche !</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/ahque.jpg.webp?itok=E4s0LlY7" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">70'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/688713" rel="nofollow" target="_blank">20:30</a></div></div>
+</div></div>
+</div>
+<div class="view-grouping">
+  <div class="view-grouping-header"><div class="label">Mardi 13 octobre
+</div></div>
+  <div class="view-grouping-content"><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr">Freedom - Le Destin de Shewit</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/mv5bmgu4ytczy2qtmzm2mc00zdeyltgwmmutyzzlngyxmtq3mmi3xkeyxkfqcgc-v1_fmjpg_ux1000_.jpg.webp?itok=jl9_YIKg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">87'</div> <div class="b-info">12 (14)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/578682" rel="nofollow" target="_blank">13:45</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2834-ecrire-la-vie-annie-ernaux-racontee-par-des-lyceennes-et-des-lyceens" hreflang="fr">Écrire la vie, Annie Ernaux racontée par des lycéennes et des lycéens</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2834-ecrire-la-vie-annie-ernaux-racontee-par-des-lyceennes-et-des-lyceens" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/mv5bnwy4nwy3ogqtnjzlny00zdq1lthindatzme0mtu5zmjkzdfhxkeyxkfqcgc-v1_fmjpg_ux1000_.jpg.webp?itok=xYTUAy0O" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">90'</div> </div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/697649" rel="nofollow" target="_blank">15:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2957-garance" hreflang="fr">Garance</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2957-garance" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/garance.jpg.webp?itok=oI1HfrL8" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">105'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/461103" rel="nofollow" target="_blank">16:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2830-la-mia-famiglia-italiana" hreflang="fr">La Mia Famiglia Italiana</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2830-la-mia-famiglia-italiana" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/maf.jpg.webp?itok=1O6JdKjt" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vost</div> <div class="b-info">97'</div> <div class="b-info">8+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/480244" rel="nofollow" target="_blank">18:15</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr">Ah que le bonheur est proche !</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/ahque.jpg.webp?itok=E4s0LlY7" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">70'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/641035" rel="nofollow" target="_blank">18:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3366-le-sens-de-la-fete" hreflang="fr">Le Sens de la fête</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3366-le-sens-de-la-fete" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/sdf.jpg.webp?itok=7kopvXRZ" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">115'</div> <div class="b-info">10 (14)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/799833" rel="nofollow" target="_blank">20:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3314-la-frappe" hreflang="fr">La Frappe</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3314-la-frappe" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/l_120x160-la-frappe-sd.jpg.webp?itok=5e3Shq6V" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">116'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/677807" rel="nofollow" target="_blank">20:20</a></div></div>
+</div></div>
+</div>
+<div class="view-grouping">
+  <div class="view-grouping-header"><div class="label">Mercredi 14 octobre
+</div></div>
+  <div class="view-grouping-content"><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3370-mochy" hreflang="fr">Mochy</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3370-mochy" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/mochy.jpg.webp?itok=vaaHJ1Ie" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vf</div> <div class="b-info">85'</div> <div class="b-info">6+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/277368" rel="nofollow" target="_blank">14:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3250-ni-vue-ni-connue" hreflang="fr">Ni vue, ni connue</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3250-ni-vue-ni-connue" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/nivueniconnue-poster-fr-640.webp?itok=iqsdlejg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">116'</div> </div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/913624" rel="nofollow" target="_blank">14:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3198-le-corset" hreflang="fr">Le Corset</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3198-le-corset" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/leco.jpg.webp?itok=V7rTody8" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">90'</div> <div class="b-info">6 (10)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/551143" rel="nofollow" target="_blank">16:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3048-notre-salut" hreflang="fr">Notre Salut</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3048-notre-salut" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/notresalut-poster-fr-640.webp?itok=TN1_FzqL" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vo</div> <div class="b-info">150'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/534529" rel="nofollow" target="_blank">16:45</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr">Ah que le bonheur est proche !</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/ahque.jpg.webp?itok=E4s0LlY7" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">70'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/245977" rel="nofollow" target="_blank">18:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3315-les-miserables" hreflang="fr">Les Misérables</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3315-les-miserables" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/lesmis.jpg.webp?itok=YygVhPtW" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">179'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/300954" rel="nofollow" target="_blank">20:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2957-garance" hreflang="fr">Garance</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2957-garance" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/garance.jpg.webp?itok=oI1HfrL8" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">105'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/965517" rel="nofollow" target="_blank">20:20</a></div></div>
+</div></div>
+</div>
+<div class="view-grouping">
+  <div class="view-grouping-header"><div class="label">Jeudi 15 octobre
+</div></div>
+  <div class="view-grouping-content"><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3048-notre-salut" hreflang="fr">Notre Salut</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3048-notre-salut" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/notresalut-poster-fr-640.webp?itok=TN1_FzqL" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vo</div> <div class="b-info">150'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/129288" rel="nofollow" target="_blank">13:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2032-lobjet-du-delit" hreflang="fr">L&#039;Objet du délit</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2032-lobjet-du-delit" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/lobjet.jpg.webp?itok=G2cY-tEC" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">133'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/964478" rel="nofollow" target="_blank">14:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr">Ah que le bonheur est proche !</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/ahque.jpg.webp?itok=E4s0LlY7" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">70'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/893792" rel="nofollow" target="_blank">16:25</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr">Freedom - Le Destin de Shewit</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/mv5bmgu4ytczy2qtmzm2mc00zdeyltgwmmutyzzlngyxmtq3mmi3xkeyxkfqcgc-v1_fmjpg_ux1000_.jpg.webp?itok=jl9_YIKg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">87'</div> <div class="b-info">12 (14)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/706549" rel="nofollow" target="_blank">16:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3250-ni-vue-ni-connue" hreflang="fr">Ni vue, ni connue</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3250-ni-vue-ni-connue" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/nivueniconnue-poster-fr-640.webp?itok=iqsdlejg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">116'</div> </div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/767434" rel="nofollow" target="_blank">17:45</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3198-le-corset" hreflang="fr">Le Corset</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3198-le-corset" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/leco.jpg.webp?itok=V7rTody8" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">90'</div> <div class="b-info">6 (10)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/872812" rel="nofollow" target="_blank">18:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3315-les-miserables" hreflang="fr">Les Misérables</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3315-les-miserables" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/lesmis.jpg.webp?itok=YygVhPtW" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">179'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/565598" rel="nofollow" target="_blank">20:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3314-la-frappe" hreflang="fr">La Frappe</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3314-la-frappe" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/l_120x160-la-frappe-sd.jpg.webp?itok=5e3Shq6V" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">116'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/739748" rel="nofollow" target="_blank">20:20</a></div></div>
+</div></div>
+</div>
+<div class="view-grouping">
+  <div class="view-grouping-header"><div class="label">Vendredi 16 octobre
+</div></div>
+  <div class="view-grouping-content"><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2957-garance" hreflang="fr">Garance</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2957-garance" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/garance.jpg.webp?itok=oI1HfrL8" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">105'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/425926" rel="nofollow" target="_blank">14:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3250-ni-vue-ni-connue" hreflang="fr">Ni vue, ni connue</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3250-ni-vue-ni-connue" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/nivueniconnue-poster-fr-640.webp?itok=iqsdlejg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">116'</div> </div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/532333" rel="nofollow" target="_blank">14:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3314-la-frappe" hreflang="fr">La Frappe</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3314-la-frappe" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/l_120x160-la-frappe-sd.jpg.webp?itok=5e3Shq6V" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">116'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/688473" rel="nofollow" target="_blank">16:15</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3048-notre-salut" hreflang="fr">Notre Salut</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3048-notre-salut" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/notresalut-poster-fr-640.webp?itok=TN1_FzqL" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vo</div> <div class="b-info">150'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/932954" rel="nofollow" target="_blank">16:45</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr">Freedom - Le Destin de Shewit</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/mv5bmgu4ytczy2qtmzm2mc00zdeyltgwmmutyzzlngyxmtq3mmi3xkeyxkfqcgc-v1_fmjpg_ux1000_.jpg.webp?itok=jl9_YIKg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">87'</div> <div class="b-info">12 (14)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/355776" rel="nofollow" target="_blank">18:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3315-les-miserables" hreflang="fr">Les Misérables</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3315-les-miserables" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/lesmis.jpg.webp?itok=YygVhPtW" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">179'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/175620" rel="nofollow" target="_blank">20:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr">Ah que le bonheur est proche !</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/ahque.jpg.webp?itok=E4s0LlY7" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">70'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/382630" rel="nofollow" target="_blank">20:30</a></div></div>
+</div></div>
+</div>
+<div class="view-grouping">
+  <div class="view-grouping-header"><div class="label">Samedi 17 octobre
+</div></div>
+  <div class="view-grouping-content"><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2981-timioche" hreflang="fr">Timioche</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2981-timioche" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/tim.jpg.webp?itok=fGzmy95D" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vf</div> <div class="b-info">41'</div> <div class="b-info">3+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/214171" rel="nofollow" target="_blank">13:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2830-la-mia-famiglia-italiana" hreflang="fr">La Mia Famiglia Italiana</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2830-la-mia-famiglia-italiana" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/maf.jpg.webp?itok=1O6JdKjt" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vost</div> <div class="b-info">97'</div> <div class="b-info">8+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/323311" rel="nofollow" target="_blank">14:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3048-notre-salut" hreflang="fr">Notre Salut</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3048-notre-salut" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/notresalut-poster-fr-640.webp?itok=TN1_FzqL" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vo</div> <div class="b-info">150'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/680421" rel="nofollow" target="_blank">14:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3198-le-corset" hreflang="fr">Le Corset</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3198-le-corset" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/leco.jpg.webp?itok=V7rTody8" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">90'</div> <div class="b-info">6 (10)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/776625" rel="nofollow" target="_blank">16:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3250-ni-vue-ni-connue" hreflang="fr">Ni vue, ni connue</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3250-ni-vue-ni-connue" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/nivueniconnue-poster-fr-640.webp?itok=iqsdlejg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">116'</div> </div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/157552" rel="nofollow" target="_blank">17:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr">Ah que le bonheur est proche !</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/ahque.jpg.webp?itok=E4s0LlY7" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">70'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/922534" rel="nofollow" target="_blank">18:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3315-les-miserables" hreflang="fr">Les Misérables</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3315-les-miserables" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/lesmis.jpg.webp?itok=YygVhPtW" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">179'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/387217" rel="nofollow" target="_blank">20:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2957-garance" hreflang="fr">Garance</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2957-garance" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/garance.jpg.webp?itok=oI1HfrL8" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">105'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/248286" rel="nofollow" target="_blank">20:20</a></div></div>
+</div></div>
+</div>
+<div class="view-grouping">
+  <div class="view-grouping-header"><div class="label">Dimanche 18 octobre
+</div></div>
+  <div class="view-grouping-content"><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3250-ni-vue-ni-connue" hreflang="fr">Ni vue, ni connue</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3250-ni-vue-ni-connue" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/nivueniconnue-poster-fr-640.webp?itok=iqsdlejg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">116'</div> </div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/322404" rel="nofollow" target="_blank">14:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3370-mochy" hreflang="fr">Mochy</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3370-mochy" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/mochy.jpg.webp?itok=vaaHJ1Ie" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vf</div> <div class="b-info">85'</div> <div class="b-info">6+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/146241" rel="nofollow" target="_blank">14:15</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3198-le-corset" hreflang="fr">Le Corset</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3198-le-corset" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/leco.jpg.webp?itok=V7rTody8" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">90'</div> <div class="b-info">6 (10)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/520940" rel="nofollow" target="_blank">16:15</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3315-les-miserables" hreflang="fr">Les Misérables</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3315-les-miserables" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/lesmis.jpg.webp?itok=YygVhPtW" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">179'</div> <div class="b-info">16+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/291898" rel="nofollow" target="_blank">16:30</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr">Ah que le bonheur est proche !</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2958-ah-que-le-bonheur-est-proche" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/ahque.jpg.webp?itok=E4s0LlY7" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">70'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/504852" rel="nofollow" target="_blank">18:15</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2542-fjord" hreflang="fr">Fjord</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2542-fjord" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/fjordlow.jpg.webp?itok=QlZK4IAx" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vost</div> <div class="b-info">146'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/601401" rel="nofollow" target="_blank">19:45</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3048-notre-salut" hreflang="fr">Notre Salut</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3048-notre-salut" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/notresalut-poster-fr-640.webp?itok=TN1_FzqL" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vo</div> <div class="b-info">150'</div> <div class="b-info">14+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/633032" rel="nofollow" target="_blank">20:00</a></div></div>
+</div></div>
+</div>
+<div class="view-grouping">
+  <div class="view-grouping-header"><div class="label">Lundi 19 octobre
+</div></div>
+  <div class="view-grouping-content"><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/3370-mochy" hreflang="fr">Mochy</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/3370-mochy" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/mochy.jpg.webp?itok=vaaHJ1Ie" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vf</div> <div class="b-info">85'</div> <div class="b-info">6+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-1 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/482109" rel="nofollow" target="_blank">14:00</a></div></div>
+</div><div class="view-unformatted">
+  <div class="view-title"><h3><a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr">Freedom - Le Destin de Shewit</a></h3>
+<div class="b-event-prog-affiche shadow">  <a href="/films/2100-freedom-le-destin-de-shewit" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/poster/public/source/films/affiches/mv5bmgu4ytczy2qtmzm2mc00zdeyltgwmmutyzzlngyxmtq3mmi3xkeyxkfqcgc-v1_fmjpg_ux1000_.jpg.webp?itok=jl9_YIKg" width="800" height="1130" alt="" class="img-fluid image-style-poster" />
+
+</a>
+</div>
+<div class="b-infos"><div class="b-info">vofr</div> <div class="b-info">87'</div> <div class="b-info">12 (14)+</div></div></div>
+    <div class="d-inline-block"><div class="b-seance b-salle-2 shadow"><a href="https://www.advance-ticket.ch/omniticket/cinema-bio/609230" rel="nofollow" target="_blank">14:30</a></div></div>
+</div></div>
+</div>
+
+    </div>
+  
+          </div>
+</div>
+
+  </div>
+
+  </div>
+
+                
+			      <div class="region region-content-bottom">
+    <div id="block-plusb-entityviewcontenu" class="block block-ctools block-entity-viewnode">
+  
+    
+      <div class="row b-portail ds-1col clearfix">
+
+  
+
+          <div  class="display-2 field__label">Ciné-clubs</div>
+  
+            <div  class="b-club-teasers">
+                  <div class="b-club-teaser ds-1col clearfix">
+
+  
+
+      
+      <div class="b-term-img shadow">  <a href="/cine-clubs/cap-sur-le-monde" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/medium/public/source/clubs/images/maxresdefault.jpg.webp?itok=7h27uB7E" width="900" height="600" alt="" class="img-fluid image-style-medium" />
+
+</a>
+</div>
+      
+  
+
+    
+      <div class="b-club-teaser-title"><h3>
+  <a href="/cine-clubs/cap-sur-le-monde" hreflang="fr">Cap sur le Monde</a>
+</h3>
+</div>
+      
+  
+
+
+
+</div>
+
+
+            <div class="b-club-teaser ds-1col clearfix">
+
+  
+
+      
+      <div class="b-term-img shadow">  <a href="/cine-clubs/cine-art" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/medium/public/source/clubs/images/cc-art2.jpg.webp?itok=uy6KppVf" width="900" height="600" alt="" class="img-fluid image-style-medium" />
+
+</a>
+</div>
+      
+  
+
+    
+      <div class="b-club-teaser-title"><h3>
+  <a href="/cine-clubs/cine-art" hreflang="fr">Ciné-Art</a>
+</h3>
+</div>
+      
+  
+
+
+
+</div>
+
+
+            <div class="b-club-teaser ds-1col clearfix">
+
+  
+
+      
+      <div class="b-term-img shadow">  <a href="/cine-clubs/cine-enfants" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/medium/public/source/clubs/images/cc-kids.jpg.webp?itok=6J_mpNEz" width="900" height="600" alt="" class="img-fluid image-style-medium" />
+
+</a>
+</div>
+      
+  
+
+    
+      <div class="b-club-teaser-title"><h3>
+  <a href="/cine-clubs/cine-enfants" hreflang="fr">Ciné-Enfants</a>
+</h3>
+</div>
+      
+  
+
+
+
+</div>
+
+
+            <div class="b-club-teaser ds-1col clearfix">
+
+  
+
+      
+      <div class="b-term-img shadow">  <a href="/cine-clubs/cine-seniors" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/medium/public/source/clubs/images/cc-senior.jpg.webp?itok=j4dMsgPR" width="900" height="600" alt="" class="img-fluid image-style-medium" />
+
+</a>
+</div>
+      
+  
+
+    
+      <div class="b-club-teaser-title"><h3>
+  <a href="/cine-clubs/cine-seniors" hreflang="fr">Ciné-Seniors</a>
+</h3>
+</div>
+      
+  
+
+
+
+</div>
+
+
+            <div class="b-club-teaser ds-1col clearfix">
+
+  
+
+      
+      <div class="b-term-img shadow">  <a href="/cine-clubs/cinemad" hreflang="fr"><img loading="lazy" src="/sites/default/files/styles/medium/public/source/clubs/images/cc-mad-logo.jpg.webp?itok=w7CpgnZW" width="900" height="600" alt="" class="img-fluid image-style-medium" />
+
+</a>
+</div>
+      
+  
+
+    
+      <div class="b-club-teaser-title"><h3>
+  <a href="/cine-clubs/cinemad" hreflang="fr">CinéMàD</a>
+</h3>
+</div>
+      
+  
+
+
+
+</div>
+
+
+      
+      </div>
+  
+
+
+
+</div>
+
+
+  </div>
+
+  </div>
+
+			</div>
+			
+		</main>
+
+					<footer class="site-footer bg-primary text-light" role="contentinfo">
+
+									<div class="site-footer_top py-5">
+						<div class="container-fluid max-width">
+							<div class="row-wrapper">
+								  <div class="region region-footer">
+    <div id="block-plusb-identitedusite" class="col-3 col-lg-2 block block-system block-system-branding-block">
+  
+    
+        <a href="/" rel="home" class="site-logo">
+      <img src="/themes/custom/plusb/logo.svg" alt="Accueil" fetchpriority="high" />
+    </a>
+      </div>
+<nav role="navigation" aria-labelledby="block-plusb-navigationprincipale-2-menu" id="block-plusb-navigationprincipale-2" class="col-9 col-lg-10 block block-menu navigation menu--main">
+            
+  <h2 class="visually-hidden" id="block-plusb-navigationprincipale-2-menu">Navigation principale</h2>
+  
+
+        
+							<ul class="navbar-nav">
+								                        <li class="nav-item">
+                <a href="/" class="nav-link" data-drupal-link-system-path="&lt;front&gt;">Accueil</a>
+                            </li>
+        			                        <li class="nav-item active">
+                <a href="/programme" class="nav-link active is-active" data-drupal-link-system-path="node/806" aria-current="page">Programme</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/prochainement" class="nav-link" data-drupal-link-system-path="node/1199">Prochainement</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/evenements" class="nav-link" data-drupal-link-system-path="node/807">Événements</a>
+                            </li>
+        			                        <li class="nav-item menu-item--collapsed">
+                <a href="/cine-clubs" class="nav-link dropdown-toggle" data-drupal-link-system-path="node/803">Ciné-clubs</a>
+                            </li>
+        			                        <li class="nav-item menu-item--collapsed">
+                <a href="/infos-pratiques" class="nav-link dropdown-toggle" data-drupal-link-system-path="node/808">Infos pratiques</a>
+                            </li>
+        		</ul>
+	
+
+
+  </nav>
+
+  </div>
+
+							</div>
+						</div>
+					</div>
+				
+									<div class="site-footer_bottom pb-5">
+						<div class="container-fluid max-width">
+                            <div class="row-wrapper">
+							  <div class="region region-footer-bottom">
+    <div id="block-plusb-coordonnees" class="col col-sm-6 col-md-4 block block-block-content block-block-contentf05a987f-40cf-4ffb-907b-c82d7c116b21">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h2>Cinéma Bio</h2><p>Rue Saint-Joseph 47<br>1227 Carouge<br>Genève</p><p>+41 22 301 54 43</p><p><a href="https://culture-accessible.ch/lieux/cinema-bio" target="_blank">Accessibilité</a></p></div>
+      
+  </div>
+<div id="block-plusb-horairescafe" class="col col-sm-6 col-md-4 block block-block-content block-block-content1acf351e-6b1a-4643-83cc-ca5580f416a1">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><h2>Café du Bio</h2><p>Lundi et mardi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 13:30–21:30<br>Mercredi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 8:15–21:30<br>Jeudi et vendredi &nbsp; &nbsp; &nbsp;13:30–22:30<br>Samedi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 8:15–22:30<br>Dimanche &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 13:30–21:00</p><p><a href="/node/815">Voir la carte</a></p></div>
+      
+  </div>
+<div id="block-plusb-reseauxsociauxadmin" class="col-sm-6 col-md-4 block block-block-content block-block-content88069409-75c3-4369-b6d2-57749084db94">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p class="lead">
+    Partenaires
+</p>
+<p>
+    <a class="b-partner b-partner-carouge" href="https://www.carouge.ch/" target="_blank">Ville de Carouge</a> <a class="b-partner b-partner-europa" href="https://www.europa-cinemas.org/" target="_blank">Europa Cinemas</a> <a class="b-partner b-partner-loro" href="https://www.loro.ch/" target="_blank">Loterie Romande</a>
+</p>
+<p class="lead">
+    Réseaux sociaux
+</p>
+<p class="social-link">
+    <a href="https://www.instagram.com/cinema_bio" target="_blank">Instagram</a> <a href="https://www.facebook.com/cinemabio/" target="_blank">Facebook</a>
+</p></div>
+      
+  </div>
+<div id="block-plusb-avertissement" class="col-sm-6 col-md-4 block block-block-content block-block-contentda33f4e9-25a6-4636-a02d-9ce96fe09f96">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p class="lead">Cliquez sur l'heure d'une séance&nbsp;<br>pour acheter un billet.</p><p class="lead">Prière de ne pas boire&nbsp;<br>ni manger dans les salles.&nbsp;<br>Merci d'avance et bon film !</p></div>
+      
+  </div>
+<div id="block-plusb-newsletter" class="col-sm-6 col-md-4 block block-block-content block-block-contentc43b1988-751e-4ebc-8070-89c9636ab093">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p class="lead">Newsletter</p>
+<script type="text/javascript" src="https://webform.statslive.info/ow/eyJpdiI6ImFTcmhleEF1TjJSdFFcL0pzUm1uZEs5OHNsNThMNVBMY3hBQkFOMkZrUjJNPSIsIm1hYyI6IjMwMTgyYTYyOThmNWI0M2NjNDE0NzE2ZTVkZDA3NjYwMGNmYjgwMjZjNTdkYTgwMjBlMDE2ODRmNDU3OTU3YmUiLCJ2YWx1ZSI6ImkxZld6bG5qOVpBVUt6REdDZlpONVhXU2Y0SE9wc1ZHZFA5SWNXQ2p4bTQ9In0="></script></div>
+      
+  </div>
+<nav role="navigation" aria-labelledby="block-plusb-pieddepage-menu" id="block-plusb-pieddepage" class="col-lg-8 block block-menu navigation menu--footer">
+            
+  <h2 class="visually-hidden" id="block-plusb-pieddepage-menu">Pied de page</h2>
+  
+
+        
+							<ul class="navbar-nav">
+								                        <li class="nav-item">
+                <a href="/conditions-generales" class="nav-link" data-drupal-link-system-path="node/800">Politique de confidentialité</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/conditions-generales-de-vente-en-ligne" class="nav-link" data-drupal-link-system-path="node/804">CGV Billetterie</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/films" class="nav-link" data-drupal-link-system-path="films">Archives</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="https://www.advance-ticket.ch/omniticket/cinema-bio" class="nav-link">Billetterie</a>
+                            </li>
+        		</ul>
+	
+
+
+  </nav>
+<div id="block-plusb-copyright" class="col-lg-4 block block-block-content block-block-content08062acf-cb82-41bf-a37e-2897e71bb903">
+  
+    
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>© Cinéma Bio - Site web par <a href="https://plusproduit.com/" target="_blank">+P</a></p></div>
+      
+  </div>
+
+  </div>
+
+                            </div>
+						</div>
+					</div>
+				
+			</footer>
+		
+        </div>
+	    	</div>
+	</div>
+
+  <div class="region region-help">
+    <div data-drupal-messages-fallback class="hidden"></div>
+
+  </div>
+
+
+
+	<div id="p-offcanvas-cover" class="bg-primary bg-opacity-25"></div>
+	<div id="p-offcanvas">
+		<div class="p-offcanvas-overflow bg-primary text-light">
+			<div class="p-offcanvas-content overflow-hidden container-fluid max-width">
+				  <div class="region region-offcanvas">
+    <nav role="navigation" aria-labelledby="block-plusb-navigationprincipale-menu" id="block-plusb-navigationprincipale" class="block block-menu navigation menu--main">
+            
+  <h2 class="visually-hidden" id="block-plusb-navigationprincipale-menu">Navigation principale</h2>
+  
+
+        
+							<ul class="navbar-nav">
+								                        <li class="nav-item">
+                <a href="/" class="nav-link" data-drupal-link-system-path="&lt;front&gt;">Accueil</a>
+                            </li>
+        			                        <li class="nav-item active">
+                <a href="/programme" class="nav-link active is-active" data-drupal-link-system-path="node/806" aria-current="page">Programme</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/prochainement" class="nav-link" data-drupal-link-system-path="node/1199">Prochainement</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/evenements" class="nav-link" data-drupal-link-system-path="node/807">Événements</a>
+                            </li>
+        			                        <li class="nav-item menu-item--expanded">
+                <a href="/cine-clubs" class="nav-link dropdown-toggle" data-drupal-link-system-path="node/803">Ciné-clubs</a>
+                                    							<ul>
+							                        <li class="nav-item">
+                <a href="/cine-clubs/cine-art" class="nav-link" data-drupal-link-system-path="taxonomy/term/9">Ciné-Art</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cine-clubs/cine-enfants" class="nav-link" data-drupal-link-system-path="taxonomy/term/6">Ciné-Enfants</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cine-clubs/cinemad" class="nav-link" data-drupal-link-system-path="taxonomy/term/8">CinéMàD</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cine-clubs/cine-seniors" class="nav-link" data-drupal-link-system-path="taxonomy/term/7">Ciné-Seniors</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cine-clubs/cap-sur-le-monde" class="nav-link" data-drupal-link-system-path="taxonomy/term/13">Cap Sur le Monde</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/evenements/2426-bio-sous-les-etoiles" class="nav-link" data-drupal-link-system-path="node/2426">Bio sous les étoiles</a>
+                            </li>
+        		</ul>
+	
+                            </li>
+        			                        <li class="nav-item menu-item--expanded">
+                <a href="/infos-pratiques" class="nav-link dropdown-toggle" data-drupal-link-system-path="node/808">Infos pratiques</a>
+                                    							<ul>
+							                        <li class="nav-item">
+                <a href="https://www.advance-ticket.ch/omniticket/cinema-bio" class="nav-link">Billetterie</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cafe-du-bio" class="nav-link" data-drupal-link-system-path="node/815">Café du Bio</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/cinemargand" class="nav-link" data-drupal-link-system-path="node/816">CinéMargand</a>
+                            </li>
+        			                        <li class="nav-item">
+                <a href="/les-amies-du-cinema-bio" class="nav-link" data-drupal-link-system-path="node/1971">Les Ami.e.s du Cinéma Bio</a>
+                            </li>
+        		</ul>
+	
+                            </li>
+        		</ul>
+	
+
+
+  </nav>
+
+  </div>
+
+			</div>
+		</div>
+	</div>
+
+  </div>
+
+        
+        <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/806","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"fr"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"user":{"uid":0,"permissionsHash":"5c7365615c66f610ee31d1d85d70b1384bd9fde4a2e12b28d9e28b782837e353"}}</script>
+<script src="/core/assets/vendor/jquery/jquery.min.js?v=4.0.0"></script>
+<script src="/sites/default/files/js/js_aD10yss9c2VZJYYEb7jUh6zeuQb_d5R-STUv39pANls.js?scope=footer&amp;delta=1&amp;language=fr&amp;theme=plusb&amp;include=eJwryCktTtJPLi0uyc8FAB_0BPE"></script>
+<script src="//cdn.jsdelivr.net/npm/gsap@3.14/dist/gsap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollTrigger.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollSmoother.min.js"></script>
+<script src="/sites/default/files/js/js_forOX1VJLLFTXZ4eM5aQ-gcgk_7QmLYl3hkQuqD83t0.js?scope=footer&amp;delta=5&amp;language=fr&amp;theme=plusb&amp;include=eJwryCktTtJPLi0uyc8FAB_0BPE"></script>
+<script src="//cdn.jsdelivr.net/npm/gsap@3.14/dist/ScrollToPlugin.min.js"></script>
+<script src="/sites/default/files/js/js_It0E97XPXRNplfKIG1SyPMWozJ5fecqL0oGQusdQEU8.js?scope=footer&amp;delta=7&amp;language=fr&amp;theme=plusb&amp;include=eJwryCktTtJPLi0uyc8FAB_0BPE"></script>
+<script src="//cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/grained@0.0.2/grained.min.js"></script>
+<script src="/sites/default/files/js/js_BT5CEn7bRM7W6nwKRC8Ny1hwmEHc4W6v7UYQZBkCe0g.js?scope=footer&amp;delta=10&amp;language=fr&amp;theme=plusb&amp;include=eJwryCktTtJPLi0uyc8FAB_0BPE"></script>
+
+    </body>
+</html>
