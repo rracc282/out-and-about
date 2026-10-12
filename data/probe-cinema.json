@@ -1,0 +1,44 @@
+{
+ "https://outnow.ch/fr/Programmes-cinema/Geneve/": {
+  "status": 403,
+  "bytes": 5835,
+  "naza": 0,
+  "ld": 0,
+  "langs": [],
+  "sample": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-Wdqbm2l0dc5KnVMHY7kRBG&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-src-attr &#39;none&#39;; style-src &#39;unsafe-inline&#39;; img-src &#39;self&#39; https://challenges"
+ },
+ "https://outnow.ch/en/Cinema-schedules/Zurich/": {
+  "status": 403,
+  "bytes": 5832,
+  "naza": 0,
+  "ld": 0,
+  "langs": [],
+  "sample": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-imQOJeFLvzSsudKtLaimIK&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-src-attr &#39;none&#39;; style-src &#39;unsafe-inline&#39;; img-src &#39;self&#39; https://challenges"
+ },
+ "https://outnow.ch/fr/Programmes-cinema/Geneve/2026-10-14/": {
+  "status": 403,
+  "bytes": 5868,
+  "naza": 0,
+  "ld": 0,
+  "langs": [],
+  "sample": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-6wQDuj9np1z7ZUblG1l0nm&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-src-attr &#39;none&#39;; style-src &#39;unsafe-inline&#39;; img-src &#39;self&#39; https://challenges"
+ },
+ "https://www.cineman.ch/en/showtimes/city/geneva/": {
+  "status": 404,
+  "bytes": 89119,
+  "naza": 0,
+  "ld": 0,
+  "langs": [],
+  "sample": "<!doctype html> <html class=\"no-js\" lang=\"de\"> <head> <meta charset=\"utf-8\"> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> <title>404 Not Found - Cineman</title> <meta name=\"description\" content=\"Cineman - Nach dem Film ist vor dem Film. Kinoprogramme, Filmkritiken, DVD, Poster, Trailer, Interviews, Startlisten, Filmnews, Charts, Wettbewerbe und vieles mehr.\"> <meta name=\"keywords\" content=\"Kino, Film, Demnächst, Trailer, Kinoprogramm, Schweiz, Programm, Zürich, Bern, Basel, Kritik, Filmkritik, Wettbewerb, Bild, Openair\"/> <meta name=\"author\" content=\"Cinergy AG\"/> <meta name=\"revisit-"
+ },
+ "https://www.pathe.ch/fr/cinemas/cinema-pathe-balexert": {
+  "status": 200,
+  "bytes": 1746335,
+  "naza": 2,
+  "ld": 3,
+  "langs": [
+   "OV"
+  ],
+  "sample": "es\":[\"Animation\",\"Family\"],\"genresSlug\":[\"animation\",\"family\"],\"warning\":null,\"directors\":[\"Cal Brunker\"],\"flag\":null,\"flagColor\":null,\"next24ShowtimesCount\":5,\"notComingSoon\":false,\"salesOpeningDatetime\":null,\"showtimesDisplayDatetime\":null,\"backgroundDominantColor\":\"#2a240e\",\"labelFlagColor\":null,\"originalReleaseAt\":null,\"showRef\":\"HO00003995\",\"specialEvent\":false,\"labelCategory\":null},{\"slug\":\"naza-55507\",\"title\":\"NAZA\",\"releaseAt\":{\"CH_FR\":\"2026-09-30\",\"CH_DE\":\"2026-10-01\"},\"posterPath\":{\"lg\":\"https://media.pathe.ch/movie/alex/HO00005253/poster/lg/1/movie&uuid=E7E14D46-2143-46BD-9D0D-AD3D37742367\",\"md\":\"https://media.pathe.ch/movie/alex/HO00005253/poster/md/1/movie&uuid=E7E14D46-2143-46BD-9D0D-AD3D37742367\"},\"backgroundPath\":{\"lg\":\"https://media.pathe.ch/movie/mx/55507/lg/27/media\",\"md\":\"https://media.pathe.ch/movie/mx/55507/md/27/media\",\"sm\":\"https://media.pathe.ch/movie/mx/55507/sm/27/media\"},\"label\":null,\"contentRating\":{\"ref\":\"16/18\",\"description\":\"Âge légal 16/18 ans\",\"extendedDes"
+ }
+}
