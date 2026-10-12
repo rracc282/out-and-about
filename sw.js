@@ -1,5 +1,5 @@
 /* Out & About service worker: offline copy of the app + push notifications */
-const CACHE = "oa-v52";
+const CACHE = "oa-v53";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL.map(u => new Request(u, { cache: "reload" }))))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
@@ -23,7 +23,9 @@ self.addEventListener("push", e => {
 self.addEventListener("notificationclick", e => {
   e.notification.close();
   const dd = e.notification.data || {};
-  const target = dd.rate && e.action ? "./#rate=" + encodeURIComponent(dd.rate) + ":" + e.action : (dd.url || "./");
+  let target = dd.rate && e.action ? "./#rate=" + encodeURIComponent(dd.rate) + ":" + e.action : (dd.url || "./");
+  /* plain messages (no event link): open the full text inside the app */
+  if (!(dd.rate && e.action) && (!dd.url || /^\.?\/?(#rate)?$/.test(dd.url))) target = "./#note=" + encodeURIComponent(JSON.stringify({ t: e.notification.title || "", b: e.notification.body || "" }));
   const url = new URL(target, self.registration.scope).href;
   e.waitUntil(clients.matchAll({ type: "window", includeUncontrolled: true }).then(cs => {
     for (const c of cs) if (c.url.startsWith(self.registration.scope)) { c.navigate(url); return c.focus(); }

@@ -773,7 +773,7 @@ nav.tabs [data-tab="big"][aria-selected="true"] .cnote{color:#e0a100}
 .searchrow .iconbtn[aria-pressed="true"]{background:var(--p)!important;border-color:var(--p)!important}
 #quick[hidden]{display:none!important}
 body[data-view="big"] #chipbox .filters[aria-label="Filter by type"]{display:none!important}
-</style>
+.notebox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:20px}.nb-card{background:var(--surface);color:var(--ink);border-radius:16px;padding:20px 20px 16px;max-width:420px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.25)}.nb-k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.nb-card h3{margin:6px 0 8px;font-size:19px}.nb-card p{margin:0 0 16px;font-size:15.5px;line-height:1.5}.nb-close{display:block;width:100%;font:inherit;font-weight:700;font-size:15px;padding:11px;border:0;border-radius:10px;background:var(--p);color:#fff;cursor:pointer}</style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
 <div class="wrap">
@@ -2717,6 +2717,13 @@ document.querySelectorAll("nav.tabs [data-tab]").forEach(b=>b.addEventListener("
     el.className="todayplan";el.insertAdjacentHTML("beforeend",fs.map(x=>{const c=CN().cinemas[x.c]||{n:x.cn,q:""};return '<div class="tp-item"><div class="k">✓ Today · '+x.tm+'</div><b>🎬 '+esc(x.t)+'</b><span class="w">'+esc(c.n+(c.q?", "+c.q:""))+'</span><div class="links"><a class="lnk" href="'+mapsURL(c.n+", "+(c.q||""))+'" target="_blank" rel="noopener">Maps ↗</a>'+(x.u?'<a class="lnk" href="'+esc(x.u)+'" target="_blank" rel="noopener">Tickets ↗</a>':'')+'</div></div>'}).join(""))};
   try{render()}catch(e){}
 })();
+
+/* notification messages open in full inside the app (#note=...) */
+(function(){function showNote(){const h=location.hash||"";if(!h.startsWith("#note="))return;let n={};try{n=JSON.parse(decodeURIComponent(h.slice(6)))}catch(e){return}
+  try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}
+  const o=document.createElement("div");o.className="notebox";o.innerHTML='<div class="nb-card" role="dialog" aria-modal="true"><div class="nb-k">🔔 Message</div><h3>'+esc(n.t||"Out & About")+'</h3><p>'+esc(n.b||"").replace(/\n/g,"<br>")+'</p><button class="nb-close">Close</button></div>';
+  document.body.appendChild(o);o.addEventListener("click",ev=>{if(ev.target===o||ev.target.closest(".nb-close"))o.remove()})}
+  window.addEventListener("hashchange",showNote);setTimeout(showNote,0)})();
 /* always open at the top of This week (unless opened from a notification link) */
 try{history.scrollRestoration="manual"}catch(e){}
 if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}catch(e){}window.scrollTo(0,0)},0);window.addEventListener("load",()=>setTimeout(()=>window.scrollTo(0,0),60));window.addEventListener("pageshow",()=>{if(!location.hash)window.scrollTo(0,0)})}
