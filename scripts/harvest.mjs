@@ -8,6 +8,15 @@ const html = rd("index.html");
 const report = { sources: [], kept: 0, dropped: {} };
 const samples = {};
 const drop = (why, x) => { report.dropped[why] = (report.dropped[why] || 0) + 1; if (x) { const a = samples[why] = samples[why] || []; if (a.length < 6) a.push([x.title, x.start, x.place, x.geo, x.src && x.src.url].map(v => String(v ?? "").slice(0, 70))); } };
+/* age range mentioned by the organiser (mostly Meetup): "ages 25-40", "30s and 40s", "25 to 45 years", "30+ only" */
+function ageOf(t) {
+  t = clean(t || ""); const ok = (a, b) => a >= 16 && a <= 80 && (!b || (b > a && b <= 90)); let m;
+  if ((m = t.match(/\b(?:ages?|aged|age group|age range|âge|alter|for people|between)\s*(?:of|from|:)?\s*(\d{2})\s*(?:-|–|to|and|bis|à|et)\s*(\d{2})/i)) && ok(+m[1], +m[2])) return m[1] + "–" + m[2];
+  if ((m = t.match(/\b(\d{2})\s*(?:-|–|to|bis|à)\s*(\d{2})\s*(?:y\/?o\b|years?|yrs|ans|jahre|year-olds)/i)) && ok(+m[1], +m[2])) return m[1] + "–" + m[2];
+  if ((m = t.match(/\b(\d)0s\s*(?:&|and|,|-|–|to|et|und)\s*(?:early\s*)?(\d)0s\b/i)) && ok(+m[1] * 10, +m[2] * 10 + 9)) return m[1] + "0s–" + m[2] + "0s";
+  if ((m = t.match(/\b(?:ages?|aged|age|âge|alter)\s*:?\s*(\d{2})\s*\+|\b(\d{2})\s*\+\s*(?:only|years?|y\/?o|ans|jahre)\b/i))) { const a = +(m[1] || m[2]); if (ok(a) && a > 18) return a + "+"; }
+  return "";
+}
 
 /* ---------- dates (Europe/Zurich) ---------- */
 const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Zurich", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false });
@@ -202,7 +211,8 @@ for (const x of raw) {
   const cat = catsOf(title, x.desc, x.src.kind);
   const tE = e && e.time && !multi ? "–" + e.time : "";
   const whenTxt = p === "on" ? `Until ${nice(lastDay)}` : p === "big" ? `${nice(day)}${s.time ? " · " + s.time : ""}` : `${DN[dow(day)]} ${+day.slice(8)}${s.time && s.time !== "00:00" ? " · " + s.time + tE : ""}`;
-  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: clean(x.place).slice(0, 120) || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: short(x.desc) || "", auto: 1, src: SRCNAME[host(url)] || host(url) };
+  const _ag = ageOf(title + " " + (x.desc || ""));
+  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: clean(x.place).slice(0, 120) || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: (_ag ? "Age range: " + _ag + ". " : "") + (short(x.desc) || ""), auto: 1, src: SRCNAME[host(url)] || host(url) };
   if (x.geo) ev.geo = x.geo.map(v => Math.round(v * 1e4) / 1e4);
   if (multi) ev.dayEnd = e.day; if (free) ev.free = true; if (cat.includes("chien")) ev.dog = true;
   if (x.src.kind === "meetup" && x.organizer) ev.grp = clean(x.organizer);

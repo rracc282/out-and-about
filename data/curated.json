@@ -1,5 +1,39 @@
 {
   "add": [
-    {"id": "ge-comedie-club-tour-oct14", "day": "2026-10-14", "dayEnd": "2026-10-15", "when": "Wed 14 – Thu 15 Oct · evening (time on the ticket page)", "title": "Comédie Club Tour \"Suisse\" — stand-up in French", "kind": "Comedy show · in French", "url": "https://infomaniak.events/en-ch/comedy/geneva", "place": "Audio Club, Genève", "price": "from CHF 25", "cat": ["culture"], "zone": "ge", "city": "ge", "desc": "Touring French-language stand-up night with several comedians from the Comédie Club scene. Last tickets on Infomaniak."}
+    {
+      "id": "ge-comedie-club-tour-oct14",
+      "day": "2026-10-14",
+      "dayEnd": "2026-10-15",
+      "when": "Wed 14 – Thu 15 Oct · evening (time on the ticket page)",
+      "title": "Comédie Club Tour \"Suisse\" — stand-up in French",
+      "kind": "Comedy show · in French",
+      "url": "https://infomaniak.events/en-ch/comedy/geneva",
+      "place": "Audio Club, Genève",
+      "price": "from CHF 25",
+      "cat": [
+        "culture"
+      ],
+      "zone": "ge",
+      "city": "ge",
+      "desc": "Touring French-language stand-up night with several comedians from the Comédie Club scene. Last tickets on Infomaniak."
+    },
+    {
+      "id": "ge-everybodys-perfect-2026",
+      "day": "2026-10-09",
+      "dayEnd": "2026-10-18",
+      "when": "9–18 Oct · screenings daily",
+      "title": "Everybody's Perfect — Geneva Queer Film Festival",
+      "kind": "Film festival",
+      "url": "https://www.everybodysperfect.ch/",
+      "place": "Maison des arts du Grütli, Rue du Général-Dufour 16, Genève",
+      "price": "Tickets per screening",
+      "cat": [
+        "culture",
+        "fete"
+      ],
+      "zone": "ge",
+      "city": "ge",
+      "desc": "Geneva's international LGBTIQ+ film festival: ten days of features and shorts at the Cinémas du Grütli, plus talks, performances, workshops and party nights. Many films have English subtitles. Programme and tickets on everybodysperfect.ch."
+    }
   ]
 }
