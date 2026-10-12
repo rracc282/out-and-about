@@ -857,7 +857,7 @@ body[data-view="big"] #chipbox .filters[aria-label="Filter by type"]{display:non
   </div>
 </section>
 <div class="filterpanel" id="filterpanel">
-  <div class="searchrow"><input type="search" id="q" placeholder="Search" aria-label="Search all events" autocomplete="off"><button class="chip iconbtn" data-q="f-rain" aria-pressed="false" aria-label="Rainproof only" title="Rainproof only">☔</button><button class="chip iconbtn" id="swipebtn" aria-label="Help me choose" title="Help me choose">🃏</button><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
+  <div class="searchrow"><input type="search" id="q" placeholder="Search" aria-label="Search all events" autocomplete="off"><button class="chip iconbtn" data-q="f-rain" aria-pressed="false" aria-label="Rainproof only" title="Rainproof only">☔</button><button class="chip iconbtn" id="swipebtn" aria-label="Just pick one for me" title="Just pick one for me">🎲</button><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
 <div class="quickrow" id="quick" hidden><button class="chip pickme" id="pickme" hidden>🎲 Pick</button></div>
   <div id="chipbox"><div class="sheethead"><span>Filters</span><span><button class="aclear" id="sheetclear">Clear</button> <button id="sheetdone">Done</button></span></div>
   <div class="filters" role="group" aria-label="Filter by type">
@@ -2478,7 +2478,8 @@ function openSwipe(){const L=swipeList();let i=0;const o=document.createElement(
   let x0=null;o.addEventListener("pointerdown",ev=>{if(ev.target.closest("#swc"))x0=ev.clientX});o.addEventListener("pointermove",ev=>{if(x0===null)return;const c=document.getElementById("swc");if(c)c.style.transform="translateX("+(ev.clientX-x0)+"px) rotate("+((ev.clientX-x0)/25)+"deg)"});
   o.addEventListener("pointerup",ev=>{if(x0===null)return;const dx=ev.clientX-x0;x0=null;const c=document.getElementById("swc");if(c)c.style.transform="";if(dx>90)act("yes");else if(dx<-90)act("no")});
 }
-document.getElementById("swipebtn").addEventListener("click",openSwipe);
+/* swipe is switched off for now (openSwipe kept for later); the 🎲 button picks one event */
+document.getElementById("swipebtn").addEventListener("click",()=>{pickForMe();const pr=document.getElementById("pickresult");if(pr)setTimeout(()=>pr.scrollIntoView({block:"center",behavior:"smooth"}),50)});
 setTimeout(()=>{try{render()}catch(e){}},0);
 
 if(window.AUTO&&AUTO.twx)Object.assign(TWX,AUTO.twx);try{renderTrips()}catch(e){}
