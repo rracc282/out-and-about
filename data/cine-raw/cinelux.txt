@@ -1,0 +1,751 @@
+200 https://www.cinelux.ch/
+
+<!DOCTYPE html>
+<html lang="fr-FR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cinélux</title>
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<link rel="pingback" href="https://www.cinelux.ch/xmlrpc.php">
+					<link rel="shortcut icon"
+				  href="https://www.cinelux.ch/wp-content/uploads/2025/03/Logo-blanc-500-x-500-px.png" />
+		
+		<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Cinélux &raquo; Flux" href="https://www.cinelux.ch/feed/" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-color]){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="wp-block-image-inline-css">
+.wp-block-image>a,.wp-block-image>figure>a{display:inline-block}.wp-block-image img{box-sizing:border-box;height:auto;max-width:100%;vertical-align:bottom}@media not (prefers-reduced-motion){.wp-block-image img.hide{visibility:hidden}.wp-block-image img.show{animation:show-content-image .4s}}.wp-block-image[style*=border-radius] img,.wp-block-image[style*=border-radius]>a{border-radius:inherit}.wp-block-image.has-custom-border img{box-sizing:border-box}.wp-block-image.aligncenter{text-align:center}.wp-block-image.alignfull>a,.wp-block-image.alignwide>a{width:100%}.wp-block-image.alignfull img,.wp-block-image.alignwide img{height:auto;width:100%}.wp-block-image .aligncenter,.wp-block-image .alignleft,.wp-block-image .alignright,.wp-block-image.aligncenter,.wp-block-image.alignleft,.wp-block-image.alignright{display:table}.wp-block-image .aligncenter>figcaption,.wp-block-image .alignleft>figcaption,.wp-block-image .alignright>figcaption,.wp-block-image.aligncenter>figcaption,.wp-block-image.alignleft>figcaption,.wp-block-image.alignright>figcaption{caption-side:bottom;display:table-caption}.wp-block-image .alignleft{float:left;margin:.5em 1em .5em 0}.wp-block-image .alignright{float:right;margin:.5em 0 .5em 1em}.wp-block-image .aligncenter{margin-left:auto;margin-right:auto}.wp-block-image :where(figcaption){margin-bottom:1em;margin-top:.5em}.wp-block-image.is-style-circle-mask img{border-radius:9999px}@supports ((-webkit-mask-image:none) or (mask-image:none)) or (-webkit-mask-image:none){.wp-block-image.is-style-circle-mask img{border-radius:0;-webkit-mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-mode:alpha;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}}:root :where(.wp-block-image.is-style-rounded img,.wp-block-image .is-style-rounded img){border-radius:9999px}.wp-block-image figure{margin:0}.wp-lightbox-container{display:flex;flex-direction:column;position:relative}.wp-lightbox-container img{cursor:zoom-in}.wp-lightbox-container img:hover+button{opacity:1}.wp-lightbox-container button{align-items:center;backdrop-filter:blur(16px) saturate(180%);background-color:#5a5a5a40;border:none;border-radius:4px;cursor:zoom-in;display:flex;height:20px;justify-content:center;opacity:0;padding:0;position:absolute;right:16px;text-align:center;top:16px;width:20px;z-index:100}@media not (prefers-reduced-motion){.wp-lightbox-container button{transition:opacity .2s ease}}.wp-lightbox-container button:focus-visible{outline:3px auto #5a5a5a40;outline:3px auto -webkit-focus-ring-color;outline-offset:3px}.wp-lightbox-container button:hover{cursor:pointer;opacity:1}.wp-lightbox-container button:focus{opacity:1}.wp-lightbox-container button:focus,.wp-lightbox-container button:hover,.wp-lightbox-container button:not(:hover):not(:active):not(.has-background){background-color:#5a5a5a40;border:none}.wp-lightbox-overlay{box-sizing:border-box;cursor:zoom-out;height:100vh;left:0;overflow:hidden;position:fixed;top:0;visibility:hidden;width:100%;z-index:100000}.wp-lightbox-overlay .wp-lightbox-close-button{align-items:center;cursor:pointer;display:flex;font-family:inherit;gap:8px;justify-content:center;line-height:1;min-height:40px;min-width:40px;padding:0 4px;position:absolute;right:calc(env(safe-area-inset-right) + 16px);top:calc(env(safe-area-inset-top) + 16px);z-index:5000000}.wp-lightbox-overlay .wp-lightbox-close-button:focus,.wp-lightbox-overlay .wp-lightbox-close-button:hover,.wp-lightbox-overlay .wp-lightbox-close-button:not(:hover):not(:active):not(.has-background){background:none;border:none}.wp-lightbox-overlay .wp-lightbox-close-button:has(.wp-lightbox-close-text:not([hidden])) .wp-lightbox-close-icon svg{height:1em;width:1em}.wp-lightbox-overlay .wp-lightbox-close-icon svg{display:block}.wp-lightbox-overlay .wp-lightbox-navigation-button-next,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{align-items:center;bottom:16px;cursor:pointer;display:flex;font-family:inherit;gap:4px;justify-content:center;line-height:1;min-height:40px;min-width:40px;padding:0 8px;position:absolute;z-index:2000002}.wp-lightbox-overlay .wp-lightbox-navigation-button-next[hidden],.wp-lightbox-overlay .wp-lightbox-navigation-button-prev[hidden]{display:none}@media (min-width:960px){.wp-lightbox-overlay .wp-lightbox-navigation-button-next,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{bottom:50%;transform:translateY(-50%)}}.wp-lightbox-overlay .wp-lightbox-navigation-button-next:focus,.wp-lightbox-overlay .wp-lightbox-navigation-button-next:hover,.wp-lightbox-overlay .wp-lightbox-navigation-button-next:not(:hover):not(:active):not(.has-background),.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:focus,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:hover,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:not(:hover):not(:active):not(.has-background){background:none;border:none;padding:0 8px}.wp-lightbox-overlay .wp-lightbox-navigation-button-next:has(.wp-lightbox-navigation-text:not([hidden])) .wp-lightbox-navigation-icon svg,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:has(.wp-lightbox-navigation-text:not([hidden])) .wp-lightbox-navigation-icon svg{display:block;height:1.5em;width:1.5em}.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{left:calc(env(safe-area-inset-left) + 16px)}.wp-lightbox-overlay .wp-lightbox-navigation-button-next{right:calc(env(safe-area-inset-right) + 16px)}.wp-lightbox-overlay .wp-lightbox-navigation-icon svg{vertical-align:middle}.wp-lightbox-overlay .lightbox-image-container{height:var(--wp--lightbox-container-height);left:50%;overflow:hidden;position:absolute;top:50%;transform:translate(-50%,-50%);transform-origin:top left;width:var(--wp--lightbox-container-width);z-index:2000001}.wp-lightbox-overlay .wp-block-image{align-items:center;box-sizing:border-box;display:flex;height:100%;justify-content:center;margin:0;position:relative;transform-origin:0 0;width:100%;z-index:3000000}.wp-lightbox-overlay .wp-block-image img{height:var(--wp--lightbox-image-height);min-height:var(--wp--lightbox-image-height);min-width:var(--wp--lightbox-image-width);width:var(--wp--lightbox-image-width)}.wp-lightbox-overlay .wp-block-image figcaption{display:none}.wp-lightbox-overlay button{background:none;border:none}.wp-lightbox-overlay .scrim{background-color:#fff;height:100%;opacity:.9;position:absolute;width:100%;z-index:2000000}.wp-lightbox-overlay.active{visibility:visible}@media not (prefers-reduced-motion){.wp-lightbox-overlay.active{animation:turn-on-visibility .25s both}.wp-lightbox-overlay.active img{animation:turn-on-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active){animation:turn-off-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active) img{animation:turn-off-visibility .25s both}.wp-lightbox-overlay.zoom.active{animation:none;opacity:1;visibility:visible}.wp-lightbox-overlay.zoom.active .lightbox-image-container{animation:lightbox-zoom-in .4s}.wp-lightbox-overlay.zoom.active .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.active .scrim{animation:turn-on-visibility .4s forwards}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active){animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container{animation:lightbox-zoom-out .4s}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .scrim{animation:turn-off-visibility .4s forwards}}@keyframes show-content-image{0%{visibility:hidden}99%{visibility:hidden}to{visibility:visible}}@keyframes turn-on-visibility{0%{opacity:0}to{opacity:1}}@keyframes turn-off-visibility{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible}to{opacity:0;visibility:hidden}}@keyframes lightbox-zoom-in{0%{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale))}to{transform:translate(-50%,-50%) scale(1)}}@keyframes lightbox-zoom-out{0%{transform:translate(-50%,-50%) scale(1);visibility:visible}99%{visibility:visible}to{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale));visibility:hidden}}
+/*# sourceURL=https://www.cinelux.ch/wp-includes/blocks/image/style.min.css */
+</style>
+
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='contact-form-7-css' href='https://www.cinelux.ch/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.7' media='all' />
+<link rel='stylesheet' id='wpa-css-css' href='https://www.cinelux.ch/wp-content/plugins/honeypot/includes/css/wpa.css?ver=2.4.02' media='all' />
+<link rel='stylesheet' id='wpun-css' href='https://www.cinelux.ch/wp-content/plugins/wp-universal-newsletter/public/css/wp-newsletter-public.css?ver=1.0.0' media='all' />
+<link rel='stylesheet' id='resp-video-style-css' href='https://www.cinelux.ch/wp-content/plugins/responsive-video-shortcodes/assets/respvid.css?ver=7.0.4' media='all' />
+<link rel='stylesheet' id='alizee-bootstrap-css' href='https://www.cinelux.ch/wp-content/themes/alizee-pro/bootstrap/css/bootstrap.min.css?ver=1' media='all' />
+<link rel='stylesheet' id='alizee-style-css' href='https://www.cinelux.ch/wp-content/themes/alizee-pro/style.css?ver=7.0.4' media='all' />
+<style id="alizee-style-inline-css">
+.main-navigation a, .social-navigation li a, .entry-title a:hover, .widget-title, .widgettitle, .social-widget li a::before, .author-social a, .view-all, .view-all a { color: #fbb829; }
+.main-navigation li:hover, .post-navigation .nav-previous, .post-navigation .nav-next, .paging-navigation .nav-previous, .paging-navigation .nav-next, #today, .tagcloud a, .entry-thumb, .comment-respond input[type="submit"], .cat-link, .search-submit { background-color: #fbb829; }
+.widget-title, .widgettitle, .entry-thumb, .author-name, .site-header, .page-header, blockquote { border-color: #fbb829; }
+.sidebar-toggle, .slide-thumb { border-right-color: #fbb829; }
+.social-toggle { border-left-color: #fbb829; }
+.site-title a { color: #ffffff; }
+.site-description { color: #b9b9b9; }
+body { color: ; }
+.main-navigation, .main-navigation ul ul { background-color: rgba(60,60,60,0.8); }
+h1, h2, h3, h4, h5, h6 { font-family: Roboto Condensed; }
+body { font-family: Roboto Condensed; }
+.home .post-number-1, .home .post-number-1 .entry-thumb, .home .post-number-1 .cat-link, .home .post-number-1 .flex-direction-nav a { background-color: #f9aa00 !important; }
+.home .post-number-1 .entry-thumb { border-color: #f9aa00; }
+.archive .post-number-1, .archive .post-number-1 .entry-thumb, .archive .post-number-1 .cat-link, .archive .post-number-1 .flex-direction-nav a { background-color: #f9aa00 !important; }
+.archive .post-number-1 .entry-thumb { border-color: #f9aa00; }
+.home .post-number-2, .home .post-number-2 .entry-thumb, .home .post-number-2 .cat-link, .home .post-number-2 .flex-direction-nav a { background-color: #00dd0e !important; }
+.home .post-number-2 .entry-thumb { border-color: #00dd0e; }
+.archive .post-number-2, .archive .post-number-2 .entry-thumb, .archive .post-number-2 .cat-link, .archive .post-number-2 .flex-direction-nav a { background-color: #00dd0e !important; }
+.archive .post-number-2 .entry-thumb { border-color: #00dd0e; }
+.home .post-number-3, .home .post-number-3 .entry-thumb, .home .post-number-3 .cat-link, .home .post-number-3 .flex-direction-nav a { background-color: #006fd8 !important; }
+.home .post-number-3 .entry-thumb { border-color: #006fd8; }
+.archive .post-number-3, .archive .post-number-3 .entry-thumb, .archive .post-number-3 .cat-link, .archive .post-number-3 .flex-direction-nav a { background-color: #006fd8 !important; }
+.archive .post-number-3 .entry-thumb { border-color: #006fd8; }
+.home .post-number-4, .home .post-number-4 .entry-thumb, .home .post-number-4 .cat-link, .home .post-number-4 .flex-direction-nav a { background-color: #e500ce !important; }
+.home .post-number-4 .entry-thumb { border-color: #e500ce; }
+.archive .post-number-4, .archive .post-number-4 .entry-thumb, .archive .post-number-4 .cat-link, .archive .post-number-4 .flex-direction-nav a { background-color: #e500ce !important; }
+.archive .post-number-4 .entry-thumb { border-color: #e500ce; }
+.home .post-number-5, .home .post-number-5 .entry-thumb, .home .post-number-5 .cat-link, .home .post-number-5 .flex-direction-nav a { background-color: #9500e0 !important; }
+.home .post-number-5 .entry-thumb { border-color: #9500e0; }
+.archive .post-number-5, .archive .post-number-5 .entry-thumb, .archive .post-number-5 .cat-link, .archive .post-number-5 .flex-direction-nav a { background-color: #9500e0 !important; }
+.archive .post-number-5 .entry-thumb { border-color: #9500e0; }
+.home .post-number-6, .home .post-number-6 .entry-thumb, .home .post-number-6 .cat-link, .home .post-number-6 .flex-direction-nav a { background-color: #e50000 !important; }
+.home .post-number-6 .entry-thumb { border-color: #e50000; }
+.archive .post-number-6, .archive .post-number-6 .entry-thumb, .archive .post-number-6 .cat-link, .archive .post-number-6 .flex-direction-nav a { background-color: #e50000 !important; }
+.archive .post-number-6 .entry-thumb { border-color: #e50000; }
+.post-content, .post-content a, .post-content .fa, .thumb-icon { color: #fff; }
+
+/*# sourceURL=alizee-style-inline-css */
+</style>
+<link rel='stylesheet' id='alizee-font-awesome-css' href='https://www.cinelux.ch/wp-content/themes/alizee-pro/fonts/font-awesome.min.css?ver=7.0.4' media='all' />
+<link rel='stylesheet' id='alizee-headings-fonts-css' href='//fonts.googleapis.com/css?family=Roboto%20Condensed:400italic,700italic,400,700&#038;ver=7.0.4' media='all' />
+<link rel='stylesheet' id='alizee-body-fonts-css' href='//fonts.googleapis.com/css?family=Roboto%20Condensed:400italic,700italic,400,700&#038;ver=7.0.4' media='all' />
+<link rel='stylesheet' id='alizee-two-col-css' href='https://www.cinelux.ch/wp-content/themes/alizee-pro/layouts/two-col.css?ver=7.0.4' media='all' />
+<link rel='stylesheet' id='flex-style-css' href='https://www.cinelux.ch/wp-content/themes/alizee-pro/inc/slider/flexslider.css?ver=7.0.4' media='all' />
+<link rel='stylesheet' id='simple-social-icons-font-css' href='https://www.cinelux.ch/wp-content/plugins/simple-social-icons/css/style.css?ver=4.0.0' media='all' />
+<link rel='stylesheet' id='cf7cf-style-css' href='https://www.cinelux.ch/wp-content/plugins/cf7-conditional-fields/style.css?ver=2.8.1' media='all' />
+<script id="jquery-core-js" src="https://www.cinelux.ch/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script id="jquery-migrate-js" src="https://www.cinelux.ch/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+<script id="wpun-js" src="https://www.cinelux.ch/wp-content/plugins/wp-universal-newsletter/public/js/wp-newsletter-public.js?ver=1.0.0"></script>
+<script id="alizee-imagesloaded-js" src="https://www.cinelux.ch/wp-content/themes/alizee-pro/js/imagesloaded.pkgd.min.js?ver=1"></script>
+<script id="alizee-masonry-init-js" src="https://www.cinelux.ch/wp-content/themes/alizee-pro/js/masonry-init.js?ver=1"></script>
+<script id="alizee-scripts-js" src="https://www.cinelux.ch/wp-content/themes/alizee-pro/js/scripts.js?ver=1"></script>
+<script id="alizee-fitvids-js" src="https://www.cinelux.ch/wp-content/themes/alizee-pro/js/jquery.fitvids.js?ver=1"></script>
+<script id="flex-script-js" src="https://www.cinelux.ch/wp-content/themes/alizee-pro/inc/slider/js/jquery.flexslider-min.js?ver=1"></script>
+<script id="slider-init-js-extra">
+var sliderOptions = {"slideshowspeed":"10000","animationspeed":"500"};
+//# sourceURL=slider-init-js-extra
+</script>
+<script id="slider-init-js" src="https://www.cinelux.ch/wp-content/themes/alizee-pro/inc/slider/js/slider-init.js?ver=1"></script>
+<script id="alizee-gallery-js" src="https://www.cinelux.ch/wp-content/themes/alizee-pro/js/gallery-init.js?ver=1"></script>
+<link rel="https://api.w.org/" href="https://www.cinelux.ch/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.cinelux.ch/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 7.0.4" />
+<!-- Analytics by WP Statistics - https://wp-statistics.com -->
+			<style type="text/css">
+				.site-header:after {
+				    content : "";
+				    display: block;
+				    position: absolute;
+				    top: 0;
+				    left: 0;
+				    background: url(https://www.cinelux.ch/wp-content/uploads/2026/10/cropped-clone-naza-de-yuval-abraham-rach.jpg) no-repeat;
+				    background-position: center top;
+				    background-attachment: fixed;
+				    width: 100%;
+				    height: 100%;
+				    opacity : 0.4;
+				}		
+			</style>
+		</head>
+
+
+	<body class="home blog wp-theme-alizee-pro group-blog">
+
+		<div id="page" class="hfeed site">
+			<a class="skip-link screen-reader-text" href="#content">
+				Skip to content</a>
+
+							<header id="masthead" class="site-header has-banner" role="banner">
+			
+										
+										
+			<nav id="site-navigation"
+				 class="main-navigation  "
+				 role="navigation">
+
+				<div class="container">
+					<button class="menu-toggle btn"><i class="fa fa-bars"></i></button>
+					<div class="menu-main-container"><ul id="menu-main" class="menu"><li id="menu-item-9978" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9978"><a href="https://www.cinelux.ch/2026/10/05/programmation-du-7-au-13-octobre-2026/">À l&rsquo;affiche</a></li>
+<li id="menu-item-6821" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6821"><a href="https://cinelux.ticketack.com/screening/all">Billetterie</a></li>
+<li id="menu-item-1197" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1197"><a href="https://www.cinelux.ch/evenements-2/">Prochainement</a></li>
+<li id="menu-item-6810" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-6810"><a href="#">CinéMômes</a>
+<ul class="sub-menu">
+	<li id="menu-item-6811" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6811"><a href="https://www.cinelux.ch/pour-les-ecoles/">Pour les écoles</a>
+	<ul class="sub-menu">
+		<li id="menu-item-9756" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9756"><a href="https://www.cinelux.ch/primaire/">Primaire</a></li>
+		<li id="menu-item-9775" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9775"><a href="https://www.cinelux.ch/secondaire-i/">Secondaire I</a></li>
+		<li id="menu-item-9773" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9773"><a href="https://www.cinelux.ch/secondaire-ii/">Secondaire II</a></li>
+	</ul>
+</li>
+	<li id="menu-item-6815" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6815"><a href="https://www.cinelux.ch/au-cine-comme-les-grands/">AU CINÉ COMME LES GRANDS</a></li>
+</ul>
+</li>
+<li id="menu-item-2915" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2915"><a href="https://www.cinelux.ch/info/">Infos pratiques</a>
+<ul class="sub-menu">
+	<li id="menu-item-6816" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6816"><a href="https://www.cinelux.ch/association/">Association</a></li>
+	<li id="menu-item-6818" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6818"><a href="https://www.cinelux.ch/equipe/">Équipe</a></li>
+	<li id="menu-item-6819" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6819"><a href="https://www.cinelux.ch/newsletter/">Recevoir l’infolettre !</a></li>
+	<li id="menu-item-6817" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6817"><a href="https://www.cinelux.ch/dons/">Dons</a></li>
+	<li id="menu-item-12015" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-12015"><a rel="privacy-policy" href="https://www.cinelux.ch/declaration-de-protection-des-donnees/">Déclaration de protection des données</a></li>
+</ul>
+</li>
+<li id="menu-item-9539" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9539"><a href="https://vimeo.com/cineluxgeneve">Vidéos</a></li>
+<li id="menu-item-6774" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-6774"><a href="https://www.cinelux.ch/category/archives/">Archives</a>
+<ul class="sub-menu">
+	<li id="menu-item-6820" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6820"><a href="https://www.cinelux.ch/historique-3/">Historique</a></li>
+	<li id="menu-item-10174" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10174"><a href="https://www.cinelux.ch/cinelux-dans-les-medias/">Cinélux dans les médias</a></li>
+	<li id="menu-item-6704" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6704"><a href="https://www.cinelux.ch/les-pensees-des-spectateurs/">Les pensées des spectateurs…</a></li>
+	<li id="menu-item-7410" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7410"><a href="https://www.cinelux.ch/category/la-vitrine/">La vitrine</a></li>
+</ul>
+</li>
+</ul></div>				</div>
+			</nav><!-- #site-navigation -->
+			<div class="container branding-wrapper  ">
+				<div class="site-branding">
+											<a href="https://www.cinelux.ch/"
+						   title="Cinélux">
+							<img src="https://www.cinelux.ch/wp-content/uploads/2016/10/cinelux-logo_2016.yt_-e1477923161731.png"
+								 alt="Cinélux" />
+						</a>
+									</div>
+			</div>
+							<div class="sidebar-toggle"><i class="fa fa-plus"></i></div>
+										<nav class="social-navigation clearfix">
+					<div class="container"><ul id="menu-social" class="menu clearfix"><li id="menu-item-19055" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-19055"><a href="https://www.facebook.com/cineluxgeneve/"><span class="screen-reader-text">Cinélux @ Facebook</span></a></li>
+<li id="menu-item-19056" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-19056"><a href="https://www.instagram.com/cinelux_geneve/?hl=fr"><span class="screen-reader-text">Cinélux @ Instagram</span></a></li>
+<li id="menu-item-19057" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-19057"><a href="https://vimeo.com/cineluxgeneve"><span class="screen-reader-text">Cinélux @ Vimeo</span></a></li>
+</ul></div>				</nav>
+				<div class="social-toggle"><i class="fa fa-hashtag"></i></div>
+								</header><!-- #masthead -->
+
+					<div id="content" class="site-content container">
+
+<div id="primary" class="content-area col-md-12">
+		<h1 class="page-title front-page">
+		Prochainement	</h1>
+	<div class="flexslider loading">
+		<ul class="slides">
+												<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/10/10/la-vie-dune-femme-de-charline-bourgeois-tacquet/" title="LA VIE D&rsquo;UNE FEMME de Charline Bourgeois-Tacquet"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/10/bbt022_wst886_tjg784-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" fetchpriority="high" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/10/10/la-vie-dune-femme-de-charline-bourgeois-tacquet/" rel="bookmark">LA VIE D&rsquo;UNE FEMME de Charline Bourgeois-Tacquet</a></h1>							<div class="entry-summary">
+								<p>REPRISE &#8211; Dès le mercredi 21 octobre </p>
+<p>Avec son deuxième long métrage après « Les Amours d’Anaïs », la réalisatrice Charline Bourgeois-Tacquet fait preuve d’une nouvelle maturité artistique et rend hommage à une féminité intrépide et confiante, pleinement engagée dans la vie. Présenté en première mondiale en compétition au Festival de Cannes 2026, il a été accueilli avec enthousiasme par le public et la critique. La performance de Léa Drucker dans le rôle de Gabrielle est particulièrement saisissante.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/10/03/6e-journee-du-cinema-kurde/" title="6e JOURNÉE DU CINÉMA KURDE"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/10/MV5BNGFjYWQ1ZjAtMjI2Yy00ODFkLTgxZGEtYzQ4OGJlZDkzMmJkXkEyXkFqcGc@._V1_-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/10/03/6e-journee-du-cinema-kurde/" rel="bookmark">6e JOURNÉE DU CINÉMA KURDE</a></h1>							<div class="entry-summary">
+								<p>SÉANCE SPÉCIALE &#8211; Jeudi 22 octobre à 18h</p>
+<p>La projection du film Heval Birako sera précédée d&rsquo;un court métrage. </p>
+<p>Les ténèbres de la guerre assombrissent la lumière de l’enfance. Deux frères, tels des branches issues d’une même racine, sont ballottés par des vents contraires. Malgré la distance, le silence et les traces de sang qui pourraient les séparer, un lien invisible unit encore leurs cœurs. Heval Birako raconte comment la guerre a brisé les rêves d’enfance et comment la fraternité peut renaître même sous les décombres du désir et de la résistance culturelle.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/10/on-en-revait-de-jean-baptiste-heritier/" title="ON EN RÊVAIT de Jean-Baptiste Héritier"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/09/5CFD_Jgj4OOAKyxOJVZd6m-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/10/on-en-revait-de-jean-baptiste-heritier/" rel="bookmark">ON EN RÊVAIT de Jean-Baptiste Héritier</a></h1>							<div class="entry-summary">
+								<p>SÉANCE SPÉCIALE &#8211; Mardi 27 octobre à 18h30  </p>
+<p>La séance sera suivie d&rsquo;une discussion en présence du chef et protagoniste Gilles Varone, ainsi que du réalisateur, Jean-Baptiste Héritier.</p>
+<p>Ce documentaire intimiste retrace le parcours extraordinaire du chef Gilles Varone, de Londres jusqu’à l’obtention de ses distinctions, en passant par l’ouverture de son restaurant. On y découvre tous les aspects de ce métier fascinant et de la démarche du chef : de la cueillette d’herbes sauvages en montagnes, à la fièvre du service. Plus qu’un portrait, le film nous propose une immersion dans le quotidien d’un passionné.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/10/underwater-de-nathalie-racheter/" title="UNDERWATER de Nathalie Racheter"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/09/1-1-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/10/underwater-de-nathalie-racheter/" rel="bookmark">UNDERWATER de Nathalie Racheter</a></h1>							<div class="entry-summary">
+								<p>SÉANCE SPÉCIALE &#8211; Mercredi 28 octobre à 18h30 (COMPLET)</p>
+<p>Les séances seront suivie d&rsquo;une discussion en présence de Chiara ainsi que de toutes les athlètes de l&rsquo;équipe élite de Vernier Aquatics et de la réalisatrice Nathalie Racheter.</p>
+<p>Alliant grâce, puissance et exigence, la natation artistique est un sport où chaque détail compte. Après dix ans loin des bassins, Chiara décide de revenir à la compétition et rejoint l&rsquo;équipe élite de Vernier Aquatics à Genève. Underwater suit ce retour au haut niveau, entre exigences physiques et mentales, entraînements, compétitions et vie au sein du collectif. Une immersion dans les coulisses d&rsquo;un sport spectaculaire et méconnu, mais surtout dans l&rsquo;histoire d&rsquo;un retour: celui d&rsquo;une athlète qui choisit de replonger et de reprendre le fil d&rsquo;une histoire laissée en suspens.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/10/avalon-de-mamoru-oshii/" title="AVALON de Mamoru Oshii"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/07/image-w1280-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/10/avalon-de-mamoru-oshii/" rel="bookmark">AVALON de Mamoru Oshii</a></h1>							<div class="entry-summary">
+								<p>CINÉ-CLUB SCIENCE-FICTION &#8211; Mercredi 28 octobre à 20h30</p>
+<p>La séance sera suivie d&rsquo;une discussion conviviale &#8211; En collaboration avec l&rsquo;Association des Amis de la Maison d&rsquo;Ailleurs.</p>
+<p>Cinq ans après « Ghost in the Shell », le réalisateur japonais Mamoru Oshii nous présente à nouveau une vision inhabituelle du futur qui captive le public par sa poésie et son irrésistible fascination. La décision des producteurs japonais de ne pas tourner « Avalon » sous forme de film d’animation, mais avec de vrais acteurs en Pologne, a visiblement influencé le processus créatif et confère au film une dimension supplémentaire. La rencontre unique et captivante entre les mentalités japonaise et européenne fait d’« Avalon » un thriller de science-fiction esthétiquement envoûtant, dédié à la cybergénération.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/10/fires-and-fascism-de-peter-knapp/" title="FIRES AND FASCISM de Peter Knapp"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/09/MV5BNTkyYWM5MGItZDI4My00YTM4LWEyY2QtZThlOTQxYWJiMzUyXkEyXkFqcGc@._V1_-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/10/fires-and-fascism-de-peter-knapp/" rel="bookmark">FIRES AND FASCISM de Peter Knapp</a></h1>							<div class="entry-summary">
+								<p>PREMIÈRE &#8211; Samedi 31 octobre à 18h</p>
+<p>La séance sera suivie d&rsquo;une discussion en présence de Julia Steinberger, professeure et chercheuse en économie écologique à l&rsquo;Université de Lausanne et autrice principale du 6e rapport du GIEC ainsi que du réalisateur Peter Knapp.</p>
+<p>2026 s’annonce comme une année tristement record : incendies de forêt toujours plus dévastateurs et progression de l’extrême droite en Europe et dans le monde. Face à ces deux menaces qui ne sont pas sans lien, le réalisateur Peter Knapp, dans un style sobre et direct, donne la parole à celles et ceux qui, sur le terrain, se mobilisent pour alerter et rassembler les populations contre une alliance mortifère entre des entreprises sans scrupules et des responsables politiques irresponsables.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/10/imagine-peace-de-fabian-chiquet/" title="IMAGINE PEACE de Fabian Chiquet"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/09/imagine-peace_2026-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/10/imagine-peace-de-fabian-chiquet/" rel="bookmark">IMAGINE PEACE de Fabian Chiquet</a></h1>							<div class="entry-summary">
+								<p>SÉANCE SPÉCIALE &#8211; Mardi 3 novembre à 18h30</p>
+<p>La séance sera suivie d&rsquo;une discussion en présence du réalisateur Fabian Chiquet et de Madeleine Reese, protagoniste du film et militante engagée.</p>
+<p>Dans un contexte marqué par l’intensification des conflits, la polarisation et la militarisation, les voix en faveur de la paix, du dialogue et de la désescalade sont de plus en plus marginalisées. La coopération internationale s’affaiblit, les dépenses militaires augmentent et les institutions multilatérales sont fragilisées. Imagine Peace rappelle que la paix ne se résume pas à l’absence de conflit, mais qu’elle est un effort collectif qui doit être activement entretenu. Le film offre une perspective historique et souligne l’urgence de réinvestir dans le dialogue, la coopération et la responsabilité partagée.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/09/orwell-225-de-raoul-peck/" title="ORWELL : 2+2=5 de Raoul Peck"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/09/ORWELL-Promo-20-Cine-Doc_MGM-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/09/orwell-225-de-raoul-peck/" rel="bookmark">ORWELL : 2+2=5 de Raoul Peck</a></h1>							<div class="entry-summary">
+								<p>NOUVEAUTÉ &#8211; Dès le mercredi 4 novembre</p>
+<p>1949. George Orwell termine ce qui sera son dernier et plus important roman, 1984. Le film plonge dans les derniers mois de la vie d’Orwell et dans son œuvre visionnaire pour explorer les racines des concepts troublants qu&rsquo;il a révélés au monde. En mêlant archives, extraits de films et images contemporaines, le réalisateur transforme la genèse de 1984 en un miroir de notre époque. Une œuvre dense, urgente et sans concession sur la mise en place des totalitarismes ainsi que sur les conditions sociales qui rendent leur avènement possible.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/09/trad-de-lance-daly/" title="TRAD de Lance Daly"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/10/368619871778008175-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/09/trad-de-lance-daly/" rel="bookmark">TRAD de Lance Daly</a></h1>							<div class="entry-summary">
+								<p>SÉANCE SPÉCIALE &#8211; Mercredi 4 novembre à 19h30</p>
+<p>La séance sera précédée d&rsquo;un court concert de musique irlandaise &#8211; En collaboration avec le Festival Celtiques (ADEM) et l&rsquo;association Geneva Irish.</p>
+<p>Shóna McAnally, jeune violoniste prodige du violon traditionnel irlandais originaire du Donegal, quitte son foyer avec son petit frère Mickey pour rejoindre une troupe de musiciens itinérants. Leur périple à travers l&rsquo;Irlande mêle aventure, romance et exploration musicale.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/08/pilleurs-de-terre-de-fanny-paloma/" title="PILLEURS DE TERRE de Fanny Paloma"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/09/MV5BZTlkYzJhNDctODc4MS00YjFkLWIwYjAtOTIwNDBjMDFhMjczXkEyXkFqcGc@._V1_-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/08/pilleurs-de-terre-de-fanny-paloma/" rel="bookmark">PILLEURS DE TERRE de Fanny Paloma</a></h1>							<div class="entry-summary">
+								<p>SÉANCE SPÉCIALE &#8211; Jeudi 5 novembre à 18h30 &#8211; Entrée libre sur inscription</p>
+<p>La séance sera suivie d&rsquo;une discussion en présence de la réalisatrice Fanny Paloma &#8211; En collaboration avec la Coalition pour des Multinationales responsables.</p>
+<p>Pilleurs de Terre suit le combat de communautés autochtones dont les terres ont été accaparées par des filiales agro-industrielles du groupe Bolloré. De l’Asie à l’Afrique, leur lutte se poursuit jusqu’en France, à travers une action fondée sur la loi sur le devoir de vigilance. Film au long cours, Pilleurs de Terre se déploie comme un carnet de voyage documentaire mêlant enquête, immersion et regard poétique, pour interroger notre rapport à la terre, à la mémoire et aux formes contemporaines de domination.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/08/arutam-de-julien-belin/" title="ARUTAM de Julien Belin"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/10/ARUTAM-2026-550x360.jpeg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/08/arutam-de-julien-belin/" rel="bookmark">ARUTAM de Julien Belin</a></h1>							<div class="entry-summary">
+								<p>SÉANCE SPÉCIALE &#8211; Jeudi 5 novembre à 21h</p>
+<p>La séance sera suivie d&rsquo;une discussion en présence de Pinchu Ankuash, leader Shuar, gardien de l&rsquo;Amazonie ; Julien Defourny, porte-parole international du peuple Shuar ; Julien Belin, réalisateur.</p>
+<p>Ce film documentaire est une invitation à écouter, ressentir et comprendre, à percevoir la forêt et l’existence humaine à travers les yeux d’un peuple qui vit en harmonie avec son environnement depuis des siècles, et à nous reconnecter aux valeurs essentielles que la modernité nous fait parfois oublier.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/05/nous-sommes-tous-des-champs-de-bataille-de-mathieu-rigouste/" title="NOUS SOMMES DES CHAMPS DE BATAILLE de Mathieu Rigouste"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/07/BATA-1-e1790934998716-550x360.jpeg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/05/nous-sommes-tous-des-champs-de-bataille-de-mathieu-rigouste/" rel="bookmark">NOUS SOMMES DES CHAMPS DE BATAILLE de Mathieu Rigouste</a></h1>							<div class="entry-summary">
+								<p>SÉANCE SPÉCIALE &#8211; Dimanche 15 novembre à 16h</p>
+<p>La séance sera suivie d&rsquo;une discussion en présence du réalisateur Mathieu Rigouste &#8211; En collaboration avec le CETIM, le Silure et le GSsA.</p>
+<p>Nous sommes des champs de bataille enquête sur le marché global de la guerre et du contrôle. Fruit de 7 années de recherches indépendantes, ce film auto-produit propose un regard critique sur le business de la guerre, les liens entre acteurs privés et publics et notre participation aux catastrophes en cours.</p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/02/kneecap-de-rich-peppiatt/" title="KNEECAP de Rich Peppiatt"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2025/08/02-kneecap-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/02/kneecap-de-rich-peppiatt/" rel="bookmark">KNEECAP de Rich Peppiatt</a></h1>							<div class="entry-summary">
+								<p>SÉANCE SPÉCIALE &#8211; Mardi 24 novembre à 20h30</p>
+<p>À l’occasion du concert événement de Kneecap à Antigel &#8211; En collaboration avec le Festival Antigel. </p>
+<p>À Belfast, Kneecap, un groupe de rap irlandais devient, la figure de proue improbable d&rsquo;un mouvement de défense des droits civiques visant à sauver leur langue maternelle. Un biopic musical déjanté qui célèbre l&rsquo;irrévérence et la liberté de voix marginales. </p>
+							</div>
+						</div>
+					</li>
+																<li class="slide">
+						<div class="slide-thumb col-md-6">
+							<a href="https://www.cinelux.ch/2026/07/01/dambe-the-mali-project-de-dearbhla-glynn/" title="DAMBÉ: THE MALI PROJECT de Dearbhla Glynn"><img width="550" height="360" src="https://www.cinelux.ch/wp-content/uploads/2026/08/c7fcb7_83f9aa8470f341db81c545962d5f1b56_mv2-_1_-550x360.jpg" class="attachment-alizee-slider size-alizee-slider wp-post-image" alt="" decoding="async" /></a>
+						</div>
+						<div class="slide-info col-md-6">
+							<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/01/dambe-the-mali-project-de-dearbhla-glynn/" rel="bookmark">DAMBÉ: THE MALI PROJECT de Dearbhla Glynn</a></h1>							<div class="entry-summary">
+								<p>PlayTime ! ou&#8230;Les rencontres extraordinaires du Cinélux #3  &#8211; Vendredi 27 novembre à 18h      </p>
+<p>En présence du protagoniste, le musicien et chanteur irlandais Liam Ó Maonlaí (investi dans la préservation de la langue gaélique, leader du groupe The Hothouse Flowers). La modération sera assurée par Patrik Dasen, professeur d&rsquo;ethnomusicologie à la HEM et expert passionné de musique irlandaise.<br />
+Cette rencontre vient en approfondissement du spectacle interceltique YULE (aux Salons, le 26 novembre à 20h), ainsi qu&rsquo;en hommage à la sortie du nouvel album de l&rsquo;artiste, AfriCeltic Experience. <br />
+Ultime occasion également de célébrer l’extraordinaire Paddy Keenan, décédé entouré de ses proches le 9 septembre de cette année.</p>
+<p>Avec Dambé: The Mali Project, la réalisatrice Dearbhla Glynn suit les musiciens irlandais Liam Ó Maonlaí et Paddy Keenan dans un voyage à travers le Mali, de Bamako aux portes du Sahara. Au fil des rencontres, les musiques irlandaises et maliennes se découvrent des résonances inattendues : rythmes circulaires, parentés entre harpe et kora, bodhrán et calebasse, chant sean-nós et voix des griots.</p>
+							</div>
+						</div>
+					</li>
+									</ul>
+	</div>
+
+	<main id="main" class="site-main" role="main">
+
+		<h1 class="program-title front-page">
+			À l'affiche		</h1>
+
+					<div id="posts-grid" class="grid-layout">
+				
+<article id="post-24612" class="post-24612 post type-post status-publish format-image has-post-thumbnail hentry category-a-laffiche category-archives category-films category-front-page category-programmation post_format-post-format-image post-number-1">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/10/12/programmation-du-14-au-20-octobre-2026/" title="Programmation du 14 au 20 octobre 2026" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="750" height="530" src="https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.42-750x530.jpg" class="attachment-alizee-thumb size-alizee-thumb wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.42-750x530.jpg 750w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.42-300x212.jpg 300w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.42-1024x724.jpg 1024w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.42-768x543.jpg 768w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.42-1536x1085.jpg 1536w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.42-440x311.jpg 440w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.42.jpg 1755w" sizes="(max-width: 750px) 100vw, 750px" />			</a>			
+		</div>	
+	
+</article><!-- #post-## -->
+<article id="post-24424" class="post-24424 post type-post status-publish format-image has-post-thumbnail hentry category-a-laffiche category-archives category-films category-front-page category-programmation post_format-post-format-image post-number-2">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/10/12/programmation-du-7-au-13-octobre-2026/" title="Programmation du 7 au 13 octobre 2026" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="750" height="530" src="https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.41_page-0001-750x530.jpg" class="attachment-alizee-thumb size-alizee-thumb wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.41_page-0001-750x530.jpg 750w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.41_page-0001-300x212.jpg 300w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.41_page-0001-1024x724.jpg 1024w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.41_page-0001-768x543.jpg 768w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.41_page-0001-1536x1085.jpg 1536w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.41_page-0001-440x311.jpg 440w, https://www.cinelux.ch/wp-content/uploads/2026/10/Programme-sem.41_page-0001.jpg 1755w" sizes="(max-width: 750px) 100vw, 750px" />			</a>			
+		</div>	
+	
+</article><!-- #post-## -->
+<article id="post-24338" class="clearfix post-24338 post type-post status-publish format-standard has-post-thumbnail hentry category-a-laffiche category-archives category-documentaire category-front-page category-programmation post-number-3">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/10/12/la-hype-2020-revisitee-de-mike-wyniger/" title="LA HYPE &#8211; 2020 REVISITÉE de Mike Wyniger" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="440" height="293" src="https://www.cinelux.ch/wp-content/uploads/2026/09/scen_02-1-440x293.jpg" class="attachment-alizee-thumb-small size-alizee-thumb-small wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/09/scen_02-1-440x293.jpg 440w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_02-1-300x200.jpg 300w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_02-1-768x512.jpg 768w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_02-1-750x500.jpg 750w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_02-1.jpg 855w" sizes="(max-width: 440px) 100vw, 440px" />			</a>
+			<span class="cat-link">
+				<a href="https://www.cinelux.ch/category/a-laffiche/">À l&#039;affiche</a>			</span>
+		</div>
+	
+	<div class="post-content no-thumb">
+		<header class="entry-header">
+			<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/10/12/la-hype-2020-revisitee-de-mike-wyniger/" rel="bookmark">LA HYPE &#8211; 2020 REVISITÉE de Mike Wyniger</a></h1>		</header><!-- .entry-header -->
+
+		<div class="entry-summary">
+			<p>NOUVEAUTÉ</p>
+<p>La séance sera suivie d&rsquo;une discussion en présence du réalisateur Mike Wyniger.</p>
+<p>Pendant la pandémie, la population a été confrontée à des informations contradictoires, et même la communauté scientifique semblait souvent divisée. Quelques années plus tard, le recul permet de porter un regard neuf sur ces événements. Le cinéaste Mike Wyniger revient sur les expériences vécues en 2020 et se demande quelles leçons on peut en tirer pour mieux gérer les crises futures.</p>
+<p>PREMIÈRE &#8211; Mercredi 14 octobre à 19h30<br />
+Samedi 17 à 14h50<br />
+Dimanche 18 à 20h</p>
+		</div>
+	</div>
+
+</article><!-- #post-## -->
+
+<article id="post-24619" class="clearfix post-24619 post type-post status-publish format-standard has-post-thumbnail hentry category-a-laffiche category-archives category-documentaire category-front-page category-programmation post-number-4">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/10/12/fjord-de-cristian-mungiu/" title="FJORD de Cristian Mungiu" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="440" height="293" src="https://www.cinelux.ch/wp-content/uploads/2026/10/scen_13-440x293.jpg" class="attachment-alizee-thumb-small size-alizee-thumb-small wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/10/scen_13-440x293.jpg 440w, https://www.cinelux.ch/wp-content/uploads/2026/10/scen_13-300x200.jpg 300w, https://www.cinelux.ch/wp-content/uploads/2026/10/scen_13-768x512.jpg 768w, https://www.cinelux.ch/wp-content/uploads/2026/10/scen_13-750x500.jpg 750w, https://www.cinelux.ch/wp-content/uploads/2026/10/scen_13.jpg 855w" sizes="(max-width: 440px) 100vw, 440px" />			</a>
+			<span class="cat-link">
+				<a href="https://www.cinelux.ch/category/a-laffiche/">À l&#039;affiche</a>			</span>
+		</div>
+	
+	<div class="post-content no-thumb">
+		<header class="entry-header">
+			<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/10/12/fjord-de-cristian-mungiu/" rel="bookmark">FJORD de Cristian Mungiu</a></h1>		</header><!-- .entry-header -->
+
+		<div class="entry-summary">
+			<p>REPRISE</p>
+<p>Jusqu’où les autorités peuvent-elles s’immiscer dans l’éducation des enfants mineurs, et sont-elles réellement à l’abri de tout préjugé culturel ? Lauréat de la Palme d’or à Cannes, Fjord souligne la nécessité de questionner ses propres certitudes, dans l’atmosphère oppressante d’un village isolé au fond d’un fjord norvégien, où la rigueur de l’hiver nordique accentue les tensions.</p>
+<p>Jeudi 15 à 18h<br />
+Vendredi 16 à 20h<br />
+Lundi 19 à 18h</p>
+		</div>
+	</div>
+
+</article><!-- #post-## -->
+
+<article id="post-24327" class="clearfix post-24327 post type-post status-publish format-standard has-post-thumbnail hentry category-a-laffiche category-archives category-documentaire category-front-page category-programmation post-number-5">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/09/25/naza-de-yuval-abraham-rachel-szor-2/" title="NAZA de Yuval Abraham &amp; Rachel Szor" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="440" height="293" src="https://www.cinelux.ch/wp-content/uploads/2026/09/naza-1-440x293.jpg" class="attachment-alizee-thumb-small size-alizee-thumb-small wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/09/naza-1-440x293.jpg 440w, https://www.cinelux.ch/wp-content/uploads/2026/09/naza-1-300x200.jpg 300w, https://www.cinelux.ch/wp-content/uploads/2026/09/naza-1.jpg 750w" sizes="(max-width: 440px) 100vw, 440px" />			</a>
+			<span class="cat-link">
+				<a href="https://www.cinelux.ch/category/a-laffiche/">À l&#039;affiche</a>			</span>
+		</div>
+	
+	<div class="post-content no-thumb">
+		<header class="entry-header">
+			<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/09/25/naza-de-yuval-abraham-rachel-szor-2/" rel="bookmark">NAZA de Yuval Abraham &amp; Rachel Szor</a></h1>		</header><!-- .entry-header -->
+
+		<div class="entry-summary">
+			<p>À L&rsquo;AFFICHE</p>
+<p>Lauréat du prix spécial du jury à la Mostra de Venise, le documentaire a été ovationné pendant 25 minutes lors de sa première. </p>
+<p>« Nous avons fait ce film car nous avons un sentiment d&rsquo;obligation, en tant que personnes israéliennes, d&rsquo;utiliser notre position pour examiner le système de tueries des masses actuellement perpétrées par notre pays. En filmant ces trois dernières années, nous nous sommes retrouvés à nous poser les mêmes questions que se posaient la génération de nos grands-parents, et plus largement les gens à travers le XXe siècle : comment est-ce qu&rsquo;un groupe d&rsquo;individus permet la déshumanisation totale d&rsquo;un autre groupe ? Quels sont les rouages internes d&rsquo;un tel système ? » Yuval Abraham et Rachel Szor à propos de leur film.</p>
+<p>Lundi 12 à 18h45<br />
+Mardi 13 à 18h45<br />
+Mercredi 14 à 17h45<br />
+Jeudi 15 à 20h40<br />
+Vendredi 16 à 18h30<br />
+Samedi 17 à 19h10<br />
+Dimanche 18 à 15h20 et 18h30<br />
+Lundi 19 à 20h40<br />
+Mardi 20 à 18h50</p>
+		</div>
+	</div>
+
+</article><!-- #post-## -->
+
+<article id="post-24303" class="clearfix post-24303 post type-post status-publish format-standard has-post-thumbnail hentry category-a-laffiche category-archives category-documentaire category-drame category-front-page category-programmation post-number-6">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/09/24/the-rose-de-markus-schleinzer/" title="ROSE de Markus Schleinzer" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="440" height="238" src="https://www.cinelux.ch/wp-content/uploads/2026/09/kkr123_pai521_bsb774-440x238.jpg" class="attachment-alizee-thumb-small size-alizee-thumb-small wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/09/kkr123_pai521_bsb774-440x238.jpg 440w, https://www.cinelux.ch/wp-content/uploads/2026/09/kkr123_pai521_bsb774-300x162.jpg 300w, https://www.cinelux.ch/wp-content/uploads/2026/09/kkr123_pai521_bsb774-1024x553.jpg 1024w, https://www.cinelux.ch/wp-content/uploads/2026/09/kkr123_pai521_bsb774-768x415.jpg 768w, https://www.cinelux.ch/wp-content/uploads/2026/09/kkr123_pai521_bsb774-1536x830.jpg 1536w, https://www.cinelux.ch/wp-content/uploads/2026/09/kkr123_pai521_bsb774-2048x1107.jpg 2048w, https://www.cinelux.ch/wp-content/uploads/2026/09/kkr123_pai521_bsb774-750x405.jpg 750w" sizes="(max-width: 440px) 100vw, 440px" />			</a>
+			<span class="cat-link">
+				<a href="https://www.cinelux.ch/category/a-laffiche/">À l&#039;affiche</a>			</span>
+		</div>
+	
+	<div class="post-content no-thumb">
+		<header class="entry-header">
+			<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/09/24/the-rose-de-markus-schleinzer/" rel="bookmark">ROSE de Markus Schleinzer</a></h1>		</header><!-- .entry-header -->
+
+		<div class="entry-summary">
+			<p><strong>DERNIÈRE SÉANCE !</strong></p>
+<p>Acclamé lors de la Berlinale 2026, où l&rsquo;interprétation de Sandra Hüller a remporté le prix de la meilleure interprétation, ce film d&rsquo;une grande beauté formelle est une expérience saisissante. S’inspirant d’une chronique judiciaire réelle de 1721, le réalisateur autrichien Markus Schleinzer raconte avec « Rose » une histoire de quête de liberté féminine et d’épanouissement à une époque et dans une culture qui refusaient précisément cela aux femmes.</p>
+<p>Mardi 13 à 20h20</p>
+		</div>
+	</div>
+
+</article><!-- #post-## -->
+
+<article id="post-24168" class="clearfix post-24168 post type-post status-publish format-standard has-post-thumbnail hentry category-a-laffiche category-archives category-comedie category-front-page category-programmation post-number-1">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/09/21/de-la-comedie-francaise-de-bertrand-usclat-et-martin-darondeau/" title="DE LA COMÉDIE-FRANÇAISE de Bertrand Usclat &amp; Martin Darondeau" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="440" height="293" src="https://www.cinelux.ch/wp-content/uploads/2026/09/scen_03-440x293.jpg" class="attachment-alizee-thumb-small size-alizee-thumb-small wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/09/scen_03-440x293.jpg 440w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_03-300x200.jpg 300w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_03-768x512.jpg 768w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_03-750x500.jpg 750w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_03.jpg 855w" sizes="(max-width: 440px) 100vw, 440px" />			</a>
+			<span class="cat-link">
+				<a href="https://www.cinelux.ch/category/a-laffiche/">À l&#039;affiche</a>			</span>
+		</div>
+	
+	<div class="post-content no-thumb">
+		<header class="entry-header">
+			<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/09/21/de-la-comedie-francaise-de-bertrand-usclat-et-martin-darondeau/" rel="bookmark">DE LA COMÉDIE-FRANÇAISE de Bertrand Usclat &amp; Martin Darondeau</a></h1>		</header><!-- .entry-header -->
+
+		<div class="entry-summary">
+			<p>À L&rsquo;AFFICHE </p>
+<p>Pour leur premier long-métrage Bertrand Usclat et Martin Darondeau nous plonge dans les coulisses de la célèbre institution théâtrale parisienne, à quelques heures d&rsquo;une première cruciale. Hilarante, rythmée et divertissante, cette comédie met en scène les préparatifs d&rsquo;une troupe et de son personnel, où rien ne se passe comme prévu. Un joyeux chaos qui nous donne à voir l&rsquo;envers du décor de la Maison de Molière.</p>
+<p>Samedi 17 à 20h45<br />
+Dimanche 18 à 17h</p>
+		</div>
+	</div>
+
+</article><!-- #post-## -->
+
+<article id="post-24044" class="clearfix post-24044 post type-post status-publish format-standard has-post-thumbnail hentry category-a-laffiche category-archives category-drame category-front-page category-programmation post-number-2">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/09/14/late-fame-de-kent-jones/" title="LATE FAME de Kent Jones" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="440" height="293" src="https://www.cinelux.ch/wp-content/uploads/2026/09/scen_01-440x293.jpg" class="attachment-alizee-thumb-small size-alizee-thumb-small wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/09/scen_01-440x293.jpg 440w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_01-300x200.jpg 300w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_01-768x512.jpg 768w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_01-750x500.jpg 750w, https://www.cinelux.ch/wp-content/uploads/2026/09/scen_01.jpg 855w" sizes="(max-width: 440px) 100vw, 440px" />			</a>
+			<span class="cat-link">
+				<a href="https://www.cinelux.ch/category/a-laffiche/">À l&#039;affiche</a>			</span>
+		</div>
+	
+	<div class="post-content no-thumb">
+		<header class="entry-header">
+			<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/09/14/late-fame-de-kent-jones/" rel="bookmark">LATE FAME de Kent Jones</a></h1>		</header><!-- .entry-header -->
+
+		<div class="entry-summary">
+			<p><strong>DERNIÈRE SÉANCE !</strong></p>
+<p>Un humble employé postal, ayant publié un recueil de poèmes dans sa jeunesse, est approché par un groupe de jeunes admirateurs qui l&rsquo;encouragent à se remettre à l&rsquo;écriture. L&rsquo;atmosphère envoûtante de la scène culturelle alternative new-yorkaise : un film sur le temps qui passe, l&rsquo;amitié, les rêves et les déceptions. En bref : un film poétique&#8230; sur la poésie.</p>
+<p>Lundi 12 à 20h20</p>
+		</div>
+	</div>
+
+</article><!-- #post-## -->
+
+<article id="post-23048" class="clearfix post-23048 post type-post status-publish format-standard has-post-thumbnail hentry category-a-laffiche category-archives category-drame category-front-page category-programmation tag-aris tag-comedie tag-guerre tag-liban tag-romance post-number-3">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/08/31/un-monde-fragile-et-merveilleux/" title="UN MONDE FRAGILE &amp; MERVEILLEUX de Cyril Aris" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="440" height="248" src="https://www.cinelux.ch/wp-content/uploads/2026/01/ASABW_5-440x248.jpeg" class="attachment-alizee-thumb-small size-alizee-thumb-small wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/01/ASABW_5-440x248.jpeg 440w, https://www.cinelux.ch/wp-content/uploads/2026/01/ASABW_5-300x169.jpeg 300w, https://www.cinelux.ch/wp-content/uploads/2026/01/ASABW_5-1024x576.jpeg 1024w, https://www.cinelux.ch/wp-content/uploads/2026/01/ASABW_5-768x432.jpeg 768w, https://www.cinelux.ch/wp-content/uploads/2026/01/ASABW_5-1536x864.jpeg 1536w, https://www.cinelux.ch/wp-content/uploads/2026/01/ASABW_5-2048x1152.jpeg 2048w, https://www.cinelux.ch/wp-content/uploads/2026/01/ASABW_5-750x422.jpeg 750w" sizes="(max-width: 440px) 100vw, 440px" />			</a>
+			<span class="cat-link">
+				<a href="https://www.cinelux.ch/category/a-laffiche/">À l&#039;affiche</a>			</span>
+		</div>
+	
+	<div class="post-content no-thumb">
+		<header class="entry-header">
+			<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/08/31/un-monde-fragile-et-merveilleux/" rel="bookmark">UN MONDE FRAGILE &amp; MERVEILLEUX de Cyril Aris</a></h1>		</header><!-- .entry-header -->
+
+		<div class="entry-summary">
+			<p>À L&rsquo;AFFICHE</p>
+<p>Issu du documentaire et monteur au regard acéré, le cinéaste libanais Cyril Aris fait de l&rsquo;histoire de Yasmina et Nino le reflet des trois dernières décennies de l&rsquo;histoire de son pays. Alternant flashbacks et scènes au présent pour éclairer l&rsquo;enfance de ses personnages et nourrir leur romance d&rsquo;adultes, le réalisateur conjugue conte romantique et conflit dramatique. Des touches poétiques colorées viennent s&rsquo;ajouter au récit pour exprimer les tensions entre joie de vivre et crises à répétition. La cuisine, la danse, les rues animées et nombre d&rsquo;images allégoriques traduisent à merveille la vitalité de Beyrouth et la profondeur de l&rsquo;amour de Nino et Yasmina, malgré toutes les catastrophes traumatiques, de la guerre à l&rsquo;explosion du port de Beyrouth. </p>
+<p>Samedi 17 à 17h<br />
+Mardi 20 à 20h30</p>
+		</div>
+	</div>
+
+</article><!-- #post-## -->
+
+<article id="post-24205" class="clearfix post-24205 post type-post status-publish format-standard has-post-thumbnail hentry category-a-laffiche category-animation category-archives category-front-page category-programmation post-number-4">
+
+			<div class="entry-thumb">
+			<a href="https://www.cinelux.ch/2026/07/12/timioche-de-alex-bain-andy-martin/" title="TIMIOCHE de Alex Bain &amp; Andy Martin" >
+				<div class="thumb-icon"><i class="fa fa-link"></i></div>
+				<img width="440" height="248" src="https://www.cinelux.ch/wp-content/uploads/2026/09/MLP_Tiddler_Episodic_Stills_Pearl-440x248.jpg" class="attachment-alizee-thumb-small size-alizee-thumb-small wp-post-image" alt="" decoding="async" srcset="https://www.cinelux.ch/wp-content/uploads/2026/09/MLP_Tiddler_Episodic_Stills_Pearl-440x248.jpg 440w, https://www.cinelux.ch/wp-content/uploads/2026/09/MLP_Tiddler_Episodic_Stills_Pearl-300x169.jpg 300w, https://www.cinelux.ch/wp-content/uploads/2026/09/MLP_Tiddler_Episodic_Stills_Pearl-1024x576.jpg 1024w, https://www.cinelux.ch/wp-content/uploads/2026/09/MLP_Tiddler_Episodic_Stills_Pearl-768x432.jpg 768w, https://www.cinelux.ch/wp-content/uploads/2026/09/MLP_Tiddler_Episodic_Stills_Pearl-1536x864.jpg 1536w, https://www.cinelux.ch/wp-content/uploads/2026/09/MLP_Tiddler_Episodic_Stills_Pearl-750x422.jpg 750w, https://www.cinelux.ch/wp-content/uploads/2026/09/MLP_Tiddler_Episodic_Stills_Pearl.jpg 1920w" sizes="(max-width: 440px) 100vw, 440px" />			</a>
+			<span class="cat-link">
+				<a href="https://www.cinelux.ch/category/a-laffiche/">À l&#039;affiche</a>			</span>
+		</div>
+	
+	<div class="post-content no-thumb">
+		<header class="entry-header">
+			<h1 class="entry-title"><a href="https://www.cinelux.ch/2026/07/12/timioche-de-alex-bain-andy-martin/" rel="bookmark">TIMIOCHE de Alex Bain &amp; Andy Martin</a></h1>		</header><!-- .entry-header -->
+
+		<div class="entry-summary">
+			<p>CINÉMÔMES</p>
+<p>Timioche, un petit poisson toujours en retard, adore inventer des excuses, souvent plus grosses que lui ! Jusqu’au jour où une mésaventure lui arrive vraiment… D’après l’album illustré de Julia Donaldson et Axel Scheffler.<br />
+En avant programme, les courts-métrages : Umi &amp; Zaki, Petit Poisson et Le Poisson-Ballon.</p>
+<p>Mercredi 14 à 14h30<br />
+Samedi 17 à 14h<br />
+Dimanche 18 à 14h30</p>
+		</div>
+	</div>
+
+</article><!-- #post-## -->
+			</div>
+
+				<nav class="navigation paging-navigation container clearfix" role="navigation">
+				<h1 class="screen-reader-text">Posts navigation</h1>
+		<div class="nav-links">
+
+			 
+			<div class="nav-previous"><i class="fa fa-long-arrow-left"></i>&nbsp;<a href="https://www.cinelux.ch/page/2/" > Older posts</a></div>
+			
+			
+		</div><!-- .nav-links -->
+			</nav><!-- .navigation -->
+	
+		
+	</main><!-- #main -->
+</div><!-- #primary -->
+
+	<div id="secondary" class="widget-area" role="complementary">
+		<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://www.cinelux.ch/">
+				<label>
+					<span class="screen-reader-text">Rechercher :</span>
+					<input type="search" class="search-field" placeholder="Rechercher…" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Rechercher" />
+			</form></aside>	</div><!-- #secondary -->
+
+	</div><!-- #content -->
+	
+	<div id="sidebar-footer" class="footer-widget-area clearfix" role="complementary">
+		<div class="container">
+										<div class="sidebar-column col-md-4 col-sm-4"> <aside id="login_logout-2" class="widget widget_login_logout"><h3 class="widget-title">Méta</h3>
+<!-- Powered by Login-Logout plugin v.3.8 wordpress.org/plugins/login-logout/ -->
+<ul class="wrap_login_logout">
+<li class="item_login"><a href="https://www.cinelux.ch/wp-login.php?redirect_to=https%3A%2F%2Fwww.cinelux.ch%2F">Connexion</a></li>
+</ul>
+</aside><aside id="custom_html-3" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><hr>
+<p>
+Cinélux<br>
+Boulevard de Saint-Georges 8<br>
+1205 Genéve<br>
+</p>
+<hr>
+<p>
+	<a href="/declaration-de-protection-des-donnees/">Protection des données</a>
+</p>
+<p>
+	<a href="/conditions-generales-de-vente/">Conditions générales de vente</a>
+</p>
+</div></aside> </div> 				<div class="sidebar-column col-md-4 col-sm-4"> <aside id="simple-social-icons-2" class="widget simple-social-icons"><h3 class="widget-title">Réseaux sociaux</h3><ul class="alignleft"><li class="ssi-facebook"><a href="https://www.facebook.com/cineluxgeneve/" target="_blank" rel="noopener noreferrer"><svg role="img" class="social-facebook" aria-labelledby="social-facebook-2"><title id="social-facebook-2">Facebook</title><use xlink:href="https://www.cinelux.ch/wp-content/plugins/simple-social-icons/symbol-defs.svg#social-facebook"></use></svg></a></li><li class="ssi-instagram"><a href="https://www.instagram.com/cinelux_geneve/?hl=fr" target="_blank" rel="noopener noreferrer"><svg role="img" class="social-instagram" aria-labelledby="social-instagram-2"><title id="social-instagram-2">Instagram</title><use xlink:href="https://www.cinelux.ch/wp-content/plugins/simple-social-icons/symbol-defs.svg#social-instagram"></use></svg></a></li><li class="ssi-vimeo"><a href="https://vimeo.com/cineluxgeneve" target="_blank" rel="noopener noreferrer"><svg role="img" class="social-vimeo" aria-labelledby="social-vimeo-2"><title id="social-vimeo-2">Vimeo</title><use xlink:href="https://www.cinelux.ch/wp-content/plugins/simple-social-icons/symbol-defs.svg#social-vimeo"></use></svg></a></li></ul></aside> </div> 				<div class="sidebar-column col-md-4 col-sm-4"> <aside id="custom_html-4" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://www.europa-cinemas.org/" target="_blank">
+	<img src="https://www.europa-cinemas.org/uploads/EUROPACINEMAS%2BCREATIVE%20Logo_Blue.jpg" alt="https://www.europa-cinemas.org/uploads/EUROPACINEMAS%2BCREATIVE%20Logo_Blue.jpg" class="shrinkToFit" width="776" height="408">
+</a></div></aside><aside id="media_image-3" class="widget widget_media_image"><a href="https://www.bak.admin.ch/bak/fr/home/creation-culturelle/cinema.html"><img width="300" height="121" src="https://www.cinelux.ch/wp-content/uploads/2023/07/EDI_BAK_F_CMYK_POS_HOCH-300x121.png" class="image wp-image-11713  attachment-medium size-medium" alt="" style="max-width: 100%; height: auto;" decoding="async" loading="lazy" srcset="https://www.cinelux.ch/wp-content/uploads/2023/07/EDI_BAK_F_CMYK_POS_HOCH-300x121.png 300w, https://www.cinelux.ch/wp-content/uploads/2023/07/EDI_BAK_F_CMYK_POS_HOCH-440x178.png 440w, https://www.cinelux.ch/wp-content/uploads/2023/07/EDI_BAK_F_CMYK_POS_HOCH.png 714w" sizes="auto, (max-width: 300px) 100vw, 300px" /></a></aside><aside id="custom_html-7" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://20ans20francs.ch/" target="_blank">
+	<img src="https://20ans20francs.ch/wp-content/themes/vingtansvingtfrancs/images/carte-orange.png" alt="20 ans 20 francs - La petite carte qui dure longtemps." width="333" height="252">
+</a></div></aside><aside id="custom_html-5" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://www.apres-ge.ch/" target="_blank">
+	<img src="https://www.apres-ge.ch/profiles/apres/themes/apres_theme/logo.png" alt="ApresGe"/>
+</a></div></aside><aside id="custom_html-6" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://culture-accessible.ch/lieux/cinelux" target="_blank">
+	<img style="background:white" src="https://culture-accessible.ch/themes/cedille/assets/images/logo.svg" alt="Culture Accessible"/>
+</a></div></aside><aside id="block-3" class="widget widget_block widget_media_image">
+<figure class="wp-block-image size-large"><a href="https://ww2.sig-ge.ch/a-propos-de-sig/nous-connaitre/le-programme-eco21"><img loading="lazy" decoding="async" width="1024" height="614" src="https://www.cinelux.ch/wp-content/uploads/2026/01/Entreprise_eco21_2025_Q-1024x614.png" alt="" class="wp-image-21482" srcset="https://www.cinelux.ch/wp-content/uploads/2026/01/Entreprise_eco21_2025_Q-1024x614.png 1024w, https://www.cinelux.ch/wp-content/uploads/2026/01/Entreprise_eco21_2025_Q-300x180.png 300w, https://www.cinelux.ch/wp-content/uploads/2026/01/Entreprise_eco21_2025_Q-768x461.png 768w, https://www.cinelux.ch/wp-content/uploads/2026/01/Entreprise_eco21_2025_Q-750x450.png 750w, https://www.cinelux.ch/wp-content/uploads/2026/01/Entreprise_eco21_2025_Q-440x264.png 440w, https://www.cinelux.ch/wp-content/uploads/2026/01/Entreprise_eco21_2025_Q.png 1182w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></a></figure>
+</aside> </div> 		</div>	
+	</div>
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+			<div class="container">
+									Conception © 2015 – 2025 <a href="http://www.professional-eth0s.com/" target="_blank">#!professional*eth0s — Switzerland</a>								
+			</div>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/alizee-pro/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<style type="text/css" media="screen">#simple-social-icons-2 ul li a, #simple-social-icons-2 ul li a:hover, #simple-social-icons-2 ul li a:focus { background-color: #f9aa00 !important; border-radius: 3px; color: #ffffff !important; border: 0px #ffffff solid !important; font-size: 25px; padding: 13px; }  #simple-social-icons-2 ul li a:hover, #simple-social-icons-2 ul li a:focus { background-color: #1e73be !important; border-color: #ffffff !important; color: #050505 !important; }  #simple-social-icons-2 ul li a:focus { outline: 1px dotted #1e73be !important; }</style><script id="wp-hooks-js" src="https://www.cinelux.ch/wp-includes/js/dist/hooks.min.js?ver=7496969728ca0f95732d"></script>
+<script id="wp-i18n-js" src="https://www.cinelux.ch/wp-includes/js/dist/i18n.min.js?ver=781d11515ad3d91786ec"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="swv-js" src="https://www.cinelux.ch/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.7"></script>
+<script id="contact-form-7-js-translations">
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "contact-form-7", {"translation-revision-date":"2026-09-29 08:22:41+0000","generator":"GlotPress\/4.1.0","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","plural-forms":"nplurals=2; plural=n > 1;","lang":"fr"},"This contact form is placed in the wrong place.":["Ce formulaire de contact est plac\u00e9 dans un mauvais endroit."],"Error:":["Erreur\u00a0:"]}},"comment":{"reference":"includes\/js\/index.js"}} );
+//# sourceURL=contact-form-7-js-translations
+</script>
+<script id="contact-form-7-js-before">
+var wpcf7 = {
+    "api": {
+        "root": "https:\/\/www.cinelux.ch\/wp-json\/",
+        "namespace": "contact-form-7\/v1"
+    }
+};
+//# sourceURL=contact-form-7-js-before
+</script>
+<script id="contact-form-7-js" src="https://www.cinelux.ch/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.7"></script>
+<script id="wpascript-js" src="https://www.cinelux.ch/wp-content/plugins/honeypot/includes/js/wpa.js?ver=2.4.02"></script>
+<script id="wpascript-js-after">
+wpa_field_info = JSON.parse(atob("eyJ3cGFfZmllbGRfbmFtZSI6Im5zc21hbjQ2OTAiLCJ3cGFfZmllbGRfdmFsdWUiOjI3Nzc0MCwid3BhX2FkZF90ZXN0Ijoibm8ifQ=="));
+//# sourceURL=wpascript-js-after
+</script>
+<script id="imagesloaded-js" src="https://www.cinelux.ch/wp-includes/js/imagesloaded.min.js?ver=5.0.0"></script>
+<script id="masonry-js" src="https://www.cinelux.ch/wp-includes/js/masonry.min.js?ver=4.2.2"></script>
+<script id="jquery-masonry-js" src="https://www.cinelux.ch/wp-includes/js/jquery/jquery.masonry.min.js?ver=3.1.2b"></script>
+<script id="alizee-navigation-js" src="https://www.cinelux.ch/wp-content/themes/alizee-pro/js/navigation.js?ver=20120206"></script>
+<script id="alizee-skip-link-focus-fix-js" src="https://www.cinelux.ch/wp-content/themes/alizee-pro/js/skip-link-focus-fix.js?ver=20130115"></script>
+<script id="wp-statistics-tracker-js-extra">
+var WP_Statistics_Tracker_Object = {"requestUrl":"https://www.cinelux.ch/wp-json/wp-statistics/v2","ajaxUrl":"https://www.cinelux.ch/wp-admin/admin-ajax.php","hitParams":{"wp_statistics_hit":1,"source_type":"home","source_id":0,"search_query":"","signature":"431e59c18edef276d9e96bafbbce988a","endpoint":"hit"},"option":{"dntEnabled":"1","bypassAdBlockers":"","consentIntegration":{"name":null,"status":[]},"isPreview":false,"userOnline":false,"isWpConsentApiActive":false},"isLegacyEventLoaded":"","customEventAjaxUrl":"https://www.cinelux.ch/wp-admin/admin-ajax.php?action=wp_statistics_custom_event&nonce=ec1c2dc97c","onlineParams":{"wp_statistics_hit":1,"source_type":"home","source_id":0,"search_query":"","signature":"431e59c18edef276d9e96bafbbce988a","action":"wp_statistics_online_check"},"jsCheckTime":"60000"};
+//# sourceURL=wp-statistics-tracker-js-extra
+</script>
+<script id="wp-statistics-tracker-js" src="https://www.cinelux.ch/wp-content/plugins/wp-statistics/assets/js/tracker.js?ver=14.16.15"></script>
+<script id="wpcf7cf-scripts-js-extra">
+var wpcf7cf_global_settings = {"ajaxurl":"https://www.cinelux.ch/wp-admin/admin-ajax.php"};
+//# sourceURL=wpcf7cf-scripts-js-extra
+</script>
+<script id="wpcf7cf-scripts-js" src="https://www.cinelux.ch/wp-content/plugins/cf7-conditional-fields/js/scripts.js?ver=2.8.1"></script>
+<script id="wp-consent-api-js-extra">
+var consent_api = {"consent_type":"","waitfor_consent_hook":"","cookie_expiration":"30","cookie_prefix":"wp_consent","services":[]};
+//# sourceURL=wp-consent-api-js-extra
+</script>
+<script id="wp-consent-api-js" src="https://www.cinelux.ch/wp-content/plugins/wp-consent-api/assets/js/wp-consent-api.min.js?ver=2.1.0"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://www.cinelux.ch/wp-includes/js/wp-emoji-release.min.js?ver=7.0.4"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
+//# sourceURL=https://www.cinelux.ch/wp-includes/js/wp-emoji-loader.min.js
+</script>
+
+</body>
+</html>
