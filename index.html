@@ -768,7 +768,7 @@ nav.tabs [data-tab="big"][aria-selected="true"] .cnote{color:#e0a100}
 .cine .acts{margin-top:10px}
 .cine .more{display:block;width:100%;text-align:left;font:inherit;font-weight:600;font-size:14px;color:var(--p);background:none;border:0;padding:12px 4px;cursor:pointer}
 .cine .clinks{font-size:13px;color:var(--muted);margin:8px 4px 0;line-height:1.6}.cine .clinks a{color:var(--muted)}
-</style>
+#quick{grid-template-columns:repeat(2,minmax(0,1fr))!important}#quick>.pickme[hidden]{display:none!important}.sw-pick{display:block;margin:10px auto 0;font:inherit;font-size:14px;font-weight:600;color:var(--p);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}</style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
 <div class="wrap">
@@ -853,7 +853,7 @@ nav.tabs [data-tab="big"][aria-selected="true"] .cnote{color:#e0a100}
 </section>
 <div class="filterpanel" id="filterpanel">
   <div class="searchrow"><input type="search" id="q" placeholder="Search events, places, groups" aria-label="Search all events" autocomplete="off"><button class="filtersbtn" id="filtersbtn" aria-expanded="false" aria-controls="chipbox">Filters</button></div>
-<div class="quickrow" id="quick"><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rainproof</button><button class="chip" data-q="dog" aria-pressed="false">🐕 Dogs</button><button class="chip" id="swipebtn">🃏 Swipe</button><button class="chip pickme" id="pickme">🎲 Pick</button></div>
+<div class="quickrow" id="quick"><button class="chip" data-q="f-rain" aria-pressed="false">☔ Rainproof</button><button class="chip" id="swipebtn">🃏 Help me choose</button><button class="chip pickme" id="pickme" hidden>🎲 Pick</button></div>
   <div id="chipbox"><div class="sheethead"><span>Filters</span><span><button class="aclear" id="sheetclear">Clear</button> <button id="sheetdone">Done</button></span></div>
   <div class="filters" role="group" aria-label="Filter by type">
     <span class="lbl">Type</span>
@@ -2465,10 +2465,10 @@ document.addEventListener("click",ev=>{const n=ev.target.closest(".period-note")
 function swipeList(){const P=PERIODS.find(p=>p.id==="we1");return EVENTS.filter(e=>P&&e.day>=P.from&&e.day<=P.to&&inCity(e)&&!isPast(e)&&!hidden.has(e.id)&&!goingSet.has(e.id)&&!isDel(e)).sort((a,z)=>evScore(z)-evScore(a)).slice(0,25)}
 function openSwipe(){const L=swipeList();let i=0;const o=document.createElement("div");o.id="swipe";document.body.appendChild(o);
   const draw=()=>{const e=L[i];if(!e){o.innerHTML='<div class="sw-card sw-end"><h3>That\'s everything for this weekend</h3><p>Your saved ones are in ✓ My plans.</p><button class="sw-close">Done</button></div>';return}
-    const w=wxOf(e.day,cityOf(e));o.innerHTML='<div class="sw-top"><span>'+(i+1)+' / '+L.length+'</span><button class="sw-close" aria-label="Close">✕</button></div><div class="sw-card" id="swc"><small>'+esc(dateLbl(e))+' · '+esc((e.when.split(" · ")[1]||""))+(w?' · '+wxIcon(w[1])+' '+w[0]+'°':'')+'</small><h3>'+(e.dog?'🐕 ':'')+esc(e.title)+'</h3><p class="sw-pl">'+esc(e.place||"")+' · '+(e.free?'Free':esc(e.price||""))+'</p><p>'+esc((e.desc||"").slice(0,260))+'</p></div><div class="sw-btns"><button class="sw-no">👎 Not for me</button><button class="sw-skip">Skip</button><button class="sw-yes">✓ I\'m going</button></div><p class="sw-hint">Swipe right to go, left for not for me</p>'};
+    const w=wxOf(e.day,cityOf(e));o.innerHTML='<div class="sw-top"><span>'+(i+1)+' / '+L.length+'</span><button class="sw-close" aria-label="Close">✕</button></div><div class="sw-card" id="swc"><small>'+esc(dateLbl(e))+' · '+esc((e.when.split(" · ")[1]||""))+(w?' · '+wxIcon(w[1])+' '+w[0]+'°':'')+'</small><h3>'+(e.dog?'🐕 ':'')+esc(e.title)+'</h3><p class="sw-pl">'+esc(e.place||"")+' · '+(e.free?'Free':esc(e.price||""))+'</p><p>'+esc((e.desc||"").slice(0,260))+'</p></div><div class="sw-btns"><button class="sw-no">👎 Not for me</button><button class="sw-skip">Skip</button><button class="sw-yes">✓ I\'m going</button></div><p class="sw-hint">Swipe right to go, left for not for me</p><button class="sw-pick">🎲 Just pick one for me</button>'};
   const act=v=>{const e=L[i];if(!e)return;if(v==="yes"){goingSet.add(e.id);hidden.delete(e.id);ensureHist(e.id)}else if(v==="no"){hidden.add(e.id);S.nope=S.nope||{};S.nope[e.id]={c:e.cat||[],p:e.place||"",g:e.grp||GRP[e.rep||e.id]||e.src||""}}persist();i++;draw()};
   draw();
-  o.addEventListener("click",ev=>{if(ev.target.closest(".sw-close")){o.remove();render();return}if(ev.target.closest(".sw-yes"))act("yes");else if(ev.target.closest(".sw-no"))act("no");else if(ev.target.closest(".sw-skip"))act("skip")});
+  o.addEventListener("click",ev=>{if(ev.target.closest(".sw-close")){o.remove();render();return}if(ev.target.closest(".sw-pick")){o.remove();render();pickForMe();const pr=document.getElementById("pickresult");if(pr)setTimeout(()=>pr.scrollIntoView({block:"center",behavior:"smooth"}),50);return}if(ev.target.closest(".sw-yes"))act("yes");else if(ev.target.closest(".sw-no"))act("no");else if(ev.target.closest(".sw-skip"))act("skip")});
   let x0=null;o.addEventListener("pointerdown",ev=>{if(ev.target.closest("#swc"))x0=ev.clientX});o.addEventListener("pointermove",ev=>{if(x0===null)return;const c=document.getElementById("swc");if(c)c.style.transform="translateX("+(ev.clientX-x0)+"px) rotate("+((ev.clientX-x0)/25)+"deg)"});
   o.addEventListener("pointerup",ev=>{if(x0===null)return;const dx=ev.clientX-x0;x0=null;const c=document.getElementById("swc");if(c)c.style.transform="";if(dx>90)act("yes");else if(dx<-90)act("no")});
 }
