@@ -1,2 +1,0 @@
-200 https://www.pathe.ch/api/show/the-invite-52031/showtimes/cinema-pathe-balexert/2026-10-13?language=en
-[{"time":"2026-10-13 13:15:00","version":"sub-de-fr","tags":["Anglais","DEFAULT"],"status":"available","reservabilityStart":"2026-03-17T12:52:49+01:00","reservabilityEnd":"2026-10-13T13:35:00+02:00","isMovie":true,"refCmd":"https:\/\/s.pathe.ch\/en\/VBALS250400\/booking","auditoriumName":"Balexert 10","auditoriumCapacity":"270","endTime":"2026-10-13 15:22:00","specialShowtimeDetails":null}]

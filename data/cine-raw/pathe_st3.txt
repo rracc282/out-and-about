@@ -1,2 +1,0 @@
-404 https://www.pathe.ch/api/cinema/cinema-pathe-balexert/showtimes/2026-10-13?language=en
-{"code":"HTTP_404","message":"No route found for \"GET https:\/\/www.pathe.ch\/api\/cinema\/cinema-pathe-balexert\/showtimes\/2026-10-13\""}
