@@ -34,6 +34,24 @@
       "zone": "ge",
       "city": "ge",
       "desc": "Geneva's international LGBTIQ+ film festival: ten days of features and shorts at the Cinémas du Grütli, plus talks, performances, workshops and party nights. Many films have English subtitles. Programme and tickets on everybodysperfect.ch."
+    },
+    {
+      "id": "nyon-puces-oct25",
+      "day": "2026-10-25",
+      "when": "Sun 25 Oct · morning to afternoon",
+      "title": "Nyon flea market (Les Puces de Rive)",
+      "kind": "Flea market",
+      "url": "https://brocabrac.fr/ge/geneve/",
+      "place": "Quartier de Rive, Nyon",
+      "trip": "Train to Nyon (≈ 15 min), then walk down to the lake",
+      "price": "Free",
+      "free": true,
+      "cat": [
+        "marche"
+      ],
+      "zone": "45",
+      "city": "ge",
+      "desc": "Sunday flea market in Nyon's lakeside Rive quarter: second-hand finds, books and bric-à-brac, a short train ride from Geneva."
     }
   ]
 }

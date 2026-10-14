@@ -2347,6 +2347,17 @@ document.getElementById("acctpanel").addEventListener("submit",async ev=>{ev.pre
   applySession(data.session);toast("Signed in")});
 document.addEventListener("click",ev=>{const p=document.getElementById("acctpanel");if(!p.hidden&&!ev.target.closest("#acctpanel")&&!ev.target.closest("#acctbtn"))p.hidden=true});
 
+
+/* regular markets that are on every week: make sure each week shows them (Plainpalais flea market: Wed, Sat & Sun) */
+(function(){const RECUR=[{key:"plainpalais",re:/plainpalais/i,mk:/puces|flea/i,base:{title:"Plainpalais flea market",kind:"Flea market",url:"https://www.geneve.ch/marche-plainpalais",place:"Plaine de Plainpalais, Genève",trip:"Tram 12 / 15 / 18",price:"Free",free:true,dog:true,cat:["marche","chien"],zone:"ge",desc:"Geneva's big flea market on the Plaine: furniture, books, vintage clothes, records and bric-à-brac. On every Wednesday, Saturday and Sunday from early morning until late afternoon."}}];
+  const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  RECUR.forEach(r=>PERIODS.forEach(P=>{if(!P.from||!P.to||P.to<TODAY)return;
+    const has=EVENTS.some(e=>e.p===P.id&&r.re.test(e.title+" "+e.place)&&r.mk.test(e.title+" "+(e.titleOrig||"")));if(has)return;
+    const d=new Date(P.from+"T12:00:00");const days=[];for(let i=0;i<7;i++){const x=new Date(d);x.setDate(d.getDate()+i);const k=iso(x);if(k>P.to)break;if(k>=TODAY&&[0,3,6].includes(x.getDay()))days.push([k,x.getDay()])}
+    if(!days.length)return;const wk=P.kind==="weekend";
+    const first=days[0][0],last=days[days.length-1][0];const D=k=>{const x=new Date(k+"T12:00:00");return DAYNAMES[x.getDay()].slice(0,3)+" "+x.getDate()};
+    const e=Object.assign({},r.base,{id:r.key+"-"+first,p:P.id,day:first,when:(wk&&days.length>1?D(first)+" & "+D(last)+" · from 06:30":D(first)+" · from 06:30")});if(wk&&days.length>1)e.dayEnd=last;
+    EVENTS.push(e);if(window.ALL_EVENTS&&ALL_EVENTS!==EVENTS)ALL_EVENTS.push(e)}))})();
 /* festival screenings: when the festival itself is listed, fold its individual sessions into it (still searchable) */
 (function(){const n=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’'`]/g,"'");
   const L=[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))];
