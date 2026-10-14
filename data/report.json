@@ -1,9 +1,9 @@
 {
  "sources": [
   {
-   "url": "https://eventfrog.ch/en/events/ch/geneve/comedy-cabaret.html",
+   "url": "https://eventfrog.ch/en/events/ch/geneve/markets.html",
    "status": 200,
-   "bytes": 605191,
+   "bytes": 605163,
    "found": 784,
    "followed": 40,
    "markers": ""
@@ -11,9 +11,17 @@
   {
    "url": "https://eventfrog.ch/de/events/zuerich.html",
    "status": 200,
-   "bytes": 619675,
-   "found": 584,
-   "followed": 30,
+   "bytes": 619824,
+   "found": 614,
+   "followed": 37,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/en/events/ch/geneve/comedy-cabaret.html",
+   "status": 200,
+   "bytes": 605191,
+   "found": 578,
+   "followed": 28,
    "markers": ""
   },
   {
@@ -28,8 +36,8 @@
    "url": "https://eventfrog.ch/fr/events/geneve.html",
    "status": 200,
    "bytes": 619028,
-   "found": 149,
-   "followed": 38,
+   "found": 115,
+   "followed": 31,
    "markers": ""
   },
   {
@@ -75,7 +83,7 @@
   {
    "url": "https://www.meetup.com/zurichtogether/events/",
    "status": 200,
-   "bytes": 281192,
+   "bytes": 281190,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -115,7 +123,7 @@
   {
    "url": "https://infomaniak.events/en-ch/comedy/geneva",
    "status": 200,
-   "bytes": 420545,
+   "bytes": 420553,
    "found": 71,
    "followed": 40,
    "markers": ""
@@ -123,23 +131,23 @@
   {
    "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
    "status": 200,
-   "bytes": 420545,
+   "bytes": 420553,
    "found": 71,
    "followed": 40,
    "markers": ""
   },
   {
-   "url": "https://www.meetup.com/social-circle-zurich/events/",
+   "url": "https://www.meetup.com/zurich-fun-gamers/events/",
    "status": 200,
-   "bytes": 255578,
+   "bytes": 275176,
    "found": 68,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-fun-gamers/events/",
+   "url": "https://www.meetup.com/social-circle-zurich/events/",
    "status": 200,
-   "bytes": 275176,
+   "bytes": 255578,
    "found": 68,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -153,12 +161,28 @@
    "markers": "ld+json"
   },
   {
+   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
+   "status": 200,
+   "bytes": 253667,
+   "found": 50,
+   "followed": 0,
+   "markers": "ld+json schema.org/Event"
+  },
+  {
    "url": "https://www.meetup.com/pubphilosophy/events/",
    "status": 200,
    "bytes": 177103,
    "found": 44,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://brocabrac.fr/ge/geneve/",
+   "status": 200,
+   "bytes": 111222,
+   "found": 40,
+   "followed": 0,
+   "markers": "ld+json schema.org/Event"
   },
   {
    "url": "https://www.meetup.com/pubcrawlzurich/events/",
@@ -305,14 +329,6 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/les-amis-geneva/events/",
-   "status": 200,
-   "bytes": 59554,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/les-amis-zurich/events/",
    "status": 200,
    "bytes": 59554,
@@ -321,17 +337,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "url": "https://www.meetup.com/les-amis-geneva/events/",
    "status": 200,
-   "bytes": 59590,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/internations-zurich/events/",
-   "status": 200,
-   "bytes": 59570,
+   "bytes": 59554,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -345,7 +353,15 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/geneva-language-exchange/events/",
+   "url": "https://www.meetup.com/internations-zurich/events/",
+   "status": 200,
+   "bytes": 59570,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-language-exchange/events/",
    "status": 200,
    "bytes": 59590,
    "found": 0,
@@ -356,6 +372,14 @@
    "url": "https://www.meetup.com/zurich-social-club/events/",
    "status": 200,
    "bytes": 59566,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/geneva-language-exchange/events/",
+   "status": 200,
+   "bytes": 59590,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -385,6 +409,14 @@
    "markers": ""
   },
   {
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
    "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/",
    "status": 405,
    "bytes": 0,
@@ -401,7 +433,7 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -410,14 +442,6 @@
   },
   {
    "url": "https://www.eventbrite.ch/d/switzerland--lausanne/all-events/",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -435,18 +459,10 @@
   {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 64711,
+   "bytes": 64599,
    "found": 0,
    "followed": 12,
    "markers": "ld+json"
-  },
-  {
-   "url": "https://newinzurich.com/events/",
-   "status": 202,
-   "bytes": 177,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
   },
   {
    "url": "https://www.tempslibre.ch/geneve/manifestations/ce-week-end",
@@ -462,6 +478,14 @@
    "bytes": 31892,
    "found": 0,
    "followed": 3,
+   "markers": ""
+  },
+  {
+   "url": "https://newinzurich.com/events/",
+   "status": 202,
+   "bytes": 176,
+   "found": 0,
+   "followed": 0,
    "markers": ""
   },
   {
@@ -507,7 +531,7 @@
   {
    "url": "https://www.comedykiss.ch/",
    "status": 200,
-   "bytes": 1443601,
+   "bytes": 1455627,
    "found": 0,
    "followed": 1,
    "markers": "ld+json"
@@ -529,6 +553,14 @@
    "markers": ""
   },
   {
+   "url": "https://hallenstadion.ch/events/",
+   "status": 200,
+   "bytes": 11956,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
    "url": "https://www.geneva-arena.ch/",
    "status": 200,
    "bytes": 57646,
@@ -539,7 +571,7 @@
   {
    "url": "https://www.gtg.ch/saison-26-27/",
    "status": 200,
-   "bytes": 228652,
+   "bytes": 228658,
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
@@ -547,22 +579,6 @@
   {
    "url": "https://www.tonhalle-orchester.ch/en/concerts/calendar/",
    "status": 404,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://hallenstadion.ch/events/",
-   "status": 200,
-   "bytes": 201664,
-   "found": 0,
-   "followed": 13,
-   "markers": "ld+json"
-  },
-  {
-   "url": "https://www.songkick.com/metro-areas/104761-switzerland-zurich",
-   "status": 406,
    "bytes": 0,
    "found": 0,
    "followed": 0,
@@ -585,6 +601,14 @@
    "markers": ""
   },
   {
+   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
+   "status": 200,
+   "bytes": 304315,
+   "found": 0,
+   "followed": 12,
+   "markers": ""
+  },
+  {
    "url": "https://www.sallemetropole.ch/",
    "status": 200,
    "bytes": 243310,
@@ -601,41 +625,33 @@
    "markers": "ld+json wp-json"
   },
   {
-   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
-   "status": 200,
-   "bytes": 304315,
-   "found": 0,
-   "followed": 12,
-   "markers": ""
-  },
-  {
    "url": "https://infomaniak.events/en-ch/comedy/zurich",
    "status": 200,
-   "bytes": 135947,
+   "bytes": 135955,
    "found": 0,
    "followed": 0,
    "markers": ""
   }
  ],
- "kept": 349,
+ "kept": 383,
  "dropped": {
-  "later than 2 weeks": 1168,
+  "later than 2 weeks": 1503,
   "past": 503,
-  "duplicate": 288,
-  "far future": 122,
+  "duplicate": 407,
+  "far future": 125,
   "already in app": 32,
-  "weekday daytime": 496,
+  "weekday daytime": 673,
+  "unknown place": 84,
   "niche (card games, wargaming…)": 55,
-  "unknown place": 83,
-  "Zurich: German-only spoken event": 92,
-  "not relevant": 19,
-  "children's event": 9
+  "Zurich: German-only spoken event": 72,
+  "not relevant": 16,
+  "children's event": 13
  },
  "geocoded": 0,
- "translated": 25,
+ "translated": 27,
  "byCity": {
-  "ge": 176,
-  "zh": 173
+  "ge": 158,
+  "zh": 225
  },
  "samples": {
   "unknown place": [
@@ -698,31 +714,31 @@
     "https://www.meetup.com/philosophical_minds_zurich/events/"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-14T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Breathwork in Zürich  The Breath Fast Club",
+    "2026-10-14T18:00:00+02:00",
+    "Downdog Yoga, Sankt Jakobstrasse 39, Zürich",
+    "47.3748916,8.5292554",
     "https://eventfrog.ch/de/events/zuerich.html"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-14T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Breathwork in Zürich  The Breath Fast Club",
+    "2026-10-21T18:00:00+02:00",
+    "Downdog Yoga, Sankt Jakobstrasse 39, Zürich",
+    "47.3748916,8.5292554",
     "https://eventfrog.ch/de/events/zuerich.html"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-15T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Breathwork in Zürich  The Breath Fast Club",
+    "2026-10-28T18:00:00+01:00",
+    "Downdog Yoga, Sankt Jakobstrasse 39, Zürich",
+    "47.3748916,8.5292554",
     "https://eventfrog.ch/de/events/zuerich.html"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-16T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Breathwork in Zürich  The Breath Fast Club",
+    "2026-11-04T18:00:00+01:00",
+    "Downdog Yoga, Sankt Jakobstrasse 39, Zürich",
+    "47.3748916,8.5292554",
     "https://eventfrog.ch/de/events/zuerich.html"
    ]
   ]
