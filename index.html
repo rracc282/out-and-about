@@ -2348,6 +2348,12 @@ document.getElementById("acctpanel").addEventListener("submit",async ev=>{ev.pre
 document.addEventListener("click",ev=>{const p=document.getElementById("acctpanel");if(!p.hidden&&!ev.target.closest("#acctpanel")&&!ev.target.closest("#acctbtn"))p.hidden=true});
 
 
+
+/* tidy machine-translated market names */
+(function(){[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;const town=String(e.place||"").split(",").pop().trim();
+  if(/^(the )?chips$/i.test(e.title.trim())||/^les puces$/i.test(String(e.titleOrig||"").trim()))e.title="Flea market"+(town?" — "+town:"");
+  if(/flea market.*plainpalais/i.test(e.title))e.title="Plainpalais flea market";
+  if(/^(the )?chips\b/i.test(e.title))e.title=e.title.replace(/^(the )?chips/i,"Flea market")})})();
 /* regular markets that are on every week: make sure each week shows them (Plainpalais flea market: Wed, Sat & Sun) */
 (function(){const RECUR=[{key:"plainpalais",re:/plainpalais/i,mk:/puces|flea/i,base:{title:"Plainpalais flea market",kind:"Flea market",url:"https://www.geneve.ch/marche-plainpalais",place:"Plaine de Plainpalais, Genève",trip:"Tram 12 / 15 / 18",price:"Free",free:true,dog:true,cat:["marche","chien"],zone:"ge",desc:"Geneva's big flea market on the Plaine: furniture, books, vintage clothes, records and bric-à-brac. On every Wednesday, Saturday and Sunday from early morning until late afternoon."}}];
   const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
