@@ -773,7 +773,7 @@ nav.tabs [data-tab="big"][aria-selected="true"] .cnote{color:#e0a100}
 .searchrow .iconbtn[aria-pressed="true"]{background:var(--p)!important;border-color:var(--p)!important}
 #quick[hidden]{display:none!important}
 body[data-view="big"] #chipbox .filters[aria-label="Filter by type"]{display:none!important}
-.notebox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:20px}.nb-card{background:var(--surface);color:var(--ink);border-radius:16px;padding:20px 20px 16px;max-width:420px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.25)}.nb-k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.nb-card h3{margin:6px 0 8px;font-size:19px}.nb-card p{margin:0 0 16px;font-size:15.5px;line-height:1.5}.nb-close{display:block;width:100%;font:inherit;font-weight:700;font-size:15px;padding:11px;border:0;border-radius:10px;background:var(--p);color:#fff;cursor:pointer}</style>
+.notebox{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:20px}.nb-card{background:var(--surface);color:var(--ink);border-radius:16px;padding:20px 20px 16px;max-width:420px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.25)}.nb-k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.nb-card h3{margin:6px 0 8px;font-size:19px}.nb-card p{margin:0 0 16px;font-size:15.5px;line-height:1.5}.nb-close{display:block;width:100%;font:inherit;font-weight:700;font-size:15px;padding:11px;border:0;border-radius:10px;background:var(--p);color:#fff;cursor:pointer}.cine .imdb{font-weight:600;color:var(--ink)}</style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
 <div class="wrap">
@@ -1757,7 +1757,6 @@ function evHTML(e,p){
     const fh=fromHome(e);const meta=[fh?esc(fh):esc(e.trip)];
     if(e.src)meta.push(esc(e.src));
     if(been)meta.push('Been '+been+'× with this group');
-    if(away&&away>=4.5)meta.push('≈ '+Math.round(away)+'h away from home');
     if(e.book&&BOOKNOTE[e.id])meta.push('Book ahead: '+esc(BOOKNOTE[e.id]));
     if(e.caution)meta.push('<span class="caut">Dogs allowed, but crowded with livestock: short lead</span>');
     const clash=ov.length?'<p class="clash'+(g?'':' soft')+'">'+(g?'⚠ Overlaps another plan: ':'Overlaps your plan: ')+ov.map(o=>esc(o.title)).join(", ")+'</p>':'';
@@ -2739,7 +2738,7 @@ document.querySelectorAll("nav.tabs [data-tab]").forEach(b=>b.addEventListener("
   function filmRow(f,shows,mode){
     const open=ui.cineOpen===f.id,first=shows[0];const lang=shows.some(s=>s[3]==="en")?"en":"sub";
     const when=mode==="search"?(first[1]===TODAY?"Today":dLbl(first[1]).split(" ").slice(0,2).join(" "))+"<br>"+first[2]:first[2];
-    let h='<article class="ev cfilm" id="film-'+esc(f.id)+'"><button class="ev-sum" data-film="'+esc(f.id)+'" aria-expanded="'+open+'"><span class="when">'+when+'</span><span class="ev-main"><span class="ev-t">'+(ui.city==="both"?'<span class="cbadge">'+(CN().cinemas[first[0]].c==="zh"?"ZRH":"GVA")+'</span>':'')+esc(f.t)+'</span><span class="ev-s ev-en">'+esc([f.k,hmin(f.m)].filter(Boolean).join(" · ")||"Film")+'</span></span><span class="ev-ic"><span class="lang">'+langLbl(lang)+'</span><span class="chev">▾</span></span></button>';
+    let h='<article class="ev cfilm" id="film-'+esc(f.id)+'"><button class="ev-sum" data-film="'+esc(f.id)+'" aria-expanded="'+open+'"><span class="when">'+when+'</span><span class="ev-main"><span class="ev-t">'+(ui.city==="both"?'<span class="cbadge">'+(CN().cinemas[first[0]].c==="zh"?"ZRH":"GVA")+'</span>':'')+esc(f.t)+'</span><span class="ev-s ev-en">'+esc([f.k,hmin(f.m)].filter(Boolean).join(" · ")||"Film")+(f.imdb?' · <span class="imdb">IMDb '+f.imdb.toFixed(1)+'</span>':'')+'</span></span><span class="ev-ic"><span class="lang">'+langLbl(lang)+'</span><span class="chev">▾</span></span></button>';
     if(open){
       h+='<div class="shows">'+(f.d?'<p class="desc">'+esc(f.d)+'</p>':'');
       const days=[...new Set(shows.map(s=>s[1]))].slice(0,mode==="search"?3:1);

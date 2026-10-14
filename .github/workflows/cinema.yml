@@ -20,5 +20,5 @@ jobs:
         run: |
           git config user.name "out-and-about-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add cine.js data/cine-tr.json
+          git add cine.js data/cine-tr.json data/cine-imdb.json
           git diff --cached --quiet || (git commit -m "Cinema times $(date +%F)" && git pull --rebase -q && git push)

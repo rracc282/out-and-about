@@ -174,6 +174,27 @@ async function toEn(t, lang) {
   return "";
 }
 
+
+/* ---- IMDb rating (free): IMDb's public search suggestions find the title id, IMDb's daily ratings file gives the score ---- */
+let IM = {}; try { IM = JSON.parse(fs.readFileSync(new URL("data/cine-imdb.json", root), "utf8")); } catch {}
+async function imdbId(t) {
+  const k = norm(t); if (k in IM) return IM[k];
+  const q = k.replace(/ /g, "_").slice(0, 60); if (!q) return null;
+  const j = await get(`https://v3.sg.media-imdb.com/suggestion/x/${encodeURIComponent(q)}.json`, true);
+  const yr = +DAYS[0].slice(0, 4);
+  const hit = ((j && j.d) || []).find(x => /^tt/.test(x.id) && (!x.qid || /movie|tvMovie|documentary|feature/i.test(x.qid)) && (!x.y || x.y >= yr - 3) && (norm(x.l) === k || norm(x.l).includes(k) || k.includes(norm(x.l))))
+    || ((j && j.d) || []).find(x => /^tt/.test(x.id) && x.y && x.y >= yr - 2 && (!x.qid || /movie|feature/i.test(x.qid)));
+  IM[k] = hit ? { id: hit.id, y: hit.y || 0 } : null; return IM[k];
+}
+async function imdbRatings(ids) {
+  const want = new Set(ids), out = {}; if (!want.size) return out;
+  try {
+    const r = await fetch("https://datasets.imdbws.com/title.ratings.tsv.gz"); if (!r.ok) return out;
+    const zlib = await import("node:zlib"); const buf = zlib.gunzipSync(Buffer.from(await r.arrayBuffer())).toString("utf8");
+    for (const line of buf.split("\n")) { const i = line.indexOf("\t"); if (i < 0) continue; const id = line.slice(0, i); if (want.has(id)) { const [, rt, votes] = line.split("\t"); if (+votes >= 50) out[id] = +rt; } }
+  } catch (e) { report["imdb!"] = String(e).slice(0, 80); }
+  return out;
+}
 export async function run(write = true) {
   for (const [n, fn] of Object.entries({ pathe, scala, grutli, arena, riffraff })) { try { await fn(); } catch (e) { report[n + "!"] = String(e).slice(0, 120); } }
   const out = [];
@@ -185,12 +206,16 @@ export async function run(write = true) {
     let d = F.d; if (!d && F.de) d = await toEn(F.de, /[äöüß]|\b(der|die|und|das|ein)\b/i.test(F.de) ? "de" : "fr");
     out.push({ id: norm(F.t).replace(/ /g, "-").slice(0, 40), t: F.t, k: F.k, m: F.m, d: (d || "").slice(0, 400), shows: F.shows });
   }
+  const ids = {}; for (const f of out) { try { const h = await imdbId(f.t); if (h) ids[f.id] = h.id; } catch {} }
+  const RT = await imdbRatings(Object.values(ids)); for (const f of out) { const r = RT[ids[f.id]]; if (r) { f.imdb = r; f.tt = ids[f.id]; } }
+  report.imdb = Object.keys(RT).length + "/" + out.length;
   out.sort((a, b) => b.shows.length - a.shows.length);
   const CINE = { at: new Date().toISOString(), days: DAYS, cinemas, links, films: out, report };
   if (write) {
     fs.writeFileSync(new URL("cine.js", root), "window.CINE=" + JSON.stringify(CINE) + ";\n");
     fs.mkdirSync(new URL("data/", root), { recursive: true });
     fs.writeFileSync(new URL("data/cine-tr.json", root), JSON.stringify(TR));
+    fs.writeFileSync(new URL("data/cine-imdb.json", root), JSON.stringify(IM));
   }
   console.log("films", out.length, JSON.stringify(report));
   return CINE;
