@@ -1992,12 +1992,13 @@ function render(){
   if(!ui.scrolled){ui.scrolled=true;const first=document.querySelector("#agenda .day h3");}
 }
 function focusEvent(id){
-  const e=EVENTS.find(x=>x.id===id);if(!e)return;
+  let e=EVENTS.find(x=>x.id===id);if(!e)return;if(e.folded){const u=EVENTS.find(x=>x.id===e.folded);if(u){e=u;id=u.id}}
   const p=periodOf(e);if(p){const t=tabOf(p);ui.tab=t}
-  if(p){ui.dayOpen.add(p.id+"|"+(isFlexible(e)?"flex":(p.id==="big"||p.id==="on"?"all":e.day)))}
+  if(p){ui.dayOpen.add(p.id+"|"+((isFlexible(e)||(e.dayEnd&&e.dayEnd>e.day))?"flex":(p.id==="big"||p.id==="on"?"all":(e.day<TODAY?TODAY:e.day))));["ge","zh"].forEach(c=>ui.dayOpen.add(p.id+"|"+(e.day<TODAY?TODAY:e.day)+"|"+c))}
+  if(!inCity(e)&&ui.city!=="both"){try{setCity(cityOf(e))}catch(x){}}
   ui.open.add(id);ui.closed.delete(id);state.view="all";
   document.querySelectorAll(".views button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.view==="all"));
-  render();const go=()=>{const el=document.getElementById("ev-"+id);if(!el)return;const y=el.getBoundingClientRect().top+window.scrollY-80;window.scrollTo({top:Math.max(0,y),behavior:"smooth"});el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1800)};requestAnimationFrame(()=>setTimeout(go,30));
+  render();const go=()=>{const el=document.getElementById("ev-"+id);if(!el){const n=encodeURIComponent(JSON.stringify({t:e.title,b:[e.when,e.place,e.desc].filter(Boolean).join("\n")}));location.hash="note="+n;return}const y=el.getBoundingClientRect().top+window.scrollY-80;window.scrollTo({top:Math.max(0,y),behavior:"smooth"});el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1800)};requestAnimationFrame(()=>setTimeout(go,30));
 }
 document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{ui.tab=b.dataset.tab;ui.more=null;if(state.q){state.q="";document.getElementById("q").value=""}document.getElementById("pickresult").innerHTML="";render();window.scrollTo({top:0})}));
 document.querySelectorAll(".views button").forEach(b=>b.addEventListener("click",()=>{
@@ -2607,8 +2608,10 @@ function gloss(e){const ico='';const wetTag=wetOf(e)?' · 🌧 outdoors':'';let 
   if(!k){if(/ @ /.test(e.titleOrig||e.title))k="Concert";
     else{const t=e.title+" "+(e.titleOrig||"")+" "+(e.place||"").split(",")[0]+" "+(e.desc||"").slice(0,160);k=(GLs().find(([re])=>re.test(e.title+" "+(e.titleOrig||"")))||GLs().find(([re])=>re.test(t))||[])[1]}}
   if(!k&&e.src==="Songkick")k="Concert";
-  if(e.p==="on"&&/workshop|Drawing session|Festival|Culture/.test(k||"Culture"))k="Exhibition";
-  if(!k)k=({rencontre:"Social meetup",creatif:"Workshop",marche:"Market / fair",fete:"Festival",culture:"Culture",corps:"Sport & wellbeing",chien:"Dog-friendly outing"})[(e.cat||[])[0]]||"Event";
+  if(e.p==="on"&&/workshop|Drawing session|Festival|Culture|Show/.test(k||"Culture"))k="Exhibition";
+  if(!k&&(e.cat||[])[0]==="culture"){const v=String(e.place||"").split(",")[0]+" "+String(e.place||"");const d=String(e.desc||"");
+    k=/th[ée][aâ]tre|theater|theatre|schauspiel|kellerb[üu]hne|b[üu]hne|comédie|casino|scala\b/i.test(v)?"Theatre play":/musée|museum|kunsthalle|galerie|gallery|fondation|kunsthaus/i.test(v)?"Exhibition":/club|bar\b|uptown|lounge|kaufleuten|plaza|mascotte|zukunft|usine/i.test(v)?"Party":/kino|cinéma|cinema|pathé|arena\b/i.test(v)?"Film screening":/concert|tonhalle|victoria hall|salle|kirche|église|temple|cathédrale/i.test(v)?"Concert":/stage|scène|bühne|spectacle|performance|show\b/i.test(d)?"Stage show":/lawyer|play\b|drama|comedy|actor|actress|character/i.test(d)?"Theatre play":"Show"}
+  if(!k)k=({rencontre:"Social meetup",creatif:"Workshop",marche:"Market / fair",fete:"Festival",culture:"Show",corps:"Sport & wellbeing",chien:"Dog-friendly outing"})[(e.cat||[])[0]]||"Event";
   return ico+esc(k)+(e.free?' · free':'')+wetTag}
 
 /* city: one button next to the title swaps Geneva ⇄ Zurich; "Both cities" lives in Filters */
