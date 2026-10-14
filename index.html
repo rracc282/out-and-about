@@ -1625,7 +1625,7 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
   const tbase=t=>nm(String(t||"").split(/ @ | — | - |\(/)[0]).slice(0,10);const seenB=new Set(EVENTS.map(e=>e.day+"|"+cityOf(e)+"|"+tbase(e.title)));
   (A.events||[]).forEach(e=>{if(urls.has(e.url)||seen.has(e.day+"|"+nm(e.title)))return;if(tbase(e.title).length>=4&&seenB.has(e.day+"|"+(e.city||"ge")+"|"+tbase(e.title)))return;seen.add(e.day+"|"+nm(e.title));
     if(e.p!=="big"&&e.p!=="on")e.p=per(e.day);if(e.grp&&!GRP[e.id])GRP[e.id]=e.grp;EVENTS.push(e)});
-  const NICHE=/pok[eé]mon|yu-?gi-?oh|magic:? the gathering|\bmtg\b|commander (event|night|league|game)|trading card|\btcg\b|card game|kartenspiel|jeux? de cartes|flesh and blood|lorcana|one piece card|digimon|warhammer|kill team|age of sigmar|\b40k\b|wargam|miniature painting|\blarp\b|cosplay|anime|manga/i;
+  const NICHE=/\bannul[ée]e?\b|\bcancel+ed\b|\babgesagt\b|suitable for child|for children aged|adapt[ée]e?s? aux enfants|familiensport|riftbound|swiss rounds|organized play|store tournament|kabooom|one piece store|bourse (?:aux |d.)?(?:jouets|enfan)|pu[ée]riculture|vide[- ]maison|pok[eé]mon|yu-?gi-?oh|magic:? the gathering|\bmtg\b|commander (event|night|league|game)|trading card|\btcg\b|card game|kartenspiel|jeux? de cartes|flesh and blood|lorcana|one piece card|digimon|warhammer|kill team|age of sigmar|\b40k\b|wargam|miniature painting|\blarp\b|cosplay|anime|manga/i;
   const DEONLY=/\b(auf|in) (deutsch|deutscher sprache|mundart|schweizerdeutsch|dialekt)\b|sprache:? ?deutsch|\bin german\b|german[- ]language|\bmundart\b|züritüütsch|schwiizerdütsch|schweizerdeutsch|\bin swiss german\b|german only/i;
   const SPOKEN=/theater|theatre|schauspiel|kabarett|cabaret|komödie|lesung|vortrag|führung|poetry slam|hörspiel|improtheater|podium|diskussion|play\b/i;
   for(let i=EVENTS.length-1;i>=0;i--){const e=EVENTS[i],t=e.title+" "+(e.desc||"").slice(0,300);if(NICHE.test(t)||(cityOf(e)==="zh"&&(DEONLY.test(t)||(SPOKEN.test(e.title)&&/[äöü]|\b(der|die|das|und)\b/i.test(e.title)&&!/english|englisch|übertitel|surtit/i.test(t)))))EVENTS.splice(i,1)}
@@ -2349,6 +2349,42 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
 
 
 
+
+/* tidy names and descriptions: no emoji, no SHOUTING, no prices/ages/"FREE!!!" in titles, no markdown in descriptions */
+(function(){
+  const EMO=/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}\u{20E3}\u{E0020}-\u{E007F}]/gu;
+  const KEEP=new Set(["DJ","DJs","ZFG","VR","LUFF","GIFF","EJMA","AMR","CGN","SBB","USA","UK","EU","R&B","LGBTQ","LGBTQ+","LGBT","ABBA","AC/DC","BBC","NYC","TV","OK","II","III","IV","XL","HB","UN","ONU","ECAL","HEAD","MAMCO","MEG","CERN","EPFL","ETH","ZHdK","SOHO","ACDC","3D","2D","A/V","CHF"]);
+  const caps=t=>{const L=t.replace(/[^A-Za-zÀ-ÿ]/g,"");if(L.length<7)return t;const up=L.replace(/[^A-ZÀ-Þ]/g,"").length/L.length;if(up<.75)return t;
+    return t.split(/(\s+|[-–—/|:(),"“”«»])/).map(w=>{if(!w||!/[A-Za-zÀ-ÿ]/.test(w))return w;if(KEEP.has(w)||KEEP.has(w.replace(/[^\w&+/]/g,""))||/\d/.test(w))return w;const lw=w.toLowerCase();
+      return lw.replace(/^(['’]?)(\p{L})/u,(m,a,b)=>a+b.toUpperCase()).replace(/(['’])(\p{L})(?=\p{L}{2})/gu,(m,a,b)=>a+b.toUpperCase())}).join("")};
+  const small=new Set(["and","or","of","the","in","at","on","for","with","a","an","to","de","du","la","le","et","des","und","im","am"]);
+  function tidyTitle(t,e){let x=String(t||"");
+    x=x.replace(EMO,"").replace(/[✨♻🔄💬🗣👅]/g,"");
+    x=x.replace(/\s*[-–—]?\s*\bFREE\b\s*!+/gi,"").replace(/!{2,}/g,"!").replace(/\?{2,}/g,"?");
+    x=x.replace(/\s*\((?:CHF|Fr\.?)\s*[\d.,\-–]+\.?-?\)\s*/gi," ").replace(/\s*\(\s*\d+\s*FREE tickets?\s*\)/gi,"").replace(/\s*\(\s*\d{2}\s*[-–]\s*\d{2}\s*(?:years?|y\/?o|ans|jahre)?\s*\)/gi,"").replace(/\s*\(\s*\d{2}\+\s*\)/g,"");
+    x=x.replace(/^\s*FREE\s+(?=\p{L})/iu,"").replace(/:\s*free entry\s*!?$/i,"").replace(/\s*[-–]\s*free entry$/i,"");
+    x=x.replace(/^[^:()]{2,30}\((?:Switzerland|Suisse|Schweiz)\)\s*:\s*/i,"");
+    x=x.replace(/^(?:EXHIBITION|Exhibition|Exposition|Ausstellung)\s*[|:–-]\s*/,"").replace(/^(?:EXHIBITION|Exposition|Ausstellung)\s+(?=["“«])/i,"");
+    x=x.replace(/\s+\|\s+/g," — ");
+    if(/^\(.*\)$/.test(x.trim()))x=x.trim().slice(1,-1);
+    if((x.match(/\(/g)||[]).length>(x.match(/\)/g)||[]).length)x=x.replace(/\s*\([^)]*$/,"");
+    if(/^["“«][^"”»]+["”»]$/.test(x.trim()))x=x.trim().slice(1,-1);
+    x=caps(x);
+    x=x.replace(/\s{2,}/g," ").replace(/\s+([,.:;!?])/g,"$1").replace(/[\s.\-–—:]+$/,"").trim();
+    return x||t}
+  function tidyDesc(d){let x=String(d||"");if(!x)return x;
+    x=x.replace(/\[([^\]]*)\]\((?:https?:)?[^)]*\)/g,"$1").replace(/https?:\/\/\S+/g,"");
+    x=x.replace(/>>\s*Ticket needed[^<]*<<|Ticket needed \(click here\)|\(click here\)/gi,"").replace(/[<>]{2}/g,"");
+    x=x.replace(/\*\*|__|^#+\s*|\s#+\s/gm," ").replace(/(^|\s)#([A-Za-zÀ-ÿ]+)/g,"$1$2");
+    x=x.replace(EMO,"").replace(/English below:?/gi,"").replace(/[⚠️👇🏻]/g,"");
+    x=x.replace(/\s{2,}/g," ").replace(/^\s*[-–—:.,|]+\s*/,"").trim();
+    if(x)x=x[0].toUpperCase()+x.slice(1);
+    return x}
+  [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;
+    const t0=e.title;e.title=tidyTitle(e.title,e);if(e.title!==t0&&!e.titleOrig)e.titleOrig=t0;
+    e.desc=tidyDesc(e.desc);
+    if(!e.desc||e.desc.length<12){const v=String(e.place||"").split(",")[0];e.desc=(e.desc?e.desc+" ":"")+(v?"At "+v+".":"")}});
+})();
 /* tidy machine-translated market names */
 (function(){[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;const town=String(e.place||"").split(",").pop().trim();
   if(/^(the )?chips$/i.test(e.title.trim())||/^les puces$/i.test(String(e.titleOrig||"").trim()))e.title="Flea market"+(town?" — "+town:"");
@@ -2511,6 +2547,20 @@ if(window.AUTO&&AUTO.twx)Object.assign(TWX,AUTO.twx);try{renderTrips()}catch(e){
 /* plain-English hint under each title: translation if the title isn't English, else what kind of event it is */
 function GLs(){return [
  [/medieval|mittelalter|médiéval/i,"Medieval fair"],
+ [/dating|date my friend|singles? (night|mixer|party)|speed[- ]?dating|speed[- ]?friending/i,"Singles mixer"],
+ [/rally|escape game|escape room|treasure hunt|puzzle hunt|schnitzeljagd/i,"Puzzle game"],
+ [/sondheim|songs by|comédie musicale/i,"Musical"],
+ [/comedia|humor\b|humour/i,"Comedy show"],
+ [/restaurant|taste of|tasting|menu\b|gastronom|culinary|kulinar/i,"Food & drink"],
+ [/nature observation|birdwatch|ornitholog|nature walk|naturbeobacht/i,"Nature outing"],
+ [/yard sale|garage sale/i,"Flea market"],
+ [/movie|film show/i,"Film screening"],
+ [/quintet|quartet|saxophon|trombone|\bbass\b|piano|guitar|vocals/i,"Concert"],
+ [/walking tour|theatre walks?|théâtre.{0,20}balade|promenades? théâtrale/i,"Theatre walk"],
+ [/board game|jeux de société|spieleabend|brettspiel|gamers|game night|multi-game/i,"Board games"],
+ [/live band|band night|\b(rap|pop|rock) star|arena tour|on tour\b|concert tour/i,"Concert"],
+ [/ceramic|céramique|pottery|poterie|töpfer|clay/i,"Ceramics workshop"],
+ [/paint|peinture|malen|aquarel|watercolou?r/i,"Painting workshop"],
  [/forró|forro|salsa|bachata|kizomba|tango|swing|lindy|bal folk|ecstatic dance/i,"Dance night"],
  [/open studio|offenes atelier|atelier ouvert/i,"Art workshop"],
  [/stand-?up|comedy|humou?r|kabarett|cabaret|impro\b|improv/i,"Comedy show"],
@@ -2536,7 +2586,7 @@ function GLs(){return [
  [/life drawing|aktzeichnen|croquis|drawing|zeichnen|sketch/i,"Drawing session"],
  [/ceramic|céramique|pottery|poterie|töpfer|clay/i,"Ceramics workshop"],
  [/paint|peinture|malen|aquarel|watercolou?r/i,"Painting workshop"],
- [/workshop|atelier|kurs\b|cours\b|class\b|studio for all/i,"Workshop"],
+ [/workshop|atelier|\bkurs\b|\bcours\b|\bclass\b|studio for all/i,"Workshop"],
  [/language exchange|tandem|sprachaustausch|mundo ?lingo|lingoes/i,"Language exchange"],
  [/board game|jeux de société|spieleabend|brettspiel|gamers/i,"Board games"],
  [/quiz/i,"Quiz night"],
@@ -2547,7 +2597,7 @@ function GLs(){return [
  [/hike|hiking|wander|randonn|trek/i,"Hike"],
  [/walk|balade|spaziergang|stroll|promenade/i,"Walk"],
  [/choir|chor\b|chorale|singing|samba|bateria|drumming/i,"Music group"],
- [/tour|führung|visite guidée/i,"Guided tour"],
+ [/guided tour|führung|visite guidée|stadtrundgang|city tour/i,"Guided tour"],
  [/reading|lesung|lecture publique|poetry|slam/i,"Reading / poetry"],
  [/talk|vortrag|conférence|lecture\b|podium/i,"Talk"],
  [/wine|wein|vin\b|tasting|dégustation|food|street food|dinner|brunch|cuisine/i,"Food & drink"],
@@ -2557,6 +2607,7 @@ function gloss(e){const ico='';const wetTag=wetOf(e)?' · 🌧 outdoors':'';let 
   if(!k){if(/ @ /.test(e.titleOrig||e.title))k="Concert";
     else{const t=e.title+" "+(e.titleOrig||"")+" "+(e.place||"").split(",")[0]+" "+(e.desc||"").slice(0,160);k=(GLs().find(([re])=>re.test(e.title+" "+(e.titleOrig||"")))||GLs().find(([re])=>re.test(t))||[])[1]}}
   if(!k&&e.src==="Songkick")k="Concert";
+  if(e.p==="on"&&/workshop|Drawing session|Festival|Culture/.test(k||"Culture"))k="Exhibition";
   if(!k)k=({rencontre:"Social meetup",creatif:"Workshop",marche:"Market / fair",fete:"Festival",culture:"Culture",corps:"Sport & wellbeing",chien:"Dog-friendly outing"})[(e.cat||[])[0]]||"Event";
   return ico+esc(k)+(e.free?' · free':'')+wetTag}
 
@@ -2629,7 +2680,7 @@ function renderMyPlans(){let el=document.getElementById("myplans");if(!el){el=do
   if(!it.length)h+='<p class="mp-empty">No plans yet. Tap <b>✓ I\'m going</b> on anything that catches your eye and it appears here, with a reminder on the day.</p>';
   else{const n=it[0];
     if(n.k==="ev"){const e=n.e;h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+(n.t?' · '+n.t:'')+'</div><b>'+esc(e.title)+'</b><div class="mp-pl">'+esc(e.place||"")+'</div><div class="mp-acts"><a href="'+dirURL(e)+'" target="_blank" rel="noopener">Directions</a><button data-mpdetail="'+esc(e.id)+'">Details</button><a href="'+inviteURL(e)+'" target="_blank" rel="noopener" data-share="'+esc(e.id)+'">Share</a></div></div>'}
-    else if(n.k==="film"){const x=n.x,c=(window.CINE&&CINE.cinemas[x.c])||{n:x.cn,q:""};h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+' · '+x.tm+'</div><b>🎬 '+esc(x.t)+'</b><div class="mp-pl">'+esc(c.n+(c.q?", "+c.q:""))+'</div><div class="mp-acts"><a href="'+mapsURL(c.n+", "+(c.q||""))+'" target="_blank" rel="noopener">Directions</a>'+(x.u?'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">Book</a>':'')+'</div></div>'}
+    else if(n.k==="film"){const x=n.x,c=(window.CINE&&CINE.cinemas[x.c])||{n:x.cn,q:""};h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+' · '+x.tm+'</div><b>'+esc(x.t)+'</b><div class="mp-pl">'+esc(c.n+(c.q?", "+c.q:""))+'</div><div class="mp-acts"><a href="'+mapsURL(c.n+", "+(c.q||""))+'" target="_blank" rel="noopener">Directions</a>'+(x.u?'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">Book</a>':'')+'</div></div>'}
     else{const t=n.t0;h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+'</div><b>'+(t.kind==="weekend"?"Weekend in ":"Day trip to ")+esc(t.name)+'</b><div class="mp-pl">'+esc(t.hook||"")+'</div>'+tripPlanBody(t,n.day)+'</div>'}
     let cur="";h+='<div class="mp-list">';
     it.forEach((x,i)=>{if(x.day!==cur){cur=x.day;h+='<div class="mp-day">'+dayHead(x.day)+'</div>'}
@@ -2732,13 +2783,13 @@ document.querySelectorAll("nav.tabs [data-tab]").forEach(b=>b.addEventListener("
   /* My plans: films you're going to */
   const _myItems=myItems;myItems=function(){const it=_myItems();(S.films||[]).forEach(x=>{if(x.d>TODAY||(x.d===TODAY&&x.tm>=nowHM()))it.push({k:"film",x,day:x.d,t:x.tm})});return it.sort((a,b)=>a.day.localeCompare(b.day)||String(a.t).localeCompare(String(b.t)))};
   window.filmPlanRow=function(x,open){const c=CN().cinemas[x.c]||{n:x.cn,q:x.cn,c:x.city};const dir="https://www.google.com/maps/dir/?api=1&travelmode=transit"+(homeLL(c.c)?"&origin="+encodeURIComponent((S.addr[c.c].q||"")+", "+(c.c==="zh"?"Zürich":"Genève")):"")+"&destination="+encodeURIComponent(c.n+", "+(c.q||""));
-    return '<div class="mp-row'+(open?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(x.k)+'"><span class="mp-t">'+x.tm+'</span><span class="mp-main"><span class="mp-title">🎬 '+esc(x.t)+'</span><span class="mp-sub">'+esc(c.n)+'</span></span><span class="mp-city">'+(c.c==="zh"?"ZRH":"GVA")+'</span></button>'+
+    return '<div class="mp-row'+(open?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(x.k)+'"><span class="mp-t">'+x.tm+'</span><span class="mp-main"><span class="mp-title">'+esc(x.t)+'</span><span class="mp-sub">Cinema · '+esc(c.n)+'</span></span><span class="mp-city">'+(c.c==="zh"?"ZRH":"GVA")+'</span></button>'+
       (open?'<div class="mp-acts"><a href="'+dir+'" target="_blank" rel="noopener">Directions</a>'+(x.u?'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">Book</a>':'')+'<button class="mp-rm" data-mpfilmrm="'+esc(x.k)+'">Remove</button></div>':'')+'</div>'};
   document.addEventListener("click",ev=>{const r=ev.target.closest("[data-mpfilmrm]");if(!r)return;S.films=(S.films||[]).filter(x=>x.k!==r.dataset.mpfilmrm);ui.mpOpen=null;persist();renderMyPlans();toast("Removed from your plans")});
   /* today card on This week: films tonight */
   const _rtp=renderTodayPlan;renderTodayPlan=function(){_rtp();const el=document.getElementById("todayplan");if(!el||ui.tab!=="this"||ui.plans)return;
     const fs=(S.films||[]).filter(x=>x.d===TODAY&&x.tm>=nowHM()).sort((a,b)=>a.tm.localeCompare(b.tm));if(!fs.length)return;
-    el.className="todayplan";el.insertAdjacentHTML("beforeend",fs.map(x=>{const c=CN().cinemas[x.c]||{n:x.cn,q:""};return '<div class="tp-item"><div class="k">✓ Today · '+x.tm+'</div><b>🎬 '+esc(x.t)+'</b><span class="w">'+esc(c.n+(c.q?", "+c.q:""))+'</span><div class="links"><a class="lnk" href="'+mapsURL(c.n+", "+(c.q||""))+'" target="_blank" rel="noopener">Maps ↗</a>'+(x.u?'<a class="lnk" href="'+esc(x.u)+'" target="_blank" rel="noopener">Tickets ↗</a>':'')+'</div></div>'}).join(""))};
+    el.className="todayplan";el.insertAdjacentHTML("beforeend",fs.map(x=>{const c=CN().cinemas[x.c]||{n:x.cn,q:""};return '<div class="tp-item"><div class="k">✓ Today · '+x.tm+'</div><b>'+esc(x.t)+'</b><span class="w">'+esc(c.n+(c.q?", "+c.q:""))+'</span><div class="links"><a class="lnk" href="'+mapsURL(c.n+", "+(c.q||""))+'" target="_blank" rel="noopener">Maps ↗</a>'+(x.u?'<a class="lnk" href="'+esc(x.u)+'" target="_blank" rel="noopener">Tickets ↗</a>':'')+'</div></div>'}).join(""))};
   try{render()}catch(e){}
 })();
 

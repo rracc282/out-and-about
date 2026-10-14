@@ -71,8 +71,8 @@ const CATS = [
   ["corps", /yoga|\brun\b|running|hike|hiking|randonn|wander|salsa|bachata|kizomba|tango|swing|dance class|cours de danse|tanzkurs|climb|grimp|kletter|swim|pilates|meditation|m[eé]ditation|bike|v[eé]lo|velo|sauna|walk\b|balade|spaziergang/i],
   ["chien", /\bdog|chien|hund/i],
 ];
-const NICHE = /pok[eé]mon|yu-?gi-?oh|magic:? the gathering|\bmtg\b|commander (event|night|league|game)|trading card|\btcg\b|\bccg\b|card game|kartenspiel|jeux? de cartes|flesh and blood|lorcana|one piece card|digimon|star wars unlimited|warhammer|kill team|age of sigmar|\b40k\b|wargam|miniature painting|tabletop wargame|\blarp\b|cosplay|anime|manga|furry|vtuber|e-?sports|lan party/i;
-const BAD = /webinar|online only|virtual|zoom|livestream|kids?\b|children|enfants?\b|kinder|family day|familien|baby|b[eé]b[eé]|crypto|forex|trading|investor|invest |mlm|real estate|immobilier|sales training|job fair|career fair|recruit|bootcamp|certification|hackathon|church service|messe\b|gottesdienst|culte\b|speed dating|singles? (party|night)|jeune public|d[eè]s \d+ ans|ab \d+ jahren|f[uü]r kinder|marionnette|puppentheater|conte pour|contes pour|bébés lecteurs|seniors?\b|retrait[eé]s|employer une|citizen committee|comité de quartier|citizen assembly|assemblée citoyenne|democracy week|semaine de la démocratie|urbansgemeinde|conseil municipal|gemeindeversammlung|adolescen/i;
+const NICHE = /riftbound|swiss rounds|organized play|store tournament|kabooom|one piece store|pok[eé]mon|yu-?gi-?oh|magic:? the gathering|\bmtg\b|commander (event|night|league|game)|trading card|\btcg\b|\bccg\b|card game|kartenspiel|jeux? de cartes|flesh and blood|lorcana|one piece card|digimon|star wars unlimited|warhammer|kill team|age of sigmar|\b40k\b|wargam|miniature painting|tabletop wargame|\blarp\b|cosplay|anime|manga|furry|vtuber|e-?sports|lan party/i;
+const BAD = /bourse (?:aux |d.)?(?:jouets|enfan|pu[ée]ricult)|pu[ée]riculture|vide[- ]maison|bourse enfance|webinar|online only|virtual|zoom|livestream|kids?\b|children|enfants?\b|kinder|family day|familien|baby|b[eé]b[eé]|crypto|forex|trading|investor|invest |mlm|real estate|immobilier|sales training|job fair|career fair|recruit|bootcamp|certification|hackathon|church service|messe\b|gottesdienst|culte\b|speed dating|singles? (party|night)|jeune public|d[eè]s \d+ ans|ab \d+ jahren|f[uü]r kinder|marionnette|puppentheater|conte pour|contes pour|bébés lecteurs|seniors?\b|retrait[eé]s|employer une|citizen committee|comité de quartier|citizen assembly|assemblée citoyenne|democracy week|semaine de la démocratie|urbansgemeinde|conseil municipal|gemeindeversammlung|adolescen/i;
 const catsOf = (t, d, srcKind) => { const s = t + " " + (d || "").slice(0, 300); const c = CATS.filter(([, re]) => re.test(s)).map(([k]) => k); if (!c.length) c.push(srcKind === "meetup" ? "rencontre" : "culture"); return c.slice(0, 3); };
 
 /* ---------- parsing ---------- */
@@ -171,7 +171,7 @@ const FR = /\b(et|le|la|les|des|du|avec|pour|une|un|dans|sur|nous|vous|soirée|e
 const EN = /\b(the|and|with|for|of|is|are|you|your|this|our|join|free|night|event)\b/gi;
 const langOf = t => { const d = (t.match(DE) || []).length, f = (t.match(FR) || []).length, e = (t.match(EN) || []).length; if (e >= d && e >= f) return "en"; return d > f ? "de" : f > d ? "fr" : (/[äöüß]/i.test(t) ? "de" : /[éèêàç]/i.test(t) ? "fr" : "en"); };
 const DEONLY = /\b(auf|in) (deutsch|deutscher sprache|mundart|schweizerdeutsch|dialekt)\b|sprache:? ?deutsch|\bin german\b|german[- ]language|\bmundart\b|züritüütsch|schwiizerdütsch|schweizerdeutsch|in swiss german|german only/i;
-const SPOKEN = /theater|theatre|schauspiel|kabarett|cabaret|komödie|comedy|stand-?up|lesung|vortrag|führung|poetry slam|slam|hörspiel|musical|improtheater|podium|diskussion|lecture|talk\b/i;
+const SPOKEN = /bühne|bühnenprogramm|programm\b|solo\b|satire|humor|witz|theater|theatre|schauspiel|kabarett|cabaret|komödie|comedy|stand-?up|lesung|vortrag|führung|poetry slam|slam|hörspiel|musical|improtheater|podium|diskussion|lecture|talk\b/i;
 /* ---------- normalise ---------- */
 const norm = t => clean(t).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "").slice(0, 28);
 const existing = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})"[^{}]*?"title": ?"([^"]+)"/g)].map(m => m[1] + "|" + norm(m[2])));
@@ -185,7 +185,7 @@ for (const x of raw) {
   const e = when(x.end); const title = clean(x.title).slice(0, 110);
   if (!title || BAD.test(title + " " + (x.organizer || ""))) { drop("not relevant"); continue; }
   if (NICHE.test(title + " " + (x.organizer || "") + " " + String(x.desc || "").slice(0, 300))) { drop("niche (card games, wargaming…)"); continue; }
-  if (/suitable for children|for children aged|für kinder|kinder ab|ab \d+ jahren|dès \d+ ans|pour enfants|jeune public|familienführung|for kids/i.test(String(x.desc || "").slice(0, 400))) { drop("children's event"); continue; }
+  if (/suitable for children|for children aged|adapt[ée]e?s? aux enfants|pour les enfants|en famille|famili(?:e|en)sport|kindgerecht|für kinder|kinder ab|ab \d+ jahren|dès \d+ ans|pour enfants|jeune public|familienführung|for kids/i.test(String(x.desc || "").slice(0, 400))) { drop("children's event"); continue; }
   const multi = e && e.day > s.day;
   const lastDay = multi ? e.day : s.day;
   if (lastDay < TODAY) { drop("past"); continue; }
