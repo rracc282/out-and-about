@@ -34,6 +34,38 @@
       "zone": "ge",
       "city": "ge",
       "desc": "Geneva's international LGBTIQ+ film festival: ten days of features and shorts at the Cinémas du Grütli, plus talks, performances, workshops and party nights. Many films have English subtitles. Programme and tickets on everybodysperfect.ch."
+    },
+    {
+      "place": "El Catrín, Rue de Richemont 7, Genève",
+      "cat": [
+        "culture"
+      ],
+      "zone": "ge",
+      "city": "ge",
+      "kind": "Comedy show · in English",
+      "price": "Early-bird tickets on Eventfrog",
+      "id": "ge-comedy-line-oct14",
+      "day": "2026-10-14",
+      "when": "Wed 14 Oct · 18:00–21:30",
+      "title": "The Comedy Line — English stand-up",
+      "url": "https://eventfrog.ch/en/p/comedy/comedy-cabaret/the-comedy-line-english-standup-geneve-ge-7507176308389995768.html",
+      "desc": "English-language stand-up night with local comics at El Catrín, a Mexican bar-restaurant: cocktails, tacos and 10% off food with your ticket."
+    },
+    {
+      "place": "El Catrín, Rue de Richemont 7, Genève",
+      "cat": [
+        "culture"
+      ],
+      "zone": "ge",
+      "city": "ge",
+      "kind": "Comedy show · in English",
+      "price": "Early-bird tickets on Eventfrog",
+      "id": "ge-comedy-line-late-oct24",
+      "day": "2026-10-24",
+      "when": "Sat 24 Oct · 22:00–23:00",
+      "title": "The Comedy Line — Late Night (English stand-up)",
+      "url": "https://eventfrog.ch/en/p/comedy/comedy-cabaret/the-comedy-line-late-night-geneve-ge-7515752677537506221.html",
+      "desc": "Late-night English stand-up with international comics at El Catrín, free drink included. Book a Mexican dinner there beforehand."
     }
   ]
 }
