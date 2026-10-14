@@ -147,7 +147,8 @@ async function harvest(src) {
   let followed = 0;
   if (r.body && src.kind !== "meetup" && items.length < 3) { /* open the individual event pages */
     const base = new URL(src.url); const seen = new Set();
-    for (const m of r.body.matchAll(/href=["']([^"'#]+)["']/g)) { let u; try { u = new URL(m[1].replace(/&amp;/g, "&"), base); } catch { continue; }
+    const hrefs = [...r.body.matchAll(/href=["']([^"'#]+)["']/g)].sort((x, y) => (/\/p\/[^"']+\.html/.test(y[1]) ? 1 : 0) - (/\/p\/[^"']+\.html/.test(x[1]) ? 1 : 0));
+    for (const m of hrefs) { let u; try { u = new URL(m[1].replace(/&amp;/g, "&"), base); } catch { continue; }
       if (u.hostname !== base.hostname || u.href === base.href || seen.has(u.href)) continue;
       if (!/(event|evenement|[eé]v[eé]nement|veranstaltung|agenda|manifestation|spectacle|konzert|concert|show|ausstellung|exposition|exhibition|termin|programm|spielplan|kalender|\/e\/|\/p\/|idE=)/i.test(u.pathname + u.search)) continue;
       if (/\.(jpg|png|pdf|css|js)$/i.test(u.pathname) || u.pathname.split("/").filter(Boolean).length < 2 && !u.search) continue;
