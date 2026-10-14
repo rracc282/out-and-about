@@ -1773,7 +1773,7 @@ function evHTML(e,p){
   return '<article class="ev'+(g?' is-going':'')+(hidden.has(e.id)?' is-hidden':'')+(isPast(e)&&!g?' is-past':'')+'" id="ev-'+e.id+'">'+
     (g?'<span class="going-badge" style="margin:10px 0 0 4px">✓ You\'re going</span>':'')+
     '<button class="ev-sum" data-toggle="'+e.id+'" aria-expanded="'+open+'" aria-controls="det-'+e.id+'">'+
-      '<span class="when">'+(w=>{const [a,b]=w.split(' · ');return b&&b.length<=12?a+'<br>'+b:a})(String(whenShort(e,p)))+'</span>'+
+      '<span class="when">'+(e.dayEnd&&e.dayEnd>e.day&&!isFlexible(e)?(()=>{const d1=new Date(e.day+'T12:00:00'),d2=new Date(e.dayEnd+'T12:00:00');return d1.getMonth()===d2.getMonth()?d1.getDate()+'–'+d2.getDate()+' '+MON[d2.getMonth()]:d1.getDate()+' '+MON[d1.getMonth()]+'–<br>'+d2.getDate()+' '+MON[d2.getMonth()]})():(w=>{const [a,b]=w.split(' · ');return b&&b.length<=12?a+'<br>'+b:a})(String(whenShort(e,p))))+'</span>'+
       '<span class="ev-main"><span class="ev-t">'+(isNew(e)&&!isPast(e)?'<span class="newdot" title="New since your last visit"></span>':'')+(ui.city==="both"&&!ui.inCol?'<span class="cbadge">'+(cityOf(e)==="zh"?"ZRH":"GVA")+'</span>':'')+esc(e.title)+'</span>'+(open?'<span class="ev-s">'+sub+'</span>':'<span class="ev-s ev-en">'+gloss(e)+'</span>')+'</span>'+
       '<span class="ev-ic">'+icons+'<span class="chev">▾</span></span>'+
     '</button>'+det+'</article>';
@@ -1950,7 +1950,7 @@ function render(){
     if(state.q&&!EVENTS.some(e=>e.p===p.id&&ok(e)))return;
     if(!state.q&&!EVENTS.some(e=>e.p===p.id&&!isPast(e)&&inCity(e)))return;
     const all=EVENTS.filter(e=>e.p===p.id&&!isPast(e)&&inCity(e)&&(state.hidden||!hidden.has(e.id)));
-    const matching=EVENTS.filter(e=>e.p===p.id&&!isPast(e)&&ok(e));
+    const matching=EVENTS.filter(e=>e.p===p.id&&!isPast(e)&&ok(e)&&(!e.folded||state.q));
     const nFiltered=all.filter(e=>!ok(e)).length;
     const showAll=state.hidden||openP.has(p.id);
     const list=matching.filter(e=>showAll||!hidden.has(e.id)).sort((a,b)=>sortKey(a).localeCompare(sortKey(b)));
@@ -1959,7 +1959,7 @@ function render(){
     if(!list.length){body='<p class="empty">'+(nHidden?'Everything here is hidden.':'Nothing here with these filters.')+'</p>'}
     else if(p.id!=="on"&&p.id!=="big"){
       const byDay={},flex=[];
-      list.forEach(e=>{if(isFlexible(e))flex.push(e);else (byDay[e.day]=byDay[e.day]||[]).push(e)});
+      list.forEach(e=>{if(isFlexible(e)||(e.dayEnd&&e.dayEnd>e.day))flex.push(e);else{const dk=e.day<TODAY?TODAY:e.day;(byDay[dk]=byDay[dk]||[]).push(e)}});
       body=Object.keys(byDay).sort().map(d=>{const dt=new Date(d+"T12:00:00");const isT=d===TODAY;if(isT)todayId="day-"+d;
         const k=p.id+"|"+d,lbl=(isT?'today':'on '+DAYNAMES[dt.getDay()]),head='<span class="dh">'+(isT?'Today · ':'')+DAYNAMES[dt.getDay()].slice(0,3)+' '+dt.getDate()+' '+MON[dt.getMonth()]+'</span>';
         if(ui.city==="both"&&!state.going){const here=hereCity(d);ui.inCol=true;const cols=cityOrder(here).map(c=>{const evs=byDay[d].filter(e=>cityOf(e)===c);const t=topPicks(evs,k+"|"+c,2);const w=wxOf(d,c);
@@ -1967,7 +1967,7 @@ function render(){
           return '<div class="day"><h3 id="day-'+d+'"'+(isT?' class="today"':'')+'>'+head+'</h3><div class="citycols">'+cols+'</div></div>'}
         const t=topPicks(byDay[d],k,2),c1=ui.city==="both"?null:ui.city,w=c1&&wxOf(d,c1);
         return '<div class="day"><h3 id="day-'+d+'"'+(isT?' class="today"':'')+'>'+head+(c1?dayWx(d,c1):'')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,lbl)+'</div>'}).join("");
-      if(flex.length){const k=p.id+"|flex",we=p.kind==="weekend",t=topPicks(flex,k,we?3:2);const blk='<div class="day'+(we?' allwe':'')+'"><h3>'+(we?'All weekend <span class="allwe-sub">go any day</span>':'Any evening this week')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,we?"all weekend":"this week")+'</div>';if(we)body=blk+body;else body+=blk}
+      if(flex.length){const k=p.id+"|flex",we=p.kind==="weekend",t=topPicks(flex,k,we?3:2);const blk='<div class="day allwe"><h3>'+(we?'All weekend <span class="allwe-sub">go any day</span>':'On several days <span class="allwe-sub">go any day</span>')+'</h3>'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,we?"all weekend":"this week")+'</div>';body=blk+body}
     } else {const k=p.id+"|all",t=topPicks(list,k,p.id==="big"?5:4);body='<div class="day">'+t.show.map(e=>evHTML(e,p)).join("")+moreBtn(k,t,p.id==="big"?"big nights":"exhibitions")+'</div>'}
     if(p.kind==="weekend"&&p.from&&!state.q){const z=zwStatus(p.from);if(z.v&&ui.city!=="both"&&z.v!==ui.city)body='<p class="zwnote">📍 You\'re in '+CITY[z.v].name+' this weekend.<button class="zwgo" data-gocity="'+z.v+'">Show '+CITY[z.v].name+'</button><button class="zwgo" data-gocity="both">Compare both</button></p>'+body}
     if(nFiltered&&activeFilters()){body+='<button class="filtered" data-clearfilters="1">'+nFiltered+' more not matching your filters · Clear filters</button>'}
@@ -2346,6 +2346,13 @@ document.getElementById("acctpanel").addEventListener("submit",async ev=>{ev.pre
   if(error){msg.textContent="Couldn't sign in: "+error.message;return}
   applySession(data.session);toast("Signed in")});
 document.addEventListener("click",ev=>{const p=document.getElementById("acctpanel");if(!p.hidden&&!ev.target.closest("#acctpanel")&&!ev.target.closest("#acctbtn"))p.hidden=true});
+
+/* festival screenings: when the festival itself is listed, fold its individual sessions into it (still searchable) */
+(function(){const n=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’'`]/g,"'");
+  const L=[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))];
+  const um=L.filter(e=>e&&e.dayEnd&&e.dayEnd>e.day&&/festival|festiv/i.test(e.title+" "+(e.kind||"")));
+  um.forEach(u=>{const name=n(String(u.title).split(/ — | - |: /)[0]).replace(/\b(festival|festival de|the)\b/g,"").trim();if(name.length<6)return;
+    L.forEach(e=>{if(!e||e===u||e.id===u.id||e.folded)return;if(e.day<u.day||e.day>u.dayEnd)return;if(n(e.title+" "+(e.titleOrig||"")+" "+(e.desc||"")).includes(name))e.folded=u.id})})})();
 /* concert listings ("sessa @ Bogen F"): readable title, short type, clean description */
 (function(){const cap=x=>x&&x===x.toLowerCase()?x.replace(/(^|[\s-])(\p{L})/gu,(m,a,b)=>a+b.toUpperCase()):x;
   [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;const t=e.titleOrig||e.title;
