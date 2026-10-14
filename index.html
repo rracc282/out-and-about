@@ -1749,7 +1749,7 @@ function inviteURL(e){
 function evHTML(e,p){
   const g=goingSet.has(e.id), open=isOpen(e);
   const ov=overlaps(e);
-  const icons=(e.dog?'<span title="Dog friendly" aria-label="Dog friendly">🐕</span>':'')+(e.book?'<span title="Book ahead" aria-label="Book ahead">🎟</span>':'');
+  const icons=(e.dog?'<span title="Dog friendly" aria-label="Dog friendly">🐕</span>':'')+(needsTicket(e)?'<span title="Ticket needed" aria-label="Ticket needed">🎟</span>':'');
   const sub=esc(shortPlace(e))+' · '+(e.free?'Free':esc(e.price));
   let det='';
   if(open){
@@ -2383,6 +2383,7 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
     return x}
   [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;
     const t0=e.title;e.title=tidyTitle(e.title,e);if(e.title!==t0&&!e.titleOrig)e.titleOrig=t0;
+    if(/ticket needed|tickets?\b|billet|billetterie|vorverkauf|presale|pre-sale|sold out|ausverkauft|complet\b|registration|register\b|sign[- ]?up|inscription|anmeldung|réserv|reserv|book (your|a|now)|booking/i.test((e.desc||"")+" "+(e.price||"")+" "+t0))e.tkHint=true;
     e.desc=tidyDesc(e.desc);
     if(!e.desc||e.desc.length<12){const v=String(e.place||"").split(",")[0];e.desc=(e.desc?e.desc+" ":"")+(v?"At "+v+".":"")}});
 })();
@@ -2390,6 +2391,7 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
 (function(){[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;const town=String(e.place||"").split(",").pop().trim();
   if(/^(the )?chips$/i.test(e.title.trim())||/^les puces$/i.test(String(e.titleOrig||"").trim()))e.title="Flea market"+(town?" — "+town:"");
   if(/flea market.*plainpalais/i.test(e.title))e.title="Plainpalais flea market";
+  e.title=e.title.replace(/\bClay Hall\b/g,"Tonhalle").replace(/\bLittle Clay Hall\b/g,"Kleine Tonhalle");
   if(/^(the )?chips\b/i.test(e.title))e.title=e.title.replace(/^(the )?chips/i,"Flea market")})})();
 /* regular markets that are on every week: make sure each week shows them (Plainpalais flea market: Wed, Sat & Sun) */
 (function(){const RECUR=[{key:"plainpalais",re:/plainpalais/i,mk:/puces|flea/i,base:{title:"Plainpalais flea market",kind:"Flea market",url:"https://www.geneve.ch/marche-plainpalais",place:"Plaine de Plainpalais, Genève",trip:"Tram 12 / 15 / 18",price:"Free",free:true,dog:true,cat:["marche","chien"],zone:"ge",desc:"Geneva's big flea market on the Plaine: furniture, books, vintage clothes, records and bric-à-brac. On every Wednesday, Saturday and Sunday from early morning until late afternoon."}}];
@@ -2558,7 +2560,7 @@ function GLs(){return [
  [/movie|film show/i,"Film screening"],
  [/quintet|quartet|saxophon|trombone|\bbass\b|piano|guitar|vocals/i,"Concert"],
  [/walking tour|theatre walks?|théâtre.{0,20}balade|promenades? théâtrale/i,"Theatre walk"],
- [/board game|jeux de société|spieleabend|brettspiel|gamers|game night|multi-game/i,"Board games"],
+ [/board ?games?|jeux de société|spieleabend|brettspiel|gamers|game night|multi-game/i,"Board games"],
  [/live band|band night|\b(rap|pop|rock) star|arena tour|on tour\b|concert tour/i,"Concert"],
  [/ceramic|céramique|pottery|poterie|töpfer|clay/i,"Ceramics workshop"],
  [/paint|peinture|malen|aquarel|watercolou?r/i,"Painting workshop"],
@@ -2604,6 +2606,18 @@ function GLs(){return [
  [/wine|wein|vin\b|tasting|dégustation|food|street food|dinner|brunch|cuisine/i,"Food & drink"],
  [/party|disco|club night|clubbing|dj\b|soirée|night\b/i,"Party"],
  [/concert|konzert|live music|band\b|gig|rapper|singer|songwriter|\bduo\b|\btrio\b|\brock\b|\bsoul\b|metal\b|hip-?hop|shoegaze|electronic|chanson|acoustic|\blive\b/i,"Concert"]]}
+
+/* does this event need a ticket or booking? (drives the 🎟 icon) */
+var TK_TYPES=/^(Concert|Classical concert|Jazz concert|Opera|Ballet|Musical|Theatre play|Theatre walk|Comedy show|Stage show|Show|Film screening|Film festival|Dance show|Party|Festival|Food & drink|Singles mixer|Quiz night|Puzzle game|Guided tour|Workshop|Painting workshop|Ceramics workshop|Art workshop)$/;
+var TK_NEVER=/^(Flea market|Second-hand market|Market \/ fair|Craft market|Farmers' market|Christmas market|Exhibition|Walk|Hike|Language exchange|Jam session|Music group|Board games|Social meetup|Wellbeing session|Dog-friendly outing|Nature outing|Country festival|Medieval fair|Dance night)$/;
+function needsTicket(e){if(e._tk!=null)return e._tk;let r=false;const TK_TYPES=/^(Concert|Classical concert|Jazz concert|Opera|Ballet|Musical|Theatre play|Theatre walk|Comedy show|Stage show|Show|Film screening|Film festival|Dance show|Party|Festival|Food & drink|Singles mixer|Quiz night|Puzzle game|Guided tour|Workshop|Painting workshop|Ceramics workshop|Art workshop)$/,TK_NEVER=/^(Flea market|Second-hand market|Market \/ fair|Craft market|Farmers' market|Christmas market|Exhibition|Walk|Hike|Language exchange|Jam session|Music group|Board games|Social meetup|Wellbeing session|Dog-friendly outing|Nature outing|Country festival|Medieval fair|Dance night)$/;
+  const k=String(gloss(e)).replace(/<[^>]+>/g,"").split(" · ")[0].replace(/&amp;/g,"&");
+  const pr=String(e.price||"");const free=e.free||/^(free|gratuit|gratis|kostenlos|entrée libre|eintritt frei|free entry)/i.test(pr);
+  if(e.book)r=true;
+  else if(e.tkHint&&!/no (booking|registration|ticket)s? (needed|required)|without registration|sans inscription|just (show|turn) up/i.test((e.desc||"")+" "+pr))r=!TK_NEVER.test(k)||/ticket needed|registration|anmeldung|inscription/i.test(e.desc+" "+pr)||e.tkHint===true&&/social-circle|tinder/i.test((e.url||"")+(e.title||""));
+  else if(!free&&TK_TYPES.test(k)&&(e.p==="big"||/chf|€|fr\.|\d/.test(pr)||/price to check|tickets?/i.test(pr)||!pr))r=k!=="Party"&&k!=="Festival"&&k!=="Food & drink"||/chf|€|\d/.test(pr)&&!/door|abend ?kasse|sur place/i.test(pr);
+  if(free&&!e.book&&!/ticket needed|registration|anmeldung|inscription|book/i.test((e.desc||"")+" "+pr))r=false;
+  return e._tk=r}
 function gloss(e){const ico='';const wetTag=wetOf(e)?' · 🌧 outdoors':'';let k=e.kind;
   if(!k){if(/ @ /.test(e.titleOrig||e.title))k="Concert";
     else{const t=e.title+" "+(e.titleOrig||"")+" "+(e.place||"").split(",")[0]+" "+(e.desc||"").slice(0,160);k=(GLs().find(([re])=>re.test(e.title+" "+(e.titleOrig||"")))||GLs().find(([re])=>re.test(t))||[])[1]}}
