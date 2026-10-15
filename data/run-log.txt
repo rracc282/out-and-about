@@ -8,3 +8,11 @@ step 5 ok
 step 6 ok
 step 7 ok
 2026-10-15T17:43:57Z started (test run)
+step 0 ok
+step 1 ok
+step 2 ok (8 searches/fetches; nothing new verifiable in window: Säuliämtler Flohmarkt is 31 Oct, geneve.com pages failed to load)
+step 3 ok
+step 4 ok
+step 5 ok
+step 6 ok
+step 7 ok (curated.json unchanged from earlier run today)
