@@ -2405,6 +2405,13 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
     const first=days[0][0],last=days[days.length-1][0];const D=k=>{const x=new Date(k+"T12:00:00");return DAYNAMES[x.getDay()].slice(0,3)+" "+x.getDate()};
     const e=Object.assign({},r.base,{id:r.key+"-"+first,p:P.id,day:first,when:(wk&&days.length>1?D(first)+" & "+D(last)+" · from 06:30":D(first)+" · from 06:30")});if(wk&&days.length>1)e.dayEnd=last;
     EVENTS.push(e);if(window.ALL_EVENTS&&ALL_EVENTS!==EVENTS)ALL_EVENTS.push(e)}))})();
+
+/* remove repeats: same city, same day, same name (first words) — keep the best-described one */
+(function(){const n=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g," ").trim();
+  const key=e=>{const w=n(e.title).split(" ").filter(x=>x.length>1);return cityOf(e)+"|"+e.day+"|"+w.slice(0,3).join(" ")};
+  const score=e=>(e.src?0:100)+(e.p==="big"?20:0)+(e.book?5:0)+Math.min(50,String(e.desc||"").length/10);
+  const best={};EVENTS.forEach(e=>{if(!e||!e.title)return;const k=key(e);if(k.split("|")[2].split(" ").length<2&&n(e.title).length<8)return;const b=best[k];if(!b||score(e)>score(b))best[k]=e});
+  for(let i=EVENTS.length-1;i>=0;i--){const e=EVENTS[i];if(!e||!e.title)continue;const b=best[key(e)];if(b&&b!==e&&!goingSet.has(e.id))EVENTS.splice(i,1)}})();
 /* festival screenings: when the festival itself is listed, fold its individual sessions into it (still searchable) */
 (function(){const n=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’'`]/g,"'");
   const L=[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))];
