@@ -153,8 +153,26 @@ function fromDecadanse(body) {
   }
   return out;
 }
+
+/* OpenAgenda legacy JSON export (Musées de Genève and others) */
+function fromOpenAgenda(d) {
+  const out = []; const L = o => o ? (o.en || o.fr || o.de || Object.values(o)[0] || "") : "";
+  for (const e of d.events || []) {
+    const t = (e.timings || []).filter(x => x.end.slice(0, 10) >= TODAY).sort((a, b) => a.start < b.start ? -1 : 1); if (!t.length) continue;
+    const loc = [e.locationName && !/autre lieu/i.test(e.locationName) ? e.locationName : (e.custom && e.custom.other_place) || "", e.address, e.city].filter(Boolean).join(", ");
+    const base = { title: L(e.title), url: (e.registration || []).map(r => r.value).find(v => /^https?:/.test(v)) || e.canonicalUrl, place: loc,
+      geo: e.latitude ? [e.latitude, e.longitude] : null, price: /CHF\s*0\b|gratuit|free|libre/i.test(L(e.conditions)) ? "Free" : L(e.conditions) || null,
+      desc: [L(e.description), L(e.longDescription)].filter(Boolean).join(" ").replace(/\s+/g, " ").slice(0, 900) };
+    if (t.length > 3) out.push({ ...base, start: t[0].start, end: t[t.length - 1].end });
+    else t.forEach(x => out.push({ ...base, start: x.start, end: x.end }));
+  }
+  return out;
+}
 const raw = [];
 async function harvest(src) {
+  if (src.kind === "openagenda") { const items = []; let st = 0, bytes = 0;
+    for (let off = 0; off < 400; off += 100) { const r = await get(src.url + (src.url.includes("?") ? "&" : "?") + "limit=100&offset=" + off); st = r.status; bytes += r.body.length; let d; try { d = JSON.parse(r.body); } catch { break; } items.push(...fromOpenAgenda(d)); if (!d.events || d.events.length < 100) break; }
+    report.sources.push({ url: src.url, status: st, bytes, found: items.length, followed: 0, markers: "openagenda json" }); items.forEach(x => raw.push({ ...x, src })); return; }
   if (src.kind === "ladecadanse") { const seen = new Map(); let st = 0, bytes = 0;
     for (let i = 0; i < 14; i += 7) await Promise.all([...Array(7)].map(async (_, k) => { const d = new Date(TODAY + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + i + k); const r = await get("https://www.ladecadanse.ch/index.php?courant=" + d.toISOString().slice(0, 10)); st = r.status; bytes += r.body.length; fromDecadanse(r.body).forEach(x => seen.set(x.url + x.start.slice(0, 10), x)); }));
     report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed: 14, markers: "day agenda" }); seen.forEach(x => raw.push({ ...x, src })); return; }

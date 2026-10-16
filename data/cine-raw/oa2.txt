@@ -1,2 +1,0 @@
-403 https://api.openagenda.com/v2/agendas/96959970/events
-{"message":"could not find user or agenda matching key"}

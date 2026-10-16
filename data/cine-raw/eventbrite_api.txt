@@ -1,2 +1,0 @@
-405 https://www.eventbrite.ch/api/v3/destination/search/
-{"status_code":405,"error_description":"Method POST not allowed for the requested GET.","error":"METHOD_NOT_ALLOWED"}
