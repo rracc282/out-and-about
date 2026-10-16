@@ -1,0 +1,1496 @@
+200 https://www.zuerichunbezahlbar.ch/events/
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="
+
+
+    Erlebe die Stadt. Gratis.">
+  <title>Events
+    </title>
+  <link rel="icon" type="image/x-icon" href="https://www.zuerichunbezahlbar.ch/static/ico/favicon.f36cb18096a3.ico">
+  <link rel="apple-touch-icon-precomposed" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-precomposed.5a9b77aa8d20.png">
+  <link rel="apple-touch-icon" sizes="57x57" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-57x57.24fe00906021.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-60x60.aad9b0078872.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-72x72.f098e87372e9.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-76x76.4e9e42be1ced.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-114x114.1d52d43d0f9e.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-120x120.76b43e018670.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-144x144.a9a2057b2c84.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-152x152.c739b8e4b1a7.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.zuerichunbezahlbar.ch/static/ico/apple-touch-icon-180x180.7082c33e2d0c.png">
+  <link rel="icon" type="image/png" href="https://www.zuerichunbezahlbar.ch/static/ico/favicon-32x32.58bc242f3ab5.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://www.zuerichunbezahlbar.ch/static/ico/android-chrome-192x192.8f2594a76c2d.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="https://www.zuerichunbezahlbar.ch/static/ico/favicon-96x96.3242aa26bd75.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="https://www.zuerichunbezahlbar.ch/static/ico/favicon-16x16.d281e7eb1725.png" sizes="16x16">
+  <link rel="shortcut icon" href="https://www.zuerichunbezahlbar.ch/static/ico/favicon.f36cb18096a3.ico">
+  <meta name="apple-mobile-web-app-title" content="Zürich Unbezahlbar">
+  <meta name="application-name" content="Zürich Unbezahlbar">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="https://www.zuerichunbezahlbar.ch/static/ico/mstile-144x144.77439a3f5533.png">
+  <meta name="msapplication-config" content="https://www.zuerichunbezahlbar.ch/static/ico/browserconfig.05f2cde40f8e.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:title" content="Events">
+  <meta property="og:description" content="
+
+
+    Erlebe die Stadt. Gratis.">
+  
+    <meta property="og:image" content="https://www.zuerichunbezahlbar.ch/static/img/facebook/1.4c5120f8cdb1.png">
+  
+  <meta property="og:image" content="https://www.zuerichunbezahlbar.ch/static/img/facebook/2.3190948c7a3f.png">
+  <meta property="og:image" content="https://www.zuerichunbezahlbar.ch/static/img/facebook/3.6b2d7b82e290.png">
+  <meta property="og:image" content="https://www.zuerichunbezahlbar.ch/static/img/facebook/4.6745de51a2fc.png">
+  <meta property="og:image" content="https://www.zuerichunbezahlbar.ch/static/img/facebook/5.d5694e628da0.png">
+  <meta property="og:image" content="https://www.zuerichunbezahlbar.ch/static/img/facebook/6.c9bfcf8b8084.png">
+  <meta property="og:image" content="https://www.zuerichunbezahlbar.ch/static/img/facebook/7.7a015fe0742e.png">
+  <meta property="og:image" content="https://www.zuerichunbezahlbar.ch/static/img/facebook/8.cc101bf88d6e.png">
+  <meta property="og:image" content="https://www.zuerichunbezahlbar.ch/static/img/facebook/9.7f5eac7ffbeb.png">
+  <meta property="og:site_name" content="Zürich unbezahlbar">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  
+  
+            <script src="https://js.sentry-cdn.com/81bc3372e4134e94b4792bda999d2a12.min.js" crossorigin="anonymous">
+            </script>
+            <script>
+            window.sentryOnLoad = function () {
+                Sentry.init({
+                dsn: "https://81bc3372e4134e94b4792bda999d2a12@o4123.ingest.sentry.io/4505368309399552",
+
+                // Set tracesSampleRate to 1.0 to capture 100%
+                // of transactions for performance monitoring.
+                // We recommend adjusting this value in production
+                tracesSampleRate: 0.25,
+
+                // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
+                tracePropagationTargets: ["localhost", "https://dreipol.sentry.io/api/"],
+
+                // Capture Replay for 10%% of all sessions,
+                // plus for 100%% of sessions with an error
+                replaysSessionSampleRate: 0.1,
+                replaysOnErrorSampleRate: 1.0,
+                });
+            };
+            </script>
+            
+
+  <script src="https://www.zuerichunbezahlbar.ch/static/js/vendor/modernizr.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-63104827-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-63104827-1');
+</script>
+
+  
+
+  <!-- inject:head:css -->
+  
+    <link rel="stylesheet" href="https://www.zuerichunbezahlbar.ch/static/css/dist.3fd0d673dc66.css"/>
+  
+  <!-- endinject:head:css -->
+
+  <script>
+    var globals = {
+      staticUrl: '/static/',
+      recaptcha_site_key: '6LdO0C4nAAAAALhRYCaaMuBo_sN5Jcjj0qH5CtZ_'
+    };
+  </script>
+</head>
+<body>
+  
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZJKS3JG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <div class="hide">
+  <?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol viewBox="0 0 24 24" id="ic-24-close" xmlns="http://www.w3.org/2000/svg"><path d="M12 8.4L17.4 3 21 6.6 15.6 12l5.4 5.4-3.6 3.6-5.4-5.4L6.6 21 3 17.4 8.4 12 3 6.6 6.6 3 12 8.4z"/></symbol><symbol viewBox="0 0 24 24" id="ic-24-grid-view" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h7.111v7.111H4zm8.889 0H20v7.111h-7.111zm0 8.889H20V20h-7.111zM4 12.889h7.111V20H4z"/></symbol><symbol viewBox="0 0 24 24" id="ic-24-list-view" xmlns="http://www.w3.org/2000/svg"><path d="M5 5h4v4H5zm0 5h4v4H5zm0 5h4v4H5zm6-9h8v2h-8zm0 5h8v2h-8zm0 5h8v2h-8z"/></symbol><symbol viewBox="0 0 24 24" id="ic-24-search" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z"/></symbol></svg>
+</div>
+<div class="site-wrapper">
+  <header class="header" role="banner">
+    <div class="header__content">
+      <div class="header__logo-container">
+  <a class="header__logo-link" href="/events/">
+    <div class="header__logo header__logo--variant-2">Zürich unbezahlbar</div>
+    <div class="header__slogan">Erlebe die Stadt. Gratis.</div>
+  </a>
+</div>
+
+      <div class="navigation-wrapper">
+  <label class="header__menu" for="header__menu-trigger" js-menu-burger=".header__burger">
+    <div class="header__burger">Menu</div>
+  </label>
+  <input id="header__menu-trigger" class="header__menu-trigger" type="checkbox">
+  <nav class="header__mainnav mainnav">
+    <ul class="mainnav__list">
+      
+        <li class="mainnav__list-item">
+          <a href="/events/"
+             class="mainnav__link is-active">Home</a>
+        </li>
+      
+        <li class="mainnav__list-item">
+          <a href="/map/"
+             class="mainnav__link">Karte</a>
+        </li>
+      
+        <li class="mainnav__list-item">
+          <a href="/faq/"
+             class="mainnav__link">FAQ</a>
+        </li>
+      
+        <li class="mainnav__list-item">
+          <a href="/events/create/"
+             class="mainnav__link">Erstellen +</a>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+
+    </div>
+    
+  <form id="page_filters" action="#page_filters" class="filternav-wrapper">
+    
+        <div class="search ">
+            <div class="search__wrapper">
+                <div class="search__field-wrapper">
+                    <label class="search__field">
+                        <input name="search" placeholder="Suchbegriff eingeben" value="" type="search">
+                        <button data-js-clear-input="search" type="button" class="search__clean">
+                            <div class="search__icon-wrapper">
+                                <div class="search__clean-text" aria-label="Suche entfernen">
+                                    <span>×</span>
+                                </div>
+                            </div>
+                        </button>
+                    </label>
+                    <button type="submit" class="search__submit" aria-label="Suchen">
+                        <div class="search__icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                        </div>
+                    </button>
+                </div>
+
+                
+                    <div class="search__buttons">
+                        <input
+                                 checked 
+                                class="filtermenu__grid-input hide"
+                                data-filter-input
+                                type="radio"
+                                name="rendering" value="grid" id="grid-rendering"
+                        />
+                        <label class="filtermenu__grid-button" for="grid-rendering">
+                            <div class="filtermenu__icon-wrapper">
+                                <svg width="24px" height="24px"  viewBox="0 0 24 24" class="icon">
+                                    <use xlink:href="#ic-24-grid-view"></use>
+                                </svg>
+                            </div>
+                        </label>
+                        <input
+                                
+                                class="filtermenu__grid-input hide"
+                                data-filter-input
+                                type="radio"
+                                name="rendering"
+                                value="list"
+                                id="list-rendering"
+                        />
+                        <label class="filtermenu__grid-button" for="list-rendering">
+                            <div class="filtermenu__icon-wrapper">
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" class="icon">
+                                    <use xlink:href="#ic-24-list-view"></use>
+                                </svg>
+                            </div>
+                        </label>
+                    </div>
+                
+            </div>
+        </div>
+    
+    <div class="filternav filternav--grid">
+        <div class="filternav__content">
+            <div class="filternav__prefilter">
+                <div class="filternav__filter filternav__filter--date">
+                    <h3 class="filternav__filter-title">Zeit/Datum</h3>
+                    <div class="filternav__inputgroup">
+                        <input data-filter-datepicker-hidden type="hidden" name="daterange" value=""/>
+                        <input data-filter-datepicker class="filternav__input is-empty" value="" placeholder="Heute" type="text" type="date" >
+                    </div>
+                </div>
+                <div class="filternav__filter filternav__filter--zip">
+                    <h3 class="filternav__filter-title">PLZ</h3>
+                    <select data-filter-input name="plz" class="filternav__select">
+                        <option value="">
+                            Alle
+                        </option>
+                        
+                            <option value="8000" >
+                                8000
+                            </option>
+                        
+                            <option value="8001" >
+                                8001
+                            </option>
+                        
+                            <option value="8002" >
+                                8002
+                            </option>
+                        
+                            <option value="8003" >
+                                8003
+                            </option>
+                        
+                            <option value="8004" >
+                                8004
+                            </option>
+                        
+                            <option value="8005" >
+                                8005
+                            </option>
+                        
+                            <option value="8006" >
+                                8006
+                            </option>
+                        
+                            <option value="8008" >
+                                8008
+                            </option>
+                        
+                            <option value="8032" >
+                                8032
+                            </option>
+                        
+                            <option value="8037" >
+                                8037
+                            </option>
+                        
+                            <option value="8038" >
+                                8038
+                            </option>
+                        
+                            <option value="8041" >
+                                8041
+                            </option>
+                        
+                            <option value="8044" >
+                                8044
+                            </option>
+                        
+                            <option value="8045" >
+                                8045
+                            </option>
+                        
+                            <option value="8046" >
+                                8046
+                            </option>
+                        
+                            <option value="8047" >
+                                8047
+                            </option>
+                        
+                            <option value="8048" >
+                                8048
+                            </option>
+                        
+                            <option value="8049" >
+                                8049
+                            </option>
+                        
+                            <option value="8050" >
+                                8050
+                            </option>
+                        
+                            <option value="8051" >
+                                8051
+                            </option>
+                        
+                            <option value="8052" >
+                                8052
+                            </option>
+                        
+                            <option value="8055" >
+                                8055
+                            </option>
+                        
+                            <option value="8057" >
+                                8057
+                            </option>
+                        
+                            <option value="8064" >
+                                8064
+                            </option>
+                        
+                            <option value="8091" >
+                                8091
+                            </option>
+                        
+                            <option value="8092" >
+                                8092
+                            </option>
+                        
+                            <option value="8093" >
+                                8093
+                            </option>
+                        
+                            <option value="8142" >
+                                8142
+                            </option>
+                        
+                            <option value="8152" >
+                                8152
+                            </option>
+                        
+                            <option value="8320" >
+                                8320
+                            </option>
+                        
+                            <option value="8400" >
+                                8400
+                            </option>
+                        
+                            <option value="8408" >
+                                8408
+                            </option>
+                        
+                            <option value="8604" >
+                                8604
+                            </option>
+                        
+                    </select>
+                </div>
+                <div class="filternav__filter filternav__filter--category">
+                    <h3 class="filternav__filter-title">Kategorie</h3>
+                    <div class="filternav__inputgroup">
+                        <select data-filter-input name="category" class="filternav__select">
+                            <option value="">
+                                Alle
+                            </option>
+                            
+                                <option value="bildung" >
+                                    Bildung
+                                </option>
+                            
+                                <option value="kultur-nachtleben" >
+                                    Kultur &amp; Nachtleben
+                                </option>
+                            
+                                <option value="sport-freizeit" >
+                                    Sport &amp; Freizeit
+                                </option>
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="filternav__filter filternav__filter--subcategory">
+                    
+                    <h3 class="filternav__filter-title filternav__filter-title--disabled">Subkategorie</h3>
+                    <div class="filternav__inputgroup">
+                        <select data-filter-input name="subcategory" class="filternav__select" disabled>
+                            <option value="" selected>
+                                Alle
+                            </option>
+                            
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="filternav__filter filternav__filter--type">
+                    <div class="filternav__filter-wrapper">
+                        <h3 class="filternav__filter-title">Art der Veranstaltung</h3>
+                        <div class="filternav__fieldrow">
+                            <div class="filternav__fieldcol">
+                                <div class="filternav__checkbox-wrapper">
+                                    <input
+                                            
+                                            data-filter-input
+                                            id="input-event-type-A"
+                                            class="filternav__input filternav__input--checkbox"
+                                            name="type"
+                                            value="event"
+                                            type="radio">
+                                    <label for="input-event-type-A"></label>
+                                </div>
+                                <label for="input-event-type-A" class="filternav__label filternav__label--checkbox" tabindex="0">
+                                    Event
+                                </label>
+                            </div>
+                            <div class="filternav__fieldcol">
+                                <div class="filternav__checkbox-wrapper">
+                                    <input
+                                            
+                                            data-filter-input
+                                            id="input-event-type-B"
+                                            class="filternav__input filternav__input--checkbox"
+                                            name="type"
+                                            value="permanent"
+                                            type="radio">
+                                    <label for="input-event-type-B"></label>
+                                </div>
+                                <label for="input-event-type-B" class="filternav__label filternav__label--checkbox" tabindex="0">
+                                    Dauerhaftes Angebot
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+  </header>
+  <main id="main" class="section  section--main ">
+    <div class="section__content">
+      
+  <div id="wall" class="wall wall--grid"
+       data-js-wall>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/sport-freizeit/parks-und-grunanlagen/neumunsteranlage/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Neumünsteranlage
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Neumünsteranlage
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              00:00 - 00:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/neumunsteranlage/1716797232023_honeycomb_90FF00.png"
+            alt="Neumünsteranlage"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/sport-freizeit/parks-und-grunanlagen/pfingstweidpark/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Pfingstweidpark
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Pfingstweidpark
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              00:00 - 00:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/pfingstweidpark/1716801070287_rain_721EE8.png"
+            alt="Pfingstweidpark"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/sport-freizeit/sportanlagen/sportbox/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    SportBox
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    SportBox
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              00:00 - 23:59
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/00FFB7_circles_0B9EFF.png"
+            alt="SportBox"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/sport-freizeit/sportanlagen/boxup-station/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    BoxUp-Station
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    BoxUp-Station
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              00:00 - 23:59
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/721EE8_honeycomb_FF8400.png"
+            alt="BoxUp-Station"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/sport-freizeit/sportanlagen/parkour/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Parkour
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Parkour
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              00:00 - 23:59
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/0066E8_waves_FF005C.png"
+            alt="Parkour"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/sport-freizeit/sportanlagen/boulderwurfel-buchlern/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Boulderwürfel Buchlern
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Boulderwürfel Buchlern
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              00:00 - 23:59
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/00FFB7_circles_721EE8.png"
+            alt="Boulderwürfel Buchlern"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/kultur-nachtleben/bildende-kunst-performance/harald-naegeli-graffiti-tour-english/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Harald Naegeli Graffiti-Tour (English)
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Harald Naegeli Graffiti-Tour (English)
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              00:00 - 23:59
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/harald-naegeli-graffiti-tour-e/flamingo_bars_FF005C.png"
+            alt="Harald Naegeli Graffiti-Tour (English)"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/kultur-nachtleben/bildende-kunst-performance/graffiti-tour-in-der-eth-garage/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Graffiti Tour in der ETH-Garage
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Graffiti Tour in der ETH-Garage
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              00:01 - 23:59
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/graffiti-tour-in-der-eth-garag/8_sprinkles_FFE906.png"
+            alt="Graffiti Tour in der ETH-Garage"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/sport-freizeit/parks-und-grunanlagen/villa-tobler/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Villa Tobler
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Villa Tobler
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              06:30 - 18:45
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/villa-tobler/1727254464471_rain_0B9EFF.png"
+            alt="Villa Tobler"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/sport-freizeit/sportanlagen/freestyle-anlagen-stadt-zurich/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Freestyle-Anlagen Stadt Zürich
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Freestyle-Anlagen Stadt Zürich
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              08:00 - 21:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/0B9EFF_rain_FFE906.png"
+            alt="Freestyle-Anlagen Stadt Zürich"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/kultur-nachtleben/clubs-parties/2026-10-16-karaoke-night-at-brauerei-oerlikon/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Karaoke Night at Brauerei Oerlikon
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Karaoke Night at Brauerei Oerlikon
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              20:00 - 23:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/2026-10-16-karaoke-night-at-br/whatsapp-image-2026-10-13-at-120847_sprinkles_721EE8.png"
+            alt="Karaoke Night at Brauerei Oerlikon"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/kultur-nachtleben/clubs-parties/2026-10-16-karaoke-night-at-brauerei-oerlikon-1/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Karaoke Night at Brauerei Oerlikon
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Karaoke Night at Brauerei Oerlikon
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 16. Oktober
+              20:00 - 23:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/2026-10-16-karaoke-night-at-br/whatsapp-image-2026-10-13-at-120847_sprinkles_721EE8.png"
+            alt="Karaoke Night at Brauerei Oerlikon"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/kultur-nachtleben/theater-circus/zirkus-chnopf/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Zirkus Chnopf
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Zirkus Chnopf
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Samstag, 17. Oktober
+              19:30 - 21:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/721EE8_grid_0B9EFF.png"
+            alt="Zirkus Chnopf"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/kultur-nachtleben/konzerte/2026-10-17-taproom-session-bram-van-langen/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Taproom Session: Bram Van Langen
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Taproom Session: Bram Van Langen
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Samstag, 17. Oktober
+              20:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/2026-10-17-taproom-session-bra/whatsapp-image-2026-10-13-at-121612-1_sprinkles_00FFB.png"
+            alt="Taproom Session: Bram Van Langen"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/kultur-nachtleben/theater-circus/2026-10-18-mini-larp-sense/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    MINI-LARP: SENSE
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    MINI-LARP: SENSE
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Sonntag, 18. Oktober
+              13:00 - 18:30
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/2026-10-18-mini-larp-sense/image_sprinkles_FF8400.png"
+            alt="MINI-LARP: SENSE"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/bildung/workshop/2026-10-18-touch-some-grass/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Touch Some Grass
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Touch Some Grass
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Sonntag, 18. Oktober
+              14:00 - 18:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/0066E8_zigzag_00FFB7.png"
+            alt="Touch Some Grass"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/bildung/vortrage-vorlesungen/2026-10-19-inaugural-lectures-prof-dr-med-vet-dipl-acvm-giovanni-ghielmetti-prof-dr-lara-urban/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Inaugural Lectures Prof. Dr. med. vet., Dipl. ACVM Giovanni Ghielmetti / Prof. Dr. Lara Urban
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Inaugural Lectures Prof. Dr. med. vet., Dipl. ACVM Giovanni Ghielmetti / Prof. Dr. Lara Urban
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Montag, 19. Oktober
+              17:00 - 18:30
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/FFE906_honeycomb_FF005C.png"
+            alt="Inaugural Lectures Prof. Dr. med. vet., Dipl. ACVM Giovanni Ghielmetti / Prof. Dr. Lara Urban"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/bildung/sprachen-konversation/2026-10-21-das-dingsbums/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Das Dingsbums
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Das Dingsbums
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Mittwoch, 21. Oktober
+              15:00 - 15:45
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/2026-10-21-das-dingsbums/marisa_ah_1500_rain_00FFB7.png"
+            alt="Das Dingsbums"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/bildung/sprachen-konversation/2026-10-21-the-thingy/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    The Thingy
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    The Thingy
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Mittwoch, 21. Oktober
+              16:00 - 16:45
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/2026-10-21-the-thingy/marisa_ah_1500_rain_0066E8.png"
+            alt="The Thingy"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/bildung/vortrage-vorlesungen/2026-10-21-wenn-die-allergie-zum-notfall-wird/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Wenn die Allergie zum Notfall wird
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Wenn die Allergie zum Notfall wird
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Mittwoch, 21. Oktober
+              18:30 - 19:45
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/FFE906_rain_0066E8.png"
+            alt="Wenn die Allergie zum Notfall wird"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/bildung/beratung/lernstube-altstetten-sicher-ans-bewerbungsgesprach/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Lernstube Altstetten - Bewerbungsunterstützung
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Lernstube Altstetten - Bewerbungsunterstützung
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Donnerstag, 22. Oktober
+              14:00 - 17:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/FFE906_leopard_FF8400.png"
+            alt="Lernstube Altstetten - Bewerbungsunterstützung"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/bildung/sprachen-konversation/sprachcafe-schweizerdeutsch-1/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Sprachcafé Schweizerdeutsch
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Sprachcafé Schweizerdeutsch
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Donnerstag, 22. Oktober
+              16:30 - 18:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/721EE8_waves_0066E8.png"
+            alt="Sprachcafé Schweizerdeutsch"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/kultur-nachtleben/tanz/2026-10-22-offenes-tanzen-schweizer-internationale-volkstanze/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    Offenes Tanzen | Schweizer &amp; Internationale Volkstänze
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    Offenes Tanzen | Schweizer &amp; Internationale Volkstänze
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Donnerstag, 22. Oktober
+              20:00 - 21:40
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/2026-10-22-offenes-tanzen-schw/dsc_4417_leopard_0066E8.png"
+            alt="Offenes Tanzen | Schweizer &amp; Internationale Volkstänze"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+      <article class="poster poster--grid">
+        <a href="
+          /events/kultur-nachtleben/bildende-kunst-performance/2026-10-23-howtosabotageworkbetter_2027pdf-eroffnung/"
+           class="poster__link" data-js-overlay>
+          <div class="poster__content">
+            <h3 class="poster__title">
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-background">
+                    «HowToSabotageWorkBetter_2027.pdf»: Eröffnung
+                </span>
+              </div>
+              <div class="poster__title-inner">
+                <span class="poster__title-span poster__title-span-text" data-js-poster-title>
+                    «HowToSabotageWorkBetter_2027.pdf»: Eröffnung
+                </span>
+              </div>
+            </h3>
+            <time datetime="2026-10-16" class="poster__date">
+              Freitag, 23. Oktober
+              18:00 - 21:00
+            </time>
+
+          </div>
+          <img
+            src="https://www.zuerichunbezahlbar.ch/media/tile_images/2026-10-23-howtosabotageworkbe/stzh_kior_bitnik_flyer-digital_1_leopard_FF005C.png"
+            alt="«HowToSabotageWorkBetter_2027.pdf»: Eröffnung"
+            class="poster__image"
+            height="512" width="512">
+        </a>
+      </article>
+    
+
+  </div>
+  
+    <div class="pagination">
+            <span class="step-links">
+                
+
+              <span class="current">
+                    1 / 13
+                </span>
+
+              
+                <a href="?page=2&category=&amp;subcategory=&amp;daterange=&amp;type=&amp;plz=&amp;rendering=grid&amp;filter_state=closed&amp;search=">weiter »</a>
+              
+            </span>
+    </div>
+  
+
+    </div>
+  </main>
+
+<footer class="footer" role="contentinfo">
+    <div class="footer__section">
+        <div class="footer__content">
+            <nav class="footer__footnav">
+                <ul class="footer__footnav-list" data-js-matchheight="footnav">
+                    
+                </ul>
+            </nav>
+            <nav class="footer__footnav">
+                <ul class="footer__footnav-list" data-js-matchheight="footnav">
+                    
+                    <li class="footer__footnav-list-item">
+                        <a href="https://www.maps.stadt-zuerich.ch/zueriplan3/Stadtplan.aspx?#route_visible=true&basemap=Stadtplan&map=&scale=8000&xkoord=2683299&ykoord=1247363&lang=&layer=&window=&selectedObject=&selectedLayer=&toggleScreen=&legacyUrlState=&drawings="
+                                class="footer__footnav-link"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                            Züriplan
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div target="_blank" class="footer__logo-container">
+                <a target="_blank" class="footer__logo-link" href="http://www.caritas-zuerich.ch">
+                    <div class="footer__logo footer__logo--caritas">Caritas Zürich</div>
+                </a>
+            </div>
+            <div class="footer__logo-container">
+                <a target="_blank" class="footer__logo-link" href="http://www.kulturlegi.ch/zuerich">
+                    <div class="footer__logo footer__logo--kulturlegi">Kulturlegi</div>
+                </a>
+            </div>
+            <div class="footer__logo-container">
+                <a target="_blank" class="footer__logo-link" href="http://www.dreipol.ch/">
+                    <div class="footer__logo footer__logo--dreipol">dreipol</div>
+                </a>
+            </div>
+            <div class="footer__logo-container">
+                <a class="footer__logo-link" href="https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/sd/sod.html" target="_blank">
+                    <div class="footer__logo footer__logo--sd">Stadt Zürich Soziale Dienste</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer__section">
+        <div class="footer__content">
+            <nav class="footer__social">
+                <ul class="footer__social-list">
+                    <li class="footer__social-list-item">
+                        <a class="at300b at-follow-btn footer__social-link" data-svc="facebook"
+                            title="Auf Facebook folgen"
+                            href="https://www.facebook.com/caritaszuerich" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 32 32" class="icon">
+                                <g>
+                                    <path d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z"
+                                            fill-rule="evenodd"></path>
+                                </g>
+                            </svg>
+                            Caritas
+                        </a>
+                    </li>
+                    <li class="footer__social-list-item">
+                        <a class="at300b at-follow-btn footer__social-link" data-svc="facebook"
+                            title="Auf Facebook folgen"
+                            href="https://www.facebook.com/kulturlegizuerich/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 32 32" class="icon">
+                                <g>
+                                    <path d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z"
+                                            fill-rule="evenodd"></path>
+                                </g>
+                            </svg>
+                            KulturLegi
+                        </a>
+                    </li>
+                    <li class="footer__social-list-item">
+                        <a class="at300b at-follow-btn footer__social-link" data-svc="x"
+                            title="Auf Facebook folgen"
+                            href="https://www.facebook.com/zuerichunbezahlbar/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 32 32" class="icon">
+                                <g>
+                                    <path d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z"
+                                            fill-rule="evenodd"></path>
+                                </g>
+                            </svg>
+                            Zürich unbezahlbar
+                        </a>
+                    </li>
+                    <li class="footer__social-list-item">
+                        <a class="at300b at-follow-btn footer__social-link" data-svc="x"
+                            title="Auf Instagram folgen"
+                            href="https://www.instagram.com/dreipol.ch/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 448 512" class="icon">
+                                <g>
+                                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.8 224.1 370.8 339 319.5 339 255.9 287.7 141 224.1 141zm0 186.6c-39.6 0-71.7-32.1-71.7-71.7s32.1-71.7 71.7-71.7 71.7 32.1 71.7 71.7-32.1 71.7-71.7 71.7zm146.4-194.3c0 14.9-12 26.9-26.9 26.9s-26.9-12-26.9-26.9 12-26.9 26.9-26.9 26.9 12 26.9 26.9zm76.1 27.2c-1.7-35.7-9.9-67.3-36.2-93.6s-57.9-34.5-93.6-36.2c-37-2.1-147.8-2.1-184.8 0-35.7 1.7-67.3 9.9-93.6 36.2s-34.5 57.9-36.2 93.6c-2.1 37-2.1 147.8 0 184.8 1.7 35.7 9.9 67.3 36.2 93.6s57.9 34.5 93.6 36.2c37 2.1 147.8 2.1 184.8 0 35.7-1.7 67.3-9.9 93.6-36.2s34.5-57.9 36.2-93.6c2.1-37 2.1-147.8 0-184.8zm-48.1 224c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.9 9s-103.5 2.6-132.9-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.9s-2.6-103.5 9-132.9c7.8-19.6 22.9-34.7 42.5-42.5 29.4-11.7 99.2-9 132.9-9s103.5-2.6 132.9 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.9s2.6 103.5-9 132.9z"/>
+                                </g>
+                            </svg>
+                            dreipol
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+
+<footer class="footer" role="contentinfo">
+    <div class="footer__section">
+        <div class="footer__content">
+            <nav class="footer__footnav">
+                <ul class="footer__footnav-list" data-js-matchheight="footnav">
+                    
+                    <li class="footer__footnav-list-item">
+                        <a href="/events/"
+                            class="footer__footnav-link is-active">Home
+                        </a>
+                    </li>
+                    
+                    <li class="footer__footnav-list-item">
+                        <a href="/map/"
+                            class="footer__footnav-link">Karte
+                        </a>
+                    </li>
+                    
+                    <li class="footer__footnav-list-item">
+                        <a href="/faq/"
+                            class="footer__footnav-link">FAQ
+                        </a>
+                    </li>
+                    
+                    <li class="footer__footnav-list-item">
+                        <a href="/events/create/"
+                            class="footer__footnav-link">Erstellen +
+                        </a>
+                    </li>
+                    
+                </ul>
+            </nav>
+            <nav class="footer__footnav">
+                <ul class="footer__footnav-list" data-js-matchheight="footnav">
+                    
+                    <li class="footer__footnav-list-item">
+                        <a href="/uber-uns/"
+                            class="footer__footnav-link">Über uns
+                        </a>
+                    </li>
+                    
+                    <li class="footer__footnav-list-item">
+                        <a href="/rechtliches/"
+                            class="footer__footnav-link">Rechtliches
+                        </a>
+                    </li>
+                    
+                    <li class="footer__footnav-list-item">
+                        <a href="/kontakt/"
+                            class="footer__footnav-link">Kontakt
+                        </a>
+                    </li>
+                    
+                    <li class="footer__footnav-list-item">
+                        <a href="https://www.maps.stadt-zuerich.ch/zueriplan3/Stadtplan.aspx?#route_visible=true&basemap=Stadtplan&map=&scale=8000&xkoord=2683299&ykoord=1247363&lang=&layer=&window=&selectedObject=&selectedLayer=&toggleScreen=&legacyUrlState=&drawings="
+                                class="footer__footnav-link"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                            Züriplan
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div target="_blank" class="footer__logo-container">
+                <a target="_blank" class="footer__logo-link" href="http://www.caritas-zuerich.ch">
+                    <div class="footer__logo footer__logo--caritas">Caritas Zürich</div>
+                </a>
+            </div>
+            <div class="footer__logo-container">
+                <a target="_blank" class="footer__logo-link" href="http://www.kulturlegi.ch/zuerich">
+                    <div class="footer__logo footer__logo--kulturlegi">Kulturlegi</div>
+                </a>
+            </div>
+            <div class="footer__logo-container">
+                <a target="_blank" class="footer__logo-link" href="http://www.dreipol.ch/">
+                    <div class="footer__logo footer__logo--dreipol">dreipol</div>
+                </a>
+            </div>
+            <div class="footer__logo-container">
+                <a class="footer__logo-link" href="https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/sd/sod.html" target="_blank">
+                    <div class="footer__logo footer__logo--sd">Stadt Zürich Soziale Dienste</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer__section">
+        <div class="footer__content">
+            <nav class="footer__social">
+                <ul class="footer__social-list">
+                    <li class="footer__social-list-item">
+                        <a class="at300b at-follow-btn footer__social-link" data-svc="facebook"
+                            title="Auf Facebook folgen"
+                            href="https://www.facebook.com/caritaszuerich" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 32 32" class="icon">
+                                <g>
+                                    <path d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z"
+                                            fill-rule="evenodd"></path>
+                                </g>
+                            </svg>
+                            Caritas
+                        </a>
+                    </li>
+                    <li class="footer__social-list-item">
+                        <a class="at300b at-follow-btn footer__social-link" data-svc="facebook"
+                            title="Auf Facebook folgen"
+                            href="https://www.facebook.com/kulturlegizuerich/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 32 32" class="icon">
+                                <g>
+                                    <path d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z"
+                                            fill-rule="evenodd"></path>
+                                </g>
+                            </svg>
+                            KulturLegi
+                        </a>
+                    </li>
+                    <li class="footer__social-list-item">
+                        <a class="at300b at-follow-btn footer__social-link" data-svc="x"
+                            title="Auf Facebook folgen"
+                            href="https://www.facebook.com/zuerichunbezahlbar/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 32 32" class="icon">
+                                <g>
+                                    <path d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z"
+                                            fill-rule="evenodd"></path>
+                                </g>
+                            </svg>
+                            Zürich unbezahlbar
+                        </a>
+                    </li>
+                    <li class="footer__social-list-item">
+                        <a class="at300b at-follow-btn footer__social-link" data-svc="x"
+                            title="Auf Instagram folgen"
+                            href="https://www.instagram.com/dreipol.ch/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 448 512" class="icon">
+                                <g>
+                                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.8 224.1 370.8 339 319.5 339 255.9 287.7 141 224.1 141zm0 186.6c-39.6 0-71.7-32.1-71.7-71.7s32.1-71.7 71.7-71.7 71.7 32.1 71.7 71.7-32.1 71.7-71.7 71.7zm146.4-194.3c0 14.9-12 26.9-26.9 26.9s-26.9-12-26.9-26.9 12-26.9 26.9-26.9 26.9 12 26.9 26.9zm76.1 27.2c-1.7-35.7-9.9-67.3-36.2-93.6s-57.9-34.5-93.6-36.2c-37-2.1-147.8-2.1-184.8 0-35.7 1.7-67.3 9.9-93.6 36.2s-34.5 57.9-36.2 93.6c-2.1 37-2.1 147.8 0 184.8 1.7 35.7 9.9 67.3 36.2 93.6s57.9 34.5 93.6 36.2c37 2.1 147.8 2.1 184.8 0 35.7-1.7 67.3-9.9 93.6-36.2s34.5-57.9 36.2-93.6c2.1-37 2.1-147.8 0-184.8zm-48.1 224c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.9 9s-103.5 2.6-132.9-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.9s-2.6-103.5 9-132.9c7.8-19.6 22.9-34.7 42.5-42.5 29.4-11.7 99.2-9 132.9-9s103.5-2.6 132.9 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.9s2.6 103.5-9 132.9z"/>
+                                </g>
+                            </svg>
+                            dreipol
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+</div>
+
+<!-- inject:body:js -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.zuerichunbezahlbar.ch/static/js/index.js"></script>
+<!-- endinject:body:js -->
+
+</body>
+</html>
