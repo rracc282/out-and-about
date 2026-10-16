@@ -296,7 +296,7 @@ for (const m of html.matchAll(/\{"id": ?"([a-z0-9@-]+)", ?"p": ?"[^"]*"[^{}]*?"t
 }
 /* weak descriptions ("Pièce de théâtre", "Feature film as part of …"): read the event's own page for a real synopsis (cached in data/desc.json) */
 let DESC = {}; try { DESC = JSON.parse(rd("data/desc.json")); } catch {}
-const WEAK = /^(pi[eè]ce de th[ée][aâ]tre|th[ée][aâ]tre|spectacle|concert|exposition|film|projection|ausstellung|konzert|theater)\.?$|\bfilm as part of|film session|short film|film (?:as part of|in the framework of)|as part of the .{0,40}festival\.?$/i;
+const WEAK = /dans le cadre du festival|^(pi[eè]ce de th[ée][aâ]tre|th[ée][aâ]tre|spectacle|concert|exposition|film|projection|ausstellung|konzert|theater)\.?$|\bfilm as part of|film session|short film|film (?:as part of|in the framework of)|as part of the .{0,40}festival\.?$/i;
 const metaDesc = h => { const c = [];
   /* Next.js pages (lesgenevois.com etc.) keep the real text inside the page data as "text":"…" */
   const nx = [...h.matchAll(/\\"text\\":\\"([\s\S]{80,3000}?)\\"[,}]/g)].map(m => m[1].replace(/\\\\n/g, " ").replace(/\\\\"/g, '"').replace(/\\\\u[\da-f]{4}/gi, x => String.fromCharCode(parseInt(x.slice(3), 16))).replace(/\*\*/g, "").replace(/^\s*\d+\s*min\.?[^A-Za-zÀ-ÿ“"]*/, "").replace(/^[\s\S]{0,160}?\((?:[A-Z]{2}(?:,\s*)?)+\)\s*/, "")).filter(x => !/cookie|newsletter/i.test(x));
@@ -308,7 +308,7 @@ const metaDesc = h => { const c = [];
   return c.map(x => clean(x.replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/<[^>]+>/g, " "))).filter(x => x.length >= 40 && !/cookie|javascript|newsletter|inbox|delivered to your|abonnez|subscribe/i.test(x)).sort((a, b) => b.length - a.length)[0] || ""; };
 { const todo = events.concat(add).filter(e => e.url && (!e.desc || e.desc.length < 70 || WEAK.test(e.desc.trim())) && !/songkick|meetup\.com/.test(e.url)).slice(0, 140);
   for (let i = 0; i < todo.length; i += 6) await Promise.all(todo.slice(i, i + 6).map(async e => {
-    let d = DESC[e.url]; if (d != null && (/inbox|newsletter|delivered to your|boîte|chaque lundi|meilleur de gen/i.test(d) || d.length < 60)) d = null; if (d == null) { const r = await get(e.url); d = r.body ? metaDesc(r.body) : ""; DESC[e.url] = d; }
+    let d = DESC[e.url]; if (d != null && (/inbox|newsletter|delivered to your|boîte|chaque lundi|meilleur de gen|dans le cadre du festival/i.test(d) || d.length < 100)) d = null; if (d == null) { const r = await get(e.url); d = r.body ? metaDesc(r.body) : ""; DESC[e.url] = d; }
     if (d && d.length > (e.desc || "").length) e.desc = short(d, 320); }));
   report.descEnriched = todo.length; fs.writeFileSync(new URL("data/desc.json", root), JSON.stringify(DESC)); }
 for (const e of events.concat(add)) {
