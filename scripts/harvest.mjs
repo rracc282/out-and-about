@@ -294,6 +294,18 @@ for (const m of html.matchAll(/\{"id": ?"([a-z0-9@-]+)", ?"p": ?"[^"]*"[^{}]*?"t
   const city = m[1].startsWith("zh-") ? "zh" : "ge"; const t = await titleEn(m[2], city);
   if (t && norm(t) !== norm(m[2])) tEn[m[1]] = t.slice(0, 110);
 }
+/* weak descriptions ("Pièce de théâtre", "Feature film as part of …"): read the event's own page for a real synopsis (cached in data/desc.json) */
+let DESC = {}; try { DESC = JSON.parse(rd("data/desc.json")); } catch {}
+const WEAK = /^(pi[eè]ce de th[ée][aâ]tre|th[ée][aâ]tre|spectacle|concert|exposition|film|projection|ausstellung|konzert|theater)\.?$|\bfilm as part of|film session|short film|film (?:as part of|in the framework of)|as part of the .{0,40}festival\.?$/i;
+const metaDesc = h => { const c = []; for (const m of h.matchAll(/<meta[^>]+(?:property|name)=["'](?:og:description|description|twitter:description)["'][^>]*content=["']([^"']{40,})["']/gi)) c.push(m[1]);
+  for (const m of h.matchAll(/<meta[^>]+content=["']([^"']{40,})["'][^>]*(?:property|name)=["'](?:og:description|description)["']/gi)) c.push(m[1]);
+  for (const m of h.matchAll(/"description"\s*:\s*"((?:[^"\\]|\\.){60,1500})"/g)) { try { c.push(JSON.parse('"' + m[1] + '"')); } catch {} }
+  return c.map(x => clean(x.replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/<[^>]+>/g, " "))).filter(x => x.length >= 40 && !/cookie|javascript|newsletter/i.test(x)).sort((a, b) => b.length - a.length)[0] || ""; };
+{ const todo = events.concat(add).filter(e => e.url && (!e.desc || e.desc.length < 70 || WEAK.test(e.desc.trim())) && !/songkick|meetup\.com/.test(e.url)).slice(0, 140);
+  for (let i = 0; i < todo.length; i += 6) await Promise.all(todo.slice(i, i + 6).map(async e => {
+    let d = DESC[e.url]; if (d == null) { const r = await get(e.url); d = r.body ? metaDesc(r.body) : ""; DESC[e.url] = d; }
+    if (d && d.length > (e.desc || "").length) e.desc = short(d, 320); }));
+  report.descEnriched = todo.length; fs.writeFileSync(new URL("data/desc.json", root), JSON.stringify(DESC)); }
 for (const e of events.concat(add)) {
   const tt = (e.src === "Songkick" || / @ /.test(e.title)) ? null : ((await toEn(e.title)) || (await titleEn(e.title, e.city))); if (tt && norm(tt) !== norm(e.title)) e.titleEn = tt.slice(0, 110);
   if (e.desc) { const dd = await toEn(e.desc); if (dd) e.desc = dd; }
