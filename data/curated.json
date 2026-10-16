@@ -232,6 +232,102 @@
       "zone": "ge",
       "city": "ge",
       "desc": "Geneva's international LGBTIQ+ film festival: ten days of features and shorts at the Cinémas du Grütli, plus talks, performances, workshops and party nights. Many films have English subtitles. Programme and tickets on everybodysperfect.ch."
+    },
+    {
+      "city": "ge",
+      "zone": "ge",
+      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+      "cat": [
+        "fete",
+        "culture"
+      ],
+      "indoor": true,
+      "id": "c-ge-festival-du-soir-10-16",
+      "day": "2026-10-16",
+      "dayEnd": "2026-11-01",
+      "when": "16 Oct – 1 Nov · Fri & Sat nights from 19:00",
+      "title": "Festival du Soir — 10th edition at Palexpo",
+      "kind": "Festival",
+      "price": "Tickets per night",
+      "url": "https://festivaldusoir.com",
+      "desc": "Geneva's big indoor night festival takes over Palexpo for three weekends: each Friday and Saturday has its own world, from electronic music and circus to Latin parties, disco revival and a giant Halloween. Open the festival for the night-by-night programme."
+    },
+    {
+      "city": "ge",
+      "zone": "ge",
+      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+      "cat": [
+        "fete",
+        "culture"
+      ],
+      "indoor": true,
+      "id": "c-ge-fds-gims-10-23",
+      "day": "2026-10-23",
+      "when": "Fri 23 Oct · 19:00–late",
+      "title": "GIMS + Triangle des Bermudes, then Baile do Village XXL",
+      "kind": "Concert",
+      "price": "Tickets",
+      "url": "https://festivaldusoir.com",
+      "desc": "Festival du Soir night: French rap-pop star GIMS on the main stage until midnight, then a big Brazilian-Latin party (Baile do Village XXL) on the second stage. One ticket for both."
+    },
+    {
+      "city": "ge",
+      "zone": "ge",
+      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+      "cat": [
+        "fete",
+        "culture"
+      ],
+      "indoor": true,
+      "id": "c-ge-fds-nostalgia-10-24",
+      "day": "2026-10-24",
+      "when": "Sat 24 Oct · 19:00–05:00",
+      "title": "Nostalgia & Disco Party XXL + La Troya",
+      "kind": "Party",
+      "price": "Tickets",
+      "url": "https://festivaldusoir.com",
+      "desc": "Festival du Soir night: 80s–2000s nostalgia with live sets from Gala, Boney M. and O-Zone on the main stage, plus La Troya, the Ibiza party, on the second stage."
+    },
+    {
+      "city": "ge",
+      "zone": "ge",
+      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+      "cat": [
+        "fete",
+        "culture"
+      ],
+      "indoor": true,
+      "id": "c-ge-fds-positiv-10-30",
+      "day": "2026-10-30",
+      "when": "Fri 30 Oct · 19:00–05:00",
+      "title": "Positiv — Paul Kalkbrenner, Mind Against",
+      "kind": "Party",
+      "price": "Tickets",
+      "url": "https://festivaldusoir.com",
+      "desc": "Festival du Soir techno night with Paul Kalkbrenner, Mind Against, Nicolas Cuer and La Forêt."
+    },
+    {
+      "city": "ge",
+      "zone": "ge",
+      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+      "cat": [
+        "fete",
+        "culture"
+      ],
+      "indoor": true,
+      "id": "c-ge-fds-megalloween-10-31",
+      "day": "2026-10-31",
+      "when": "Sat 31 Oct · 19:00–06:00",
+      "title": "Megalloween — 20th anniversary + Día de los Muertos",
+      "kind": "Party",
+      "price": "Tickets",
+      "url": "https://festivaldusoir.com",
+      "desc": "Festival du Soir's giant Halloween party in costume, with a Día de los Muertos festival running alongside."
     }
   ]
 }
