@@ -1,0 +1,653 @@
+200 https://www.guidle.com/de/veranstaltungen/zuerich
+<!DOCTYPE html >
+<html class="no-js style-guidle guidle" lang="de">
+<head>
+	<meta charset="utf-8" />
+	<!--  Code by Alexander Albrecht alexanderalbrecht.ch  -->
+        <!--  Global site tag (gtag.js) - Google Analytics  -->
+        
+        <script>
+        
+      var getCookieByName = function(cname) {
+       	  let name = cname + "=";
+       	  let decodedCookie = decodeURIComponent(document.cookie);
+       	  let ca = decodedCookie.split(';');
+       	  for(let i = 0; i < ca.length; i++) {
+       	    let c = ca[i];
+       	    while (c.charAt(0) == ' ') {
+       	      c = c.substring(1);
+       	    }
+       	    if (c.indexOf(name) == 0) {
+       	      return c.substring(name.length, c.length);
+       	    }
+       	  }
+       	  return "";
+       	}
+        
+
+          var consentCookieVal = getCookieByName("_consentCookie");
+          var analyticsAllowed = false;
+          
+          if(consentCookieVal != null && typeof (consentCookieVal) != 'undefined'){
+        	  if(consentCookieVal.includes("analytics")){
+        		  analyticsAllowed = true;  
+        	  }
+          }
+
+          if('true' != "true"){
+        	  analyticsAllowed = true;
+          }
+          
+          if(analyticsAllowed){
+	          var script = document.createElement('script');
+	          script.onload = function () {
+				  window.dataLayer = window.dataLayer || [];
+		          function gtag(){dataLayer.push(arguments);}
+		          gtag("js", new Date());
+		
+		          var codes = "G-37N0P3BWFJ,G-B7PZM9C61Z";
+		          var codesArray = codes.split(',');
+		          
+		          for(var i = 0; i < codesArray.length; i++){
+		        	  gtag("config", codesArray[i]);
+		          }
+	        	  
+	          };
+	          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-37N0P3BWFJ,G-B7PZM9C61Z';
+	
+	          document.head.appendChild(script);
+          }
+
+        </script><script type="text/javascript">if(!JAWR){var JAWR = {};};;JAWR.jawr_dwr_path='/dwr';JAWR.dwr_scriptSessionId='E857D31619A103DBA91C3A641EE956B5';JAWR.app_context_path='';</script>
+<script type="text/javascript" src="https://d10rdyp01sn3kp.cloudfront.net/jawrjs/gzip_1333595345/bundles/registrationManagerTop.js" ></script>
+
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="apple-mobile-web-app-title" content="guidle" />
+
+	<meta name="author" content="guidle" />
+
+<!-- 	<link rel="alternate" type="application/rss+xml" title="guidle" href="/de/feed" /> -->
+	
+	<link rel="apple-touch-icon" sizes="180x180" href="https://d10rdyp01sn3kp.cloudfront.net/portalresources/guidle/static/favicons/apple-touch-icon.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="https://d10rdyp01sn3kp.cloudfront.net/portalresources/guidle/static/favicons/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="https://d10rdyp01sn3kp.cloudfront.net/portalresources/guidle/static/favicons/favicon-16x16.png" />
+	<link rel="manifest" href="https://d10rdyp01sn3kp.cloudfront.net/portalresources/guidle/static/favicons/site.webmanifest" />
+	<link rel="mask-icon" href="https://d10rdyp01sn3kp.cloudfront.net/portalresources/guidle/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+	<meta name="theme-color" content="#ffffff" />
+	<meta name="msapplication-TileColor" content="#005ea8" /><link rel="stylesheet" type="text/css" media="all" href="https://d10rdyp01sn3kp.cloudfront.net/jawrcss/gzip_N1835327323/bundles/guidlePortalStyle.css" />
+
+
+	<link rel="preconnect" href="https://ik.imagekit.io" />
+	<link rel="preconnect" href="https://d37dhr5745n0y2.cloudfront.net" />
+	<!--  crossorigin: fonts are fetched in CORS mode, so a connection opened without it would not be reused.  -->
+	<link rel="preconnect" href="https://guidle-static-files.s3.us-east-1.amazonaws.com" crossorigin="anonymous" />
+	<link rel="preload" as="font" type="font/woff2" href="https://guidle-static-files.s3.us-east-1.amazonaws.com/portals/guidle/fonts/gotham-v3/Gotham-Bold.woff2" crossorigin="anonymous" />
+	<link rel="preload" as="font" type="font/woff2" href="https://guidle-static-files.s3.us-east-1.amazonaws.com/portals/guidle/fonts/gotham-v3/GothamXNarrow-Medium.woff2" crossorigin="anonymous" />
+				<link href="https://www.guidle.com/hosted/template_portal/guidle/static/css/fonts.css?v=4" rel="stylesheet" type="text/css" /><script type="text/javascript" src="https://d10rdyp01sn3kp.cloudfront.net/jawrjs/gzip_N391455293/bundles/portalTemplatesJsTop.js" ></script>
+
+
+	<script>
+		//<![CDATA[
+			var globalContextPath  = '';
+			//for old code
+			var requestContextPath_  = '';
+			var portalName = 'GUIDLE';
+			var portalRootUri = '/de';
+			var pageName = 'homepage';
+			var favoritesListCookieUrl = '/de/favorites-manager-ajax';
+			var locale = 'de';
+
+			var isDevelopment = 'false';
+			var pageUriPrefix = '/veranstaltungen/zuerich';
+
+			var searchCRId = '';
+			var searchBaseUri = '';
+			var groupType = '';
+			var pageUri = '/veranstaltungen/zuerich';
+
+			var guidleHostUrl = 'https://www.guidle.com';
+			var portalServerRootContext = 'https://www.guidle.com';
+
+			var cityFilterLocalStorageKey = '';
+			var favoritesCookieName = 'favorites_offer_ids';
+			var simpleAppend = '';
+
+			if(typeof PORTALMODULE != 'undefined'){
+				PORTALMODULE.init({
+					globalContextPath  : '',
+					portalName : 'GUIDLE',
+					portalRootUri : '/de',
+					portalStaticUri : 'https://d10rdyp01sn3kp.cloudfront.net/portalresources/guidle/static',
+					pageName : 'homepage',
+					favoritesListCookieUrl : '/de/favorites-manager-ajax',
+					locale : 'de',
+					isDevelopment : 'false',
+					pageUriPrefix : '/veranstaltungen/zuerich',
+					searchCRId : '',
+					searchBaseId : '',
+					pageUri : '/veranstaltungen/zuerich',
+					guidleHostUrl : 'https://www.guidle.com'
+				});
+			}
+
+			var treeFiltersMap = {};
+
+			var defaultSearchParameters = '';
+
+			var dateFormatSeparator = ".";
+
+			var i18n = {};
+			i18n['genericError'] = "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es nochmals oder kontaktieren Sie support@guidle.com.";
+			i18n['portalTemplate.passwordForgotten.MembershipOnlyMessage'] = "Ihr Login ist noch nicht oder nicht mehr aktiv. Bitte versuchen Sie es später nochmals oder melden Sie sich beim guidle-Support (support@guidle.com oder +41 41 766 95 95)";
+		    var calendarMonthNamesLabels = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+		    var calendarDayNamesLabels = ['So','Mo','Di','Mi','Do','Fr','Sa'];
+
+			var callTruncateFunction = '';
+
+			var  menuItemDecorator = null;
+
+			var locationFilterIsMandatory = false;
+
+			$(document).ready(function() {
+		 if (typeof (MenuItemDecorator) !== 'undefined') {
+			 menuItemDecorator = new MenuItemDecorator();
+			 menuItemDecorator.decorateAll();
+		 }
+		 if (typeof (ieModal) !== 'undefined') {
+			 try{
+				 if(analyticsAllowed){
+				 	window.ieModalInstance = new ieModal();
+				 }
+			 }catch(e){
+				 console.log(e);
+			 }
+		 }
+		 if (window !== parent) {
+		      $('html').addClass('in-iframe');
+		 }
+	 });
+
+		//]]>
+	</script>
+	<style>
+		body.-wizard>.container-wrap {
+			min-height: 100vh;
+		}
+	</style>
+
+	<meta name="robots" content="noimageindex" />
+
+</head>
+<!--  <script>window['adrum-start-time'] = new Date().getTime();</script><script src="/hosted/template_portal/default/static/js/appdynamics-htmlmonitor.js"></script>  -->
+
+<body id="top" class="layout-cockpit cockpit-dashboard guidle">
+
+
+
+	<link rel="stylesheet" href="/hosted/template_portal/vue/index.css?d=1792072270993" />
+
+
+	<div class="guidle" id="popupCookiesConsent" style="z-index: 2000; width: unset; font-size: unset; display: none;">
+		<div class="w-modal -cookies" id="js-modal" aria-role="dialog" aria-modal="true">
+			<div class="w-modal__background"></div>
+
+			<div class="w-modal__wrapper" id="modal-wrapper">
+				<div class="w-modal__container">
+					<div class="w-modal__header">
+						<div class="w-modal__title">Cookie-Einstellungen</div>
+
+						<button class="w-modal__close" id="closeIcon"><svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"><path d="M12.46 0L7 5.46 1.54 0 0 1.54 5.46 7 0 12.46 1.54 14 7 8.54 12.46 14 14 12.46 8.54 7l2.5-2.5L14 1.54z"/></svg>
+						</button>
+					</div>
+
+
+					<div class="w-modal__content">
+						Wir verwenden Cookies und andere Technologien auf unserer Website. Einige von ihnen sind essenziell, w&auml;hrend andere uns helfen, diese Website und Ihre Erfahrung zu verbessern. Personenbezogene Daten k&ouml;nnen verarbeitet werden (z. B. IP-Adressen), z. B. f&uuml;r personalisierte Anzeigen und Inhalte oder Anzeigen- und Inhaltsmessung. Weitere Informationen &uuml;ber die Verwendung Ihrer Daten finden Sie in unserer Datenschutzerkl&auml;rung.
+
+						<div class="w-accordion">
+							<button slot="trigger" class="w-accordion__heading -clickable">
+								<label class="w-checkbox -sm -narrow checked"> <input type="checkbox" class="w-checkbox__input" checked="true" disabled="disabled" />
+									<p class="w-checkbox__label"></p>
+								</label> erforderliche
+
+								<div class="w-accordion__icon -right" id="necessary-minus" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" class="w-accordion__icon -right"><path fill="currentColor" d="M15 7H1v2h14z"></path></svg>
+								</div>
+
+								<div class="w-accordion__icon -right" id="necessary-plus"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" class="w-accordion__icon -right"><path fill="currentColor" d="M15 7H9V1H7v6H1v2h6v6h2V9h6z"></path></svg>
+								</div>
+
+							</button>
+							<div class="w-accordion__content" aria-hidden="true" id="content-necessary">
+								<div class="w-accordion__wrapper">Diese Cookies sind f&uuml;r das Funktionieren der Website erforderlich und k&ouml;nnen in unseren Systemen nicht abgeschaltet werden. Sie werden in der Regel nur als Reaktion auf Ihre Handlungen gesetzt, die einer Anfrage nach Dienstleistungen gleichkommen, wie z. B. die Einstellung Ihrer Datenschutzeinstellungen, das Einloggen oder das Ausf&uuml;llen von Formularen. Sie k&ouml;nnen Ihren Browser so einstellen, dass er diese Cookies blockiert oder Sie darauf hinweist, aber einige Teile der Website werden dann nicht funktionieren. Diese Cookies speichern keine pers&ouml;nlich identifizierbaren Informationen.</div>
+							</div>
+						</div>
+
+
+						<div class="w-accordion">
+							<button slot="trigger" class="w-accordion__heading -clickable">
+								<label class="w-checkbox -sm -narrow checked" id="checkbox-analytics"> <input type="checkbox" class="w-checkbox__input" checked="true" />
+									<p class="w-checkbox__label"></p>
+								</label> Analytics
+
+								<div class="w-accordion__icon -right" id="analytics-minus" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" class="w-accordion__icon -right"><path fill="currentColor" d="M15 7H1v2h14z"></path></svg>
+								</div>
+
+								<div class="w-accordion__icon -right" id="analytics-plus"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" class="w-accordion__icon -right"><path fill="currentColor" d="M15 7H9V1H7v6H1v2h6v6h2V9h6z"></path></svg>
+								</div>
+
+							</button>
+							<div class="w-accordion__content" aria-hidden="true" id="content-analytics">
+								<div class="w-accordion__wrapper">Um unsere Website kontinuierlich zu verbessern, verfolgen wir anonym Daten zu statistischen und analytischen Zwecken. Mit diesen Cookies k&ouml;nnen wir z.B. die Anzahl der Besuche oder die Wirkung bestimmter Seiten unseres Webauftritts verfolgen und somit unsere Inhalte optimieren.</div>
+							</div>
+						</div>
+
+						<div class="w-accordion">
+							<button slot="trigger" class="w-accordion__heading -clickable">
+								<label class="w-checkbox -sm -narrow" id="checkbox-marketing">
+									<input type="checkbox" class="w-checkbox__input" />
+									<p class="w-checkbox__label"></p>
+								</label> Marketing
+
+								<div class="w-accordion__icon -right" id="marketing-minus" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" class="w-accordion__icon -right"><path fill="currentColor" d="M15 7H1v2h14z"></path></svg>
+								</div>
+
+								<div class="w-accordion__icon -right" id="marketing-plus"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" class="w-accordion__icon -right"><path fill="currentColor" d="M15 7H9V1H7v6H1v2h6v6h2V9h6z"></path></svg>
+								</div>
+
+							</button>
+							<div class="w-accordion__content" aria-hidden="true" id="content-marketing">
+								<div class="w-accordion__wrapper">Diese Cookies k&ouml;nnen auf unserer Website von unseren Werbepartnern gesetzt werden. Sie k&ouml;nnen von diesen Unternehmen verwendet werden, um ein Profil Ihrer Interessen zu erstellen und Ihnen relevante Werbung auf anderen Websites zu zeigen. Sie speichern keine direkten pers&ouml;nlichen Informationen, sondern basieren auf der eindeutigen Identifizierung Ihres Browsers und Internetger&auml;ts. Wenn Sie diese Cookies nicht zulassen, werden Sie weniger gezielte Werbung sehen.</div>
+							</div>
+						</div>
+
+						<div class="w-accordion">
+							<button slot="trigger" class="w-accordion__heading -clickable">
+								<label class="w-checkbox -sm -narrow" id="checkbox-external-media"> <input type="checkbox" class="w-checkbox__input" />
+									<p class="w-checkbox__label"></p>
+								</label> externe Medien
+
+								<div class="w-accordion__icon -right" id="external-media-minus" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" class="w-accordion__icon -right"><path fill="currentColor" d="M15 7H1v2h14z"></path></svg>
+								</div>
+
+								<div class="w-accordion__icon -right" id="external-media-plus"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" class="w-accordion__icon -right"><path fill="currentColor" d="M15 7H9V1H7v6H1v2h6v6h2V9h6z"></path></svg>
+								</div>
+
+
+							</button>
+							<div class="w-accordion__content" aria-hidden="true" id="content-external-media">
+								<div class="w-accordion__wrapper">Auf dieser Webseite werden Inhalte von externen Medien eingebunden. Dies k&ouml;nnen Videos, Karten, Beitr&auml;ge aus Social Media, Veranstaltungskalender, Stellenangebote, usw. sein. In der Regel verwenden diese Dienste Tracking-Funktionen mit Cookies.</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="w-modal__footer">
+						<button class="w-button -primary" onclick="confirmSelection()">Einstellungen speichern</button>
+						<button class="w-button -primary -right" onclick="acceptAll()">Alle akzeptieren</button>
+					</div>
+
+					<div class="w-cookies__footer">
+						<a href="/de/unternehmen/rechtliches/agb" class="w-link">Allgemeine Gesch&auml;ftsbedingungen</a> <a href="/de/unternehmen/rechtliches/datenschutz" class="w-link">Datenschutz</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<div style="display:none" id="bannerCookiesConsent">
+	<div class="w-cookies guidle" id="js-modal" aria-role="dialog" aria-modal="true">
+	  <div class="w-cookies__background"></div>
+
+	  <div class="w-cookies__wrapper">
+	    <div>
+	      <h3 class="w-cookies__header">Cookie-Einstellungen</h3>
+	      <div class="w-cookies__intro">
+	        Wir verwenden Cookies und andere Technologien auf unserer Website. Einige von ihnen sind essenziell, w&auml;hrend andere uns helfen, diese Website und Ihre Erfahrung zu verbessern. Personenbezogene Daten k&ouml;nnen verarbeitet werden (z. B. IP-Adressen), z. B. f&uuml;r personalisierte Anzeigen und Inhalte oder Anzeigen- und Inhaltsmessung. Weitere Informationen &uuml;ber die Verwendung Ihrer Daten finden Sie in unserer Datenschutzerkl&auml;rung.
+	      </div>
+	    </div>
+	    <div class="w-row">
+	      <button class="w-button" onclick="bannerCustomize()">Einstellungen &auml;ndern</button>
+	      <button class="w-button" onclick="bannerOnlyNecessary()">Nur erforderliche Cookies</button>
+	      <button class="w-button -primary" onclick="acceptAll()">Alle akzeptieren</button>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+
+
+	<script>
+		/*<![CDATA[*/
+
+		jQuery('#closeIcon,#closeButton').click(function() {
+			hideDialog("popupCookiesConsent");
+
+			var consentCookieVal = jQuery.cookie("_consentCookie")
+
+			if (consentCookieVal == null || typeof (consentCookieVal) == 'undefined') {
+				jQuery("#bannerCookiesConsent").show();
+			}
+
+		})
+
+		jQuery(document).ready( function() {
+
+			var consentCookieVal = jQuery.cookie("_consentCookie")
+
+			if (consentCookieVal == null || typeof (consentCookieVal) == 'undefined') {
+				jQuery("#bannerCookiesConsent").show();
+			}
+
+			initEventHandlers();
+			initCheckboxes(consentCookieVal);
+
+		});
+
+
+		initCheckboxes = function(consentCookieVal) {
+
+			if (consentCookieVal != null
+					&& typeof (consentCookieVal) != 'undefined') {
+				if (consentCookieVal.includes("analytics")) {
+					jQuery("#checkbox-analytics").addClass("checked");
+					jQuery("#checkbox-analytics").children("input").attr("checked", "true");
+				} else {
+					jQuery("#checkbox-analytics").removeClass("checked");
+					jQuery("#checkbox-analytics").children("input").removeAttr("checked");
+				}
+
+				if (consentCookieVal.includes("marketing")) {
+					jQuery("#checkbox-marketing").addClass("checked");
+					jQuery("#checkbox-marketing").children("input").attr("checked", "true");
+				} else {
+					jQuery("#checkbox-marketing").removeClass("checked");
+					jQuery("#checkbox-marketing").children("input").removeAttr("checked");
+				}
+
+				if (consentCookieVal.includes("external-media")) {
+					jQuery("#checkbox-external-media").addClass("checked");
+					jQuery("#checkbox-external-media").children("input").attr("checked", "true");
+				} else {
+					jQuery("#checkbox-external-media").removeClass("checked");
+					jQuery("#checkbox-external-media").children("input").removeAttr("checked");
+				}
+			}
+
+		}
+
+		initEventHandlers = function() {
+
+			jQuery('#popupCookiesConsent .w-accordion button').each(function() {
+				jQuery(this).on('click', function() {
+					var icons = jQuery(this).find('div.w-accordion__icon');
+					if ( jQuery(this).next().attr('aria-hidden') === 'true') {
+						jQuery(icons[1]).hide();
+						jQuery(icons[0]).show();
+						jQuery(this).next().attr('aria-hidden', 'false');
+					} else {
+						jQuery(icons[0]).hide();
+						jQuery(icons[1]).show();
+						jQuery(this).next().attr('aria-hidden', 'true');
+					}
+				})
+			});
+
+		}
+
+		confirmSelection = function() {
+
+			var analyticsChecked = jQuery("#checkbox-analytics").hasClass("checked");
+			var marketingChecked = jQuery("#checkbox-marketing").hasClass("checked");
+			var externalMediaChecked = jQuery("#checkbox-external-media").hasClass("checked");
+
+			var categories = [];
+
+			categories.push("necessary");
+
+			if (analyticsChecked) {
+				categories.push("analytics");
+			}
+
+			if (marketingChecked) {
+				categories.push("marketing");
+			}
+
+			if (externalMediaChecked) {
+				categories.push("external-media");
+			}
+
+			Cookies.set('_consentCookie', categories, {expires: 365});
+			hideDialog("popupCookiesConsent");
+
+			location.reload();
+
+		}
+
+		acceptAll = function() {
+			var allCategories = [ "necessary", "analytics", "marketing","external-media" ];
+
+			Cookies.set('_consentCookie', allCategories, {expires: 365});
+			hideDialog("popupCookiesConsent");
+			hideDialog("bannerCookiesConsent");
+
+			location.reload();
+		}
+
+		bannerCustomize = function() {
+			hideDialog("bannerCookiesConsent");
+			jQuery("#popupCookiesConsent").show();
+		}
+
+		bannerOnlyNecessary = function() {
+			var categories = [];
+			categories.push("necessary");
+
+			Cookies.set('_consentCookie', categories, {expires: 365});
+			hideDialog("popupCookiesConsent");
+			hideDialog("bannerCookiesConsent");
+			location.reload();
+		}
+
+		/*]]>*/
+	</script>
+
+<div class="container-wrap">
+	<div class="container">
+
+	<div class="header-nav-wrap">
+
+		<header role="banner">
+			<h5>
+				<a class="logo" href="https://www.guidle.com/de" title="Guidle">Guidle</a>
+			</h5>
+		</header>
+
+		<a class="open-nav" href="#nav" title="&Ouml;ffne/Schliesse Hauptnavigation" role="button"><div class="navicon"><span>Men&uuml;</span></div></a>
+
+		<div class="nav-wrap">
+		
+			<nav role="navigation" class="nav-main"><ul><li class="current-page-ancestor border-top padding-top-bottom openMenuOnly" menu-name="6935"><a href="https://www.guidle.com/de/veranstaltungen">Themenportale</a><ul><li class="current-page current-page-ancestor" menu-name="6936"><a href="https://www.guidle.com/de/veranstaltungen">Veranstaltungen</a></li><li class="" menu-name="6937"><a href="https://www.guidle.com/de/restaurants">Restaurants</a></li><li class="" menu-name="6938"><a href="https://www.guidle.com/de/museen">Museen</a></li><li class="" menu-name="6939"><a href="https://www.guidle.com/de/kino">Kino</a></li><li class="" menu-name="6940"><a href="https://www.guidle.com/de/webcams/alle">Webcams</a></li><li class="" menu-name="6942"><a href="https://www.guidle.com/de/bildung">Bildung</a></li><li class="" menu-name="6943"><a href="https://www.guidle.com/de/touren/alle-touren">Touren</a></li><li class="" menu-name="6944"><a href="https://www.guidle.com/de/erlebnisse/alle">Erlebnisse</a></li><li class="" menu-name="6945"><a href="https://www.guidle.com/de/jobs/alle">Jobs</a></li><li class="" menu-name="6947"><a href="https://www.guidle.com/de/sportkalender">Sport</a></li><li class="padding-bottom" menu-name="6948"><a href="https://www.guidle.com/de/entsorgung">Entsorgung</a><ul><li class="" menu-name="6949"><a href="https://www.guidle.com/de/entsorgung/a-bis-z">A bis Z</a></li><li class="" menu-name="6950"><a href="https://www.guidle.com/de/entsorgung/leicht-erklaert">Leicht erklärt</a></li></ul></li></ul></li><li class="border-top padding-top-bottom" menu-name="6952"><a href="https://www.guidle.com/de/media-service">Media Service</a><ul><li class="" menu-name="6953"><a href="https://www.guidle.com/de/media-service/preise">Preise</a></li><li class="" menu-name="6954"><a href="https://www.guidle.com/de/media-service/teilnehmende-gemeinden">Gemeindeliste</a></li><li class="padding-bottom" menu-name="6956"><a href="https://www.guidle.com/de/media-service/faq">FAQ</a></li></ul></li><li class="border-top padding-top-bottom" menu-name="6958"><a href="https://www.guidle.com/de/managed-content">Managed Content</a><ul><li class="padding-bottom" menu-name="6959"><a href="https://www.guidle.com/de/managed-content/faq">FAQ</a></li></ul></li><li class="border-top padding-top-bottom" menu-name="6960"><a href="https://www.guidle.com/de/applikationen">Applikationen</a><ul><li class="" menu-name="6961"><a href="https://www.guidle.com/de/guidle-accounts">guidle Accounts</a></li><li class="" menu-name="6966"><a href="https://www.guidle.com/de/applikationen/event-manager">Event Manager</a></li><li class="padding-bottom" menu-name="6967"><a href="https://www.guidle.com/de/applikationen/course-manager">Course Manager</a></li></ul></li><li class="border-top padding-top-bottom" menu-name="6971"><a href="https://www.guidle.com/de/branchenloesung">Branchenlösungen</a><ul><li class="" menu-name="6973"><a href="https://www.guidle.com/de/branchenloesung/gemeinde">Gemeinden</a></li><li class="" menu-name="6977"><a href="https://www.guidle.com/de/branchenloesung/tourismus">Tourismus</a></li><li class="padding-bottom" menu-name="6978"><a href="https://www.guidle.com/de/branchenloesung/veranstalter">Veranstalter</a></li></ul></li><li class="border-top padding-top-bottom openMenuOnly" menu-name="6995"><a href="https://www.guidle.com/de/unternehmen/mission">Unternehmen</a><ul><li class="" menu-name="6996"><a href="https://www.guidle.com/de/unternehmen/mission">Mission</a></li><li class="" menu-name="6997"><a href="https://www.guidle.com/de/unternehmen/news">News</a></li><li class="" menu-name="6998"><a href="https://www.guidle.com/de/unternehmen/team">Team</a></li><li class="" menu-name="6999"><a href="https://www.guidle.com/de/unternehmen/jobs">Jobs</a></li><li class="padding-bottom" menu-name="7001"><a href="https://www.guidle.com/de/unternehmen/rechtliches">Rechtliches</a><ul><li class="" menu-name="7002"><a href="https://www.guidle.com/de/unternehmen/rechtliches/agb">AGB</a></li><li class="" menu-name="7003"><a href="https://www.guidle.com/de/unternehmen/rechtliches/datenschutz">Datenschutz</a></li><li class="padding-bottom" menu-name="7004"><a href="https://www.guidle.com/de/unternehmen/rechtliches/impressum">Impressum</a></li></ul></li></ul></li><ul><li class="border-top padding-top-bottom border-bottom" menu-name="7005"><a href="https://www.guidle.com/de/support">Support</a></ul></li></ul>
+			</nav>
+
+			<nav role="navigation" class="nav-meta-wrap"><ul class="nav-cockpit"></ul>
+			
+			
+				<ul class="nav-meta">
+						<li>
+							<a href="https://www.guidle.com/de/registrieren" class="nav-meta-register">
+								<i><svg width="16" height="17" viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg"><title>Icon Registrieren</title><path d="M15 5.37l-3.37-3.37-9.723 9.721-.907 4.279 4.313-.93 9.687-9.701zm-10.186 8.785l-1.634.354-.697-.698.343-1.59.35-.35c.218.209.543.525.986.968.447.446.767.776.976.993l-.324.324z"/></svg></i>
+								Registrieren
+							</a>
+						</li>
+						<li menu-name="login">
+							<a href="https://www.guidle.com/de/login" class="nav-meta-login" rel="nofollow">
+								<i><svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6,3 C6,2.447 6.447,2 7,2 L9,2 C9.553,2 10,2.447 10,3 L10,6 L6,6 L6,3 Z M12,6 L12,3 C12,1.343 10.657,0 9,0 L7,0 C5.343,0 4,1.343 4,3 L4,6 L2,6 L2,15 L14,15 L14,6 L12,6 Z"></path></svg></i>
+								Login
+							</a>
+						</li>
+					<li><a href="https://www.guidle.com/de/merkliste" class="nav-meta-favorites" rel="nofollow">
+							<i><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><title>Icon Merkliste</title><path d="M14.171 2.986c-1.432-1.314-3.752-1.314-5.184 0l-.972.892-.973-.892c-1.431-1.314-3.752-1.314-5.184 0-1.61 1.478-1.61 3.875 0 5.353l6.157 5.65 6.156-5.65c1.61-1.478 1.61-3.875 0-5.353"/></svg></i>Merkliste <span style="display:none;'">0</span>
+						</a>
+					</li>
+					<li>
+						<a href="/de/kontakt" target="_blank" class="nav-meta-contact">
+							<i><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><title>Icon Kontakt</title><path d="M14.662 11.806l-2.662-1.568c-.13-.068-.254-.097-.382-.097-.223 0-.436.085-.584.233l-.786.786-.177.08c-.009-.001-.915-.065-2.581-1.732-1.664-1.665-1.734-2.572-1.735-2.572.001-.047.046-.156.079-.189l.67-.67c.236-.237.307-.629.167-.933l-1.48-2.785c-.108-.222-.317-.358-.548-.358-.164 0-.323.068-.446.192l-1.827 1.823c-.176.174-.326.479-.359.724-.016.118-.34 2.915 3.495 6.753 3.256 3.257 5.795 3.51 6.496 3.51l.256-.014c.244-.033.548-.184.722-.358l1.825-1.826c.149-.149.217-.347.186-.544-.031-.191-.151-.355-.331-.453z"/></svg></i>
+							Kontakt 
+						</a>
+					</li>
+					
+				</ul>
+
+				<div class="nav-lang nav-lang-new" id="lang-selector" is-dynamic="true">
+					<select class="nav-lang__select" onchange="changePortalLanguage('/veranstaltungen', this.value)">
+									<option value="/de/veranstaltungen/zuerich" selected="selected">Deutsch</option>
+									<option value="/fr/evenements/zurich">Fran&ccedil;ais</option>
+									<option value="/en/events/zurich">English</option>
+									<option value="/it/eventi/zurigo">Italiano</option>
+									<option value="/nl/evenementen/zurich">Nederlands</option>
+									<option value="/pt/eventos/zurique">Portugu&ecirc;s</option>
+									<option value="/es/eventos/zurich">Espa&ntilde;ol</option>
+									<option value="/cs/akce/curych">&#268;esky</option>
+					</select>
+				</div>
+				
+				<script>
+					/*<![CDATA[*/ 
+					 PORTALMODULE.langSelectorInit();
+					/*]]>*/ 
+				</script>
+
+			</nav>
+
+		</div>
+
+	</div>
+
+		<div class="content-wrap -wizard content-overview content-modules">
+	<!--  defer: the parser reaches <main> and the footer without waiting for the bundle, and deferred
+	     scripts still run in document order before DOMContentLoaded, so jQuery ready handlers keep
+	     working. With defer the <portal-app> element is already parsed when the bundle runs, so it
+	     mounts at once: everything it reads from window must be defined by an earlier script here.
+	     portalAppScriptSrc lets portalVue.xhtml load its own copy of the bundle.  -->
+	<script defer="defer" src="/hosted/portals/vue_2.7.0.min.js"></script>
+	<script defer="defer" src="/generated/i18n/vue-labels/vue_de.js?d=1792072270993"></script>
+	<script defer="defer" src="/generated/i18n/vue-labels/vue_io.js?d=1792072270993"></script>
+	<script defer="defer" src="/hosted/template_portal/default/static/js/interfaceToOldPortals.js?d=1792072270993"></script>
+	<!--  c:choose, not a ternary with concat(): this EL version cannot call methods.  -->
+			<script defer="defer" src="/reactjsfile/hosted/portals/portal-app.min.js?d=1792072270993"></script>
+
+		<!--  Hotjar Tracking Code for Guidle production domain  -->
+		<script>
+	      var getCookieByName = function(cname) {
+	       	  let name = cname + "=";
+	       	  let decodedCookie = decodeURIComponent(document.cookie);
+	       	  let ca = decodedCookie.split(';');
+	       	  for(let i = 0; i < ca.length; i++) {
+	       	    let c = ca[i];
+	       	    while (c.charAt(0) == ' ') {
+	       	      c = c.substring(1);
+	       	    }
+	       	    if (c.indexOf(name) == 0) {
+	       	      return c.substring(name.length, c.length);
+	       	    }
+	       	  }
+	       	  return "";
+	    }
+	    
+        var consentCookieVal = getCookieByName("_consentCookie");
+        var analyticsAllowed = false;
+        
+        if(consentCookieVal != null && typeof (consentCookieVal) != 'undefined'){
+      	  if(consentCookieVal.includes("analytics")){
+      		  analyticsAllowed = true;  
+      	  }
+        }
+
+        if('true' != "true"){
+      	  analyticsAllowed = true;
+        }
+
+        if(analyticsAllowed){
+		
+			(function(h,o,t,j,a,r){
+				h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+				h._hjSettings={hjid:3639418,hjsv:6};
+				a=o.getElementsByTagName('head')[0];
+				r=o.createElement('script');r.async=1;
+				r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+				a.appendChild(r);
+			})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+			
+        }
+        
+        
+        
+		</script>
+
+	<main class="content -wizard" role="main" style="padding:0">
+		<portal-app page-offer-id="1093017509" page-uri="/veranstaltungen/zuerich" portal-name="guidle" language="de" mode="SAME_SERVER" is-dev="false" back-url="/de/cockpit/offer-book-loader" portal-root-uri="/de" root-page-offer-id="818463214" sitemap-offer-id="875551673" maps-api-key="AIzaSyALMxM7A8Nz5rO0ScnpaJIkUPP9keyVS-E" old-portals-interface="OLD_PORTALS_INTERFACE" portal-css-class="guidle" initial-filters="" use-hotjar="true" microsite-cr-id=""></portal-app>
+	</main>
+<!-- 			<ui:include src="/hosted/template_portal/default/blocks/empty.xhtml" /> -->
+
+		</div>
+	</div>
+</div><script type="text/javascript" src="https://d10rdyp01sn3kp.cloudfront.net/jawrjs/gzip_N870528387/bundles/portalTemplatesJsBottom.js" ></script>
+		
+			<script>
+				var gaProperty = 'UA-570781-13';
+				var disableStr = 'ga-disable-' + gaProperty;
+				if (document.cookie.indexOf(disableStr + '=true') > -1)
+				{ window[disableStr] = true; }
+				var gaGuidleProperty = 'UA-3429352-3';
+				var disableGuidleStr = 'ga-disable-' + gaGuidleProperty;
+				if (document.cookie.indexOf(disableGuidleStr + '=true') > -1)
+				{ window[disableGuidleStr] = true; }
+				
+				function gaOptout()
+				{ document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/'; window[disableStr] = true;document.cookie = disableGuidleStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/'; window[disableGuidleStr] = true;}
+			
+			</script>			
+					
+		<script type="text/javascript">
+			var gaKeys = ['UA-570781-13', 'UA-3429352-3'];
+			var analyticsDisabled = false;
+			
+			jQuery(document).ready(function(){
+				
+				PORTALMODULE.initGoogleAnalytics();
+				
+				setTimeout(logGoogleAnalyticsDelayed,1000);
+			});
+			
+			function logGoogleAnalyticsDelayed(){
+				 
+				PORTALMODULE.logGoogleAnalytics(gaKeys, analyticsDisabled);
+			}
+		</script><script type="text/javascript" src="https://d10rdyp01sn3kp.cloudfront.net/jawrjs/gzip_1246170110/bundles/keepSessionAlive.js" ></script>
+
+	
+	<script type="text/javascript">
+		keepSessionAlive('', 'A909EF08EB38921ECCE01BD1D2E78646',
+			300*1000, 
+			300*1000);
+		var locale = 'de'; 
+		
+		$(document).ready(function() {
+			$('#openAllDates').off( "click");
+			$('#openAllDates').unbind( "click");
+			
+			$('#openAllDates').on('click', function(){
+				$('#restDates').addClass('open');
+				$('#openAllDates').hide();
+				//recalculate page layout after expanding dates
+                setTimeout(resizeImagesOndebouncedresize, 500);
+
+			});
+		});
+	</script>
+</body>
+</html>

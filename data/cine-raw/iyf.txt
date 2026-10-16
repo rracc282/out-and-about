@@ -1,0 +1,1001 @@
+200 https://inyourfacecomedy.ch/
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.4.4
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5">
+
+  
+  
+
+  <!-- Theme Mode-->
+  
+    <script>
+      const isAutoTheme = false;
+      document.documentElement.setAttribute('data-theme', "dark")
+    </script>
+  
+
+  <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+  <script defer src="/assets/js/main.min.js"></script>
+  <script defer src="/assets/js/ticket-click.js"></script>
+
+  <!-- Design-system v1: Google Fonts (Anton + Inter + Permanent Marker) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+  <!-- Design-system v1: Font Awesome 6.5.2 (replaces locally-bundled font-awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+  <!-- Simple Jekyll Search 1.10.0 -->
+  <script src="/assets/js/vendor/simple-jekyll-search.min.js" type="text/javascript"></script>
+
+  <!-- Google Analytics / Cookie Consent -->
+  <script>
+    const cookieName = 'cookie-notice-dismissed-          https://inyourfacecomedy.ch';
+    const isCookieConsent = 'false';
+    // GA only on the live host. `jekyll serve`, Netlify deploy previews and the GitHub
+    // Pages shadow build otherwise land in GA as localhost / *.pages.dev / *.netlify.app
+    // sessions (docs/analytics.md). main.min.js skips gtag('config') when analyticsName is empty.
+    // Your own devices: open any page once with ?notrack=1 and that browser stays out of
+    // GA (localStorage flag); ?notrack=0 switches it back on. Beats an IP filter for a
+    // promoter who refreshes his own show pages from a phone all day.
+    try {
+      var iyfNt = new URLSearchParams(location.search).get('notrack');
+      if (iyfNt === '1') localStorage.setItem('iyf-notrack', '1');
+      if (iyfNt === '0') localStorage.removeItem('iyf-notrack');
+    } catch (e) {}
+    const analyticsName = (/(^|\.)inyourfacecomedy\.ch$/.test(location.hostname) && (function () { try { return localStorage.getItem('iyf-notrack') !== '1'; } catch (e) { return true; } })()) ? 'G-JZBDD4CQWV' : '';
+    const analyticsNameGA4 = '';
+// Days until the show, bucketed like the Eventfrog sales export so GA's curve can be
+    // laid over it. Same function in _includes/go-redirect.js and assets/js/ticket-click.js.
+    // Labels are zero-padded so GA's alphabetical sort keeps them in order; dimension
+    // values are permanent history, so never rename them.
+    function iyfDaysToShow(iso) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || '')) return '(unknown)';
+      var n = new Date();
+      var today = n.getFullYear() + '-' + String(n.getMonth() + 1).padStart(2, '0') + '-' + String(n.getDate()).padStart(2, '0');
+      var d = Math.round((Date.parse(iso + 'T00:00:00Z') - Date.parse(today + 'T00:00:00Z')) / 86400000);
+      if (d < 0) return 'past';
+      if (d <= 1) return '0' + d;
+      if (d <= 3) return '02-03';
+      if (d <= 7) return '04-07';
+      if (d <= 14) return '08-14';
+      if (d <= 30) return '15-30';
+      return '31+';
+    }
+    (window.dataLayer = window.dataLayer || []).push((function () { return arguments; })('set', {
+      content_group: 'home'
+    }));
+
+  </script>
+
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M7Z9D4Z');</script>
+  
+  
+    <!-- Global site tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZBDD4CQWV"></script>
+  
+
+  
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "qbtk7v2ls4");
+    </script>
+  
+  <!-- seo tags (og:image, og:type, og:title, og:description, twitter:title/description/card/image emitted by jekyll-seo-tag).
+       Comedian pages get a <title> pattern of their own (the page title stays the bare name for the H1, og:title and
+       the Person JSON-LD): the words their search queries add are "comedian", "comedy" and "Zürich". docs/search-console.md -->
+  
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Stand-up Comedy Zürich: English Comedy Club, Shows &amp; Open Mic | IN YOUR FACE Comedy</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Stand-up Comedy Zürich: English Comedy Club, Shows &amp; Open Mic" />
+<meta name="author" content="IN YOUR FACE Comedy" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="IN YOUR FACE Comedy: the English comedy club in Zürich, Switzerland. Weekly stand-up shows and a Thursday open mic at ROBIN’s near Central. No Swiss German needed." />
+<meta name="twitter:description" property="og:description" content="IN YOUR FACE Comedy: the English comedy club in Zürich, Switzerland. Weekly stand-up shows and a Thursday open mic at ROBIN’s near Central. No Swiss German needed." />
+<link rel="canonical" href="https://inyourfacecomedy.ch/" />
+<meta property="og:url" content="https://inyourfacecomedy.ch/" />
+<meta property="og:site_name" content="IN YOUR FACE Comedy" />
+<meta property="og:image" content="https://inyourfacecomedy.ch/assets/img/thumbs/inyourface_thumb.png" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://inyourfacecomedy.ch/assets/img/thumbs/inyourface_thumb.png" />
+<meta name="twitter:title" content="Stand-up Comedy Zürich: English Comedy Club, Shows &amp; Open Mic" />
+<meta property="article:publisher" content="https://www.facebook.com/inyourfacecomedy.ch/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Organization","name":"IN YOUR FACE Comedy","url":"https://inyourfacecomedy.ch"},"dateModified":"2026-10-16T07:00:01+00:00","description":"IN YOUR FACE Comedy: the English comedy club in Zürich, Switzerland. Weekly stand-up shows and a Thursday open mic at ROBIN’s near Central. No Swiss German needed.","headline":"Stand-up Comedy Zürich: English Comedy Club, Shows &amp; Open Mic","image":"https://inyourfacecomedy.ch/assets/img/thumbs/inyourface_thumb.png","name":"IN YOUR FACE Comedy","url":"https://inyourfacecomedy.ch/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  
+
+  <!-- Schema.org JSON-LD (Sprint-1 task 01) -->
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://inyourfacecomedy.ch/#organization",
+  "additionalType": "ComedyClub",
+  "name": "IN YOUR FACE Comedy",
+  "alternateName": "IYF Comedy",
+  "url": "https://inyourfacecomedy.ch",
+  "logo": "https://inyourfacecomedy.ch/assets/img/inyourface.png",
+  "image": "https://inyourfacecomedy.ch/assets/img/header/inyourface.jpeg",
+  "description": "English Stand-Up Comedy in Zürich, Switzerland",
+  "foundingDate": "2021-09-01",
+  "areaServed": {
+    "@type": "City",
+    "name": "Zürich"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Zähringerstrasse 33",
+    "postalCode": "8001",
+    "addressLocality": "Zürich",
+    "addressCountry": "CH"
+  },
+  "sameAs": [
+    "https://instagram.com/inyourfacecomedy",
+    "https://tiktok.com/@inyourfacecomedy",
+    "https://www.facebook.com/inyourfacecomedy.ch/",
+    "https://t.me/inyourfacecomedy",
+    "https://www.meetup.com/in-your-face-english_stand-up-comedy-in-zurich/",
+    "https://www.youtube.com/@inyourfacecomedystudios"
+  ]
+}
+</script>
+
+  
+  
+  
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/atom+xml" title="IN YOUR FACE Comedy" href="https://inyourfacecomedy.ch/feed.xml"/>
+  <link type="application/atom+xml" rel="alternate" href="https://inyourfacecomedy.ch/feed.xml" title="IN YOUR FACE Comedy" />
+
+  <!-- Twitter Card image alt (jekyll-seo-tag emits the rest of the twitter:* tags) -->
+  <meta name="twitter:image:alt" content="Stand-up Comedy Zürich: English Comedy Club, Shows & Open Mic">
+  <meta name="msvalidate.01" content="93E1F6DB62CD6E40E6F6C6B50046CDA4" />
+
+  
+    <!-- Meta Pixel -->
+    <script>
+      !function(f, b, e, v, n, t, s) {
+        if (f.fbq) {
+          return;
+        }
+
+        n = f.fbq = function() {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments)
+        };
+        if (! f._fbq) {
+          f._fbq = n;
+        }
+
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 5349931195130820);
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=5349931195130820&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel -->
+    <meta name="facebook-domain-verification" content="vfh6iqlb9bj47nfhx2fnglh79bv7pi"/>
+  
+
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/inyourface.png" />
+		</a>
+        
+        <a class="site-title" aria-label="IN YOUR FACE Comedy" href="/">
+        IN YOUR FACE Comedy
+		</a>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fas fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        <!-- Explicit Homepage ("Shows") -->
+        <li>
+            <a class="clear" aria-label="Shows" title="Shows" href="/">
+                Shows
+            </a>
+        </li>
+
+        <!-- Page Links -->
+        
+        
+            
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Calendar" title="Calendar" href="/calendar/">
+                     Calendar 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Comedians" title="Comedians" href="/comedians/">
+                     Comedians 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Perform" title="Perform" href="/perform/">
+                     Perform 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Gallery" title="Gallery" href="/moments/">
+                     Gallery 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Follow" title="Follow" href="/follow/">
+                     Follow 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+        
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <div class="home">
+  <style scoped>
+    
+    .iyf-hero--home {
+      background-image: url('/assets/img/header/inyourface.jpeg');
+    }
+    
+      @media screen and (max-width: 768px) {
+        .iyf-hero--home {
+          background-image: url('/assets/img/header/inyourface-medium.jpeg');
+        }
+      }
+      @media screen and (max-width: 576px) {
+        .iyf-hero--home {
+          background-image: url('/assets/img/header/inyourface-small.jpeg');
+        }
+      }
+    
+  </style>
+  <header id="main" class="iyf-hero iyf-hero--centered iyf-hero--home">
+    <h1 class="iyf-hero__title">
+      English Stand-Up Comedy in Zürich
+    </h1>
+    <p class="iyf-hero__subtitle iyf-hero__intro">IN YOUR FACE Comedy is the English comedy club in Zürich, Switzerland: stand-up shows every week and a <a href="/comedybrew/">Thursday open mic</a> at ROBIN's near Central. No Swiss German needed.</p>
+    
+    <div class="iyf-hero__actions">
+      <a class="btn-ticket btn-ticket--xl" href="/calendar/">Full Calendar</a>
+    </div>
+  </header>
+
+  <div class="shows">
+    <h1>Upcoming Shows</h1>
+  </div><div class="iyf-event-grid" style="padding: 0 9% var(--space-9); margin: 0 auto;"><article class="iyf-event-card show-banner" data-show="gratis-zum-mitnehmen">
+  
+    <div class="iyf-event-card__media">
+      <a href="/gratis-zum-mitnehmen/" aria-label="Gratis Comedy Zum Mitnehmen - Free Entry Stand Up Comedy">
+        <img src="/assets/img/uploads/gratis-zum-mitnehmen_card.png" alt="Gratis Comedy Zum Mitnehmen - Free Entry Stand Up Comedy" loading="lazy">
+      </a>
+    </div>
+  
+
+  <div class="iyf-event-card__header">
+    
+      <div class="iyf-event-card__date" aria-hidden="true">
+        <span class="iyf-event-card__day">18</span>
+        <span class="iyf-event-card__month">Oct</span>
+      </div>
+    
+    <div class="iyf-event-card__meta">
+      
+        <span class="iyf-event-card__weekday-time">
+          Sun · 20:00
+        </span>
+      
+      
+        <span class="iyf-event-card__venue">Robins</span>
+      
+    </div>
+  </div><h3 class="iyf-event-card__title">
+    <a href="/gratis-zum-mitnehmen/">Gratis Comedy Zum Mitnehmen</a>
+  </h3>
+
+  
+      <p class="iyf-event-card__subtitle">Free Entry Stand Up Comedy</p>
+    
+  
+
+  
+    <p class="iyf-event-card__tagline">Free entry stand-up comedy at ROBIN's</p>
+  
+
+  <div class="iyf-event-card__footer">
+    
+      <span class="iyf-event-card__price">Free</span>
+    
+    
+      <span class="iyf-event-card__cta">
+        <a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/de/p/gruppen/gratis-zurich-7495107963884945951.html" data-show="gratis-zum-mitnehmen" data-venue="robins" data-date="2026-10-18" data-price="0" rel="noopener" target="_blank">Get Tickets</a>
+      </span>
+    
+  </div>
+</article>
+<article class="iyf-event-card show-banner" data-show="tall-order">
+  
+    <div class="iyf-event-card__media">
+      <a href="/tall-order/" aria-label="Tall Order">
+        <img src="/assets/img/uploads/tall-order_card.png" alt="Tall Order" loading="lazy">
+      </a>
+    </div>
+  
+
+  <div class="iyf-event-card__header">
+    
+      <div class="iyf-event-card__date" aria-hidden="true">
+        <span class="iyf-event-card__day">20</span>
+        <span class="iyf-event-card__month">Oct</span>
+      </div>
+    
+    <div class="iyf-event-card__meta">
+      
+        <span class="iyf-event-card__weekday-time">
+          Tue · 20:00
+        </span>
+      
+      
+        <span class="iyf-event-card__venue">Robins</span>
+      
+    </div>
+  </div><h3 class="iyf-event-card__title">
+    <a href="/tall-order/">Tall Order</a>
+  </h3>
+
+  
+
+  
+    <p class="iyf-event-card__tagline">English stand-up comedy open mic, every second Tuesday at ROBIN's</p>
+  
+
+  <div class="iyf-event-card__footer">
+    
+      <span class="iyf-event-card__price">CHF&nbsp;10</span>
+    
+    
+      <span class="iyf-event-card__cta">
+        <a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/en/p/theatre-stage/comedy-cabaret/tall-order-english-stand-up-comedy-open-mic-7507743592338740411.html" data-show="tall-order" data-venue="robins" data-date="2026-10-20" data-price="10" rel="noopener" target="_blank">Get Tickets</a>
+      </span>
+    
+  </div>
+</article>
+<article class="iyf-event-card show-banner" data-show="promessi-spassi">
+  
+    <div class="iyf-event-card__media">
+      <a href="/promessi-spassi/" aria-label="PROMESSI SPASSI - Stand-up comedy italiana a Zurigo">
+        <img src="/assets/img/uploads/promessi-spassi_square.jpeg" alt="PROMESSI SPASSI - Stand-up comedy italiana a Zurigo" loading="lazy">
+      </a>
+    </div>
+  
+
+  <div class="iyf-event-card__header">
+    
+      <div class="iyf-event-card__date" aria-hidden="true">
+        <span class="iyf-event-card__day">21</span>
+        <span class="iyf-event-card__month">Oct</span>
+      </div>
+    
+    <div class="iyf-event-card__meta">
+      
+        <span class="iyf-event-card__weekday-time">
+          Wed · 20:00
+        </span>
+      
+      
+        <span class="iyf-event-card__venue">Robins</span>
+      
+    </div>
+  </div><h3 class="iyf-event-card__title">
+    <a href="/promessi-spassi/">PROMESSI SPASSI</a>
+  </h3>
+
+  
+      <p class="iyf-event-card__subtitle">Stand-up comedy italiana a Zurigo</p>
+    
+  
+
+  
+    <p class="iyf-event-card__tagline">Stand-up comedy italiana a Zurigo</p>
+  
+
+  <div class="iyf-event-card__footer">
+    
+      <span class="iyf-event-card__price">CHF&nbsp;10</span>
+    
+    
+      <span class="iyf-event-card__cta">
+        <a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/en/p/groups/promessi-spassi-stand-up-comedy-italiana-a-zurigo-7478864081056758243.html" data-show="promessi-spassi" data-venue="robins" data-date="2026-10-21" data-price="10" rel="noopener" target="_blank">Get Tickets</a>
+      </span>
+    
+  </div>
+</article>
+</div><figure class="iyf-review" data-review="AbFvOqlO69nv">
+<p class="iyf-review__eyebrow">What people are saying</p>
+<blockquote class="iyf-review__quote" cite="https://search.google.com/local/reviews?placeid=ChIJkW4oRSGhmkcR5B2jIdh-X7w"><p>Always great for comedy, with an inclusive atmosphere, great comedians and hosts, and perfect venue. Highly recommend if you&#39;re looking for a fun and easy going evening.</p></blockquote>
+<figcaption class="iyf-review__meta">
+<span class="iyf-review__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>
+<span class="iyf-review__who">Alexander M., June 2024, on Google</span>
+<span class="iyf-review__links"><a href="/reviews/#review-AbFvOqlO69nv">More reviews</a><a href="https://search.google.com/local/reviews?placeid=ChIJkW4oRSGhmkcR5B2jIdh-X7w" rel="noopener" target="_blank">See it on Google</a></span>
+</figcaption>
+</figure><section class="iyf-all-shows" aria-labelledby="all-shows-heading">
+      <div class="iyf-section-head">
+        <h2 id="all-shows-heading" class="iyf-section-head__title">All Our Shows</h2>
+        <p class="iyf-section-head__subtitle">Pick one and come laugh.</p>
+      </div>
+      <div class="iyf-show-row-list"><article class="iyf-show-row show-banner" data-show="jackpotcomedy"><a class="iyf-show-row__poster" href="/jackpotcomedy/" aria-label="Jackpot Comedy - downstairs @ OTRO">
+      <img src="/assets/img/uploads/jackpot_comedy_website_wide.png" alt="Jackpot Comedy - downstairs @ OTRO" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Wed · 21 Oct</span><span class="iyf-show-row__venue">Otro</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/jackpotcomedy/">Jackpot Comedy</a></h3><p class="iyf-show-row__desc">Jackpot Comedy - English Stand-up Comedy - Wednesdays at Bar Otro in Zwinglistrasse, just off Langstrasse, Zürich</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/en/p/groups/jackpot-comedy-7413646370706339342.html" data-show="jackpotcomedy" data-venue="otro" data-date="2026-10-21" data-price="0" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/jackpotcomedy/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/jack-roberts/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/jack-roberts.jpg" alt="Jack Roberts" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Jack Roberts</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="comedybrew"><a class="iyf-show-row__poster" href="/comedybrew/" aria-label="Comedy Brew • English Stand-Up Open Mic in Zürich • Every Thursday">
+      <img src="/assets/img/uploads/comedybrew_featured.png" alt="Comedy Brew • English Stand-Up Open Mic in Zürich • Every Thursday" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Thu · 22 Oct</span><span class="iyf-show-row__venue">Robins</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/comedybrew/">Comedy Brew</a></h3><p class="iyf-show-row__desc">Zürich's weekly English comedy open mic at ROBIN's near Central. Every Thursday, doors 19:30. Ten comedians, new jokes, first-timers, all in English.</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/en/p/groups/in-your-face-english-stand-up-comedy-open-mic-in-zurich-7132091334890862636.html" data-show="comedybrew" data-venue="robins" data-date="2026-10-22" data-price="10" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/comedybrew/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Usually hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/harryf-cks/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/harryf.cks.jpg" alt="Harry Fücks" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Harry Fücks</span>
+              </a>
+            </li><li>
+              <a class="iyf-show-row__host" href="/comedians/martinadoescomedy/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/martinadoescomedy.jpg" alt="Martina" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Martina</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="jokesjokesjokes"><a class="iyf-show-row__poster" href="/jokesjokesjokes/" aria-label="Jokes, Jokes, Jokes - English Stand-up comedy show with Woocash">
+      <img src="/assets/img/uploads/jokes_jokes_jokes_facebook_event.png" alt="Jokes, Jokes, Jokes - English Stand-up comedy show with Woocash" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Tue · 27 Oct</span><span class="iyf-show-row__venue">Robins</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/jokesjokesjokes/">Jokes, Jokes, Jokes</a></h3><p class="iyf-show-row__desc">A crazy-fun English stand-up night with experienced comics from Zurich and beyond.</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/jokes-jokes-jokes" data-show="jokesjokesjokes" data-venue="robins" data-date="2026-10-27" data-price="10" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/jokesjokesjokes/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/woocash/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/woocash.jpg" alt="Woocash" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Woocash</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="latarima"><a class="iyf-show-row__poster" href="/latarima/" aria-label="La Tarima - Comedia en Español">
+      <img src="/assets/img/uploads/ultra_mega_final_formato_1200_x_400_general_la_tarima_1200_x_400_px_.png" alt="La Tarima - Comedia en Español" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Thu · 29 Oct</span><span class="iyf-show-row__venue">Yaman-caf-bar</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/latarima/">La Tarima</a></h3><p class="iyf-show-row__desc">Zúrich habla español… y también se ríe en español.</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/en/p/groups/la-tarima-open-mic-7487916867123691072.html" data-show="latarima" data-venue="yaman-caf-bar" data-date="2026-10-29" data-price="13" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/latarima/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/andrea-ramirez/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/andrea-ramirez.jpg" alt="Andrea Ramírez" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Andrea Ramírez</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="nerdycomedyshow"><a class="iyf-show-row__poster" href="/nerdycomedyshow/" aria-label="The NERDY COMEDY Show - English Standup Comedy in ZURICH">
+      <img src="/assets/img/uploads/nerdy-comedy-show-wide.jpeg" alt="The NERDY COMEDY Show - English Standup Comedy in ZURICH" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Sat · 31 Oct</span><span class="iyf-show-row__venue">Robins</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/nerdycomedyshow/">The NERDY COMEDY Show</a></h3><p class="iyf-show-row__desc">The NERDY COMEDY Show is an English standup comedy show about video games, anime, superheroes, board games and all things Nerdy</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/de/p/gruppen/nerdy-stand-up-comedy-en-7284304661632248367.html" data-show="nerdycomedyshow" data-venue="robins" data-date="2026-10-31" data-price="8" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/nerdycomedyshow/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/pavel-zborik/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/pavel-zborik.jpg" alt="Pavel Zborik" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Pavel Zborik</span>
+              </a>
+            </li><li>
+              <a class="iyf-show-row__host" href="/comedians/sussmancomedy/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/sussmancomedy.jpg" alt="Joshua Sussman" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Joshua Sussman</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="pulpnonfiction"><a class="iyf-show-row__poster" href="/pulpnonfiction/" aria-label="Pulp Non-Fiction - Storytelling Open Mic Zürich">
+      <img src="/assets/img/uploads/pulpnonfiction_horizontal.png" alt="Pulp Non-Fiction - Storytelling Open Mic Zürich" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Sun · 1 Nov</span><span class="iyf-show-row__venue">Robins</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/pulpnonfiction/">Pulp Non-Fiction</a></h3><p class="iyf-show-row__desc">Got a story to tell? Pulp Non-Fiction is a story telling and comedy show at ROBINs in Zurich</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/pulpnonfiction/" data-show="pulpnonfiction" data-venue="robins" data-date="2026-11-01" data-price="10" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/pulpnonfiction/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/albert-louw/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/albert-louw.jpg" alt="Albert Louw" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Albert Louw</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="mike-casa"><a class="iyf-show-row__poster" href="/mike-casa/" aria-label="Mike Casa • Stand-up Comedy Show at ROBIN's Zürich • 2 December 2026">
+      <img src="/assets/img/uploads/mike-casa_feature.jpeg" alt="Mike Casa • Stand-up Comedy Show at ROBIN's Zürich • 2 December 2026" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Wed · 2 Dec</span><span class="iyf-show-row__venue">Robins</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/mike-casa/">Mike Casa</a></h3><p class="iyf-show-row__desc">For the first time ever, Mike Casa is bringing his hit ENGLISH stand-up comedy show to Robin's Coffee in the heart of Zurich!</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/en/p/theatre-stage/comedy-cabaret/2-dec-mike-casa-stand-up-comedy-show-robin-s-zurich-7507006161725486601.html" data-show="mike-casa" data-venue="robins" data-date="2026-12-02" data-price="39" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/mike-casa/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Starring</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/mike-casa/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/mike-casa.jpg" alt="Mike Casa" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Mike Casa</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="randomfactsexchange"><a class="iyf-show-row__poster" href="/randomfactsexchange/" aria-label="Random Facts Exchange - the Science Comedy Show in Zürich">
+      <img src="/assets/img/uploads/random_facts_exchange.webp" alt="Random Facts Exchange - the Science Comedy Show in Zürich" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Thu · 3 Dec</span><span class="iyf-show-row__venue">Natural-history-museum-of-the-university-of-zurich</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/randomfactsexchange/">Random Facts Exchange</a></h3><p class="iyf-show-row__desc">Random Facts Exchange is what happens when you give nerds a microphone instead of telling them to stop. Inspired by An Evening of Unnecessary Detail, IG Nobel prizes, and all the science Youtube community.</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/en/p/groups/random-facts-exchange-7434337254674303477.html" data-show="randomfactsexchange" data-venue="natural-history-museum-of-the-university-of-zurich" data-date="2026-12-03" data-price="10" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/randomfactsexchange/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/vasilis-theof/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/vasilis-theof.jpg" alt="Vasilis Theof" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Vasilis Theof</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="gratis-zum-mitnehmen"><a class="iyf-show-row__poster" href="/gratis-zum-mitnehmen/" aria-label="Gratis Comedy Zum Mitnehmen - Free Entry Stand Up Comedy">
+      <img src="/assets/img/uploads/gratis-zum-mitnehmen_feature.png" alt="Gratis Comedy Zum Mitnehmen - Free Entry Stand Up Comedy" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Sun · 18 Oct</span><span class="iyf-show-row__venue">Robins</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/gratis-zum-mitnehmen/">Gratis Comedy Zum Mitnehmen</a></h3><p class="iyf-show-row__desc">Free entry stand-up comedy at ROBIN's</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/de/p/gruppen/gratis-zurich-7495107963884945951.html" data-show="gratis-zum-mitnehmen" data-venue="robins" data-date="2026-10-18" data-price="0" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/gratis-zum-mitnehmen/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/teddy-hall/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/teddy-hall.jpg" alt="Teddy Hall" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Teddy Hall</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="tall-order"><a class="iyf-show-row__poster" href="/tall-order/" aria-label="Tall Order">
+      <img src="/assets/img/uploads/tall-order_feature.png" alt="Tall Order" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Tue · 20 Oct</span><span class="iyf-show-row__venue">Robins</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/tall-order/">Tall Order</a></h3><p class="iyf-show-row__desc">English stand-up comedy open mic, every second Tuesday at ROBIN's</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/en/p/theatre-stage/comedy-cabaret/tall-order-english-stand-up-comedy-open-mic-7507743592338740411.html" data-show="tall-order" data-venue="robins" data-date="2026-10-20" data-price="10" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/tall-order/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/prak-the-comedian/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/prak-the-comedian.jpg" alt="Prak The Comedian" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Prak The Comedian</span>
+              </a>
+            </li><li>
+              <a class="iyf-show-row__host" href="/comedians/miguel/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/miguel.jpg" alt="Miguel" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Miguel</span>
+              </a>
+            </li></ul>
+      </div></article>
+<article class="iyf-show-row show-banner" data-show="promessi-spassi"><a class="iyf-show-row__poster" href="/promessi-spassi/" aria-label="PROMESSI SPASSI - Stand-up comedy italiana a Zurigo">
+      <img src="/assets/img/uploads/promessi-spassi_wide.jpeg" alt="PROMESSI SPASSI - Stand-up comedy italiana a Zurigo" loading="lazy">
+    </a><div class="iyf-show-row__head">
+    <div class="iyf-show-row__meta"><span class="iyf-show-row__date">Wed · 21 Oct</span><span class="iyf-show-row__venue">Robins</span></div>
+
+    <h3 class="iyf-show-row__title"><a href="/promessi-spassi/">PROMESSI SPASSI</a></h3><p class="iyf-show-row__desc">Stand-up comedy italiana a Zurigo</p></div>
+
+  <div class="iyf-show-row__actions"><a class="btn-ticket btn-ticket--sm" href="https://eventfrog.ch/en/p/groups/promessi-spassi-stand-up-comedy-italiana-a-zurigo-7478864081056758243.html" data-show="promessi-spassi" data-venue="robins" data-date="2026-10-21" data-price="10" rel="noopener" target="_blank">Get Tickets</a><a class="btn-ghost btn-ghost--sm" href="/promessi-spassi/">More info</a>
+  </div><div class="iyf-show-row__hosts">
+        <span class="iyf-show-row__hosts-label">Hosted by</span>
+        <ul class="iyf-show-row__host-list" role="list"><li>
+              <a class="iyf-show-row__host" href="/comedians/miguel/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/miguel.jpg" alt="Miguel" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Miguel</span>
+              </a>
+            </li><li>
+              <a class="iyf-show-row__host" href="/comedians/coopernik/"><span class="iyf-show-row__host-face">
+                    <img src="/assets/img/comedians/coopernik.jpg" alt="Nik Cooper" loading="lazy">
+                  </span><span class="iyf-show-row__host-name">Nik Cooper</span>
+              </a>
+            </li></ul>
+      </div></article>
+</div>
+    </section><section class="iyf-comedians-teaser" aria-labelledby="comedians-teaser-heading">
+      <div class="iyf-section-head">
+        <h2 id="comedians-teaser-heading" class="iyf-section-head__title">Meet Our Comedians</h2>
+        <p class="iyf-section-head__subtitle">A few of the performers you'll catch on our stages.</p>
+      </div>
+      <ul class="iyf-comedian-grid iyf-comedian-grid--teaser" role="list"><li class="iyf-comedian-grid__item" data-slug="pavel-zborik">
+            <a class="iyf-comedian-card" href="/comedians/pavel-zborik/"><div class="iyf-comedian-card__media">
+                  <img src="/assets/img/comedians/pavel-zborik.jpg" alt="Pavel Zborik" loading="lazy" />
+                </div><span class="iyf-comedian-card__name">Pavel Zborik</span>
+            </a>
+          </li><li class="iyf-comedian-grid__item" data-slug="woocash">
+            <a class="iyf-comedian-card" href="/comedians/woocash/"><div class="iyf-comedian-card__media">
+                  <img src="/assets/img/comedians/woocash.jpg" alt="Woocash" loading="lazy" />
+                </div><span class="iyf-comedian-card__name">Woocash</span>
+            </a>
+          </li><li class="iyf-comedian-grid__item" data-slug="fabian-volkart">
+            <a class="iyf-comedian-card" href="/comedians/fabian-volkart/"><div class="iyf-comedian-card__media">
+                  <img src="/assets/img/comedians/fabian-volkart.jpg" alt="Fabian Volkart" loading="lazy" />
+                </div><span class="iyf-comedian-card__name">Fabian Volkart</span>
+            </a>
+          </li><li class="iyf-comedian-grid__item" data-slug="ahmet-bilge">
+            <a class="iyf-comedian-card" href="/comedians/ahmet-bilge/"><div class="iyf-comedian-card__media">
+                  <img src="/assets/img/comedians/ahmet-bilge.jpg" alt="Ahmet Bilge" loading="lazy" />
+                </div><span class="iyf-comedian-card__name">Ahmet Bilge</span>
+            </a>
+          </li><li class="iyf-comedian-grid__item" data-slug="jose.avvenire">
+            <a class="iyf-comedian-card" href="/comedians/jose-avvenire/"><div class="iyf-comedian-card__media">
+                  <img src="/assets/img/comedians/jose.avvenire.jpg" alt="José" loading="lazy" />
+                </div><span class="iyf-comedian-card__name">José</span>
+            </a>
+          </li></ul>
+      <div class="iyf-comedians-teaser__cta">
+        <a class="btn-ticket btn-ticket--xl" href="/comedians/">View all comedians</a>
+      </div>
+      <p class="iyf-perform-link"><a href="/perform/">Perform yourself &rarr;</a></p>
+    </section></div>
+
+    </div>
+    <footer class="site-footer" id="footer">
+  <div class="footer-grid">
+
+    <div class="footer-block footer-mailchimp">
+      <div class="iyf-newsletter-card">
+        <h4>Get show alerts</h4>
+        <p>Email when tickets drop. About once a week.</p>
+        <a class="btn-ticket" href="/follow/#mc_embed_signup">Sign me up</a>
+      </div>
+    </div>
+
+    <div class="footer-block footer-social">
+      <h4>Follow us</h4>
+      <ul class="iyf-follow-chips">
+        
+          <li><a href="https://t.me/inyourfacecomedy" rel="noopener" target="_blank" aria-label="Telegram"><i class="fab fa-telegram" aria-hidden="true"></i> Telegram</a></li>
+        
+        
+          <li><a href="https://instagram.com/inyourfacecomedy" rel="noopener" target="_blank" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+        
+          <li><a href="https://www.meetup.com/in-your-face-english_stand-up-comedy-in-zurich/" rel="noopener" target="_blank" aria-label="Meetup"><i class="fab fa-meetup" aria-hidden="true"></i> Meetup</a></li>
+        
+        
+          <li><a href="https://www.facebook.com/inyourfacecomedy.ch/" rel="noopener" target="_blank" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+        
+        
+          <li><a href="https://www.youtube.com/@inyourfacecomedystudios" rel="noopener" target="_blank" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i> YouTube</a></li>
+        
+        
+          <li><a href="https://tiktok.com/@inyourfacecomedy" rel="noopener" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i> TikTok</a></li>
+        
+      </ul>
+    </div>
+
+    <div class="footer-block footer-review">
+      <h4>Like the show? 🫶🥰</h4>
+      <a class="btn-ghost" href="https://g.page/r/CeQdoyHYfl-8EBM/review" rel="noopener" target="_blank">Leave us a Google review &rarr;</a>
+      <a class="btn-ghost" href="https://www.google.com/preferences/source?q=inyourfacecomedy.ch" rel="noopener" target="_blank">Get our shows on Google &rarr;</a>
+      <a class="btn-ghost" href="https://www.tripadvisor.com/UserReviewEdit-g188113-d24051458-IN_YOUR_FACE_Comedy-Zurich.html" rel="noopener" target="_blank">Review us on Tripadvisor &rarr;</a>
+    </div>
+
+  </div>
+
+  <div class="footer-meta">
+    <p>&copy; IN YOUR FACE Comedy. English stand-up comedy in Z&uuml;rich since 2018. <a href="/calendar/">See all shows</a> &middot; <a href="/perform/">Want to perform?</a> &middot; <a href="/faq/">FAQ</a> &middot; <a href="/privacy/">Privacy</a></p>
+  </div>
+</footer>
+
+  </body>
+</html>
