@@ -1224,7 +1224,7 @@ async function flush(){if(R.writing)return;R.writing=true;
   while(R.dirty){R.dirty=false;try{const {error}=await SB.from("state").upsert({user_id:R.uid,data:JSON.parse(JSON.stringify(S)),updated_at:new Date().toISOString()});if(error)throw error;setSync(true)}catch(e){setSync("warn","Couldn't save to your account; kept on this device")}}
   R.writing=false}
 function mergeHist(x,y){const o={};x=x||{};y=y||{};new Set([...Object.keys(x),...Object.keys(y)]).forEach(k=>{const a=x[k]||{},b=y[k]||{};o[k]=Object.assign({},b,a);["r","m","n"].forEach(f=>{if(o[k][f]==null||o[k][f]===false||o[k][f]==="")if(b[f]!=null&&b[f]!==false&&b[f]!=="")o[k][f]=b[f]})});return o}
-function adopt(b){const keepA=S.addr,keepH=S.hist,keepD=S.deleted||{},keepT=S.trips||{};S={stars:b.stars||[],hidden:b.hidden||[],going:b.going||[],hist:mergeHist(b.hist,keepH),deleted:Object.assign({},keepD,b.deleted||{}),zw:b.zw||S.zw||{},home:b.home||S.home,likes:b.likes||S.likes,addr:b.addr||keepA,nope:Object.assign({},S.nope||{},b.nope||{}),trips:Object.assign({},keepT,b.trips||{}),me:b.me||[],updated:b.updated||0};fromS();try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}}
+function adopt(b){const keepA=S.addr,keepH=S.hist,keepD=S.deleted||{},keepT=S.trips||{};S={stars:b.stars||[],hidden:b.hidden||[],going:b.going||[],hist:mergeHist(b.hist,keepH),deleted:Object.assign({},keepD,b.deleted||{}),zw:b.zw||S.zw||{},home:b.home||S.home,likes:b.likes||S.likes,addr:b.addr||keepA,nope:Object.assign({},S.nope||{},b.nope||{}),trips:Object.assign({},keepT,b.trips||{}),me:b.me||[],dating:b.dating!=null?b.dating:S.dating,films:b.films||S.films,updated:b.updated||0};fromS();try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}}
 async function pull(){if(!R.uid)return;try{const {data,error}=await SB.from("state").select("data").eq("user_id",R.uid).maybeSingle();if(error)throw error;
     const b=data&&data.data;let mk=null;try{mk=localStorage.getItem("oa-synced")}catch(e){}
     if(b&&mk!==R.uid){/* first sign-in on this device: combine, never let a fresh install wipe the account */
@@ -1842,7 +1842,7 @@ function buildAutoPicks(){const sec=document.getElementById("picks");if(!sec)ret
   const label=e=>{const d=DNL[new Date(e.day+"T12:00:00").getDay()];const t=(e.when.match(/(\d{1,2}):\d{2}/)||[])[1];return d+(t&&+t>=17?" evening":"")};
   const why=e=>{const d=(e.desc||"").split(/(?<=[.!?])\s/)[0];return d.length>150?d.slice(0,147)+"…":d};
   let html="";
-  blocks.forEach(b=>{const pool=EVENTS.filter(e=>b.ok(e)&&!isPast(e)&&!isDel(e));let items=[];
+  blocks.forEach(b=>{const pool=EVENTS.filter(e=>b.ok(e)&&!isPast(e)&&!isDel(e)&&!e.folded&&(S.dating||!isDating(e)));let items=[];
     const mine=cur.filter(x=>x.block===b.id);
     if(mine.length)items=mine.map(x=>({e:pool.find(e=>e.id===x.id),k:x.k,why:x.why})).filter(x=>x.e);
     else ["ge","zh"].forEach(c=>pool.filter(e=>cityOf(e)===c&&e.zone!=="far"&&!hidden.has(e.id)).sort((a,z)=>sc(z)-sc(a)).slice(0,3).forEach(e=>items.push({e})));
@@ -1939,7 +1939,8 @@ const ENERGY={"m-choir":"low","m-saleve":"low","bachata-pre":"high","theatre":"h
 Object.assign(ENERGY,ENERGY_ZH);
 function energyOf(e){const b=ENERGY[e.rep||e.id];if(b)return b;if(e.p==="big"||e.zone==="90"||e.zone==="far"||e.cat.includes("rencontre"))return "high";return "low"}
 function qOk(e){if(!state.q)return true;const h=(e.title+" "+(e.titleOrig||"")+" "+e.place+" "+(e.desc||"")+" "+(GRP[e.rep||e.id]||"")+" "+(e.src||"")+" "+e.cat.map(c=>CATLBL[c]||"").join(" ")).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");return state.q.split(/\s+/).every(w=>h.includes(w))}
-function filterOk(e){return inCity(e)&&(!state.rain||isIndoor(e))&&(!state.duo||isDuo(e))&&(state.cat==="all"||e.cat.includes(state.cat))&&zoneOk(e)&&(state.energy==="all"||energyOf(e)===state.energy)&&(!state.free||e.free)&&(!state.going||goingSet.has(e.id))&&(!state.new||isNew(e))&&qOk(e)}
+function isDating(e){if(e._dt==null)e._dt=/\bdating\b|\bsingles?\b|speed ?dating|matchmak|tinder|\bflirt|date my friend|célibataires?|single-?party/i.test(e.title+" "+(e.titleOrig||"")+" "+String(e.desc||"").slice(0,200));return e._dt}
+function filterOk(e){return (S.dating||!isDating(e))&&inCity(e)&&(!state.rain||isIndoor(e))&&(!state.duo||isDuo(e))&&(state.cat==="all"||e.cat.includes(state.cat))&&zoneOk(e)&&(state.energy==="all"||energyOf(e)===state.energy)&&(!state.free||e.free)&&(!state.going||goingSet.has(e.id))&&(!state.new||isNew(e))&&qOk(e)}
 function render(){
   const ok=filterOk;
   document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===ui.tab));
@@ -2381,13 +2382,19 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
     x=x.replace(/\*\*|__|^#+\s*|\s#+\s/gm," ").replace(/(^|\s)#([A-Za-zÀ-ÿ]+)/g,"$1$2");
     x=x.replace(EMO,"").replace(/English below:?/gi,"").replace(/[⚠️👇🏻]/g,"");
     x=x.replace(/\s{2,}/g," ").replace(/^\s*[-–—:.,|]+\s*/,"").trim();
+    /* keep only the English sentences when a description mixes languages */
+    const EN=/\b(the|and|with|for|you|your|our|join|this|from|will|are|is|of|to|in|at|on|night|free|come)\b/gi,OT=/\b(der|die|das|und|mit|für|ist|nicht|les|des|une|avec|pour|vous|nous|est|sur|el|los|las|una|con|para|tu|que|hasta|del|y|ou|e|di|per)\b/gi;
+    const sc=t=>((t.match(EN)||[]).length)-((t.match(OT)||[]).length);
+    const sents=x.split(/(?<=[.!?])\s+|\s+[|/]\s+/).map(t=>t.trim()).filter(Boolean);
+    if(sents.length>1&&sents.some(t=>sc(t)<0)){const keep=sents.filter(t=>sc(t)>0);x=keep.length?keep.join(" "):""}
+    else if(sents.length===1&&sc(x)<-1)x="";
     if(x)x=x[0].toUpperCase()+x.slice(1);
     return x}
   [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;
     const t0=e.title;e.title=tidyTitle(e.title,e);if(e.title!==t0&&!e.titleOrig)e.titleOrig=t0;
     if(/ticket needed|tickets?\b|billet|billetterie|vorverkauf|presale|pre-sale|sold out|ausverkauft|complet\b|registration|register\b|sign[- ]?up|inscription|anmeldung|réserv|reserv|book (your|a|now)|booking/i.test((e.desc||"")+" "+(e.price||"")+" "+t0))e.tkHint=true;
     e.desc=tidyDesc(e.desc);
-    if(!e.desc||e.desc.length<12){const v=String(e.place||"").split(",")[0];e.desc=(e.desc?e.desc+" ":"")+(v?"At "+v+".":"")}});
+    if(!e.desc||e.desc.length<12){const v=String(e.place||"").split(",")[0].replace(/\p{Lu}{4,}/gu,w=>w[0]+w.slice(1).toLowerCase());let k="";try{k=String(gloss(e)).replace(/<[^>]+>/g,"").split(" · ")[0].replace(/&amp;/g,"&")}catch(x){}e.desc=(e.desc?e.desc+" ":"")+(k&&k!=="Event"?k:"Event")+(v?" at "+v:"")+"."}});
 })();
 /* tidy machine-translated market names */
 (function(){[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;const town=String(e.place||"").split(",").pop().trim();
@@ -2440,17 +2447,18 @@ render();
   else if(h.startsWith("#trip-")){ui.tab="trips";ui.tripOpen=h.slice(6);render()}})();
 
 /* ---------- first-open setup: home city + interests (any user) ---------- */
-function openSetup(){if(document.getElementById("onb"))return;const L=new Set(S.likes||[]);let home=S.home||null;
+function openSetup(){if(document.getElementById("onb"))return;const L=new Set(S.likes||[]);let home=S.home||null,dat=!!S.dating;
   const cats=[["rencontre","Meet people"],["creatif","Arts & crafts"],["marche","Markets"],["fete","Festivals"],["culture","Culture & shows"],["corps","Sports & wellbeing"],["chien","With my dog"]];
   const d=document.createElement("div");d.id="onb";
   const draw=()=>{d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About"><h2>Welcome to Out & About</h2><p>Where are you based?</p><div class="opts">'+
     [["ge","Geneva"],["zh","Zurich"]].map(([k,n])=>'<button data-home="'+k+'" aria-pressed="'+(home===k)+'">'+n+'</button>').join("")+'</div><p>Pick up to 3 things you enjoy most</p><div class="opts">'+
-    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><p>Optional: your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Use the full street address. Times in the list are estimates; “Directions from home” on an event opens the exact public-transport route in Google Maps. Your address stays private to your account.</p><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time under 🔔 → Preferences.</p></div>'};
+    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><div class="opts"><button data-dating aria-pressed="'+!!dat+'">💬 Also show dating &amp; singles events</button></div><p>Optional: your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Use the full street address. Times in the list are estimates; “Directions from home” on an event opens the exact public-transport route in Google Maps. Your address stays private to your account.</p><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time under 🔔 → Preferences.</p></div>'};
   draw();document.body.appendChild(d);
   d.addEventListener("click",ev=>{const h=ev.target.closest("[data-home]"),l=ev.target.closest("[data-like]");
     if(h){home=h.dataset.home;draw();return}
+    if(ev.target.closest("[data-dating]")){dat=!dat;draw();return}
     if(l){const k=l.dataset.like;if(L.has(k))L.delete(k);else if(L.size<3)L.add(k);draw();return}
-    if(ev.target.closest(".go")&&home&&L.size){S.home=home;S.likes=[...L];saveAddr(d.querySelector("#addr-ge").value,d.querySelector("#addr-zh").value);try{localStorage.setItem("oa-home",home)}catch(e){}d.remove();setCity(home);persist();render()}});
+    if(ev.target.closest(".go")&&home&&L.size){S.home=home;S.likes=[...L];S.dating=dat;saveAddr(d.querySelector("#addr-ge").value,d.querySelector("#addr-zh").value);try{localStorage.setItem("oa-home",home)}catch(e){}d.remove();setCity(home);persist();render()}});
 }
 (function(){let h=null;try{h=localStorage.getItem("oa-home")}catch(e){}if(!S.home&&h)S.home=h;if(!S.home||!(S.likes||[]).length)setTimeout(openSetup,300);})();
 
