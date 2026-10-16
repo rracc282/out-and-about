@@ -1,6 +1,14 @@
 {
  "sources": [
   {
+   "url": "https://eventfrog.ch/en/events/ch/geneve/markets.html",
+   "status": 200,
+   "bytes": 604470,
+   "found": 657,
+   "followed": 40,
+   "markers": ""
+  },
+  {
    "url": "https://eventfrog.ch/de/events/zuerich.html",
    "status": 200,
    "bytes": 620068,
@@ -12,8 +20,8 @@
    "url": "https://eventfrog.ch/en/events/ch/geneve/comedy-cabaret.html",
    "status": 200,
    "bytes": 604498,
-   "found": 512,
-   "followed": 28,
+   "found": 535,
+   "followed": 32,
    "markers": ""
   },
   {
@@ -28,16 +36,8 @@
    "url": "https://eventfrog.ch/fr/events/geneve.html",
    "status": 200,
    "bytes": 618820,
-   "found": 136,
+   "found": 140,
    "followed": 36,
-   "markers": ""
-  },
-  {
-   "url": "https://eventfrog.ch/en/events/ch/comedy.html",
-   "status": 200,
-   "bytes": 586634,
-   "found": 85,
-   "followed": 40,
    "markers": ""
   },
   {
@@ -113,17 +113,9 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://infomaniak.events/en-ch/comedy/geneva",
-   "status": 200,
-   "bytes": 423873,
-   "found": 69,
-   "followed": 40,
-   "markers": ""
-  },
-  {
    "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
    "status": 200,
-   "bytes": 423873,
+   "bytes": 423875,
    "found": 69,
    "followed": 40,
    "markers": ""
@@ -143,6 +135,22 @@
    "found": 64,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://infomaniak.events/en-ch/comedy/geneva",
+   "status": 200,
+   "bytes": 419396,
+   "found": 61,
+   "followed": 40,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/en/events/ch/comedy.html",
+   "status": 200,
+   "bytes": 586634,
+   "found": 58,
+   "followed": 36,
+   "markers": ""
   },
   {
    "url": "https://www.opernhaus.ch/spielplan/kalendarium/",
@@ -313,14 +321,6 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/les-amis-zurich/events/",
-   "status": 200,
-   "bytes": 59554,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/les-amis-geneva/events/",
    "status": 200,
    "bytes": 59554,
@@ -329,15 +329,31 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-expats/events/",
+   "url": "https://www.meetup.com/les-amis-zurich/events/",
    "status": 200,
-   "bytes": 59546,
+   "bytes": 59554,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
   },
   {
    "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "status": 200,
+   "bytes": 59590,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-expats/events/",
+   "status": 200,
+   "bytes": 59548,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/geneva-language-exchange/events/",
    "status": 200,
    "bytes": 59590,
    "found": 0,
@@ -361,14 +377,6 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/geneva-language-exchange/events/",
-   "status": 200,
-   "bytes": 59590,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/zurich-hiking/events/",
    "status": 200,
    "bytes": 59546,
@@ -385,7 +393,7 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -393,7 +401,7 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/",
+   "url": "https://www.eventbrite.ch/d/switzerland--zurich/all-events/?page=2",
    "status": 405,
    "bytes": 0,
    "found": 0,
@@ -417,6 +425,14 @@
    "markers": ""
   },
   {
+   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
    "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=3",
    "status": 405,
    "bytes": 0,
@@ -433,33 +449,25 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 70740,
+   "bytes": 70788,
    "found": 0,
    "followed": 16,
    "markers": "ld+json"
   },
   {
-   "url": "https://www.tempslibre.ch/geneve/manifestations/ce-week-end",
-   "status": 403,
-   "bytes": 0,
+   "url": "https://newinzurich.com/events/",
+   "status": 202,
+   "bytes": 177,
    "found": 0,
    "followed": 0,
    "markers": ""
   },
   {
-   "url": "https://newinzurich.com/events/",
-   "status": 202,
-   "bytes": 176,
+   "url": "https://www.tempslibre.ch/geneve/manifestations/ce-week-end",
+   "status": 403,
+   "bytes": 0,
    "found": 0,
    "followed": 0,
    "markers": ""
@@ -515,7 +523,7 @@
   {
    "url": "https://www.comedykiss.ch/",
    "status": 200,
-   "bytes": 1455473,
+   "bytes": 1455959,
    "found": 0,
    "followed": 1,
    "markers": "ld+json"
@@ -547,7 +555,7 @@
   {
    "url": "https://www.gtg.ch/saison-26-27/",
    "status": 200,
-   "bytes": 226617,
+   "bytes": 226621,
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
@@ -593,20 +601,20 @@
    "markers": ""
   },
   {
-   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
-   "status": 200,
-   "bytes": 303191,
-   "found": 0,
-   "followed": 12,
-   "markers": ""
-  },
-  {
    "url": "https://www.sallemetropole.ch/",
    "status": 200,
    "bytes": 243561,
    "found": 0,
    "followed": 0,
    "markers": "ld+json wp-json"
+  },
+  {
+   "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
+   "status": 200,
+   "bytes": 303191,
+   "found": 0,
+   "followed": 12,
+   "markers": ""
   },
   {
    "url": "https://museesdegeneve.ch/",
@@ -619,40 +627,32 @@
   {
    "url": "https://infomaniak.events/en-ch/comedy/zurich",
    "status": 200,
-   "bytes": 135944,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://eventfrog.ch/en/events/ch/geneve/markets.html",
-   "status": 429,
-   "bytes": 0,
+   "bytes": 135946,
    "found": 0,
    "followed": 0,
    "markers": ""
   }
  ],
- "kept": 315,
+ "kept": 319,
  "dropped": {
-  "later than 2 weeks": 1107,
+  "later than 2 weeks": 1401,
   "past": 507,
-  "duplicate": 173,
-  "far future": 122,
-  "weekday daytime": 303,
+  "duplicate": 243,
+  "far future": 125,
+  "weekday daytime": 429,
+  "unknown place": 81,
   "niche (card games, wargaming…)": 67,
   "already in app": 23,
-  "unknown place": 81,
-  "Zurich: German-only spoken event": 256,
+  "Zurich: German-only spoken event": 374,
   "children's event": 12,
-  "not relevant": 10
+  "not relevant": 41
  },
  "geocoded": 0,
  "descEnriched": 33,
- "translated": 8,
+ "translated": 12,
  "byCity": {
   "ge": 160,
-  "zh": 155
+  "zh": 159
  },
  "samples": {
   "unknown place": [
