@@ -309,7 +309,8 @@ const metaDesc = h => { const c = [];
 { const todo = events.concat(add).filter(e => e.url && (!e.desc || e.desc.length < 70 || WEAK.test(e.desc.trim())) && !/songkick|meetup\.com/.test(e.url)).slice(0, 140);
   for (let i = 0; i < todo.length; i += 6) await Promise.all(todo.slice(i, i + 6).map(async e => {
     let d = DESC[e.url]; if (d != null && (/inbox|newsletter|delivered to your|boîte|chaque lundi|meilleur de gen|dans le cadre du festival/i.test(d) || d.length < 100)) d = null; if (d == null) { const r = await get(e.url); d = r.body ? metaDesc(r.body) : ""; DESC[e.url] = d; }
-    if (d && d.length > (e.desc || "").length) e.desc = short(d, 320); }));
+    const fest = (String(e.desc || "").match(/(?:dans le cadre du|as part of the|im rahmen des?)\s+((?:festival\s+)?[^.,;]{3,60}?festival|festival\s+[^.,;]{3,50})/i) || [])[1];
+    if (d && d.length > (e.desc || "").length) e.desc = (fest ? "Part of " + fest.replace(/^festival\s+(.*)$/i, "$1 Festival") + ". " : "") + short(d, 300); }));
   report.descEnriched = todo.length; fs.writeFileSync(new URL("data/desc.json", root), JSON.stringify(DESC)); }
 for (const e of events.concat(add)) {
   const tt = (e.src === "Songkick" || / @ /.test(e.title)) ? null : ((await toEn(e.title)) || (await titleEn(e.title, e.city))); if (tt && norm(tt) !== norm(e.title)) e.titleEn = tt.slice(0, 110);

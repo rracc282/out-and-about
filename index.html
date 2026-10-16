@@ -2396,6 +2396,8 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
     const sents=x.split(/(?<=[.!?])\s+|\s+[|/]\s+/).map(t=>t.trim()).filter(Boolean);
     if(sents.length>1&&sents.some(t=>sc(t)<0)){const keep=sents.filter(t=>sc(t)>0);x=keep.length?keep.join(" "):""}
     else if(sents.length===1&&sc(x)<-1)x="";
+    x=x.replace(/(^|\s)_([^_]+)_(?=[\s.,;:!?]|$)/g,"$1$2");
+    if(x.length>140&&!/[.!?…"”)]$/.test(x))x=x.replace(/\s+\S*$/,"")+"…";
     if(x)x=x[0].toUpperCase()+x.slice(1);
     return x}
   [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;
