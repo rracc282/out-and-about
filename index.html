@@ -2856,7 +2856,7 @@ document.querySelectorAll("nav.tabs [data-tab]").forEach(b=>b.addEventListener("
   function prog(u){const K=kids(u);if(!K.length)return "";const days=[...new Set(K.map(e=>e.day))];const d=days.includes(ui.progDay[u.id])?ui.progDay[u.id]:days[0];
     return '<div class="prog"><div class="prog-h">Programme</div><div class="prog-days">'+days.map(x=>'<button class="chip" data-progday="'+esc(u.id+"|"+x)+'" aria-pressed="'+(x===d)+'">'+dl(x)+'</button>').join("")+'</div>'+
       K.filter(e=>e.day===d).map(e=>{const t=(String(e.when).match(/\d{1,2}:\d{2}/)||[""])[0];const op=ui.progOpen===e.id;const g=goingSet.has(e.id);
-        return '<div class="prog-row'+(op?' open':'')+'"><button class="prog-sum" data-progopen="'+esc(e.id)+'"><span class="prog-t">'+(t||"·")+'</span><span class="prog-main"><b>'+esc(e.title)+'</b><span class="prog-d">'+esc(e.desc||"")+'</span></span></button>'+
+        return '<div class="prog-row'+(op?' open':'')+'"><button class="prog-sum" data-progopen="'+esc(e.id)+'"><span class="prog-t">'+(t||"·")+'</span><span class="prog-main"><b>'+esc(e.title)+'</b><span class="prog-d">'+esc(String(e.desc||"").replace(/^Part of [^.]{3,80}\.\s*/,""))+'</span></span></button>'+
           '<div class="prog-acts"><button data-proggo="'+esc(e.id)+'">'+(g?'✓ Going':'I\'m going')+'</button>'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">Book ↗</a>':'')+'</div></div>'}).join("")+'</div>'}
   const _ev=evHTML;evHTML=function(e,p){let h=_ev(e,p);if(h.includes('aria-expanded="true"')&&EVENTS.some(x=>x.folded===e.id)){const pr=prog(e);if(pr)h=h.replace(/<\/article>$/,pr+'</article>')}return h};
   const keep=fn=>{const y=scrollY;fn();render();window.scrollTo(0,y)};
