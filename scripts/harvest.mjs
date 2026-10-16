@@ -129,8 +129,35 @@ function when(s) { if (!s) return null; if (/^\d{4}-\d{2}-\d{2}$/.test(s)) retur
 const UA = { "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128 Safari/537.36", "accept-language": "en,fr;q=0.8,de;q=0.7" };
 async function get(url) { const c = new AbortController(); const t = setTimeout(() => c.abort(), 20000); try { const r = await fetch(url, { headers: UA, signal: c.signal, redirect: "follow" }); return { status: r.status, body: r.ok ? await r.text() : "" }; } catch (e) { return { status: String(e.name || e) , body: "" }; } finally { clearTimeout(t); } }
 
+
+/* La Décadanse: Geneva's community agenda, one page per day, grouped by genre */
+function fromDecadanse(body) {
+  const out = []; const ent = t => t.replace(/&#0?39;/g, "'").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  const parts = body.split(/<h2 id="/);
+  for (const part of parts.slice(1)) {
+    const genre = part.slice(0, part.indexOf('"'));
+    if (/^(cinema|cine|expos)/i.test(genre)) continue;
+    for (const a of part.split(/<article id="event-/).slice(1)) {
+      const id = (a.match(/^(\d+)/) || [])[1]; const title = ((a.match(/<h3[^>]*>\s*<a[^>]*>([^<]+)<\/a>/) || [])[1] || "").trim();
+      if (!id || !title) continue;
+      const venue = ((a.match(/<span class="right">\s*<a[^>]*>([^<]+)<\/a>/) || [])[1] || "").trim();
+      const prat = a.match(/<div class="pratique">\s*<span class="left">([^<]*)<\/span>\s*<span class="right">([^<]*)<\/span>/) || [];
+      const dt = a.match(/dates=(\d{8})T(\d{4})\d\d(?:%2F|\/)(\d{8})T(\d{4})/) || a.match(/st=(\d{8})T(\d{4})\d\d&(?:amp;)?et=(\d{8})T(\d{4})/);
+      if (!dt) continue;
+      const iso = (d, h) => `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)}T${h.slice(0, 2)}:${h.slice(2)}`;
+      const info = ent(prat[2] || "").replace(/\s+/g, " ").trim(); const price = (info.split(/,\s*/).slice(1).join(", ") || "").trim();
+      const desc = ent(((a.match(/js-description-clamp">([\s\S]*?)<\/p>/) || [])[1] || "").replace(/<br\s*\/?>/g, " ").replace(/<[^>]+>/g, "").replace(/\*\*/g, "")).replace(/\s+/g, " ").trim();
+      out.push({ title: ent(title), start: iso(dt[1], dt[2]), end: iso(dt[3], dt[4]), url: "https://www.ladecadanse.ch/event/evenement.php?idE=" + id,
+        place: [ent(venue), ent(prat[1] || "").trim()].filter(Boolean).join(", "), price: /gratuit|libre|free/i.test(price) ? "Free" : price || null, desc, genre });
+    }
+  }
+  return out;
+}
 const raw = [];
 async function harvest(src) {
+  if (src.kind === "ladecadanse") { const seen = new Map(); let st = 0, bytes = 0;
+    for (let i = 0; i < 14; i += 7) await Promise.all([...Array(7)].map(async (_, k) => { const d = new Date(TODAY + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + i + k); const r = await get("https://www.ladecadanse.ch/index.php?courant=" + d.toISOString().slice(0, 10)); st = r.status; bytes += r.body.length; fromDecadanse(r.body).forEach(x => seen.set(x.url + x.start.slice(0, 10), x)); }));
+    report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed: 14, markers: "day agenda" }); seen.forEach(x => raw.push({ ...x, src })); return; }
   const r = await get(src.url); let items = [];
   if (r.body) {
     if (src.kind === "ics" || /^BEGIN:VCALENDAR/.test(r.body)) items = fromIcs(r.body);
