@@ -209,7 +209,11 @@ async function harvest(src) {
 }
 const groups = new Set([...html.matchAll(/meetup\.com\/([A-Za-z0-9_-]+)\/events/g)].map(m => m[1]).concat(cfg.meetupExtra || []));
 const jobs = [...[...groups].map(g => ({ url: `https://www.meetup.com/${g}/events/`, kind: "meetup" })), ...cfg.pages];
-for (let i = 0; i < jobs.length; i += 6) await Promise.all(jobs.slice(i, i + 6).map(harvest));
+/* Eventfrog rate-limits parallel requests: run those one after another, alongside the rest */
+const frog = jobs.filter(j => /eventfrog\./.test(j.url)), rest = jobs.filter(j => !/eventfrog\./.test(j.url));
+const frogRun = (async () => { for (const j of frog) { await harvest(j); await new Promise(r => setTimeout(r, 4000)); } })();
+for (let i = 0; i < rest.length; i += 6) await Promise.all(rest.slice(i, i + 6).map(harvest));
+await frogRun;
 
 const DE = /\b(und|von|nach|einem|einer|drei|akten|vom|am|den|dem|des|sich|wird|sind|ist|zu|der|die|das|mit|für|ein|eine|im|zum|zur|auf|bei|wir|ihr|nicht|oder|auch|ab|uhr|eintritt|anmeldung|führung|abend|kinder|markt)\b/gi;
 const FR = /\b(et|le|la|les|des|du|avec|pour|une|un|dans|sur|nous|vous|soirée|entrée|libre|atelier|inscription|marché|gratuit|au|aux)\b/gi;
@@ -220,7 +224,8 @@ const SPOKEN = /bühne|bühnenprogramm|programm\b|solo\b|satire|humor|witz|theat
 /* ---------- normalise ---------- */
 const norm = t => clean(t).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "").slice(0, 28);
 const existing = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})"[^{}]*?"title": ?"([^"]+)"/g)].map(m => m[1] + "|" + norm(m[2])));
-const existingUrl = new Set([...html.matchAll(/"url": ?"([^"]+)"/g)].map(m => m[1].replace(/[?#].*$/, "")));
+const urlKey = u => /\.php\?|[?&](id[A-Z]?|event|e)=/.test(u) ? u.replace(/#.*$/, "") : u.replace(/[?#].*$/, "");
+const existingUrl = new Set([...html.matchAll(/"url": ?"([^"]+)"/g)].map(m => urlKey(m[1])));
 const slug = s => clean(s).toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
 const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
 const SRCNAME = { "meetup.com": "Meetup", "eventbrite.ch": "Eventbrite", "eventbrite.com": "Eventbrite", "eventfrog.ch": "Eventfrog", "songkick.com": "Songkick" };
@@ -246,7 +251,7 @@ for (const x of raw) {
   else if (x.src.big && day <= BIG_UNTIL) p = "big";
   else { drop("later than 2 weeks"); continue; }
   if (dow(day) >= 1 && dow(day) <= 5 && s.time && s.time < "17:30" && !multi) { drop("weekday daytime"); continue; }
-  const url = (x.url || x.src.url).replace(/[?#].*$/, "");
+  const url = urlKey(x.url || x.src.url);
   const key = day + "|" + norm(title);
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
   if (out.has(key)) { drop("duplicate"); continue; }
