@@ -140,14 +140,15 @@ function fromDecadanse(body) {
     for (const a of part.split(/<article id="event-/).slice(1)) {
       const id = (a.match(/^(\d+)/) || [])[1]; const title = ((a.match(/<h3[^>]*>\s*<a[^>]*>([^<]+)<\/a>/) || [])[1] || "").trim();
       if (!id || !title) continue;
-      const venue = ((a.match(/<span class="right">\s*<a[^>]*>([^<]+)<\/a>/) || [])[1] || "").trim();
+      const venue = ((a.match(/<header class="titre">[\s\S]*?<span class="right">([\s\S]*?)<\/span>/) || [])[1] || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
       const prat = a.match(/<div class="pratique">\s*<span class="left">([^<]*)<\/span>\s*<span class="right">([^<]*)<\/span>/) || [];
       const dt = a.match(/dates=(\d{8})T(\d{4})\d\d(?:%2F|\/)(\d{8})T(\d{4})/) || a.match(/st=(\d{8})T(\d{4})\d\d&(?:amp;)?et=(\d{8})T(\d{4})/);
       if (!dt) continue;
       const iso = (d, h) => `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)}T${h.slice(0, 2)}:${h.slice(2)}`;
       const info = ent(prat[2] || "").replace(/\s+/g, " ").trim(); const price = (info.split(/,\s*/).slice(1).join(", ") || "").trim();
       const desc = ent(((a.match(/js-description-clamp">([\s\S]*?)<\/p>/) || [])[1] || "").replace(/<br\s*\/?>/g, " ").replace(/<[^>]+>/g, "").replace(/\*\*/g, "")).replace(/\s+/g, " ").trim();
-      out.push({ title: ent(title), start: iso(dt[1], dt[2]), end: iso(dt[3], dt[4]), url: "https://www.ladecadanse.ch/event/evenement.php?idE=" + id,
+      const st0 = iso(dt[1], dt[2]); let en0 = iso(dt[3], dt[4]); if ((new Date(en0) - new Date(st0)) > 14 * 3600e3 || en0 <= st0) en0 = null;
+      out.push({ title: ent(title), start: st0, end: en0, url: "https://www.ladecadanse.ch/event/evenement.php?idE=" + id,
         place: [ent(venue), ent(prat[1] || "").trim()].filter(Boolean).join(", "), price: /gratuit|libre|free/i.test(price) ? "Free" : price || null, desc, genre });
     }
   }
