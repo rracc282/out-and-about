@@ -4,16 +4,24 @@
    "url": "https://eventfrog.ch/de/events/zuerich.html",
    "status": 200,
    "bytes": 620068,
-   "found": 597,
-   "followed": 30,
+   "found": 671,
+   "followed": 36,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/en/events/ch/geneve/markets.html",
+   "status": 200,
+   "bytes": 604470,
+   "found": 657,
+   "followed": 40,
    "markers": ""
   },
   {
    "url": "https://eventfrog.ch/en/events/ch/geneve/comedy-cabaret.html",
    "status": 200,
    "bytes": 604498,
-   "found": 576,
-   "followed": 34,
+   "found": 534,
+   "followed": 31,
    "markers": ""
   },
   {
@@ -28,16 +36,8 @@
    "url": "https://eventfrog.ch/fr/events/geneve.html",
    "status": 200,
    "bytes": 618820,
-   "found": 142,
-   "followed": 38,
-   "markers": ""
-  },
-  {
-   "url": "https://eventfrog.ch/en/events/ch/comedy.html",
-   "status": 200,
-   "bytes": 586634,
-   "found": 85,
-   "followed": 40,
+   "found": 132,
+   "followed": 32,
    "markers": ""
   },
   {
@@ -113,11 +113,11 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://infomaniak.events/en-ch/comedy/geneva",
+   "url": "https://eventfrog.ch/en/events/ch/comedy.html",
    "status": 200,
-   "bytes": 423873,
-   "found": 69,
-   "followed": 40,
+   "bytes": 586634,
+   "found": 71,
+   "followed": 37,
    "markers": ""
   },
   {
@@ -137,9 +137,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
+   "url": "https://infomaniak.events/en-ch/comedy/geneva",
+   "status": 200,
+   "bytes": 419405,
+   "found": 61,
+   "followed": 40,
+   "markers": ""
+  },
+  {
    "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
    "status": 200,
-   "bytes": 419394,
+   "bytes": 419405,
    "found": 61,
    "followed": 40,
    "markers": ""
@@ -155,7 +163,7 @@
   {
    "url": "https://www.meetup.com/pubphilosophy/events/",
    "status": 200,
-   "bytes": 177101,
+   "bytes": 177103,
    "found": 44,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -225,17 +233,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/aktzeichnen-im-kreis-zurich/events/",
+   "url": "https://www.meetup.com/artists-meetup-group-english-speaking/events/",
    "status": 200,
-   "bytes": 125151,
+   "bytes": 136362,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/artists-meetup-group-english-speaking/events/",
+   "url": "https://www.meetup.com/aktzeichnen-im-kreis-zurich/events/",
    "status": 200,
-   "bytes": 136362,
+   "bytes": 125151,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -313,14 +321,6 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/les-amis-geneva/events/",
-   "status": 200,
-   "bytes": 59554,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/les-amis-zurich/events/",
    "status": 200,
    "bytes": 59554,
@@ -329,25 +329,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-social-club/events/",
+   "url": "https://www.meetup.com/les-amis-geneva/events/",
    "status": 200,
-   "bytes": 59568,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/internations-zurich/events/",
-   "status": 200,
-   "bytes": 59570,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/geneva-language-exchange/events/",
-   "status": 200,
-   "bytes": 59590,
+   "bytes": 59554,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -361,9 +345,33 @@
    "markers": "__NEXT_DATA__"
   },
   {
+   "url": "https://www.meetup.com/internations-zurich/events/",
+   "status": 200,
+   "bytes": 59570,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
    "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
    "bytes": 59546,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-social-club/events/",
+   "status": 200,
+   "bytes": 59568,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/geneva-language-exchange/events/",
+   "status": 200,
+   "bytes": 59590,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -417,14 +425,6 @@
    "markers": ""
   },
   {
-   "url": "https://www.eventbrite.ch/d/switzerland--lausanne/all-events/",
-   "status": 405,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://www.eventbrite.ch/d/switzerland--geneva/all-events/?page=2",
    "status": 405,
    "bytes": 0,
@@ -441,9 +441,17 @@
    "markers": ""
   },
   {
+   "url": "https://www.eventbrite.ch/d/switzerland--lausanne/all-events/",
+   "status": 405,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
+  },
+  {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 70730,
+   "bytes": 70419,
    "found": 0,
    "followed": 16,
    "markers": "ld+json"
@@ -457,20 +465,20 @@
    "markers": ""
   },
   {
-   "url": "https://newinzurich.com/events/",
-   "status": 202,
-   "bytes": 179,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://www.guidle.com/de/veranstaltungen/zuerich",
    "status": 200,
    "bytes": 32950,
    "found": 0,
    "followed": 3,
    "markers": ""
+  },
+  {
+   "url": "https://newinzurich.com/events/",
+   "status": 200,
+   "bytes": 165136,
+   "found": 0,
+   "followed": 3,
+   "markers": "ld+json wp-json"
   },
   {
    "url": "https://www.ladecadanse.ch/",
@@ -513,20 +521,20 @@
    "markers": "ld+json"
   },
   {
-   "url": "https://www.geneve.com/fr/agenda",
-   "status": 404,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://www.comedykiss.ch/",
    "status": 200,
    "bytes": 1455473,
    "found": 0,
    "followed": 1,
    "markers": "ld+json"
+  },
+  {
+   "url": "https://www.geneve.com/fr/agenda",
+   "status": 404,
+   "bytes": 0,
+   "found": 0,
+   "followed": 0,
+   "markers": ""
   },
   {
    "url": "https://www.theater11.ch/",
@@ -545,20 +553,20 @@
    "markers": ""
   },
   {
-   "url": "https://www.gtg.ch/saison-26-27/",
-   "status": 200,
-   "bytes": 226623,
-   "found": 0,
-   "followed": 0,
-   "markers": "ld+json wp-json"
-  },
-  {
    "url": "https://www.tonhalle-orchester.ch/en/concerts/calendar/",
    "status": 404,
    "bytes": 0,
    "found": 0,
    "followed": 0,
    "markers": ""
+  },
+  {
+   "url": "https://www.gtg.ch/saison-26-27/",
+   "status": 200,
+   "bytes": 226619,
+   "found": 0,
+   "followed": 0,
+   "markers": "ld+json wp-json"
   },
   {
    "url": "https://hallenstadion.ch/events/",
@@ -601,14 +609,6 @@
    "markers": "ld+json wp-json"
   },
   {
-   "url": "https://museesdegeneve.ch/",
-   "status": 200,
-   "bytes": 62532,
-   "found": 0,
-   "followed": 0,
-   "markers": "ld+json wp-json"
-  },
-  {
    "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
    "status": 200,
    "bytes": 303191,
@@ -617,42 +617,42 @@
    "markers": ""
   },
   {
-   "url": "https://infomaniak.events/en-ch/comedy/zurich",
+   "url": "https://museesdegeneve.ch/",
    "status": 200,
-   "bytes": 135944,
+   "bytes": 62532,
    "found": 0,
    "followed": 0,
-   "markers": ""
+   "markers": "ld+json wp-json"
   },
   {
-   "url": "https://eventfrog.ch/en/events/ch/geneve/markets.html",
-   "status": 429,
-   "bytes": 0,
+   "url": "https://infomaniak.events/en-ch/comedy/zurich",
+   "status": 200,
+   "bytes": 135955,
    "found": 0,
    "followed": 0,
    "markers": ""
   }
  ],
- "kept": 312,
+ "kept": 322,
  "dropped": {
-  "later than 2 weeks": 1104,
+  "later than 2 weeks": 1399,
   "past": 507,
-  "duplicate": 168,
-  "weekday daytime": 297,
-  "far future": 122,
+  "duplicate": 246,
+  "far future": 125,
+  "weekday daytime": 428,
   "unknown place": 81,
-  "already in app": 23,
   "niche (card games, wargaming…)": 67,
-  "Zurich: German-only spoken event": 256,
+  "already in app": 23,
+  "Zurich: German-only spoken event": 394,
   "children's event": 12,
-  "not relevant": 41
+  "not relevant": 36
  },
  "geocoded": 0,
- "descEnriched": 31,
- "translated": 5,
+ "descEnriched": 33,
+ "translated": 2,
  "byCity": {
-  "ge": 160,
-  "zh": 152
+  "ge": 157,
+  "zh": 165
  },
  "samples": {
   "unknown place": [
@@ -715,31 +715,31 @@
     "https://www.meetup.com/philosophical_minds_zurich/events/"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-16T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
+    "2026-10-16T07:00:00+02:00",
+    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
+    "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-16T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
+    "2026-10-16T07:00:00+02:00",
+    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
+    "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-17T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
+    "2026-10-17T07:00:00+02:00",
+    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
+    "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-19T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
+    "2026-10-18T07:00:00+02:00",
+    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
+    "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
    ]
   ]
