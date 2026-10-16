@@ -1,11 +1,35 @@
 {
  "sources": [
   {
+   "url": "https://eventfrog.ch/en/events/ch/geneve/comedy-cabaret.html",
+   "status": 200,
+   "bytes": 605298,
+   "found": 750,
+   "followed": 40,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/en/events/ch/geneve/markets.html",
+   "status": 200,
+   "bytes": 605270,
+   "found": 750,
+   "followed": 40,
+   "markers": ""
+  },
+  {
    "url": "https://eventfrog.ch/de/events/zuerich.html",
    "status": 200,
    "bytes": 618733,
-   "found": 450,
-   "followed": 36,
+   "found": 466,
+   "followed": 40,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/de/events/zuerich.html?page=2",
+   "status": 200,
+   "bytes": 618672,
+   "found": 466,
+   "followed": 40,
    "markers": ""
   },
   {
@@ -15,22 +39,6 @@
    "found": 408,
    "followed": 14,
    "markers": "day agenda"
-  },
-  {
-   "url": "https://eventfrog.ch/en/events/ch/geneve/markets.html",
-   "status": 200,
-   "bytes": 605270,
-   "found": 401,
-   "followed": 23,
-   "markers": ""
-  },
-  {
-   "url": "https://eventfrog.ch/en/events/ch/geneve/comedy-cabaret.html",
-   "status": 200,
-   "bytes": 605298,
-   "found": 399,
-   "followed": 23,
-   "markers": ""
   },
   {
    "url": "https://openagenda.com/agendas/96959970/events.json?lang=en",
@@ -52,8 +60,24 @@
    "url": "https://eventfrog.ch/fr/events/geneve.html",
    "status": 200,
    "bytes": 618959,
-   "found": 132,
-   "followed": 32,
+   "found": 144,
+   "followed": 40,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/fr/events/geneve.html?page=2",
+   "status": 200,
+   "bytes": 618898,
+   "found": 144,
+   "followed": 40,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/en/events/ch/comedy.html",
+   "status": 200,
+   "bytes": 586771,
+   "found": 85,
+   "followed": 40,
    "markers": ""
   },
   {
@@ -147,7 +171,7 @@
   {
    "url": "https://infomaniak.events/en-ch/comedy/geneva",
    "status": 200,
-   "bytes": 425110,
+   "bytes": 420271,
    "found": 53,
    "followed": 40,
    "markers": ""
@@ -155,7 +179,7 @@
   {
    "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
    "status": 200,
-   "bytes": 420272,
+   "bytes": 420271,
    "found": 53,
    "followed": 40,
    "markers": ""
@@ -199,14 +223,6 @@
    "found": 34,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://eventfrog.ch/en/events/ch/comedy.html",
-   "status": 200,
-   "bytes": 586771,
-   "found": 29,
-   "followed": 21,
-   "markers": ""
   },
   {
    "url": "https://www.meetup.com/social-circle-lausanne/events/",
@@ -321,9 +337,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
+   "url": "https://eventfrog.ch/en/p/groups/in-your-face-english-stand-up-comedy-open-mic-in-zurich-7132091334890862636.html",
+   "status": 200,
+   "bytes": 190717,
+   "found": 11,
+   "followed": 0,
+   "markers": "ld+json schema.org/Event .ics"
+  },
+  {
    "url": "https://www.kulturzueri.ch/",
    "status": 200,
-   "bytes": 148983,
+   "bytes": 148711,
    "found": 10,
    "followed": 12,
    "markers": ""
@@ -337,20 +361,20 @@
    "markers": "ld+json schema.org/Event .ics"
   },
   {
+   "url": "https://eventfrog.ch/de/p/gruppen/nerdy-stand-up-comedy-en-7284304661632248367.html",
+   "status": 200,
+   "bytes": 163341,
+   "found": 4,
+   "followed": 0,
+   "markers": "ld+json schema.org/Event .ics"
+  },
+  {
    "url": "https://www.meetup.com/enjoy-geneve/events/",
    "status": 200,
    "bytes": 99723,
    "found": 0,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/les-amis-zurich/events/",
-   "status": 200,
-   "bytes": 59554,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
   },
   {
    "url": "https://www.meetup.com/les-amis-geneva/events/",
@@ -361,25 +385,17 @@
    "markers": "__NEXT_DATA__"
   },
   {
+   "url": "https://www.meetup.com/les-amis-zurich/events/",
+   "status": 200,
+   "bytes": 59554,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
    "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
    "bytes": 59548,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/zurich-language-exchange/events/",
-   "status": 200,
-   "bytes": 59688,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/internations-zurich/events/",
-   "status": 200,
-   "bytes": 59570,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -401,6 +417,22 @@
    "markers": "__NEXT_DATA__"
   },
   {
+   "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "status": 200,
+   "bytes": 59688,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/internations-zurich/events/",
+   "status": 200,
+   "bytes": 59570,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
    "url": "https://www.meetup.com/zurich-hiking/events/",
    "status": 200,
    "bytes": 59548,
@@ -417,9 +449,17 @@
    "markers": "__NEXT_DATA__"
   },
   {
+   "url": "https://newinzurich.com/events/",
+   "status": 200,
+   "bytes": 165136,
+   "found": 0,
+   "followed": 3,
+   "markers": "ld+json wp-json"
+  },
+  {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 70453,
+   "bytes": 70795,
    "found": 0,
    "followed": 16,
    "markers": "ld+json"
@@ -435,18 +475,10 @@
   {
    "url": "https://www.comedykiss.ch/",
    "status": 200,
-   "bytes": 1455473,
+   "bytes": 1455959,
    "found": 0,
    "followed": 1,
    "markers": "ld+json"
-  },
-  {
-   "url": "https://newinzurich.com/events/",
-   "status": 200,
-   "bytes": 165136,
-   "found": 0,
-   "followed": 3,
-   "markers": "ld+json wp-json"
   },
   {
    "url": "https://www.guidle.com/de/veranstaltungen/zuerich",
@@ -454,6 +486,22 @@
    "bytes": 32950,
    "found": 0,
    "followed": 3,
+   "markers": ""
+  },
+  {
+   "url": "https://hallenstadion.ch/events/",
+   "status": 200,
+   "bytes": 201728,
+   "found": 0,
+   "followed": 13,
+   "markers": "ld+json"
+  },
+  {
+   "url": "https://infomaniak.events/en-ch/comedy/zurich",
+   "status": 200,
+   "bytes": 135946,
+   "found": 0,
+   "followed": 0,
    "markers": ""
   },
   {
@@ -473,54 +521,6 @@
    "markers": "ld+json wp-json"
   },
   {
-   "url": "https://hallenstadion.ch/events/",
-   "status": 200,
-   "bytes": 201728,
-   "found": 0,
-   "followed": 13,
-   "markers": "ld+json"
-  },
-  {
-   "url": "https://infomaniak.events/en-ch/comedy/zurich",
-   "status": 200,
-   "bytes": 135947,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://eventfrog.ch/de/p/gruppen/nerdy-stand-up-comedy-en-7284304661632248367.html",
-   "status": 429,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://eventfrog.ch/de/events/zuerich.html?page=2",
-   "status": 429,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://eventfrog.ch/en/p/groups/in-your-face-english-stand-up-comedy-open-mic-in-zurich-7132091334890862636.html",
-   "status": 429,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
-   "url": "https://eventfrog.ch/fr/events/geneve.html?page=2",
-   "status": 429,
-   "bytes": 0,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://www.palexpo.ch/en/event-schedule/",
    "status": 200,
    "bytes": 361217,
@@ -531,32 +531,32 @@
   {
    "url": "https://www.tonhalle-orchester.ch/en/concerts/kalender/",
    "status": 200,
-   "bytes": 92327,
+   "bytes": 92336,
    "found": 0,
    "followed": 33,
    "markers": ""
   }
  ],
- "kept": 342,
+ "kept": 475,
  "dropped": {
-  "later than 2 weeks": 1434,
-  "past": 507,
-  "duplicate": 281,
+  "later than 2 weeks": 2141,
+  "past": 506,
+  "duplicate": 629,
   "far future": 138,
-  "weekday daytime": 368,
-  "niche (card games, wargaming…)": 71,
+  "weekday daytime": 634,
   "unknown place": 97,
-  "already in app": 284,
-  "Zurich: German-only spoken event": 45,
-  "children's event": 52,
-  "not relevant": 33
+  "niche (card games, wargaming…)": 71,
+  "already in app": 42,
+  "Zurich: German-only spoken event": 107,
+  "children's event": 53,
+  "not relevant": 43
  },
  "geocoded": 0,
- "descEnriched": 31,
- "translated": 28,
+ "descEnriched": 36,
+ "translated": 162,
  "byCity": {
-  "ge": 192,
-  "zh": 150
+  "ge": 293,
+  "zh": 182
  },
  "samples": {
   "unknown place": [
