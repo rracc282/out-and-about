@@ -3168,13 +3168,13 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   pb.addEventListener("click",()=>{ui.tab="plan";ui.planAll=null;if(ui.plans)openPlans(false);if(state.q){state.q="";const q=document.getElementById("q");if(q)q.value=""}render();window.scrollTo({top:0})});
   const ex=nav.querySelector('[data-tab="this"]');ex.textContent="Explore";
   const tb=nav.querySelector('[data-tab="trips"]');if(tb)tb.textContent="Trips & hikes";
-  nav.querySelectorAll('[data-tab="next"],[data-tab="big"]').forEach(b=>b.classList.add("exsub"));
-  const seg=document.createElement("div");seg.id="exseg";seg.className="exseg";seg.innerHTML='<button data-ex="this">This week</button><button data-ex="next">Next week</button><button data-ex="big">Culture</button>';
+  nav.querySelectorAll('[data-tab="next"]').forEach(b=>b.classList.add("exsub"));
+  const seg=document.createElement("div");seg.id="exseg";seg.className="exseg";seg.innerHTML='<button data-ex="this">This week</button><button data-ex="next">Next week</button>';
   const jumps=document.getElementById("jumps");jumps.parentNode.insertBefore(seg,jumps);
   seg.addEventListener("click",ev=>{const b=ev.target.closest("[data-ex]");if(!b)return;const n=nav.querySelector('[data-tab="'+b.dataset.ex+'"]');if(n)n.click()});
   const _r=render;render=function(){if(ui.tab==="plan"&&ui.plans){} _r();
-    const ext=["this","next","big"].includes(ui.tab)&&!ui.plans;
-    ex.setAttribute("aria-selected",String(!state.q&&ext||(!!state.q&&ui.tab!=="plan")));pb.setAttribute("aria-selected",String(ui.tab==="plan"&&!ui.plans&&!state.q));
+    const ext=["this","next"].includes(ui.tab)&&!ui.plans;
+    ex.setAttribute("aria-selected",String(!state.q&&ext||(!!state.q&&ui.tab!=="plan")));const cb=nav.querySelector('[data-tab="big"]');if(cb)cb.setAttribute("aria-selected",String(!state.q&&ui.tab==="big"&&!ui.plans));pb.setAttribute("aria-selected",String(ui.tab==="plan"&&!ui.plans&&!state.q));
     seg.hidden=!(ext&&!state.q);seg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.ex===ui.tab)));
     try{renderPlan()}catch(e){console.error(e)}};
   /* keep profile and plan when syncing */
