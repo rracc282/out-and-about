@@ -1,18 +1,14 @@
 [
  {
   "id": "saleve-balcony",
-  "name": "Salève balcony walk",
+  "name": "Salève ridge: cable car to La Croisette",
   "wps": [
    {
-    "station": [
-     46.175,
-     6.185
+    "ll": [
+     46.15447,
+     6.19317
     ],
-    "near": [
-     46.17,
-     6.18
-    ],
-    "q": "top"
+    "q": "Salève cable car (top station)"
    },
    {
     "q": "Les Treize Arbres",
@@ -22,15 +18,19 @@
     ]
    },
    {
-    "station": [
-     46.175,
-     6.185
-    ],
+    "q": "La Croisette",
     "near": [
-     46.17,
-     6.18
+     46.135,
+     6.165
     ],
-    "q": "top"
+    "r": 0.03
+   },
+   {
+    "ll": [
+     46.15447,
+     6.19317
+    ],
+    "q": "Salève cable car (top station)"
    }
   ]
  },
@@ -265,7 +265,7 @@
  },
  {
   "id": "signal-de-bougy",
-  "name": "Rolle vineyards and Signal de Bougy loop",
+  "name": "Rolle vineyards to Signal de Bougy and Aubonne",
   "wps": [
    {
     "q": "Gare de Rolle",
@@ -289,17 +289,10 @@
     ]
    },
    {
-    "q": "Bursins",
+    "q": "Aubonne",
     "near": [
-     46.452,
-     6.29
-    ]
-   },
-   {
-    "q": "Gare de Gilly-Bursinel",
-    "near": [
-     46.443,
-     6.296
+     46.495,
+     6.392
     ]
    }
   ]
@@ -320,13 +313,6 @@
     "near": [
      46.3,
      6.145
-    ]
-   },
-   {
-    "q": "Sauverny",
-    "near": [
-     46.31,
-     6.12
     ]
    },
    {
