@@ -59,7 +59,7 @@
   {
    "url": "https://lesgenevois.com/calendrier/ce-weekend",
    "status": 200,
-   "bytes": 1467599,
+   "bytes": 1467134,
    "found": 111,
    "followed": 0,
    "markers": "ld+json schema.org/Event"
@@ -179,7 +179,7 @@
   {
    "url": "https://infomaniak.events/en-ch/comedy/geneva",
    "status": 200,
-   "bytes": 423426,
+   "bytes": 423425,
    "found": 54,
    "followed": 40,
    "markers": ""
@@ -187,7 +187,7 @@
   {
    "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
    "status": 200,
-   "bytes": 424933,
+   "bytes": 424932,
    "found": 52,
    "followed": 40,
    "markers": ""
@@ -443,8 +443,8 @@
   {
    "url": "https://www.kulturzueri.ch/",
    "status": 200,
-   "bytes": 148713,
-   "found": 8,
+   "bytes": 149325,
+   "found": 10,
    "followed": 12,
    "markers": ""
   },
@@ -459,7 +459,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=language%20exchange",
    "status": 200,
-   "bytes": 276168,
+   "bytes": 276163,
    "found": 6,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -513,9 +513,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-social-club/events/",
+   "url": "https://www.meetup.com/geneva-language-exchange/events/",
    "status": 200,
-   "bytes": 59566,
+   "bytes": 59590,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -524,6 +524,14 @@
    "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
    "bytes": 59550,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-social-club/events/",
+   "status": 200,
+   "bytes": 59566,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -540,14 +548,6 @@
    "url": "https://www.meetup.com/internations-zurich/events/",
    "status": 200,
    "bytes": 59570,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/geneva-language-exchange/events/",
-   "status": 200,
-   "bytes": 59590,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -570,11 +570,11 @@
   },
   {
    "url": "https://newinzurich.com/events/",
-   "status": 202,
-   "bytes": 177,
+   "status": 200,
+   "bytes": 164901,
    "found": 0,
-   "followed": 0,
-   "markers": ""
+   "followed": 3,
+   "markers": "ld+json wp-json"
   },
   {
    "url": "https://www.guidle.com/de/veranstaltungen/zuerich",
@@ -587,7 +587,7 @@
   {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 94739,
+   "bytes": 94710,
    "found": 0,
    "followed": 19,
    "markers": "ld+json"
@@ -603,7 +603,7 @@
   {
    "url": "https://www.comedykiss.ch/",
    "status": 200,
-   "bytes": 1455725,
+   "bytes": 1443806,
    "found": 0,
    "followed": 1,
    "markers": "ld+json"
@@ -627,7 +627,7 @@
   {
    "url": "https://infomaniak.events/en-ch/comedy/zurich",
    "status": 200,
-   "bytes": 135947,
+   "bytes": 135946,
    "found": 0,
    "followed": 0,
    "markers": ""
@@ -657,27 +657,27 @@
    "markers": ""
   }
  ],
- "kept": 487,
+ "kept": 485,
  "dropped": {
-  "later than 2 weeks": 1814,
+  "later than 2 weeks": 1815,
   "past": 569,
   "duplicate": 618,
   "far future": 136,
   "weekday daytime": 296,
-  "niche (card games, wargaming…)": 93,
-  "unknown place": 120,
   "already in app": 49,
+  "unknown place": 120,
+  "niche (card games, wargaming…)": 93,
   "Zurich: German-only spoken event": 364,
-  "children's event": 49,
+  "children's event": 50,
   "not relevant": 27,
-  "same event on two sites": 3
+  "same event on two sites": 4
  },
- "geocoded": 10,
+ "geocoded": 0,
  "descEnriched": 36,
- "translated": 4,
+ "translated": 0,
  "byCity": {
-  "ge": 281,
-  "zh": 206
+  "ge": 280,
+  "zh": 205
  },
  "samples": {
   "unknown place": [
@@ -740,31 +740,31 @@
     "https://www.meetup.com/philosophical_minds_zurich/events/"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-17T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
+    "2026-10-17T07:00:00+02:00",
+    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
+    "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-17T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
+    "2026-10-17T07:00:00+02:00",
+    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
+    "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-19T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
+    "2026-10-18T07:00:00+02:00",
+    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
+    "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
    ],
    [
-    "Tauchen Sie ein – mieten Sie die Erkenntnisoase",
-    "2026-10-20T08:00:00+02:00",
-    "Diversity Academy, Schaffhauserstrasse 4, Zürich",
-    "47.38811499999999,8.539534",
+    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
+    "2026-10-19T07:00:00+02:00",
+    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
+    "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
    ]
   ],
@@ -789,6 +789,13 @@
     "Quai du Mont-Blanc 11, Genève",
     "",
     "https://eventfrog.ch/fr/p/loisirs-excursions/sortie/d-une-rive-a-l-aut"
+   ],
+   [
+    "Genève (Suisse) : Randonnées pédestres gratuites au Salève.",
+    "2026-10-18",
+    "Genève",
+    "",
+    "https://lesgenevois.com/calendrier/e/randonnees-pedestres-saleve-genev"
    ]
   ]
  }
