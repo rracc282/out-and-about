@@ -792,6 +792,51 @@ body[data-view="big"] #chipbox .filters[aria-label="Filter by type"]{display:non
 .prog-d{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;color:var(--muted);margin-top:2px}
 .prog-row.open .prog-d{-webkit-line-clamp:unset;display:block}
 .prog-acts{display:flex;gap:8px;margin:6px 0 0 56px}.prog-acts>*{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:8px;padding:5px 10px;background:var(--surface);color:var(--p);text-decoration:none;cursor:pointer}
+/* Plan tab */
+nav.tabs .exsub{display:none!important}
+nav.tabs [data-tab="plan"]::before{content:"🗓️"}
+nav.tabs [data-tab="this"]::before{content:"🔎"!important}
+.exseg{display:flex;background:var(--line);border-radius:999px;padding:3px;margin:4px 0 10px}.exseg[hidden]{display:none}
+.exseg button{flex:1;border:0;background:none;font:inherit;font-size:13.5px;font-weight:600;padding:7px 0;border-radius:999px;color:var(--muted);cursor:pointer}
+.exseg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+#planview{margin:4px 0 24px;font-family:var(--body)}#planview[hidden]{display:none}
+.pl-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 12px}
+.pl-ctx{display:flex;gap:4px;background:var(--line);border-radius:999px;padding:3px}
+.pl-ctx button,.pl-who button{border:0;background:none;font:inherit;font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:999px;color:var(--muted);cursor:pointer}
+.pl-ctx button[aria-pressed="true"],.pl-who button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.pl-tune{border:0;background:none;font:inherit;font-size:13.5px;color:var(--lake);font-weight:600;cursor:pointer;white-space:nowrap;padding:6px 0}
+.pl-h{font:400 26px/1.15 var(--display);margin:0 0 2px}.pl-sub{color:var(--muted);font-size:13.5px;margin:0 0 10px}
+.pl-who{display:flex;background:var(--line);border-radius:999px;padding:3px;margin:0 0 10px}.pl-who button{flex:1;padding:7px 0}
+.pl-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.pl-chip{font:inherit;font-size:13px;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.pl-chip[aria-pressed="true"]{background:var(--lake);border-color:var(--lake);color:#fff}
+.pl-dm{border:1px solid #f0c3cf;background:linear-gradient(135deg,rgba(232,71,106,.07),transparent);border-radius:14px;padding:10px 13px;margin:0 0 12px}
+.pl-dm .pl-sl b{color:#d23c62}.pl-dmr{display:block;width:100%;text-align:left;border:0;background:none;font:inherit;font-size:14px;color:var(--ink);padding:3px 0;cursor:pointer}.pl-dmr b{font-weight:600}
+.pl-slot{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin:0 0 9px}
+.pl-slot.pl-on{border-color:var(--lake)}.pl-skip,.pl-cont{opacity:.75;padding:9px 13px}
+.pl-sl{display:flex;justify-content:space-between;gap:8px;font-size:12px;margin:0 0 3px}.pl-sl b{font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--lake)}.pl-sl span{color:var(--muted)}
+.pl-body{display:block;width:100%;text-align:left;border:0;background:none;font:inherit;color:var(--ink);padding:0;cursor:pointer}
+.pl-t{font-weight:600;font-size:15.5px;line-height:1.3}.pl-m{display:block;color:var(--muted);font-size:13px;margin-top:2px}.pl-w{display:block;font-size:13.5px;margin-top:5px;line-height:1.4}
+.pl-tag{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:700;color:var(--lake);background:var(--lake-soft);border-radius:999px;padding:1px 7px;vertical-align:2px}.pl-tag.go{color:var(--go);background:var(--go-soft)}
+.pl-acts{display:flex;gap:6px;margin-top:9px}
+.pl-acts button{font:inherit;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:999px;border:0;background:var(--lake-soft);color:var(--lake);cursor:pointer}
+.pl-acts button.x{background:var(--line);color:var(--muted);margin-left:auto}.pl-acts button[disabled]{opacity:.4}.pl-acts small{font-weight:500;opacity:.8}
+.pl-lnk{border:0;background:none;font:inherit;color:var(--lake);font-weight:600;padding:0;cursor:pointer;text-decoration:underline}
+.pl-cta{display:block;width:100%;border:0;background:var(--lake);color:#fff;font:inherit;font-weight:600;font-size:15px;border-radius:999px;padding:12px;margin:14px 0 8px;cursor:pointer}
+.pl-cal{display:block;width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:600;font-size:14px;border-radius:999px;padding:10px;cursor:pointer}
+.pl-hint{color:var(--muted);font-size:12.5px;text-align:center;margin:10px 0 0}
+.pl-back{border:0;background:none;font:inherit;color:var(--lake);font-weight:600;font-size:14px;padding:0 0 8px;cursor:pointer}
+.pl-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.pl-rb{flex:1;text-align:left;border:0;background:none;font:inherit;color:var(--ink);padding:0;cursor:pointer;min-width:0}
+.pl-add,.pl-in{font:inherit;font-size:12.5px;font-weight:600;color:var(--lake);background:var(--lake-soft);border:0;border-radius:999px;padding:6px 11px;white-space:nowrap;cursor:pointer}.pl-in{background:none}
+#plsheet,#pltune{position:fixed;inset:0;z-index:1000}
+.pl-dim{position:absolute;inset:0;background:rgba(10,15,25,.45)}
+.pl-sheet{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;background:var(--surface);color:var(--ink);border-radius:20px 20px 0 0;padding:12px 16px calc(22px + env(safe-area-inset-bottom));font-family:var(--body);max-width:640px;margin:0 auto}
+.pl-grab{width:40px;height:5px;border-radius:9px;background:var(--line);margin:0 auto 12px}
+.pl-sheet h3{margin:0 0 2px;font-size:17px}.pl-sheet>p{margin:0 0 12px;color:var(--muted);font-size:13px}
+.pl-opt{display:flex;width:100%;justify-content:space-between;align-items:center;gap:8px;text-align:left;font:inherit;font-size:14.5px;font-weight:600;color:var(--ink);padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:0 0 7px;cursor:pointer}
+.pl-opt span{font-weight:500;font-size:12.5px;color:var(--muted)}.pl-opt span.warn{color:#b0561a}.pl-opt.x{color:var(--muted)}
+.pl-q{border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin:0 0 10px}.pl-q h3{font-size:15.5px;margin:0 0 4px}.pl-q p{margin:0 0 6px;color:var(--muted);font-size:13px}.pl-q .pl-chips{margin-bottom:8px}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -2906,6 +2951,222 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   const _tpb=tripPlanBody;tripPlanBody=function(t,d){let x=_tpb(t,d);if(t.kind!=="hike")return x;const h=t.hike;
     return x.replace('<div class="mp-pl">','<div class="mp-pl">🥾 '+hm(h.min)+' · '+h.km+' km · ↑ '+h.up+' m · <a href="'+h.gpx+'" download>GPX</a><br>');};
   try{renderTrips()}catch(e){}
+})();
+
+/* ===== Plan tab: a ready-made weekend (Fri evening → Sunday) and a weekday-evening plan.
+   Picks one event per time slot from who you're with + today's mood chips + your profile, weather and feedback.
+   State: S.prof (what you like), S.plan (kept/moved/skipped slots, per week). ===== */
+(function(){
+  const MOODS=[["markets","Markets"],["concerts","Concerts"],["festivals","Festivals"],["outdoors","Outdoors + dog"],["creative","Creative"],["exhibitions","Exhibitions"],["meet","Meet people"],["games","Games"],["yoga","Yoga & dance"],["comedy","Comedy"],["film","Film"],["language","Language exchange"],["food","Food & drink"],["party","Parties"]];
+  const MLBL=Object.fromEntries(MOODS);
+  const NEVER=[["kids","Kids & family"],["sports","Sports games"],["talks","Talks & networking"],["clubs","Nightclubs"],["classical","Classical music"]];
+  const WHO=[["partner","With my partner"],["solo","Solo"],["friends","With friends"]];
+  const DEF={we:{who:"partner",moods:["markets","concerts","festivals","outdoors"]},wk:{who:"solo",moods:["meet","games","creative"]},never:["kids","sports","talks"],eves:[1,2,3,4],dog:true};
+  function prof(){if(!S.prof){const L=S.likes||[];const p=JSON.parse(JSON.stringify(DEF));
+      if(L.length){const m={rencontre:"meet",creatif:"creative",marche:"markets",fete:"festivals",culture:"concerts",chien:"outdoors"};const x=L.map(k=>m[k]).filter(Boolean);if(x.length){p.wk.moods=[...new Set(x.filter(k=>k==="meet"||k==="creative").concat(["meet","games"]))].slice(0,4);p.we.moods=[...new Set(x.filter(k=>k!=="meet").concat(["markets","festivals"]))].slice(0,5)}}
+      return p}return S.prof}
+  /* --- what an event is (mood tags) --- */
+  const RX={markets:/market|march[ée]|brocante|flea|puces|vide-grenier|fair\b|foire|bazaar|flohmarkt|markt\b|salon\b|braderie/i,
+    concerts:/concert|live music|jazz|\bband\b|gig\b|orchestr|recital|choir|chorale|\bdj\b|rock|hip-hop|soul\b|folk\b|sing(er|ing)\b|konzert|guitar/i,
+    festivals:/festival|f[êe]te\b|fête de|kermesse|carnival|carnaval|nuits? |wiesn|oktoberfest|parade/i,
+    outdoors:/hike|hiking|walk|randonn|balade|promenade|nature|forest|for[êe]t|garden|jardin|park\b|lake|lac\b|outdoor|dog|chien|picnic/i,
+    creative:/workshop|atelier|ceramic|c[ée]ramique|pottery|poterie|drawing|dessin|draw\b|painting|peinture|sketch|craft|print|knit|sewing|collage|creative|cr[ée]atif|life drawing|calligraph/i,
+    exhibitions:/exhibition|exposition|expo\b|museum|mus[ée]e|gallery|galerie|vernissage|ausstellung/i,
+    meet:/meetup|meet new|make friends|social|mixer|afterwork|networking|newcomers|expat|community|rencontre|apéro|quiz/i,
+    games:/board ?game|jeux|jeu de|game night|games night|quiz|loup.garou|clocktower|trivia|spieleabend|ludoth/i,
+    yoga:/yoga|dance|danse|tango|salsa|bachata|swing|acro|pilates|meditation|m[ée]ditation|forr[óo]|kizomba|ecstatic/i,
+    comedy:/comedy|com[ée]die|stand.?up|impro|humou?r|cabaret|open mic|funny/i,
+    film:/film|cin[ée]ma|movie|screening|kino|projection/i,
+    language:/language|tandem|lingo|conversation|french practice|pratique .french|english practice|sprach/i,
+    food:/food|wine|vin\b|tasting|d[ée]gustation|brunch|dinner|cook|street food|beer|bi[èe]re|cocktail/i,
+    party:/party|soir[ée]e|club\b|dj set|clubbing|techno|house music|disco|karaoke/i};
+  const NRX={kids:/kids|enfants?\b|famil|children|kinder|b[ée]b[ée]|toddler|parents/i,sports:/football|soccer|volley|badminton|padel|basket|hockey|tennis|league|tournament|match\b|ravens/i,
+    talks:/talk\b|lecture|conf[ée]rence|networking|panel|webinar|pitch|vortrag|seminar|discussion avec/i,clubs:/club night|techno|clubbing|rave\b|after.?party/i,classical:/orchestr|symphon|recital|philharm|quartet|sonata|opera\b|op[ée]ra/i};
+  function txt(e){if(e._ptx==null){let k="";try{k=gloss(e).replace(/<[^>]+>/g,"")}catch(x){}e._ptx=(e.title+" "+(e.titleOrig||"")+" "+k+" "+String(e.desc||"").slice(0,220)).toLowerCase();e._pk=k.split(" · ")[0]}return e._ptx}
+  function tags(e){if(e._ptg)return e._ptg;if(e.hike)return e._ptg=new Set(["outdoors"]);const t=txt(e),c=e.cat||[],s=new Set();
+    for(const k in RX)if(RX[k].test(t))s.add(k);
+    if(c.includes("marche"))s.add("markets");if(c.includes("creatif"))s.add("creative");if(c.includes("chien"))s.add("outdoors");if(c.includes("rencontre")||e.src==="Meetup")s.add("meet");
+    if(/^Concert|Jazz|Live music/.test(e._pk))s.add("concerts");if(/Exhibition/.test(e._pk)||e.p==="on")s.add("exhibitions");if(/Festival/.test(e._pk))s.add("festivals");if(/Film/.test(e._pk))s.add("film");
+    return e._ptg=s}
+  function never(e){const N=prof().never||[];const t=txt(e);return N.some(k=>NRX[k]&&NRX[k].test(t))}
+  /* --- dates and slots --- */
+  const dow=d=>new Date(d+"T12:00:00").getDay();
+  function weRange(){const w=dow(TODAY);const fri=w===5?TODAY:w===6?isoAdd(TODAY,-1):w===0?isoAdd(TODAY,-2):isoAdd(TODAY,5-w);return [fri,isoAdd(fri,1),isoAdd(fri,2)]}
+  function wkDays(){const w=dow(TODAY);let mon=w>=1&&w<=4?isoAdd(TODAY,1-w):isoAdd(TODAY,w===0?1:8-w);return [0,1,2,3].map(i=>isoAdd(mon,i))}
+  const SL={m:[0,720,"morning"],a:[720,1050,"afternoon"],e:[1050,1680,"evening"]};
+  function slots(ctx){const out=[];const now=nowMin();
+    if(ctx==="we"){const [f,s,u]=weRange();out.push([f,"e"],[s,"m"],[s,"a"],[s,"e"],[u,"m"],[u,"a"])}
+    else{const ev=(prof().eves||[1,2,3,4]);wkDays().forEach(d=>{if(ev.includes(dow(d)))out.push([d,"e"])})}
+    return out.filter(([d,k])=>d>TODAY||(d===TODAY&&now<SL[k][1]-45)).map(([d,k])=>({key:d+"|"+k,d,k}))}
+  function slotName(s,ctx){const n=DAYNAMES[dow(s.d)].slice(0,3);return ctx==="wk"?n+" "+s.d.slice(8).replace(/^0/,""):(s.d===TODAY?"Today ":n+" ")+SL[s.k][2]}
+  function wx(d,k){const w=((ui.city==="zh"||(ui.city==="both"&&S.home==="zh"))?WX_ZH:WX)[d];if(!w)return null;return {t:w[0],r:k==="e"?(w[2]!=null?w[2]:w[1]):w[1]}}
+  function fits(e,s){const lo=e.day,hi=e.dayEnd||e.day;if(s.d<lo||s.d>hi)return false;const [a,b]=SL[s.k];
+    if(e.p==="on"||isFlexible(e)||!/\d{1,2}:\d{2}/.test(e.when||""))return s.k!=="e"&&(e.p==="on"||tags(e).has("markets")||tags(e).has("exhibitions")||(s.k==="a"&&tags(e).has("festivals")));
+    const i=interval(e);if(!i)return false;const multi=hi>lo;
+    if(i.s>=a&&i.s<b)return !(s.k==="e"&&i.s<1020&&!multi);
+    return (multi||i.en-i.s>=240)&&i.s<b-60&&i.en>a+90}
+  /* --- scoring --- */
+  function city(){return ui.city==="both"?(S.home||"ge"):ui.city}
+  const PICKS=()=>(window.AUTO&&AUTO.picks)||[];
+  function kindPenalty(e){const N=Object.values(S.nope||{});if(!N.length)return 0;const k=e._pk||"";let p=0;N.forEach(n=>{if(n.k&&k&&n.k===k)p+=2.5;if(n.tg&&[...tags(e)].some(t=>n.tg.includes(t)))p+=.6});return Math.min(8,p)}
+  function score(e,s,ctx,moods,who){if(e.hike)return hikeScore(e,s,moods);
+    let v=0;try{v=evScore(e)}catch(x){}txt(e);const tg=tags(e);const m=moods.filter(x=>tg.has(x)).length;
+    if(moods.length)v+=m?6+2*(m-1):-5;
+    if(who==="solo"&&tg.has("meet"))v+=3;if(who==="partner"&&tg.has("meet")&&!tg.has("concerts")&&!tg.has("festivals")&&!tg.has("games"))v-=4;if(who!=="solo"&&/singles|tables for singles/i.test(e.title))v-=6;
+    if(String(e.desc||"").length<40)v-=3;if(/[\u{1F300}-\u{1FAFF}]/u.test(e.title)||(e.title.match(/\b[A-Z]{4,}\b/g)||[]).length>=2)v-=1;
+    if(PICKS().some(p=>p.id===e.id))v+=4;if(goingSet.has(e.id))v+=100;
+    const w=wx(s.d,s.k);if(w&&w.r>=55&&!isIndoor(e))v-=4;
+    if(e.p==="on"&&!moods.includes("exhibitions"))v-=3;
+    return v-kindPenalty(e)}
+  function hikes(){return city()!=="ge"?[]:TRIPS.filter(t=>t.kind==="hike").map(t=>({id:t.id,hike:t,title:t.name,day:"",when:"",cat:["corps","chien"],place:t.hike.area,desc:t.hook}))}
+  function hikeScore(h,s,moods){const t=h.hike;const w=(TWX[t.id]||{})[s.d]||((city()==="ge"?WX:WX_ZH)[s.d]);let v=moods.includes("outdoors")?9:2;
+    if(w){if(w[1]>=50)v-=12;else if(w[1]>=30)v-=2;else v+=3}
+    if(s.d===TODAY&&nowMin()>9*60)v-=50;if((S.nope||{})[t.id])v-=50;return v-t.hike.min/120}
+  function cands(s,ctx,moods,who){const c=city();let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&e.p!=="big"&&fits(e,s)&&!never(e)&&(isLocal(e)||e.zone==="45"||goingSet.has(e.id)));
+    if(ctx==="we"&&s.k==="m")L=L.concat(hikes());
+    return L.map(e=>({e,v:score(e,s,ctx,moods,who)})).sort((a,b)=>b.v-a.v)}
+  /* --- building a plan --- */
+  function wkey(ctx){return ctx+"|"+(ctx==="we"?weRange()[0]:wkDays()[0])+"|"+city()}
+  function store(ctx){S.plan=S.plan||{};const k=wkey(ctx);return S.plan[k]=S.plan[k]||{}}
+  function cur(ctx){const P=prof();const key="oa-mood-"+wkey(ctx);let m=null;try{m=JSON.parse(sessionStorage.getItem(key)||"null")}catch(x){}return m||{who:P[ctx].who,moods:P[ctx].moods.slice()}}
+  function setCur(ctx,c){try{sessionStorage.setItem("oa-mood-"+wkey(ctx),JSON.stringify(c))}catch(x){}}
+  const swaps={};
+  function build(ctx){const {who,moods}=cur(ctx);const st=store(ctx);const sl=slots(ctx);const used=new Set(),usedTags={};const res=[];
+    sl.forEach(s=>{const o=st[s.key];if(o&&o.id){used.add(o.id)}});
+    for(const s of sl){const o=st[s.key]||{};
+      if(o.skip){res.push({s,skip:true});continue}
+      if(ctx==="we"&&s.k==="a"){const prev=res.find(r=>r.s.d===s.d&&r.s.k==="m");if(prev&&prev.pick&&prev.pick.e.hike){res.push({s,cont:prev.pick});continue}}
+      const all=cands(s,ctx,moods,who);
+      let list=all.filter(x=>!used.has(x.e.id)||(o.id===x.e.id));
+      list.forEach(x=>{const t=[...tags(x.e)][0];if(t&&usedTags[t]&&!(o.id===x.e.id))x.v-=3*usedTags[t]});list.sort((a,b)=>b.v-a.v);
+      let pick=null;if(o.id){pick=all.find(x=>x.e.id===o.id)||(()=>{const e=EVENTS.find(x=>x.id===o.id)||hikes().find(x=>x.id===o.id);return e?{e,v:0}:null})()}
+      const going=list.find(x=>goingSet.has(x.e.id));if(!pick&&going)pick=going;
+      if(!pick){const i=(swaps[s.key]||0)%Math.max(1,list.length);pick=list[i]||null}
+      if(pick){used.add(pick.e.id);[...tags(pick.e)].slice(0,1).forEach(t=>usedTags[t]=(usedTags[t]||0)+1)}
+      res.push({s,pick,kept:!!o.id,going:pick&&goingSet.has(pick.e.id),n:list.length,all:list})}
+    return res}
+  function dontMiss(ctx){const ds=ctx==="we"?weRange():wkDays();const lo=ds[0],hi=ds[ds.length-1];const c=city();
+    return EVENTS.filter(e=>cityOf(e)===c&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&!e.folded&&e.day<=hi&&(e.dayEnd||e.day)>=lo&&((e.dayEnd&&e.dayEnd>e.day&&(new Date(e.dayEnd)-new Date(e.day))<=24*864e5&&/festival|fest\b|f[êe]te/i.test(e.title+" "+(e.kind||"")))||PICKS().some(p=>p.id===e.id&&/festival/i.test(e.title+p.why))))
+      .slice(0,3)}
+  /* --- rendering --- */
+  function why(e){const p=PICKS().find(x=>x.id===e.id);if(p&&p.why)return p.why;let d=String(e.desc||"").replace(/^Age range:[^.]*\.\s*/,"").replace(/\s+/g," ").trim();if(!d)return "";const m=d.match(/^(.{40,150}?[.!?])(\s|$)/);d=m?m[1]:d.slice(0,140)+(d.length>140?"…":"");return d}
+  function meta(e){if(e.hike){const h=e.hike.hike;return "Hike · "+hm(h.min)+" · "+h.km+" km · ↑ "+h.up+" m · 🐕 · GPX"}
+    const t=(e.when||"").replace(/^[A-Z][a-z]{2} \d{1,2} · /,"");const pl=String(e.place||"").split(",")[0];let k="";try{k=gloss(e).replace(/<[^>]+>/g,"").replace(/ · free| · 🌧 outdoors/g,"")}catch(x){}
+    return [k,t,pl,e.free?"free":(e.price&&!/^\s*$/.test(e.price)&&e.price.length<18?e.price:"")].filter(Boolean).join(" · ")+((e.cat||[]).includes("chien")?" · 🐕":"")}
+  function card(r,ctx){const s=r.s,w=wx(s.d,s.k);const wtx=w?(w.r>=50?"🌧 ":w.r>=25?"⛅ ":"☀️ ")+w.t+"° · 💧"+w.r+"%":"";
+    const head='<div class="pl-sl"><b>'+slotName(s,ctx)+'</b><span>'+wtx+'</span></div>';
+    if(r.skip)return '<div class="pl-slot pl-skip" data-slot="'+s.key+'">'+head+'<div class="pl-m">Skipped · <button class="pl-lnk" data-plunskip="'+s.key+'">Plan something</button></div></div>';
+    if(r.cont)return '<div class="pl-slot pl-cont">'+head+'<div class="pl-m">↳ Still on '+esc(r.cont.e.title)+'</div></div>';
+    if(!r.pick)return '<div class="pl-slot">'+head+'<div class="pl-m">Nothing that fits your mood. Try another chip above, or <button class="pl-lnk" data-plall="'+s.key+'">see everything</button>.</div></div>';
+    const e=r.pick.e;const tag=r.going?'<span class="pl-tag go">✓ Going</span>':r.kept?'<span class="pl-tag">✓ Kept</span>':'';
+    return '<div class="pl-slot'+(r.going||r.kept?' pl-on':'')+'" data-slot="'+s.key+'" data-ev="'+esc(e.id)+'">'+head+
+      '<button class="pl-body" data-plmenu="'+s.key+'"><span class="pl-t">'+esc(e.title)+'</span>'+tag+'<span class="pl-m">'+esc(meta(e))+'</span>'+(why(e)?'<span class="pl-w">'+esc(why(e))+'</span>':'')+'</button>'+
+      '<div class="pl-acts"><button data-plswap="'+s.key+'"'+(r.n<2||r.kept||r.going?' disabled':'')+'>↻ Swap'+(r.n>1?' <small>'+(r.n-1)+'</small>':'')+'</button>'+(r.kept||r.going?'<button data-plunkeep="'+s.key+'">Unkeep</button>':'<button data-plkeep="'+s.key+'">✓ Keep</button>')+'<button class="x" data-plnope="'+s.key+'">Not for me</button></div></div>'}
+  function view(){const ctx=ui.planCtx||"we";const c=cur(ctx);const P=prof();
+    if(ui.planAll){const r=build(ctx).find(x=>x.s.key===ui.planAll);if(r)return allView(r,ctx)}
+    const ds=ctx==="we"?weRange():wkDays();const res=build(ctx);const dm=dontMiss(ctx);
+    const chips=MOODS.filter(([k])=>ctx==="we"?k!=="language":true).map(([k,n])=>'<button class="pl-chip" data-plmood="'+k+'" aria-pressed="'+c.moods.includes(k)+'">'+n+'</button>').join("");
+    let h='<div class="pl-top"><div class="pl-ctx"><button data-plctx="we" aria-pressed="'+(ctx==="we")+'">Weekend</button><button data-plctx="wk" aria-pressed="'+(ctx==="wk")+'">Weekday evenings</button></div><button class="pl-tune" data-pltune>⚙︎ What I like</button></div>'+
+      '<h2 class="pl-h">'+(ctx==="we"?"Your weekend":"Your week")+'</h2><p class="pl-sub">'+dLbl(ds[0])+' – '+dLbl(ds[ds.length-1])+' · '+(city()==="zh"?"Zurich":"Geneva")+(ctx==="wk"?" · evenings":"")+'</p>'+
+      '<div class="pl-who">'+WHO.map(([k,n])=>'<button data-plwho="'+k+'" aria-pressed="'+(c.who===k)+'">'+n+'</button>').join("")+'</div><div class="pl-chips">'+chips+'</div>';
+    if(dm.length)h+='<div class="pl-dm"><div class="pl-sl"><b>Don\'t miss · on now</b></div>'+dm.map(e=>'<button class="pl-dmr" data-plopen="'+esc(e.id)+'"><b>'+esc(e.title.split(" — ")[0])+'</b> · '+(e.dayEnd?'until '+dLbl(e.dayEnd):dLbl(e.day))+'</button>').join("")+'</div>';
+    h+=res.length?res.map(r=>card(r,ctx)).join(""):'<p class="empty">'+(ctx==="wk"?'No free evenings left this week. Set your free evenings in “What I like”.':'This weekend is over. The next one appears on Monday.')+'</p>';
+    const n=res.filter(r=>r.pick&&!r.skip&&!r.cont).length;
+    if(n)h+='<button class="pl-cta" data-pladd>Add '+(ctx==="we"?"my weekend":"my week")+' to My plans</button><button class="pl-cal" data-plcal>📅 Add to calendar</button><p class="pl-hint">Tap a card to move it, see all options for that slot, or open details. Everything else is in Explore.</p>';
+    return h}
+  function allView(r,ctx){const s=r.s;const c=cur(ctx);const list=cands(s,ctx,c.moods,c.who);const f=ui.planAllF||"all";
+    const cnt={};list.forEach(x=>tags(x.e).forEach(t=>cnt[t]=(cnt[t]||0)+1));
+    const shown=f==="all"?list:list.filter(x=>tags(x.e).has(f));const pickId=r.pick&&r.pick.e.id;
+    return '<button class="pl-back" data-plback>‹ '+(ctx==="we"?"Your weekend":"Your week")+'</button><h2 class="pl-h">'+slotName(s,ctx)+' · all options</h2><p class="pl-sub">'+dLbl(s.d)+' · '+list.length+' options, best first for “'+(WHO.find(w=>w[0]===c.who)||[])[1]+'”</p>'+
+      '<div class="pl-chips"><button class="pl-chip" data-plallf="all" aria-pressed="'+(f==="all")+'">All '+list.length+'</button>'+MOODS.filter(([k])=>cnt[k]).map(([k,n])=>'<button class="pl-chip" data-plallf="'+k+'" aria-pressed="'+(f===k)+'">'+n+' '+cnt[k]+'</button>').join("")+'</div>'+
+      shown.map(x=>{const e=x.e;return '<div class="pl-row"><button class="pl-rb" data-plopen="'+esc(e.id)+'"><span class="pl-t">'+esc(e.title)+'</span><span class="pl-m">'+esc(meta(e))+'</span></button>'+(e.id===pickId?'<span class="pl-in">✓ In plan</span>':'<button class="pl-add" data-plput="'+esc(s.key+"~"+e.id)+'">+ Add</button>')+'</div>'}).join("")+
+      '<p class="pl-hint">Looking for another day? Everything is in Explore.</p>'}
+  function sheet(key){const ctx=ui.planCtx||"we";const res=build(ctx);const r=res.find(x=>x.s.key===key);if(!r||!r.pick)return;const e=r.pick.e;
+    const others=res.filter(x=>x.s.key!==key&&!x.cont);
+    const opts=others.map(o=>{const ok=e.hike?o.s.k==="m":(fits(e,o.s));if(!ok)return "";const w=wx(o.s.d,o.s.k);const wt=w?(w.r>=50?'<span class="warn">🌧 '+w.r+'% rain</span>':'<span>'+(w.r>=25?"⛅":"☀️")+' '+w.r+'%</span>'):'';
+      return '<button class="pl-opt" data-plmove="'+esc(key+"~"+o.s.key)+'">↔ Move to '+slotName(o.s,ctx)+' '+wt+'</button>'}).join("");
+    const d=document.createElement("div");d.id="plsheet";d.innerHTML='<div class="pl-dim" data-plclose></div><div class="pl-sheet" role="dialog" aria-label="'+esc(e.title)+'"><div class="pl-grab"></div><h3>'+esc(e.title)+'</h3><p>'+esc(meta(e))+'</p>'+
+      (opts||'<p>This one only fits '+slotName(r.s,ctx)+'.</p>')+'<button class="pl-opt" data-plall="'+key+'">☰ See all options for '+slotName(r.s,ctx)+' <span>'+r.n+' →</span></button>'+
+      '<button class="pl-opt" data-plopen="'+esc(e.id)+'">Details</button><button class="pl-opt" data-plskip="'+key+'">Skip this slot</button><button class="pl-opt x" data-plnope="'+key+'">Not for me</button></div>';
+    document.body.appendChild(d)}
+  function closeSheet(){const d=document.getElementById("plsheet");if(d)d.remove()}
+  function renderPlan(){let el=document.getElementById("planview");if(!el){el=document.createElement("section");el.id="planview";const ag=document.getElementById("agenda");ag.parentNode.insertBefore(el,ag)}
+    const on=ui.tab==="plan"&&!ui.plans&&!state.q;el.hidden=!on;if(!on)return;
+    ["picks","filterpanel","toolbar","pickresult","agenda","trips","jumps","todayplan","rate","fullgate","weekly","netbox","pastbox","deletedbox","exseg"].forEach(id=>{const x=document.getElementById(id);if(x)x.hidden=true});
+    el.innerHTML=view()}
+  /* --- actions --- */
+  function nope(e){if(e.hike){S.nope=S.nope||{};S.nope[e.id]={k:"Hike",tg:["outdoors"]};return}hidden.add(e.id);S.nope=S.nope||{};txt(e);S.nope[e.id]={c:e.cat||[],p:e.place||"",g:e.grp||GRP[e.rep||e.id]||e.src||"",k:e._pk||"",tg:[...tags(e)]}}
+  function addAll(ctx){const res=build(ctx);let n=0;res.forEach(r=>{if(!r.pick||r.skip||r.cont)return;const e=r.pick.e;
+      if(e.hike){S.trips=S.trips||{};const a=S.trips[e.id]||[];if(!a.includes(r.s.d))a.push(r.s.d);S.trips[e.id]=a.sort();n++}
+      else if(!goingSet.has(e.id)){goingSet.add(e.id);hidden.delete(e.id);ensureHist(e.id);n++}
+      store(ctx)[r.s.key]={id:e.id}});persist();render();toast(n?n+" added to My plans":"Already in My plans")}
+  function ics(ctx){const res=build(ctx).filter(r=>r.pick&&!r.skip&&!r.cont);const st=new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z";const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Out and About//EN"];
+    const f=s=>String(s||"").replace(/([,;\\])/g,"\\$1").replace(/\n/g,"\\n");
+    res.forEach(r=>{const e=r.pick.e,d=r.s.d.replace(/-/g,"");let a,b;
+      if(e.hike){a="DTSTART;TZID=Europe/Zurich:"+d+"T093000";b="DTEND;TZID=Europe/Zurich:"+d+"T160000"}
+      else{const i=interval(e);if(i&&!(e.dayEnd>e.day)){const t=m=>pad(Math.floor(m%1440/60))+pad(m%60)+"00";a="DTSTART;TZID=Europe/Zurich:"+d+"T"+t(i.s);b="DTEND;TZID=Europe/Zurich:"+(i.en>=1440?isoAdd(r.s.d,1).replace(/-/g,""):d)+"T"+t(i.en)}else{a="DTSTART;VALUE=DATE:"+d;b="DTEND;VALUE=DATE:"+isoAdd(r.s.d,1).replace(/-/g,"")}}
+      L.push("BEGIN:VEVENT","UID:plan-"+e.id+"-"+d+"@outandabout","DTSTAMP:"+st,a,b,"SUMMARY:"+f(e.title),"LOCATION:"+f(e.hike?e.hike.hike.area:e.place),"DESCRIPTION:"+f((e.hike?e.desc:why(e))+"\n"+(e.url||"")),"END:VEVENT")});
+    L.push("END:VCALENDAR");const blob=new Blob([L.join("\r\n")],{type:"text/calendar"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=(ctx==="we"?"my-weekend":"my-week")+".ics";document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),500)}
+  function openEv(id){closeSheet();if(/^hike-/.test(id)){ui.tab="trips";ui.tripOpen=id;render();setTimeout(()=>{const t=document.getElementById("trip-"+id);if(t)t.scrollIntoView({block:"start"})},60);return}ui.tab="this";focusEvent(id)}
+  function tune(){if(document.getElementById("pltune"))return;const P=JSON.parse(JSON.stringify(prof()));const d=document.createElement("div");d.id="pltune";
+    const draw=()=>{const sec=(ctx,ttl)=>'<div class="pl-q"><h3>'+ttl+'</h3><p>Usually I\'m…</p><div class="pl-chips">'+WHO.map(([k,n])=>'<button class="pl-chip" data-tw="'+ctx+'~'+k+'" aria-pressed="'+(P[ctx].who===k)+'">'+n+'</button>').join("")+'</div><p>…and I\'d like</p><div class="pl-chips">'+MOODS.map(([k,n])=>'<button class="pl-chip" data-tm="'+ctx+'~'+k+'" aria-pressed="'+P[ctx].moods.includes(k)+'">'+n+'</button>').join("")+'</div>'+
+        (ctx==="wk"?'<p>Evenings I\'m usually free</p><div class="pl-chips">'+[[1,"Mon"],[2,"Tue"],[3,"Wed"],[4,"Thu"]].map(([k,n])=>'<button class="pl-chip" data-te="'+k+'" aria-pressed="'+P.eves.includes(k)+'">'+n+'</button>').join("")+'</div>':'')+'</div>';
+      d.innerHTML='<div class="pl-dim" data-tclose></div><div class="pl-sheet pl-tsheet" role="dialog" aria-label="What I like"><div class="pl-grab"></div><h3>What I like</h3><p>Different moments, different moods. These are your defaults; the chips on the Plan tab change just this week.</p>'+
+        sec("wk","Weekday evenings")+sec("we","Weekends")+'<div class="pl-q"><h3>Never show me</h3><div class="pl-chips">'+NEVER.map(([k,n])=>'<button class="pl-chip" data-tn="'+k+'" aria-pressed="'+P.never.includes(k)+'">'+n+'</button>').join("")+
+        '<button class="pl-chip" data-tdate aria-pressed="'+!wantsDating()+'">Dating & singles</button></div></div><button class="pl-cta" data-tsave>Save</button></div>'};
+    draw();document.body.appendChild(d);
+    d.addEventListener("click",ev=>{const t=ev.target;let b;
+      if(t.closest("[data-tclose]")){d.remove();return}
+      if(b=t.closest("[data-tw]")){const [c,k]=b.dataset.tw.split("~");P[c].who=k;draw();return}
+      if(b=t.closest("[data-tm]")){const [c,k]=b.dataset.tm.split("~");const a=P[c].moods;const i=a.indexOf(k);if(i>=0)a.splice(i,1);else a.push(k);draw();return}
+      if(b=t.closest("[data-te]")){const k=+b.dataset.te;const i=P.eves.indexOf(k);if(i>=0)P.eves.splice(i,1);else P.eves.push(k);P.eves.sort();draw();return}
+      if(b=t.closest("[data-tn]")){const k=b.dataset.tn;const i=P.never.indexOf(k);if(i>=0)P.never.splice(i,1);else P.never.push(k);draw();return}
+      if(t.closest("[data-tdate]")){const L=new Set(S.likes||[]);if(L.has("dating"))L.delete("dating");else L.add("dating");S.likes=[...L];S.dating=L.has("dating");draw();return}
+      if(t.closest("[data-tsave]")){S.prof=P;["we","wk"].forEach(c=>{try{sessionStorage.removeItem("oa-mood-"+wkey(c))}catch(x){}});EVENTS.forEach(e=>{delete e._ptg});persist();d.remove();render();toast("Saved")}})}
+  document.addEventListener("click",ev=>{const t=ev.target;let b;
+    if(!t.closest("#planview")&&!t.closest("#plsheet"))return;
+    const ctx=ui.planCtx||"we";const st=()=>store(ctx);const res=()=>build(ctx);const pickOf=k=>{const r=res().find(x=>x.s.key===k);return r&&r.pick&&r.pick.e};
+    if(t.closest("[data-plclose]")){closeSheet();return}
+    if(b=t.closest("[data-plctx]")){ui.planCtx=b.dataset.plctx;ui.planAll=null;render();window.scrollTo({top:0});return}
+    if(t.closest("[data-pltune]")){tune();return}
+    if(b=t.closest("[data-plwho]")){const c=cur(ctx);c.who=b.dataset.plwho;setCur(ctx,c);render();return}
+    if(b=t.closest("[data-plmood]")){const c=cur(ctx);const k=b.dataset.plmood;const i=c.moods.indexOf(k);if(i>=0)c.moods.splice(i,1);else c.moods.push(k);setCur(ctx,c);Object.keys(swaps).forEach(k=>delete swaps[k]);render();return}
+    if(b=t.closest("[data-plswap]")){const k=b.dataset.plswap;swaps[k]=(swaps[k]||0)+1;render();return}
+    if(b=t.closest("[data-plkeep]")){const k=b.dataset.plkeep;const e=pickOf(k);if(e){st()[k]={id:e.id};persist();render()}return}
+    if(b=t.closest("[data-plunkeep]")){const k=b.dataset.plunkeep;const e=pickOf(k);delete st()[k];if(e&&goingSet.has(e.id)){goingSet.delete(e.id)}persist();render();return}
+    if(b=t.closest("[data-plnope]")){const k=b.dataset.plnope;const e=pickOf(k);closeSheet();if(e){nope(e);if((st()[k]||{}).id===e.id)delete st()[k];goingSet.delete(e.id);persist();render();toast("Got it — fewer like this")}return}
+    if(b=t.closest("[data-plskip]")){closeSheet();st()[b.dataset.plskip]={skip:true};persist();render();return}
+    if(b=t.closest("[data-plunskip]")){delete st()[b.dataset.plunskip];persist();render();return}
+    if(b=t.closest("[data-plmenu]")){sheet(b.dataset.plmenu);return}
+    if(b=t.closest("[data-plmove]")){const [from,to]=b.dataset.plmove.split("~");const e=pickOf(from);closeSheet();if(e){delete st()[from];st()[to]={id:e.id};if(st()[from]===undefined)swaps[from]=0;persist();render();toast("Moved to "+slotName(slots(ctx).find(s=>s.key===to)||{d:to.split("|")[0],k:to.split("|")[1]},ctx))}return}
+    if(b=t.closest("[data-plall]")){closeSheet();ui.planAll=b.dataset.plall;ui.planAllF="all";render();window.scrollTo({top:0});return}
+    if(b=t.closest("[data-plallf]")){ui.planAllF=b.dataset.plallf;render();return}
+    if(t.closest("[data-plback]")){ui.planAll=null;render();window.scrollTo({top:0});return}
+    if(b=t.closest("[data-plput]")){const [k,id]=b.dataset.plput.split("~");Object.entries(st()).forEach(([kk,v])=>{if(v&&v.id===id)delete st()[kk]});st()[k]={id};ui.planAll=null;persist();render();window.scrollTo({top:0});toast("Added to your plan");return}
+    if(b=t.closest("[data-plopen]")){openEv(b.dataset.plopen);return}
+    if(t.closest("[data-pladd]")){addAll(ctx);return}
+    if(t.closest("[data-plcal]")){ics(ctx);return}
+  });
+  /* --- tabs: Plan · Explore (This week / Next week / Culture) · Trips & hikes · My plans --- */
+  const nav=document.querySelector("nav.tabs");
+  const pb=document.createElement("button");pb.setAttribute("role","tab");pb.dataset.tab="plan";pb.textContent="Plan";nav.insertBefore(pb,nav.firstChild);
+  pb.addEventListener("click",()=>{ui.tab="plan";ui.planAll=null;if(ui.plans)openPlans(false);if(state.q){state.q="";const q=document.getElementById("q");if(q)q.value=""}render();window.scrollTo({top:0})});
+  const ex=nav.querySelector('[data-tab="this"]');ex.textContent="Explore";
+  const tb=nav.querySelector('[data-tab="trips"]');if(tb)tb.textContent="Trips & hikes";
+  nav.querySelectorAll('[data-tab="next"],[data-tab="big"]').forEach(b=>b.classList.add("exsub"));
+  const seg=document.createElement("div");seg.id="exseg";seg.className="exseg";seg.innerHTML='<button data-ex="this">This week</button><button data-ex="next">Next week</button><button data-ex="big">Culture</button>';
+  const jumps=document.getElementById("jumps");jumps.parentNode.insertBefore(seg,jumps);
+  seg.addEventListener("click",ev=>{const b=ev.target.closest("[data-ex]");if(!b)return;const n=nav.querySelector('[data-tab="'+b.dataset.ex+'"]');if(n)n.click()});
+  const _r=render;render=function(){if(ui.tab==="plan"&&ui.plans){} _r();
+    const ext=["this","next","big"].includes(ui.tab)&&!ui.plans;
+    ex.setAttribute("aria-selected",String(!state.q&&ext||(!!state.q&&ui.tab!=="plan")));pb.setAttribute("aria-selected",String(ui.tab==="plan"&&!ui.plans&&!state.q));
+    seg.hidden=!(ext&&!state.q);seg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.ex===ui.tab)));
+    try{renderPlan()}catch(e){console.error(e)}};
+  /* keep profile and plan when syncing */
+  const _ad=adopt;adopt=function(b){const p=S.prof,pl=S.plan;_ad(b);S.prof=b.prof||p;S.plan=Object.assign({},pl||{},b.plan||{});try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}};
+  /* first time: ask what they like (after the welcome screen) */
+  const _os=openSetup;openSetup=function(){_os();const o=document.getElementById("onb");if(!o)return;const mo=new MutationObserver(()=>{if(!document.getElementById("onb")){mo.disconnect();if(!S.prof)setTimeout(tune,200)}});mo.observe(document.body,{childList:true})};
+  if(!location.hash){ui.tab="plan";setTimeout(()=>{try{render()}catch(e){}},0)}
 })();
 </script>
 
