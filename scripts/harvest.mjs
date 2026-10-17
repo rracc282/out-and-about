@@ -264,7 +264,7 @@ for (const x of raw) {
   const tE = e && e.time && !multi ? "–" + e.time : "";
   const whenTxt = p === "on" ? `Until ${nice(lastDay)}` : p === "big" ? `${nice(day)}${s.time ? " · " + s.time : ""}` : `${DN[dow(day)]} ${+day.slice(8)}${s.time && s.time !== "00:00" ? " · " + s.time + tE : ""}`;
   const _ag = ageOf(title + " " + (x.desc || ""));
-  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: clean(x.place).replace(/^(autre lieu|other venue|divers lieux|lieu à définir)\s*,\s*/i, "").replace(/(, (Genève|Geneva|Zürich|Zurich))\1+$/i, "$1").slice(0, 120) || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: (_ag ? "Age range: " + _ag + ". " : "") + (short(x.desc) || ""), auto: 1, src: SRCNAME[host(url)] || host(url) };
+  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: clean(x.place).replace(/^(autre lieu|other venue|divers lieux|lieu à définir)\s*,\s*/i, "").split(/,\s*/).filter((x, i, A) => !i || x.toLowerCase() !== A[i - 1].toLowerCase()).join(", ").slice(0, 120) || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: (_ag ? "Age range: " + _ag + ". " : "") + (short(x.desc) || ""), auto: 1, src: SRCNAME[host(url)] || host(url) };
   if (x.geo) ev.geo = x.geo.map(v => Math.round(v * 1e4) / 1e4);
   if (multi) ev.dayEnd = e.day; if (free) ev.free = true; if (cat.includes("chien")) ev.dog = true;
   if (x.src.kind === "meetup" && x.organizer) ev.grp = clean(x.organizer);
@@ -280,7 +280,7 @@ let events = [...out.values()];
   for (const e of events) { const k = e.city + e.day + t0(e); (by[k] = by[k] || []).push(e); }
   for (const g of Object.values(by)) for (let i = 0; i < g.length; i++) for (let j = i + 1; j < g.length; j++) { const a = g[i], b = g[j]; if (drop2.has(a.id) || drop2.has(b.id) || !t0(a)) continue;
     const wa = words(a), wb = words(b); let n = 0; wb.forEach(w => { if (wa.has(w)) n++; });
-    if (n >= 4 && n >= 0.35 * Math.min(wa.size, wb.size)) { const lose = rank(a) >= rank(b) ? b : a; drop2.add(lose.id); drop("same event on two sites", { title: lose.title, start: lose.day, place: lose.place, src: { url: lose.url } }); } }
+    if (n >= 5 || (n >= 4 && n >= 0.35 * Math.min(wa.size, wb.size))) { const lose = rank(a) >= rank(b) ? b : a; drop2.add(lose.id); drop("same event on two sites", { title: lose.title, start: lose.day, place: lose.place, src: { url: lose.url } }); } }
   events = events.filter(e => !drop2.has(e.id)); }
 /* keep the list readable: at most 40 per city per day; meeting people, creative, markets and Meetup first */
 const per = {}; const pri = e => (e.src === "Meetup" ? 3 : 0) + ((e.cat || []).some(c => /rencontre|creatif|marche/.test(c)) ? 2 : 0) + (e.free ? 1 : 0);

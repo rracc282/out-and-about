@@ -2418,7 +2418,7 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
   [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;
     const t0=e.title;e.title=tidyTitle(e.title,e);if(e.title!==t0&&!e.titleOrig)e.titleOrig=t0;
     if(/ticket needed|tickets?\b|billet|billetterie|vorverkauf|presale|pre-sale|sold out|ausverkauft|complet\b|registration|register\b|sign[- ]?up|inscription|anmeldung|réserv|reserv|book (your|a|now)|booking/i.test((e.desc||"")+" "+(e.price||"")+" "+t0))e.tkHint=true;
-    e.desc=tidyDesc(e.desc);if(e.place)e.place=String(e.place).replace(/^(autre lieu|other venue|divers lieux)\s*,\s*/i,"").replace(/(, (Genève|Geneva|Zürich|Zurich))\1+$/i,"$1");
+    e.desc=tidyDesc(e.desc);if(e.place)e.place=String(e.place).replace(/^(autre lieu|other venue|divers lieux)\s*,\s*/i,"").split(/,\s*/).filter((x,i,A)=>!i||x.toLowerCase()!==A[i-1].toLowerCase()).join(", ");
     if(!e.desc||e.desc.length<12){const v=String(e.place||"").split(",")[0].replace(/\p{Lu}{4,}/gu,w=>w[0]+w.slice(1).toLowerCase());let k="";try{k=String(gloss(e)).replace(/<[^>]+>/g,"").split(" · ")[0].replace(/&amp;/g,"&")}catch(x){}e.desc=(e.desc?e.desc+" ":"")+(k&&k!=="Event"?k:"Event")+(v?" at "+v:"")+"."}});
 })();
 /* tidy machine-translated market names */
