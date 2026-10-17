@@ -2945,7 +2945,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
         '<ol class="hk-steps">'+t.day.map(x=>'<li><b>'+esc(x.t)+'</b> '+esc(x.do)+'</li>').join("")+'</ol>'+
         '<div class="hk-acts"><a class="gpx" href="'+h.gpx+'" download="'+t.id.replace(/^hike-/,"")+'.gpx">⬇ GPX for Organic Maps</a><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">Train times</a></div>'+
         '<div class="hk-acts"><input type="date" id="td-'+t.id+'" min="'+TODAY+'" value="'+dv+'" aria-label="Date"><button class="plan" data-tripplan="'+t.id+'">Add to My plans</button>'+(ds.length?'<button data-openplans>See plan</button>':'')+'</div>'+
-        '<p style="color:var(--muted);font-size:13px;margin-top:8px">GPX on iPhone: tap the button, then Share → Organic Maps (or open the file from Files).</p></div>';}
+        '<p style="color:var(--muted);font-size:13px;margin-top:8px">Tap the button and choose Organic Maps in the share menu (or Save to Files).</p></div>';}
     return b+'</article>';}
   const _rt=renderTrips;renderTrips=function(){_rt();const el=document.getElementById("trips");if(!el||ui.city==="zh")return;
     const hs=TRIPS.filter(t=>t.kind==="hike").sort((a,b)=>LV[a.hike.level]-LV[b.hike.level]||a.hike.min-b.hike.min);
@@ -3183,6 +3183,14 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   const _os=openSetup;openSetup=function(){_os();const o=document.getElementById("onb");if(!o)return;const mo=new MutationObserver(()=>{if(!document.getElementById("onb")){mo.disconnect();if(!S.prof)setTimeout(tune,200)}});mo.observe(document.body,{childList:true})};
   if(!location.hash){ui.tab="plan";setTimeout(()=>{try{render()}catch(e){}},0)}
 })();
+
+/* GPX: on phones, opening the file replaced the app with no way back. Hand it to the share sheet instead (Organic Maps, Files…); fall back to a separate browser tab. */
+document.addEventListener("click",async ev=>{const a=ev.target.closest('a[href$=".gpx"]');if(!a)return;ev.preventDefault();ev.stopPropagation();
+  const url=a.getAttribute("href"),name=url.split("/").pop();
+  try{const r=await fetch(url,{cache:"no-cache"});const blob=await r.blob();const f=new File([blob],name,{type:"application/gpx+xml"});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name.replace(/\.gpx$/,"")});return}
+    const u=URL.createObjectURL(f);const d=document.createElement("a");d.href=u;d.download=name;document.body.appendChild(d);d.click();setTimeout(()=>{d.remove();URL.revokeObjectURL(u)},1000);
+  }catch(e){if(e&&e.name==="AbortError")return;window.open(url,"_blank","noopener")}},true);
 </script>
 
 
