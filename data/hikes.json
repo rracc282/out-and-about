@@ -1,35 +1,36 @@
 {
  "saleve-balcony": {
-  "km": 1.3,
-  "up": 69,
-  "down": 83,
-  "min": 34,
+  "km": 10,
+  "up": 345,
+  "down": 394,
+  "min": 208,
   "start": [
-   46.1544682,
-   6.1931653
+   46.15447,
+   6.19317
   ],
   "pts": [
-   "Salève 0m; all: [{\"ll\":[46.1544682,6.1931653],\"ele\":0,\"name\":\"Salève\"},{\"ll\":[46.1627403,6.1891515],\"ele\":0,\"name\":\"Salève\"}]",
+   "Salève cable car (top station)",
    "Les Treize Arbres, Chemin des Treize Arbres, Monnetier-Mornex, Saint-Julien-en-Genevois, H",
-   "Salève 0m; all: [{\"ll\":[46.1544682,6.1931653],\"ele\":0,\"name\":\"Salève\"},{\"ll\":[46.1627403,6.1891515],\"ele\":0,\"name\":\"Salève\"}]"
+   "La Croisette, La Muraz, Saint-Julien-en-Genevois, Haute-Savoie, Auvergne-Rhône-Alpes, Fran",
+   "Salève cable car (top station)"
   ],
-  "maxEle": 1145,
+  "maxEle": 1297,
   "minEle": 1081,
   "bbox": [
-   46.15,
-   6.1927,
+   46.1195,
+   6.1713,
    46.1545,
    6.1947
   ]
  },
  "lavaux-lutry-cully": {
-  "km": 5.9,
-  "up": 166,
-  "down": 233,
-  "min": 119,
+  "km": 5.8,
+  "up": 155,
+  "down": 232,
+  "min": 117,
   "start": [
-   46.5041171,
-   6.6882089
+   46.5039944,
+   6.6896971
   ],
   "pts": [
    "Avenue de la Gare, Châtelard, Lutry, District de Lavaux-Oron, Vaud, 1095, Schweiz/Suisse/S",
@@ -38,11 +39,11 @@
    "Route de la Gare, Chenaux, Cully, Bourg-en-Lavaux, District de Lavaux-Oron, Vaud, 1096, Sc"
   ],
   "maxEle": 496,
-  "minEle": 381,
+  "minEle": 385,
   "bbox": [
-   46.4881,
-   6.6882,
-   46.5049,
+   46.4885,
+   6.6897,
+   46.5041,
    6.736
   ]
  },
@@ -72,9 +73,9 @@
  },
  "vevey-chillon": {
   "km": 10.4,
-  "up": 57,
-  "down": 153,
-  "min": 170,
+  "up": 70,
+  "down": 156,
+  "min": 173,
   "start": [
    46.4625363,
    6.8435677
@@ -84,7 +85,7 @@
    "Rue de la Gare, Vernex, Pallens, Chernex, Montreux, District de la Riviera-Pays-d'Enhaut, ",
    "Château de Chillon, Quai Alfred Chatelanat, Veytaux, District de la Riviera-Pays-d'Enhaut,"
   ],
-  "maxEle": 402,
+  "maxEle": 418,
   "minEle": 372,
   "bbox": [
    46.414,
@@ -189,35 +190,34 @@
   ]
  },
  "signal-de-bougy": {
-  "km": 14.1,
-  "up": 412,
-  "down": 438,
-  "min": 279,
+  "km": 9.5,
+  "up": 363,
+  "down": 312,
+  "min": 197,
   "start": [
-   46.4606345,
-   6.3402106
+   46.4628672,
+   6.3360645
   ],
   "pts": [
-   "Avenue de la Gare, Rolle, District de Nyon, Vaud, 1180, Schweiz/Suisse/Svizzera/Svizra",
+   "Place de la Gare, Rolle, District de Nyon, Vaud, 1180, Schweiz/Suisse/Svizzera/Svizra",
    "Mont-sur-Rolle, District de Nyon, Vaud, 1185, Schweiz/Suisse/Svizzera/Svizra",
    "Signal de Bougy, Bougy-Villars, District de Morges, Vaud, 1172, Schweiz/Suisse/Svizzera/Sv",
-   "Bursins, District de Nyon, Vaud, 1183, Schweiz/Suisse/Svizzera/Svizra",
-   "NOT FOUND: Gare de Gilly-Bursinel (used hint)"
+   "Aubonne, District de Morges, Vaud, 1170, Schweiz/Suisse/Svizzera/Svizra"
   ],
-  "maxEle": 707,
-  "minEle": 380,
+  "maxEle": 695,
+  "minEle": 397,
   "bbox": [
-   46.443,
-   6.2899,
-   46.4839,
-   6.3547
+   46.4626,
+   6.3359,
+   46.496,
+   6.3915
   ]
  },
  "versoix-river": {
-  "km": 13.8,
-  "up": 119,
-  "down": 173,
-  "min": 229,
+  "km": 4.8,
+  "up": 52,
+  "down": 72,
+  "min": 82,
   "start": [
    46.2798204,
    6.1662403
@@ -225,15 +225,14 @@
   "pts": [
    "Place de la Gare, Versoix, Genève, 1290, Schweiz/Suisse/Svizzera/Svizra",
    "Richelien, Versoix, Genève, 1290, Schweiz/Suisse/Svizzera/Svizra",
-   "Sauverny, Gex, Ain, Auvergne-Rhône-Alpes, France métropolitaine, 01220, France",
    "Place de la Gare, Versoix, Genève, 1290, Schweiz/Suisse/Svizzera/Svizra"
   ],
-  "maxEle": 485,
+  "maxEle": 427,
   "minEle": 386,
   "bbox": [
    46.2791,
-   6.1151,
-   46.3157,
+   6.1393,
+   46.284,
    6.1662
   ]
  }

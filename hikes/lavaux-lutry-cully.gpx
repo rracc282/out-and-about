@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- track-length = 5902 filtered ascend = 166 plain-ascend = -9 cost=8089 energy=.0kwh time=1h 14m 16s -->
+<!-- track-length = 5849 filtered ascend = 155 plain-ascend = -11 cost=7989 energy=.0kwh time=1h 13m 12s -->
 <gpx 
  xmlns="http://www.topografix.com/GPX/1/1" 
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -9,27 +9,20 @@
   <desc>Lavaux vineyards: Lutry to Cully – Out &amp; About</desc>
   <name>Lavaux vineyards: Lutry to Cully</name>
   <trkseg>
-   <trkpt lon="6.688211" lat="46.504118"><ele>391.0</ele></trkpt>
-   <trkpt lon="6.688227" lat="46.504131"><ele>391.25</ele></trkpt>
-   <trkpt lon="6.688531" lat="46.504374"><ele>394.0</ele></trkpt>
-   <trkpt lon="6.688649" lat="46.504428"><ele>395.5</ele></trkpt>
-   <trkpt lon="6.688704" lat="46.504473"><ele>397.25</ele></trkpt>
-   <trkpt lon="6.688708" lat="46.504477"><ele>397.5</ele></trkpt>
-   <trkpt lon="6.688764" lat="46.504531"><ele>399.0</ele></trkpt>
-   <trkpt lon="6.688928" lat="46.504649"><ele>400.5</ele></trkpt>
-   <trkpt lon="6.688963" lat="46.504678"><ele>401.0</ele></trkpt>
-   <trkpt lon="6.689080" lat="46.504773"><ele>403.0</ele></trkpt>
-   <trkpt lon="6.689076" lat="46.504818"><ele>403.25</ele></trkpt>
-   <trkpt lon="6.689074" lat="46.504850"><ele>403.25</ele></trkpt>
-   <trkpt lon="6.689115" lat="46.504850"><ele>403.75</ele></trkpt>
-   <trkpt lon="6.689152" lat="46.504863"><ele>404.25</ele></trkpt>
-   <trkpt lon="6.689182" lat="46.504895"><ele>404.75</ele></trkpt>
-   <trkpt lon="6.689447" lat="46.504777"><ele>407.0</ele></trkpt>
-   <trkpt lon="6.689586" lat="46.504733"><ele>407.5</ele></trkpt>
-   <trkpt lon="6.690667" lat="46.504270"><ele>414.5</ele></trkpt>
-   <trkpt lon="6.690771" lat="46.504194"><ele>415.25</ele></trkpt>
-   <trkpt lon="6.690985" lat="46.504099"><ele>415.25</ele></trkpt>
-   <trkpt lon="6.691257" lat="46.504018"><ele>416.5</ele></trkpt>
+   <trkpt lon="6.689702" lat="46.503992"><ele>401.75</ele></trkpt>
+   <trkpt lon="6.689770" lat="46.503962"><ele>402.25</ele></trkpt>
+   <trkpt lon="6.689952" lat="46.503881"><ele>402.5</ele></trkpt>
+   <trkpt lon="6.690072" lat="46.503828"><ele>402.0</ele></trkpt>
+   <trkpt lon="6.690208" lat="46.503768"><ele>401.75</ele></trkpt>
+   <trkpt lon="6.690361" lat="46.503700"><ele>401.75</ele></trkpt>
+   <trkpt lon="6.690857" lat="46.503506"><ele>402.75</ele></trkpt>
+   <trkpt lon="6.691023" lat="46.503406"><ele>403.75</ele></trkpt>
+   <trkpt lon="6.691063" lat="46.503447"><ele>404.0</ele></trkpt>
+   <trkpt lon="6.691128" lat="46.503516"><ele>404.75</ele></trkpt>
+   <trkpt lon="6.691278" lat="46.503733"><ele>412.0</ele></trkpt>
+   <trkpt lon="6.691288" lat="46.503747"><ele>412.5</ele></trkpt>
+   <trkpt lon="6.691339" lat="46.503745"><ele>413.5</ele></trkpt>
+   <trkpt lon="6.691367" lat="46.503819"><ele>415.0</ele></trkpt>
    <trkpt lon="6.691395" lat="46.503989"><ele>417.0</ele></trkpt>
    <trkpt lon="6.691402" lat="46.504069"><ele>418.0</ele></trkpt>
    <trkpt lon="6.691681" lat="46.504014"><ele>421.75</ele></trkpt>
@@ -361,10 +354,14 @@
    <trkpt lon="6.729065" lat="46.488672"><ele>386.25</ele></trkpt>
    <trkpt lon="6.728977" lat="46.488647"><ele>385.75</ele></trkpt>
    <trkpt lon="6.728630" lat="46.488519"><ele>384.5</ele></trkpt>
-   <trkpt lon="6.728722" lat="46.488388"><ele>384.0</ele></trkpt>
-   <trkpt lon="6.728818" lat="46.488295"><ele>383.5</ele></trkpt>
-   <trkpt lon="6.728777" lat="46.488271"><ele>383.5</ele></trkpt>
-   <trkpt lon="6.728963" lat="46.488142"><ele>380.75</ele></trkpt>
+   <trkpt lon="6.728598" lat="46.488545"><ele>384.75</ele></trkpt>
+   <trkpt lon="6.728505" lat="46.488597"><ele>385.25</ele></trkpt>
+   <trkpt lon="6.728283" lat="46.488708"><ele>388.0</ele></trkpt>
+   <trkpt lon="6.727958" lat="46.488859"><ele>389.0</ele></trkpt>
+   <trkpt lon="6.727742" lat="46.488939"><ele>387.5</ele></trkpt>
+   <trkpt lon="6.727425" lat="46.489043"><ele>389.25</ele></trkpt>
+   <trkpt lon="6.727390" lat="46.489000"><ele>389.25</ele></trkpt>
+   <trkpt lon="6.727290" lat="46.489020"><ele>390.0</ele></trkpt>
   </trkseg>
  </trk>
 </gpx>
