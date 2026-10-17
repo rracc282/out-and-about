@@ -840,6 +840,7 @@ nav.tabs [data-tab="this"]::before{content:"🔎"!important}
 .pl-info{font-size:14px;line-height:1.45;margin:0 0 12px}.pl-info div{margin:0 0 4px}.pl-info b{font-weight:600;margin-right:4px}.pl-info p{margin:10px 0 0;white-space:pre-line}
 .pl-iacts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.pl-iacts a,.pl-iacts button{font:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;cursor:pointer}
 .pl-iacts button{background:var(--lake);border-color:var(--lake);color:#fff}
+.hk-help{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:13px;line-height:1.45}.hk-help li{margin:0 0 4px}.hk-help b{color:var(--ink);font-weight:600}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -2945,7 +2946,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
         '<ol class="hk-steps">'+t.day.map(x=>'<li><b>'+esc(x.t)+'</b> '+esc(x.do)+'</li>').join("")+'</ol>'+
         '<div class="hk-acts"><a class="gpx" href="'+h.gpx+'" download="'+t.id.replace(/^hike-/,"")+'.gpx">⬇ GPX for Organic Maps</a><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">Train times</a></div>'+
         '<div class="hk-acts"><input type="date" id="td-'+t.id+'" min="'+TODAY+'" value="'+dv+'" aria-label="Date"><button class="plan" data-tripplan="'+t.id+'">Add to My plans</button>'+(ds.length?'<button data-openplans>See plan</button>':'')+'</div>'+
-        '<p style="color:var(--muted);font-size:13px;margin-top:8px">Tap the button and choose Organic Maps in the share menu (or Save to Files).</p></div>';}
+        '<ol class="hk-help"><li>Tap <b>⬇ GPX for Organic Maps</b>.</li><li>In the menu that opens, swipe the row of app icons to the end, tap <b>More</b>, then <b>Organic Maps</b> (“Import with Organic Maps”).</li><li>Not listed? Tap <b>Save to Files</b> instead. Then open Organic Maps → ☆ <b>Bookmarks and tracks</b> → <b>Import bookmarks and tracks</b> → pick the file.</li></ol></div>';}
     return b+'</article>';}
   const _rt=renderTrips;renderTrips=function(){_rt();const el=document.getElementById("trips");if(!el||ui.city==="zh")return;
     const hs=TRIPS.filter(t=>t.kind==="hike").sort((a,b)=>LV[a.hike.level]-LV[b.hike.level]||a.hike.min-b.hike.min);
@@ -3189,7 +3190,7 @@ document.addEventListener("click",async ev=>{const a=ev.target.closest('a[href$=
   const url=a.getAttribute("href"),name=url.split("/").pop();
   try{const r=await fetch(url,{cache:"no-cache"});const blob=await r.blob();const f=new File([blob],name,{type:"application/gpx+xml"});
     if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name.replace(/\.gpx$/,"")});return}
-    const u=URL.createObjectURL(f);const d=document.createElement("a");d.href=u;d.download=name;document.body.appendChild(d);d.click();setTimeout(()=>{d.remove();URL.revokeObjectURL(u)},1000);
+    window.open(new URL(url,location.href).href,"_blank","noopener");
   }catch(e){if(e&&e.name==="AbortError")return;window.open(url,"_blank","noopener")}},true);
 </script>
 
