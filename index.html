@@ -3188,8 +3188,10 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
 /* GPX: on phones, opening the file replaced the app with no way back. Hand it to the share sheet instead (Organic Maps, Files…); fall back to a separate browser tab. */
 document.addEventListener("click",async ev=>{const a=ev.target.closest('a[href$=".gpx"]');if(!a)return;ev.preventDefault();ev.stopPropagation();
   const url=a.getAttribute("href"),name=url.split("/").pop();
-  try{const r=await fetch(url,{cache:"no-cache"});const blob=await r.blob();const f=new File([blob],name,{type:"application/gpx+xml"});
-    if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name.replace(/\.gpx$/,"")});return}
+  try{const r=await fetch(url,{cache:"no-cache"});const txt=await r.text();
+    /* iPhone only lets web apps share some file types; plain text is allowed, and the .gpx name keeps it a GPX file for Organic Maps and Files */
+    for(const ty of ["application/gpx+xml","text/plain"]){const f=new File([txt],name,{type:ty});
+      if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f]});return}}
     window.open(new URL(url,location.href).href,"_blank","noopener");
   }catch(e){if(e&&e.name==="AbortError")return;window.open(url,"_blank","noopener")}},true);
 </script>
