@@ -10,6 +10,7 @@ const CITY = { ge: [46.2044, 6.1432], zh: [47.3769, 8.5417] };
 const grid = ll => (Math.round(ll[0] * 10) / 10).toFixed(1) + "," + (Math.round(ll[1] * 10) / 10).toFixed(1);
 const pts = new Map([["ge", CITY.ge], ["zh", CITY.zh]]);
 for (const [id, ll] of Object.entries(A.tgeo || {})) pts.set("t:" + id, ll);
+try { for (const [id, h] of Object.entries(JSON.parse(fs.readFileSync(new URL("data/hikes.json", root), "utf8")))) if (h.start) pts.set("t:hike-" + id, h.start); } catch {}
 for (const e of A.events || []) if (e.geo && e.zone !== "ge" && e.zone !== "zh") pts.set(grid(e.geo), grid(e.geo).split(",").map(Number));
 const km = (a, b) => { const R = 6371, r = x => x * Math.PI / 180, dl = r(b[0] - a[0]), dn = r(b[1] - a[1]); const h = Math.sin(dl / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
 for (const ll of Object.values(A.geo || {})) if (ll && km(ll, CITY.ge) > 9 && km(ll, CITY.zh) > 9 && Math.min(km(ll, CITY.ge), km(ll, CITY.zh)) < 130) pts.set(grid(ll), grid(ll).split(",").map(Number));
