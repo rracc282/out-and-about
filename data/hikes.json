@@ -1,0 +1,235 @@
+{
+ "saleve-balcony": {
+  "km": 4.9,
+  "up": 411,
+  "down": 449,
+  "min": 173,
+  "start": [
+   46.1586042,
+   6.1911584
+  ],
+  "pts": [
+   "Téléphérique du Salève, Sente des Bûcherons, Monnetier-Mornex, Bossey, Saint-Julien-en-Gen",
+   "Les Treize Arbres, Chemin des Treize Arbres, Monnetier-Mornex, Saint-Julien-en-Genevois, H",
+   "Téléphérique du Salève, Sente des Bûcherons, Monnetier-Mornex, Bossey, Saint-Julien-en-Gen"
+  ],
+  "maxEle": 1142,
+  "minEle": 802,
+  "bbox": [
+   46.1491,
+   6.1942,
+   46.1613,
+   6.2015
+  ]
+ },
+ "lavaux-lutry-cully": {
+  "km": 5.9,
+  "up": 166,
+  "down": 233,
+  "min": 119,
+  "start": [
+   46.5041171,
+   6.6882089
+  ],
+  "pts": [
+   "Avenue de la Gare, Châtelard, Lutry, District de Lavaux-Oron, Vaud, 1095, Schweiz/Suisse/S",
+   "Grandvaux, Bourg-en-Lavaux, District de Lavaux-Oron, Vaud, 1091, Schweiz/Suisse/Svizzera/S",
+   "Riex, Bourg-en-Lavaux, District de Lavaux-Oron, Vaud, 1097, Schweiz/Suisse/Svizzera/Svizra",
+   "Route de la Gare, Chenaux, Cully, Bourg-en-Lavaux, District de Lavaux-Oron, Vaud, 1096, Sc"
+  ],
+  "maxEle": 496,
+  "minEle": 381,
+  "bbox": [
+   46.4881,
+   6.6882,
+   46.5049,
+   6.736
+  ]
+ },
+ "lavaux-chexbres": {
+  "km": 1.7,
+  "up": 0,
+  "down": 170,
+  "min": 36,
+  "start": [
+   46.4811761,
+   6.7785297
+  ],
+  "pts": [
+   "Chexbres-Village, Place de la Gare, Le Monteiller, Chexbres, District de Lavaux-Oron, Vaud",
+   "Saint-Saphorin (Lavaux), District de Lavaux-Oron, Vaud, 1071, Schweiz/Suisse/Svizzera/Sviz"
+  ],
+  "maxEle": 561,
+  "minEle": 394,
+  "bbox": [
+   46.4732,
+   6.7785,
+   46.4813,
+   6.7961
+  ]
+ },
+ "vevey-chillon": {
+  "km": 10.4,
+  "up": 57,
+  "down": 153,
+  "min": 170,
+  "start": [
+   46.4625363,
+   6.8435677
+  ],
+  "pts": [
+   "Gare de Vevey, Rue des Communaux, Vevey, District de la Riviera-Pays-d'Enhaut, Vaud, 1800,",
+   "Rue de la Gare, Vernex, Pallens, Chernex, Montreux, District de la Riviera-Pays-d'Enhaut, ",
+   "Château de Chillon, Quai Alfred Chatelanat, Veytaux, District de la Riviera-Pays-d'Enhaut,"
+  ],
+  "maxEle": 402,
+  "minEle": 372,
+  "bbox": [
+   46.414,
+   6.8436,
+   46.4625,
+   6.9282
+  ]
+ },
+ "la-dole": {
+  "km": 10.1,
+  "up": 484,
+  "down": 544,
+  "min": 238,
+  "start": [
+   46.4545264,
+   6.1117067
+  ],
+  "pts": [
+   "La Givrine, Route de France, Saint-Cergue, District de Nyon, Vaud, 1264, Schweiz/Suisse/Sv",
+   "La Dôle, Gingins, District de Nyon, Vaud, 1276, Schweiz/Suisse/Svizzera/Svizra",
+   "Col de Porte, Chéserex, District de Nyon, Vaud, 1275, Schweiz/Suisse/Svizzera/Svizra",
+   "La Givrine, Route de France, Saint-Cergue, District de Nyon, Vaud, 1264, Schweiz/Suisse/Sv"
+  ],
+  "maxEle": 1670,
+  "minEle": 1199,
+  "bbox": [
+   46.4256,
+   6.0877,
+   46.4545,
+   6.1117
+  ]
+ },
+ "allondon": {
+  "km": 11,
+  "up": 130,
+  "down": 236,
+  "min": 193,
+  "start": [
+   46.188,
+   6.01
+  ],
+  "pts": [
+   "NOT FOUND: Gare de Russin (used hint)",
+   "Malval, Dardagny, Genève, 1283, Schweiz/Suisse/Svizzera/Svizra",
+   "Dardagny, Genève, 1283, Schweiz/Suisse/Svizzera/Svizra",
+   "La Plaine-Gare, Chemin du Rail, La Plaine, Dardagny, Genève, 1283, Schweiz/Suisse/Svizzera"
+  ],
+  "maxEle": 472,
+  "minEle": 354,
+  "bbox": [
+   46.1784,
+   5.9775,
+   46.2121,
+   6.0118
+  ]
+ },
+ "rhone-jonction": {
+  "km": 4.1,
+  "up": 67,
+  "down": 49,
+  "min": 70,
+  "start": [
+   46.2011732,
+   6.1261127
+  ],
+  "pts": [
+   "Pointe de la Jonction, Avenue de la Jonction, Dépôt TPG de La Jonction, La Queue-d'Arve, G",
+   "Bois de la Bâtie, Genève, Schweiz/Suisse/Svizzera/Svizra",
+   "Le Lignon, Châtelaine, Vernier, Genève, Schweiz/Suisse/Svizzera/Svizra"
+  ],
+  "maxEle": 426,
+  "minEle": 373,
+  "bbox": [
+   46.1981,
+   6.0962,
+   46.2064,
+   6.1272
+  ]
+ },
+ "lac-de-joux": {
+  "km": 13,
+  "up": 27,
+  "down": 95,
+  "min": 204,
+  "start": [
+   46.6686875,
+   6.3247888
+  ],
+  "pts": [
+   "Le Pont, 1, Rue de la Gare, Le Pont, L'Abbaye, District du Jura-Nord vaudois, Vaud, 1342, ",
+   "L'Abbaye, District du Jura-Nord vaudois, Vaud, Schweiz/Suisse/Svizzera/Svizra",
+   "Les Bioux, L'Abbaye, District du Jura-Nord vaudois, Vaud, 1346, Schweiz/Suisse/Svizzera/Sv",
+   "Sentier-Orient, Rue de la Gare, La Golisse, Le Sentier, Le Chenit, District du Jura-Nord v"
+  ],
+  "maxEle": 1028,
+  "minEle": 1005,
+  "bbox": [
+   46.6054,
+   6.231,
+   46.6687,
+   6.3311
+  ]
+ },
+ "signal-de-bougy": {
+  "km": 4.9,
+  "up": 347,
+  "down": 50,
+  "min": 112,
+  "start": [
+   46.4606345,
+   6.3402106
+  ],
+  "pts": [
+   "Avenue de la Gare, Rolle, District de Nyon, Vaud, 1180, Schweiz/Suisse/Svizzera/Svizra",
+   "Mont-sur-Rolle, District de Nyon, Vaud, 1185, Schweiz/Suisse/Svizzera/Svizra",
+   "Signal de Bougy, Bougy-Villars, District de Morges, Vaud, 1172, Schweiz/Suisse/Svizzera/Sv"
+  ],
+  "maxEle": 695,
+  "minEle": 380,
+  "bbox": [
+   46.4606,
+   6.3361,
+   46.4839,
+   6.3547
+  ]
+ },
+ "versoix-river": {
+  "km": 4.8,
+  "up": 52,
+  "down": 72,
+  "min": 82,
+  "start": [
+   46.2798204,
+   6.1662403
+  ],
+  "pts": [
+   "Place de la Gare, Versoix, Genève, 1290, Schweiz/Suisse/Svizzera/Svizra",
+   "Richelien, Versoix, Genève, 1290, Schweiz/Suisse/Svizzera/Svizra",
+   "Place de la Gare, Versoix, Genève, 1290, Schweiz/Suisse/Svizzera/Svizra"
+  ],
+  "maxEle": 427,
+  "minEle": 386,
+  "bbox": [
+   46.2791,
+   6.1393,
+   46.284,
+   6.1662
+  ]
+ }
+}
