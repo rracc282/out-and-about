@@ -1,25 +1,25 @@
 {
  "saleve-balcony": {
-  "km": 4.9,
-  "up": 411,
-  "down": 449,
-  "min": 173,
+  "km": 1.3,
+  "up": 69,
+  "down": 83,
+  "min": 34,
   "start": [
-   46.1586042,
-   6.1911584
+   46.1544682,
+   6.1931653
   ],
   "pts": [
-   "Téléphérique du Salève, Sente des Bûcherons, Monnetier-Mornex, Bossey, Saint-Julien-en-Gen",
+   "Salève 0m; all: [{\"ll\":[46.1544682,6.1931653],\"ele\":0,\"name\":\"Salève\"},{\"ll\":[46.1627403,6.1891515],\"ele\":0,\"name\":\"Salève\"}]",
    "Les Treize Arbres, Chemin des Treize Arbres, Monnetier-Mornex, Saint-Julien-en-Genevois, H",
-   "Téléphérique du Salève, Sente des Bûcherons, Monnetier-Mornex, Bossey, Saint-Julien-en-Gen"
+   "Salève 0m; all: [{\"ll\":[46.1544682,6.1931653],\"ele\":0,\"name\":\"Salève\"},{\"ll\":[46.1627403,6.1891515],\"ele\":0,\"name\":\"Salève\"}]"
   ],
-  "maxEle": 1142,
-  "minEle": 802,
+  "maxEle": 1145,
+  "minEle": 1081,
   "bbox": [
-   46.1491,
-   6.1942,
-   46.1613,
-   6.2015
+   46.15,
+   6.1927,
+   46.1545,
+   6.1947
   ]
  },
  "lavaux-lutry-cully": {
@@ -47,24 +47,26 @@
   ]
  },
  "lavaux-chexbres": {
-  "km": 1.7,
-  "up": 0,
-  "down": 170,
-  "min": 36,
+  "km": 6.5,
+  "up": 126,
+  "down": 320,
+  "min": 130,
   "start": [
    46.4811761,
    6.7785297
   ],
   "pts": [
    "Chexbres-Village, Place de la Gare, Le Monteiller, Chexbres, District de Lavaux-Oron, Vaud",
-   "Saint-Saphorin (Lavaux), District de Lavaux-Oron, Vaud, 1071, Schweiz/Suisse/Svizzera/Sviz"
+   "Saint-Saphorin (Lavaux), District de Lavaux-Oron, Vaud, 1071, Schweiz/Suisse/Svizzera/Sviz",
+   "Rivaz, District de Lavaux-Oron, Vaud, 1071, Schweiz/Suisse/Svizzera/Svizra",
+   "Epesses, Bourg-en-Lavaux, District de Lavaux-Oron, Vaud, 1098, Schweiz/Suisse/Svizzera/Svi"
   ],
   "maxEle": 561,
   "minEle": 394,
   "bbox": [
    46.4732,
-   6.7785,
-   46.4813,
+   6.7475,
+   46.4913,
    6.7961
   ]
  },
@@ -116,16 +118,16 @@
   ]
  },
  "allondon": {
-  "km": 11,
-  "up": 130,
-  "down": 236,
-  "min": 193,
+  "km": 10,
+  "up": 123,
+  "down": 232,
+  "min": 176,
   "start": [
-   46.188,
-   6.01
+   46.1876287,
+   6.0130297
   ],
   "pts": [
-   "NOT FOUND: Gare de Russin (used hint)",
+   "Russin, Genève, 1281, Schweiz/Suisse/Svizzera/Svizra",
    "Malval, Dardagny, Genève, 1283, Schweiz/Suisse/Svizzera/Svizra",
    "Dardagny, Genève, 1283, Schweiz/Suisse/Svizzera/Svizra",
    "La Plaine-Gare, Chemin du Rail, La Plaine, Dardagny, Genève, 1283, Schweiz/Suisse/Svizzera"
@@ -136,7 +138,7 @@
    46.1784,
    5.9775,
    46.2121,
-   6.0118
+   6.013
   ]
  },
  "rhone-jonction": {
@@ -187,10 +189,10 @@
   ]
  },
  "signal-de-bougy": {
-  "km": 4.9,
-  "up": 347,
-  "down": 50,
-  "min": 112,
+  "km": 14.1,
+  "up": 412,
+  "down": 438,
+  "min": 279,
   "start": [
    46.4606345,
    6.3402106
@@ -198,22 +200,24 @@
   "pts": [
    "Avenue de la Gare, Rolle, District de Nyon, Vaud, 1180, Schweiz/Suisse/Svizzera/Svizra",
    "Mont-sur-Rolle, District de Nyon, Vaud, 1185, Schweiz/Suisse/Svizzera/Svizra",
-   "Signal de Bougy, Bougy-Villars, District de Morges, Vaud, 1172, Schweiz/Suisse/Svizzera/Sv"
+   "Signal de Bougy, Bougy-Villars, District de Morges, Vaud, 1172, Schweiz/Suisse/Svizzera/Sv",
+   "Bursins, District de Nyon, Vaud, 1183, Schweiz/Suisse/Svizzera/Svizra",
+   "NOT FOUND: Gare de Gilly-Bursinel (used hint)"
   ],
-  "maxEle": 695,
+  "maxEle": 707,
   "minEle": 380,
   "bbox": [
-   46.4606,
-   6.3361,
+   46.443,
+   6.2899,
    46.4839,
    6.3547
   ]
  },
  "versoix-river": {
-  "km": 4.8,
-  "up": 52,
-  "down": 72,
-  "min": 82,
+  "km": 13.8,
+  "up": 119,
+  "down": 173,
+  "min": 229,
   "start": [
    46.2798204,
    6.1662403
@@ -221,14 +225,15 @@
   "pts": [
    "Place de la Gare, Versoix, Genève, 1290, Schweiz/Suisse/Svizzera/Svizra",
    "Richelien, Versoix, Genève, 1290, Schweiz/Suisse/Svizzera/Svizra",
+   "Sauverny, Gex, Ain, Auvergne-Rhône-Alpes, France métropolitaine, 01220, France",
    "Place de la Gare, Versoix, Genève, 1290, Schweiz/Suisse/Svizzera/Svizra"
   ],
-  "maxEle": 427,
+  "maxEle": 485,
   "minEle": 386,
   "bbox": [
    46.2791,
-   6.1393,
-   46.284,
+   6.1151,
+   46.3157,
    6.1662
   ]
  }
