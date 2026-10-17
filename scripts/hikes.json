@@ -1,12 +1,342 @@
 [
- {"id":"saleve-balcony","name":"Salève balcony walk","wps":[{"q":"Téléphérique du Salève","near":[46.17,6.18]},{"q":"Les Treize Arbres","near":[46.155,6.19]},{"q":"Téléphérique du Salève","near":[46.17,6.18]}]},
- {"id":"lavaux-lutry-cully","name":"Lavaux vineyards: Lutry to Cully","wps":[{"q":"Gare de Lutry","near":[46.503,6.686]},{"q":"Grandvaux","near":[46.494,6.718]},{"q":"Riex","near":[46.493,6.73]},{"q":"Gare de Cully","near":[46.488,6.729]}]},
- {"id":"lavaux-chexbres","name":"Lavaux: Chexbres to Saint-Saphorin","wps":[{"q":"Chexbres-Village","near":[46.481,6.778]},{"q":"Saint-Saphorin (Lavaux)","near":[46.473,6.796]}]},
- {"id":"vevey-chillon","name":"Lakeside: Vevey to Chillon Castle","wps":[{"q":"Gare de Vevey","near":[46.463,6.843]},{"q":"Gare de Montreux","near":[46.435,6.91]},{"q":"Château de Chillon","near":[46.414,6.927]}],"profile":"hiking-beta"},
- {"id":"la-dole","name":"La Dôle from La Givrine","wps":[{"q":"La Givrine","near":[46.455,6.107]},{"q":"La Dôle","near":[46.425,6.099]},{"q":"Col de Porte","near":[46.44,6.12],"r":0.03},{"q":"La Givrine","near":[46.455,6.107]}]},
- {"id":"allondon","name":"Allondon valley and Dardagny vineyards","wps":[{"q":"Gare de Russin","near":[46.188,6.01]},{"q":"Malval","near":[46.2,5.99]},{"q":"Dardagny","near":[46.194,5.995]},{"q":"Gare de La Plaine","near":[46.18,5.997]}]},
- {"id":"rhone-jonction","name":"Rhône river walk: Jonction to Le Lignon","wps":[{"q":"Pointe de la Jonction","near":[46.2,6.128]},{"q":"Bois de la Bâtie","near":[46.197,6.12]},{"q":"Le Lignon","near":[46.205,6.095]}],"profile":"hiking-beta"},
- {"id":"lac-de-joux","name":"Lac de Joux shore: Le Pont to Le Sentier","wps":[{"q":"Gare du Pont","near":[46.666,6.333]},{"q":"L'Abbaye","near":[46.648,6.32]},{"q":"Les Bioux","near":[46.627,6.276]},{"q":"Le Sentier-Orient","near":[46.607,6.233]}],"profile":"hiking-beta"},
- {"id":"signal-de-bougy","name":"Rolle vineyards to Signal de Bougy","wps":[{"q":"Gare de Rolle","near":[46.459,6.336]},{"q":"Mont-sur-Rolle","near":[46.47,6.339]},{"q":"Signal de Bougy","near":[46.488,6.358]}]},
- {"id":"versoix-river","name":"Versoix river and woods","wps":[{"q":"Gare de Versoix","near":[46.283,6.163]},{"q":"Richelien","near":[46.3,6.145]},{"q":"Gare de Versoix","near":[46.283,6.163]}],"profile":"hiking-beta"}
+ {
+  "id": "saleve-balcony",
+  "name": "Salève balcony walk",
+  "wps": [
+   {
+    "station": [
+     46.175,
+     6.185
+    ],
+    "near": [
+     46.17,
+     6.18
+    ],
+    "q": "top"
+   },
+   {
+    "q": "Les Treize Arbres",
+    "near": [
+     46.155,
+     6.19
+    ]
+   },
+   {
+    "station": [
+     46.175,
+     6.185
+    ],
+    "near": [
+     46.17,
+     6.18
+    ],
+    "q": "top"
+   }
+  ]
+ },
+ {
+  "id": "lavaux-lutry-cully",
+  "name": "Lavaux vineyards: Lutry to Cully",
+  "wps": [
+   {
+    "q": "Gare de Lutry",
+    "near": [
+     46.503,
+     6.686
+    ]
+   },
+   {
+    "q": "Grandvaux",
+    "near": [
+     46.494,
+     6.718
+    ]
+   },
+   {
+    "q": "Riex",
+    "near": [
+     46.493,
+     6.73
+    ]
+   },
+   {
+    "q": "Gare de Cully",
+    "near": [
+     46.488,
+     6.729
+    ]
+   }
+  ]
+ },
+ {
+  "id": "lavaux-chexbres",
+  "name": "Lavaux: Chexbres to Epesses",
+  "wps": [
+   {
+    "q": "Chexbres-Village",
+    "near": [
+     46.481,
+     6.778
+    ]
+   },
+   {
+    "q": "Saint-Saphorin (Lavaux)",
+    "near": [
+     46.473,
+     6.796
+    ]
+   },
+   {
+    "q": "Rivaz",
+    "near": [
+     46.476,
+     6.778
+    ]
+   },
+   {
+    "q": "Epesses",
+    "near": [
+     46.49,
+     6.75
+    ]
+   }
+  ]
+ },
+ {
+  "id": "vevey-chillon",
+  "name": "Lakeside: Vevey to Chillon Castle",
+  "wps": [
+   {
+    "q": "Gare de Vevey",
+    "near": [
+     46.463,
+     6.843
+    ]
+   },
+   {
+    "q": "Gare de Montreux",
+    "near": [
+     46.435,
+     6.91
+    ]
+   },
+   {
+    "q": "Château de Chillon",
+    "near": [
+     46.414,
+     6.927
+    ]
+   }
+  ],
+  "profile": "hiking-beta"
+ },
+ {
+  "id": "la-dole",
+  "name": "La Dôle from La Givrine",
+  "wps": [
+   {
+    "q": "La Givrine",
+    "near": [
+     46.455,
+     6.107
+    ]
+   },
+   {
+    "q": "La Dôle",
+    "near": [
+     46.425,
+     6.099
+    ]
+   },
+   {
+    "q": "Col de Porte",
+    "near": [
+     46.44,
+     6.12
+    ],
+    "r": 0.03
+   },
+   {
+    "q": "La Givrine",
+    "near": [
+     46.455,
+     6.107
+    ]
+   }
+  ]
+ },
+ {
+  "id": "allondon",
+  "name": "Allondon valley and Dardagny vineyards",
+  "wps": [
+   {
+    "q": "Russin",
+    "near": [
+     46.187,
+     6.013
+    ],
+    "r": 0.02
+   },
+   {
+    "q": "Malval",
+    "near": [
+     46.2,
+     5.99
+    ]
+   },
+   {
+    "q": "Dardagny",
+    "near": [
+     46.194,
+     5.995
+    ]
+   },
+   {
+    "q": "Gare de La Plaine",
+    "near": [
+     46.18,
+     5.997
+    ]
+   }
+  ]
+ },
+ {
+  "id": "rhone-jonction",
+  "name": "Rhône river walk: Jonction to Le Lignon",
+  "wps": [
+   {
+    "q": "Pointe de la Jonction",
+    "near": [
+     46.2,
+     6.128
+    ]
+   },
+   {
+    "q": "Bois de la Bâtie",
+    "near": [
+     46.197,
+     6.12
+    ]
+   },
+   {
+    "q": "Le Lignon",
+    "near": [
+     46.205,
+     6.095
+    ]
+   }
+  ],
+  "profile": "hiking-beta"
+ },
+ {
+  "id": "lac-de-joux",
+  "name": "Lac de Joux shore: Le Pont to Le Sentier",
+  "wps": [
+   {
+    "q": "Gare du Pont",
+    "near": [
+     46.666,
+     6.333
+    ]
+   },
+   {
+    "q": "L'Abbaye",
+    "near": [
+     46.648,
+     6.32
+    ]
+   },
+   {
+    "q": "Les Bioux",
+    "near": [
+     46.627,
+     6.276
+    ]
+   },
+   {
+    "q": "Le Sentier-Orient",
+    "near": [
+     46.607,
+     6.233
+    ]
+   }
+  ],
+  "profile": "hiking-beta"
+ },
+ {
+  "id": "signal-de-bougy",
+  "name": "Rolle vineyards and Signal de Bougy loop",
+  "wps": [
+   {
+    "q": "Gare de Rolle",
+    "near": [
+     46.459,
+     6.336
+    ]
+   },
+   {
+    "q": "Mont-sur-Rolle",
+    "near": [
+     46.47,
+     6.339
+    ]
+   },
+   {
+    "q": "Signal de Bougy",
+    "near": [
+     46.488,
+     6.358
+    ]
+   },
+   {
+    "q": "Bursins",
+    "near": [
+     46.452,
+     6.29
+    ]
+   },
+   {
+    "q": "Gare de Gilly-Bursinel",
+    "near": [
+     46.443,
+     6.296
+    ]
+   }
+  ]
+ },
+ {
+  "id": "versoix-river",
+  "name": "Versoix river and woods",
+  "wps": [
+   {
+    "q": "Gare de Versoix",
+    "near": [
+     46.283,
+     6.163
+    ]
+   },
+   {
+    "q": "Richelien",
+    "near": [
+     46.3,
+     6.145
+    ]
+   },
+   {
+    "q": "Sauverny",
+    "near": [
+     46.31,
+     6.12
+    ]
+   },
+   {
+    "q": "Gare de Versoix",
+    "near": [
+     46.283,
+     6.163
+    ]
+   }
+  ],
+  "profile": "hiking-beta"
+ }
 ]

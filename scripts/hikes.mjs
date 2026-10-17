@@ -7,6 +7,11 @@ const UA = { "user-agent": "out-and-about-hikes/1.0 (github.com/rracc282/out-and
 const H = JSON.parse(fs.readFileSync(new URL("scripts/hikes.json", root), "utf8"));
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function geo(w) {
+  if (w.station) { /* highest aerialway station near a point (cable-car top) */
+    const q = `[out:json];node[aerialway=station](around:2500,${w.station[0]},${w.station[1]});out;`;
+    try { const j = await (await fetch("https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(q), { headers: UA })).json();
+      const c = j.elements.map(n => ({ ll: [n.lat, n.lon], ele: +((n.tags || {}).ele || 0), name: (n.tags || {}).name || "station" }));
+      console.log("stations", JSON.stringify(c)); c.sort((a, b) => b.ele - a.ele || a.ll[0] - b.ll[0]); if (c.length) return { ll: c[0].ll, name: c[0].name + " " + c[0].ele + "m; all: " + JSON.stringify(c) }; } catch (e) { console.log("overpass", e.message); } }
   if (w.ll) return { ll: w.ll, name: w.q || "fixed point" };
   const [la, lo] = w.near, d = w.r || 0.04;
   const u = `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=ch,fr&bounded=1&viewbox=${lo - d},${la + d},${lo + d},${la - d}&q=${encodeURIComponent(w.q)}`;
