@@ -271,8 +271,9 @@ for (const x of raw) {
   out.set(key, ev);
 }
 let events = [...out.values()];
-/* the same event listed by two sites (e.g. a Meetup group and lesgenevois): same city, day and start time, and their words overlap */
-{ const STOP = new Set("the and for with from your this that every each will des les une pour avec dans sur par aux est qui que vous nous gratuit gratuite free".split(" "));
+/* the same event listed by two sites (e.g. a Meetup group and lesgenevois): same city, day and start time, and their words overlap.
+   Runs again after descriptions are enriched and translated. */
+function dedupeSites() { const STOP = new Set("the and for with from your this that every each will des les une pour avec dans sur par aux est qui que vous nous gratuit gratuite free".split(" "));
   const words = e => new Set(String(e.title + " " + (e.titleEn || "") + " " + (e.desc || "").slice(0, 200)).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").match(/[a-z]{4,}/g)?.filter(w => !STOP.has(w)) || []);
   const t0 = e => (String(e.when).match(/(\d{1,2}:\d{2})/) || [])[1] || "";
   const rank = e => (e.src === "Meetup" ? 2 : 0) + ((e.desc || "").length > 120 ? 1 : 0) + (/^https?:\/\/[^/]*(lesgenevois|eventfrog)/.test(e.url) ? 0 : 0.5);
@@ -282,6 +283,7 @@ let events = [...out.values()];
     const wa = words(a), wb = words(b); let n = 0; wb.forEach(w => { if (wa.has(w)) n++; });
     if (n >= 5 || (n >= 4 && n >= 0.35 * Math.min(wa.size, wb.size))) { const lose = rank(a) >= rank(b) ? b : a; drop2.add(lose.id); drop("same event on two sites", { title: lose.title, start: lose.day, place: lose.place, src: { url: lose.url } }); } }
   events = events.filter(e => !drop2.has(e.id)); }
+dedupeSites();
 /* keep the list readable: at most 40 per city per day; meeting people, creative, markets and Meetup first */
 const per = {}; const pri = e => (e.src === "Meetup" ? 3 : 0) + ((e.cat || []).some(c => /rencontre|creatif|marche/.test(c)) ? 2 : 0) + (e.free ? 1 : 0);
 events.sort((a, b) => pri(b) - pri(a));
@@ -377,6 +379,7 @@ const metaDesc = h => { const c = [];
     if (d && d.length > (e.desc || "").length) e.desc = (fest ? "Part of " + fest.replace(/^festival\s+(.*)$/i, "$1 Festival") + ". " : "") + short(d, 300); }));
   report.descEnriched = todo.length; fs.writeFileSync(new URL("data/desc.json", root), JSON.stringify(DESC)); }
 events.concat(add).forEach(e => { if (JUNK.test(e.desc || "")) e.desc = ""; });
+dedupeSites(); report.kept = events.length;
 for (const e of events.concat(add)) {
   const tt = (e.src === "Songkick" || / @ /.test(e.title)) ? null : ((await toEn(e.title)) || (await titleEn(e.title, e.city))); if (tt && norm(tt) !== norm(e.title)) e.titleEn = tt.slice(0, 110);
   if (e.desc) { const dd = await toEn(e.desc); if (dd) e.desc = dd; }
