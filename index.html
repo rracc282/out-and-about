@@ -837,6 +837,9 @@ nav.tabs [data-tab="this"]::before{content:"🔎"!important}
 .pl-opt{display:flex;width:100%;justify-content:space-between;align-items:center;gap:8px;text-align:left;font:inherit;font-size:14.5px;font-weight:600;color:var(--ink);padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:0 0 7px;cursor:pointer}
 .pl-opt span{font-weight:500;font-size:12.5px;color:var(--muted)}.pl-opt span.warn{color:#b0561a}.pl-opt.x{color:var(--muted)}
 .pl-q{border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin:0 0 10px}.pl-q h3{font-size:15.5px;margin:0 0 4px}.pl-q p{margin:0 0 6px;color:var(--muted);font-size:13px}.pl-q .pl-chips{margin-bottom:8px}
+.pl-info{font-size:14px;line-height:1.45;margin:0 0 12px}.pl-info div{margin:0 0 4px}.pl-info b{font-weight:600;margin-right:4px}.pl-info p{margin:10px 0 0;white-space:pre-line}
+.pl-iacts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.pl-iacts a,.pl-iacts button{font:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;cursor:pointer}
+.pl-iacts button{background:var(--lake);border-color:var(--lake);color:#fff}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -3089,6 +3092,17 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
       (opts||'<p>This one only fits '+slotName(r.s,ctx)+'.</p>')+'<button class="pl-opt" data-plall="'+key+'">☰ See all options for '+slotName(r.s,ctx)+' <span>'+r.n+' →</span></button>'+
       '<button class="pl-opt" data-plopen="'+esc(e.id)+'">Details</button><button class="pl-opt" data-plskip="'+key+'">Skip this slot</button><button class="pl-opt x" data-plnope="'+key+'">Not for me</button></div>';
     document.body.appendChild(d)}
+  /* event info inside the Plan (no jump to other tabs) */
+  function detail(id,key){closeSheet();const ctx=ui.planCtx||"we";let e=EVENTS.find(x=>x.id===id);if(!e)return openEv(id);
+    let menu="";if(key){const res=build(ctx);const r=res.find(x=>x.s.key===key);if(r&&r.pick&&r.pick.e.id===id){
+      menu=res.filter(x=>x.s.key!==key&&!x.cont&&fits(e,x.s)).map(o=>{const w=wx(o.s.d,o.s.k);return '<button class="pl-opt" data-plmove="'+esc(key+"~"+o.s.key)+'">↔ Move to '+slotName(o.s,ctx)+(w?' <span'+(w.r>=50?' class="warn"':'')+'>'+(w.r>=50?"🌧":w.r>=25?"⛅":"☀️")+' '+w.r+'%</span>':'')+'</button>'}).join("")+
+        '<button class="pl-opt" data-plall="'+key+'">☰ See all options for '+slotName(r.s,ctx)+' <span>'+r.n+' →</span></button><button class="pl-opt" data-plskip="'+key+'">Skip this slot</button><button class="pl-opt x" data-plnope="'+key+'">Not for me</button>'}}
+    const g=goingSet.has(e.id);const desc=String(e.desc||"").trim();const map="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(e.place||e.title);
+    const d=document.createElement("div");d.id="plsheet";d.innerHTML='<div class="pl-dim" data-plclose></div><div class="pl-sheet" role="dialog" aria-label="'+esc(e.title)+'"><div class="pl-grab"></div><h3>'+esc(e.title)+'</h3><p>'+esc(meta(e))+'</p>'+
+      '<div class="pl-info"><div><b>When</b> '+esc(e.dayEnd&&e.dayEnd>e.day?dLbl(e.day)+' – '+dLbl(e.dayEnd)+(e.when&&/\d:\d/.test(e.when)?' · '+e.when.replace(/^[A-Z][a-z]{2} \d{1,2} · /,""):''):e.when)+'</div><div><b>Where</b> '+esc(e.place||"")+(e.trip&&!isLocal(e)?' · '+esc(e.trip):'')+'</div>'+(e.price?'<div><b>Price</b> '+esc(e.price)+'</div>':'')+
+      (desc?'<p>'+esc(desc)+'</p>':'')+'</div><div class="pl-iacts">'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">More info'+(needsTicketSafe(e)?' & tickets':'')+'</a>':'')+'<a href="'+map+'" target="_blank" rel="noopener">Map</a><button data-plgo="'+esc(e.id)+'">'+(g?'✓ Going · undo':'I\'m going')+'</button></div>'+menu+'</div>';
+    document.body.appendChild(d)}
+  function needsTicketSafe(e){try{return needsTicket(e)}catch(x){return false}}
   function closeSheet(){const d=document.getElementById("plsheet");if(d)d.remove()}
   function renderPlan(){let el=document.getElementById("planview");if(!el){el=document.createElement("section");el.id="planview";const ag=document.getElementById("agenda");ag.parentNode.insertBefore(el,ag)}
     const on=ui.tab==="plan"&&!ui.plans&&!state.q;el.hidden=!on;if(!on)return;
@@ -3137,13 +3151,14 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(b=t.closest("[data-plnope]")){const k=b.dataset.plnope;const e=pickOf(k);closeSheet();if(e){nope(e);if((st()[k]||{}).id===e.id)delete st()[k];goingSet.delete(e.id);persist();render();toast("Got it — fewer like this")}return}
     if(b=t.closest("[data-plskip]")){closeSheet();st()[b.dataset.plskip]={skip:true};persist();render();return}
     if(b=t.closest("[data-plunskip]")){delete st()[b.dataset.plunskip];persist();render();return}
-    if(b=t.closest("[data-plmenu]")){sheet(b.dataset.plmenu);return}
+    if(b=t.closest("[data-plmenu]")){const k=b.dataset.plmenu;const e=pickOf(k);if(e&&!e.hike)detail(e.id,k);else sheet(k);return}
+    if(b=t.closest("[data-plgo]")){const id=b.dataset.plgo;if(goingSet.has(id))goingSet.delete(id);else{goingSet.add(id);hidden.delete(id);ensureHist(id)}persist();closeSheet();render();toast(goingSet.has(id)?"Added to My plans":"Removed from My plans");return}
     if(b=t.closest("[data-plmove]")){const [from,to]=b.dataset.plmove.split("~");const e=pickOf(from);closeSheet();if(e){delete st()[from];st()[to]={id:e.id};if(st()[from]===undefined)swaps[from]=0;persist();render();toast("Moved to "+slotName(slots(ctx).find(s=>s.key===to)||{d:to.split("|")[0],k:to.split("|")[1]},ctx))}return}
     if(b=t.closest("[data-plall]")){closeSheet();ui.planAll=b.dataset.plall;ui.planAllF="all";render();window.scrollTo({top:0});return}
     if(b=t.closest("[data-plallf]")){ui.planAllF=b.dataset.plallf;render();return}
     if(t.closest("[data-plback]")){ui.planAll=null;render();window.scrollTo({top:0});return}
     if(b=t.closest("[data-plput]")){const [k,id]=b.dataset.plput.split("~");Object.entries(st()).forEach(([kk,v])=>{if(v&&v.id===id)delete st()[kk]});st()[k]={id};ui.planAll=null;persist();render();window.scrollTo({top:0});toast("Added to your plan");return}
-    if(b=t.closest("[data-plopen]")){openEv(b.dataset.plopen);return}
+    if(b=t.closest("[data-plopen]")){const id=b.dataset.plopen;if(/^hike-/.test(id))openEv(id);else detail(id,null);return}
     if(t.closest("[data-pladd]")){addAll(ctx);return}
     if(t.closest("[data-plcal]")){ics(ctx);return}
   });
