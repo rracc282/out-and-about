@@ -10,7 +10,12 @@
   "zurich-language-exchange",
   "geneva-language-exchange",
   "zurich-hiking",
-  "geneva-hiking-group"
+  "geneva-hiking-group",
+  "drink-paint-and-make-friends",
+  "historical-walks",
+  "les-talents-du-grand-genevois",
+  "lausanne-board-games",
+  "networking-afterwork-geneve"
  ],
  "pages": [
   {
@@ -125,6 +130,66 @@
   },
   {
    "url": "https://eventfrog.ch/en/p/groups/jackpot-comedy-7413646370706339342.html",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=social",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=board%20games",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=art",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=language%20exchange",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=hiking",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=social",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=board%20games",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=art",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=language%20exchange",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=hiking",
+   "kind": "meetup",
    "city": "zh"
   }
  ]

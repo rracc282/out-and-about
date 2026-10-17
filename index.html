@@ -2088,7 +2088,7 @@ TRIPS.forEach(t=>{t.city=t.city||"ge"});TRIPS_ZH.forEach(t=>{t.city="zh";TRIPS.p
 const FLAG={FR:"🇫🇷",IT:"🇮🇹",DE:"🇩🇪",AT:"🇦🇹",LI:"🇱🇮",CH:""};
 const KINDLBL={day:"Day trip",long:"Long day",weekend:"Weekend"};
 ui.tripLen="all";ui.tripType="all";ui.tripSort="best";ui.tripOpen=null;
-function nextSat(){const d=new Date(TODAY+"T12:00:00");d.setDate(d.getDate()+((6-d.getDay()+7)%7||7));return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+function nextSat(){const d=new Date(TODAY+"T12:00:00");const w=d.getDay();d.setDate(d.getDate()+(w===6?0:w===0?-1:6-w));return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
 function isoAdd(d,n){const x=new Date(d+"T12:00:00");x.setDate(x.getDate()+n);return x.getFullYear()+"-"+pad(x.getMonth()+1)+"-"+pad(x.getDate())}
 function dLbl(d){const dt=new Date(d+"T12:00:00");return DAYNAMES[dt.getDay()].slice(0,3)+" "+dt.getDate()+" "+MON[dt.getMonth()]}
 function tripDates(id){const v=(S.trips||{})[id];return [...new Set((Array.isArray(v)?v:v?[v]:[]))].filter(d=>d&&d>=TODAY).sort()}
@@ -2139,7 +2139,7 @@ function linkOrText(name,url){if(url&&isDead(url))url="https://www.google.com/se
 function itinHTML(list){return '<ol class="itin">'+list.map(x=>'<li><span class="t">'+esc(x.t||"")+'</span><span>'+(x.url?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener" style="color:var(--ink)">'+esc(x.do)+'</a>':esc(x.do))+'<span class="w">'+esc(x.where||"")+'</span></span></li>').join("")+'</ol>'}
 function tripDetail(t){
   const d=tripPlan(t);let ag=tripAgenda(t);
-  const plan='<input type="date" id="td-'+t.id+'" min="'+TODAY+'" value="'+isoAdd(nextSat(),7*(ui.tripWe||0))+'" aria-label="Date"><button class="plan" data-tripplan="'+t.id+'">Plan it</button>';
+  const plan='<input type="date" id="td-'+t.id+'" min="'+TODAY+'" value="'+(isoAdd(nextSat(),7*(ui.tripWe||0))<TODAY?TODAY:isoAdd(nextSat(),7*(ui.tripWe||0)))+'" aria-label="Date"><button class="plan" data-tripplan="'+t.id+'">Plan it</button>';
   const sec=(title,sub,body,open)=>'<details'+(open?' open':'')+'><summary>'+title+(sub?'<small>'+sub+'</small>':'<small></small>')+'</summary>'+body+'</details>';
   let h='<div class="trip-detail">'+(t.season?'<p class="trip-season">'+esc(t.season)+'</p>':'')+(d?'<p class="trip-inplans">✓ In My plans: '+tripDates(t.id).map(dLbl).join(", ")+' · <button class="lnkbtn" data-openplans>See plan</button></p>':'')+'<div class="trip-acts">'+plan+'<a class="tshare" href="'+tripInvite(t)+'" target="_blank" rel="noopener">Share</a></div>';
   h+='<div class="triplinks"><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">🚆 Train times</a>'+(t.links.map?'<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(t.links.map)+'" target="_blank" rel="noopener">Map</a>':'')+(t.links.hike?'<a href="'+esc(t.links.hike)+'" target="_blank" rel="noopener">Hike route</a>':'')+'</div>';
@@ -2213,7 +2213,7 @@ function dayHas(d){return EVENTS.some(e=>inCity(e)&&e.day===d&&WEEKP.includes(e.
 function renderJumps(){
   const el=document.getElementById("jumps");
   if(ui.tab!=="this"||state.q){el.innerHTML="";el.hidden=true;return}
-  const dow=new Date(TODAY+"T12:00:00").getDay(),tm=isoAdd(TODAY,1),sat=nextSat();
+  const dow=new Date(TODAY+"T12:00:00").getDay(),tm=isoAdd(TODAY,1),sat=(dow===6||dow===0)?isoAdd(nextSat(),7):nextSat();
   const b=[[TODAY,nowMin()>=17*60?"Tonight":"Today"],[tm,"Tomorrow"]];
   if(sat!==tm)b.push([dow>=1&&dow<=5?sat:sat,dow>=1&&dow<=5?"This weekend":"Next weekend"]);
   const h=b.filter(([d])=>dayHas(d)).map(([d,l])=>'<button data-jd="'+d+'">'+l+'</button>').join("");
@@ -2384,7 +2384,7 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
     x=x.replace(/\p{Lu}{4,}/gu,w=>KEEP.has(w)?w:w[0]+w.slice(1).toLowerCase());
     x=x.replace(/\s{2,}/g," ").replace(/\s+([,.:;!?])/g,"$1").replace(/[\s.\-–—:]+$/,"").trim();
     return x||t}
-  function tidyDesc(d){let x=String(d||"");if(!x)return x;
+  function tidyDesc(d){let x=String(d||"");if(!x)return x;if(/\\"|className|\]\}\]|\{\\?"\w+\\?":/.test(x))return "";
     x=x.replace(/\[([^\]]*)\]\((?:https?:)?[^)]*\)/g,"$1").replace(/https?:\/\/\S+/g,"");
     x=x.replace(/>>\s*Ticket needed[^<]*<<|Ticket needed \(click here\)|\(click here\)/gi,"").replace(/[<>]{2}/g,"");
     x=x.replace(/\*\*|__|^#+\s*|\s#+\s/gm," ").replace(/(^|\s)#([A-Za-zÀ-ÿ]+)/g,"$1$2");
@@ -2403,7 +2403,7 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
   [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(!e||!e.title)return;
     const t0=e.title;e.title=tidyTitle(e.title,e);if(e.title!==t0&&!e.titleOrig)e.titleOrig=t0;
     if(/ticket needed|tickets?\b|billet|billetterie|vorverkauf|presale|pre-sale|sold out|ausverkauft|complet\b|registration|register\b|sign[- ]?up|inscription|anmeldung|réserv|reserv|book (your|a|now)|booking/i.test((e.desc||"")+" "+(e.price||"")+" "+t0))e.tkHint=true;
-    e.desc=tidyDesc(e.desc);
+    e.desc=tidyDesc(e.desc);if(e.place)e.place=String(e.place).replace(/^(autre lieu|other venue|divers lieux)\s*,\s*/i,"").replace(/(, (Genève|Geneva|Zürich|Zurich))\1+$/i,"$1");
     if(!e.desc||e.desc.length<12){const v=String(e.place||"").split(",")[0].replace(/\p{Lu}{4,}/gu,w=>w[0]+w.slice(1).toLowerCase());let k="";try{k=String(gloss(e)).replace(/<[^>]+>/g,"").split(" · ")[0].replace(/&amp;/g,"&")}catch(x){}e.desc=(e.desc?e.desc+" ":"")+(k&&k!=="Event"?k:"Event")+(v?" at "+v:"")+"."}});
 })();
 /* tidy machine-translated market names */

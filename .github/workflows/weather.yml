@@ -1,7 +1,7 @@
 name: Weather
 on:
   schedule:
-    - cron: "10 4-19/3 * * *"   # every 3 hours, ~06:10 to ~21:10 Zurich
+    - cron: "10 4-20 * * *"   # hourly, ~06:10 to ~22:10 Zurich
   workflow_dispatch:
 permissions:
   contents: write
