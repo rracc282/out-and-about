@@ -237,7 +237,9 @@ for (const x of raw) {
   if (!title || BAD.test(title + " " + (x.organizer || ""))) { drop("not relevant"); continue; }
   if (NICHE.test(title + " " + (x.organizer || "") + " " + String(x.desc || "").slice(0, 300))) { drop("niche (card games, wargaming…)"); continue; }
   if (/suitable for children|for children aged|adapt[ée]e?s? aux enfants|pour les enfants|en famille|famili(?:e|en)sport|kindgerecht|für kinder|kinder ab|ab \d+ jahren|dès \d+ ans|pour enfants|jeune public|familienführung|for kids/i.test(String(x.desc || "").slice(0, 400))) { drop("children's event"); continue; }
-  const multi = e && e.day > s.day;
+  /* ends after midnight (e.g. 21:00–04:00) = still a one-night event on the day it starts */
+  const overnight = e && e.day > s.day && addD(s.day, 1) === e.day && (!e.time || e.time <= "12:00");
+  const multi = e && e.day > s.day && !overnight;
   const lastDay = multi ? e.day : s.day;
   if (lastDay < TODAY) { drop("past"); continue; }
   if (s.day > BIG_UNTIL) { drop("far future"); continue; }

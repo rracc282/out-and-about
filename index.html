@@ -2451,9 +2451,15 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
     if(/^\(.*\)$/.test(x.trim()))x=x.trim().slice(1,-1);
     if((x.match(/\(/g)||[]).length>(x.match(/\)/g)||[]).length)x=x.replace(/\s*\([^)]*$/,"");
     if(/^["“«][^"”»]+["”»]$/.test(x.trim()))x=x.trim().slice(1,-1);
+    x=x.replace(/_([a-z]{2})_\s*/gi,(m,c)=>" ("+c.toUpperCase()+") · ").replace(/_+/g," ");
+    x=x.replace(/^\s*\[[^\]]{1,40}\]\s*/,"").replace(/(^|\s)\*[^*]{1,40}\*(?=\s|$)/g," ").replace(/(\p{L})\*(\p{L})/gu,"$1*$2").replace(/(^|[^\p{L}])\*|\*(?=[^\p{L}]|$)/gu,"$1").replace(/\b([dlDL]) '(?=\p{L})/gu,"$1'");
+    x=x.replace(/\s*\((?:[A-Z]{2,3},\s*)?(?:[A-Za-z][\w-]*(?:\s[\w-]+)?,\s*){2,}[\w\s-]+\)\s*$/,"");
+    x=x.replace(/^(?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\s+\d{1,2}\s*:\s*/i,"");
+    x=x.replace(/\bNigth\b/g,"Night").replace(/\bNIGTH\b/g,"NIGHT");
     x=caps(x);
     x=x.replace(/^\d{1,2}\.?\s*(?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC|OKT|DEZ)[A-Z]*\.?:?\s+/i,"").replace(/\s*@\s*/g," at ");
     x=x.replace(/\p{Lu}{4,}/gu,w=>KEEP.has(w)?w:w[0]+w.slice(1).toLowerCase());
+    x=x.replace(/\b(THE|MIC|AND|FOR|NEW|ALL|OUR|BIG|ART|SPA|MON|TUE|WED|THU|FRI|SAT|SUN|LES|DES|UNE|DER|DIE|DAS|UND)\b/g,w=>w[0]+w.slice(1).toLowerCase()).replace(/^Mic Karaoke/,"Open mic karaoke");
     x=x.replace(/\s{2,}/g," ").replace(/\s+([,.:;!?])/g,"$1").replace(/[\s.\-–—:]+$/,"").trim();
     return x||t}
   function tidyDesc(d){let x=String(d||"");if(!x)return x;if(/\\"|className|\]\}\]|\{\\?"\w+\\?":/.test(x))return "";
@@ -2516,6 +2522,9 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
     if(/^Price to check$/i.test(e.price||""))e.price="";
     if(e.when&&!/\d{1,2}:\d{2}/.test(e.when)&&!/evening/i.test(e.when))e.when+=" · evening";
     if(!e.desc||/ at \d{4}-\d{2}-\d{2}/.test(e.desc)){const who=(e.desc||art).replace(/ at \d{4}-\d{2}-\d{2}\S*/,"").replace(/ at [^,]*$/,"");e.desc="Live concert: "+cap(who.trim())+(ven?" at "+ven:"")+". Check the venue site for times and tickets."}})})();
+/* events that just run past midnight (single start time, ends the next day) stay on the day they start */
+(function(){[].concat(window.ALL_EVENTS||[],EVENTS).forEach(e=>{if(!e||!e.dayEnd||!e.day||e.dayEnd<=e.day)return;
+  const next=isoAdd(e.day,1);if(e.dayEnd===next&&/^[A-Z][a-z]{2} \d{1,2} · \d{1,2}:\d{2}/.test(e.when||"")&&!/–\s*\d{1,2}\s+[A-Z][a-z]{2}|&/.test(e.when||""))delete e.dayEnd})})();
 /* multi-day events written as "7–17 Oct" or "30 Sep–4 Oct": keep them until their last day */
 (function(){const M={Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
   const L=[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))];
