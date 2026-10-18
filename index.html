@@ -841,6 +841,14 @@ nav.tabs [data-tab="this"]::before{content:"🔎"!important}
 .pl-iacts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.pl-iacts a,.pl-iacts button{font:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;cursor:pointer}
 .pl-iacts button{background:var(--lake);border-color:var(--lake);color:#fff}
 .hk-help{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:13px;line-height:1.45}.hk-help li{margin:0 0 4px}.hk-help b{color:var(--ink);font-weight:600}
+#shsheet,#shinv{position:fixed;inset:0;z-index:1001}
+.sh-bar{display:flex;gap:8px;margin:0 0 12px}.sh-btn{font:inherit;font-size:14px;font-weight:600;border-radius:999px;padding:9px 15px;border:0;background:var(--lake);color:#fff;cursor:pointer}.sh-btn.ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.sh-name{display:block;font-size:13px;color:var(--muted);margin:0 0 10px}.sh-name input{box-sizing:border-box;display:block;width:100%;margin-top:4px;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+.sh-list{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 4px}
+.sh-row{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer}.sh-row:last-child{border-bottom:0}.sh-row input{margin-top:3px;width:18px;height:18px;accent-color:var(--lake)}
+.sh-row b{display:block;font-weight:600;font-size:14.5px}.sh-row small{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}.sh-row.have{opacity:.6}
+.sh-tip{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--lake-soft);font-size:13px;line-height:1.45}
+.pl-cta[disabled]{opacity:.5}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -2794,14 +2802,14 @@ function renderMyPlans(){let el=document.getElementById("myplans");if(!el){el=do
   else{const n=it[0];
     if(n.k==="ev"){const e=n.e;h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+(n.t?' · '+n.t:'')+'</div><b>'+esc(e.title)+'</b><div class="mp-pl">'+esc(e.place||"")+'</div><div class="mp-acts"><a href="'+dirURL(e)+'" target="_blank" rel="noopener">Directions</a><button data-mpdetail="'+esc(e.id)+'">Details</button><a href="'+inviteURL(e)+'" target="_blank" rel="noopener" data-share="'+esc(e.id)+'">Share</a></div></div>'}
     else if(n.k==="film"){const x=n.x,c=(window.CINE&&CINE.cinemas[x.c])||{n:x.cn,q:""};h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+' · '+x.tm+'</div><b>'+esc(x.t)+'</b><div class="mp-pl">'+esc(c.n+(c.q?", "+c.q:""))+'</div><div class="mp-acts"><a href="'+mapsURL(c.n+", "+(c.q||""))+'" target="_blank" rel="noopener">Directions</a>'+(x.u?'<a href="'+esc(x.u)+'" target="_blank" rel="noopener">Book</a>':'')+'</div></div>'}
-    else{const t=n.t0;h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+'</div><b>'+(t.kind==="weekend"?"Weekend in ":"Day trip to ")+esc(t.name)+'</b><div class="mp-pl">'+esc(t.hook||"")+'</div>'+tripPlanBody(t,n.day)+'</div>'}
+    else{const t=n.t0;h+='<div class="mp-next"><div class="mp-k">Next up · '+dayHead(n.day)+'</div><b>'+(t.kind==="weekend"?"Weekend in ":t.kind==="hike"?"Hike: ":"Day trip to ")+esc(t.name)+'</b><div class="mp-pl">'+esc(t.hook||"")+'</div>'+tripPlanBody(t,n.day)+'</div>'}
     let cur="";h+='<div class="mp-list">';
     it.forEach((x,i)=>{if(x.day!==cur){cur=x.day;h+='<div class="mp-day">'+dayHead(x.day)+'</div>'}
       if(x.k==="ev"){const e=x.e,op=ui.mpOpen===e.id;
         h+='<div class="mp-row'+(op?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(e.id)+'"><span class="mp-t">'+(x.t||'All day')+'</span><span class="mp-main"><span class="mp-title">'+esc(e.title)+'</span><span class="mp-sub">'+esc((e.place||"").split(",")[0])+'</span></span>'+city(cityOf(e))+'</button>'+
           (op?'<div class="mp-acts"><a href="'+dirURL(e)+'" target="_blank" rel="noopener">Directions</a><a href="'+inviteURL(e)+'" target="_blank" rel="noopener" data-share="'+esc(e.id)+'">Share</a><button data-mpdetail="'+esc(e.id)+'">Details</button><button class="mp-rm" data-mprm="'+esc(e.id)+'">Remove</button></div>':'')+'</div>'}
       else if(x.k==="film"){h+=filmPlanRow(x.x,ui.mpOpen===x.x.k)}
-      else{const t=x.t0,op=ui.mpOpen===x.key;h+='<div class="mp-row'+(op?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(x.key)+'"><span class="mp-t">'+(t.kind==="weekend"?"2 days":"Trip")+'</span><span class="mp-main"><span class="mp-title">'+(t.kind==="weekend"?"Weekend in ":"Day trip to ")+esc(t.name)+'</span><span class="mp-sub">🚆 '+hm(t.train.min)+'</span></span>'+city(t.city||"ge")+'</button>'+(op?tripPlanBody(t,x.day):'')+'</div>'}});
+      else{const t=x.t0,op=ui.mpOpen===x.key;h+='<div class="mp-row'+(op?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(x.key)+'"><span class="mp-t">'+(t.kind==="weekend"?"2 days":"Trip")+'</span><span class="mp-main"><span class="mp-title">'+(t.kind==="weekend"?"Weekend in ":t.kind==="hike"?"Hike: ":"Day trip to ")+esc(t.name)+'</span><span class="mp-sub">🚆 '+hm(t.train.min)+'</span></span>'+city(t.city||"ge")+'</button>'+(op?tripPlanBody(t,x.day):'')+'</div>'}});
     h+='</div>'}
   const past=EVENTS.filter(e=>goingSet.has(e.id)&&(e.dayEnd||e.day)<TODAY&&(e.dayEnd||e.day)>=isoAdd(TODAY,-30)).sort((a,b)=>b.day.localeCompare(a.day));
   const toRate=past.filter(e=>!(S.hist[e.id]||{}).r);
@@ -3185,6 +3193,73 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   if(!location.hash){ui.tab="plan";setTimeout(()=>{try{render()}catch(e){}},0)}
 })();
 
+
+/* ===== Share plans: a link that adds my "I'm going" items to a friend's My plans (installs/open the app on the way) ===== */
+(function(){
+  const B64=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+  const UN=s=>JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g,"+").replace(/_/g,"/")))));
+  const BASE=()=>location.origin+location.pathname;
+  const myName=()=>{try{return localStorage.getItem("oa-name")||""}catch(e){return ""}};
+  function joinURL(p){return BASE()+"#join="+B64(p)}
+  function payload(items){const p={n:myName(),e:[],t:[],f:[]};items.forEach(x=>{if(x.k==="ev")p.e.push(x.e.id);else if(x.k==="trip")p.t.push([x.t0.id,x.day]);else if(x.k==="film"&&x.x)p.f.push(x.x)});return p}
+  function label(x){if(x.k==="ev")return x.e.title;if(x.k==="trip")return (x.t0.kind==="hike"?"Hike: ":x.t0.kind==="weekend"?"Weekend in ":"Day trip to ")+x.t0.name;if(x.k==="film")return "Film: "+(x.x.t||"");return ""}
+  function line(x){return "• "+dayHead(x.day)+(x.t&&/\d/.test(x.t)?" "+x.t:"")+" — "+label(x)}
+  async function send(items){const p=payload(items);const url=joinURL(p);const who=p.n?p.n+"'s":"My";
+    const txt=(items.length===1?"Join me? "+label(items[0])+" · "+dayHead(items[0].day):who+" plans — join me for any of these:")+"\n"+(items.length>1?items.map(line).join("\n")+"\n":"")+"\nTap to add them to your Out & About plans:";
+    if(navigator.share){try{await navigator.share({title:"Out & About",text:txt,url});return}catch(e){if(e&&e.name==="AbortError")return}}
+    try{await navigator.clipboard.writeText(txt+"\n"+url);toast("Link copied — paste it in WhatsApp or Messages")}catch(e){window.open("https://wa.me/?text="+encodeURIComponent(txt+"\n"+url),"_blank")}}
+  function close(id){const d=document.getElementById(id);if(d)d.remove()}
+  /* --- composer (from My plans) --- */
+  function composer(){close("shsheet");const it=myItems();if(!it.length){toast("Add something with ✓ I'm going first");return}
+    const sel=new Set(it.map((x,i)=>i));const d=document.createElement("div");d.id="shsheet";
+    const draw=()=>{d.innerHTML='<div class="pl-dim" data-shclose></div><div class="pl-sheet" role="dialog" aria-label="Share my plans"><div class="pl-grab"></div><h3>Share my plans</h3><p>Your friends get a link. Tapping it adds these to their My plans, and gets them the app if they don\'t have it yet.</p>'+
+      '<label class="sh-name">Your name <input id="shname" maxlength="30" placeholder="e.g. Raquel" value="'+esc(myName())+'"></label>'+
+      '<div class="sh-list">'+it.map((x,i)=>'<label class="sh-row"><input type="checkbox" data-shi="'+i+'"'+(sel.has(i)?' checked':'')+'><span><b>'+esc(label(x))+'</b><small>'+esc(dayHead(x.day)+(x.t&&/\d/.test(x.t)?" · "+x.t:""))+'</small></span></label>').join("")+'</div>'+
+      '<button class="pl-cta" data-shgo'+(sel.size?'':' disabled')+'>Share '+sel.size+' plan'+(sel.size===1?'':'s')+'</button></div>'};
+    draw();document.body.appendChild(d);
+    d.addEventListener("click",ev=>{const t=ev.target;
+      if(t.closest("[data-shclose]")){close("shsheet");return}
+      const c=t.closest("[data-shi]");if(c){const i=+c.dataset.shi;if(c.checked)sel.add(i);else sel.delete(i);const nm=d.querySelector("#shname").value;draw();d.querySelector("#shname").value=nm;return}
+      if(t.closest("[data-shgo]")){const nm=d.querySelector("#shname").value.trim();try{localStorage.setItem("oa-name",nm)}catch(e){}close("shsheet");send(it.filter((x,i)=>sel.has(i)))}});}
+  /* --- receiving an invite --- */
+  function resolve(p){const out=[];
+    (p.e||[]).forEach(id=>{const e=EVENTS.find(x=>x.id===id)||(ALL_EVENTS||[]).find(x=>x.id===id);if(e&&!isPast(e))out.push({k:"ev",id,e,day:e.day<TODAY?TODAY:e.day,lab:e.title,sub:dayHead(e.day<TODAY?TODAY:e.day)+" · "+(e.when||"").replace(/^[A-Z][a-z]{2} \d{1,2}( [A-Z][a-z]{2})?( – [^·]*)? · /,"")+" · "+String(e.place||"").split(",")[0],have:goingSet.has(id)})});
+    (p.t||[]).forEach(([id,d])=>{const t=TRIPS.find(x=>x.id===id);if(t&&d>=TODAY)out.push({k:"trip",id,d,lab:(t.kind==="hike"?"Hike: ":"Day trip to ")+t.name,sub:dayHead(d),have:tripDates(id).includes(d)})});
+    (p.f||[]).forEach(f=>{if(f&&f.k&&String(f.k).split("|")[2]>=TODAY)out.push({k:"film",f,lab:"Film: "+(f.t||""),sub:dayHead(String(f.k).split("|")[2])+" · "+(f.tm||"")+" · "+(f.cn||""),have:(S.films||[]).some(x=>x.k===f.k)})});
+    return out}
+  function standalone(){return (window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true}
+  function invite(p,raw){close("shinv");const L=resolve(p);const d=document.createElement("div");d.id="shinv";const who=p.n?esc(p.n):"A friend";
+    const sel=new Set(L.map((x,i)=>i).filter(i=>!L[i].have));
+    const draw=()=>{d.innerHTML='<div class="pl-dim" data-invclose></div><div class="pl-sheet" role="dialog" aria-label="Invitation"><div class="pl-grab"></div><h3>'+who+' invited you 🎉</h3>'+
+      (L.length?'<p>Pick what you\'d like to join. It goes into your <b>My plans</b> with a reminder on the day.</p><div class="sh-list">'+L.map((x,i)=>'<label class="sh-row'+(x.have?' have':'')+'"><input type="checkbox" data-invi="'+i+'"'+(x.have?' checked disabled':sel.has(i)?' checked':'')+'><span><b>'+esc(x.lab)+'</b><small>'+esc(x.sub)+(x.have?' · already in your plans':'')+'</small></span></label>').join("")+'</div>'+
+        '<button class="pl-cta" data-invadd'+(sel.size?'':' disabled')+'>Add '+(sel.size||"")+' to my plans</button>':'<p>These plans have already happened. Have a look around for what\'s on next!</p>')+
+      '<button class="pl-cal" data-invclose>'+(L.length?'Not now':'Close')+'</button>'+
+      (!standalone()?'<div class="sh-tip"><b>Get the app:</b> tap the Share button in your browser, then <b>Add to Home Screen</b>.<br>Already have it on your home screen? <button class="pl-lnk" data-invcopy>Copy this invite</button>, open the app and tap <b>Paste invite</b> in My plans.</div>':'')+'</div>'};
+    draw();document.body.appendChild(d);
+    d.addEventListener("click",async ev=>{const t=ev.target;
+      if(t.closest("[data-invclose]")){close("shinv");return}
+      const c=t.closest("[data-invi]");if(c){const i=+c.dataset.invi;if(c.checked)sel.add(i);else sel.delete(i);draw();return}
+      if(t.closest("[data-invcopy]")){try{await navigator.clipboard.writeText(raw);toast("Invite copied")}catch(e){prompt("Copy this invite:",raw)}return}
+      if(t.closest("[data-invadd]")){let n=0;L.forEach((x,i)=>{if(!sel.has(i)||x.have)return;n++;
+          if(x.k==="ev"){goingSet.add(x.id);hidden.delete(x.id);ensureHist(x.id);if(S.hist[x.id]&&p.n)S.hist[x.id].with=p.n}
+          else if(x.k==="trip"){S.trips=S.trips||{};const a=tripDates(x.id);if(!a.includes(x.d))a.push(x.d);S.trips[x.id]=a.sort()}
+          else if(x.k==="film"){S.films=S.films||[];S.films.push(x.f)}});
+        persist();close("shinv");try{openPlans(true)}catch(e){render()}toast(n+" added to My plans"+(p.n?" · with "+p.n:""))}});}
+  function readHash(){const h=location.hash||"";const m=h.match(/^#join=([A-Za-z0-9_-]+)/);if(!m)return false;let p=null;try{p=UN(m[1])}catch(e){}
+    try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}if(p)setTimeout(()=>invite(p,BASE()+"#join="+m[1]),400);return !!p}
+  {const _op=openPlans;openPlans=function(on){_op(on);const v=document.getElementById("planview");if(v&&on)v.hidden=true;const x=document.getElementById("exseg");if(x&&on)x.hidden=true}}
+  readHash();window.addEventListener("hashchange",()=>{if(readHash()){}});
+  /* paste an invite inside the installed app */
+  async function paste(){let t="";try{t=await navigator.clipboard.readText()}catch(e){}if(!/#join=/.test(t||""))t=prompt("Paste the invite link your friend sent you:")||"";
+    const m=String(t).match(/#join=([A-Za-z0-9_-]+)/);if(!m){if(t)toast("That doesn't look like an invite link");return}let p=null;try{p=UN(m[1])}catch(e){}if(p)invite(p,t);else toast("That invite link is broken")}
+  /* buttons in My plans */
+  const _rmp=renderMyPlans;renderMyPlans=function(){_rmp();const el=document.getElementById("myplans");if(!el)return;const hd=el.querySelector(".mp-head");if(!hd||el.querySelector(".sh-bar"))return;
+    hd.insertAdjacentHTML("afterend",'<div class="sh-bar">'+(myItems().length?'<button class="sh-btn" data-shopen>👋 Share my plans</button>':'')+'<button class="sh-btn ghost" data-shpaste>Paste invite</button></div>')};
+  document.addEventListener("click",ev=>{if(ev.target.closest("[data-shopen]")){composer();return}if(ev.target.closest("[data-shpaste]")){paste();return}});
+  /* the single-event Share buttons now send an invite link too */
+  window.addEventListener("click",ev=>{const a=ev.target.closest("[data-share]");if(!a)return;const e=EVENTS.find(x=>x.id===a.dataset.share);if(!e)return;ev.preventDefault();ev.stopImmediatePropagation();
+    send([{k:"ev",e,day:e.day<TODAY?TODAY:e.day,t:(e.when.match(/\d{1,2}:\d{2}/)||[""])[0]}])},true);
+})();
 </script>
 
 
