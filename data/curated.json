@@ -1,333 +1,479 @@
 {
-  "week": "2026-10-12",
-  "notes": {
-    "ge": {
-      "wd1": "English comedy at Flanagans on Thursday and the queer film festival at the Grütli round off the week.",
-      "we1": "Musée Ariana's ceramics show and the last weekend of Everybody's Perfect; rain likely Sat and Sun, so plan indoors.",
-      "wd2": "A busy social week: English stand-up in Lausanne on Tuesday, and pub philosophy or Social Hour on Wednesday.",
-      "we2": "Plainpalais and Rive flea markets and the free market in Haute-Savoie on Saturday."
-    },
-    "zh": {
-      "wd1": "English stand-up at ROBIN's Coffee and a Halloween pottery workshop on Thursday.",
-      "we1": "English comedy at Les Amis in Bern on Friday, the Photobastei show and Züri-Wiesn; rain likely Sat and Sun, so indoor plans win.",
-      "wd2": "Creative Tuesday: a watercolour card workshop, life drawing in Lucerne, or WOMXN ON STAGE.",
-      "we2": "Pumpkin painting at House of Craft on Sunday, speed friending on Saturday and Expat Friday at Club Bellevue."
-    }
+ "week": "2026-10-19",
+ "notes": {
+  "ge": {
+   "wd1": "English expat comedy and language-exchange karaoke on Thursday, plus Mondial de l'Impro qualifiers at the BFM.",
+   "we1": "Festival du Soir at Palexpo with GIMS, the Mondial de l'Impro final, letterpress and Ikebana workshops; rain likely, so plan indoors.",
+   "wd2": "Embroidery on Monday, English comedy on Tuesday, a language exchange on Wednesday and a Halloween paint night on Thursday.",
+   "we2": "GIFF film festival opens, Halloween parties everywhere, Onex's 175th birthday fête and a philosophy café in English on Saturday."
   },
-  "picks": [
-    {
-      "block": "we1",
-      "id": "a-ge-simultane-s-10-17",
-      "k": "Saturday",
-      "why": "Marie Ducaté's colourful glass and ceramics at Musée Ariana; a perfect indoor plan for a rainy day."
-    },
-    {
-      "block": "we1",
-      "id": "ge-everybodys-perfect-2026",
-      "k": "Friday evening",
-      "why": "Last weekend of the queer film festival at the Grütli; many films with English subtitles, party nights too."
-    },
-    {
-      "block": "we1",
-      "id": "a-ge-marche-aux-puces-brocante-de-plainpalais-10-17",
-      "k": "Saturday morning",
-      "why": "Geneva's big flea market at Plainpalais; go early, and bring an umbrella as rain is likely."
-    },
-    {
-      "block": "wd2",
-      "id": "a-ge-pub-philosophy-in-english-10-21",
-      "k": "Wednesday evening",
-      "why": "Friendly, free discussion group in English at the Crowned Eagle pub near Cornavin."
-    },
-    {
-      "block": "wd2",
-      "id": "a-ge-social-hour-drinks-games-good-vibes-50-f-10-21",
-      "k": "Wednesday evening",
-      "why": "Social Circle drinks and games at Casa Tiki; free tickets, book ahead (ages 22–35)."
-    },
-    {
-      "block": "wd2",
-      "id": "a-ge-tuesday-but-funny-english-comedy-10-20",
-      "k": "Tuesday evening",
-      "why": "Free English stand-up night in Lausanne where pros test new material; about 45 min by train."
-    },
-    {
-      "block": "we1",
-      "id": "a-zh-bear-pit-comedy-english-stand-up-monthly-10-16",
-      "k": "Friday evening",
-      "why": "Monthly English stand-up showcase at Les Amis in Bern, about an hour from Zurich; free entry."
-    },
-    {
-      "block": "we1",
-      "id": "a-zh-bilder-schaffen-wirklichkeit-10-17",
-      "k": "Saturday",
-      "why": "Thought-provoking photo exhibition on migration and images at the Photobastei; good indoor option."
-    },
-    {
-      "block": "we1",
-      "id": "a-zh-digital-detox-cafe-10-18",
-      "k": "Sunday evening",
-      "why": "Phone-free journaling and creative evening at Paint it Easy; relaxed way to meet people. Free, ticket needed."
-    },
-    {
-      "block": "we1",
-      "id": "a-zh-20-zu-ri-wiesn-unser-oktoberfest-im-haup-10-17",
-      "k": "Saturday",
-      "why": "Oktoberfest under the roof of Zurich main station: beer tent, music and food, rain or shine."
-    },
-    {
-      "block": "wd2",
-      "id": "a-zh-watercolor-workshop-10-20",
-      "k": "Tuesday evening",
-      "why": "Free hands-on watercolour session making personalised cards; materials provided, ticket needed."
-    },
-    {
-      "block": "wd2",
-      "id": "a-zh-kunstakt-at-f-iz-luzern-10-20",
-      "k": "Tuesday evening",
-      "why": "Free life-drawing session with live models in Lucerne for anyone who likes drawing or painting."
-    },
-    {
-      "block": "wd2",
-      "id": "a-zh-nachhall-10-20",
-      "k": "Tuesday evening",
-      "why": "Kunsthaus and Opernhaus team up for an evening on what lingers after art and music, at the Chipperfield building."
-    }
-  ],
-  "edits": {
-    "a-ge-quiz-night-tables-for-singles-by-social--10-17": {
-      "desc": "Social Circle x Tinder pub quiz for ages 22–35, with tables set aside for singles. Free, but you need a ticket from social-circle.ch."
-    },
-    "a-ge-simultane-s-10-17": {
-      "desc": "Exhibition of French artist Marie Ducaté's playful glass, ceramics and painted works at Musée Ariana, Geneva's museum of ceramics and glass."
-    },
-    "a-ge-marche-aux-puces-brocante-de-plainpalais-10-17": {
-      "desc": "One of Switzerland's largest flea markets: vintage, furniture, books, records and bric-a-brac on the Plaine de Plainpalais. Best early in the morning."
-    },
-    "a-ge-date-my-friend-ages-25-37-in-english-10-19": {
-      "desc": "Comedy-style matchmaking evening in English where friends present each other to the room. Ages 25–37; about CHF 10."
-    },
-    "a-ge-pub-philosophy-in-english-10-21": {
-      "desc": "Open, friendly philosophy discussion in English, every other Wednesday in the downstairs room of the Crowned Eagle pub. Free, no background needed."
-    },
-    "a-ge-social-hour-drinks-games-good-vibes-50-f-10-21": {
-      "desc": "Relaxed Social Circle drinks with icebreaker games at Casa Tiki for ages 22–35. 50 free tickets; book on social-circle.ch."
-    },
-    "a-ge-tuesday-but-funny-english-comedy-10-20": {
-      "desc": "Free English-language stand-up in Lausanne where professional comedians try new jokes and newcomers do their first sets."
-    },
-    "a-zh-bear-pit-comedy-english-stand-up-monthly-10-16": {
-      "desc": "Monthly English stand-up showcase at Les Amis bar in Bern, with comedians from across Switzerland. Free entry."
-    },
-    "a-zh-bilder-schaffen-wirklichkeit-10-17": {
-      "desc": "Photo exhibition at the Photobastei exploring how images shape our view of migration. Open until 25 October."
-    },
-    "a-zh-digital-detox-cafe-10-18": {
-      "desc": "Social Circle's phone-free café evening at Paint it Easy, with journaling and creative prompts. Free, but a ticket is needed."
-    },
-    "a-zh-20-zu-ri-wiesn-unser-oktoberfest-im-haup-10-17": {
-      "desc": "Zurich's Oktoberfest inside the main station: a two-storey beer tent, Bavarian food and live music."
-    },
-    "a-zh-watercolor-workshop-10-20": {
-      "desc": "Beginner-friendly watercolour workshop making personalised cards at Quartierhaus Kreis 6. Free, ticket needed via social-circle.ch."
-    },
-    "a-zh-kunstakt-at-f-iz-luzern-10-20": {
-      "desc": "Open life-drawing group in Lucerne for anyone who enjoys drawing or painting from live models."
-    },
-    "a-zh-nachhall-10-20": {
-      "desc": "Talk series by Kunsthaus Zürich and Opernhaus Zürich on what stays with us after art and music; likely in German."
-    },
-    "a-ge-puces-de-la-couture-10-17": {
-      "desc": "Sewing flea market in Bellegarde: fabric, haberdashery, patterns and sewing gear sold by locals. Free entry."
-    },
-    "a-ge-sylvia-sleigh-10-17": {
-      "desc": "Retrospective of British-born painter Sylvia Sleigh, known for her feminist figurative portraits. Final weeks at Musée Rath."
-    },
-    "a-ge-observatoires-10-17": {
-      "desc": "Artist John M Armleder's carte blanche at the Museum of Art and History, remixing the collection. Ends 25 October."
-    },
-    "a-ge-graines-en-fe-te-10-18": {
-      "desc": "Free afternoon at the Botanical Garden celebrating 25 years of its seed bank, with displays on seed diversity. Dog-friendly gardens."
-    },
-    "a-ge-improv-comedy-fairytale-happily-ever-lau-10-17": {
-      "desc": "A fully improvised fairytale show at the Impro Comedy Club; check the listing for the language. Free."
-    },
-    "a-ge-guitars-and-friends-festival-10-17": {
-      "desc": "Three-day festival in Nyon's communal hall with acoustic concerts, songwriting masterclasses and jam sessions."
-    },
-    "a-zh-pedro-rodrgues-go-anywhere-do-anything-10-17": {
-      "desc": "Opening show of the new spicy art space in Burgdorf: a multimedia exhibition by Pedro Rodrigues."
-    },
-    "a-zh-womxn-on-stage-10-20": {
-      "desc": "Social Circle's open stage showcasing women and non-binary performers at Amboss Rampe. Free, ticket needed."
-    }
+  "zh": {
+   "wd1": "English stand-up at Comedy Brew and a free arcade night with Zurich Together on Thursday.",
+   "we1": "Basel's Herbstmesse opens, Bürkliplatz flea market and portrait and sculpture-drawing workshops; rain likely, so indoor plans win.",
+   "wd2": "Speed friending on Tuesday, a pub quiz on Wednesday and the Expovina wine ships opening on Thursday.",
+   "we2": "Last Bürkliplatz flea market of the season, pumpkin carving, big expat Halloween parties and watercolours in the tropical greenhouses."
+  }
+ },
+ "picks": [
+  {
+   "block": "we1",
+   "id": "c-ge-festival-du-soir-10-16",
+   "k": "Friday evening",
+   "why": "Indoor festival village at Palexpo: GIMS live, then a huge Brazilian party; easy rain-proof night out."
   },
-  "drop": [
-    "a-ge-ateliers-nume-riques-d-octobre-permanenc-10-16",
-    "a-ge-e-veil-sensoriel-le-futur-c-est-quoi-10-17",
-    "a-ge-ne-pour-lire-10-17",
-    "a-ge-notre-biodiversite-jeu-de-memory-10-17",
-    "a-ge-ravens-de-gene-ve-contre-fribourg-sbl-wo-10-18",
-    "a-ge-sunday-football-10-18",
-    "a-ge-sunday-football-10-25",
-    "a-ge-visite-guide-e-pour-petits-grands-10-18",
-    "a-zh-20-02-test-oprnig-10-15",
-    "a-zh-20-02-test-oprnig-10-17",
-    "a-zh-20-02-test-oprnig-10-24",
-    "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-10-15",
-    "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-10-17",
-    "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-10-18",
-    "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-10-24",
-    "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-10-25",
-    "a-zh-ausstellung-violina-flora-10-15",
-    "a-zh-board-game-designer-meetup-dubischdra-ca-10-15",
-    "a-zh-community-run-workout-coffee-10-24",
-    "a-zh-hanna-harald-10-15",
-    "a-zh-himmlischer-start-fru-hstu-ck-brunch-vom-10-15",
-    "a-zh-himmlischer-start-fru-hstu-ck-brunch-vom-10-17",
-    "a-zh-himmlischer-start-fru-hstu-ck-brunch-vom-10-24",
-    "a-zh-integrationskreis-fu-r-erweiterte-bewuss-10-15",
-    "a-zh-japanese-journey-taste-of-autumn-10-15",
-    "a-zh-jodeln-folgekurs-10-15",
-    "a-zh-ko-rper-und-atemtherapie-10-15",
-    "a-zh-luzern-10-16",
-    "a-zh-meetbychance-singles-treffen-zufa-llig-s-10-15",
-    "a-zh-mit-squillo-ins-zauberland-oper-10-24",
-    "a-zh-morning-yoga-fu-r-junggebliebene-ab-60-10-15",
-    "a-zh-pilates-soft-fu-r-frauen-50-10-15",
-    "a-zh-sehen-ohne-augen-ausbildung-10-15",
-    "a-zh-silener-ba-hnli-pass-2026-10-15",
-    "a-zh-speaking-club-10-15",
-    "a-zh-spielgruppe-move-and-create-10-15",
-    "a-zh-wildsaison-im-zunfthaus-zur-zimmerleuten-10-15",
-    "a-zh-wildsaison-im-zunfthaus-zur-zimmerleuten-10-17",
-    "a-zh-wildsaison-im-zunfthaus-zur-zimmerleuten-10-18",
-    "a-zh-wildsaison-im-zunfthaus-zur-zimmerleuten-10-24",
-    "a-zh-wildsaison-im-zunfthaus-zur-zimmerleuten-10-25",
-    "a-zh-world-cup-fever-skills-zone-10-15",
-    "a-zh-world-cup-fever-skills-zone-10-17",
-    "a-zh-world-cup-fever-skills-zone-10-18",
-    "a-zh-world-cup-fever-skills-zone-10-24",
-    "a-zh-world-cup-fever-skills-zone-10-25",
-    "a-zh-wunderpflanze-brennnessel-erleben-10-15",
-    "a-zh-zfg-sunday-smashes-social-badminton-in-z-10-25",
-    "a-zh-zu-rich-liest-zwischentext-heimat-home-2-10-24",
-    "ge-comedie-club-tour-oct14"
-  ],
-  "add": [
-    {
-      "id": "ge-everybodys-perfect-2026",
-      "day": "2026-10-09",
-      "dayEnd": "2026-10-18",
-      "when": "9–18 Oct · screenings daily",
-      "title": "Everybody's Perfect — Geneva Queer Film Festival",
-      "kind": "Film festival",
-      "url": "https://www.everybodysperfect.ch/",
-      "place": "Maison des arts du Grütli, Rue du Général-Dufour 16, Genève",
-      "price": "Tickets per screening",
-      "cat": [
-        "culture",
-        "fete"
-      ],
-      "zone": "ge",
-      "city": "ge",
-      "desc": "Geneva's international LGBTIQ+ film festival: ten days of features and shorts at the Cinémas du Grütli, plus talks, performances, workshops and party nights. Many films have English subtitles. Programme and tickets on everybodysperfect.ch."
-    },
-    {
-      "city": "ge",
-      "zone": "ge",
-      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
-      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
-      "cat": [
-        "fete",
-        "culture"
-      ],
-      "indoor": true,
-      "id": "c-ge-festival-du-soir-10-16",
-      "day": "2026-10-16",
-      "dayEnd": "2026-11-01",
-      "when": "16 Oct – 1 Nov · Fri & Sat nights from 19:00",
-      "title": "Festival du Soir — 10th edition at Palexpo",
-      "kind": "Festival",
-      "price": "Tickets per night",
-      "url": "https://festivaldusoir.com",
-      "desc": "Geneva's big indoor night festival takes over Palexpo for three weekends: each Friday and Saturday has its own world, from electronic music and circus to Latin parties, disco revival and a giant Halloween. Open the festival for the night-by-night programme."
-    },
-    {
-      "city": "ge",
-      "zone": "ge",
-      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
-      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
-      "cat": [
-        "fete",
-        "culture"
-      ],
-      "indoor": true,
-      "id": "c-ge-fds-gims-10-23",
-      "day": "2026-10-23",
-      "when": "Fri 23 Oct · 19:00–late",
-      "title": "GIMS + Triangle des Bermudes, then Baile do Village XXL",
-      "kind": "Concert",
-      "price": "Tickets",
-      "url": "https://festivaldusoir.com",
-      "desc": "Festival du Soir night: French rap-pop star GIMS on the main stage until midnight, then a big Brazilian-Latin party (Baile do Village XXL) on the second stage. One ticket for both."
-    },
-    {
-      "city": "ge",
-      "zone": "ge",
-      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
-      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
-      "cat": [
-        "fete",
-        "culture"
-      ],
-      "indoor": true,
-      "id": "c-ge-fds-nostalgia-10-24",
-      "day": "2026-10-24",
-      "when": "Sat 24 Oct · 19:00–05:00",
-      "title": "Nostalgia & Disco Party XXL + La Troya",
-      "kind": "Party",
-      "price": "Tickets",
-      "url": "https://festivaldusoir.com",
-      "desc": "Festival du Soir night: 80s–2000s nostalgia with live sets from Gala, Boney M. and O-Zone on the main stage, plus La Troya, the Ibiza party, on the second stage."
-    },
-    {
-      "city": "ge",
-      "zone": "ge",
-      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
-      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
-      "cat": [
-        "fete",
-        "culture"
-      ],
-      "indoor": true,
-      "id": "c-ge-fds-positiv-10-30",
-      "day": "2026-10-30",
-      "when": "Fri 30 Oct · 19:00–05:00",
-      "title": "Positiv — Paul Kalkbrenner, Mind Against",
-      "kind": "Party",
-      "price": "Tickets",
-      "url": "https://festivaldusoir.com",
-      "desc": "Festival du Soir techno night with Paul Kalkbrenner, Mind Against, Nicolas Cuer and La Forêt."
-    },
-    {
-      "city": "ge",
-      "zone": "ge",
-      "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
-      "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
-      "cat": [
-        "fete",
-        "culture"
-      ],
-      "indoor": true,
-      "id": "c-ge-fds-megalloween-10-31",
-      "day": "2026-10-31",
-      "when": "Sat 31 Oct · 19:00–06:00",
-      "title": "Megalloween — 20th anniversary + Día de los Muertos",
-      "kind": "Party",
-      "price": "Tickets",
-      "url": "https://festivaldusoir.com",
-      "desc": "Festival du Soir's giant Halloween party in costume, with a Día de los Muertos festival running alongside."
-    }
-  ]
+  {
+   "block": "we1",
+   "id": "a-ge-de-couverte-de-l-impression-typographiqu-10-24",
+   "k": "Saturday",
+   "why": "Hands-on letterpress printing and bookbinding at the Palais de l'Athénée for CHF 20."
+  },
+  {
+   "block": "we1",
+   "id": "a-ge-the-comedy-line-late-night-10-24",
+   "k": "Saturday night",
+   "why": "Late-night English stand-up at El Catrín; grab tacos first and make a night of it."
+  },
+  {
+   "block": "we1",
+   "id": "a-ge-ikebana-flower-arrangement-hif-x-nayablo-10-25",
+   "k": "Sunday",
+   "why": "Cosy Ikebana workshop in an Old Town café, in English; a calm indoor Sunday."
+  },
+  {
+   "block": "wd2",
+   "id": "a-ge-atelier-broderie-x-renc-art-10-26",
+   "k": "Monday evening",
+   "why": "Free embroidery workshop at Pavillon bleu in Les Grottes; relaxed and easy to chat."
+  },
+  {
+   "block": "wd2",
+   "id": "a-ge-tuesday-but-funny-english-comedy-10-27",
+   "k": "Tuesday evening",
+   "why": "Free English comedy night in the Old Town where pros test new material."
+  },
+  {
+   "block": "wd2",
+   "id": "a-ge-language-exchange-geneva-10-28",
+   "k": "Wednesday evening",
+   "why": "Free language exchange at Halle de l'Ile: the easiest way to meet new people midweek."
+  },
+  {
+   "block": "wd2",
+   "id": "a-ge-drink-paint-and-meet-spooky-halloween-e--10-29",
+   "k": "Thursday evening",
+   "why": "Paint, drink and meet people at a Halloween-themed session; no art skills needed."
+  },
+  {
+   "block": "we1",
+   "id": "a-zh-portrait-sketches-workshop-10-24",
+   "k": "Saturday afternoon",
+   "why": "Portrait sketching workshop with an artist; a creative, indoor afternoon."
+  },
+  {
+   "block": "we1",
+   "id": "c-zh-herbstmesse-basel-10-24",
+   "k": "Saturday",
+   "why": "Opening day of Basel's huge autumn fair: rides, mulled wine and a crafts village, 55 min away."
+  },
+  {
+   "block": "we1",
+   "id": "a-zh-speed-friending-day-rave-10-24",
+   "k": "Saturday",
+   "why": "Speed friending at a daytime rave: coffee, croissants and new friends in Enge."
+  },
+  {
+   "block": "we1",
+   "id": "a-zh-figu-rliches-zeichnen-von-antiken-skulpt-10-25",
+   "k": "Sunday afternoon",
+   "why": "Draw from ancient sculptures in the university's archaeology collection; great indoor practice."
+  },
+  {
+   "block": "wd2",
+   "id": "a-zh-speed-friending-10-27",
+   "k": "Tuesday evening",
+   "why": "Free speed friending at SOHO: meet lots of people quickly in a friendly setting."
+  },
+  {
+   "block": "wd2",
+   "id": "a-zh-fun-pub-quiz-lady-hamiltons-free-entry-10-28",
+   "k": "Wednesday evening",
+   "why": "Free, lively pub quiz in the city centre; join a team on the night."
+  },
+  {
+   "block": "wd2",
+   "id": "c-zh-expovina-10-29",
+   "k": "Thursday evening",
+   "why": "Opening night of the wine ships at Bürkliplatz; taste wines with friends after work."
+  },
+  {
+   "block": "wd2",
+   "id": "a-zh-comedy-brew-english-stand-up-thursday-so-10-29",
+   "k": "Thursday evening",
+   "why": "Weekly English open-mic comedy at ROBIN's Coffee; CHF 5 and a friendly crowd."
+  }
+ ],
+ "edits": {
+  "a-ge-language-exchange-geneva-10-28": "Free language exchange at Halle de l'Ile: tables by language, a relaxed crowd and an easy way to meet new people.",
+  "a-zh-speed-friending-day-rave-10-24": "Speed friending at a daytime rave in Enge: quick rounds of chat over coffee and croissants, then dance. Free, but get a ticket via social-circle.ch.",
+  "a-ge-drink-paint-and-meet-spooky-halloween-e--10-29": "A Halloween-themed paint-and-drink evening at Lucha Libre: paint a spooky canvas, have a drink and meet new people. All materials included.",
+  "a-zh-portrait-sketches-workshop-10-24": "Portrait sketching workshop with artist Proximus Mustafa, focused on presence and self-expression; beginners welcome.",
+  "a-zh-figu-rliches-zeichnen-von-antiken-skulpt-10-25": "Figure-drawing session among ancient sculptures in the University of Zurich's archaeology collection, practising proportion, movement and perspective.",
+  "a-ge-122-atelier-croquez-monsieur-madame-10-24": "Life-drawing afternoon with two models at Quai du Seujet, with poses from short sketches to long studies; all levels welcome.",
+  "a-ge-atelier-pictura-espace-du-quartier-saint-10-28": "Evening life-drawing session with a model at the Saint-Jean community space, 18:30–20:30; bring your own materials.",
+  "a-ge-sketchcrawl-cimetiere-des-rois-10-31": "Group sketching walk through the leafy Cimetière des Rois in Plainpalais; bring a sketchbook and join in at any level.",
+  "a-zh-zu-rich-mosaiklampen-herstellungs-worksh-10-24": "Make your own Turkish mosaic lamp in a hands-on workshop in Kreis 3; all materials provided and you take the lamp home.",
+  "a-ge-paint-flirt-ceramic-edition-by-social-ci-10-25": "Ceramic-painting social evening for ages 22–35 at Ceramic KANVAS. Free, but get a ticket via social-circle.ch.",
+  "a-ge-32e-mondial-de-l-impro-finale-10-24": "The final of the World Amateur Improv Championship at the BFM, after nine days of heats between French-speaking teams (in French).",
+  "a-ge-les-puces-de-nyon-quartier-de-rive-nyon-10-25": "Nyon's monthly flea market on the lakeside Rue de Rive, with antiques, vintage and bric-a-brac; a lovely day trip with the dog.",
+  "a-zh-tropical-watercolors-11-01": "Paint watercolours from life inside the warm tropical greenhouses of the University Botanical Garden; a cosy creative afternoon.",
+  "a-ge-atelier-broderie-x-renc-art-10-26": "Free embroidery workshop with Cosmina D. at Pavillon bleu in Les Grottes, exploring embroidery as a way of telling stories."
+ },
+ "drop": [
+  "a-ge-sunday-football-10-25",
+  "a-zh-20-02-test-oprnig-10-24",
+  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-10-24",
+  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-10-25",
+  "a-zh-community-run-workout-coffee-10-24",
+  "a-zh-himmlischer-start-fru-hstu-ck-brunch-vom-10-24",
+  "a-zh-mit-squillo-ins-zauberland-oper-10-24",
+  "a-zh-wildsaison-im-zunfthaus-zur-zimmerleuten-10-24",
+  "a-zh-wildsaison-im-zunfthaus-zur-zimmerleuten-10-25",
+  "a-zh-world-cup-fever-skills-zone-10-24",
+  "a-zh-world-cup-fever-skills-zone-10-25",
+  "a-zh-zfg-sunday-smashes-social-badminton-in-z-10-25",
+  "a-zh-zu-rich-liest-zwischentext-heimat-home-2-10-24",
+  "ge-comedie-club-tour-oct14",
+  "a-ge-sunday-football-11-01",
+  "a-zh-zfg-presents-blood-on-the-clocktower-ded-11-01",
+  "a-ge-sunday-volleyball-plainpalais-2pm-all-le-10-25",
+  "a-ge-monday-pickleball-jonction-all-levels-10-26",
+  "a-ge-geneva-5th-fabric-power-bi-user-group-ga-10-29",
+  "a-ge-sunday-volleyball-plainpalais-4pm-all-le-10-25",
+  "a-ge-tuesday-ping-pong-rive-all-levels-10-27",
+  "a-ge-sunday-badminton-at-queue-d-arve-10-25",
+  "a-ge-friday-badminton-at-queue-d-arve-10-23",
+  "a-ge-saturday-padel-4-30pm-onex-all-levels-10-24",
+  "a-zh-marketing-meetup-wednesday-meet-other-ma-10-28",
+  "a-zh-zurich-language-ai-meetup-22-10-26",
+  "a-zh-systems-thinking-for-the-working-week-10-29",
+  "a-zh-sparks-stories-a-women-in-biz-networking-10-22",
+  "a-zh-pizza-gravel-zurich-10-22",
+  "a-ge-ateliers-nume-riques-d-octobre-permanenc-10-23",
+  "a-ge-car16-ia-en-entreprise-au-travers-d-ai-f-10-29",
+  "a-ge-learn-the-art-of-public-speaking-with-de-10-27",
+  "a-ge-et-si-la-finance-e-tait-d-abord-une-ques-10-27",
+  "a-ge-atelier-d-hygie-ne-nume-rique-10-27",
+  "a-ge-blood-on-the-clock-tower-jeux-de-de-duct-10-24",
+  "a-ge-hallomania-atelier-de-fabrication-d-un-f-10-24",
+  "a-ge-blood-on-the-clock-tower-jeux-de-de-duct-10-31",
+  "a-ge-hallomania-atelier-de-fabrication-d-un-f-10-31",
+  "a-zh-pilates-soft-fu-r-frauen-50-10-22",
+  "a-zh-spielgruppe-move-and-create-10-22",
+  "a-ge-ateliers-d-improvisation-the-a-trale-pou-10-28",
+  "a-ge-notre-biodiversite-jeu-de-memory-10-24",
+  "a-zh-20-02-test-oprnig-10-22",
+  "a-zh-20-02-test-oprnig-10-31",
+  "a-zh-b-arbie-in-not-10-22",
+  "a-zh-b-arbie-in-not-10-24",
+  "a-zh-b-arbie-in-not-10-25",
+  "a-zh-b-arbie-in-not-10-31",
+  "a-zh-b-arbie-in-not-11-01",
+  "a-zh-harry-p-otter-und-die-zauberpru-fung-10-22",
+  "a-zh-harry-p-otter-und-die-zauberpru-fung-10-24",
+  "a-zh-harry-p-otter-und-die-zauberpru-fung-10-25",
+  "a-zh-harry-p-otter-und-die-zauberpru-fung-10-31",
+  "a-zh-harry-p-otter-und-die-zauberpru-fung-11-01",
+  "a-zh-world-cup-fever-skills-zone-10-22",
+  "a-zh-world-cup-fever-skills-zone-10-31",
+  "a-zh-world-cup-fever-skills-zone-11-01",
+  "a-zh-morning-yoga-fu-r-junggebliebene-ab-60-10-22",
+  "a-zh-naturfotografie-in-island-ein-fotograf-i-10-22",
+  "a-zh-asyl-migration-und-der-ruf-der-schweiz-10-22",
+  "a-zh-wir-und-der-krieg-10-22",
+  "a-zh-bilder-schaffen-wirklichkeit-10-22",
+  "a-zh-zur-moderne-im-plakatdesign-der-zwischen-10-22",
+  "a-ge-sylvia-sleigh-10-22",
+  "a-ge-observatoires-10-22",
+  "a-ge-stages-afro-fusion-ado-10-30",
+  "a-zh-der-sanfte-10-31",
+  "a-ge-run-aire-10-25",
+  "a-ge-visite-guide-e-pour-petits-grands-10-25",
+  "a-ge-la-troya-ibiza-a-gene-ve-masters-at-work-10-24",
+  "a-ge-feuilletons-de-la-mythologie-grecque-par-11-01",
+  "a-ge-le-secret-des-elfes-11-01",
+  "a-ge-boum-tschak-cie-chamar-bell-clochette-11-01",
+  "a-ge-giff-2026-confe-rence-mode-re-e-avec-mir-11-01",
+  "a-ge-hallomania-chasse-aux-bonbons-en-train-t-11-01",
+  "a-ge-hallomania-double-chasse-aux-bonbons-vig-11-01",
+  "a-zh-reeto-von-gunten-20252-weiter-vorgesorgt-10-22",
+  "a-zh-julia-steiner-warum-du-morgen-noch-leben-10-22",
+  "a-zh-wtf-die-riskanteste-und-verru-ckteste-im-10-22",
+  "a-zh-ohne-rolf-unter-druck-10-22",
+  "a-zh-moe-t-liechti-mit-begegnungszone-10-23",
+  "a-zh-manuel-stahlberger-es-geht-10-23",
+  "a-zh-silener-ba-hnli-pass-2026-10-22",
+  "a-zh-dem-wasser-auf-der-spur-10-22",
+  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-10-22",
+  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-10-31",
+  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-11-01",
+  "a-zh-ganzheitliche-gymnastik-spiraldynamik-10-22",
+  "a-zh-ganzheitliche-gymnastik-spiraldynamik-10-27"
+ ],
+ "add": [
+  {
+   "city": "ge",
+   "zone": "ge",
+   "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+   "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+   "cat": [
+    "fete",
+    "culture"
+   ],
+   "indoor": true,
+   "id": "c-ge-festival-du-soir-10-16",
+   "day": "2026-10-16",
+   "dayEnd": "2026-11-01",
+   "when": "16 Oct – 1 Nov · Fri & Sat nights from 19:00",
+   "title": "Festival du Soir — 10th edition at Palexpo",
+   "kind": "Festival",
+   "price": "Tickets per night",
+   "url": "https://festivaldusoir.com",
+   "desc": "Geneva's big indoor night festival takes over Palexpo for three weekends: each Friday and Saturday has its own world, from electronic music and circus to Latin parties, disco revival and a giant Halloween. Open the festival for the night-by-night programme."
+  },
+  {
+   "city": "ge",
+   "zone": "ge",
+   "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+   "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+   "cat": [
+    "fete",
+    "culture"
+   ],
+   "indoor": true,
+   "id": "c-ge-fds-gims-10-23",
+   "day": "2026-10-23",
+   "when": "Fri 23 Oct · 19:00–late",
+   "title": "GIMS + Triangle des Bermudes, then Baile do Village XXL",
+   "kind": "Concert",
+   "price": "Tickets",
+   "url": "https://festivaldusoir.com",
+   "desc": "Festival du Soir night: French rap-pop star GIMS on the main stage until midnight, then a big Brazilian-Latin party (Baile do Village XXL) on the second stage. One ticket for both."
+  },
+  {
+   "city": "ge",
+   "zone": "ge",
+   "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+   "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+   "cat": [
+    "fete",
+    "culture"
+   ],
+   "indoor": true,
+   "id": "c-ge-fds-nostalgia-10-24",
+   "day": "2026-10-24",
+   "when": "Sat 24 Oct · 19:00–05:00",
+   "title": "Nostalgia & Disco Party XXL + La Troya",
+   "kind": "Party",
+   "price": "Tickets",
+   "url": "https://festivaldusoir.com",
+   "desc": "Festival du Soir night: 80s–2000s nostalgia with live sets from Gala, Boney M. and O-Zone on the main stage, plus La Troya, the Ibiza party, on the second stage."
+  },
+  {
+   "city": "ge",
+   "zone": "ge",
+   "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+   "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+   "cat": [
+    "fete",
+    "culture"
+   ],
+   "indoor": true,
+   "id": "c-ge-fds-positiv-10-30",
+   "day": "2026-10-30",
+   "when": "Fri 30 Oct · 19:00–05:00",
+   "title": "Positiv — Paul Kalkbrenner, Mind Against",
+   "kind": "Party",
+   "price": "Tickets",
+   "url": "https://festivaldusoir.com",
+   "desc": "Festival du Soir techno night with Paul Kalkbrenner, Mind Against, Nicolas Cuer and La Forêt."
+  },
+  {
+   "city": "ge",
+   "zone": "ge",
+   "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+   "trip": "Geneva · bus 5/10 or train to Genève-Aéroport",
+   "cat": [
+    "fete",
+    "culture"
+   ],
+   "indoor": true,
+   "id": "c-ge-fds-megalloween-10-31",
+   "day": "2026-10-31",
+   "when": "Sat 31 Oct · 19:00–06:00",
+   "title": "Megalloween — 20th anniversary + Día de los Muertos",
+   "kind": "Party",
+   "price": "Tickets",
+   "url": "https://festivaldusoir.com",
+   "desc": "Festival du Soir's giant Halloween party in costume, with a Día de los Muertos festival running alongside."
+  },
+  {
+   "id": "c-ge-giff-10-30",
+   "city": "ge",
+   "day": "2026-10-30",
+   "dayEnd": "2026-11-08",
+   "when": "Fri 30 Oct – Sun 8 Nov",
+   "title": "GIFF — Geneva International Film Festival (32nd edition)",
+   "url": "https://www.giff.ch",
+   "place": "Théâtre Pitoëff and venues around town, Rue de Carouge 52, Geneva",
+   "trip": "Geneva",
+   "price": "Varies",
+   "indoor": true,
+   "cat": [
+    "culture",
+    "fete"
+   ],
+   "zone": "ge",
+   "desc": "Ten days of films, series and immersive/VR experiences, with talks and big GIFF Night parties; many screenings are in English or subtitled."
+  },
+  {
+   "id": "c-ge-automnales-11-06",
+   "city": "ge",
+   "day": "2026-11-06",
+   "dayEnd": "2026-11-15",
+   "when": "Fri 6 – Sun 15 Nov · from 10:00/11:00",
+   "title": "Les Automnales — Geneva's autumn fair",
+   "url": "https://www.automnales.ch",
+   "place": "Palexpo, Route François-Peyrot 30, Le Grand-Saconnex",
+   "trip": "Geneva",
+   "price": "CHF 5–15",
+   "indoor": true,
+   "cat": [
+    "marche",
+    "fete"
+   ],
+   "zone": "ge",
+   "desc": "Geneva's big ten-day autumn fair: a food festival with bars and food trucks, the Arvinis wine fair, a shopping market and an upcycling area; open late on Fri and Sat."
+  },
+  {
+   "id": "c-zh-expovina-10-29",
+   "city": "zh",
+   "day": "2026-10-29",
+   "dayEnd": "2026-11-12",
+   "when": "Thu 29 Oct – Thu 12 Nov",
+   "title": "Expovina — wine ships on Lake Zurich",
+   "url": "https://www.expovina.ch",
+   "place": "Bürkliplatz, 8001 Zürich",
+   "trip": "Zurich",
+   "price": "Ticketed",
+   "indoor": true,
+   "cat": [
+    "marche",
+    "fete"
+   ],
+   "zone": "zh",
+   "desc": "A Zurich classic: ships moored at Bürkliplatz become a floating wine fair with thousands of wines to taste; a fun after-work outing with friends."
+  },
+  {
+   "id": "c-zh-herbstmesse-basel-10-24",
+   "city": "zh",
+   "day": "2026-10-24",
+   "dayEnd": "2026-11-08",
+   "when": "Sat 24 Oct – Sun 8 Nov · from 11:00/12:00",
+   "title": "Basler Herbstmesse — 555th Basel autumn fair",
+   "url": "https://www.bs.ch/veranstaltungen/basler-herbstmesse",
+   "place": "Barfüsserplatz, Münsterplatz, Petersplatz and more, Basel",
+   "trip": "≈ 55 min by train",
+   "price": "Free",
+   "free": true,
+   "indoor": false,
+   "cat": [
+    "fete",
+    "marche"
+   ],
+   "zone": "90",
+   "desc": "Switzerland's oldest and biggest funfair spreads over seven squares in Basel, with rides, mulled wine, roasted chestnuts and a crafts village and market at Petersplatz."
+  },
+  {
+   "id": "c-zh-flohmarkt-buerkliplatz-10-24",
+   "city": "zh",
+   "day": "2026-10-24",
+   "when": "Sat 24 · 07:00–16:00",
+   "title": "Bürkliplatz flea market",
+   "url": "https://www.myswitzerland.com/en-us/experiences/events/events-search/customsormarket/zurich/",
+   "place": "Stadthausanlage at Bürkliplatz, 8001 Zürich",
+   "trip": "Zurich",
+   "price": "Free",
+   "free": true,
+   "dog": true,
+   "indoor": false,
+   "cat": [
+    "marche",
+    "chien"
+   ],
+   "zone": "zh",
+   "desc": "Zurich's best-loved Saturday flea market by the lake: vintage, antiques, books and curiosities; the season ends on 31 October."
+  },
+  {
+   "id": "c-zh-flohmarkt-buerkliplatz-10-31",
+   "city": "zh",
+   "day": "2026-10-31",
+   "when": "Sat 31 · 07:00–16:00",
+   "title": "Bürkliplatz flea market — last market of the season",
+   "url": "https://www.myswitzerland.com/en-us/experiences/events/events-search/customsormarket/zurich/",
+   "place": "Stadthausanlage at Bürkliplatz, 8001 Zürich",
+   "trip": "Zurich",
+   "price": "Free",
+   "free": true,
+   "dog": true,
+   "indoor": false,
+   "cat": [
+    "marche",
+    "chien"
+   ],
+   "zone": "zh",
+   "desc": "Final Saturday of the season at Zurich's big lakeside flea market: vintage, antiques, books and curiosities."
+  },
+  {
+   "id": "c-zh-rosenhof-markt-10-24",
+   "city": "zh",
+   "day": "2026-10-24",
+   "when": "Sat 24 · 10:00–18:00",
+   "title": "Rosenhof crafts market in the Niederdorf",
+   "url": "https://www.myswitzerland.com/en-us/experiences/events/events-search/customsormarket/zurich/",
+   "place": "Rosenhof, Niederdorf, 8001 Zürich",
+   "trip": "Zurich",
+   "price": "Free",
+   "free": true,
+   "dog": true,
+   "indoor": false,
+   "cat": [
+    "marche",
+    "creatif",
+    "chien"
+   ],
+   "zone": "zh",
+   "desc": "Small Saturday market of local makers and artisans (jewellery, ceramics, textiles) on a pretty square in the Old Town."
+  },
+  {
+   "id": "c-zh-rosenhof-markt-10-31",
+   "city": "zh",
+   "day": "2026-10-31",
+   "when": "Sat 31 · 10:00–18:00",
+   "title": "Rosenhof crafts market in the Niederdorf",
+   "url": "https://www.myswitzerland.com/en-us/experiences/events/events-search/customsormarket/zurich/",
+   "place": "Rosenhof, Niederdorf, 8001 Zürich",
+   "trip": "Zurich",
+   "price": "Free",
+   "free": true,
+   "dog": true,
+   "indoor": false,
+   "cat": [
+    "marche",
+    "creatif",
+    "chien"
+   ],
+   "zone": "zh",
+   "desc": "Small Saturday market of local makers and artisans (jewellery, ceramics, textiles) on a pretty square in the Old Town."
+  }
+ ]
 }
