@@ -851,6 +851,8 @@ nav.tabs [data-tab="this"]::before{content:"🔎"!important}
 .pl-cta[disabled]{opacity:.5}
 .pl-all{display:block;margin:10px auto 0;font-size:13.5px}
 .pl-cta.done{background:var(--go-soft);color:var(--go)}
+.pl-acts button.on{background:var(--go-soft);color:var(--go)}
+.pl-hint.first{margin:14px 0 8px;font-size:13.5px;color:var(--ink)}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -2529,6 +2531,10 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
         let st=null;if(!until){const f=T[0];st=mk(f,+en.slice(0,4));if(!f[3]&&st>en)st=mk(f,+en.slice(0,4)-1)}
         if(!st||st<=en){e.dayEnd=en;if(st&&st>e.day&&st>TODAY&&e.p==="on")e.day=st;e._deOk=1}}}
   });
+  /* courses were read as exhibitions ("photo" in the title) */
+  L.forEach(e=>{if(e.kind)return;const t=e.title+" "+(e.titleOrig||"");
+    if(/(?:photo|foto)\w*[^.]{0,40}\b(?:workshop|kurs|course|cours|class)|\b(?:workshop|kurs|course|cours|class)\b[^.]{0,40}(?:photo|foto)|fotokurs/i.test(t))e.kind="Photography course";
+    else if(/courses-seminars|kurse-seminare|cours-seminaires/.test(e.url||"")&&/workshop|kurs|course|cours|seminar|class/i.test(t))e.kind="Course"});
   /* prices */
   L.forEach(e=>{let p=String(e.price||"").trim();
     if(p){p=p.replace(/^CHF\s+CHF\b/i,"CHF").replace(/\.-(?=[\s,/)]|$)/g,"");p=p.replace(/^CHF\s+(?=[A-Za-zÀ-ÿ])(?!(?:d[èe]s|from|ab)\b)/i,"");
@@ -3096,7 +3102,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   function hikeScore(h,s,moods){const t=h.hike;const w=(TWX[t.id]||{})[s.d]||((city()==="ge"?WX:WX_ZH)[s.d]);let v=moods.includes("outdoors")?9:2;
     if(w){if(w[1]>=50)v-=12;else if(w[1]>=30)v-=2;else v+=3}
     if(s.d===TODAY&&nowMin()>9*60)v-=50;if((S.nope||{})[t.id])v-=50;return v-t.hike.min/120}
-  function cands(s,ctx,moods,who){const c=city();let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&e.p!=="big"&&fits(e,s)&&!never(e)&&(isLocal(e)||e.zone==="45"||goingSet.has(e.id)));
+  function cands(s,ctx,moods,who){const c=city();const pricey=e=>{const m=String(e.price||"").match(/CHF\s*(\d+)/);return m&&+m[1]>150&&!goingSet.has(e.id)};let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!pricey(e)&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&e.p!=="big"&&fits(e,s)&&!never(e)&&(isLocal(e)||e.zone==="45"||goingSet.has(e.id)));
     if(ctx==="we"&&s.k==="m")L=L.concat(hikes());
     return L.map(e=>({e,v:score(e,s,ctx,moods,who)})).sort((a,b)=>b.v-a.v)}
   /* --- building a plan --- */
@@ -3117,7 +3123,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
       const going=list.find(x=>goingSet.has(x.e.id)&&goOn(x.e,s.d));if(!pick&&going)pick=going;
       if(!pick){const i=(swaps[s.key]||0)%Math.max(1,list.length);pick=list[i]||null}
       if(pick){used.add(pick.e.id);[...tags(pick.e)].slice(0,1).forEach(t=>usedTags[t]=(usedTags[t]||0)+1)}
-      res.push({s,pick,kept:!!o.id,going:pick&&goingSet.has(pick.e.id)&&goOn(pick.e,s.d),n:list.length,all:list})}
+      res.push({s,pick,kept:!!o.id,going:pick&&(pick.e.hike?tripDates(pick.e.id).includes(s.d):goingSet.has(pick.e.id)&&goOn(pick.e,s.d)),n:list.length,all:list})}
     return res}
   function dontMiss(ctx){const ds=ctx==="we"?weRange():wkDays();const lo=ds[0],hi=ds[ds.length-1];const c=city();
     return EVENTS.filter(e=>cityOf(e)===c&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&!e.folded&&e.day<=hi&&(e.dayEnd||e.day)>=lo&&((e.dayEnd&&e.dayEnd>e.day&&(new Date(e.dayEnd)-new Date(e.day))<=24*864e5&&/festival|fest\b|f[êe]te/i.test(e.title+" "+(e.kind||"")))||PICKS().some(p=>p.id===e.id&&/festival/i.test(e.title+p.why))))
@@ -3132,10 +3138,10 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(r.skip)return '<div class="pl-slot pl-skip" data-slot="'+s.key+'">'+head+'<div class="pl-m">Skipped · <button class="pl-lnk" data-plunskip="'+s.key+'">Plan something</button></div></div>';
     if(r.cont)return '<div class="pl-slot pl-cont">'+head+'<div class="pl-m">↳ Still on '+esc(r.cont.e.title)+'</div></div>';
     if(!r.pick)return '<div class="pl-slot">'+head+'<div class="pl-m">Nothing that fits your mood. Try another chip above, or <button class="pl-lnk" data-plall="'+s.key+'">see everything</button>.</div></div>';
-    const e=r.pick.e;const tag=r.going?'<span class="pl-tag go">✓ Going</span>':r.kept?'<span class="pl-tag">✓ Kept</span>':'';
+    const e=r.pick.e;const tag='';
     return '<div class="pl-slot'+(r.going||r.kept?' pl-on':'')+'" data-slot="'+s.key+'" data-ev="'+esc(e.id)+'">'+head+
       '<button class="pl-body" data-plmenu="'+s.key+'"><span class="pl-t">'+esc(e.title)+'</span>'+tag+'<span class="pl-m">'+esc(meta(e))+'</span>'+(why(e)?'<span class="pl-w">'+esc(why(e))+'</span>':'')+'</button>'+
-      '<div class="pl-acts"><button data-plswap="'+s.key+'"'+(r.n<2||r.kept||r.going?' disabled':'')+'>↻ Swap'+(r.n>1?' <small>'+(r.n-1)+'</small>':'')+'</button>'+(r.kept||r.going?'<button data-plunkeep="'+s.key+'">Unkeep</button>':'<button data-plkeep="'+s.key+'">✓ Keep</button>')+'<button class="x" data-plnope="'+s.key+'">Not for me</button></div></div>'}
+      '<div class="pl-acts"><button data-plswap="'+s.key+'"'+(r.n<2||r.going?' disabled':'')+'>↻ Swap'+(r.n>1?' <small>'+(r.n-1)+'</small>':'')+'</button>'+(r.going?'<button class="on" data-plunkeep="'+s.key+'">✓ In My plans</button>':'<button data-plkeep="'+s.key+'">＋ My plans</button>')+'<button class="x" data-plnope="'+s.key+'">Not for me</button></div></div>'}
   function view(){const ctx=ui.planCtx||"we";const c=cur(ctx);const P=prof();
     if(ui.planAll){const r=build(ctx).find(x=>x.s.key===ui.planAll);if(r)return allView(r,ctx)}
     const ds=ctx==="we"?weRange():wkDays();const res=build(ctx);const dm=dontMiss(ctx);
@@ -3146,9 +3152,8 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(dm.length)h+='<div class="pl-dm"><div class="pl-sl"><b>Don\'t miss · on now</b></div>'+dm.map(e=>'<button class="pl-dmr" data-plopen="'+esc(e.id)+'"><b>'+esc(e.title.split(" — ")[0])+'</b> · '+(e.dayEnd?'until '+dLbl(e.dayEnd):dLbl(e.day))+'</button>').join("")+'</div>';
     h+=res.length?res.map(r=>card(r,ctx)).join(""):'<p class="empty">'+(ctx==="wk"?'No free evenings left this week. Set your free evenings in “What I like”.':'This weekend is over. The next one appears on Monday.')+'</p>';
     const n=res.filter(r=>r.pick&&!r.skip&&!r.cont).length;
-    const nk=res.filter(r=>r.pick&&!r.skip&&!r.cont&&(r.kept||r.going)).length;
-    const allIn=nk&&res.filter(r=>r.pick&&!r.skip&&!r.cont&&(r.kept||r.going)).every(r=>r.going||(r.pick.e.hike&&tripDates(r.pick.e.id).includes(r.s.d)));
-    if(n)h+=(nk?(allIn?'<button class="pl-cta done" data-plopenplans>✓ '+nk+' in My plans · see them</button>':'<button class="pl-cta" data-pladd="kept">Add '+nk+' kept to My plans</button>')+'<button class="pl-cal" data-plcal="kept">📅 Add '+nk+' to calendar</button><button class="pl-lnk pl-all" data-pladd="all">or add all '+n+' suggestions</button>':'<button class="pl-cta" data-pladd="all">Add all '+n+' to My plans</button><button class="pl-cal" data-plcal="all">📅 Add all '+n+' to calendar</button><p class="pl-hint">Tip: tap ✓ Keep on the ones you like to add only those.</p>')+'<p class="pl-hint">Tap a card to move it, see all options for that slot, or open details. Everything else is in Explore.</p>';
+    const nk=res.filter(r=>r.pick&&!r.skip&&!r.cont&&r.going).length;
+    if(n)h+=(nk?'<button class="pl-cta" data-plcal="kept">📅 Put my '+nk+' plan'+(nk>1?'s':'')+' in my calendar</button><button class="pl-cal" data-plopenplans>See My plans</button>'+(nk<n?'<button class="pl-lnk pl-all" data-pladd="all">or add all '+n+' suggestions</button>':''):'<p class="pl-hint first">Tap <b>＋ My plans</b> on the ones you like.</p><button class="pl-cal" data-pladd="all">Add all '+n+' to My plans</button>')+'<p class="pl-hint">Tap a card to move it, see all options for that slot, or open details. Everything else is in Explore.</p>';
     return h}
   function allView(r,ctx){const s=r.s;const c=cur(ctx);const list=cands(s,ctx,c.moods,c.who);const f=ui.planAllF||"all";
     const cnt={};list.forEach(x=>tags(x.e).forEach(t=>cnt[t]=(cnt[t]||0)+1));
@@ -3183,7 +3188,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     el.innerHTML=view()}
   /* --- actions --- */
   function nope(e){if(e.hike){S.nope=S.nope||{};S.nope[e.id]={k:"Hike",tg:["outdoors"]};return}hidden.add(e.id);S.nope=S.nope||{};txt(e);S.nope[e.id]={c:e.cat||[],p:e.place||"",g:e.grp||GRP[e.rep||e.id]||e.src||"",k:e._pk||"",tg:[...tags(e)]}}
-  function chosen(ctx,mode){return build(ctx).filter(r=>r.pick&&!r.skip&&!r.cont&&(mode!=="kept"||r.kept||r.going))}
+  function chosen(ctx,mode){return build(ctx).filter(r=>r.pick&&!r.skip&&!r.cont&&(mode!=="kept"||r.going))}
   function goSet(id,d,k){S.goDay=S.goDay||{};const same=S.goDay[id]===d;S.goDay[id]=d;if(same&&S.goSlot&&S.goSlot[id])k=S.goSlot[id];S.goSlot=S.goSlot||{};if(k)S.goSlot[id]=k;ensureHist(id);if(S.hist[id])S.hist[id].d=d}
   function addAll(ctx,mode){const res=chosen(ctx,mode);let n=0;res.forEach(r=>{const e=r.pick.e;
       if(e.hike){S.trips=S.trips||{};const a=S.trips[e.id]||[];if(!a.includes(r.s.d))a.push(r.s.d);S.trips[e.id]=a.sort();n++}
@@ -3221,8 +3226,12 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(b=t.closest("[data-plwho]")){const c=cur(ctx);c.who=b.dataset.plwho;setCur(ctx,c);render();return}
     if(b=t.closest("[data-plmood]")){const c=cur(ctx);const k=b.dataset.plmood;const i=c.moods.indexOf(k);if(i>=0)c.moods.splice(i,1);else c.moods.push(k);setCur(ctx,c);Object.keys(swaps).forEach(k=>delete swaps[k]);render();return}
     if(b=t.closest("[data-plswap]")){const k=b.dataset.plswap;swaps[k]=(swaps[k]||0)+1;render();return}
-    if(b=t.closest("[data-plkeep]")){const k=b.dataset.plkeep;const e=pickOf(k);if(e){st()[k]={id:e.id};persist();render()}return}
-    if(b=t.closest("[data-plunkeep]")){const k=b.dataset.plunkeep;const e=pickOf(k);delete st()[k];if(e&&goingSet.has(e.id)){goingSet.delete(e.id)}persist();render();return}
+    if(b=t.closest("[data-plkeep]")){const k=b.dataset.plkeep;const e=pickOf(k);if(e){const [d,sl]=k.split("|");st()[k]={id:e.id};
+        if(e.hike){S.trips=S.trips||{};const a=tripDates(e.id);if(!a.includes(d))a.push(d);S.trips[e.id]=a.sort()}else{goingSet.add(e.id);hidden.delete(e.id);goSet(e.id,d,sl)}
+        persist();render();toast("Added to My plans · "+dLbl(d))}return}
+    if(b=t.closest("[data-plunkeep]")){const k=b.dataset.plunkeep;const e=pickOf(k);delete st()[k];if(e){const d=k.split("|")[0];
+        if(e.hike){const a=tripDates(e.id).filter(x=>x!==d);if(a.length)S.trips[e.id]=a;else delete S.trips[e.id]}else goingSet.delete(e.id)}
+        persist();render();toast("Removed from My plans");return}
     if(b=t.closest("[data-plnope]")){const k=b.dataset.plnope;const e=pickOf(k);closeSheet();if(e){nope(e);if((st()[k]||{}).id===e.id)delete st()[k];goingSet.delete(e.id);persist();render();toast("Got it — fewer like this")}return}
     if(b=t.closest("[data-plskip]")){closeSheet();st()[b.dataset.plskip]={skip:true};persist();render();return}
     if(b=t.closest("[data-plunskip]")){delete st()[b.dataset.plunskip];persist();render();return}
