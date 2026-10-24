@@ -2551,7 +2551,7 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
   const SOC=/language|langue|lingo|tandem|exchange|meetup|social|friends|apero|afterwork|networking|quiz/i;
   const st=e=>(String(e.when||"").match(/\b(\d{1,2}:\d{2})/)||[])[1]||"";const VSTOP=new Set("la le les l des de du d the bar cafe caf restaurant brasserie salle geneve geneva genf zurich zuerich".split(" "));
   const ven=e=>n(String(e.place||"").split(",")[0]).split(" ").filter(w=>w&&!VSTOP.has(w)).map(w=>w.length>3?w.replace(/s$/,""):w).join(" ");
-  const sc=e=>(goingSet.has(e.id)?1e4:0)+(e.src?0:100)+Math.min(50,String(e.desc||"").length/10);
+  const sc=e=>(goingSet.has(e.id)?1e4:0)+(((window.AUTO&&AUTO.picks)||[]).some(x=>x.id===e.id)?5e3:0)+(e.src?0:100)+Math.min(50,String(e.desc||"").length/10);
   const G={};EVENTS.forEach(e=>{if(!e||e.folded||e.p==="on"||e.p==="big"||!st(e)||ven(e).length<4)return;if(/film|screening|cin[ée]ma|kino/i.test((e.kind||"")+" "+e.title))return;
     const k=cityOf(e)+"|"+e.day+"|"+st(e)+"|"+ven(e);(G[k]=G[k]||[]).push(e)});
   Object.values(G).forEach(g=>{if(g.length<2)return;g.sort((a,b)=>sc(b)-sc(a));const keep=g[0],kw=W(keep);
@@ -3184,7 +3184,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   /* --- actions --- */
   function nope(e){if(e.hike){S.nope=S.nope||{};S.nope[e.id]={k:"Hike",tg:["outdoors"]};return}hidden.add(e.id);S.nope=S.nope||{};txt(e);S.nope[e.id]={c:e.cat||[],p:e.place||"",g:e.grp||GRP[e.rep||e.id]||e.src||"",k:e._pk||"",tg:[...tags(e)]}}
   function chosen(ctx,mode){return build(ctx).filter(r=>r.pick&&!r.skip&&!r.cont&&(mode!=="kept"||r.kept||r.going))}
-  function goSet(id,d,k){S.goDay=S.goDay||{};S.goDay[id]=d;S.goSlot=S.goSlot||{};if(k)S.goSlot[id]=k;ensureHist(id);if(S.hist[id])S.hist[id].d=d}
+  function goSet(id,d,k){S.goDay=S.goDay||{};const same=S.goDay[id]===d;S.goDay[id]=d;if(same&&S.goSlot&&S.goSlot[id])k=S.goSlot[id];S.goSlot=S.goSlot||{};if(k)S.goSlot[id]=k;ensureHist(id);if(S.hist[id])S.hist[id].d=d}
   function addAll(ctx,mode){const res=chosen(ctx,mode);let n=0;res.forEach(r=>{const e=r.pick.e;
       if(e.hike){S.trips=S.trips||{};const a=S.trips[e.id]||[];if(!a.includes(r.s.d))a.push(r.s.d);S.trips[e.id]=a.sort();n++}
       else{if(!goingSet.has(e.id)||(S.goDay||{})[e.id]!==r.s.d)n++;goingSet.add(e.id);hidden.delete(e.id);goSet(e.id,r.s.d,r.s.k)}
@@ -3341,7 +3341,8 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   const _mi=myItems;myItems=function(){const G=S.goDay||{},K=S.goSlot||{};const it=_mi().filter(x=>{if(x.k!=="ev")return true;const e=x.e,g=G[e.id];
       if(g){if(g<TODAY)return false;x.day=g;if(!/\d/.test(x.t||"")||(e.dayEnd&&e.dayEnd>e.day))x.t=SLN[K[e.id]]||x.t;return true}
       if(e.dayEnd&&e.dayEnd>e.day){x.day=ANY;x.any=true;x.t="Until "+short(e.dayEnd)}return true});
-    return it.sort((a,b)=>a.day.localeCompare(b.day)||String(a.t).localeCompare(String(b.t)))};
+    const tk=t=>({Morning:"09:00",Afternoon:"14:00",Evening:"19:00"})[t]||String(t||"");
+    return it.sort((a,b)=>a.day.localeCompare(b.day)||tk(a.t).localeCompare(tk(b.t)))};
 })();
 </script>
 
