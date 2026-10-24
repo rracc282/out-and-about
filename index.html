@@ -849,6 +849,12 @@ nav.tabs [data-tab="this"]::before{content:"🔎"!important}
 .sh-row b{display:block;font-weight:600;font-size:14.5px}.sh-row small{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}.sh-row.have{opacity:.6}
 .sh-tip{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--lake-soft);font-size:13px;line-height:1.45}
 .pl-cta[disabled]{opacity:.5}
+.pl-ask{display:block;width:100%;text-align:left;border:1px solid var(--lake);background:var(--lake-soft);color:var(--ink);border-radius:14px;padding:11px 13px;margin:0 0 12px;font:inherit;cursor:pointer}.pl-ask b{display:block;font-size:15px;color:var(--lake)}.pl-ask span{font-size:13px;color:var(--muted)}
+.pl-usual{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:13px;color:var(--muted);margin:-4px 0 12px}
+.onb-x{position:absolute;top:10px;right:12px;border:0;background:none;font-size:26px;line-height:1;color:var(--muted);cursor:pointer}#onb .box{position:relative}
+.onb-need{font-size:13px;color:var(--muted);margin:6px 0 0;text-align:center}
+#onb{overflow-y:auto;align-items:flex-start;-webkit-overflow-scrolling:touch}#onb .box{margin:auto 0}
+#onb .box h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--lake);margin:18px 0 8px}#onb .box h3:first-of-type{margin-top:8px}
 .pl-all{display:block;margin:10px auto 0;font-size:13.5px}
 .pl-cta.done{background:var(--go-soft);color:var(--go)}
 .pl-acts button.on{background:var(--go-soft);color:var(--go)}
@@ -2596,17 +2602,42 @@ render();
   else if(h.startsWith("#trip-")){ui.tab="trips";ui.tripOpen=h.slice(6);render()}})();
 
 /* ---------- first-open setup: home city + interests (any user) ---------- */
-function openSetup(){if(document.getElementById("onb"))return;const L=new Set(S.likes||[]);let home=S.home||null;
-  const cats=[["rencontre","Meet people"],["creatif","Arts & crafts"],["marche","Markets"],["fete","Festivals"],["culture","Culture & shows"],["corps","Sports & wellbeing"],["chien","With my dog"],["dating","Dating & singles"]];
+function openSetup(){if(document.getElementById("onb"))return;
+  const O=window.OA;const first=!S.home||!(S.likes||[]).length;
+  const P0=JSON.parse(JSON.stringify(O?O.prof():{we:{who:"solo",moods:[]},wk:{who:"solo",moods:[]},never:[],eves:[1,2,3,4]}));
+  let home=S.home||null,wkWho=P0.legacy?null:P0.wk.who,weWho=P0.legacy?null:P0.we.who;
+  const M=new Set(P0.legacy&&first?[]:[...new Set([].concat(P0.we.moods||[],P0.wk.moods||[]))]);let dating=wantsDating();
+  const N=new Set(P0.never||[]),E=new Set(P0.eves||[1,2,3,4]);
+  const MO=(O?O.MOODS:[]),NV=(O?O.NEVER:[]),WH=[["solo","Solo"],["partner","With my partner"],["friends","With friends"]];
   const d=document.createElement("div");d.id="onb";
-  const draw=()=>{d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About"><h2>Welcome to Out & About</h2><p>Where are you based?</p><div class="opts">'+
-    [["ge","Geneva"],["zh","Zurich"]].map(([k,n])=>'<button data-home="'+k+'" aria-pressed="'+(home===k)+'">'+n+'</button>').join("")+'</div><p>What do you enjoy? Pick as many as you like</p><div class="opts">'+
-    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><p>Optional: your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Use the full street address. Times in the list are estimates; “Directions from home” on an event opens the exact public-transport route in Google Maps. Your address stays private to your account.</p><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time with the ⚙︎ button at the top right.</p></div>'};
-  draw();document.body.appendChild(d);
-  d.addEventListener("click",ev=>{const h=ev.target.closest("[data-home]"),l=ev.target.closest("[data-like]");
-    if(h){home=h.dataset.home;draw();return}
-    if(l){const k=l.dataset.like;if(L.has(k))L.delete(k);else L.add(k);draw();return}
-    if(ev.target.closest(".go")&&home&&L.size){S.home=home;S.likes=[...L];S.dating=L.has("dating");saveAddr(d.querySelector("#addr-ge").value,d.querySelector("#addr-zh").value);try{localStorage.setItem("oa-home",home)}catch(e){}d.remove();setCity(home);persist();render()}});
+  const keep=()=>{const g=d.querySelector("#addr-ge"),z=d.querySelector("#addr-zh");return [g?g.value:((S.addr||{}).ge||{}).q||"",z?z.value:((S.addr||{}).zh||{}).q||""]};
+  const ok=()=>home&&wkWho&&weWho&&M.size;
+  const row=(name,val)=>WH.map(([k,n])=>'<button data-who="'+name+'~'+k+'" aria-pressed="'+(val===k)+'">'+n+'</button>').join("");
+  const draw=()=>{const [ag,az]=keep();const sy=d.scrollTop;d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About">'+(first?'':'<button class="onb-x" data-close aria-label="Close">×</button>')+'<h2>'+(first?'Welcome to Out & About':'What I like')+'</h2>'+
+    '<h3>You</h3><p>Where are you based?</p><div class="opts">'+[["ge","Geneva"],["zh","Zurich"]].map(([k,n])=>'<button data-home="'+k+'" aria-pressed="'+(home===k)+'">'+n+'</button>').join("")+'</div>'+
+    '<p>On <b>weekday evenings</b> I usually go out…</p><div class="opts">'+row("wk",wkWho)+'</div>'+
+    '<p>At <b>weekends</b> I usually go out…</p><div class="opts">'+row("we",weWho)+'</div>'+
+    '<h3>What you enjoy</h3><p>Pick as many as you like</p><div class="opts">'+MO.map(([k,n])=>'<button data-mood="'+k+'" aria-pressed="'+M.has(k)+'">'+n+'</button>').join("")+'<button data-dating aria-pressed="'+dating+'">Dating & singles</button></div>'+
+    '<h3>Your week</h3><p>Evenings I\'m usually free</p><div class="opts">'+[[1,"Mon"],[2,"Tue"],[3,"Wed"],[4,"Thu"]].map(([k,n])=>'<button data-eve="'+k+'" aria-pressed="'+E.has(k)+'">'+n+'</button>').join("")+'</div>'+
+    '<p>Never show me</p><div class="opts">'+NV.map(([k,n])=>'<button data-never="'+k+'" aria-pressed="'+N.has(k)+'">'+n+'</button>').join("")+'</div>'+
+    '<h3>Home (optional)</h3><p>Your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(ag)+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(az)+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Your address stays private to your account.</p>'+
+    '<button class="go" '+(ok()?'':'disabled')+'>'+(first?'Show me my plan':'Save')+'</button>'+(ok()?'':'<p class="onb-need">'+(!home?'Pick your city':!wkWho||!weWho?'Tell us who you usually go out with':'Pick at least one thing you enjoy')+'</p>')+
+    '<p style="margin:10px 0 0;font-size:13px">You can change this any time with the ⚙︎ button at the top right.</p></div>';d.scrollTop=sy};
+  draw();document.body.appendChild(d);d.scrollTop=0;
+  d.addEventListener("click",ev=>{const t=ev.target;let b;
+    if(t.closest("[data-close]")){d.remove();return}
+    if(b=t.closest("[data-home]")){home=b.dataset.home;draw();return}
+    if(b=t.closest("[data-who]")){const [w,k]=b.dataset.who.split("~");if(w==="wk")wkWho=k;else weWho=k;draw();return}
+    if(b=t.closest("[data-mood]")){const k=b.dataset.mood;M.has(k)?M.delete(k):M.add(k);draw();return}
+    if(t.closest("[data-dating]")){dating=!dating;draw();return}
+    if(b=t.closest("[data-eve]")){const k=+b.dataset.eve;E.has(k)?E.delete(k):E.add(k);draw();return}
+    if(b=t.closest("[data-never]")){const k=b.dataset.never;N.has(k)?N.delete(k):N.add(k);draw();return}
+    if(t.closest(".go")&&ok()){const moods=[...M];
+      S.home=home;S.prof={we:{who:weWho,moods:moods.slice()},wk:{who:wkWho,moods:moods.slice()},never:[...N],eves:[...E].sort(),dog:moods.includes("outdoors")};
+      const MC={meet:"rencontre",games:"rencontre",language:"rencontre",creative:"creatif",markets:"marche",festivals:"fete",party:"fete",food:"fete",concerts:"culture",comedy:"culture",film:"culture",exhibitions:"culture",outdoors:"chien",yoga:"corps"};
+      S.likes=[...new Set(moods.map(k=>MC[k]).filter(Boolean))].concat(dating?["dating"]:[]);S.dating=dating;
+      const [ag,az]=keep();saveAddr(ag,az);try{localStorage.setItem("oa-home",home)}catch(e){}
+      if(O)O.clearCur();EVENTS.forEach(e=>{delete e._ptg;delete e._dt});d.remove();setCity(home);persist();render()}});
 }
 (function(){let h=null;try{h=localStorage.getItem("oa-home")}catch(e){}if(!S.home&&h)S.home=h;if(!S.home||!(S.likes||[]).length)setTimeout(openSetup,300);})();
 
@@ -3036,13 +3067,14 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
    Picks one event per time slot from who you're with + today's mood chips + your profile, weather and feedback.
    State: S.prof (what you like), S.plan (kept/moved/skipped slots, per week). ===== */
 (function(){
-  const MOODS=[["markets","Markets"],["concerts","Concerts"],["festivals","Festivals"],["outdoors","Outdoors + dog"],["creative","Creative"],["exhibitions","Exhibitions"],["meet","Meet people"],["games","Games"],["yoga","Yoga & dance"],["comedy","Comedy"],["film","Film"],["language","Language exchange"],["food","Food & drink"],["party","Parties"]];
+  const MOODS=[["markets","Markets"],["concerts","Concerts"],["festivals","Festivals"],["outdoors","Outdoors & hikes"],["creative","Creative"],["exhibitions","Exhibitions"],["meet","Meet people"],["games","Games"],["yoga","Yoga & dance"],["comedy","Comedy"],["film","Film"],["language","Language exchange"],["food","Food & drink"],["party","Parties"]];
   const MLBL=Object.fromEntries(MOODS);
-  const NEVER=[["kids","Kids & family"],["sports","Sports games"],["talks","Talks & networking"],["clubs","Nightclubs"],["classical","Classical music"]];
+  const NEVER=[["meetups","Meetups, mixers & language exchanges"],["clubs","Nightclubs & late parties"],["talks","Talks & lectures"],["sports","Watching sports"],["classical","Classical music"],["kids","Kids & family"]];
   const WHO=[["partner","With my partner"],["solo","Solo"],["friends","With friends"]];
-  const DEF={we:{who:"partner",moods:["markets","concerts","festivals","outdoors"]},wk:{who:"solo",moods:["meet","games","creative"]},never:["kids","sports","talks"],eves:[1,2,3,4],dog:true};
-  function prof(){if(!S.prof){const L=S.likes||[];const p=JSON.parse(JSON.stringify(DEF));
-      if(L.length){const m={rencontre:"meet",creatif:"creative",marche:"markets",fete:"festivals",culture:"concerts",chien:"outdoors"};const x=L.map(k=>m[k]).filter(Boolean);if(x.length){p.wk.moods=[...new Set(x.filter(k=>k==="meet"||k==="creative").concat(["meet","games"]))].slice(0,4);p.we.moods=[...new Set(x.filter(k=>k!=="meet").concat(["markets","festivals"]))].slice(0,5)}}
+  const DEF={we:{who:"partner",moods:["markets","concerts","festivals","outdoors"]},wk:{who:"solo",moods:["meet","games","creative"]},never:["talks","sports"],eves:[1,2,3,4],dog:true};
+  const LIKE2MOOD={rencontre:["meet"],creatif:["creative"],marche:["markets"],fete:["festivals"],culture:["concerts","exhibitions"],chien:["outdoors"],corps:["outdoors","yoga"]};
+  function prof(){if(!S.prof){const L=S.likes||[];const p=JSON.parse(JSON.stringify(DEF));p.legacy=true;
+      const x=[...new Set([].concat(...L.map(k=>LIKE2MOOD[k]||[])))];if(x.length){p.wk.moods=x.slice();p.we.moods=x.slice()}
       return p}return S.prof}
   /* --- what an event is (mood tags) --- */
   const RX={markets:/market|march[ée]|brocante|flea|puces|vide-grenier|fair\b|foire|bazaar|flohmarkt|markt\b|salon\b|braderie/i,
@@ -3059,15 +3091,21 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     language:/language|tandem|lingo|conversation|french practice|pratique .french|english practice|sprach/i,
     food:/food|wine|vin\b|tasting|d[ée]gustation|brunch|dinner|cook|street food|beer|bi[èe]re|cocktail/i,
     party:/party|soir[ée]e|club\b|dj set|clubbing|techno|house music|disco|karaoke/i};
-  const NRX={kids:/kids|enfants?\b|famil|children|kinder|b[ée]b[ée]|toddler|parents/i,sports:/football|soccer|volley|badminton|padel|basket|hockey|tennis|league|tournament|match\b|ravens/i,
-    talks:/talk\b|lecture|conf[ée]rence|networking|panel|webinar|pitch|vortrag|seminar|discussion avec/i,clubs:/club night|techno|clubbing|rave\b|after.?party/i,classical:/orchestr|symphon|recital|philharm|quartet|sonata|opera\b|op[ée]ra/i};
+  const NRX={kids:/\b(?:kids|enfants?|children|kinder|for families|en famille|family[- ]friendly|famili[ae]l|b[ée]b[ée]s?|toddlers?)\b/i,sports:/football|soccer|volley|badminton|padel|basket|hockey|tennis|league|tournament|match\b|ravens/i,
+    talks:/\b(?:a talk|talk by|talks? (?:on|about|with)|lecture|conf[ée]rence|panel discussion|webinar|vortrag|seminar|discussion avec|round ?table)\b/i,clubs:/club night|techno|clubbing|rave\b|after.?party/i,classical:/orchestr|symphon|recital|philharm|quartet|sonata|opera\b|op[ée]ra/i};
   function txt(e){if(e._ptx==null){let k="";try{k=gloss(e).replace(/<[^>]+>/g,"")}catch(x){}e._ptx=(e.title+" "+(e.titleOrig||"")+" "+k+" "+String(e.desc||"").slice(0,220)).toLowerCase();e._pk=k.split(" · ")[0]}return e._ptx}
   function tags(e){if(e._ptg)return e._ptg;if(e.hike)return e._ptg=new Set(["outdoors"]);const t=txt(e),c=e.cat||[],s=new Set();
     for(const k in RX)if(RX[k].test(t))s.add(k);
     if(c.includes("marche"))s.add("markets");if(c.includes("creatif"))s.add("creative");if(c.includes("chien"))s.add("outdoors");if(c.includes("rencontre")||e.src==="Meetup")s.add("meet");
     if(/^Concert|Jazz|Live music/.test(e._pk))s.add("concerts");if(/Exhibition/.test(e._pk)||e.p==="on")s.add("exhibitions");if(/Festival/.test(e._pk))s.add("festivals");if(/Film/.test(e._pk))s.add("film");
     return e._ptg=s}
-  function never(e){const N=prof().never||[];const t=txt(e);return N.some(k=>NRX[k]&&NRX[k].test(t))}
+  const MEETUP=/meetup|mixer|language exchange|tandem|speed friending|expat|newcomers|make (?:new )?friends|meet new people|social (?:circle|club|hour)|pub crawl|apéro/i;
+  function late(e){const i=interval(e);return !!i&&(i.s>=22*60+30||i.en>=25*60)}
+  function never(e){const N=prof().never||[];if(!N.length)return false;const t=txt(e);
+    if(wantsDating()&&isDating(e))return false;
+    return N.some(k=>k==="meetups"?((e.src==="Meetup"||MEETUP.test(t))&&!/workshop|atelier|life drawing|ceramic|pottery|painting|hike|concert/i.test(e.title))
+      :k==="clubs"?(NRX.clubs.test(t)||(tags(e).has("party")&&late(e)))
+      :NRX[k]&&NRX[k].test(t))}
   /* --- dates and slots --- */
   const dow=d=>new Date(d+"T12:00:00").getDay();
   function weRange(){const w=dow(TODAY);const fri=w===5?TODAY:w===6?isoAdd(TODAY,-1):w===0?isoAdd(TODAY,-2):isoAdd(TODAY,5-w);return [fri,isoAdd(fri,1),isoAdd(fri,2)]}
@@ -3090,7 +3128,8 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   function kindPenalty(e){const N=Object.values(S.nope||{});if(!N.length)return 0;const k=e._pk||"";let p=0;N.forEach(n=>{if(n.k&&k&&n.k===k)p+=2.5;if(n.tg&&[...tags(e)].some(t=>n.tg.includes(t)))p+=.6});return Math.min(8,p)}
   function goOn(e,d){const g=(S.goDay||{})[e.id];return g?g===d:!(e.dayEnd&&e.dayEnd>e.day)}
   function score(e,s,ctx,moods,who){if(e.hike)return hikeScore(e,s,moods);
-    let v=0;try{v=evScore(e)}catch(x){}txt(e);const tg=tags(e);const m=moods.filter(x=>tg.has(x)).length;
+    let v=0;try{v=evScore(e)*.6}catch(x){}txt(e);const tg=tags(e);const m=moods.filter(x=>tg.has(x)).length;
+    {const base=(prof()[ctx]||{}).moods||[];if(moods.some(x=>tg.has(x)&&!base.includes(x)))v+=5}
     if(moods.length)v+=m?6+2*(m-1):-5;
     if(who==="solo"&&tg.has("meet"))v+=3;if(who==="partner"&&tg.has("meet")&&!tg.has("concerts")&&!tg.has("festivals")&&!tg.has("games"))v-=4;if(who!=="solo"&&/singles|tables for singles/i.test(e.title))v-=6;
     if(String(e.desc||"").length<40)v-=3;if(/[\u{1F300}-\u{1FAFF}]/u.test(e.title)||(e.title.match(/\b[A-Z]{4,}\b/g)||[]).length>=2)v-=1;
@@ -3108,8 +3147,9 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   /* --- building a plan --- */
   function wkey(ctx){return ctx+"|"+(ctx==="we"?weRange()[0]:wkDays()[0])+"|"+city()}
   function store(ctx){S.plan=S.plan||{};const k=wkey(ctx);return S.plan[k]=S.plan[k]||{}}
-  function cur(ctx){const P=prof();const key="oa-mood-"+wkey(ctx);let m=null;try{m=JSON.parse(sessionStorage.getItem(key)||"null")}catch(x){}return m||{who:P[ctx].who,moods:P[ctx].moods.slice()}}
-  function setCur(ctx,c){try{sessionStorage.setItem("oa-mood-"+wkey(ctx),JSON.stringify(c))}catch(x){}}
+  function cur(ctx){const P=prof();const key="oa-mood-"+wkey(ctx);let m=null;try{m=JSON.parse(localStorage.getItem(key)||"null")}catch(x){}return m||{who:P[ctx].who,moods:P[ctx].moods.slice()}}
+  function setCur(ctx,c){try{localStorage.setItem("oa-mood-"+wkey(ctx),JSON.stringify(c))}catch(x){}}
+  function clearCur(){try{Object.keys(localStorage).filter(k=>k.startsWith("oa-mood-")).forEach(k=>localStorage.removeItem(k))}catch(x){}}
   const swaps={};
   function build(ctx){const {who,moods}=cur(ctx);const st=store(ctx);const sl=slots(ctx);const used=new Set(),usedTags={};const res=[];
     sl.forEach(s=>{const o=st[s.key];if(o&&o.id){used.add(o.id)}});
@@ -3148,7 +3188,9 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     const chips=MOODS.filter(([k])=>ctx==="we"?k!=="language":true).map(([k,n])=>'<button class="pl-chip" data-plmood="'+k+'" aria-pressed="'+c.moods.includes(k)+'">'+n+'</button>').join("");
     let h='<div class="pl-top"><div class="pl-ctx"><button data-plctx="we" aria-pressed="'+(ctx==="we")+'">Weekend</button><button data-plctx="wk" aria-pressed="'+(ctx==="wk")+'">Weekday evenings</button></div><button class="pl-tune" data-pltune>⚙︎ What I like</button></div>'+
       '<h2 class="pl-h">'+(ctx==="we"?"Your weekend":"Your week")+'</h2><p class="pl-sub">'+dLbl(ds[0])+' – '+dLbl(ds[ds.length-1])+' · '+(city()==="zh"?"Zurich":"Geneva")+(ctx==="wk"?" · evenings":"")+'</p>'+
-      '<div class="pl-who">'+WHO.map(([k,n])=>'<button data-plwho="'+k+'" aria-pressed="'+(c.who===k)+'">'+n+'</button>').join("")+'</div><div class="pl-chips">'+chips+'</div>';
+      (P.legacy?'<button class="pl-ask" data-pltune><b>Make this plan yours</b><span>Who do you go out with, what you enjoy, your free evenings · 30 seconds</span></button>':'')+
+      '<div class="pl-who">'+WHO.map(([k,n])=>'<button data-plwho="'+k+'" aria-pressed="'+(c.who===k)+'">'+n+'</button>').join("")+'</div><div class="pl-chips">'+chips+'</div>'+
+      (!P.legacy&&(c.who!==P[ctx].who||c.moods.slice().sort().join()!==P[ctx].moods.slice().sort().join())?'<div class="pl-usual"><span>Changed for this '+(ctx==="we"?"weekend":"week")+' only.</span><button class="pl-lnk" data-plusual>Make this my usual</button><button class="pl-lnk" data-plreset>Reset</button></div>':'');
     if(dm.length)h+='<div class="pl-dm"><div class="pl-sl"><b>Don\'t miss · on now</b></div>'+dm.map(e=>'<button class="pl-dmr" data-plopen="'+esc(e.id)+'"><b>'+esc(e.title.split(" — ")[0])+'</b> · '+(e.dayEnd?'until '+dLbl(e.dayEnd):dLbl(e.day))+'</button>').join("")+'</div>';
     h+=res.length?res.map(r=>card(r,ctx)).join(""):'<p class="empty">'+(ctx==="wk"?'No free evenings left this week. Set your free evenings in “What I like”.':'This weekend is over. The next one appears on Monday.')+'</p>';
     const n=res.filter(r=>r.pick&&!r.skip&&!r.cont).length;
@@ -3222,7 +3264,9 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     const ctx=ui.planCtx||"we";const st=()=>store(ctx);const res=()=>build(ctx);const pickOf=k=>{const r=res().find(x=>x.s.key===k);return r&&r.pick&&r.pick.e};
     if(t.closest("[data-plclose]")){closeSheet();return}
     if(b=t.closest("[data-plctx]")){ui.planCtx=b.dataset.plctx;ui.planAll=null;render();window.scrollTo({top:0});return}
-    if(t.closest("[data-pltune]")){tune();return}
+    if(t.closest("[data-pltune]")){openSetup();return}
+    if(t.closest("[data-plusual]")){const c=cur(ctx);S.prof=JSON.parse(JSON.stringify(prof()));delete S.prof.legacy;S.prof[ctx]={who:c.who,moods:c.moods.slice()};try{localStorage.removeItem("oa-mood-"+wkey(ctx))}catch(x){}persist();render();toast("Saved as your usual");return}
+    if(t.closest("[data-plreset]")){try{localStorage.removeItem("oa-mood-"+wkey(ctx))}catch(x){}render();return}
     if(b=t.closest("[data-plwho]")){const c=cur(ctx);c.who=b.dataset.plwho;setCur(ctx,c);render();return}
     if(b=t.closest("[data-plmood]")){const c=cur(ctx);const k=b.dataset.plmood;const i=c.moods.indexOf(k);if(i>=0)c.moods.splice(i,1);else c.moods.push(k);setCur(ctx,c);Object.keys(swaps).forEach(k=>delete swaps[k]);render();return}
     if(b=t.closest("[data-plswap]")){const k=b.dataset.plswap;swaps[k]=(swaps[k]||0)+1;render();return}
@@ -3247,6 +3291,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(t.closest("[data-plopenplans]")){openPlans(true);return}
     if(b=t.closest("[data-plcal]")){ics(ctx,b.dataset.plcal);return}
   });
+  window.OA={MOODS,NEVER,WHO,DEF,prof,never,clearCur,LIKE2MOOD};
   /* --- tabs: Plan · Explore (This week / Next week / Culture) · Trips & hikes · My plans --- */
   const nav=document.querySelector("nav.tabs");
   const pb=document.createElement("button");pb.setAttribute("role","tab");pb.dataset.tab="plan";pb.textContent="Plan";nav.insertBefore(pb,nav.firstChild);
@@ -3265,7 +3310,6 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   /* keep profile and plan when syncing */
   const _ad=adopt;adopt=function(b){const p=S.prof,pl=S.plan,gd=S.goDay,gs=S.goSlot;_ad(b);S.prof=b.prof||p;S.plan=Object.assign({},pl||{},b.plan||{});S.goDay=Object.assign({},gd||{},b.goDay||{});S.goSlot=Object.assign({},gs||{},b.goSlot||{});try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}};
   /* first time: ask what they like (after the welcome screen) */
-  const _os=openSetup;openSetup=function(){_os();const o=document.getElementById("onb");if(!o)return;const mo=new MutationObserver(()=>{if(!document.getElementById("onb")){mo.disconnect();if(!S.prof)setTimeout(tune,200)}});mo.observe(document.body,{childList:true})};
   if(!location.hash){ui.tab="plan";setTimeout(()=>{try{render()}catch(e){}},0)}
 })();
 
@@ -3353,6 +3397,10 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     const tk=t=>({Morning:"09:00",Afternoon:"14:00",Evening:"19:00"})[t]||String(t||"");
     return it.sort((a,b)=>a.day.localeCompare(b.day)||tk(a.t).localeCompare(tk(b.t)))};
 })();
+
+/* Batch 2: "Never show me" applies in Explore too (search still finds everything); singles mixers count as dating */
+(function(){const _f=filterOk;filterOk=function(e){if(!_f(e))return false;if(state.q)return true;try{return !(S.prof&&window.OA&&OA.never(e))}catch(x){return true}};
+  const _d=isDating;isDating=function(e){if(_d(e))return true;if(e._dt2==null){let k="";try{k=gloss(e)}catch(x){}e._dt2=/^Singles|singles mixer|speed ?dating|c[ée]lib(?:at|ataires?)|célbat/i.test(k+" "+e.title)}return e._dt2}})();
 </script>
 
 
