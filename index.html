@@ -849,6 +849,7 @@ nav.tabs [data-tab="this"]::before{content:"🔎"!important}
 .sh-row b{display:block;font-weight:600;font-size:14.5px}.sh-row small{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}.sh-row.have{opacity:.6}
 .sh-tip{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--lake-soft);font-size:13px;line-height:1.45}
 .pl-cta[disabled]{opacity:.5}
+.pl-all{display:block;margin:10px auto 0;font-size:13.5px}
 </style>
 
 <script>try{var _t=JSON.parse(localStorage.getItem("sorties-theme")||"{}");if(_t.pal&&_t.pal!=="classic")document.documentElement.setAttribute("data-pal",_t.pal);if(_t.mode==="light"||_t.mode==="dark")document.documentElement.setAttribute("data-theme",_t.mode)}catch(e){}</script>
@@ -1918,7 +1919,7 @@ function buildAutoPicks(){const sec=document.getElementById("picks");if(!sec)ret
   const label=e=>{const d=DNL[new Date(e.day+"T12:00:00").getDay()];const t=(e.when.match(/(\d{1,2}):\d{2}/)||[])[1];return d+(t&&+t>=17?" evening":"")};
   const why=e=>{const d=(e.desc||"").split(/(?<=[.!?])\s/)[0];return d.length>150?d.slice(0,147)+"…":d};
   let html="";
-  blocks.forEach(b=>{const pool=EVENTS.filter(e=>b.ok(e)&&!isPast(e)&&!isDel(e)&&!e.folded&&(wantsDating()||!isDating(e)));let items=[];
+  blocks.forEach(b=>{if(b.id==="we1"&&we.to<TODAY)return;if(b.id==="wd2"&&nx.to<TODAY)return;const pool=EVENTS.filter(e=>b.ok(e)&&!isPast(e)&&!isDel(e)&&!e.folded&&(wantsDating()||!isDating(e)));let items=[];
     const mine=cur.filter(x=>x.block===b.id);
     if(mine.length)items=mine.map(x=>({e:pool.find(e=>e.id===x.id),k:x.k,why:x.why})).filter(x=>x.e);
     else ["ge","zh"].forEach(c=>pool.filter(e=>cityOf(e)===c&&e.zone!=="far"&&!hidden.has(e.id)).sort((a,z)=>sc(z)-sc(a)).slice(0,3).forEach(e=>items.push({e})));
@@ -2507,6 +2508,49 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
   const score=e=>(e.src?0:100)+(e.p==="big"?20:0)+(e.book?5:0)+Math.min(50,String(e.desc||"").length/10);
   const best={};EVENTS.forEach(e=>{if(!e||!e.title)return;const k=key(e);if(k.split("|")[2].split(" ").length<2&&n(e.title).length<8)return;const b=best[k];if(!b||score(e)>score(b))best[k]=e});
   for(let i=EVENTS.length-1;i>=0;i--){const e=EVENTS[i];if(!e||!e.title)continue;const b=best[key(e)];if(b&&b!==e&&!goingSet.has(e.id))EVENTS.splice(i,1)}})();
+/* Batch 1 · trust: exhibition dates from their own text, clean text and prices, one card per venue + time */
+(function(){
+  const MO={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+  const dec=x=>{let s=String(x==null?"":x);for(let i=0;i<4;i++)s=s.replace(/&amp;/g,"&");
+    return s.replace(/&lt;\s*br\s*\/?\s*&gt;/gi," ").replace(/<\s*br\s*\/?\s*>/gi," ").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#0?39;|&rsquo;|&apos;/g,"'").replace(/&nbsp;/g," ")};
+  const L=[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].filter(Boolean);
+  L.forEach(e=>{
+    ["title","place","kind","price","when","titleOrig"].forEach(k=>{if(e[k])e[k]=dec(e[k]).replace(/<[^>]+>/g," ").replace(/\s{2,}/g," ").trim()});
+    if(e.desc)e.desc=dec(e.desc).replace(/<[^>]+>/g," ").replace(/\s{2,}/g," ").trim();
+    /* dates written in "when": "22 Oct – 17 Dec", "Until 7 Feb", "5 Sep – 15 Nov 2026 · daily…" */
+    if(e.p==="on"||(e.dayEnd&&e.dayEnd>e.day)){const w=String(e.when||"").split("·")[0];
+      const T=[...w.matchAll(/(\d{1,2})\s+([A-Za-z]{3})[a-z]*\.?(?:\s+(20\d\d))?/g)].filter(m=>MO[m[2].toLowerCase()]);
+      if(T.length){const y0=+e.day.slice(0,4);const mk=(m,y)=>(m[3]?+m[3]:y)+"-"+String(MO[m[2].toLowerCase()]).padStart(2,"0")+"-"+String(+m[1]).padStart(2,"0");
+        const until=/^\s*(until|bis|jusqu)/i.test(w)||T.length===1;let st=until?null:mk(T[0],y0);
+        if(st&&st<e.day&&!T[0][3]&&+st.slice(5,7)<+e.day.slice(5,7))st=mk(T[0],y0+1);
+        const base=st||e.day;let en=mk(T[T.length-1],+base.slice(0,4));if(en<base&&!T[T.length-1][3])en=mk(T[T.length-1],+base.slice(0,4)+1);
+        if(en>=base){e.dayEnd=en;if(st&&st>e.day&&e.p==="on")e.day=st;e._deOk=1}}}
+  });
+  /* prices */
+  L.forEach(e=>{let p=String(e.price||"").trim();
+    if(p){p=p.replace(/^CHF\s+CHF\b/i,"CHF").replace(/\.-(?=\s|$)/g,"");p=p.replace(/^CHF\s+(?=[A-Za-zÀ-ÿ])(?!(?:d[èe]s|from|ab)\b)/i,"");
+      if(/^(?:CHF\s*)?(?:free|gratuit|gratuite|entr[ée]e libre|eintritt frei|kostenlos|libre)\b/i.test(p))p="Free";
+      else if(/\b(?:au )?chapeau\b|hat collection|kollekte|collecte|pay what you (?:want|like)|prix libre/i.test(p))p="Pay what you like";
+      else{let m=p.match(/^(?:CHF\s*)?(?:d[èe]s|from|ab|à partir de)\s*(?:CHF\s*)?(\d+(?:[.,]\d+)?)/i);if(m)p="From CHF "+m[1];
+        else if((m=p.match(/^CHF\s*(\d+(?:[.,]\d+)?)\s*(?:CHF|francs?|fr\.?)\b(.*)$/i)))p="CHF "+m[1]+m[2];
+        else if(/^CHF\s*\d{1,2}:\d{2}/.test(p)||/^CHF\s*$/.test(p))p=""}
+      p=p.replace(/\s{2,}/g," ").trim();if(p==="Free")e.free=true;e.price=p}
+    const t=(e.title+" "+String(e.desc||"").slice(0,700));
+    if(/tickets? (?:is |are )?(?:needed|required|necessary)|billets? (?:obligatoire|requis|n[ée]cessaire)|r[ée]servation obligatoire|inscription obligatoire|anmeldung (?:erforderlich|obligatorisch)|ticket needed/i.test(t)){e.tkHint=true;if(!e.price||/^Free$/i.test(e.price)){e.price="Ticket needed";e.free=false}}
+  });
+  /* same venue, same day, same start time, overlapping words (e.g. one language exchange listed three times) */
+  const n=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g," ").trim();
+  const GEN=new Set("geneva geneve genf zurich zuerich gva the and for with des les une pour avec night soiree evening abend".split(" "));
+  const W=e=>new Set(n(e.title+" "+String(e.desc||"").slice(0,160)).split(" ").filter(w=>w.length>=5&&!GEN.has(w)));
+  const SOC=/language|langue|lingo|tandem|exchange|meetup|social|friends|apero|afterwork|networking|quiz/i;
+  const st=e=>(String(e.when||"").match(/\b(\d{1,2}:\d{2})/)||[])[1]||"";const ven=e=>n(String(e.place||"").split(",")[0]);
+  const sc=e=>(goingSet.has(e.id)?1e4:0)+(e.src?0:100)+Math.min(50,String(e.desc||"").length/10);
+  const G={};EVENTS.forEach(e=>{if(!e||e.folded||e.p==="on"||e.p==="big"||!st(e)||ven(e).length<4)return;if(/film|screening|cin[ée]ma|kino/i.test((e.kind||"")+" "+e.title))return;
+    const k=cityOf(e)+"|"+e.day+"|"+st(e)+"|"+ven(e);(G[k]=G[k]||[]).push(e)});
+  Object.values(G).forEach(g=>{if(g.length<2)return;g.sort((a,b)=>sc(b)-sc(a));const keep=g[0],kw=W(keep);
+    g.slice(1).forEach(x=>{if(goingSet.has(x.id))return;const xw=W(x);let o=0;xw.forEach(w=>{if(kw.has(w))o++});
+      if(o>=2||(SOC.test(keep.title+" "+keep.desc)&&SOC.test(x.title+" "+x.desc))){const i=EVENTS.indexOf(x);if(i>=0)EVENTS.splice(i,1)}})});
+})();
 /* festival screenings: when the festival itself is listed, fold its individual sessions into it (still searchable) */
 (function(){const n=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[’'`]/g,"'");
   const L=[...new Set([].concat(window.ALL_EVENTS||[],EVENTS))];
@@ -2543,7 +2587,7 @@ function openSetup(){if(document.getElementById("onb"))return;const L=new Set(S.
   const d=document.createElement("div");d.id="onb";
   const draw=()=>{d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About"><h2>Welcome to Out & About</h2><p>Where are you based?</p><div class="opts">'+
     [["ge","Geneva"],["zh","Zurich"]].map(([k,n])=>'<button data-home="'+k+'" aria-pressed="'+(home===k)+'">'+n+'</button>').join("")+'</div><p>What do you enjoy? Pick as many as you like</p><div class="opts">'+
-    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><p>Optional: your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Use the full street address. Times in the list are estimates; “Directions from home” on an event opens the exact public-transport route in Google Maps. Your address stays private to your account.</p><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time under 🔔 → Preferences.</p></div>'};
+    cats.map(([k,n])=>'<button data-like="'+k+'" aria-pressed="'+L.has(k)+'">'+n+'</button>').join("")+'</div><p>Optional: your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(((S.addr||{}).ge||{}).q||"")+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(((S.addr||{}).zh||{}).q||"")+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Use the full street address. Times in the list are estimates; “Directions from home” on an event opens the exact public-transport route in Google Maps. Your address stays private to your account.</p><button class="go" '+(home&&L.size?'':'disabled')+'>Show me what\'s on</button><p style="margin:10px 0 0;font-size:13px">You can change this any time with the ⚙︎ button at the top right.</p></div>'};
   draw();document.body.appendChild(d);
   d.addEventListener("click",ev=>{const h=ev.target.closest("[data-home]"),l=ev.target.closest("[data-like]");
     if(h){home=h.dataset.home;draw();return}
@@ -3030,12 +3074,13 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   function city(){return ui.city==="both"?(S.home||"ge"):ui.city}
   const PICKS=()=>(window.AUTO&&AUTO.picks)||[];
   function kindPenalty(e){const N=Object.values(S.nope||{});if(!N.length)return 0;const k=e._pk||"";let p=0;N.forEach(n=>{if(n.k&&k&&n.k===k)p+=2.5;if(n.tg&&[...tags(e)].some(t=>n.tg.includes(t)))p+=.6});return Math.min(8,p)}
+  function goOn(e,d){const g=(S.goDay||{})[e.id];return g?g===d:!(e.dayEnd&&e.dayEnd>e.day)}
   function score(e,s,ctx,moods,who){if(e.hike)return hikeScore(e,s,moods);
     let v=0;try{v=evScore(e)}catch(x){}txt(e);const tg=tags(e);const m=moods.filter(x=>tg.has(x)).length;
     if(moods.length)v+=m?6+2*(m-1):-5;
     if(who==="solo"&&tg.has("meet"))v+=3;if(who==="partner"&&tg.has("meet")&&!tg.has("concerts")&&!tg.has("festivals")&&!tg.has("games"))v-=4;if(who!=="solo"&&/singles|tables for singles/i.test(e.title))v-=6;
     if(String(e.desc||"").length<40)v-=3;if(/[\u{1F300}-\u{1FAFF}]/u.test(e.title)||(e.title.match(/\b[A-Z]{4,}\b/g)||[]).length>=2)v-=1;
-    if(PICKS().some(p=>p.id===e.id))v+=4;if(goingSet.has(e.id))v+=100;
+    if(PICKS().some(p=>p.id===e.id))v+=4;if(goingSet.has(e.id)&&goOn(e,s.d))v+=100;
     const w=wx(s.d,s.k);if(w&&w.r>=55&&!isIndoor(e))v-=4;
     if(e.p==="on"&&!moods.includes("exhibitions"))v-=3;
     return v-kindPenalty(e)}
@@ -3061,10 +3106,10 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
       let list=all.filter(x=>!used.has(x.e.id)||(o.id===x.e.id));
       list.forEach(x=>{const t=[...tags(x.e)][0];if(t&&usedTags[t]&&!(o.id===x.e.id))x.v-=3*usedTags[t]});list.sort((a,b)=>b.v-a.v);
       let pick=null;if(o.id){pick=all.find(x=>x.e.id===o.id)||(()=>{const e=EVENTS.find(x=>x.id===o.id)||hikes().find(x=>x.id===o.id);return e?{e,v:0}:null})()}
-      const going=list.find(x=>goingSet.has(x.e.id));if(!pick&&going)pick=going;
+      const going=list.find(x=>goingSet.has(x.e.id)&&goOn(x.e,s.d));if(!pick&&going)pick=going;
       if(!pick){const i=(swaps[s.key]||0)%Math.max(1,list.length);pick=list[i]||null}
       if(pick){used.add(pick.e.id);[...tags(pick.e)].slice(0,1).forEach(t=>usedTags[t]=(usedTags[t]||0)+1)}
-      res.push({s,pick,kept:!!o.id,going:pick&&goingSet.has(pick.e.id),n:list.length,all:list})}
+      res.push({s,pick,kept:!!o.id,going:pick&&goingSet.has(pick.e.id)&&goOn(pick.e,s.d),n:list.length,all:list})}
     return res}
   function dontMiss(ctx){const ds=ctx==="we"?weRange():wkDays();const lo=ds[0],hi=ds[ds.length-1];const c=city();
     return EVENTS.filter(e=>cityOf(e)===c&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&!e.folded&&e.day<=hi&&(e.dayEnd||e.day)>=lo&&((e.dayEnd&&e.dayEnd>e.day&&(new Date(e.dayEnd)-new Date(e.day))<=24*864e5&&/festival|fest\b|f[êe]te/i.test(e.title+" "+(e.kind||"")))||PICKS().some(p=>p.id===e.id&&/festival/i.test(e.title+p.why))))
@@ -3093,7 +3138,8 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(dm.length)h+='<div class="pl-dm"><div class="pl-sl"><b>Don\'t miss · on now</b></div>'+dm.map(e=>'<button class="pl-dmr" data-plopen="'+esc(e.id)+'"><b>'+esc(e.title.split(" — ")[0])+'</b> · '+(e.dayEnd?'until '+dLbl(e.dayEnd):dLbl(e.day))+'</button>').join("")+'</div>';
     h+=res.length?res.map(r=>card(r,ctx)).join(""):'<p class="empty">'+(ctx==="wk"?'No free evenings left this week. Set your free evenings in “What I like”.':'This weekend is over. The next one appears on Monday.')+'</p>';
     const n=res.filter(r=>r.pick&&!r.skip&&!r.cont).length;
-    if(n)h+='<button class="pl-cta" data-pladd>Add '+(ctx==="we"?"my weekend":"my week")+' to My plans</button><button class="pl-cal" data-plcal>📅 Add to calendar</button><p class="pl-hint">Tap a card to move it, see all options for that slot, or open details. Everything else is in Explore.</p>';
+    const nk=res.filter(r=>r.pick&&!r.skip&&!r.cont&&(r.kept||r.going)).length;
+    if(n)h+=(nk?'<button class="pl-cta" data-pladd="kept">Add '+nk+' kept to My plans</button><button class="pl-cal" data-plcal="kept">📅 Add '+nk+' to calendar</button><button class="pl-lnk pl-all" data-pladd="all">or add all '+n+' suggestions</button>':'<button class="pl-cta" data-pladd="all">Add all '+n+' to My plans</button><button class="pl-cal" data-plcal="all">📅 Add all '+n+' to calendar</button><p class="pl-hint">Tip: tap ✓ Keep on the ones you like to add only those.</p>')+'<p class="pl-hint">Tap a card to move it, see all options for that slot, or open details. Everything else is in Explore.</p>';
     return h}
   function allView(r,ctx){const s=r.s;const c=cur(ctx);const list=cands(s,ctx,c.moods,c.who);const f=ui.planAllF||"all";
     const cnt={};list.forEach(x=>tags(x.e).forEach(t=>cnt[t]=(cnt[t]||0)+1));
@@ -3118,7 +3164,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     const g=goingSet.has(e.id);const desc=String(e.desc||"").trim();const map="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(e.place||e.title);
     const d=document.createElement("div");d.id="plsheet";d.innerHTML='<div class="pl-dim" data-plclose></div><div class="pl-sheet" role="dialog" aria-label="'+esc(e.title)+'"><div class="pl-grab"></div><h3>'+esc(e.title)+'</h3><p>'+esc(meta(e))+'</p>'+
       '<div class="pl-info"><div><b>When</b> '+esc(e.dayEnd&&e.dayEnd>e.day?dLbl(e.day)+' – '+dLbl(e.dayEnd)+(e.when&&/\d:\d/.test(e.when)?' · '+e.when.replace(/^[A-Z][a-z]{2} \d{1,2} · /,""):''):e.when)+'</div><div><b>Where</b> '+esc(e.place||"")+(e.trip&&!isLocal(e)?' · '+esc(e.trip):'')+'</div>'+(e.price?'<div><b>Price</b> '+esc(e.price)+'</div>':'')+
-      (desc?'<p>'+esc(desc)+'</p>':'')+'</div><div class="pl-iacts">'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">More info'+(needsTicketSafe(e)?' & tickets':'')+'</a>':'')+'<a href="'+map+'" target="_blank" rel="noopener">Map</a><button data-plgo="'+esc(e.id)+'">'+(g?'✓ Going · undo':'I\'m going')+'</button><a href="#" data-shev="'+esc(e.id)+'">Invite a friend</a></div>'+menu+'</div>';
+      (desc?'<p>'+esc(desc)+'</p>':'')+'</div><div class="pl-iacts">'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">More info'+(needsTicketSafe(e)?' & tickets':'')+'</a>':'')+'<a href="'+map+'" target="_blank" rel="noopener">Map</a><button data-plgo="'+esc(e.id)+'" data-plgod="'+esc(key?key.split("|")[0]:"")+'">'+(g?'✓ Going · undo':'I\'m going')+'</button><a href="#" data-shev="'+esc(e.id)+'" data-shd="'+esc(key?key.split("|")[0]:"")+'">Invite a friend</a></div>'+menu+'</div>';
     document.body.appendChild(d)}
   function needsTicketSafe(e){try{return needsTicket(e)}catch(x){return false}}
   function closeSheet(){const d=document.getElementById("plsheet");if(d)d.remove()}
@@ -3128,15 +3174,17 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     el.innerHTML=view()}
   /* --- actions --- */
   function nope(e){if(e.hike){S.nope=S.nope||{};S.nope[e.id]={k:"Hike",tg:["outdoors"]};return}hidden.add(e.id);S.nope=S.nope||{};txt(e);S.nope[e.id]={c:e.cat||[],p:e.place||"",g:e.grp||GRP[e.rep||e.id]||e.src||"",k:e._pk||"",tg:[...tags(e)]}}
-  function addAll(ctx){const res=build(ctx);let n=0;res.forEach(r=>{if(!r.pick||r.skip||r.cont)return;const e=r.pick.e;
+  function chosen(ctx,mode){return build(ctx).filter(r=>r.pick&&!r.skip&&!r.cont&&(mode!=="kept"||r.kept||r.going))}
+  function goSet(id,d){S.goDay=S.goDay||{};S.goDay[id]=d;ensureHist(id);if(S.hist[id])S.hist[id].d=d}
+  function addAll(ctx,mode){const res=chosen(ctx,mode);let n=0;res.forEach(r=>{const e=r.pick.e;
       if(e.hike){S.trips=S.trips||{};const a=S.trips[e.id]||[];if(!a.includes(r.s.d))a.push(r.s.d);S.trips[e.id]=a.sort();n++}
-      else if(!goingSet.has(e.id)){goingSet.add(e.id);hidden.delete(e.id);ensureHist(e.id);n++}
+      else{if(!goingSet.has(e.id)||(S.goDay||{})[e.id]!==r.s.d)n++;goingSet.add(e.id);hidden.delete(e.id);goSet(e.id,r.s.d)}
       store(ctx)[r.s.key]={id:e.id}});persist();render();toast(n?n+" added to My plans":"Already in My plans")}
-  function ics(ctx){const res=build(ctx).filter(r=>r.pick&&!r.skip&&!r.cont);const st=new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z";const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Out and About//EN"];
+  function ics(ctx,mode){const res=chosen(ctx,mode);const SW={m:["100000","120000"],a:["140000","170000"],e:["190000","220000"]};const st=new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z";const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Out and About//EN"];
     const f=s=>String(s||"").replace(/([,;\\])/g,"\\$1").replace(/\n/g,"\\n");
     res.forEach(r=>{const e=r.pick.e,d=r.s.d.replace(/-/g,"");let a,b;
       if(e.hike){a="DTSTART;TZID=Europe/Zurich:"+d+"T093000";b="DTEND;TZID=Europe/Zurich:"+d+"T160000"}
-      else{const i=interval(e);if(i&&!(e.dayEnd>e.day)){const t=m=>pad(Math.floor(m%1440/60))+pad(m%60)+"00";a="DTSTART;TZID=Europe/Zurich:"+d+"T"+t(i.s);b="DTEND;TZID=Europe/Zurich:"+(i.en>=1440?isoAdd(r.s.d,1).replace(/-/g,""):d)+"T"+t(i.en)}else{a="DTSTART;VALUE=DATE:"+d;b="DTEND;VALUE=DATE:"+isoAdd(r.s.d,1).replace(/-/g,"")}}
+      else{const i=interval(e);if(i&&!(e.dayEnd>e.day)){const t=m=>pad(Math.floor(m%1440/60))+pad(m%60)+"00";a="DTSTART;TZID=Europe/Zurich:"+d+"T"+t(i.s);b="DTEND;TZID=Europe/Zurich:"+(i.en>=1440?isoAdd(r.s.d,1).replace(/-/g,""):d)+"T"+t(i.en)}else{const w=SW[r.s.k]||SW.a;a="DTSTART;TZID=Europe/Zurich:"+d+"T"+w[0];b="DTEND;TZID=Europe/Zurich:"+d+"T"+w[1]}}
       L.push("BEGIN:VEVENT","UID:plan-"+e.id+"-"+d+"@outandabout","DTSTAMP:"+st,a,b,"SUMMARY:"+f(e.title),"LOCATION:"+f(e.hike?e.hike.hike.area:e.place),"DESCRIPTION:"+f((e.hike?e.desc:why(e))+"\n"+(e.url||"")),"END:VEVENT")});
     L.push("END:VCALENDAR");const blob=new Blob([L.join("\r\n")],{type:"text/calendar"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=(ctx==="we"?"my-weekend":"my-week")+".ics";document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),500)}
   function openEv(id){closeSheet();if(/^hike-/.test(id)){ui.tab="trips";ui.tripOpen=id;render();setTimeout(()=>{const t=document.getElementById("trip-"+id);if(t)t.scrollIntoView({block:"start"})},60);return}ui.tab="this";focusEvent(id)}
@@ -3170,15 +3218,15 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(b=t.closest("[data-plskip]")){closeSheet();st()[b.dataset.plskip]={skip:true};persist();render();return}
     if(b=t.closest("[data-plunskip]")){delete st()[b.dataset.plunskip];persist();render();return}
     if(b=t.closest("[data-plmenu]")){const k=b.dataset.plmenu;const e=pickOf(k);if(e&&!e.hike)detail(e.id,k);else sheet(k);return}
-    if(b=t.closest("[data-plgo]")){const id=b.dataset.plgo;if(goingSet.has(id))goingSet.delete(id);else{goingSet.add(id);hidden.delete(id);ensureHist(id)}persist();closeSheet();render();toast(goingSet.has(id)?"Added to My plans":"Removed from My plans");return}
+    if(b=t.closest("[data-plgo]")){const id=b.dataset.plgo,gd=b.dataset.plgod;if(goingSet.has(id)){goingSet.delete(id);if(S.goDay)delete S.goDay[id]}else{goingSet.add(id);hidden.delete(id);ensureHist(id);if(gd){S.goDay=S.goDay||{};S.goDay[id]=gd;if(S.hist[id])S.hist[id].d=gd}}persist();closeSheet();render();toast(goingSet.has(id)?"Added to My plans":"Removed from My plans");return}
     if(b=t.closest("[data-plmove]")){const [from,to]=b.dataset.plmove.split("~");const e=pickOf(from);closeSheet();if(e){delete st()[from];st()[to]={id:e.id};if(st()[from]===undefined)swaps[from]=0;persist();render();toast("Moved to "+slotName(slots(ctx).find(s=>s.key===to)||{d:to.split("|")[0],k:to.split("|")[1]},ctx))}return}
     if(b=t.closest("[data-plall]")){closeSheet();ui.planAll=b.dataset.plall;ui.planAllF="all";render();window.scrollTo({top:0});return}
     if(b=t.closest("[data-plallf]")){ui.planAllF=b.dataset.plallf;render();return}
     if(t.closest("[data-plback]")){ui.planAll=null;render();window.scrollTo({top:0});return}
     if(b=t.closest("[data-plput]")){const [k,id]=b.dataset.plput.split("~");Object.entries(st()).forEach(([kk,v])=>{if(v&&v.id===id)delete st()[kk]});st()[k]={id};ui.planAll=null;persist();render();window.scrollTo({top:0});toast("Added to your plan");return}
     if(b=t.closest("[data-plopen]")){const id=b.dataset.plopen;if(/^hike-/.test(id))openEv(id);else detail(id,null);return}
-    if(t.closest("[data-pladd]")){addAll(ctx);return}
-    if(t.closest("[data-plcal]")){ics(ctx);return}
+    if(b=t.closest("[data-pladd]")){addAll(ctx,b.dataset.pladd);return}
+    if(b=t.closest("[data-plcal]")){ics(ctx,b.dataset.plcal);return}
   });
   /* --- tabs: Plan · Explore (This week / Next week / Culture) · Trips & hikes · My plans --- */
   const nav=document.querySelector("nav.tabs");
@@ -3196,7 +3244,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     seg.hidden=!(ext&&!state.q);seg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.ex===ui.tab)));
     try{renderPlan()}catch(e){console.error(e)}};
   /* keep profile and plan when syncing */
-  const _ad=adopt;adopt=function(b){const p=S.prof,pl=S.plan;_ad(b);S.prof=b.prof||p;S.plan=Object.assign({},pl||{},b.plan||{});try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}};
+  const _ad=adopt;adopt=function(b){const p=S.prof,pl=S.plan,gd=S.goDay;_ad(b);S.prof=b.prof||p;S.plan=Object.assign({},pl||{},b.plan||{});S.goDay=Object.assign({},gd||{},b.goDay||{});try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}};
   /* first time: ask what they like (after the welcome screen) */
   const _os=openSetup;openSetup=function(){_os();const o=document.getElementById("onb");if(!o)return;const mo=new MutationObserver(()=>{if(!document.getElementById("onb")){mo.disconnect();if(!S.prof)setTimeout(tune,200)}});mo.observe(document.body,{childList:true})};
   if(!location.hash){ui.tab="plan";setTimeout(()=>{try{render()}catch(e){}},0)}
@@ -3210,7 +3258,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   const BASE=()=>location.origin+location.pathname;
   const myName=()=>{try{return localStorage.getItem("oa-name")||""}catch(e){return ""}};
   function joinURL(p){return BASE()+"#join="+B64(p)}
-  function payload(items){const p={n:myName(),e:[],t:[],f:[]};items.forEach(x=>{if(x.k==="ev")p.e.push(x.e.id);else if(x.k==="trip")p.t.push([x.t0.id,x.day]);else if(x.k==="film"&&x.x)p.f.push(x.x)});return p}
+  function payload(items){const p={n:myName(),e:[],t:[],f:[]};items.forEach(x=>{if(x.k==="ev")p.e.push(x.any?x.e.id:[x.e.id,x.day]);else if(x.k==="trip")p.t.push([x.t0.id,x.day]);else if(x.k==="film"&&x.x)p.f.push(x.x)});return p}
   function label(x){if(x.k==="ev")return x.e.title;if(x.k==="trip")return (x.t0.kind==="hike"?"Hike: ":x.t0.kind==="weekend"?"Weekend in ":"Day trip to ")+x.t0.name;if(x.k==="film")return "Film: "+(x.x.t||"");return ""}
   function line(x){return "• "+dayHead(x.day)+(x.t&&/\d/.test(x.t)?" "+x.t:"")+" — "+label(x)}
   async function send(items){const p=payload(items);const url=joinURL(p);const who=p.n?p.n+"'s":"My";
@@ -3233,7 +3281,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
       if(t.closest("[data-shgo]")){const nm=d.querySelector("#shname").value.trim();try{localStorage.setItem("oa-name",nm)}catch(e){}close("shsheet");send(it.filter((x,i)=>sel.has(i)))}});}
   /* --- receiving an invite --- */
   function resolve(p){const out=[];
-    (p.e||[]).forEach(id=>{const e=EVENTS.find(x=>x.id===id)||(ALL_EVENTS||[]).find(x=>x.id===id);if(e&&!isPast(e))out.push({k:"ev",id,e,day:e.day<TODAY?TODAY:e.day,lab:e.title,sub:dayHead(e.day<TODAY?TODAY:e.day)+" · "+(e.when||"").replace(/^[A-Z][a-z]{2} \d{1,2}( [A-Z][a-z]{2})?( – [^·]*)? · /,"")+" · "+String(e.place||"").split(",")[0],have:goingSet.has(id)})});
+    (p.e||[]).forEach(v=>{const [id,gd]=Array.isArray(v)?v:[v,null];const e=EVENTS.find(x=>x.id===id)||(ALL_EVENTS||[]).find(x=>x.id===id);if(gd&&gd<TODAY)return;const multi=e&&e.dayEnd&&e.dayEnd>e.day;const dd=gd||(multi?null:(e&&e.day<TODAY?TODAY:e&&e.day));if(e&&!isPast(e))out.push({k:"ev",id,e,gd,day:dd||TODAY,lab:e.title,sub:(dd?dayHead(dd):"Any day until "+dLbl(e.dayEnd))+" · "+(e.when||"").replace(/^[A-Z][a-z]{2} \d{1,2}( [A-Z][a-z]{2})?( – [^·]*)? · /,"")+" · "+String(e.place||"").split(",")[0],have:goingSet.has(id)})});
     (p.t||[]).forEach(([id,d])=>{const t=TRIPS.find(x=>x.id===id);if(t&&d>=TODAY)out.push({k:"trip",id,d,lab:(t.kind==="hike"?"Hike: ":"Day trip to ")+t.name,sub:dayHead(d),have:tripDates(id).includes(d)})});
     (p.f||[]).forEach(f=>{if(f&&f.k&&String(f.k).split("|")[2]>=TODAY)out.push({k:"film",f,lab:"Film: "+(f.t||""),sub:dayHead(String(f.k).split("|")[2])+" · "+(f.tm||"")+" · "+(f.cn||""),have:(S.films||[]).some(x=>x.k===f.k)})});
     return out}
@@ -3251,7 +3299,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
       const c=t.closest("[data-invi]");if(c){const i=+c.dataset.invi;if(c.checked)sel.add(i);else sel.delete(i);draw();return}
       if(t.closest("[data-invcopy]")){try{await navigator.clipboard.writeText(raw);toast("Invite copied")}catch(e){prompt("Copy this invite:",raw)}return}
       if(t.closest("[data-invadd]")){let n=0;L.forEach((x,i)=>{if(!sel.has(i)||x.have)return;n++;
-          if(x.k==="ev"){goingSet.add(x.id);hidden.delete(x.id);ensureHist(x.id);if(S.hist[x.id]&&p.n)S.hist[x.id].with=p.n}
+          if(x.k==="ev"){goingSet.add(x.id);hidden.delete(x.id);ensureHist(x.id);if(x.gd){S.goDay=S.goDay||{};S.goDay[x.id]=x.gd;if(S.hist[x.id])S.hist[x.id].d=x.gd}if(S.hist[x.id]&&p.n)S.hist[x.id].with=p.n}
           else if(x.k==="trip"){S.trips=S.trips||{};const a=tripDates(x.id);if(!a.includes(x.d))a.push(x.d);S.trips[x.id]=a.sort()}
           else if(x.k==="film"){S.films=S.films||[];S.films.push(x.f)}});
         persist();close("shinv");try{openPlans(true)}catch(e){render()}toast(n+" added to My plans"+(p.n?" · with "+p.n:""))}});}
@@ -3267,11 +3315,20 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     el.querySelectorAll('[data-share]').forEach(x=>x.textContent="Invite a friend");el.querySelectorAll('.mp-trip a[href*="wa.me"],.mp-trip a[href*="text="]').forEach(x=>{if(/Share/.test(x.textContent))x.textContent="Invite a friend"});hd.insertAdjacentHTML("afterend",'<div class="sh-bar"><button class="sh-btn ghost" data-shpaste>Paste a friend\'s invite</button></div>')};
   document.addEventListener("click",ev=>{const st=ev.target.closest("[data-shtrip]");if(st){const [id,d]=st.dataset.shtrip.split("|");const t=TRIPS.find(x=>x.id===id);if(t)ask([{k:"trip",t0:t,day:d,t:""}]);return}
     const sf=ev.target.closest("[data-shfilm]");if(sf){const f=(S.films||[]).find(x=>x.k===sf.dataset.shfilm);if(f)ask([{k:"film",x:f,day:String(f.k).split("|")[2],t:f.tm}]);return}
-    const sp=ev.target.closest("[data-shev]");if(sp){ev.preventDefault();const e=EVENTS.find(x=>x.id===sp.dataset.shev);if(e)ask([{k:"ev",e,day:e.day<TODAY?TODAY:e.day,t:(e.when.match(/\d{1,2}:\d{2}/)||[""])[0]}]);return}
+    const sp=ev.target.closest("[data-shev]");if(sp){ev.preventDefault();const e=EVENTS.find(x=>x.id===sp.dataset.shev);if(e){const it=myItems().find(x=>x.k==="ev"&&x.e.id===e.id);const sd=sp.dataset.shd;ask([sd?{k:"ev",e,day:sd,t:(e.when.match(/\d{1,2}:\d{2}/)||[""])[0]}:(it||{k:"ev",e,day:e.day<TODAY?TODAY:e.day,any:!!(e.dayEnd&&e.dayEnd>e.day),t:""})])}return}
     if(ev.target.closest("[data-shopen]")){composer();return}if(ev.target.closest("[data-shpaste]")){paste();return}});
   /* the single-event Share buttons now send an invite link too */
   window.addEventListener("click",ev=>{const a=ev.target.closest("[data-share]");if(!a)return;const e=EVENTS.find(x=>x.id===a.dataset.share);if(!e)return;ev.preventDefault();ev.stopImmediatePropagation();
-    ask([{k:"ev",e,day:e.day<TODAY?TODAY:e.day,t:(e.when.match(/\d{1,2}:\d{2}/)||[""])[0]}])},true);
+    const it=myItems().find(x=>x.k==="ev"&&x.e.id===e.id);ask([it||{k:"ev",e,day:e.day<TODAY?TODAY:e.day,any:!!(e.dayEnd&&e.dayEnd>e.day),t:(e.when.match(/\d{1,2}:\d{2}/)||[""])[0]}])},true);
+})();
+/* Batch 1 · My plans on the right day: each "I'm going" keeps the day it was planned for; multi-day ones without a day sit under "Any day" */
+(function(){
+  const ANY="9999-12-31";
+  const _dh=dayHead;dayHead=function(d){return d===ANY?"Any day":_dh(d)};
+  const _mi=myItems;myItems=function(){const G=S.goDay||{};const it=_mi().filter(x=>{if(x.k!=="ev")return true;const e=x.e,g=G[e.id];
+      if(g){if(g<TODAY)return false;x.day=g;return true}
+      if(e.dayEnd&&e.dayEnd>e.day){x.day=ANY;x.any=true;x.t="Until "+dLbl(e.dayEnd)}return true});
+    return it.sort((a,b)=>a.day.localeCompare(b.day)||String(a.t).localeCompare(String(b.t)))};
 })();
 </script>
 
