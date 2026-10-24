@@ -2608,7 +2608,7 @@ function openSetup(){if(document.getElementById("onb"))return;
   const P0=JSON.parse(JSON.stringify(O?O.prof():{we:{who:"solo",moods:[]},wk:{who:"solo",moods:[]},never:[],eves:[1,2,3,4]}));
   let home=S.home||null,wkWho=P0.legacy?null:P0.wk.who,weWho=P0.legacy?null:P0.we.who;
   const M=new Set(P0.legacy&&first?[]:[...new Set([].concat(P0.we.moods||[],P0.wk.moods||[]))]);let dating=wantsDating();
-  const N=new Set(first?[]:(P0.never||[])),E=new Set(first?[]:(P0.eves||[1,2,3,4]));let touched=false;const who0=[P0.wk.who,P0.we.who].join();
+  const blank=first||P0.legacy;const N=new Set(blank?[]:(P0.never||[])),E=new Set(blank?[]:(P0.eves||[1,2,3,4]));let touched=false;const who0=[P0.wk.who,P0.we.who].join();
   const MO=(O?O.MOODS:[]),NV=(O?O.NEVER:[]),WH=[["solo","Solo"],["partner","With my partner"],["friends","With friends"]];
   const d=document.createElement("div");d.id="onb";
   const keep=()=>{const g=d.querySelector("#addr-ge"),z=d.querySelector("#addr-zh");return [g?g.value:((S.addr||{}).ge||{}).q||"",z?z.value:((S.addr||{}).zh||{}).q||""]};
@@ -2639,7 +2639,7 @@ function openSetup(){if(document.getElementById("onb"))return;
       const MC={meet:"rencontre",games:"rencontre",language:"rencontre",creative:"creatif",markets:"marche",festivals:"fete",party:"fete",food:"fete",concerts:"culture",comedy:"culture",film:"culture",exhibitions:"culture",outdoors:"chien",yoga:"corps"};
       S.likes=[...new Set(moods.map(k=>MC[k]).filter(Boolean))].concat(dating?["dating"]:[]);S.dating=dating;
       const [ag,az]=keep();saveAddr(ag,az);try{localStorage.setItem("oa-home",home)}catch(e){}
-      if(O&&changed)O.clearCur();EVENTS.forEach(e=>{delete e._ptg;delete e._dt;delete e._dt2});d.remove();setCity(home);persist();render()}});
+      if(O&&changed)O.clearCur();EVENTS.forEach(e=>{delete e._ptg;delete e._dt;delete e._dt2});try{buildAutoPicks()}catch(x){}d.remove();setCity(home);persist();render()}});
 }
 (function(){let h=null;try{h=localStorage.getItem("oa-home")}catch(e){}if(!S.home&&h)S.home=h;if(!S.home||!(S.likes||[]).length)setTimeout(openSetup,300);})();
 
@@ -3093,7 +3093,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     language:/language|tandem|lingo|conversation|french practice|pratique .french|english practice|sprach/i,
     food:/food|wine|vin\b|tasting|d[ée]gustation|brunch|dinner|cook|street food|beer|bi[èe]re|cocktail/i,
     party:/party|soir[ée]e|club\b|dj set|clubbing|techno|house music|disco|karaoke/i};
-  const NRX={kids:/\b(?:kids|enfants?|children|kinder|for families|en famille|family[- ]friendly|famili[ae]l|b[ée]b[ée]s?|toddlers?)\b/i,sports:/football|soccer|volley|badminton|padel|basket|hockey|tennis|league|tournament|match\b|ravens/i,
+  const NRX={kids:/\b(?:kids|enfants?|children|kinder|for families|en famille|family[- ]friendly|famili[ae]l|b[ée]b[ée]s?|toddlers?)\b/i,sports:/football|soccer|hockey|league|\bmatch\b|ravens|\bvs\.?\b|championship|meisterschaft/i,
     talks:/\b(?:a talk|talk by|talks? (?:on|about|with)|lecture by|public lecture|lecture on|panel discussion|webinar|vortrag|round ?table)\b/i,clubs:/club night|\btechno\b|clubbing|\brave\b|after.?party/i,classical:/orchestr|symphon|recital|philharm|quartet|sonata|opera\b|op[ée]ra/i};
   function txt(e){if(e._ptx==null){let k="";try{k=gloss(e).replace(/<[^>]+>/g,"")}catch(x){}e._ptx=(e.title+" "+(e.titleOrig||"")+" "+k+" "+String(e.desc||"").slice(0,220)).toLowerCase();e._pk=k.split(" · ")[0]}return e._ptx}
   function tags(e){if(e._ptg)return e._ptg;if(e.hike)return e._ptg=new Set(["outdoors"]);const t=txt(e),c=e.cat||[],s=new Set();
@@ -3101,15 +3101,15 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(c.includes("marche"))s.add("markets");if(c.includes("creatif"))s.add("creative");if(c.includes("chien"))s.add("outdoors");if(c.includes("rencontre")||e.src==="Meetup")s.add("meet");
     if(/^Concert|Jazz|Live music/.test(e._pk))s.add("concerts");if(/Exhibition/.test(e._pk)||e.p==="on")s.add("exhibitions");if(/Festival/.test(e._pk))s.add("festivals");if(/Film/.test(e._pk))s.add("film");
     return e._ptg=s}
-  const MEETUP=/\bmeetup\b|mixer|language exchange|[ée]change linguistique|sprach(?:tandem|caf[eé])|tandem|lingo|speed friending|make (?:new )?friends|social (?:circle|club|hour|evening)|pub crawl|networking/i;
+  const MEETUP=/\bmeetup\b|mixer|language exchange|[ée]change linguistique|sprach(?:tandem|caf[eé])|tandem|lingo|speed friending|make (?:new )?friends|social (?:circle|club|hour|evening)|pub crawl|networking|(?:french|english|german|spanish|italian|russian|language)["”]?\s+(?:conversation|practice)|(?:conversation|practice)\s+(?:en|in)\s|practi[cs]e\s+\w+\s+language|sociali[sz]e conversation|fast friends|happy hour/i;
   const MEETK=/^(Language exchange|Singles mixer|Networking)/;
-  function late(e){const i=interval(e);return !!i&&(i.s>=22*60||(i.en>=25*60&&i.s>=20*60))}
+  function late(e){const i=interval(e);return !!i&&(i.s>=22*60||i.en>=25*60)}
   const NOTCLUB=/comedy|karaoke|stand.?up|salsa|forr[óo]|tango|bachata|kizomba|class|cours|lesson|jazz|werewolf|loup|quiz|concert|choir|theat/i;
   function never(e){const N=prof().never||[];if(!N.length)return false;const t=txt(e);
     if(wantsDating()&&isDating(e))return false;
     return N.some(k=>k==="meetups"?(MEETK.test(e._pk||"")||MEETUP.test(e.title+" "+(e.titleOrig||"")))
       :k==="clubs"?(!NOTCLUB.test(e.title)&&(NRX.clubs.test(e.title+" "+(e._pk||""))||(/party|club|\bdj\b|rave|techno|house|disco|soir[ée]e|night/i.test(e.title+" "+(e._pk||""))&&late(e))))
-      :k==="classical"||k==="sports"?(NRX[k].test(e.title+" "+(e._pk||""))&&!/hip.?hop|disco|jazz|milonga|tango|pop|rock|language|swing/i.test(e.title))
+      :k==="classical"||k==="sports"?((NRX[k].test(e.title+" "+(e._pk||""))||(k==="classical"&&/^Classical|^Opera/i.test(e._pk||"")))&&!(k==="classical"&&/guided tour/i.test(e.title))&&!/hip.?hop|disco|jazz|milonga|tango|pop|rock|language|swing/i.test(e.title))
       :NRX[k]&&NRX[k].test(t))}
   /* --- dates and slots --- */
   const dow=d=>new Date(d+"T12:00:00").getDay();
@@ -3298,6 +3298,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(b=t.closest("[data-plcal]")){ics(ctx,b.dataset.plcal);return}
   });
   window.OA={MOODS,NEVER,WHO,DEF,prof,never,clearCur,LIKE2MOOD};
+  setTimeout(()=>{try{buildAutoPicks();renderPicks()}catch(x){}},0);
   /* --- tabs: Plan · Explore (This week / Next week / Culture) · Trips & hikes · My plans --- */
   const nav=document.querySelector("nav.tabs");
   const pb=document.createElement("button");pb.setAttribute("role","tab");pb.dataset.tab="plan";pb.textContent="Plan";nav.insertBefore(pb,nav.firstChild);
