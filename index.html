@@ -2534,7 +2534,7 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
   /* courses were read as exhibitions ("photo" in the title) */
   L.forEach(e=>{if(e.kind)return;const t=e.title+" "+(e.titleOrig||"");
     if(/(?:photo|foto)\w*[^.]{0,40}\b(?:workshop|kurs|course|cours|class)|\b(?:workshop|kurs|course|cours|class)\b[^.]{0,40}(?:photo|foto)|fotokurs/i.test(t))e.kind="Photography course";
-    else if(/courses-seminars|kurse-seminare|cours-seminaires/.test(e.url||"")&&/workshop|kurs|course|cours|seminar|class/i.test(t))e.kind="Course"});
+    else if(/courses-seminars|kurse-seminare|cours-seminaires/.test(e.url||"")&&/workshop|kurs|course|cours|seminar|class/i.test(t)&&!/\bdj\b|party|f[eê]te|dance|danse|tanz/i.test(t))e.kind="Course"});
   /* prices */
   L.forEach(e=>{let p=String(e.price||"").trim();
     if(p){p=p.replace(/^CHF\s+CHF\b/i,"CHF").replace(/\.-(?=[\s,/)]|$)/g,"");p=p.replace(/^CHF\s+(?=[A-Za-zÀ-ÿ])(?!(?:d[èe]s|from|ab)\b)/i,"");
@@ -3237,7 +3237,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(b=t.closest("[data-plunskip]")){delete st()[b.dataset.plunskip];persist();render();return}
     if(b=t.closest("[data-plmenu]")){const k=b.dataset.plmenu;const e=pickOf(k);if(e&&!e.hike)detail(e.id,k);else sheet(k);return}
     if(b=t.closest("[data-plgo]")){const id=b.dataset.plgo,gd=b.dataset.plgod,gk=b.dataset.plgok;if(goingSet.has(id)&&!b.dataset.plswitch){goingSet.delete(id);if(S.goDay)delete S.goDay[id]}else{goingSet.add(id);hidden.delete(id);if(gd)goSet(id,gd,gk);else ensureHist(id)}persist();closeSheet();render();toast(goingSet.has(id)?"Added to My plans":"Removed from My plans");return}
-    if(b=t.closest("[data-plmove]")){const [from,to]=b.dataset.plmove.split("~");const e=pickOf(from);closeSheet();if(e){delete st()[from];st()[to]={id:e.id};if(st()[from]===undefined)swaps[from]=0;persist();render();toast("Moved to "+slotName(slots(ctx).find(s=>s.key===to)||{d:to.split("|")[0],k:to.split("|")[1]},ctx))}return}
+    if(b=t.closest("[data-plmove]")){const [from,to]=b.dataset.plmove.split("~");const e=pickOf(from);closeSheet();if(e){delete st()[from];st()[to]={id:e.id};if(goingSet.has(e.id)&&!e.hike){const [td,tk]=to.split("|");goSet(e.id,td,tk)}if(st()[from]===undefined)swaps[from]=0;persist();render();toast("Moved to "+slotName(slots(ctx).find(s=>s.key===to)||{d:to.split("|")[0],k:to.split("|")[1]},ctx))}return}
     if(b=t.closest("[data-plall]")){closeSheet();ui.planAll=b.dataset.plall;ui.planAllF="all";render();window.scrollTo({top:0});return}
     if(b=t.closest("[data-plallf]")){ui.planAllF=b.dataset.plallf;render();return}
     if(t.closest("[data-plback]")){ui.planAll=null;render();window.scrollTo({top:0});return}
