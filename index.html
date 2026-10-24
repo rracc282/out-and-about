@@ -3207,7 +3207,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(!r.pick)return '<div class="pl-slot">'+head+'<div class="pl-m">Nothing listed for this '+SL[s.k][2]+' yet nearby. New events arrive every night; <button class="pl-lnk" data-plall="'+s.key+'">see all options</button> or browse Explore.</div></div>';
     const e=r.pick.e;const tag='';
     return '<div class="pl-slot'+(r.going||r.kept?' pl-on':'')+'" data-slot="'+s.key+'" data-ev="'+esc(e.id)+'">'+head+
-      '<button class="pl-body" data-plmenu="'+s.key+'"><span class="pl-t">'+esc(e.title)+'</span>'+(e.titleEn&&e.titleEn!==e.title&&!e.hike?'<span class="pl-en">'+esc(e.titleEn)+'</span>':'')+tag+'<span class="pl-m">'+esc(meta(e))+'</span>'+(why(e)?'<span class="pl-w">'+esc(why(e))+'</span>':'')+'</button>'+
+      '<button class="pl-body" data-plmenu="'+s.key+'"><span class="pl-t">'+esc(e.title)+'</span>'+tag+'<span class="pl-m">'+esc(meta(e))+'</span>'+(why(e)?'<span class="pl-w">'+esc(why(e))+'</span>':'')+'</button>'+
       '<div class="pl-acts"><button data-plswap="'+s.key+'"'+(r.n<2||r.going?' disabled':'')+'>↻ Swap'+(r.n>1?' <small>'+(r.n-1)+'</small>':'')+'</button>'+(r.going?'<button class="on" data-plunkeep="'+s.key+'">✓ In My plans</button>':'<button data-plkeep="'+s.key+'">＋ My plans</button>')+'<button class="x" data-plnope="'+s.key+'">Not for me</button></div></div>'}
   function view(){const ctx=ui.planCtx||"we";const c=cur(ctx);const P=prof();
     if(ui.planAll){const r=build(ctx).find(x=>x.s.key===ui.planAll);if(r)return allView(r,ctx)}
@@ -3245,10 +3245,14 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
       menu=res.filter(x=>x.s.key!==key&&!x.cont&&fits(e,x.s)).map(o=>{const w=wx(o.s.d,o.s.k);return '<button class="pl-opt" data-plmove="'+esc(key+"~"+o.s.key)+'">↔ Move to '+slotName(o.s,ctx)+(w?' <span'+(w.r>=50?' class="warn"':'')+'>'+(w.r>=50?"🌧":w.r>=25?"⛅":"☀️")+' '+w.r+'%</span>':'')+'</button>'}).join("")+
         '<button class="pl-opt" data-plall="'+key+'">☰ See all options for '+slotName(r.s,ctx)+' <span>'+r.n+' →</span></button><button class="pl-opt" data-plskip="'+key+'">Skip this slot</button><button class="pl-opt x" data-plnope="'+key+'">Not for me</button>'}}
     const kd=key?key.split("|")[0]:"";const g=goingSet.has(e.id)&&(!key||goOn(e,kd));const elsewhere=goingSet.has(e.id)&&!g;const desc=String(e.desc||"").trim();const map="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(e.place||e.title);
-    const d=document.createElement("div");d.id="plsheet";d.innerHTML='<div class="pl-dim" data-plclose></div><div class="pl-sheet" role="dialog" aria-label="'+esc(e.title)+'"><div class="pl-grab"></div><h3>'+esc(e.title)+'</h3>'+(e.titleEn&&e.titleEn!==e.title?'<p class="pl-en">'+esc(e.titleEn)+'</p>':'')+'<p>'+esc(meta(e))+'</p>'+
+    const d=document.createElement("div");d.id="plsheet";d.innerHTML='<div class="pl-dim" data-plclose></div><div class="pl-sheet" role="dialog" aria-label="'+esc(e.title)+'"><div class="pl-grab"></div><h3>'+esc(e.title)+'</h3>'+(enLine(e)?'<p class="pl-en">In English: '+esc(enLine(e))+'</p>':'')+'<p>'+esc(meta(e))+'</p>'+
       '<div class="pl-info"><div><b>When</b> '+esc(e.dayEnd&&e.dayEnd>e.day?dLbl(e.day)+' – '+dLbl(e.dayEnd)+(e.when&&/\d:\d/.test(e.when)?' · '+e.when.replace(/^[A-Z][a-z]{2} \d{1,2} · /,""):''):e.when)+'</div><div><b>Where</b> '+esc(e.place||"")+(e.trip&&!isLocal(e)?' · '+esc(e.trip):'')+'</div>'+(e.price?'<div><b>Price</b> '+esc(e.price)+'</div>':'')+
       (desc?'<p>'+esc(desc)+'</p>':'')+'</div><div class="pl-iacts">'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">More info'+(needsTicketSafe(e)?' & tickets':'')+'</a>':'')+'<a href="'+map+'" target="_blank" rel="noopener">Map</a><button data-plgo="'+esc(e.id)+'" data-plgod="'+esc(kd)+'" data-plgok="'+esc(key?key.split("|")[1]:"")+'" data-plswitch="'+(elsewhere?1:"")+'">'+(g?'✓ Going · undo':elsewhere?'I\'m going this day instead':'I\'m going')+'</button><a href="#" data-shev="'+esc(e.id)+'" data-shd="'+esc(key?key.split("|")[0]:"")+'">Invite a friend</a></div>'+menu+'</div>';
     document.body.appendChild(d)}
+  /* the English title as a hint, only when it really says something different (not names, not just capitals) */
+  function enLine(e){let x=String(e.titleEn||"").trim();if(!x)return "";const n=v=>v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ").trim();
+    if(n(x)===n(e.title)||e.title.split(/\s+/).length<3)return "";if(x===x.toUpperCase())x=x.charAt(0)+x.slice(1).toLowerCase();
+    x=x.replace(/\b[A-Z]{4,}\b/g,w=>w.charAt(0)+w.slice(1).toLowerCase());return x}
   function needsTicketSafe(e){try{return needsTicket(e)}catch(x){return false}}
   function closeSheet(){const d=document.getElementById("plsheet");if(d)d.remove()}
   function renderPlan(){let el=document.getElementById("planview");if(!el){el=document.createElement("section");el.id="planview";const ag=document.getElementById("agenda");ag.parentNode.insertBefore(el,ag)}
@@ -3437,7 +3441,8 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     [/wine festival|weinfestival|expovina|food festival|f[êe]te du vin|wine fair|salon des vins/i,"Food & drink festival"],
     [/th[ée][aâ]tralis|theatrical walk|theatre walk/i,"Theatre walk"],
     [/bal folk|folk dance|ceilidh|danses? trad/i,"Dance night"],
-    [/\bexpats?\b|bonjour gen[eè]ve|coffee (?:meet|morning)|newcomers/i,"Social meetup"],
+    [/(?:atelier|cours|class|workshop|stage)\b.*\b(?:dj set|forr[óo]|afro|salsa|dance|danse)|(?:forr[óo]|afro\w*|dance|danse)\b.*\b(?:atelier|cours|class|workshop)\b/i,"Dance class"],
+    [/concours|competition|exposition|exhibition|\bexpo\b|ausstellung|vernissage|r[ée]trospective/i,"Exhibition"],
     [/\bb2b\b|\bboums?\b|dj set/i,"Party"],
     [/dance battle|dance your style|\bbattle\b/i,"Dance show"],
     [/history month|\bprogramme\b/i,"Festival"],
@@ -3451,7 +3456,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     [/karaok/i,"Karaoke"],
     [/stand.?up|comedy|com[ée]die (?!de gen)|humou?r|humoriste|one.?(?:wo)?man.?show|caustic/i,"Comedy show"],
     [/\bimpro(?:v|visation)?\b|improv /i,"Improv show"],
-    [/speed friending|make (?:new )?friends|social (?:circle|club|hour|evening)|\bmeetup\b|mixer|after.?work|happy hour|socialis|fast friends|coffee and chill|women'?s circle|sharing circle/i,"Social meetup"],
+    [/\bexpats?\b|bonjour gen[eè]ve|coffee (?:meet|morning)|newcomers|speed friending|make (?:new )?friends|social (?:circle|club|hour|evening)|\bmeetup\b|mixer|after.?work|happy hour|socialis|fast friends|coffee and chill|women'?s circle|sharing circle/i,"Social meetup"],
     [/yoga|meditation|m[ée]ditation|satsang|breathwork|sound (?:bath|massage)|massage|pilates|pelvic floor|qi ?gong|tai chi|wellness/i,"Wellbeing session"],
     [/(?:salsa|bachata|kizomba|tango|milonga|forr[óo]|swing|lindy|cumbia|ballroom|hip.?hop dance|afro workout|dance (?:class|workshop|fitness|practice)|danse|crash course).*\b(?:class|course|cours|workshop|initiation|practice|crash)\b|\b(?:class|course|cours|workshop|initiation|crash course)\b.*(?:salsa|bachata|kizomba|tango|forr[óo]|swing|lindy|dance|danse)|afro workout|dance (?:class|workshop|fitness|practi)/i,"Dance class"],
     [/salsa|bachata|kizomba|tango|milonga|forr[óo]|\bswing\b|lindy|cumbia|ballroom|\bkiz\b/i,"Dance night"],
@@ -3471,7 +3476,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     [/christmas market|march[ée] de no[ëe]l|weihnachtsmarkt|advent/i,"Christmas market"],
     [/flea|brocante|puces|vide.?grenier|flohmarkt|\btroc\b|yard sale|garage sale|free market/i,"Flea market"],
     [/market|march[ée]|\bmarkt\b|\bfair\b|\bfoire\b|bazaar|braderie|messe\b/i,"Market / fair"],
-    [/workshop|atelier|\bclass\b|course\b|\bcours\b|\bkurs\b|masterclass|initiation/i,"Workshop"],
+    [/workshop|atelier|\bclass\b|course\b|\bcours\b|\bkurs\b|masterclass|initiation|^create\b|\bcr[ée]e[rz]\b/i,"Workshop"],
     [/oper(?:a|n)\b|op[ée]ra/i,"Opera"],
     [/orchest|symphon|recital|r[ée]cital|quartet|quatuor|philharm|sonata|chamber music|baroque|requiem|ensemble\b/i,"Classical concert"],
     [/\bchoir\b|chorale|\bchor\b|choral|bateria|samba|percussion/i,"Music group"],
@@ -3484,12 +3489,14 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   const VEN=[[/alhambra|arena|hallenstadion|volkshaus|the hall|samsung hall|halle 622|x-tra|komplex|\bptr\b|le rez|usine [àa] gaz|l'usine|amr|bongo joe|[ée]curie|urgence disk|chat noir|moods|rote fabrik|kaufleuten|exil|bogen f|mascotte|victoria hall|tonhalle|bfm|forces motrices|la gravi[èe]re|cave ?12|sud des alpes|bretelle|chant'grange|calvinus/i,"Concert"],
     [/th[ée][aâ]tre|theater|com[ée]die de gen|vidy|galpon|pito[ëe]ff|poche|schauspielhaus|neumarkt|gessnerallee|grand th[ée][aâ]tre|opernhaus/i,"Theatre play"],
     [/mus[ée]e|museum|kunsthaus|kunsthalle|galerie|gallery|fondation|mamco|fotomuseum|centre d'art|photoforum/i,"Exhibition"]];
-  const STRONG=new Set(["Language exchange","Singles event","Pub crawl","Quiz night","Board games","Karaoke","Comedy show","Improv show","Social meetup","Wellbeing session","Dance class","Sport","Ceramics","Drawing session","Painting workshop","Craft workshop","Writing workshop","Guided tour","Light show","Flea market","Christmas market","Film screening"]);
+  const STRONG=new Set(["Reading","Language exchange","Singles event","Pub crawl","Quiz night","Board games","Karaoke","Comedy show","Improv show","Social meetup","Wellbeing session","Dance class","Sport","Ceramics","Drawing session","Painting workshop","Craft workshop","Writing workshop","Guided tour","Light show","Flea market","Christmas market","Film screening"]);
   const WEAK=/^(Party|Show|Stage show|Social meetup|Theatre play|Concert|Puzzle game|Music group|Painting workshop|Workshop|Ceramics workshop|Dance night|Country festival|Reading \/ poetry|Market \/ fair|Festival|Discussion group|Exhibition|Event|Sport & wellbeing|Wellbeing session|Singles mixer|Hike|Walk)$/;
   const CRAFTY=/workshop|course|^Drawing session|^Wellbeing session/i;
   function classify(e,_g){const t=e.title+" "+(e.titleOrig||"")+" "+(e.titleEn||"");let old="";try{old=_g(e).replace(/<[^>]+>/g,"").split(" · ")[0].replace(/&amp;/g,"&")}catch(x){}
     let k=(R.find(([re])=>re.test(t))||[])[1];
     if(k==="Ceramics")k="Ceramics workshop";
+    if(/^(?:Ceramics workshop|Painting workshop|Drawing session|Craft workshop)$/.test(k)&&!/workshop|atelier|class|course|cours|kurs|initiation|session|evening|night|meet|flirt|\bjam\b/i.test(t)&&/mus[ée]e|museum|mah\b|art et d'histoire|galerie|gallery|fondation|kunsthaus/i.test(String(e.place||"")))return "Exhibition";
+    if(/^Reading/.test(old))return null;
     if(k==="Music group"&&/th[ée][aâ]tre|com[ée]die de gen|theater/i.test(String(e.place||"")))return "Theatre play";
     if(k&&(STRONG.has(k)||WEAK.test(old)))return k;
     if(!k&&e.p==="on"&&!/workshop|atelier|tour|talk|lecture|course|class|market|yoga|massage/i.test(t)&&WEAK.test(old))return "Exhibition";
