@@ -856,6 +856,7 @@ nav.tabs [data-tab="this"]::before{content:"🔎"!important}
 #onb{overflow-y:auto;align-items:flex-start;-webkit-overflow-scrolling:touch}#onb .box{margin:auto 0}
 #onb .box h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--lake);margin:18px 0 8px}#onb .box h3:first-of-type{margin-top:8px}
 .pl-all{display:block;margin:10px auto 0;font-size:13.5px}
+.pl-en{display:block;font-size:12.5px;color:var(--muted);margin-top:1px;font-weight:400}#plsheet p.pl-en{margin:-2px 0 6px}
 .pl-cta.done{background:var(--go-soft);color:var(--go)}
 .pl-acts button.on{background:var(--go-soft);color:var(--go)}
 .pl-hint.first{margin:14px 0 8px;font-size:13.5px;color:var(--ink)}
@@ -2828,7 +2829,7 @@ function gloss(e){const ico='';const wetTag=wetOf(e)?' · 🌧 outdoors':'';let 
   if(!k){if(/ @ /.test(e.titleOrig||e.title))k="Concert";
     else{const t=e.title+" "+(e.titleOrig||"")+" "+(e.place||"").split(",")[0]+" "+(e.desc||"").slice(0,160);k=(GLs().find(([re])=>re.test(e.title+" "+(e.titleOrig||"")))||GLs().find(([re])=>re.test(t))||[])[1]}}
   if(!k&&e.src==="Songkick")k="Concert";
-  if(e.p==="on"&&/workshop|Drawing session|Festival|Culture|Show/.test(k||"Culture"))k="Exhibition";
+  if(e.p==="on"&&!e._kt&&/workshop|Drawing session|Culture|Show/.test(k||"Culture"))k="Exhibition";
   if(!k&&(e.cat||[])[0]==="culture"){const v=String(e.place||"").split(",")[0]+" "+String(e.place||"");const d=String(e.desc||"");
     k=/th[ée][aâ]tre|theater|theatre|schauspiel|kellerb[üu]hne|b[üu]hne|comédie|casino|scala\b/i.test(v)?"Theatre play":/musée|museum|kunsthalle|galerie|gallery|fondation|kunsthaus/i.test(v)?"Exhibition":/club|bar\b|uptown|lounge|kaufleuten|plaza|mascotte|zukunft|usine/i.test(v)?"Party":/kino|cinéma|cinema|pathé|arena\b/i.test(v)?"Film screening":/concert|tonhalle|victoria hall|salle|kirche|église|temple|cathédrale/i.test(v)?"Concert":/stage|scène|bühne|spectacle|performance|show\b/i.test(d)?"Stage show":/lawyer|play\b|drama|comedy|actor|actress|character/i.test(d)?"Theatre play":"Show"}
   if(!k)k=({rencontre:"Social meetup",creatif:"Workshop",marche:"Market / fair",fete:"Festival",culture:"Show",corps:"Sport & wellbeing",chien:"Dog-friendly outing"})[(e.cat||[])[0]]||"Event";
@@ -3160,10 +3161,11 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   function hikeScore(h,s,moods){const t=h.hike;const w=(TWX[t.id]||{})[s.d]||((city()==="ge"?WX:WX_ZH)[s.d]);let v=moods.includes("outdoors")?16:2;
     if(w){if(w[1]>=50)v-=20;else if(w[1]>=30)v-=4;else v+=4}
     if(s.d===TODAY&&nowMin()>9*60)v-=50;if((S.nope||{})[t.id])v-=50;return v-t.hike.min/120}
+  function townPart(e){return String(e.place||"").split(",").map(x=>x.trim()).filter(x=>x&&!/^(?:\d|rue|route|rte|av\.?|avenue|chemin|ch\.|quai|bd|boulevard|place|pl\.|promenade|all[ée]e|impasse|passage)\b/i.test(x)&&!/strasse|str\.|gasse|weg\b|platz/i.test(x)).join(" ")}
   function far(e){if(e._far!==undefined)return e._far;const C=city()==="zh"?[47.3769,8.5417]:[46.2044,6.1432];let f=false;
     if(e.geo&&e.geo.length===2){const r=x=>x*Math.PI/180,dl=r(e.geo[0]-C[0]),dn=r(e.geo[1]-C[1]);const h=Math.sin(dl/2)**2+Math.cos(r(C[0]))*Math.cos(r(e.geo[0]))*Math.sin(dn/2)**2;f=2*6371*Math.asin(Math.sqrt(h))>15}
     else{const m=String(e.trip||"").match(/(\d+)\s*km/);if(m&&+m[1]>15)f=true}
-    if(/lausanne|vevey|montreux|nyon|morges|winterthur|baden|lucerne|luzern|zug\b|basel|bern/i.test(String(e.place||"").split(",").slice(-2).join(" ")+" "+e.title))f=true;
+    if(/\b(?:lausanne|vevey|montreux|nyon|morges|rolle|winterthur|baden|lucerne|luzern|zug|basel|bern|thun|st\.? ?gallen|aarau|olten|schaffhausen|rapperswil)\b/i.test(townPart(e)))f=true;
     return e._far=f}
   function cands(s,ctx,moods,who){const c=city();const pricey=e=>{const m=String(e.price||"").match(/CHF\s*(\d+)/);return m&&+m[1]>150&&!goingSet.has(e.id)};let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!pricey(e)&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&e.p!=="big"&&fits(e,s)&&!never(e)&&(goingSet.has(e.id)||(isLocal(e)&&!e.fr&&!far(e))));
     if(ctx==="we"&&s.k==="m")L=L.concat(hikes());
@@ -3196,7 +3198,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   /* --- rendering --- */
   function why(e){const p=PICKS().find(x=>x.id===e.id);if(p&&p.why)return p.why;let d=String(e.desc||"").replace(/^Age range:[^.]*\.\s*/,"").replace(/\s+/g," ").trim();if(!d)return "";const m=d.match(/^(.{40,150}?[.!?])(\s|$)/);d=m?m[1]:d.slice(0,140)+(d.length>140?"…":"");return d}
   function meta(e){if(e.hike){const h=e.hike.hike;return "Hike · "+hm(h.min)+" · "+h.km+" km · ↑ "+h.up+" m · 🐕 · GPX"}
-    const t=(e.when||"").replace(/^[A-Z][a-z]{2} \d{1,2} · /,"");const pl=String(e.place||"").split(",")[0];let k="";try{k=gloss(e).replace(/<[^>]+>/g,"").replace(/ · free| · 🌧 outdoors/g,"")}catch(x){}
+    const t=(e.when||"").replace(/^[A-Z][a-z]{2} \d{1,2} · /,"");const pl=String(e.place||"").split(",")[0];let k="";try{k=gloss(e).replace(/<[^>]+>/g,"").replace(/&amp;/g,"&").replace(/ · free| · 🌧 outdoors/g,"")}catch(x){}
     return [k,t,pl,e.free?"free":(e.price&&!/^\s*$/.test(e.price)&&e.price.length<18?e.price:"")].filter(Boolean).join(" · ")+((e.cat||[]).includes("chien")?" · 🐕":"")}
   function card(r,ctx){const s=r.s,w=wx(s.d,s.k);const wtx=w?(w.r>=50?"🌧 ":w.r>=25?"⛅ ":"☀️ ")+w.t+"° · 💧"+w.r+"%":"";
     const head='<div class="pl-sl"><b>'+slotName(s,ctx)+'</b><span>'+wtx+'</span></div>';
@@ -3205,7 +3207,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(!r.pick)return '<div class="pl-slot">'+head+'<div class="pl-m">Nothing listed for this '+SL[s.k][2]+' yet nearby. New events arrive every night; <button class="pl-lnk" data-plall="'+s.key+'">see all options</button> or browse Explore.</div></div>';
     const e=r.pick.e;const tag='';
     return '<div class="pl-slot'+(r.going||r.kept?' pl-on':'')+'" data-slot="'+s.key+'" data-ev="'+esc(e.id)+'">'+head+
-      '<button class="pl-body" data-plmenu="'+s.key+'"><span class="pl-t">'+esc(e.title)+'</span>'+tag+'<span class="pl-m">'+esc(meta(e))+'</span>'+(why(e)?'<span class="pl-w">'+esc(why(e))+'</span>':'')+'</button>'+
+      '<button class="pl-body" data-plmenu="'+s.key+'"><span class="pl-t">'+esc(e.title)+'</span>'+(e.titleEn&&e.titleEn!==e.title&&!e.hike?'<span class="pl-en">'+esc(e.titleEn)+'</span>':'')+tag+'<span class="pl-m">'+esc(meta(e))+'</span>'+(why(e)?'<span class="pl-w">'+esc(why(e))+'</span>':'')+'</button>'+
       '<div class="pl-acts"><button data-plswap="'+s.key+'"'+(r.n<2||r.going?' disabled':'')+'>↻ Swap'+(r.n>1?' <small>'+(r.n-1)+'</small>':'')+'</button>'+(r.going?'<button class="on" data-plunkeep="'+s.key+'">✓ In My plans</button>':'<button data-plkeep="'+s.key+'">＋ My plans</button>')+'<button class="x" data-plnope="'+s.key+'">Not for me</button></div></div>'}
   function view(){const ctx=ui.planCtx||"we";const c=cur(ctx);const P=prof();
     if(ui.planAll){const r=build(ctx).find(x=>x.s.key===ui.planAll);if(r)return allView(r,ctx)}
@@ -3217,7 +3219,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
       '<div class="pl-who">'+WHO.map(([k,n])=>'<button data-plwho="'+k+'" aria-pressed="'+(c.who===k)+'">'+n+'</button>').join("")+'</div><div class="pl-chips">'+chips+'</div>'+
       (!P.legacy&&(c.who!==P[ctx].who||c.moods.slice().sort().join()!==P[ctx].moods.slice().sort().join())?'<div class="pl-usual"><span>Changed for this '+(ctx==="we"?"weekend":"week")+' only.</span><button class="pl-lnk" data-plusual>Make this my usual</button><button class="pl-lnk" data-plreset>Reset</button></div>':'');
     if(dm.length)h+='<div class="pl-dm"><div class="pl-sl"><b>Don\'t miss · on now</b></div>'+dm.map(e=>'<button class="pl-dmr" data-plopen="'+esc(e.id)+'"><b>'+esc(e.title.split(" — ")[0])+'</b> · '+(e.dayEnd?'until '+dLbl(e.dayEnd):dLbl(e.day))+'</button>').join("")+'</div>';
-    h+=res.length?res.map(r=>card(r,ctx)).join(""):'<p class="empty">'+(ctx==="wk"?'No free evenings left this week. Set your free evenings in “What I like”.':'This weekend is over. The next one appears on Monday.')+'</p>';
+    h+=res.length?res.map(r=>card(r,ctx)).join(""):'<p class="empty">'+(ctx==="wk"?((prof().eves||[]).length?'No free evenings left this week.':'You haven\'t picked any free evenings yet.')+' Set them in <button class="pl-lnk" data-pltune>⚙︎ Preferences</button>.':'This weekend is over. The next one appears on Monday.')+'</p>';
     const n=res.filter(r=>r.pick&&!r.skip&&!r.cont).length;
     const nk=res.filter(r=>r.pick&&!r.skip&&!r.cont&&r.going).length;
     if(n)h+=(nk?'<button class="pl-cta" data-plcal="kept">📅 Put my '+nk+' plan'+(nk>1?'s':'')+' in my calendar</button><button class="pl-cal" data-plopenplans>See My plans</button>'+(nk<n?'<button class="pl-lnk pl-all" data-pladd="all">or add all '+n+' suggestions</button>':''):'<p class="pl-hint first">Tap <b>＋ My plans</b> on the ones you like.</p><button class="pl-cal" data-pladd="all">Add all '+n+' to My plans</button>')+'<p class="pl-hint">Tap a card to move it, see all options for that slot, or open details. Everything else is in Explore.</p>';
@@ -3243,7 +3245,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
       menu=res.filter(x=>x.s.key!==key&&!x.cont&&fits(e,x.s)).map(o=>{const w=wx(o.s.d,o.s.k);return '<button class="pl-opt" data-plmove="'+esc(key+"~"+o.s.key)+'">↔ Move to '+slotName(o.s,ctx)+(w?' <span'+(w.r>=50?' class="warn"':'')+'>'+(w.r>=50?"🌧":w.r>=25?"⛅":"☀️")+' '+w.r+'%</span>':'')+'</button>'}).join("")+
         '<button class="pl-opt" data-plall="'+key+'">☰ See all options for '+slotName(r.s,ctx)+' <span>'+r.n+' →</span></button><button class="pl-opt" data-plskip="'+key+'">Skip this slot</button><button class="pl-opt x" data-plnope="'+key+'">Not for me</button>'}}
     const kd=key?key.split("|")[0]:"";const g=goingSet.has(e.id)&&(!key||goOn(e,kd));const elsewhere=goingSet.has(e.id)&&!g;const desc=String(e.desc||"").trim();const map="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(e.place||e.title);
-    const d=document.createElement("div");d.id="plsheet";d.innerHTML='<div class="pl-dim" data-plclose></div><div class="pl-sheet" role="dialog" aria-label="'+esc(e.title)+'"><div class="pl-grab"></div><h3>'+esc(e.title)+'</h3><p>'+esc(meta(e))+'</p>'+
+    const d=document.createElement("div");d.id="plsheet";d.innerHTML='<div class="pl-dim" data-plclose></div><div class="pl-sheet" role="dialog" aria-label="'+esc(e.title)+'"><div class="pl-grab"></div><h3>'+esc(e.title)+'</h3>'+(e.titleEn&&e.titleEn!==e.title?'<p class="pl-en">'+esc(e.titleEn)+'</p>':'')+'<p>'+esc(meta(e))+'</p>'+
       '<div class="pl-info"><div><b>When</b> '+esc(e.dayEnd&&e.dayEnd>e.day?dLbl(e.day)+' – '+dLbl(e.dayEnd)+(e.when&&/\d:\d/.test(e.when)?' · '+e.when.replace(/^[A-Z][a-z]{2} \d{1,2} · /,""):''):e.when)+'</div><div><b>Where</b> '+esc(e.place||"")+(e.trip&&!isLocal(e)?' · '+esc(e.trip):'')+'</div>'+(e.price?'<div><b>Price</b> '+esc(e.price)+'</div>':'')+
       (desc?'<p>'+esc(desc)+'</p>':'')+'</div><div class="pl-iacts">'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">More info'+(needsTicketSafe(e)?' & tickets':'')+'</a>':'')+'<a href="'+map+'" target="_blank" rel="noopener">Map</a><button data-plgo="'+esc(e.id)+'" data-plgod="'+esc(kd)+'" data-plgok="'+esc(key?key.split("|")[1]:"")+'" data-plswitch="'+(elsewhere?1:"")+'">'+(g?'✓ Going · undo':elsewhere?'I\'m going this day instead':'I\'m going')+'</button><a href="#" data-shev="'+esc(e.id)+'" data-shd="'+esc(key?key.split("|")[0]:"")+'">Invite a friend</a></div>'+menu+'</div>';
     document.body.appendChild(d)}
@@ -3431,6 +3433,12 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
 /* Batch 3 · event types: clear title words win over the old guess (which also looked at venue names and descriptions) */
 (function(){
   const R=[
+    [/film festival|international film|filmfestival|festival du film/i,"Film festival"],
+    [/wine festival|weinfestival|expovina|food festival|f[êe]te du vin|wine fair|salon des vins/i,"Food & drink festival"],
+    [/th[ée][aâ]tralis|theatrical walk|theatre walk/i,"Theatre walk"],
+    [/bal folk|folk dance|ceilidh|danses? trad/i,"Dance night"],
+    [/\bexpats?\b|bonjour gen[eè]ve|coffee (?:meet|morning)|newcomers/i,"Social meetup"],
+    [/\bb2b\b|\bboums?\b|dj set/i,"Party"],
     [/dance battle|dance your style|\bbattle\b/i,"Dance show"],
     [/history month|\bprogramme\b/i,"Festival"],
     [/\bperformance\b|\bperf\b/i,"Stage show"],
@@ -3458,8 +3466,8 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     [/guided tour|visite guid[ée]e|f[üu]hrung|walking tour|\btour of\b|city tour|heart of geneva tour/i,"Guided tour"],
     [/sound and light|light show|son et lumi|projection mapping/i,"Light show"],
     [/\bfilm\b|cin[ée]ma|\bcin[ée]\b|screening|projection|movie|kino/i,"Film screening"],
-    [/\btalk\b|lecture|conf[ée]rence|conference|discussion|debate|d[ée]bat|round ?table|vortrag|conversation with|rencontre et discussion|book club/i,"Talk"],
-    [/reading|lesung|poetry|po[ée]sie|slam/i,"Reading"],
+    [/reading|\blecture\b(?! (?:by|on)\b)|lesung|poetry|po[ée]sie|slam/i,"Reading"],
+    [/\btalk\b|lecture (?:by|on)|public lecture|conf[ée]rence|conference|discussion|debate|d[ée]bat|round ?table|vortrag|conversation with|book club/i,"Talk"],
     [/christmas market|march[ée] de no[ëe]l|weihnachtsmarkt|advent/i,"Christmas market"],
     [/flea|brocante|puces|vide.?grenier|flohmarkt|\btroc\b|yard sale|garage sale|free market/i,"Flea market"],
     [/market|march[ée]|\bmarkt\b|\bfair\b|\bfoire\b|bazaar|braderie|messe\b/i,"Market / fair"],
@@ -3482,27 +3490,40 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   function classify(e,_g){const t=e.title+" "+(e.titleOrig||"")+" "+(e.titleEn||"");let old="";try{old=_g(e).replace(/<[^>]+>/g,"").split(" · ")[0].replace(/&amp;/g,"&")}catch(x){}
     let k=(R.find(([re])=>re.test(t))||[])[1];
     if(k==="Ceramics")k="Ceramics workshop";
+    if(k==="Music group"&&/th[ée][aâ]tre|com[ée]die de gen|theater/i.test(String(e.place||"")))return "Theatre play";
     if(k&&(STRONG.has(k)||WEAK.test(old)))return k;
-    if(k==="Music group"&&/th[ée][aâ]tre|com[ée]die de gen|theater/i.test(String(e.place||"")))k="Theatre play";
     if(!k&&e.p==="on"&&!/workshop|atelier|tour|talk|lecture|course|class|market|yoga|massage/i.test(t)&&WEAK.test(old))return "Exhibition";
-    if(!k&&CRAFTY.test(old)&&!/workshop|atelier|class|course|cours|kurs|session|paint|draw|ceramic|craft/i.test(t)){const v=String(e.place||"");const vk=(VEN.find(([re])=>re.test(v))||[])[1];return vk==="Exhibition"||vk==="Theatre play"?vk:"Show"}
+    if(!k&&CRAFTY.test(old)&&!/workshop|atelier|class|course|cours|kurs|session|paint|draw|ceramic|craft/i.test(t)){const v=String(e.place||"");const vk=(VEN.find(([re])=>re.test(v))||[])[1];return vk==="Exhibition"||vk==="Theatre play"?vk:null}
     if(!k&&/^(Show|Party|Social meetup|Event)$/.test(old)){const v=String(e.place||"");const vk=(VEN.find(([re])=>re.test(v))||[])[1];if(vk&&!(old==="Party"&&vk==="Concert"&&/\bdj\b|party/i.test(t)))return vk}
     return null}
-  const _gl=gloss;gloss=function(e){if(e&&!e.kind&&!e._kc){e._kc=1;const k=classify(e,_gl);if(k)e.kind=k}return _gl(e)};
+  const _gl=gloss;gloss=function(e){if(e&&!e._kc&&(!e.kind||WEAK.test(String(e.kind).split(" · ")[0]))){e._kc=1;const k0=e.kind;if(k0)e.kind=String(k0).split(" · ")[0];const k=classify(e,_gl);if(k){e.kind=k;e._kt=1}else if(k0)e.kind=k0}return _gl(e)};
 })();
 
 /* Batch 3: events in France are flagged (and kept out of the Plan) */
-(function(){const FR=/\bFrance\b|\b(?:74|01)\d{3}\b|haute-savoie|pays de gex|\bain\b|annemasse|thonon|[ée]vian|\bgex\b|ferney|divonne|saint-julien-en-genevois|habère|hab[èe]re|scionzier|cessy|mieussy|bonneville|cluses|la roche-sur-foron|annecy|chamonix|sallanches|douvaine|segny|thoiry|saint-genis|prevessin|collonges/i;
-  [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(e&&FR.test(String(e.place||"")+" "+String(e.trip||"")))e.fr=true});
+(function(){const FR=/\bFrance\b|\b(?:74|01)\d{3}\b|haute-savoie|pays de gex|annemasse|thonon|[ée]vian|\bgex\b|ferney|divonne|saint-julien-en-genevois|habère|hab[èe]re|scionzier|cessy|mieussy|bonneville|cluses|la roche-sur-foron|annecy|chamonix|sallanches|douvaine|segny|thoiry|saint-genis|prevessin|collonges/i;
+  const town=e=>String(e.place||"").split(",").map(x=>x.trim()).filter(x=>x&&!/^(?:\d|rue|route|rte|av\.?|avenue|chemin|ch\.|quai|bd|boulevard|place|pl\.)\b/i.test(x)).join(" ");
+  [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(e&&FR.test(town(e)+" "+String(e.trip||""))&&!/gen[eè]v|geneva|venues across/i.test(town(e)))e.fr=true});
   const _g=gloss;gloss=function(e){const r=_g(e);return e&&e.fr&&!/France/.test(r)?r+" · 🇫🇷 France":r}})();
 
-/* Batch 3: trips don't show what's already over (static trip events, seasonal notes like "boats until 11 Oct") */
+/* Batch 3: trips don't show what's already over (trip events, seasonal notes, out-of-season boat legs) */
 (function(){const MO={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
-  const lastDate=txt=>{const T=[...String(txt||"").matchAll(/(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?(?:\s+(20\d\d))?/gi)];if(!T.length)return null;
-    const m=T[T.length-1];const y=m[3]?+m[3]:+TODAY.slice(0,4);let d=y+"-"+String(MO[m[2].toLowerCase()]).padStart(2,"0")+"-"+String(+m[1]).padStart(2,"0");
-    if(!m[3]&&d<isoAdd(TODAY,-200))d=(y+1)+d.slice(4);return d};
-  const _te=tripEvents;tripEvents=function(t,ag){return _te(t,ag).filter(x=>{const d=lastDate(x.when||x.day||"");return !d||d>=TODAY})};
-  TRIPS.forEach(t=>{if(!t.season)return;const parts=String(t.season).split(/(?<=[.;])\s+|;\s*/).filter(p=>{const d=lastDate(p);return !d||d>=TODAY});t.season=parts.join(" ").trim()});
+  const D=m=>{const y=m[3]?+m[3]:+TODAY.slice(0,4);let d=y+"-"+String(MO[m[2].toLowerCase()]).padStart(2,"0")+"-"+String(+m[1]).padStart(2,"0");if(!m[3]&&d<isoAdd(TODAY,-200))d=(y+1)+d.slice(4);return d};
+  const RX=/(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?(?:\s+(20\d\d))?/gi;
+  /* the date something ends: "until 11 Oct", "2–3 Oct", "9–11 Oct"; "from 6 Oct" alone means still on */
+  const endOf=txt=>{const s=String(txt||"");const T=[...s.matchAll(RX)];if(!T.length)return null;
+    if(/\bfrom\s+\d{1,2}\s+[a-z]{3}/i.test(s)&&!/until|till|to\s+\d|–|-\s*\d|bis|jusqu/i.test(s))return null;return D(T[T.length-1])};
+  const over=t=>{const d=endOf(t);return !!d&&d<TODAY};
+  const _te=tripEvents;tripEvents=function(t,ag){return _te(t,ag).filter(x=>!over(x.when||x.day||""))};
+  const sentences=t=>String(t||"").split(/(?<=[.;])\s+/);
+  TRIPS.forEach(t=>{
+    if(t.season)t.season=sentences(t.season).filter(p=>!over(p)).join(" ").replace(/;\s*$/,"").trim();
+    let boatGone=false;const home=(t.city==="zh"?"Zürich":"Geneva");
+    (t.day||[]).concat(t.day2||[]).forEach(x=>{const txt=(x.do||"")+" "+(x.where||"");if(over(txt)){if(/boat|cgn|bateau|ship|schiff/i.test(txt)){x.do="Train back to "+home+" (the boats have stopped for the season)";x.where=(x.where||"").replace(/boat|cgn/ig,"").trim()||"Station";boatGone=true}}});
+    if(t.day)t.day=t.day.filter(x=>!over((x.do||"")+" "+(x.where||""))||/^Train back/.test(x.do));
+    if(t.train&&t.train.lastBack)t.train.lastBack=sentences(t.train.lastBack).filter(p=>!over(p)).join(" ").replace(/[;,]\s*$/,"").trim();
+    if(t.train&&t.train.fare)t.train.fare=String(t.train.fare).replace(/;?\s*CGN boat[^;.]*(?:[;.]|$)/i,m=>boatGone?"":m).trim();
+    (t.see||[]).forEach(x=>{if(x.why)x.why=sentences(x.why).filter(p=>!over(p)).join(" ")});
+    if(boatGone&&t.hook)t.hook=t.hook.replace(/,?\s*and a lakeside boat ride home/i," and a stroll along the lake").replace(/boat ride home/i,"stroll along the lake")});
 })();
 </script>
 
