@@ -3438,6 +3438,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
 (function(){
   const R=[
     [/film festival|international film|filmfestival|festival du film/i,"Film festival"],
+    [/d[ée]gustation|tasting|verkostung/i,"Food & drink"],
     [/wine festival|weinfestival|expovina|food festival|f[êe]te du vin|wine fair|salon des vins/i,"Food & drink festival"],
     [/th[ée][aâ]tralis|theatrical walk|theatre walk/i,"Theatre walk"],
     [/bal folk|folk dance|ceilidh|danses? trad/i,"Dance night"],
@@ -3476,7 +3477,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     [/christmas market|march[ée] de no[ëe]l|weihnachtsmarkt|advent/i,"Christmas market"],
     [/flea|brocante|puces|vide.?grenier|flohmarkt|\btroc\b|yard sale|garage sale|free market/i,"Flea market"],
     [/market|march[ée]|\bmarkt\b|\bfair\b|\bfoire\b|bazaar|braderie|messe\b/i,"Market / fair"],
-    [/workshop|atelier|\bclass\b|course\b|\bcours\b|\bkurs\b|masterclass|initiation|^create\b|\bcr[ée]e[rz]\b/i,"Workshop"],
+    [/workshop|atelier|\bclass\b|course\b|\bcours\b|\bkurs\b|masterclass|initiation|^create\b/i,"Workshop"],
     [/oper(?:a|n)\b|op[ée]ra/i,"Opera"],
     [/orchest|symphon|recital|r[ée]cital|quartet|quatuor|philharm|sonata|chamber music|baroque|requiem|ensemble\b/i,"Classical concert"],
     [/\bchoir\b|chorale|\bchor\b|choral|bateria|samba|percussion/i,"Music group"],
