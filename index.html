@@ -874,7 +874,7 @@ nav.tabs [data-tab="this"]::before{content:"🔎"!important}
     <p class="lbl" style="margin-top:14px" id="pushlbl" hidden>Notifications</p>
     <div id="pushbox"></div>
     <p class="lbl" style="margin-top:14px">Preferences</p>
-    <button class="aclear" id="prefsbtn" style="margin:2px 0 4px">Home city &amp; interests</button>
+    <button class="aclear" id="prefsbtn" style="margin:2px 0 4px">Preferences: who, interests, never show me</button>
     <p class="lbl" style="margin-top:14px">Install</p>
     <p class="acctnote" id="installnote"></p>
   </div>
@@ -1928,9 +1928,10 @@ function buildAutoPicks(){const sec=document.getElementById("picks");if(!sec)ret
   const label=e=>{const d=DNL[new Date(e.day+"T12:00:00").getDay()];const t=(e.when.match(/(\d{1,2}):\d{2}/)||[])[1];return d+(t&&+t>=17?" evening":"")};
   const why=e=>{const d=(e.desc||"").split(/(?<=[.!?])\s/)[0];return d.length>150?d.slice(0,147)+"…":d};
   let html="";
-  blocks.forEach(b=>{if(b.id==="we1"&&we.to<TODAY)return;if(b.id==="wd2"&&nx.to<TODAY)return;const pool=EVENTS.filter(e=>b.ok(e)&&!isPast(e)&&!isDel(e)&&!e.folded&&(wantsDating()||!isDating(e)));let items=[];
+  const nev=e=>{try{return !!(S.prof&&window.OA&&OA.never(e))}catch(x){return false}};
+  blocks.forEach(b=>{if(b.id==="we1"&&we.to<TODAY)return;if(b.id==="wd2"&&nx.to<TODAY)return;const pool=EVENTS.filter(e=>!nev(e)&&b.ok(e)&&!isPast(e)&&!isDel(e)&&!e.folded&&(wantsDating()||!isDating(e)));let items=[];
     const mine=cur.filter(x=>x.block===b.id);
-    if(mine.length)items=mine.map(x=>({e:pool.find(e=>e.id===x.id),k:x.k,why:x.why})).filter(x=>x.e);
+    if(mine.length)items=mine.map(x=>{const e=pool.find(e=>e.id===x.id);return {e,k:e&&e.day<TODAY?null:x.k,why:x.why}}).filter(x=>x.e);
     else ["ge","zh"].forEach(c=>pool.filter(e=>cityOf(e)===c&&e.zone!=="far"&&!hidden.has(e.id)).sort((a,z)=>sc(z)-sc(a)).slice(0,3).forEach(e=>items.push({e})));
     if(!items.length)return;
     html+='<div class="pick-block"><div class="pick-sep"><span>'+b.label+'</span><em>'+b.rng+'</em></div><div class="picks-grid">'+items.map(({e,k,why:w})=>{const c=cityOf(e);
@@ -2607,19 +2608,19 @@ function openSetup(){if(document.getElementById("onb"))return;
   const P0=JSON.parse(JSON.stringify(O?O.prof():{we:{who:"solo",moods:[]},wk:{who:"solo",moods:[]},never:[],eves:[1,2,3,4]}));
   let home=S.home||null,wkWho=P0.legacy?null:P0.wk.who,weWho=P0.legacy?null:P0.we.who;
   const M=new Set(P0.legacy&&first?[]:[...new Set([].concat(P0.we.moods||[],P0.wk.moods||[]))]);let dating=wantsDating();
-  const N=new Set(P0.never||[]),E=new Set(P0.eves||[1,2,3,4]);
+  const N=new Set(first?[]:(P0.never||[])),E=new Set(first?[]:(P0.eves||[1,2,3,4]));let touched=false;const who0=[P0.wk.who,P0.we.who].join();
   const MO=(O?O.MOODS:[]),NV=(O?O.NEVER:[]),WH=[["solo","Solo"],["partner","With my partner"],["friends","With friends"]];
   const d=document.createElement("div");d.id="onb";
   const keep=()=>{const g=d.querySelector("#addr-ge"),z=d.querySelector("#addr-zh");return [g?g.value:((S.addr||{}).ge||{}).q||"",z?z.value:((S.addr||{}).zh||{}).q||""]};
   const ok=()=>home&&wkWho&&weWho&&M.size;
   const row=(name,val)=>WH.map(([k,n])=>'<button data-who="'+name+'~'+k+'" aria-pressed="'+(val===k)+'">'+n+'</button>').join("");
-  const draw=()=>{const [ag,az]=keep();const sy=d.scrollTop;d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About">'+(first?'':'<button class="onb-x" data-close aria-label="Close">×</button>')+'<h2>'+(first?'Welcome to Out & About':'What I like')+'</h2>'+
+  const draw=()=>{const [ag,az]=keep();const sy=d.scrollTop;d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About">'+(first?'':'<button class="onb-x" data-close aria-label="Close">×</button>')+'<h2>'+(first?'Welcome to Out & About':'Your preferences')+'</h2>'+
     '<h3>You</h3><p>Where are you based?</p><div class="opts">'+[["ge","Geneva"],["zh","Zurich"]].map(([k,n])=>'<button data-home="'+k+'" aria-pressed="'+(home===k)+'">'+n+'</button>').join("")+'</div>'+
     '<p>On <b>weekday evenings</b> I usually go out…</p><div class="opts">'+row("wk",wkWho)+'</div>'+
     '<p>At <b>weekends</b> I usually go out…</p><div class="opts">'+row("we",weWho)+'</div>'+
     '<h3>What you enjoy</h3><p>Pick as many as you like</p><div class="opts">'+MO.map(([k,n])=>'<button data-mood="'+k+'" aria-pressed="'+M.has(k)+'">'+n+'</button>').join("")+'<button data-dating aria-pressed="'+dating+'">Dating & singles</button></div>'+
-    '<h3>Your week</h3><p>Evenings I\'m usually free</p><div class="opts">'+[[1,"Mon"],[2,"Tue"],[3,"Wed"],[4,"Thu"]].map(([k,n])=>'<button data-eve="'+k+'" aria-pressed="'+E.has(k)+'">'+n+'</button>').join("")+'</div>'+
-    '<p>Never show me</p><div class="opts">'+NV.map(([k,n])=>'<button data-never="'+k+'" aria-pressed="'+N.has(k)+'">'+n+'</button>').join("")+'</div>'+
+    '<h3>Your week</h3><p>Tap the evenings you\'re usually free</p><div class="opts">'+[[1,"Mon"],[2,"Tue"],[3,"Wed"],[4,"Thu"]].map(([k,n])=>'<button data-eve="'+k+'" aria-pressed="'+E.has(k)+'">'+n+'</button>').join("")+'</div>'+
+    '<p>Never show me (tap to hide)</p><div class="opts">'+NV.map(([k,n])=>'<button data-never="'+k+'" aria-pressed="'+N.has(k)+'">'+n+'</button>').join("")+'</div>'+
     '<h3>Home (optional)</h3><p>Your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(ag)+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(az)+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Your address stays private to your account.</p>'+
     '<button class="go" '+(ok()?'':'disabled')+'>'+(first?'Show me my plan':'Save')+'</button>'+(ok()?'':'<p class="onb-need">'+(!home?'Pick your city':!wkWho||!weWho?'Tell us who you usually go out with':'Pick at least one thing you enjoy')+'</p>')+
     '<p style="margin:10px 0 0;font-size:13px">You can change this any time with the ⚙︎ button at the top right.</p></div>';d.scrollTop=sy};
@@ -2628,16 +2629,17 @@ function openSetup(){if(document.getElementById("onb"))return;
     if(t.closest("[data-close]")){d.remove();return}
     if(b=t.closest("[data-home]")){home=b.dataset.home;draw();return}
     if(b=t.closest("[data-who]")){const [w,k]=b.dataset.who.split("~");if(w==="wk")wkWho=k;else weWho=k;draw();return}
-    if(b=t.closest("[data-mood]")){const k=b.dataset.mood;M.has(k)?M.delete(k):M.add(k);draw();return}
+    if(b=t.closest("[data-mood]")){const k=b.dataset.mood;M.has(k)?M.delete(k):M.add(k);touched=true;draw();return}
     if(t.closest("[data-dating]")){dating=!dating;draw();return}
     if(b=t.closest("[data-eve]")){const k=+b.dataset.eve;E.has(k)?E.delete(k):E.add(k);draw();return}
     if(b=t.closest("[data-never]")){const k=b.dataset.never;N.has(k)?N.delete(k):N.add(k);draw();return}
     if(t.closest(".go")&&ok()){const moods=[...M];
-      S.home=home;S.prof={we:{who:weWho,moods:moods.slice()},wk:{who:wkWho,moods:moods.slice()},never:[...N],eves:[...E].sort(),dog:moods.includes("outdoors")};
+      const keepSep=!touched&&!P0.legacy;const changed=touched||[wkWho,weWho].join()!==who0;
+      S.home=home;S.prof={we:{who:weWho,moods:keepSep?P0.we.moods.slice():moods.slice()},wk:{who:wkWho,moods:keepSep?P0.wk.moods.slice():moods.slice()},never:[...N],eves:[...E].sort(),dog:moods.includes("outdoors")};
       const MC={meet:"rencontre",games:"rencontre",language:"rencontre",creative:"creatif",markets:"marche",festivals:"fete",party:"fete",food:"fete",concerts:"culture",comedy:"culture",film:"culture",exhibitions:"culture",outdoors:"chien",yoga:"corps"};
       S.likes=[...new Set(moods.map(k=>MC[k]).filter(Boolean))].concat(dating?["dating"]:[]);S.dating=dating;
       const [ag,az]=keep();saveAddr(ag,az);try{localStorage.setItem("oa-home",home)}catch(e){}
-      if(O)O.clearCur();EVENTS.forEach(e=>{delete e._ptg;delete e._dt});d.remove();setCity(home);persist();render()}});
+      if(O&&changed)O.clearCur();EVENTS.forEach(e=>{delete e._ptg;delete e._dt;delete e._dt2});d.remove();setCity(home);persist();render()}});
 }
 (function(){let h=null;try{h=localStorage.getItem("oa-home")}catch(e){}if(!S.home&&h)S.home=h;if(!S.home||!(S.likes||[]).length)setTimeout(openSetup,300);})();
 
@@ -2712,7 +2714,7 @@ ui.full=true;
 function capPicks(){const blocks=[...document.querySelectorAll("#picks .pick-block")];{const sec=document.getElementById("picks");if(sec&&!blocks.length)sec.hidden=true}
   blocks.forEach((b,i)=>{if(i>0){b.hidden=true;return}b.hidden=false;
     let tn=b.querySelector(".pick.tonight");
-    const today=EVENTS.filter(e=>e.day===TODAY&&!isPast(e)&&inCity(e)&&!hidden.has(e.id)&&e.p!=="big"&&e.p!=="on"&&+((e.when.match(/(\d{1,2}):\d{2}/)||[])[1]||0)>=17).sort((a,z)=>evScore(z)-evScore(a))[0];
+    const today=EVENTS.filter(e=>e.day===TODAY&&!isPast(e)&&inCity(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&!(S.prof&&window.OA&&OA.never(e))&&e.p!=="big"&&e.p!=="on"&&+((e.when.match(/(\d{1,2}):\d{2}/)||[])[1]||0)>=17).sort((a,z)=>evScore(z)-evScore(a))[0];
     if(today&&!tn&&!b.querySelector('.pick[data-ev="'+today.id+'"]')){const c=cityOf(today);const t=(today.when.match(/\d{1,2}:\d{2}/)||[""])[0];
       b.querySelector(".picks-grid").insertAdjacentHTML("afterbegin",'<div class="pick tonight" data-city="'+c+'" data-ev="'+esc(today.id)+'"><div class="k"><span class="pcity">'+(c==="zh"?"Zurich":"Geneva")+' · </span>Tonight</div><b>'+(today.dog?DOGICON:'')+esc(today.title)+'</b><span>'+esc([t,(today.place||"").split(",")[0],today.price].filter(Boolean).join(" · "))+'</span><span class="why">'+esc(((today.desc||"").split(/(?<=[.!?])\s/)[0]||"").slice(0,140))+'</span></div>')}
     const sep=b.querySelector(".pick-sep span");if(sep)sep.textContent=/weekend/i.test(sep.textContent)?"Tonight & this weekend":"Tonight & this week";
@@ -3092,19 +3094,22 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     food:/food|wine|vin\b|tasting|d[ée]gustation|brunch|dinner|cook|street food|beer|bi[èe]re|cocktail/i,
     party:/party|soir[ée]e|club\b|dj set|clubbing|techno|house music|disco|karaoke/i};
   const NRX={kids:/\b(?:kids|enfants?|children|kinder|for families|en famille|family[- ]friendly|famili[ae]l|b[ée]b[ée]s?|toddlers?)\b/i,sports:/football|soccer|volley|badminton|padel|basket|hockey|tennis|league|tournament|match\b|ravens/i,
-    talks:/\b(?:a talk|talk by|talks? (?:on|about|with)|lecture|conf[ée]rence|panel discussion|webinar|vortrag|seminar|discussion avec|round ?table)\b/i,clubs:/club night|techno|clubbing|rave\b|after.?party/i,classical:/orchestr|symphon|recital|philharm|quartet|sonata|opera\b|op[ée]ra/i};
+    talks:/\b(?:a talk|talk by|talks? (?:on|about|with)|lecture by|public lecture|lecture on|panel discussion|webinar|vortrag|round ?table)\b/i,clubs:/club night|\btechno\b|clubbing|\brave\b|after.?party/i,classical:/orchestr|symphon|recital|philharm|quartet|sonata|opera\b|op[ée]ra/i};
   function txt(e){if(e._ptx==null){let k="";try{k=gloss(e).replace(/<[^>]+>/g,"")}catch(x){}e._ptx=(e.title+" "+(e.titleOrig||"")+" "+k+" "+String(e.desc||"").slice(0,220)).toLowerCase();e._pk=k.split(" · ")[0]}return e._ptx}
   function tags(e){if(e._ptg)return e._ptg;if(e.hike)return e._ptg=new Set(["outdoors"]);const t=txt(e),c=e.cat||[],s=new Set();
     for(const k in RX)if(RX[k].test(t))s.add(k);
     if(c.includes("marche"))s.add("markets");if(c.includes("creatif"))s.add("creative");if(c.includes("chien"))s.add("outdoors");if(c.includes("rencontre")||e.src==="Meetup")s.add("meet");
     if(/^Concert|Jazz|Live music/.test(e._pk))s.add("concerts");if(/Exhibition/.test(e._pk)||e.p==="on")s.add("exhibitions");if(/Festival/.test(e._pk))s.add("festivals");if(/Film/.test(e._pk))s.add("film");
     return e._ptg=s}
-  const MEETUP=/meetup|mixer|language exchange|tandem|speed friending|expat|newcomers|make (?:new )?friends|meet new people|social (?:circle|club|hour)|pub crawl|apéro/i;
-  function late(e){const i=interval(e);return !!i&&(i.s>=22*60+30||i.en>=25*60)}
+  const MEETUP=/\bmeetup\b|mixer|language exchange|[ée]change linguistique|sprach(?:tandem|caf[eé])|tandem|lingo|speed friending|make (?:new )?friends|social (?:circle|club|hour|evening)|pub crawl|networking/i;
+  const MEETK=/^(Language exchange|Singles mixer|Networking)/;
+  function late(e){const i=interval(e);return !!i&&(i.s>=22*60||(i.en>=25*60&&i.s>=20*60))}
+  const NOTCLUB=/comedy|karaoke|stand.?up|salsa|forr[óo]|tango|bachata|kizomba|class|cours|lesson|jazz|werewolf|loup|quiz|concert|choir|theat/i;
   function never(e){const N=prof().never||[];if(!N.length)return false;const t=txt(e);
     if(wantsDating()&&isDating(e))return false;
-    return N.some(k=>k==="meetups"?((e.src==="Meetup"||MEETUP.test(t))&&!/workshop|atelier|life drawing|ceramic|pottery|painting|hike|concert/i.test(e.title))
-      :k==="clubs"?(NRX.clubs.test(t)||(tags(e).has("party")&&late(e)))
+    return N.some(k=>k==="meetups"?(MEETK.test(e._pk||"")||MEETUP.test(e.title+" "+(e.titleOrig||"")))
+      :k==="clubs"?(!NOTCLUB.test(e.title)&&(NRX.clubs.test(e.title+" "+(e._pk||""))||(/party|club|\bdj\b|rave|techno|house|disco|soir[ée]e|night/i.test(e.title+" "+(e._pk||""))&&late(e))))
+      :k==="classical"||k==="sports"?(NRX[k].test(e.title+" "+(e._pk||""))&&!/hip.?hop|disco|jazz|milonga|tango|pop|rock|language|swing/i.test(e.title))
       :NRX[k]&&NRX[k].test(t))}
   /* --- dates and slots --- */
   const dow=d=>new Date(d+"T12:00:00").getDay();
@@ -3149,6 +3154,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   function store(ctx){S.plan=S.plan||{};const k=wkey(ctx);return S.plan[k]=S.plan[k]||{}}
   function cur(ctx){const P=prof();const key="oa-mood-"+wkey(ctx);let m=null;try{m=JSON.parse(localStorage.getItem(key)||"null")}catch(x){}return m||{who:P[ctx].who,moods:P[ctx].moods.slice()}}
   function setCur(ctx,c){try{localStorage.setItem("oa-mood-"+wkey(ctx),JSON.stringify(c))}catch(x){}}
+  try{const keep=new Set(["we","wk"].map(c=>"oa-mood-"+wkey(c)));Object.keys(localStorage).filter(k=>k.startsWith("oa-mood-")&&!keep.has(k)&&!keep.has(k.replace(/\|(ge|zh)$/,""))).forEach(k=>{const m=k.match(/\|(\d{4}-\d{2}-\d{2})\|/);if(m&&m[1]<isoAdd(TODAY,-7))localStorage.removeItem(k)})}catch(x){}
   function clearCur(){try{Object.keys(localStorage).filter(k=>k.startsWith("oa-mood-")).forEach(k=>localStorage.removeItem(k))}catch(x){}}
   const swaps={};
   function build(ctx){const {who,moods}=cur(ctx);const st=store(ctx);const sl=slots(ctx);const used=new Set(),usedTags={};const res=[];
@@ -3185,7 +3191,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   function view(){const ctx=ui.planCtx||"we";const c=cur(ctx);const P=prof();
     if(ui.planAll){const r=build(ctx).find(x=>x.s.key===ui.planAll);if(r)return allView(r,ctx)}
     const ds=ctx==="we"?weRange():wkDays();const res=build(ctx);const dm=dontMiss(ctx);
-    const chips=MOODS.filter(([k])=>ctx==="we"?k!=="language":true).map(([k,n])=>'<button class="pl-chip" data-plmood="'+k+'" aria-pressed="'+c.moods.includes(k)+'">'+n+'</button>').join("");
+    const chips=MOODS.map(([k,n])=>'<button class="pl-chip" data-plmood="'+k+'" aria-pressed="'+c.moods.includes(k)+'">'+n+'</button>').join("");
     let h='<div class="pl-top"><div class="pl-ctx"><button data-plctx="we" aria-pressed="'+(ctx==="we")+'">Weekend</button><button data-plctx="wk" aria-pressed="'+(ctx==="wk")+'">Weekday evenings</button></div><button class="pl-tune" data-pltune>⚙︎ What I like</button></div>'+
       '<h2 class="pl-h">'+(ctx==="we"?"Your weekend":"Your week")+'</h2><p class="pl-sub">'+dLbl(ds[0])+' – '+dLbl(ds[ds.length-1])+' · '+(city()==="zh"?"Zurich":"Geneva")+(ctx==="wk"?" · evenings":"")+'</p>'+
       (P.legacy?'<button class="pl-ask" data-pltune><b>Make this plan yours</b><span>Who do you go out with, what you enjoy, your free evenings · 30 seconds</span></button>':'')+
