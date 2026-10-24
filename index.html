@@ -3336,6 +3336,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   /* keep profile and plan when syncing */
   const _ad=adopt;adopt=function(b){const p=S.prof,pl=S.plan,gd=S.goDay,gs=S.goSlot;_ad(b);S.prof=b.prof||p;S.plan=Object.assign({},pl||{},b.plan||{});S.goDay=Object.assign({},gd||{},b.goDay||{});S.goSlot=Object.assign({},gs||{},b.goSlot||{});try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}};
   /* first time: ask what they like (after the welcome screen) */
+  {const w=new Date(TODAY+"T12:00:00").getDay();if(!ui.planCtx)ui.planCtx=(w>=1&&w<=4)?"wk":"we"}
   if(!location.hash){ui.tab="plan";setTimeout(()=>{try{render()}catch(e){}},0)}
 })();
 
