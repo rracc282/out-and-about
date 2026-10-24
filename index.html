@@ -1717,7 +1717,8 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
   for(let i=EVENTS.length-1;i>=0;i--){const e=EVENTS[i],t=e.title+" "+(e.desc||"").slice(0,300);if(NICHE.test(t)||(cityOf(e)==="zh"&&(DEONLY.test(t)||(SPOKEN.test(e.title)&&/[äöü]|\b(der|die|das|und)\b/i.test(e.title)&&!/english|englisch|übertitel|surtit/i.test(t)))))EVENTS.splice(i,1)}
   EVENTS.forEach(e=>{if(e.p==="on"&&!e.dayEnd&&e.day){const x=new Date(e.day+"T12:00:00");x.setDate(x.getDate()+90);e.dayEnd=x.toISOString().slice(0,10)}});
   if(A.tEn)EVENTS.forEach(e=>{const t=A.tEn[e.rep||e.id];if(t&&!e.titleEn)e.titleEn=t});
-  EVENTS.forEach(e=>{if(e.titleEn&&e.titleEn!==e.title){e.titleOrig=e.title;e.title=e.titleEn}});
+  /* titles stay in their own language (local names like "La Revue genevoise"); only non-Latin scripts use the English title */
+  EVENTS.forEach(e=>{if(e.titleEn&&e.titleEn!==e.title&&/[^\u0000-\u024F\u2000-\u206F\u20A0-\u20CF\u2100-\u214F\u2190-\u21FF\u25A0-\u27BF\u1E00-\u1EFF«»“”‘’–—•·…]/.test(e.title)){e.titleOrig=e.title;e.title=e.titleEn}});
   const dr=new Set(A.drop||[]);for(let i=EVENTS.length-1;i>=0;i--)if(dr.has(EVENTS[i].id))EVENTS.splice(i,1);
   Object.entries(A.edits||{}).forEach(([id,f])=>{const e=EVENTS.find(x=>x.id===id);if(e)Object.assign(e,f)});
 })();
@@ -1762,7 +1763,7 @@ function moreHTML(e){
   if(g)out.push('<button data-noteedit="'+e.id+'">'+((S.hist[e.id]||{}).n?'Edit note':'Add a private note')+'</button>');
   out.push('<button class="hide" data-id="'+e.id+'">'+(hidden.has(e.id)?'Show again':'👎 Not for me')+'</button>');
   out.push('<button class="del'+(ui.delArm===e.id?' armed':'')+'" data-del="'+e.id+'" title="Removes it for good and tells the Monday refresh not to add it again">'+(ui.delArm===e.id?'Tap again to delete'+(e.rep||REC[e.id]?' the whole series':''):'Delete for good')+'</button>');
-  const note=!MAPQ[e.id]?'<span class="lnk-note">'+esc(MAPNOTE[e.id]||(e.src?"Address shown after you RSVP":"Address on the website"))+'</span>':'';
+  const note=!MAPQ[e.id]?'<span class="lnk-note">'+esc(MAPNOTE[e.id]||(e.src&&!/\d/.test(e.place||"")?"Address shown after you RSVP":"Address on the website"))+'</span>':'';
   return '<div class="morepanel">'+out.join("")+note+'</div>';
 }
 const DOGICON='<span class="dogicon" role="img" aria-label="Dog friendly" title="Dog friendly">🐕</span>';
@@ -2025,7 +2026,7 @@ function activeFilters(){return (state.cat!=="all")+(state.zone!=="all")+(state.
 const ENERGY={"m-choir":"low","m-saleve":"low","bachata-pre":"high","theatre":"high","m-fuck-small-talk-oct13":"high","m-bonjour-geneve-oct17":"low","m-philo-cafe":"low","m-drink-draw-morges-oct17":"low","m-social-roulette-lausanne-oct17":"high","lalinea-modele-academique-oct17":"low","lalinea-modele-cosplay-oct10":"low","red-mic-pickwicks-oct9":"high","m-salsa-bachata-mon":"high","samba-trabalhador-recyclables-oct12":"high","lexmadone-ancetres-du-futur":"low","cma-prepro-keysha-sylvan-oct12":"low","slackers-ptr-oct13":"high","cma-rock-on-stage-godin-oct13":"high","amr-train-concert-debat-oct13":"low","cma-jazz-night-latina-oct14":"low","french-mon-amour-chatnoir-oct15":"low","forro-41-oct15":"high","ejma-amr-coplateau-oct15":"low","bdg-salsa-thursday-oct15":"high","perro-actor-recyclables-oct15":"low","country-queer-groove-oct15":"high","amr-benares-oct16":"low","pickwick-affaire-tournesoul-oct16":"high","electron-club-tour-oct16":"high","electron-comedie-oct17":"high","loca-mia-village-du-soir-oct17":"high","blind-test-chatnoir-oct17":"high","alepok-moulin-fabry-oct17":"high","flowers-for-the-dead-urgence-disk-oct18":"low","m-dogs-nov7":"low","linea-nov6":"low","boums-70-80-90-calvinus":"high","acroyoga-jam-lausanne":"low"};
 Object.assign(ENERGY,ENERGY_ZH);
 function energyOf(e){const b=ENERGY[e.rep||e.id];if(b)return b;if(e.p==="big"||e.zone==="90"||e.zone==="far"||e.cat.includes("rencontre"))return "high";return "low"}
-function qOk(e){if(!state.q)return true;const h=(e.title+" "+(e.titleOrig||"")+" "+e.place+" "+(e.desc||"")+" "+(GRP[e.rep||e.id]||"")+" "+(e.src||"")+" "+e.cat.map(c=>CATLBL[c]||"").join(" ")).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");return state.q.split(/\s+/).every(w=>h.includes(w))}
+function qOk(e){if(!state.q)return true;const h=(e.title+" "+(e.titleEn||"")+" "+(e.titleOrig||"")+" "+e.place+" "+(e.desc||"")+" "+(GRP[e.rep||e.id]||"")+" "+(e.src||"")+" "+e.cat.map(c=>CATLBL[c]||"").join(" ")).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");return state.q.split(/\s+/).every(w=>h.includes(w))}
 function wantsDating(){return (S.likes||[]).includes("dating")}
 function isDating(e){if(e._dt==null)e._dt=/\bdating\b|\bsingles?\b|speed ?dating|matchmak|tinder|\bflirt|date my friend|célibataires?|single-?party/i.test(e.title+" "+(e.titleOrig||"")+" "+String(e.desc||"").slice(0,200));return e._dt}
 function filterOk(e){return (wantsDating()||!isDating(e))&&inCity(e)&&(!state.rain||isIndoor(e))&&(!state.duo||isDuo(e))&&(state.cat==="all"||e.cat.includes(state.cat))&&zoneOk(e)&&(state.energy==="all"||energyOf(e)===state.energy)&&(!state.free||e.free)&&(!state.going||goingSet.has(e.id))&&(!state.new||isNew(e))&&qOk(e)}
@@ -2231,7 +2232,7 @@ function tripDetail(t){
   if(t.day2&&t.day2.length)h+=sec("Day 2",t.day2.length+" stops",rl(t.day2)+itinHTML(t.day2),false);
   if(t.stay&&t.stay.length)h+=sec("Where to stay",t.stay.length+" dog-friendly options",'<div class="tiles">'+t.stay.map(x=>'<div class="tile"><b>'+linkOrText(x.name,x.url)+'</b><p>'+esc(x.why||"")+'</p><div class="f">'+(x.price?'<span>'+esc(x.price)+'</span>':'')+dogTag(x.dogs)+'</div></div>').join("")+'</div>',false);
   if((t.eat||[]).length)h+=sec("Where to eat",t.eat.length+(t.eat.length===1?" place":" places"),'<div class="tiles">'+t.eat.map(x=>'<div class="tile"><span class="k">'+esc(x.kind||"")+'</span><b>'+linkOrText(x.name,x.url)+'</b><p>'+esc(x.why||"")+'</p><div class="f">'+(x.price?'<span>'+esc(x.price)+'</span>':'')+dogTag(x.dogs)+'</div>'+(x.address?'<div class="f" style="margin-top:4px">'+esc(x.address)+'</div>':'')+'</div>').join("")+'</div>',false);
-  const _nm=x=>(x||'').toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g,'').slice(0,14);const _ag=ag.filter(e=>(e.dayEnd||e.day)>=TODAY);const _seen=new Set(_ag.flatMap(e=>[_nm(e.title),_nm(e.titleOrig)]));const tev=tripEvents(t,ag).filter(x=>{const k=_nm(x.title);if(_seen.has(k))return false;_seen.add(k);return true});ag=_ag;const evs=tev.map(x=>'<div class="tile"><span class="k">'+esc(x.when||"")+'</span><b>'+linkOrText(x.title,x.url)+'</b><p>'+esc(x.desc||"")+'</p></div>').join("")+ag.map(e=>'<div class="tile"><span class="k">'+esc(dLbl(e.day))+' · in your agenda</span><b><button class="agjump" data-jump="'+e.id+'">'+esc(e.title)+'</button></b><p>'+esc(e.desc||"")+'</p></div>').join("");
+  const _nm=x=>(x||'').toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g,'').slice(0,14);const _ag=ag.filter(e=>(e.dayEnd||e.day)>=TODAY);const _seen=new Set(_ag.flatMap(e=>[_nm(e.title),_nm(e.titleOrig)]));const tev=tripEvents(t,ag).filter(x=>{const k=_nm(x.title);if(_seen.has(k))return false;_seen.add(k);return true});ag=_ag;const evs=tev.map(x=>'<div class="tile"><span class="k">'+esc(x.when||"")+'</span><b>'+linkOrText(x.title,x.url)+'</b><p>'+esc(x.desc||"")+'</p></div>').join("")+ag.map(e=>'<div class="tile"><span class="k">'+esc(dLbl(e.day))+' · in the app</span><b><button class="agjump" data-jump="'+e.id+'">'+esc(e.title)+'</button></b><p>'+esc(e.desc||"")+'</p></div>').join("");
   const nEv=tev.length+ag.length;
   h+=sec("On while you're there",nEv?nEv+" events & exhibitions":"nothing special these two weeks",nEv?'<div class="tiles">'+evs+'</div>':'<p class="info" style="color:var(--muted)">Nothing special listed for the next two weeks. The Monday refresh checks again.</p>',false);
   if(t.see&&t.see.length)h+=sec("Also worth seeing",t.see.length+" ideas",'<div class="tiles">'+t.see.map(x=>'<div class="tile"><b>'+linkOrText(x.name,x.url)+'</b><p>'+esc(x.why||"")+'</p><div class="f">'+dogTag(x.dogs)+'</div></div>').join("")+'</div>',false);
@@ -2548,6 +2549,7 @@ document.addEventListener("click",ev=>{const p=document.getElementById("acctpane
       const times=/\b\d{1,2}(?::|h)\d{2}\b/.test(p);
       if(/^(?:CHF\s*)?(?:free|gratuit|gratuite|entr[ée]e libre|free entry|eintritt frei|kostenlos|libre)\s*[.!]*$/i.test(p))p="Free";
       else if(/^(?:CHF\s*)?free\s+/i.test(p))p=p.replace(/^(?:CHF\s*)?free\s+/i,"Free ");
+      else if(/^De CHF\s*(\d+)\s*[àa]\s*CHF\s*(\d+)/i.test(p)){const m=p.match(/(\d+)\D+(\d+)/);p="CHF "+Math.min(m[1],m[2])+"–"+Math.max(m[1],m[2])}
       else if(!/\d/.test(p)&&/\b(?:au )?chapeau\b|hat collection|kollekte|collecte|pay what you (?:want|like)|prix libre/i.test(p))p="Pay what you like";
       else{let m=p.match(/(?:d[èe]s|from|ab|à partir de)\s*(?:CHF\s*)?(\d+(?:[.,]\d+)?)/i);
         if(m&&(times||/^(?:CHF\s*)?(?:d[èe]s|from|ab|à partir de)/i.test(p)))p="From CHF "+m[1];
@@ -3095,11 +3097,11 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     party:/party|soir[ée]e|club\b|dj set|clubbing|techno|house music|disco|karaoke/i};
   const NRX={kids:/\b(?:kids|enfants?|children|kinder|for families|en famille|family[- ]friendly|famili[ae]l|b[ée]b[ée]s?|toddlers?)\b/i,sports:/football|soccer|hockey|league|\bmatch\b|ravens|\bvs\.?\b|championship|meisterschaft/i,
     talks:/\b(?:a talk|talk by|talks? (?:on|about|with)|lecture by|public lecture|lecture on|panel discussion|webinar|vortrag|round ?table)\b/i,clubs:/club night|\btechno\b|clubbing|\brave\b|after.?party/i,classical:/orchestr|symphon|recital|philharm|quartet|sonata|opera\b|op[ée]ra/i};
-  function txt(e){if(e._ptx==null){let k="";try{k=gloss(e).replace(/<[^>]+>/g,"")}catch(x){}e._ptx=(e.title+" "+(e.titleOrig||"")+" "+k+" "+String(e.desc||"").slice(0,220)).toLowerCase();e._pk=k.split(" · ")[0]}return e._ptx}
+  function txt(e){if(e._ptx==null){let k="";try{k=gloss(e).replace(/<[^>]+>/g,"")}catch(x){}e._ptx=(e.title+" "+(e.titleOrig||"")+" "+(e.titleEn||"")+" "+k+" "+String(e.desc||"").slice(0,220)).toLowerCase();e._pk=k.split(" · ")[0]}return e._ptx}
   function tags(e){if(e._ptg)return e._ptg;if(e.hike)return e._ptg=new Set(["outdoors"]);const t=txt(e),c=e.cat||[],s=new Set();
     for(const k in RX)if(RX[k].test(t))s.add(k);
     if(c.includes("marche"))s.add("markets");if(c.includes("creatif"))s.add("creative");if(c.includes("chien"))s.add("outdoors");if(c.includes("rencontre")||e.src==="Meetup")s.add("meet");
-    if(/^Concert|Jazz|Live music/.test(e._pk))s.add("concerts");if(/Exhibition/.test(e._pk)||e.p==="on")s.add("exhibitions");if(/Festival/.test(e._pk))s.add("festivals");if(/Film/.test(e._pk))s.add("film");
+    if(/^Concert|Jazz|Live music/.test(e._pk))s.add("concerts");if(/Exhibition/.test(e._pk))s.add("exhibitions");if(/Festival/.test(e._pk))s.add("festivals");if(/Film/.test(e._pk))s.add("film");
     return e._ptg=s}
   const MEETUP=/\bmeetup\b|mixer|language exchange|[ée]change linguistique|sprach(?:tandem|caf[eé])|tandem|lingo|speed friending|make (?:new )?friends|social (?:circle|club|hour|evening)|pub crawl|networking|(?:french|english|german|spanish|italian|russian|language)["”]?\s+(?:conversation|practice)|(?:conversation|practice)\s+(?:en|in)\s|practi[cs]e\s+\w+\s+language|sociali[sz]e conversation|fast friends|happy hour/i;
   const MEETK=/^(Language exchange|Singles mixer|Networking)/;
@@ -3108,12 +3110,12 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   function never(e){const N=prof().never||[];if(!N.length)return false;const t=txt(e);
     if(wantsDating()&&isDating(e))return false;
     return N.some(k=>k==="meetups"?(MEETK.test(e._pk||"")||MEETUP.test(e.title+" "+(e.titleOrig||"")))
-      :k==="clubs"?(!NOTCLUB.test(e.title)&&(NRX.clubs.test(e.title+" "+(e._pk||""))||(/party|club|\bdj\b|rave|techno|house|disco|soir[ée]e|night/i.test(e.title+" "+(e._pk||""))&&late(e))))
+      :k==="clubs"?(!NOTCLUB.test(e.title)&&(NRX.clubs.test(e.title+" "+(e._pk||""))||(/party|club|\bdj\b|rave|techno|house|disco|soir[ée]e|night/i.test(e.title+" "+(e._pk||""))&&late(e))||((interval(e)||{}).s>=23*60)))
       :k==="classical"||k==="sports"?((NRX[k].test(e.title+" "+(e._pk||""))||(k==="classical"&&/^Classical|^Opera/i.test(e._pk||"")))&&!(k==="classical"&&/guided tour/i.test(e.title))&&!/hip.?hop|disco|jazz|milonga|tango|pop|rock|language|swing/i.test(e.title))
       :NRX[k]&&NRX[k].test(t))}
   /* --- dates and slots --- */
   const dow=d=>new Date(d+"T12:00:00").getDay();
-  function weRange(){const w=dow(TODAY);const fri=w===5?TODAY:w===6?isoAdd(TODAY,-1):w===0?isoAdd(TODAY,-2):isoAdd(TODAY,5-w);return [fri,isoAdd(fri,1),isoAdd(fri,2)]}
+  function weRange(){const w=dow(TODAY);const fri=w===5?TODAY:w===6?isoAdd(TODAY,-1):w===0?(nowMin()>=18*60?isoAdd(TODAY,5):isoAdd(TODAY,-2)):isoAdd(TODAY,5-w);return [fri,isoAdd(fri,1),isoAdd(fri,2)]}
   function wkDays(){const w=dow(TODAY);let mon=w>=1&&w<=4?isoAdd(TODAY,1-w):isoAdd(TODAY,w===0?1:8-w);return [0,1,2,3].map(i=>isoAdd(mon,i))}
   const SL={m:[0,720,"morning"],a:[720,1050,"afternoon"],e:[1050,1680,"evening"]};
   function slots(ctx){const out=[];const now=nowMin();
@@ -3122,10 +3124,22 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     return out.filter(([d,k])=>d>TODAY||(d===TODAY&&now<SL[k][1]-45)).map(([d,k])=>({key:d+"|"+k,d,k}))}
   function slotName(s,ctx){const n=DAYNAMES[dow(s.d)].slice(0,3);return ctx==="wk"?n+" "+s.d.slice(8).replace(/^0/,""):(s.d===TODAY?"Today ":n+" ")+SL[s.k][2]}
   function wx(d,k){const w=((ui.city==="zh"||(ui.city==="both"&&S.home==="zh"))?WX_ZH:WX)[d];if(!w)return null;return {t:w[0],r:k==="e"?(w[2]!=null?w[2]:w[1]):w[1]}}
+  const DN={mon:1,tue:2,wed:3,thu:4,fri:5,sat:6,sun:0,lun:1,mar:2,mer:3,jeu:4,ven:5,sam:6,dim:0,di:2,mi:3,do:4,fr:5,sa:6,so:0};
+  /* which weekdays a multi-day listing runs on: "Fri & Sat nights", "Tue–Sun", "Thu–Sun 11:00–18:00" */
+  function daysOf(e){if(e._dys!==undefined)return e._dys;const w=String(e.when||"").toLowerCase();let set=null;
+    const m=w.match(/\b(mon|tue|wed|thu|fri|sat|sun)[a-z]*\s*(?:–|-|to)\s*(mon|tue|wed|thu|fri|sat|sun)[a-z]*\b/);
+    if(m&&(e.dayEnd&&e.dayEnd>e.day)){set=new Set();let d=DN[m[1]];for(let i=0;i<7;i++){set.add(d);if(d===DN[m[2]])break;d=(d+1)%7}}
+    else{const L=[...w.matchAll(/\b(mon|tue|wed|thu|fri|sat|sun)(?:day|s)?\b/g)].map(x=>DN[x[1]]);if(L.length>=2&&/&|,| and /.test(w)&&e.dayEnd&&e.dayEnd>e.day)set=new Set(L)}
+    return e._dys=set}
   function fits(e,s){const lo=e.day,hi=e.dayEnd||e.day;if(s.d<lo||s.d>hi)return false;const [a,b]=SL[s.k];
-    if(e.p==="on"||isFlexible(e)||!/\d{1,2}:\d{2}/.test(e.when||""))return s.k!=="e"&&(e.p==="on"||tags(e).has("markets")||tags(e).has("exhibitions")||(s.k==="a"&&tags(e).has("festivals")));
+    const ds=daysOf(e);if(ds&&!ds.has(dow(s.d)))return false;
+    const tg=tags(e),timed=/\d{1,2}:\d{2}/.test(e.when||"");
+    if(e.p==="on"||isFlexible(e)||!timed){if(s.k==="e")return false;if(tg.has("concerts")||tg.has("party"))return false;
+      if(!(tg.has("markets")||tg.has("exhibitions")||(s.k==="a"&&tg.has("festivals"))))return false;
+      if(timed){const i=interval(e);if(i&&!(i.s<b-60&&i.en>a+60))return false}return true}
     const i=interval(e);if(!i)return false;const multi=hi>lo;
-    if(i.s>=a&&i.s<b)return !(s.k==="e"&&i.s<1020&&!multi);
+    if(i.s>=a&&i.s<b)return !(s.k==="e"&&i.s<990&&!multi);
+    if(s.k==="e")return multi?i.s>=990:(i.s>=930&&i.en>=1140);
     return (multi||i.en-i.s>=240)&&i.s<b-60&&i.en>a+90}
   /* --- scoring --- */
   function city(){return ui.city==="both"?(S.home||"ge"):ui.city}
@@ -3143,10 +3157,15 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(e.p==="on"&&!moods.includes("exhibitions"))v-=3;
     return v-kindPenalty(e)}
   function hikes(){return city()!=="ge"?[]:TRIPS.filter(t=>t.kind==="hike").map(t=>({id:t.id,hike:t,title:t.name,day:"",when:"",cat:["corps","chien"],place:t.hike.area,desc:t.hook}))}
-  function hikeScore(h,s,moods){const t=h.hike;const w=(TWX[t.id]||{})[s.d]||((city()==="ge"?WX:WX_ZH)[s.d]);let v=moods.includes("outdoors")?9:2;
-    if(w){if(w[1]>=50)v-=12;else if(w[1]>=30)v-=2;else v+=3}
+  function hikeScore(h,s,moods){const t=h.hike;const w=(TWX[t.id]||{})[s.d]||((city()==="ge"?WX:WX_ZH)[s.d]);let v=moods.includes("outdoors")?16:2;
+    if(w){if(w[1]>=50)v-=20;else if(w[1]>=30)v-=4;else v+=4}
     if(s.d===TODAY&&nowMin()>9*60)v-=50;if((S.nope||{})[t.id])v-=50;return v-t.hike.min/120}
-  function cands(s,ctx,moods,who){const c=city();const pricey=e=>{const m=String(e.price||"").match(/CHF\s*(\d+)/);return m&&+m[1]>150&&!goingSet.has(e.id)};let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!pricey(e)&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&e.p!=="big"&&fits(e,s)&&!never(e)&&(isLocal(e)||e.zone==="45"||goingSet.has(e.id)));
+  function far(e){if(e._far!==undefined)return e._far;const C=city()==="zh"?[47.3769,8.5417]:[46.2044,6.1432];let f=false;
+    if(e.geo&&e.geo.length===2){const r=x=>x*Math.PI/180,dl=r(e.geo[0]-C[0]),dn=r(e.geo[1]-C[1]);const h=Math.sin(dl/2)**2+Math.cos(r(C[0]))*Math.cos(r(e.geo[0]))*Math.sin(dn/2)**2;f=2*6371*Math.asin(Math.sqrt(h))>15}
+    else{const m=String(e.trip||"").match(/(\d+)\s*km/);if(m&&+m[1]>15)f=true}
+    if(/lausanne|vevey|montreux|nyon|morges|winterthur|baden|lucerne|luzern|zug\b|basel|bern/i.test(String(e.place||"").split(",").slice(-2).join(" ")+" "+e.title))f=true;
+    return e._far=f}
+  function cands(s,ctx,moods,who){const c=city();const pricey=e=>{const m=String(e.price||"").match(/CHF\s*(\d+)/);return m&&+m[1]>150&&!goingSet.has(e.id)};let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!pricey(e)&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&e.p!=="big"&&fits(e,s)&&!never(e)&&(goingSet.has(e.id)||(isLocal(e)&&!e.fr&&!far(e))));
     if(ctx==="we"&&s.k==="m")L=L.concat(hikes());
     return L.map(e=>({e,v:score(e,s,ctx,moods,who)})).sort((a,b)=>b.v-a.v)}
   /* --- building a plan --- */
@@ -3157,22 +3176,22 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   try{const keep=new Set(["we","wk"].map(c=>"oa-mood-"+wkey(c)));Object.keys(localStorage).filter(k=>k.startsWith("oa-mood-")&&!keep.has(k)&&!keep.has(k.replace(/\|(ge|zh)$/,""))).forEach(k=>{const m=k.match(/\|(\d{4}-\d{2}-\d{2})\|/);if(m&&m[1]<isoAdd(TODAY,-7))localStorage.removeItem(k)})}catch(x){}
   function clearCur(){try{Object.keys(localStorage).filter(k=>k.startsWith("oa-mood-")).forEach(k=>localStorage.removeItem(k))}catch(x){}}
   const swaps={};
-  function build(ctx){const {who,moods}=cur(ctx);const st=store(ctx);const sl=slots(ctx);const used=new Set(),usedTags={};const res=[];
+  function build(ctx){const {who,moods}=cur(ctx);const st=store(ctx);const sl=slots(ctx);const used=new Set(),usedTags={},usedT=new Set(),usedV=new Set();let usedHike=false;const nz=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ").trim();const tn=e=>nz(e.title).split(" ").slice(0,4).join(" ");const vn=e=>e.hike?"":nz(String(e.place||"").split(",")[0]).replace(/\b(geneve|geneva|zurich|genf)\b/g,"").trim();const res=[];
     sl.forEach(s=>{const o=st[s.key];if(o&&o.id){used.add(o.id)}});
     for(const s of sl){const o=st[s.key]||{};
       if(o.skip){res.push({s,skip:true});continue}
-      if(ctx==="we"&&s.k==="a"){const prev=res.find(r=>r.s.d===s.d&&r.s.k==="m");if(prev&&prev.pick&&prev.pick.e.hike){res.push({s,cont:prev.pick});continue}}
+      if(ctx==="we"&&s.k==="a"){const prev=res.find(r=>r.s.d===s.d&&r.s.k==="m");if(prev&&prev.pick&&prev.pick.e.hike&&prev.pick.e.hike.hike.min>=150){res.push({s,cont:prev.pick});continue}}
       const all=cands(s,ctx,moods,who);
-      let list=all.filter(x=>!used.has(x.e.id)||(o.id===x.e.id));
-      list.forEach(x=>{const t=[...tags(x.e)][0];if(t&&usedTags[t]&&!(o.id===x.e.id))x.v-=3*usedTags[t]});list.sort((a,b)=>b.v-a.v);
+      let list=all.filter(x=>(!used.has(x.e.id)&&!usedT.has(tn(x.e)))||(o.id===x.e.id));
+      list.forEach(x=>{const t=[...tags(x.e)][0];if(t&&usedTags[t]&&!(o.id===x.e.id))x.v-=3*usedTags[t];if(usedV.has(vn(x.e))&&!(o.id===x.e.id))x.v-=8;if(x.e.hike&&usedHike&&!(o.id===x.e.id))x.v-=12});list.sort((a,b)=>b.v-a.v);
       let pick=null;if(o.id){pick=all.find(x=>x.e.id===o.id)||(()=>{const e=EVENTS.find(x=>x.id===o.id)||hikes().find(x=>x.id===o.id);return e?{e,v:0}:null})()}
       const going=list.find(x=>goingSet.has(x.e.id)&&goOn(x.e,s.d));if(!pick&&going)pick=going;
       if(!pick){const i=(swaps[s.key]||0)%Math.max(1,list.length);pick=list[i]||null}
-      if(pick){used.add(pick.e.id);[...tags(pick.e)].slice(0,1).forEach(t=>usedTags[t]=(usedTags[t]||0)+1)}
+      if(pick){if(pick.e.hike)usedHike=true;used.add(pick.e.id);usedT.add(tn(pick.e));if(vn(pick.e))usedV.add(vn(pick.e));[...tags(pick.e)].slice(0,1).forEach(t=>usedTags[t]=(usedTags[t]||0)+1)}
       res.push({s,pick,kept:!!o.id,going:pick&&(pick.e.hike?tripDates(pick.e.id).includes(s.d):goingSet.has(pick.e.id)&&goOn(pick.e,s.d)),n:list.length,all:list})}
     return res}
   function dontMiss(ctx){const ds=ctx==="we"?weRange():wkDays();const lo=ds[0],hi=ds[ds.length-1];const c=city();
-    return EVENTS.filter(e=>cityOf(e)===c&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&!e.folded&&e.day<=hi&&(e.dayEnd||e.day)>=lo&&((e.dayEnd&&e.dayEnd>e.day&&(new Date(e.dayEnd)-new Date(e.day))<=24*864e5&&/festival|fest\b|f[êe]te/i.test(e.title+" "+(e.kind||"")))||PICKS().some(p=>p.id===e.id&&/festival/i.test(e.title+p.why))))
+    return EVENTS.filter(e=>cityOf(e)===c&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&!e.folded&&!e.fr&&!far(e)&&!never(e)&&e.day<=hi&&(e.dayEnd||e.day)>=lo&&((e.dayEnd&&e.dayEnd>e.day&&(new Date(e.dayEnd)-new Date(e.day))<=24*864e5&&/festival|fest\b|f[êe]te/i.test(e.title+" "+(e.kind||"")))||PICKS().some(p=>p.id===e.id&&/festival/i.test(e.title+p.why))))
       .slice(0,3)}
   /* --- rendering --- */
   function why(e){const p=PICKS().find(x=>x.id===e.id);if(p&&p.why)return p.why;let d=String(e.desc||"").replace(/^Age range:[^.]*\.\s*/,"").replace(/\s+/g," ").trim();if(!d)return "";const m=d.match(/^(.{40,150}?[.!?])(\s|$)/);d=m?m[1]:d.slice(0,140)+(d.length>140?"…":"");return d}
@@ -3183,7 +3202,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     const head='<div class="pl-sl"><b>'+slotName(s,ctx)+'</b><span>'+wtx+'</span></div>';
     if(r.skip)return '<div class="pl-slot pl-skip" data-slot="'+s.key+'">'+head+'<div class="pl-m">Skipped · <button class="pl-lnk" data-plunskip="'+s.key+'">Plan something</button></div></div>';
     if(r.cont)return '<div class="pl-slot pl-cont">'+head+'<div class="pl-m">↳ Still on '+esc(r.cont.e.title)+'</div></div>';
-    if(!r.pick)return '<div class="pl-slot">'+head+'<div class="pl-m">Nothing that fits your mood. Try another chip above, or <button class="pl-lnk" data-plall="'+s.key+'">see everything</button>.</div></div>';
+    if(!r.pick)return '<div class="pl-slot">'+head+'<div class="pl-m">Nothing listed for this '+SL[s.k][2]+' yet nearby. New events arrive every night; <button class="pl-lnk" data-plall="'+s.key+'">see all options</button> or browse Explore.</div></div>';
     const e=r.pick.e;const tag='';
     return '<div class="pl-slot'+(r.going||r.kept?' pl-on':'')+'" data-slot="'+s.key+'" data-ev="'+esc(e.id)+'">'+head+
       '<button class="pl-body" data-plmenu="'+s.key+'"><span class="pl-t">'+esc(e.title)+'</span>'+tag+'<span class="pl-m">'+esc(meta(e))+'</span>'+(why(e)?'<span class="pl-w">'+esc(why(e))+'</span>':'')+'</button>'+
@@ -3408,6 +3427,82 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
 /* Batch 2: "Never show me" applies in Explore too (search still finds everything); singles mixers count as dating */
 (function(){const _f=filterOk;filterOk=function(e){if(!_f(e))return false;if(state.q)return true;try{return !(S.prof&&window.OA&&OA.never(e))}catch(x){return true}};
   const _d=isDating;isDating=function(e){if(_d(e))return true;if(e._dt2==null){let k="";try{k=gloss(e)}catch(x){}e._dt2=/^Singles|singles mixer|speed ?dating|c[ée]lib(?:at|ataires?)|célbat/i.test(k+" "+e.title)}return e._dt2}})();
+/* Batch 3 · event types: clear title words win over the old guess (which also looked at venue names and descriptions) */
+(function(){
+  const R=[
+    [/dance battle|dance your style|\bbattle\b/i,"Dance show"],
+    [/history month|\bprogramme\b/i,"Festival"],
+    [/\bperformance\b|\bperf\b/i,"Stage show"],
+    [/late night shopping|shopping night/i,"Shopping night"],
+    [/language exchange|[ée]change linguistique|tandem|\blingo|sprach(?:caf|tandem)|(?:french|english|german|spanish|russian|italian)["”]?\s+(?:conversation|practice)|practi[cs]e \w+ language|conversation (?:en|in) /i,"Language exchange"],
+    [/speed ?dating|\bsingles?\b|c[ée]l(?:i)?bat|flirt|date my friend/i,"Singles event"],
+    [/pub crawl/i,"Pub crawl"],
+    [/pub quiz|quiz night|\bquiz\b|trivia|blind test/i,"Quiz night"],
+    [/board ?games?|jeux de soci|game night|games night|werewolf|loup.?garou|clocktower|\bchess\b|[ée]checs|mahjong|spieleabend/i,"Board games"],
+    [/karaok/i,"Karaoke"],
+    [/stand.?up|comedy|com[ée]die (?!de gen)|humou?r|humoriste|one.?(?:wo)?man.?show|caustic/i,"Comedy show"],
+    [/\bimpro(?:v|visation)?\b|improv /i,"Improv show"],
+    [/speed friending|make (?:new )?friends|social (?:circle|club|hour|evening)|\bmeetup\b|mixer|after.?work|happy hour|socialis|fast friends|coffee and chill|women'?s circle|sharing circle/i,"Social meetup"],
+    [/yoga|meditation|m[ée]ditation|satsang|breathwork|sound (?:bath|massage)|massage|pilates|pelvic floor|qi ?gong|tai chi|wellness/i,"Wellbeing session"],
+    [/(?:salsa|bachata|kizomba|tango|milonga|forr[óo]|swing|lindy|cumbia|ballroom|hip.?hop dance|afro workout|dance (?:class|workshop|fitness|practice)|danse|crash course).*\b(?:class|course|cours|workshop|initiation|practice|crash)\b|\b(?:class|course|cours|workshop|initiation|crash course)\b.*(?:salsa|bachata|kizomba|tango|forr[óo]|swing|lindy|dance|danse)|afro workout|dance (?:class|workshop|fitness|practi)/i,"Dance class"],
+    [/salsa|bachata|kizomba|tango|milonga|forr[óo]|\bswing\b|lindy|cumbia|ballroom|\bkiz\b/i,"Dance night"],
+    [/volley|badminton|padel|ping ?pong|table tennis|football|futsal|bouldering|climbing|\bswim|run club|running|fitness|training|freeride|\bski\b|gravel|cycling|\bbike\b/i,"Sport"],
+    [/\bhike|hiking|randonn|wanderung|sketchcrawl|walk\b|balade|promenade|parcours/i,"Walk / hike"],
+    [/ceramic|c[ée]ramique|pottery|poterie|clay\b/i,"Ceramics"],
+    [/life drawing|drawing|dessin|croqu|sketch|mod[eè]le vivant|living model|aktzeichnen|illustrat/i,"Drawing session"],
+    [/watercolou?r|aquarell|painting|peinture|\bpaint\b|malen/i,"Painting workshop"],
+    [/typograph|letterpress|printmaking|gravure|linocut|binding|reliure|cut paper|embroider|broderie|knit|tricot|sew|couture|collage|ikebana|flower arrang|creative experience|designing together|candle|bougie|jewel|bijou|chocolat|carving/i,"Craft workshop"],
+    [/writing workshop|atelier d'[ée]criture|creative writing|[ée]criture/i,"Writing workshop"],
+    [/exhibition|exposition|\bexpo\b|ausstellung|vernissage|finissage/i,"Exhibition"],
+    [/guided tour|visite guid[ée]e|f[üu]hrung|walking tour|\btour of\b|city tour|heart of geneva tour/i,"Guided tour"],
+    [/sound and light|light show|son et lumi|projection mapping/i,"Light show"],
+    [/\bfilm\b|cin[ée]ma|\bcin[ée]\b|screening|projection|movie|kino/i,"Film screening"],
+    [/\btalk\b|lecture|conf[ée]rence|conference|discussion|debate|d[ée]bat|round ?table|vortrag|conversation with|rencontre et discussion|book club/i,"Talk"],
+    [/reading|lesung|poetry|po[ée]sie|slam/i,"Reading"],
+    [/christmas market|march[ée] de no[ëe]l|weihnachtsmarkt|advent/i,"Christmas market"],
+    [/flea|brocante|puces|vide.?grenier|flohmarkt|\btroc\b|yard sale|garage sale|free market/i,"Flea market"],
+    [/market|march[ée]|\bmarkt\b|\bfair\b|\bfoire\b|bazaar|braderie|messe\b/i,"Market / fair"],
+    [/workshop|atelier|\bclass\b|course\b|\bcours\b|\bkurs\b|masterclass|initiation/i,"Workshop"],
+    [/oper(?:a|n)\b|op[ée]ra/i,"Opera"],
+    [/orchest|symphon|recital|r[ée]cital|quartet|quatuor|philharm|sonata|chamber music|baroque|requiem|ensemble\b/i,"Classical concert"],
+    [/\bchoir\b|chorale|\bchor\b|choral|bateria|samba|percussion/i,"Music group"],
+    [/jazz/i,"Jazz concert"],
+    [/festival|f[êe]te\b|\bfest\b|kermesse|carnaval/i,"Festival"],
+    [/party|\bdj\b|dj set|clubbing|\brave\b|\bdisco\b|\btechno\b|after.?party|\bball\b|nightlife|club night/i,"Party"],
+    [/concert|konzert|\blive\b|\bband\b|\btrio\b|quintet|\b\d?tet\b|acoustic|unplugged|showcase|\+ guests|\bgig\b|rock\b|metal\b|punk|hip.?hop|rap\b|afrobeat|reggae|electro/i,"Concert"],
+    [/musical/i,"Musical"],
+    [/th[ée][aâ]tre|theater|theatre|\bplay\b|\bpi[eè]ce\b|cabaret/i,"Theatre play"]];
+  const VEN=[[/alhambra|arena|hallenstadion|volkshaus|the hall|samsung hall|halle 622|x-tra|komplex|\bptr\b|le rez|usine [àa] gaz|l'usine|amr|bongo joe|[ée]curie|urgence disk|chat noir|moods|rote fabrik|kaufleuten|exil|bogen f|mascotte|victoria hall|tonhalle|bfm|forces motrices|la gravi[èe]re|cave ?12|sud des alpes|bretelle|chant'grange|calvinus/i,"Concert"],
+    [/th[ée][aâ]tre|theater|com[ée]die de gen|vidy|galpon|pito[ëe]ff|poche|schauspielhaus|neumarkt|gessnerallee|grand th[ée][aâ]tre|opernhaus/i,"Theatre play"],
+    [/mus[ée]e|museum|kunsthaus|kunsthalle|galerie|gallery|fondation|mamco|fotomuseum|centre d'art|photoforum/i,"Exhibition"]];
+  const STRONG=new Set(["Language exchange","Singles event","Pub crawl","Quiz night","Board games","Karaoke","Comedy show","Improv show","Social meetup","Wellbeing session","Dance class","Sport","Ceramics","Drawing session","Painting workshop","Craft workshop","Writing workshop","Guided tour","Light show","Flea market","Christmas market","Film screening"]);
+  const WEAK=/^(Party|Show|Stage show|Social meetup|Theatre play|Concert|Puzzle game|Music group|Painting workshop|Workshop|Ceramics workshop|Dance night|Country festival|Reading \/ poetry|Market \/ fair|Festival|Discussion group|Exhibition|Event|Sport & wellbeing|Wellbeing session|Singles mixer|Hike|Walk)$/;
+  const CRAFTY=/workshop|course|^Drawing session|^Wellbeing session/i;
+  function classify(e,_g){const t=e.title+" "+(e.titleOrig||"")+" "+(e.titleEn||"");let old="";try{old=_g(e).replace(/<[^>]+>/g,"").split(" · ")[0].replace(/&amp;/g,"&")}catch(x){}
+    let k=(R.find(([re])=>re.test(t))||[])[1];
+    if(k==="Ceramics")k="Ceramics workshop";
+    if(k&&(STRONG.has(k)||WEAK.test(old)))return k;
+    if(k==="Music group"&&/th[ée][aâ]tre|com[ée]die de gen|theater/i.test(String(e.place||"")))k="Theatre play";
+    if(!k&&e.p==="on"&&!/workshop|atelier|tour|talk|lecture|course|class|market|yoga|massage/i.test(t)&&WEAK.test(old))return "Exhibition";
+    if(!k&&CRAFTY.test(old)&&!/workshop|atelier|class|course|cours|kurs|session|paint|draw|ceramic|craft/i.test(t)){const v=String(e.place||"");const vk=(VEN.find(([re])=>re.test(v))||[])[1];return vk==="Exhibition"||vk==="Theatre play"?vk:"Show"}
+    if(!k&&/^(Show|Party|Social meetup|Event)$/.test(old)){const v=String(e.place||"");const vk=(VEN.find(([re])=>re.test(v))||[])[1];if(vk&&!(old==="Party"&&vk==="Concert"&&/\bdj\b|party/i.test(t)))return vk}
+    return null}
+  const _gl=gloss;gloss=function(e){if(e&&!e.kind&&!e._kc){e._kc=1;const k=classify(e,_gl);if(k)e.kind=k}return _gl(e)};
+})();
+
+/* Batch 3: events in France are flagged (and kept out of the Plan) */
+(function(){const FR=/\bFrance\b|\b(?:74|01)\d{3}\b|haute-savoie|pays de gex|\bain\b|annemasse|thonon|[ée]vian|\bgex\b|ferney|divonne|saint-julien-en-genevois|habère|hab[èe]re|scionzier|cessy|mieussy|bonneville|cluses|la roche-sur-foron|annecy|chamonix|sallanches|douvaine|segny|thoiry|saint-genis|prevessin|collonges/i;
+  [...new Set([].concat(window.ALL_EVENTS||[],EVENTS))].forEach(e=>{if(e&&FR.test(String(e.place||"")+" "+String(e.trip||"")))e.fr=true});
+  const _g=gloss;gloss=function(e){const r=_g(e);return e&&e.fr&&!/France/.test(r)?r+" · 🇫🇷 France":r}})();
+
+/* Batch 3: trips don't show what's already over (static trip events, seasonal notes like "boats until 11 Oct") */
+(function(){const MO={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+  const lastDate=txt=>{const T=[...String(txt||"").matchAll(/(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?(?:\s+(20\d\d))?/gi)];if(!T.length)return null;
+    const m=T[T.length-1];const y=m[3]?+m[3]:+TODAY.slice(0,4);let d=y+"-"+String(MO[m[2].toLowerCase()]).padStart(2,"0")+"-"+String(+m[1]).padStart(2,"0");
+    if(!m[3]&&d<isoAdd(TODAY,-200))d=(y+1)+d.slice(4);return d};
+  const _te=tripEvents;tripEvents=function(t,ag){return _te(t,ag).filter(x=>{const d=lastDate(x.when||x.day||"");return !d||d>=TODAY})};
+  TRIPS.forEach(t=>{if(!t.season)return;const parts=String(t.season).split(/(?<=[.;])\s+|;\s*/).filter(p=>{const d=lastDate(p);return !d||d>=TODAY});t.season=parts.join(" ").trim()});
+})();
 </script>
 
 
