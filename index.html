@@ -353,7 +353,7 @@ body{padding-bottom:72px}
 .todayplan .links{margin-top:8px}
 .todayplan .agjump{font-size:13px}
 .tp-item+.tp-item{border-top:1px solid var(--go);margin-top:10px;padding-top:10px}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:1200;background:var(--ink);color:var(--bg);border-radius:999px;padding:8px 8px 8px 16px;font-size:14px;display:flex;gap:10px;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,.2);max-width:calc(100vw - 32px);white-space:nowrap}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:1200;background:var(--ink);color:var(--bg);border-radius:999px;padding:8px 8px 8px 16px;font-size:14px;display:flex;gap:10px;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,.2);max-width:calc(100vw - 32px);white-space:normal;border-radius:16px}
 .toast button{font:inherit;font-size:13px;font-weight:700;color:var(--bg);background:transparent;border:1px solid currentColor;border-radius:999px;padding:4px 12px;cursor:pointer}
 .filtersbtn,.sheethead{display:none}
 #sheetbg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:45}
@@ -3374,7 +3374,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     else if(x.k==="trip"){const t=x.t0,st=(t.day||[])[0],tr=t.train||{};
       L.push(fullDay(x.day)+(st&&st.t?", start "+st.t:""));
       if(tr.route)L.push("Getting there: "+tr.route+(tr.min?" · about "+hm(tr.min):""));else if(tr.min)L.push("About "+hm(tr.min)+" by train");
-      if(t.hike)L.push((t.hike.level||"Hike")+" · "+t.hike.km+" km · about "+hm(t.hike.min)+" walking");
+      if(t.hike)L.push((t.hike.level||"Hike")+" · "+t.hike.km+" km · about "+(m=>{const h=Math.round(m/30)/2;return (h%1?Math.floor(h)+"½":h)+" h"})(t.hike.min)+" walking");
       if(tr.fare)L.push("Cost: "+tr.fare);
       if(t.country==="FR"||/bring id/i.test(t.dog||""))L.push("Bring ID: it's in France");
       if(t.hike&&t.hike.start)L.push("Start: https://maps.google.com/?q="+t.hike.start.join(","));else if(st&&st.where)L.push(mapL(st.where))}
@@ -3386,14 +3386,14 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     const txt=(items.length===1?"Join me? "+label(items[0])+"\n"+details(items[0]):who+" plans — join me for any of these:\n"+items.map(x=>"• "+label(x)+" — "+details(x).split("\n")[0]).join("\n"))+"\n\nTap to see the invite and add "+(items.length===1?"it":"them")+" to your plans (free app, no account needed):\n"+url;
     if(navigator.share){try{await navigator.share({title:"Out & About",text:txt});return}catch(e){if(e&&e.name==="AbortError")return}}
     try{await navigator.clipboard.writeText(txt);toast("Invite copied — paste it in WhatsApp or Messages")}catch(e){window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank")}}
-  function ask(items){if(myName()){send(items);return}close("shname");const d=document.createElement("div");d.id="shname";
+  function ask(items){{const _t=document.getElementById("toast");if(_t)_t.hidden=true}if(myName()){send(items);return}close("shname");const d=document.createElement("div");d.id="shname";
     d.innerHTML='<div class="pl-dim" data-nmclose></div><div class="pl-sheet" role="dialog" aria-label="Your name"><div class="pl-grab"></div><h3>Who\'s inviting?</h3><p>Your first name, so your friend knows the invite is from you. Asked only once.</p><label class="sh-name">First name <input id="nmval" maxlength="30" autocomplete="given-name" placeholder="e.g. Alex" enterkeyhint="send"></label><button class="pl-cta" data-nmgo>Send invite</button></div>';
     document.body.appendChild(d);setTimeout(()=>{const i=d.querySelector("#nmval");if(i)i.focus()},50);d.addEventListener("keydown",ev=>{if(ev.key==="Enter"){ev.preventDefault();const g=d.querySelector("[data-nmgo]");if(g)g.click()}});
     d.addEventListener("click",ev=>{if(ev.target.closest("[data-nmclose]")){close("shname");return}
       if(ev.target.closest("[data-nmgo]")){const n=d.querySelector("#nmval").value.trim();if(n){try{localStorage.setItem("oa-name",n)}catch(e){}}close("shname");send(items)}})}
   function close(id){const d=document.getElementById(id);if(d)d.remove()}
   /* --- composer (from My plans) --- */
-  function composer(){close("shsheet");const it=myItems();if(!it.length){toast("Add something with ＋ My plans first");return}
+  function composer(){{const _t=document.getElementById("toast");if(_t)_t.hidden=true}close("shsheet");const it=myItems();if(!it.length){toast("Add something with ＋ My plans first");return}
     const sel=new Set(it.map((x,i)=>i));const d=document.createElement("div");d.id="shsheet";
     const draw=()=>{d.innerHTML='<div class="pl-dim" data-shclose></div><div class="pl-sheet" role="dialog" aria-label="Share my plans"><div class="pl-grab"></div><h3>Share my plans</h3><p>Your friends get a link. Tapping it adds these to their My plans, and gets them the app if they don\'t have it yet.</p>'+
       '<label class="sh-name">Your name <input id="shname" maxlength="30" placeholder="e.g. Alex" value="'+esc(myName())+'"></label>'+
@@ -3414,10 +3414,10 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   function afterInvite(){window.__inviting=false;if(window.__setupWaiting){window.__setupWaiting=false;setTimeout(openSetup,300)}}
   {const _os=openSetup;openSetup=function(){if(window.__inviting){window.__setupWaiting=true;return}return _os.apply(this,arguments)}}
   function standalone(){return (window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true}
-  function invite(p,raw){close("shinv");const L=resolve(p);const d=document.createElement("div");d.id="shinv";const who=p.n?esc(p.n):"A friend";
+  function invite(p,raw){{const _t=document.getElementById("toast");if(_t)_t.hidden=true}close("shinv");const L=resolve(p);const d=document.createElement("div");d.id="shinv";const who=p.n?esc(p.n):"A friend";
     const sel=new Set(L.map((x,i)=>i).filter(i=>!L[i].have));
     d.className="inv-page";const one=L.length===1?L[0]:null;
-    const draw=()=>{d.innerHTML='<div class="inv-card" role="dialog" aria-label="Invitation"><p class="inv-k">Out &amp; About · invitation</p><h2 class="inv-h">'+who+' invited you'+(one?' to':'')+'</h2>'+(one?'<div class="inv-ev"><b>'+esc(one.lab)+'</b><span>'+esc(one.sub)+'</span>'+(one.k==="ev"?((one.e.price&&!/price to check/i.test(one.e.price))?'<span>'+esc(one.e.price)+'</span>':'')+(one.e.desc?'<p class="inv-d">'+esc(String(one.e.desc).slice(0,220))+(String(one.e.desc).length>220?'…':'')+'</p>':'')+(one.e.place?'<a class="lnk" href="https://maps.google.com/?q='+encodeURIComponent(one.e.place)+'" target="_blank" rel="noopener">Map ↗</a>':''):'')+'</div>':'')+
+    const draw=()=>{d.innerHTML='<div class="inv-card" role="dialog" aria-label="Invitation"><p class="inv-k">Out &amp; About · invitation</p><h2 class="inv-h">'+who+' invited you'+(one?' to':'')+'</h2>'+(one?'<div class="inv-ev"><b>'+esc(one.lab)+'</b><span>'+esc(one.sub)+'</span>'+(one.k==="ev"?((one.e.price&&!/price to check/i.test(one.e.price))?'<span>'+esc(one.e.price)+'</span>':'')+(one.e.desc?'<p class="inv-d">'+esc(String(one.e.desc).slice(0,220))+(String(one.e.desc).length>220?'…':'')+'</p>':'')+(one.e.place?'<a class="lnk" href="https://maps.google.com/?q='+encodeURIComponent(one.e.place)+'" target="_blank" rel="noopener">Map ↗</a>':''):one.k==="trip"?(()=>{const t=TRIPS.find(z=>z.id===one.id)||{},st=(t.day||[])[0]||{};return (st.t?'<span>Start '+esc(st.t)+(st.do?' · '+esc(st.do):'')+'</span>':'')+(t.hook?'<p class="inv-d">'+esc(t.hook)+'</p>':'')+(t.hike&&t.hike.start?'<a class="lnk" href="https://maps.google.com/?q='+t.hike.start.join(",")+'" target="_blank" rel="noopener">Start on map ↗</a>':'')})():one.k==="film"?(()=>{const c=((window.CINE||{}).cinemas||{})[one.f.c]||{};return (c.q?'<span>'+esc(c.q)+'</span>':'')+(c.q?'<a class="lnk" href="https://maps.google.com/?q='+encodeURIComponent((c.n||"")+", "+c.q)+'" target="_blank" rel="noopener">Map ↗</a>':'')+(one.f.u?' <a class="lnk" href="'+esc(one.f.u)+'" target="_blank" rel="noopener">Tickets ↗</a>':'')})():'')+'</div>':'')+
       (one?(one.have?'<p class="inv-have">✓ Already in your plans</p>':'<button class="pl-cta" data-invadd>I\'m in · add to my plans</button>'):L.length?'<p>Pick what you\'d like to join. It goes into your <b>My plans</b> with a reminder on the day.</p><div class="sh-list">'+L.map((x,i)=>'<label class="sh-row'+(x.have?' have':'')+'"><input type="checkbox" data-invi="'+i+'"'+(x.have?' checked disabled':sel.has(i)?' checked':'')+'><span><b>'+esc(x.lab)+'</b><small>'+esc(x.sub)+(x.have?' · already in your plans':'')+'</small></span></label>').join("")+'</div>'+
         '<button class="pl-cta" data-invadd'+(sel.size?'':' disabled')+'>Add '+(sel.size||"")+' to my plans</button>':'<p>These plans have already happened. Have a look around for what\'s on next!</p>')+
       '<button class="pl-cal" data-invclose>'+(L.length&&L.some(x=>!x.have)?'Not now':'Close')+'</button>'+
@@ -3432,7 +3432,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
           else if(x.k==="trip"){S.trips=S.trips||{};const a=tripDates(x.id);if(!a.includes(x.d))a.push(x.d);S.trips[x.id]=a.sort()}
           else if(x.k==="film"){S.films=S.films||[];S.films.push(x.f)}});
         persist();const added=L.filter((x,i)=>sel.has(i)&&!x.have);
-        const msg="I'm in! "+added.map(x=>x.lab+" ("+String(x.sub).split(" · ")[0]+")").join(", ");
+        const msg="I'm in! "+added.map(x=>{const dd=x.k==="film"?String(x.f.k).split("|")[2]:x.k==="trip"?x.d:x.gd||(x.e&&x.e.dayEnd>x.e.day?"":x.day);const tm=x.k==="film"?x.f.tm:x.k==="ev"?(String(x.e.when||"").match(/\d{1,2}:\d{2}/)||[""])[0]:((TRIPS.find(t=>t.id===x.id)||{}).day||[{}])[0].t||"";return x.lab+" ("+(dd?fullDay(dd):"any day")+(tm?", "+tm:"")+")"}).join(", ");
         d.innerHTML='<div class="inv-card" role="dialog" aria-label="Added"><p class="inv-k">Out &amp; About</p><h2 class="inv-h">✓ Added to your plans</h2><p>'+(p.n?esc(p.n)+' isn\'t told automatically. Send a quick message:':'Your friend isn\'t told automatically. Send a quick message:')+'</p>'+
           '<a class="pl-cta" style="display:block;box-sizing:border-box;width:100%;text-align:center;text-decoration:none" href="https://wa.me/?text='+encodeURIComponent(msg)+'" target="_blank" rel="noopener" data-invtell>Tell '+(p.n?esc(p.n):'them')+' you\'re in</a><button class="pl-cal" data-invdone>See my plans</button>'+
           (!standalone()?'<div class="sh-tip"><b>Keep the app handy:</b> in your browser menu tap <b>Add to Home Screen</b>. Your plans stay in this browser.</div>':'')+'</div>';
@@ -3580,7 +3580,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   const ovl=()=>{for(let i=OVL.length-1;i>=0;i--){}const L=OVL.map(id=>document.getElementById(id)).filter(Boolean);const nb=document.querySelector(".notebox");if(nb)L.push(nb);const ap=document.getElementById("acctpanel");if(ap&&!ap.hidden)L.unshift(ap);return L.filter(x=>!(x.id==="onb"&&firstRun()))};
   const open=()=>ovl().length>0||document.body.classList.contains("sheet-open")||(ui.tab==="trips"&&!!ui.tripOpen)||!!ui.planAll||!!ui.plans||(ui.tab!=="plan");
   function sync(){const o=open();if(o&&!guard){try{history.pushState({oa:1},"")}catch(e){}guard=true}else if(!o&&guard){guard=false;ignore=true;try{history.back()}catch(e){ignore=false}}}
-  function closeTop(){const L=ovl();if(L.length){const x=L[L.length-1];if(x.id==="acctpanel"){x.hidden=true;const ab=document.getElementById("acctbtn");if(ab)ab.setAttribute("aria-expanded","false")}else if(x.id==="shinv"){x.remove();window.__afterInvite&&window.__afterInvite()}else if(x.classList&&x.classList.contains("notebox")){const b=x.querySelector("button");b?b.click():x.remove()}else x.remove();return}
+  function closeTop(){const L=ovl();if(L.length){const x=L[L.length-1];if(x.id==="acctpanel"){x.hidden=true;const ab=document.getElementById("acctbtn");if(ab)ab.setAttribute("aria-expanded","false")}else if(x.id==="shinv"){x.remove();if(!ui.plans&&ui.tab!=="plan"){const b=document.querySelector('nav.tabs [data-tab="plan"]');if(b)b.click()}window.__afterInvite&&window.__afterInvite()}else if(x.classList&&x.classList.contains("notebox")){const b=x.querySelector("button");b?b.click():x.remove()}else x.remove();return}
     if(document.body.classList.contains("sheet-open")){setSheet(false);return}
     if(ui.tab==="trips"&&ui.tripOpen){ui.tripOpen=null;render();return}
     if(ui.planAll){ui.planAll=null;render();window.scrollTo({top:0});return}
