@@ -1,6 +1,6 @@
 /* Out & About service worker: offline copy of the app + push notifications */
-const CACHE = "oa-v86";
-const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
+const CACHE = "oa-v87";
+const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./fonts/figtree-400.woff2", "./fonts/figtree-500.woff2", "./fonts/figtree-600.woff2", "./fonts/figtree-700.woff2", "./fonts/young-serif-400.woff2", "./fonts/plex-mono-400.woff2", "./fonts/plex-mono-500.woff2"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL.map(u => new Request(u, { cache: "reload" }))))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
   e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))));
