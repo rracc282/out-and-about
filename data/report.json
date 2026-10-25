@@ -1,57 +1,65 @@
 {
  "sources": [
   {
+   "url": "https://eventfrog.ch/en/events/ch/geneve/markets.html",
+   "status": 200,
+   "bytes": 606899,
+   "found": 539,
+   "followed": 40,
+   "markers": ""
+  },
+  {
    "url": "https://eventfrog.ch/de/events/zuerich.html",
    "status": 200,
-   "bytes": 623975,
-   "found": 568,
+   "bytes": 623555,
+   "found": 523,
    "followed": 40,
    "markers": ""
   },
   {
    "url": "https://eventfrog.ch/en/events/ch/geneve/comedy-cabaret.html",
    "status": 200,
-   "bytes": 610279,
-   "found": 502,
-   "followed": 40,
-   "markers": ""
-  },
-  {
-   "url": "https://eventfrog.ch/en/events/ch/geneve/markets.html",
-   "status": 200,
-   "bytes": 610251,
-   "found": 502,
-   "followed": 40,
+   "bytes": 606927,
+   "found": 511,
+   "followed": 37,
    "markers": ""
   },
   {
    "url": "https://www.ladecadanse.ch/",
    "status": 200,
-   "bytes": 8458358,
-   "found": 501,
+   "bytes": 8712710,
+   "found": 510,
    "followed": 14,
    "markers": "day agenda"
   },
   {
    "url": "https://openagenda.com/agendas/96959970/events.json?lang=en",
    "status": 200,
-   "bytes": 1926257,
-   "found": 220,
+   "bytes": 1920699,
+   "found": 219,
    "followed": 0,
    "markers": "openagenda json"
   },
   {
    "url": "https://eventfrog.ch/fr/events/geneve.html",
    "status": 200,
-   "bytes": 623899,
-   "found": 120,
+   "bytes": 622869,
+   "found": 115,
+   "followed": 40,
+   "markers": ""
+  },
+  {
+   "url": "https://eventfrog.ch/en/events/ch/comedy.html",
+   "status": 200,
+   "bytes": 592439,
+   "found": 99,
    "followed": 40,
    "markers": ""
   },
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=social",
    "status": 200,
-   "bytes": 575119,
+   "bytes": 580566,
    "found": 87,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -59,7 +67,7 @@
   {
    "url": "https://www.meetup.com/lausanne-acroyoga/events/",
    "status": 200,
-   "bytes": 243459,
+   "bytes": 243830,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -67,15 +75,7 @@
   {
    "url": "https://www.meetup.com/http-www-freewalk-ch-geneva-index-php/events/",
    "status": 200,
-   "bytes": 217069,
-   "found": 80,
-   "followed": 0,
-   "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/geneve-community-choir-meetup-group/events/",
-   "status": 200,
-   "bytes": 197212,
+   "bytes": 217067,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -83,7 +83,15 @@
   {
    "url": "https://www.meetup.com/connect-lausanne/events/",
    "status": 200,
-   "bytes": 232251,
+   "bytes": 232589,
+   "found": 80,
+   "followed": 0,
+   "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/geneve-community-choir-meetup-group/events/",
+   "status": 200,
+   "bytes": 197210,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -99,7 +107,7 @@
   {
    "url": "https://www.meetup.com/zurichtogether/events/",
    "status": 200,
-   "bytes": 285211,
+   "bytes": 290172,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -107,7 +115,7 @@
   {
    "url": "https://www.meetup.com/the-zurich-board-games-meetup-group/events/",
    "status": 200,
-   "bytes": 236722,
+   "bytes": 238428,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -115,39 +123,15 @@
   {
    "url": "https://www.meetup.com/afterwork-bachata-salsa-2-jours-de-initiation-gratuit/events/",
    "status": 200,
-   "bytes": 186464,
+   "bytes": 186466,
    "found": 78,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://infomaniak.events/en-ch/comedy/geneva",
-   "status": 200,
-   "bytes": 423618,
-   "found": 78,
-   "followed": 40,
-   "markers": ""
-  },
-  {
-   "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
-   "status": 200,
-   "bytes": 423618,
-   "found": 78,
-   "followed": 40,
-   "markers": ""
-  },
-  {
-   "url": "https://lesgenevois.com/calendrier/ce-weekend",
-   "status": 200,
-   "bytes": 1117904,
-   "found": 75,
-   "followed": 0,
-   "markers": "ld+json schema.org/Event"
-  },
-  {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=board%20games",
    "status": 200,
-   "bytes": 405013,
+   "bytes": 414390,
    "found": 75,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -155,39 +139,47 @@
   {
    "url": "https://www.meetup.com/zurich-fun-gamers/events/",
    "status": 200,
-   "bytes": 259265,
+   "bytes": 259264,
    "found": 66,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
+   "url": "https://infomaniak.events/en-ch/comedy/geneva",
+   "status": 200,
+   "bytes": 422559,
+   "found": 63,
+   "followed": 40,
+   "markers": ""
+  },
+  {
+   "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
+   "status": 200,
+   "bytes": 422559,
+   "found": 63,
+   "followed": 40,
+   "markers": ""
+  },
+  {
    "url": "https://www.meetup.com/social-circle-zurich/events/",
    "status": 200,
-   "bytes": 240557,
-   "found": 62,
+   "bytes": 236640,
+   "found": 60,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=hiking",
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=art",
    "status": 200,
-   "bytes": 314276,
-   "found": 57,
+   "bytes": 316830,
+   "found": 60,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
   },
   {
-   "url": "https://eventfrog.ch/en/events/ch/comedy.html",
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=hiking",
    "status": 200,
-   "bytes": 592776,
-   "found": 54,
-   "followed": 36,
-   "markers": ""
-  },
-  {
-   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=art",
-   "status": 200,
-   "bytes": 287068,
+   "bytes": 293931,
    "found": 54,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -195,7 +187,7 @@
   {
    "url": "https://www.opernhaus.ch/spielplan/kalendarium/",
    "status": 200,
-   "bytes": 91819,
+   "bytes": 92195,
    "found": 50,
    "followed": 0,
    "markers": "ld+json"
@@ -203,7 +195,7 @@
   {
    "url": "https://www.meetup.com/dare-to-live-zurich/events/",
    "status": 200,
-   "bytes": 228422,
+   "bytes": 228430,
    "found": 48,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -211,15 +203,23 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=social",
    "status": 200,
-   "bytes": 295861,
+   "bytes": 297395,
    "found": 45,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
   },
   {
+   "url": "https://lesgenevois.com/calendrier/ce-weekend",
+   "status": 200,
+   "bytes": 733331,
+   "found": 44,
+   "followed": 0,
+   "markers": "ld+json schema.org/Event"
+  },
+  {
    "url": "https://www.meetup.com/pubphilosophy/events/",
    "status": 200,
-   "bytes": 172423,
+   "bytes": 172425,
    "found": 40,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -227,23 +227,31 @@
   {
    "url": "https://brocabrac.fr/ge/geneve/",
    "status": 200,
-   "bytes": 110729,
+   "bytes": 110331,
    "found": 40,
    "followed": 0,
    "markers": "ld+json schema.org/Event"
   },
   {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve",
+   "status": 200,
+   "bytes": 305988,
+   "found": 36,
+   "followed": 0,
+   "markers": "ld+json schema.org/Event __NEXT_DATA__"
+  },
+  {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=board%20games",
    "status": 200,
-   "bytes": 265663,
-   "found": 39,
+   "bytes": 269562,
+   "found": 36,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
   },
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=hiking",
    "status": 200,
-   "bytes": 205262,
+   "bytes": 203572,
    "found": 36,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -251,7 +259,7 @@
   {
    "url": "https://www.meetup.com/lausanne-board-games/events/",
    "status": 200,
-   "bytes": 159815,
+   "bytes": 159801,
    "found": 34,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -259,15 +267,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=art",
    "status": 200,
-   "bytes": 231374,
-   "found": 33,
-   "followed": 0,
-   "markers": "ld+json schema.org/Event __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich",
-   "status": 200,
-   "bytes": 298012,
+   "bytes": 239913,
    "found": 33,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -281,25 +281,9 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/pubcrawlzurich/events/",
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich",
    "status": 200,
-   "bytes": 165148,
-   "found": 30,
-   "followed": 0,
-   "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve",
-   "status": 200,
-   "bytes": 270142,
-   "found": 30,
-   "followed": 0,
-   "markers": "ld+json schema.org/Event __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=language%20exchange",
-   "status": 200,
-   "bytes": 326905,
+   "bytes": 350367,
    "found": 30,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -307,15 +291,31 @@
   {
    "url": "https://www.meetup.com/social-circle-lausanne/events/",
    "status": 200,
-   "bytes": 172821,
+   "bytes": 173353,
    "found": 28,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=language%20exchange",
+   "status": 200,
+   "bytes": 317429,
+   "found": 27,
+   "followed": 0,
+   "markers": "ld+json schema.org/Event __NEXT_DATA__"
+  },
+  {
    "url": "https://www.meetup.com/aktzeichnen-im-kreis-zurich/events/",
    "status": 200,
    "bytes": 129088,
+   "found": 26,
+   "followed": 0,
+   "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/pubcrawlzurich/events/",
+   "status": 200,
+   "bytes": 157539,
    "found": 26,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -331,7 +331,7 @@
   {
    "url": "https://www.meetup.com/comedyclub13/events/",
    "status": 200,
-   "bytes": 132115,
+   "bytes": 132117,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -339,7 +339,7 @@
   {
    "url": "https://www.meetup.com/geneva-hiking-with-dogs/events/",
    "status": 200,
-   "bytes": 153732,
+   "bytes": 153636,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -347,7 +347,7 @@
   {
    "url": "https://www.meetup.com/geneva-networking/events/",
    "status": 200,
-   "bytes": 162113,
+   "bytes": 162115,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -355,7 +355,7 @@
   {
    "url": "https://www.meetup.com/meetnewpeoplegeneva/events/",
    "status": 200,
-   "bytes": 191439,
+   "bytes": 191437,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -363,7 +363,15 @@
   {
    "url": "https://www.meetup.com/wearetheconnectionspace/events/",
    "status": 200,
-   "bytes": 263236,
+   "bytes": 263229,
+   "found": 22,
+   "followed": 0,
+   "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/historical-walks/events/",
+   "status": 200,
+   "bytes": 143070,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -371,7 +379,7 @@
   {
    "url": "https://www.meetup.com/geneva-expats-and-locals-community/events/",
    "status": 200,
-   "bytes": 145080,
+   "bytes": 145082,
    "found": 20,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -387,7 +395,7 @@
   {
    "url": "https://www.meetup.com/samba-workshops-zurich/events/",
    "status": 200,
-   "bytes": 128624,
+   "bytes": 128626,
    "found": 20,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -395,15 +403,7 @@
   {
    "url": "https://www.meetup.com/geneva-social-club/events/",
    "status": 200,
-   "bytes": 146209,
-   "found": 20,
-   "followed": 0,
-   "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/historical-walks/events/",
-   "status": 200,
-   "bytes": 140066,
+   "bytes": 146207,
    "found": 20,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -411,7 +411,7 @@
   {
    "url": "https://www.meetup.com/networking-afterwork-geneve/events/",
    "status": 200,
-   "bytes": 141755,
+   "bytes": 141757,
    "found": 20,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -433,14 +433,6 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.kulturzueri.ch/",
-   "status": 200,
-   "bytes": 149629,
-   "found": 10,
-   "followed": 12,
-   "markers": ""
-  },
-  {
    "url": "https://eventfrog.ch/en/p/groups/in-your-face-english-stand-up-comedy-open-mic-in-zurich-7132091334890862636.html",
    "status": 200,
    "bytes": 186809,
@@ -449,9 +441,17 @@
    "markers": "ld+json schema.org/Event .ics"
   },
   {
+   "url": "https://www.kulturzueri.ch/",
+   "status": 200,
+   "bytes": 149266,
+   "found": 9,
+   "followed": 12,
+   "markers": ""
+  },
+  {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=language%20exchange",
    "status": 200,
-   "bytes": 272942,
+   "bytes": 274075,
    "found": 9,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -459,7 +459,7 @@
   {
    "url": "https://www.meetup.com/les-talents-du-grand-genevois/events/",
    "status": 200,
-   "bytes": 156499,
+   "bytes": 156497,
    "found": 6,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -475,7 +475,7 @@
   {
    "url": "https://www.meetup.com/drink-paint-and-make-friends/events/",
    "status": 200,
-   "bytes": 109359,
+   "bytes": 109361,
    "found": 4,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -491,10 +491,18 @@
   {
    "url": "https://www.meetup.com/enjoy-geneve/events/",
    "status": 200,
-   "bytes": 99798,
+   "bytes": 99800,
    "found": 0,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/les-amis-geneva/events/",
+   "status": 200,
+   "bytes": 59633,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
   },
   {
    "url": "https://www.meetup.com/les-amis-zurich/events/",
@@ -505,17 +513,33 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/les-amis-geneva/events/",
+   "url": "https://www.meetup.com/zurich-social-club/events/",
    "status": 200,
-   "bytes": 59635,
+   "bytes": 59645,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-social-club/events/",
+   "url": "https://www.meetup.com/zurich-expats/events/",
    "status": 200,
-   "bytes": 59647,
+   "bytes": 59627,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/zurich-language-exchange/events/",
+   "status": 200,
+   "bytes": 59671,
+   "found": 0,
+   "followed": 0,
+   "markers": "__NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/geneva-language-exchange/events/",
+   "status": 200,
+   "bytes": 59669,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -529,33 +553,9 @@
    "markers": "__NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/zurich-expats/events/",
-   "status": 200,
-   "bytes": 59625,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/geneva-language-exchange/events/",
-   "status": 200,
-   "bytes": 59671,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/zurich-language-exchange/events/",
-   "status": 200,
-   "bytes": 59669,
-   "found": 0,
-   "followed": 0,
-   "markers": "__NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/geneva-hiking-group/events/",
    "status": 200,
-   "bytes": 59649,
+   "bytes": 59647,
    "found": 0,
    "followed": 0,
    "markers": "__NEXT_DATA__"
@@ -579,7 +579,7 @@
   {
    "url": "https://newinzurich.com/events/",
    "status": 200,
-   "bytes": 163973,
+   "bytes": 163975,
    "found": 0,
    "followed": 3,
    "markers": "ld+json wp-json"
@@ -587,15 +587,15 @@
   {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 122617,
+   "bytes": 92034,
    "found": 0,
-   "followed": 21,
+   "followed": 22,
    "markers": "ld+json"
   },
   {
    "url": "https://www.zuerichunbezahlbar.ch/",
    "status": 200,
-   "bytes": 67710,
+   "bytes": 67667,
    "found": 0,
    "followed": 25,
    "markers": ""
@@ -603,7 +603,7 @@
   {
    "url": "https://www.comedykiss.ch/",
    "status": 200,
-   "bytes": 1459307,
+   "bytes": 1460507,
    "found": 0,
    "followed": 1,
    "markers": "ld+json"
@@ -619,7 +619,7 @@
   {
    "url": "https://hallenstadion.ch/events/",
    "status": 200,
-   "bytes": 201675,
+   "bytes": 201684,
    "found": 0,
    "followed": 13,
    "markers": "ld+json"
@@ -627,7 +627,7 @@
   {
    "url": "https://infomaniak.events/en-ch/comedy/zurich",
    "status": 200,
-   "bytes": 135942,
+   "bytes": 135934,
    "found": 0,
    "followed": 0,
    "markers": ""
@@ -635,7 +635,7 @@
   {
    "url": "https://www.artageneve.com/galeries-musees/programme-des-expositions",
    "status": 200,
-   "bytes": 301740,
+   "bytes": 301633,
    "found": 0,
    "followed": 12,
    "markers": ""
@@ -643,54 +643,48 @@
   {
    "url": "https://www.palexpo.ch/en/event-schedule/",
    "status": 200,
-   "bytes": 359748,
+   "bytes": 356854,
    "found": 0,
-   "followed": 31,
+   "followed": 30,
    "markers": "ld+json wp-json"
   },
   {
    "url": "https://www.tonhalle-orchester.ch/en/concerts/kalender/",
    "status": 200,
-   "bytes": 93554,
+   "bytes": 93518,
    "found": 0,
    "followed": 33,
    "markers": ""
   }
  ],
- "kept": 511,
+ "kept": 438,
  "dropped": {
-  "later than 2 weeks": 1810,
-  "past": 577,
-  "duplicate": 587,
-  "far future": 95,
-  "weekday daytime": 274,
-  "Zurich: German-only spoken event": 314,
-  "not relevant": 31,
-  "unknown place": 144,
+  "past": 578,
+  "duplicate": 559,
+  "later than 2 weeks": 1995,
+  "far future": 97,
+  "weekday daytime": 343,
+  "not relevant": 37,
+  "Zurich: German-only spoken event": 223,
   "niche (card games, wargaming…)": 89,
-  "children's event": 63,
+  "unknown place": 94,
+  "children's event": 57,
+  "too far": 1,
   "already in app": 2,
-  "same event on two sites": 7
+  "same event on two sites": 5
  },
  "geocoded": 0,
- "descEnriched": 23,
- "translated": 62,
+ "descEnriched": 19,
+ "translated": 69,
  "byCity": {
-  "ge": 326,
-  "zh": 185
+  "ge": 291,
+  "zh": 147
  },
  "samples": {
   "Zurich: German-only spoken event": [
    [
     "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
-    "2026-10-24T07:00:00+02:00",
-    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
-    "47.3717002,8.5406415",
-    "https://eventfrog.ch/de/events/zuerich.html"
-   ],
-   [
-    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
-    "2026-10-24T07:00:00+02:00",
+    "2026-10-25T07:00:00+01:00",
     "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
     "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
@@ -719,6 +713,13 @@
    [
     "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
     "2026-10-28T07:00:00+01:00",
+    "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
+    "47.3717002,8.5406415",
+    "https://eventfrog.ch/de/events/zuerich.html"
+   ],
+   [
+    "Kirche St.Peter, Sankt Peterhofstatt, 8001 Zürich, CH",
+    "2026-10-29T07:00:00+01:00",
     "Kirche St.Peter, Sankt Peterhofstatt, Zürich",
     "47.3717002,8.5406415",
     "https://eventfrog.ch/de/events/zuerich.html"
@@ -768,14 +769,16 @@
     "https://www.meetup.com/connect-lausanne/events/"
    ]
   ],
-  "same event on two sites": [
+  "too far": [
    [
-    "Community WORKOUT-COFFEE-RUN",
-    "2026-10-24",
-    "Blatterwiese, Bellerivestrasse 138, Zürich",
-    "",
-    "https://eventfrog.ch/de/p/sport-fitness/fitness-group-fitness/communit"
-   ],
+    "29 OCT: Mike Casa Show VISP!",
+    "2026-10-29T19:30:00+01:00",
+    "Jazz Chälli, Fülagasse 2, Visp",
+    "46.29028,7.8819",
+    "https://eventfrog.ch/en/events/ch/comedy.html"
+   ]
+  ],
+  "same event on two sites": [
    [
     "🎃 The Halloween Pub Crawl - LUZERN",
     "2026-10-31",
@@ -798,18 +801,18 @@
     "https://www.ladecadanse.ch/event/evenement.php?idE=520059"
    ],
    [
-    "Le Dieu du carnage",
-    "2026-10-24",
-    "Théâtre Pitoëff, Rue de Carouge 52, 1205 Genève, Genève",
+    "Sunday Volleyball (Plainpalais) - 4pm - All levels",
+    "2026-10-25",
+    "Salle de gymnastique des Vieux-Grenadiers, Rue des Vieux-Grenadiers 15",
     "",
-    "https://lesgenevois.com/calendrier/e/le-dieu-du-carnage"
+    "https://www.meetup.com/genevasportsclub/events/317039730/"
    ],
    [
-    "Atelier Créez Votre Chocolat Halloween",
-    "2026-10-24",
+    "Genève (Suisse) : Randonnées pédestres gratuites au Salève.",
+    "2026-10-25",
     "Genève",
     "",
-    "https://lesgenevois.com/calendrier/e/immersion-chocolaterie-genevoise-"
+    "https://lesgenevois.com/calendrier/e/randonnees-pedestres-saleve-genev"
    ]
   ]
  }
