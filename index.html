@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Out &amp; About</title><meta property="og:type" content="website"><meta property="og:site_name" content="Out &amp; About"><meta property="og:title" content="Out &amp; About · Geneva &amp; Zurich"><meta property="og:description" content="Your weekend, sorted: markets, concerts, hikes and people to meet in Geneva and Zurich."><meta property="og:image" content="https://rracc282.github.io/out-and-about/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://rracc282.github.io/out-and-about/"><meta name="twitter:card" content="summary_large_image"><meta name="description" content="Your weekend, sorted: markets, concerts, hikes and people to meet in Geneva and Zurich."><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0e6b80"><link rel="icon" href="favicon-32.png" sizes="32x32"><link rel="icon" href="icon-192.png" sizes="192x192"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Out &amp; About"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.hikes{margin:22px 0 8px}.hikes h2{font-size:19px;margin:0 0 2px}.hk-sub{margin:0 0 10px;color:var(--muted);font-size:13.5px;line-height:1.4}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Out &amp; About</title><meta property="og:type" content="website"><meta property="og:site_name" content="Out &amp; About"><meta property="og:title" content="Out &amp; About · Geneva &amp; Zurich"><meta property="og:description" content="Your weekend, sorted: markets, concerts, hikes and people to meet in Geneva and Zurich."><meta property="og:image" content="https://rracc282.github.io/out-and-about/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://rracc282.github.io/out-and-about/"><meta name="twitter:card" content="summary_large_image"><meta name="description" content="Your weekend, sorted: markets, concerts, hikes and people to meet in Geneva and Zurich."><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#f4f6f7" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111619" media="(prefers-color-scheme: dark)"><link rel="icon" href="favicon-32.png" sizes="32x32"><link rel="icon" href="icon-192.png" sizes="192x192"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Out &amp; About"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.hikes{margin:22px 0 8px}.hikes h2{font-size:19px;margin:0 0 2px}.hk-sub{margin:0 0 10px;color:var(--muted);font-size:13.5px;line-height:1.4}
 .hk{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:0 0 8px;overflow:hidden}
 .hk-sum{display:block;width:100%;text-align:left;background:none;border:0;padding:12px 14px;font:inherit;color:var(--ink);cursor:pointer}
 .hk-name{display:flex;justify-content:space-between;gap:8px;font-weight:600;font-size:15.5px}.hk-name small{font-weight:500;color:var(--muted);font-size:12.5px;white-space:nowrap}
@@ -691,7 +691,7 @@ input,select,textarea{font-size:16px!important}
 body:not([data-view="this"]) #weekly,body:not([data-view="this"]) #netbox{display:none!important}
 body:not([data-view="plans"]) #pastbox,body:not([data-view="plans"]) #deletedbox{display:none!important}
 body[data-view="plans"] #picks,body[data-view="plans"] #quick{display:none!important}
-#acctpanel .aboutbox{margin:0!important;padding:4px 0!important;border:0!important}
+#acctpanel .aboutbox{display:block!important;margin:0!important;padding:4px 0!important;border:0!important}
 
 body[data-view="plans"] .filtered,body[data-view="plans"] #plans,body[data-view="plans"] .activechips,body[data-view="plans"] #filtersbtn,body[data-view="plans"] [data-clearfilters]:not(.filtered){display:none!important}
 body[data-view="plans"] .searchrow input{width:100%}
@@ -948,8 +948,39 @@ button[data-pal]{background:transparent!important;color:inherit!important}
 button[data-pal][aria-pressed="false"]{border-color:rgba(128,128,128,.3)!important}
 .pl-acts button{white-space:nowrap}
 @media (max-width:380px){.pl-acts{gap:6px!important;flex-wrap:wrap;row-gap:6px}.pl-acts button{padding-inline:10px!important;font-size:13.5px!important}nav.tabs button{font-size:10.5px!important;white-space:nowrap;letter-spacing:-.01em}}
+/* custom colours: keep text readable when a light colour is chosen */
+html[data-pal="custom"].c1-light{--on-lake:#14212b!important;--pt:var(--ink)!important}
+html[data-pal="custom"].c2-light:not([data-theme="dark"]){--sun:color-mix(in srgb,var(--c2) 45%,#000)!important}
+/* older iPhones (iOS 15–16.1) have no color-mix: use plain colours that still read well */
+@supports not (color:color-mix(in srgb,red,red)){
+ html:root{--lake-soft:#e3eff2!important;--night-soft:#e3eff2!important;--go-soft:#e3eff2!important;--sun-soft:#fbeae6!important}
+ html:root:root:root[data-theme="dark"]{--lake:var(--p)!important;--on-lake:#fff!important;--pt:var(--ink)!important;--lake-soft:#1b2b30!important;--night-soft:#1b2b30!important;--go-soft:#1b2b30!important;--sun:#ec9b8a!important;--sun-soft:#2a2120!important;--band:var(--p)!important;--night:var(--ink)!important;--go:var(--ink)!important}
+ @media (prefers-color-scheme:dark){html:root:root:root:not([data-theme="light"]){--lake:var(--p)!important;--on-lake:#fff!important;--pt:var(--ink)!important;--lake-soft:#1b2b30!important;--night-soft:#1b2b30!important;--go-soft:#1b2b30!important;--sun:#ec9b8a!important;--sun-soft:#2a2120!important;--band:var(--p)!important;--night:var(--ink)!important;--go:var(--ink)!important}}}
+/* 320px: settings panel and event buttons stay on screen */
+@media (max-width:380px){#acctpanel{position:fixed!important;left:10px!important;right:10px!important;width:auto!important;top:calc(env(safe-area-inset-top,0px) + 64px)!important;max-height:calc(100vh - 160px)!important}.ev-detail .acts{flex-wrap:wrap!important;row-gap:6px}}
+#acctpanel{width:min(320px,calc(100vw - 24px))}
+/* Culture & Explore date column: body font, mono only for times elsewhere */
+.ev-sum .when{font-family:var(--body)!important;font-size:12.5px!important;font-weight:500}
+.ev-sum{grid-template-columns:68px minmax(0,1fr) auto!important}
+.ev-ic{white-space:nowrap}
+.pickcard .pc-w,.wk-row .d{font-family:var(--body)!important}
+/* touch screens: no sticky hover colours after a tap */
+@media (hover:none){.gocta:hover,.pick[data-ev]:hover{filter:none}.lnk:hover,.ev-title a:hover{border-color:var(--line)}}
+.ev-ic .ic.tk{width:18px;height:18px;color:var(--muted);vertical-align:middle}
+/* action groups: one filled main button, the rest outlined */
+.acts .lnk.tix{background:var(--surface)!important;color:var(--pt,var(--p))!important;border-color:var(--line)!important}
+.acts .goundo{border-color:var(--line)!important}
+/* settings mode switch and palette picker in the pill style */
+.modes{background:var(--line)!important;border:0!important;border-radius:999px!important;padding:3px;gap:2px}
+.modes button{border-radius:999px!important;background:none!important;color:var(--muted)!important;padding:8px 6px!important}
+.modes button[aria-pressed="true"]{background:var(--surface)!important;color:var(--ink)!important;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+button[data-pal][aria-pressed="true"]{border-color:var(--lake)!important;box-shadow:0 0 0 1px var(--lake) inset}
+#q:focus,input:focus{border-color:var(--lake)!important;outline:none;box-shadow:0 0 0 3px var(--lake-soft)}
+.cine .imdb{white-space:nowrap;flex-shrink:0}
+.rainy{color:var(--pt,var(--p))!important}
 /* toasts: above the tab bar, short, with a tick and a clear action */
 .toast{bottom:calc(76px + env(safe-area-inset-bottom,0px))!important;width:max-content;padding:10px 10px 10px 14px!important;font-size:14px;line-height:1.35;animation:toastin .18s ease-out}
+.toast.warn>span::before{content:"!";}
 .toast>span::before{content:"✓";display:inline-block;margin-right:8px;font-weight:700;color:#7fd3e3}
 .toast button{color:#7fd3e3!important;background:none!important;border:0!important;font:inherit;font-weight:700;padding:6px 8px;min-height:36px}
 html[data-theme="dark"] .toast>span::before,html[data-theme="dark"] .toast button{color:#0e6b80!important}
@@ -985,13 +1016,13 @@ html[data-theme="dark"] .toast>span::before,html[data-theme="dark"] .toast butto
     </div>
     <div class="custompal" id="custompal"><span>Your own</span><span class="cps"><label>Main <input type="color" id="cc1" value="#00a35c"></label><label>Accent <input type="color" id="cc2" value="#ff8a00"></label></span></div>
     <p class="lbl">Mode</p>
-    <div class="modes"><button data-mode="auto">Auto</button><button data-mode="light">☀️ Light</button><button data-mode="dark">🌙 Dark</button></div>
+    <div class="modes"><button data-mode="auto">Auto</button><button data-mode="light">Light</button><button data-mode="dark">Dark</button></div>
   </div>
 </header>
 <div id="todayplan"></div>
 <dl class="legend" id="legend" hidden>
   <dt>🐕</dt><dd>Dog friendly</dd>
-  <dt>🎟</dt><dd>Tickets or booking needed</dd>
+  <dt><svg class="ic tk" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a3 3 0 0 1 0 6v2.5A1.5 1.5 0 0 0 4 19h16a1.5 1.5 0 0 0 1.5-1.5V15a3 3 0 0 1 0-6V6.5A1.5 1.5 0 0 0 20 5H4a1.5 1.5 0 0 0-1.5 1.5z"/><path d="M14 5v2M14 11v2M14 17v2"/></svg></dt><dd>Tickets or booking needed</dd>
   <dt>☀️ ⛅ 🌧️</dt><dd>Forecast: high and chance of rain</dd>
   <dt style="font-size:13px;color:var(--go)">✓</dt><dd>Green frame: you're going</dd>
   <dt><span class="newdot" style="margin:0"></span></dt><dd>New since your last visit (shown for 3 days)</dd>
@@ -1067,8 +1098,8 @@ html[data-theme="dark"] .toast>span::before,html[data-theme="dark"] .toast butto
     <button class="chip" id="f-free" aria-pressed="false">Free only</button>
     <button class="chip" id="f-going" aria-pressed="false">✓ My plans only</button>
     <button class="chip" id="f-new" aria-pressed="false">● New</button>
-    <button class="chip" id="f-rain" aria-pressed="false">☔ Rainy-day picks</button>
-    <button class="chip" id="f-duo" aria-pressed="false">👯 With a friend</button>
+    <button class="chip" id="f-rain" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12a10 10 0 0 0-20 0z"/><path d="M12 12v7a2 2 0 0 0 4 0"/><path d="M12 2v1"/></svg> Rainy-day picks</button>
+    <button class="chip" id="f-duo" aria-pressed="false">With a friend</button>
     <button class="chip" id="f-hidden" aria-pressed="false">Hidden events</button>
   </div>
   </div>
@@ -1185,7 +1216,7 @@ const EVENTS = [
  {"id":"nyon-dessin","p":"wd1","day":"2026-10-06","when":"Tue 6 · 18:00","title":"Drawing Class — Pierre & Lumière","url":"https://www.mrn.ch/en/","place":"Musée romain de Nyon, Rue Maupertuis 9, Nyon","trip":"≈ 20 min by train","price":"Price to check","book":true,"cat":["creatif"],"zone":"45","desc":"Drawing session among the Roman stones of Nyon's museum. Ask for price and booking: +41 22 316 42 80 or musee.romain@nyon.ch."},
  {"id":"comedy-club-13-tuesday-oct6","p":"wd1","day":"2026-10-06","when":"Tue 6 · 20:00–21:00 (doors 19:30)","title":"Tuesday but Funny — English Comedy","url":"https://www.meetup.com/comedyclub13/events/316751025/","place":"Comedy Club 13, Rue Cité-Devant 10, Lausanne","trip":"≈ 45 min by train + metro M2 to Riponne/Bessières; easy late train back","price":"tickets on Weezevent – price to check","book":true,"cat":["culture"],"zone":"45","desc":"Weekly English-language stand-up in Lausanne's old town, mixing seasoned comics with newcomers trying fresh material. Tickets via my.weezevent.com/tuesday-but-funny-english-open-mic-october."},
  {"id":"modeselektor-alhambra","p":"wd1","day":"2026-10-06","when":"Tue 6 · 19:00","title":"Modeselektor — Classics Live 2026 + Noria Lilt","url":"https://www.geneve.ch/agenda/modeselektor-classics-live-2026","place":"Alhambra, Rue de la Rôtisserie 10, Geneva","trip":"Geneva | tram 12/14/18 Bel-Air or Molard","price":"CHF 29–45","book":true,"cat":["culture"],"zone":"ge","desc":"The Berlin electronic duo reworks 25 years of their techno/bass/IDM catalogue live, as part of Electron Festival."},
- {"id":"amr-jam-tuesday","p":"wd1","day":"2026-10-06","when":"Tue 6 · 21:00 (every Tuesday)","title":"Jam session de l'AMR","url":"https://www.leprogramme.ch/concerts/jam-session-126/geneve/amr-sud-des-alpes/jazzcontreband-2026","place":"AMR / Sud des Alpes, Rue des Alpes 10, Genève","trip":"Geneva | 5 min walk from Cornavin","price":"Free (prix libre)","free":true,"cat":["culture","rencontre"],"zone":"ge","desc":"Geneva's open jazz jam: every Tuesday the AMR stage is open to all musicians — bring an instrument or just come listen and chat at the bar. Next ones 13, 20, 27 Oct."},
+ {"id":"amr-jam-tuesday","p":"wd1","day":"2026-10-06","when":"Tue 6 · 21:00 (every Tuesday)","title":"Jam session de l'AMR","url":"https://www.leprogramme.ch/concerts/jam-session-126/geneve/amr-sud-des-alpes/jazzcontreband-2026","place":"AMR / Sud des Alpes, Rue des Alpes 10, Genève","trip":"Geneva | 5 min walk from Cornavin","price":"Free (prix libre)","free":true,"cat":["culture","rencontre"],"zone":"ge","desc":"Geneva's open jazz jam: every Tuesday the AMR stage is open to all musicians — bring an instrument or just come listen and chat at the bar."},
  {"id":"jcb-james-carter-thonon","p":"wd1","day":"2026-10-06","when":"Tue 6 · 20:30","title":"James Carter","url":"https://www.leprogramme.ch/concerts/james-carter/thonon-les-bains-france/maison-des-arts/jazzcontreband-2026","place":"Maison des Arts du Léman, Thonon-les-Bains (F)","trip":"≈ 1 h by Léman Express","price":"price to check","book":true,"cat":["culture"],"zone":"90","desc":"US saxophone virtuoso James Carter at Thonon's Maison des Arts, a JazzContreBand highlight."},
  {"id":"m-networking-wed","p":"wd1","day":"2026-10-07","src":"Meetup","when":"Wed 7 · 19:00–21:00","title":"Networking Meetup - Make New Friends","url":"https://www.meetup.com/http-www-freewalk-ch-geneva-index-php/events/316502369/","place":"Halle de l'Ile, Place de l'Ile 1, Geneva","trip":"City centre","price":"Free","free":true,"cat":["rencontre"],"zone":"ge","desc":"Weekly friend-making evening by Free Walk Geneva, in the same hall and at the same time as the language exchange, so you can do both."},
  {"id":"m-social","p":"wd1","day":"2026-10-07","src":"Meetup","when":"Wed 7 · 19:30–22:00","title":"Social Hour: Drinks, Games & Good Vibes","url":"https://www.meetup.com/social-circle-lausanne/events/316724918/","place":"Casa Tiki, Rue du Vélodrome 11, Geneva","trip":"Plainpalais","price":"Free (50 tickets)","free":true,"book":true,"cat":["rencontre"],"zone":"ge","desc":"Social Circle's mixer with drinks and games, made for people who don't know anyone yet. Only 50 free tickets, so RSVP early."},
@@ -1933,7 +1964,7 @@ function inviteURL(e){
 function evHTML(e,p){
   const g=goingSet.has(e.id), open=isOpen(e);
   const ov=overlaps(e);
-  const icons=(e.dog?'<span title="Dog friendly" aria-label="Dog friendly">🐕</span>':'')+(needsTicket(e)?'<span title="Ticket needed" aria-label="Ticket needed">🎟</span>':'');
+  const icons=(e.dog?'<span title="Dog friendly" aria-label="Dog friendly">🐕</span>':'')+(needsTicket(e)?'<span title="Ticket needed" aria-label="Ticket needed" role="img"><svg class="ic tk" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9a3 3 0 0 1 0 6v2.5A1.5 1.5 0 0 0 4 19h16a1.5 1.5 0 0 0 1.5-1.5V15a3 3 0 0 1 0-6V6.5A1.5 1.5 0 0 0 20 5H4a1.5 1.5 0 0 0-1.5 1.5z"/><path d="M14 5v2M14 11v2M14 17v2"/></svg></span>':'');
   const sub=esc(shortPlace(e))+' · '+(e.free?'Free':esc(e.price));
   let det='';
   if(open){
@@ -2023,7 +2054,7 @@ function buildAutoPicks(){const sec=document.getElementById("picks");if(!sec)ret
   const blocks=[{id:"we1",label:"This weekend",rng:nice(fri)+" – "+nice(we.to),ok:e=>(e.dayEnd||e.day)>=fri&&e.day<=we.to&&e.p!=="big"&&e.p!=="on"},
                 {id:"wd2",label:"Next week",rng:nice(nx.from)+" – "+nice(nx.to),ok:e=>e.p==="wd2"}];
   const cur=(AUTO.picks||[]);const sc=e=>{try{return evScore(e)}catch(x){return 0}};
-  const label=e=>{const d=DNL[new Date(e.day+"T12:00:00").getDay()];const t=(e.when.match(/(\d{1,2}):\d{2}/)||[])[1];return d+(t&&+t>=17?" evening":"")};
+  const label=e=>{const t=(e.when.match(/(\d{1,2}):\d{2}/)||[])[1];if(e.day<=TODAY)return t&&+t>=17?"Tonight":"Today";const d=DNL[new Date(e.day+"T12:00:00").getDay()];return d+(t&&+t>=17?" evening":"")};
   const why=e=>{const d=(e.desc||"").split(/(?<=[.!?])\s/)[0];return d.length>150?d.slice(0,147)+"…":d};
   let html="";
   const nev=e=>{try{return !!(S.prof&&window.OA&&OA.never(e))}catch(x){return false}};
@@ -2323,7 +2354,7 @@ function tripDetail(t){
   const plan='<input type="date" id="td-'+t.id+'" min="'+TODAY+'" value="'+(isoAdd(nextSat(),7*(ui.tripWe||0))<TODAY?TODAY:isoAdd(nextSat(),7*(ui.tripWe||0)))+'" aria-label="Date"><button class="plan" data-tripplan="'+t.id+'">Plan it</button>';
   const sec=(title,sub,body,open)=>'<details'+(open?' open':'')+'><summary>'+title+(sub?'<small>'+sub+'</small>':'<small></small>')+'</summary>'+body+'</details>';
   let h='<div class="trip-detail">'+(t.season?'<p class="trip-season">'+esc(t.season)+'</p>':'')+(d?'<p class="trip-inplans">✓ In My plans: '+tripDates(t.id).map(dLbl).join(", ")+' · <button class="lnkbtn" data-openplans>See plan</button></p>':'')+'<div class="trip-acts">'+plan+'<a class="tshare" href="'+tripInvite(t)+'" target="_blank" rel="noopener">Share</a></div>';
-  h+='<div class="triplinks"><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">🚆 Train times</a>'+(t.links.map?'<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(t.links.map)+'" target="_blank" rel="noopener">Map</a>':'')+(t.links.hike?'<a href="'+esc(t.links.hike)+'" target="_blank" rel="noopener">Hike route</a>':'')+'</div>';
+  h+='<div class="triplinks"><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9" cy="14" r=".6" fill="currentColor"/><circle cx="15" cy="14" r=".6" fill="currentColor"/></svg> Train times</a>'+(t.links.map?'<a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(t.links.map)+'" target="_blank" rel="noopener">Map</a>':'')+(t.links.hike?'<a href="'+esc(t.links.hike)+'" target="_blank" rel="noopener">Hike route</a>':'')+'</div>';
   const rl=(st)=>{const u=routeURL(st,t);return u?'<p class="maproute"><a href="'+u+'" target="_blank" rel="noopener">📍 Open all stops in Google Maps ↗</a><small>Save it in the app to have the pins offline.</small></p>':''};
   h+=sec(t.kind==="weekend"?"Show the full plan · Day 1":"Show the full plan",(t.day||[]).length+" stops",rl(t.day||[])+itinHTML(t.day||[]),false);
   if(t.day2&&t.day2.length)h+=sec("Day 2",t.day2.length+" stops",rl(t.day2)+itinHTML(t.day2),false);
@@ -2342,8 +2373,8 @@ function tripTile(t){
   const ic=r=>r>=50?"🌧":r>=25?"⛅":"☀️";
   const wx=[sat,isoAdd(sat,1)].filter(x=>w[x]).map(x=>(x===sat?"Sat ":"Sun ")+ic(w[x][1])+" "+w[x][0]+"°").join(" · ");
   const wet=[sat,isoAdd(sat,1)].some(x=>w[x]&&w[x][1]>=50);const ty=t.types||[];const rainproof=wet&&(ty.includes("rainy")||ty.includes("city"));
-  const facts=['🚆 '+hm(t.train.min+tripFromHome(t)),cst?'CHF '+cst.total+(t.kind==="weekend"?' / weekend':''):'',wx].filter(Boolean).join(' · ');
-  const tags=(ui.city==="both"?'<span class="tb from">From '+CITY[t.city||"ge"].name+'</span>':'')+(t.kind!=="day"?'<span class="tb kind">'+KINDLBL[t.kind]+'</span>':'')+(d?'<span class="tb go">✓ '+dLbl(d)+'</span>':'')+(ag?'<span class="tb">'+ag+' event'+(ag>1?'s':'')+' on</span>':'')+(rainproof?'<span class="tb">☔ rainproof</span>':'');
+  const facts=['<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9" cy="14" r=".6" fill="currentColor"/><circle cx="15" cy="14" r=".6" fill="currentColor"/></svg> '+hm(t.train.min+tripFromHome(t)),cst?'CHF '+cst.total+(t.kind==="weekend"?' / weekend':''):'',wx].filter(Boolean).join(' · ');
+  const tags=(ui.city==="both"?'<span class="tb from">From '+CITY[t.city||"ge"].name+'</span>':'')+(t.kind!=="day"?'<span class="tb kind">'+KINDLBL[t.kind]+'</span>':'')+(d?'<span class="tb go">✓ '+dLbl(d)+'</span>':'')+(ag?'<span class="tb">'+ag+' event'+(ag>1?'s':'')+' on</span>':'')+(rainproof?'<span class="tb"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12a10 10 0 0 0-20 0z"/><path d="M12 12v7a2 2 0 0 0 4 0"/><path d="M12 2v1"/></svg> rainproof</span>':'');
   return '<article class="trip'+(d?' is-planned':'')+(open?' open':'')+'" id="trip-'+t.id+'" style="border-top:4px solid var(--lake)"><button class="trip-sum" data-trip="'+t.id+'" aria-expanded="'+open+'">'+
     '<span class="trip-top"><span class="trip-name"><span class="trip-ic" aria-hidden="true">'+TTYPE[tPrim(t)][0]+'</span> '+esc(t.name)+'</span><span class="trip-flags">'+(FLAG[t.country]||"")+'</span></span>'+
     '<span class="trip-hook">'+esc(t.hook)+'</span>'+
@@ -2414,13 +2445,13 @@ function renderTodayPlan(){
   el.innerHTML=evs.map(e=>{const t=(e.when.split(" · ").slice(1).join(" · ")||e.when);const addr=MAPQ[e.id]||e.place;
     const sbb=!isLocal(e)&&sbbTown(e)?'<a class="lnk" href="https://www.sbb.ch/en?von='+encodeURIComponent(CITY[cityOf(e)].st)+'&nach='+encodeURIComponent(sbbTown(e))+'" target="_blank" rel="noopener">Train (SBB) ↗</a>':'';
     return '<div class="tp-item"><div class="k">✓ Today · '+esc(t)+'</div><b>'+esc(e.title)+'</b><span class="w">'+esc(addr)+'</span><div class="links"><a class="lnk" href="'+mapsURL(addr)+'" target="_blank" rel="noopener">Maps ↗</a>'+sbb+(TICKETS[e.id]?'<a class="lnk" href="'+TICKETS[e.id]+'" target="_blank" rel="noopener">Tickets ↗</a>':'')+'<button class="agjump" data-tpjump="'+e.id+'">Details</button></div></div>'}).join("")+
-    trs.map(t=>'<div class="tp-item"><div class="k">✓ Today · day trip</div><b>'+esc(t.name)+'</b><span class="w">🚆 '+esc(t.train.route)+'</span><div class="links"><a class="lnk" href="'+t.train.timetable+'" target="_blank" rel="noopener">Train (SBB) ↗</a><button class="agjump" data-tptrip="'+t.id+'">Itinerary</button></div></div>').join("");
+    trs.map(t=>'<div class="tp-item"><div class="k">✓ Today · day trip</div><b>'+esc(t.name)+'</b><span class="w"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9" cy="14" r=".6" fill="currentColor"/><circle cx="15" cy="14" r=".6" fill="currentColor"/></svg> '+esc(t.train.route)+'</span><div class="links"><a class="lnk" href="'+t.train.timetable+'" target="_blank" rel="noopener">Train (SBB) ↗</a><button class="agjump" data-tptrip="'+t.id+'">Itinerary</button></div></div>').join("");
 }
 document.getElementById("todayplan").addEventListener("click",ev=>{
   const j=ev.target.closest("[data-tpjump]");if(j){focusEvent(j.dataset.tpjump);return}
   const t=ev.target.closest("[data-tptrip]");if(t){ui.tab="trips";ui.tripOpen=t.dataset.tptrip;render();const a=document.getElementById("trip-"+t.dataset.tptrip);if(a)a.scrollIntoView({block:"start"})}});
 let toastT=null;
-function toast(msg,undo){const el=document.getElementById("toast");el.innerHTML='<span>'+esc(msg)+'</span>'+(undo?'<button>Undo</button>':'');el.hidden=false;
+function toast(msg,undo){const el=document.getElementById("toast");el.classList.toggle("warn",/broken|couldn.t|can.t|doesn.t look|wrong|failed|error|not available|offline/i.test(msg));el.innerHTML='<span>'+esc(msg)+'</span>'+(undo?'<button>Undo</button>':'');el.hidden=false;
   const b=el.querySelector("button");if(b)b.onclick=()=>{el.hidden=true;undo()};clearTimeout(toastT);toastT=setTimeout(()=>{el.hidden=true},undo?4500:3000)}
 document.addEventListener("click",ev=>{if(ev.target.closest("nav.tabs button")){const t=document.getElementById("toast");if(t&&!/Undo/.test(t.textContent))t.hidden=true}},true);
 document.getElementById("filtersbtn").addEventListener("click",()=>setSheet(!document.body.classList.contains("sheet-open")));
@@ -2697,6 +2728,8 @@ try{buildAutoPicks()}catch(e){}
     let y=+e.day.slice(0,4);if(M[m[2]]<+e.day.slice(5,7))y++;const end=y+"-"+String(M[m[2]]).padStart(2,"0")+"-"+String(+m[1]).padStart(2,"0");if(end>e.day)e.dayEnd=end});
   L.forEach(e=>{if(!e||!e.dayEnd||e.dayEnd<TODAY||e.day>=TODAY||e.p==="big"||e.p==="on")return;const P=PERIODS.find(x=>x.from&&x.from<=TODAY&&TODAY<=x.to)||PERIODS.find(x=>x.from&&x.from>TODAY);if(P&&!PERIODS.some(x=>x.id===e.p&&x.from&&x.to>=TODAY))e.p=P.id})})();
 if("serviceWorker" in navigator){const hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(r=>{try{r.update()}catch(e){}}).catch(()=>{});let reloaded=false;navigator.serviceWorker.addEventListener("controllerchange",()=>{if(hadSW&&!reloaded){reloaded=true;location.reload()}});document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")navigator.serviceWorker.getRegistration().then(r=>r&&r.update()).catch(()=>{})})}
+/* unknown end times come through as 06:00 the next morning: show "from 19:00" instead */
+try{(typeof ALL_EVENTS!=="undefined"?ALL_EVENTS:EVENTS).concat(EVENTS).forEach(e=>{if(e&&e.when&&!e._w6){e._w6=1;e.when=e.when.replace(/\b(1[7-9]|2[0-3]):(\d{2})\s*[–-]\s*0?6:00\b/,"from $1:$2")}})}catch(e){}
 render();
 /* deep links from notifications: #ev-<id> or #trip-<id> */
 (function(){let h="";try{h=decodeURIComponent(location.hash||"")}catch(e){h=location.hash||""}if(h.startsWith("#ev-")){const id=h.slice(4);if(EVENTS.some(e=>e.id===id)){if(!inCity(EVENTS.find(e=>e.id===id)))setCity("both");focusEvent(id)}}
@@ -2952,7 +2985,9 @@ document.addEventListener("click",ev=>{const b=ev.target.closest(".addrsug [data
 /* custom colours */
 function applyCustom(){let t={};try{t=JSON.parse(localStorage.getItem("sorties-theme")||"{}")}catch(e){}const r=document.documentElement;
   if(t.c1){r.style.setProperty("--c1",t.c1);const a=document.getElementById("cc1");if(a)a.value=t.c1;const s1=document.getElementById("cs1");if(s1)s1.style.background=t.c1}
-  if(t.c2){r.style.setProperty("--c2",t.c2);const b=document.getElementById("cc2");if(b)b.value=t.c2;const s2=document.getElementById("cs2");if(s2)s2.style.background=t.c2}}
+  if(t.c2){r.style.setProperty("--c2",t.c2);const b=document.getElementById("cc2");if(b)b.value=t.c2;const s2=document.getElementById("cs2");if(s2)s2.style.background=t.c2}
+  const L=h=>{const m=String(h||"").match(/^#?([0-9a-f]{6})$/i);if(!m)return 0;const v=[0,2,4].map(i=>parseInt(m[1].substr(i,2),16)/255).map(c=>c<=.03928?c/12.92:Math.pow((c+.055)/1.055,2.4));return .2126*v[0]+.7152*v[1]+.0722*v[2]};
+  r.classList.toggle("c1-light",L(t.c1||"#00a35c")>.3);r.classList.toggle("c2-light",L(t.c2||"#ff8a00")>.3)}
 ["cc1","cc2"].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.addEventListener("input",()=>{let t={};try{t=JSON.parse(localStorage.getItem("sorties-theme")||"{}")}catch(e){}t[id==="cc1"?"c1":"c2"]=el.value;t.pal="custom";try{localStorage.setItem("sorties-theme",JSON.stringify(t))}catch(e){}document.documentElement.setAttribute("data-pal","custom");applyCustom();document.querySelectorAll(".pals [data-pal]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal==="custom")))})});
 applyCustom();
 
@@ -2991,7 +3026,7 @@ function dirURL(e){const q=MAPQ[e.id]||e.place||"";const a=(S.addr||{})[cityOf(e
 /* a trip in My plans: the guide tailored to the chosen date */
 function tripPlanBody(t,d){const w=(TWX[t.id]||{})[d];const end=t.kind==="weekend"?isoAdd(d,1):d;
   const evs=tripAgenda(t).filter(e=>e.day<=end&&(e.dayEnd||e.day)>=d).slice(0,4);
-  const facts=['🚆 '+hm(t.train.min+tripFromHome(t))+' from home',(tripCost(t)||{}).total?'CHF '+tripCost(t).total+' pp':'',w?wxIcon(w[1])+' '+w[0]+'° · 💧'+w[1]+'% rain':'Forecast closer to the day'].filter(Boolean).join(' · ');
+  const facts=['<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9" cy="14" r=".6" fill="currentColor"/><circle cx="15" cy="14" r=".6" fill="currentColor"/></svg> '+hm(t.train.min+tripFromHome(t))+' from home',(tripCost(t)||{}).total?'CHF '+tripCost(t).total+' pp':'',w?wxIcon(w[1])+' '+w[0]+'° · 💧'+w[1]+'% rain':'Forecast closer to the day'].filter(Boolean).join(' · ');
   const steps=(t.day||[]).slice(0,6).map(x=>'<li><b>'+esc(x.t||"")+'</b> '+esc(x.do)+'</li>').join("");
   return '<div class="mp-trip"><div class="mp-pl">'+facts+'</div>'+(evs.length?'<div class="mp-k">On that day</div><ul class="mp-evs">'+evs.map(e=>'<li>'+esc(e.title)+'</li>').join("")+'</ul>':'')+(steps?'<div class="mp-k">Plan</div><ol class="mp-steps">'+steps+'</ol>':'')+
   '<div class="mp-acts"><a href="'+esc(t.train.timetable)+'" target="_blank" rel="noopener">Train times</a><a href="'+tripCal(t,d)+'" target="_blank" rel="noopener">Calendar</a><button data-shtrip="'+esc(t.id+"|"+d)+'">Invite a friend</button><button data-mptrip="'+t.id+'">Full guide</button><button class="mp-rm" data-mptriprm="'+esc(t.id+"|"+d)+'">Remove</button></div></div>'}
@@ -3009,7 +3044,7 @@ function renderMyPlans(){let el=document.getElementById("myplans");if(!el){el=do
         h+='<div class="mp-row'+(op?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(e.id)+'"><span class="mp-t">'+(x.t||'All day')+'</span><span class="mp-main"><span class="mp-title">'+esc(e.title)+'</span><span class="mp-sub">'+esc((e.place||"").split(",")[0])+'</span></span>'+city(cityOf(e))+'</button>'+
           (op?'<div class="mp-acts"><a href="'+dirURL(e)+'" target="_blank" rel="noopener">Directions</a><a href="'+inviteURL(e)+'" target="_blank" rel="noopener" data-share="'+esc(e.id)+'">Share</a><button data-mpdetail="'+esc(e.id)+'">Details</button><button class="mp-rm" data-mprm="'+esc(e.id)+'">Remove</button></div>':'')+'</div>'}
       else if(x.k==="film"){h+=filmPlanRow(x.x,ui.mpOpen===x.x.k)}
-      else{const t=x.t0,op=ui.mpOpen===x.key;h+='<div class="mp-row'+(op?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(x.key)+'"><span class="mp-t">'+(t.kind==="weekend"?"2 days":"Trip")+'</span><span class="mp-main"><span class="mp-title">'+(t.kind==="weekend"?"Weekend in ":t.kind==="hike"?"Hike: ":"Day trip to ")+esc(t.name)+'</span><span class="mp-sub">🚆 '+hm(t.train.min)+'</span></span>'+city(t.city||"ge")+'</button>'+(op?tripPlanBody(t,x.day):'')+'</div>'}});
+      else{const t=x.t0,op=ui.mpOpen===x.key;h+='<div class="mp-row'+(op?' open':'')+'"><button class="mp-sum" data-mpopen="'+esc(x.key)+'"><span class="mp-t">'+(t.kind==="weekend"?"2 days":"Trip")+'</span><span class="mp-main"><span class="mp-title">'+(t.kind==="weekend"?"Weekend in ":t.kind==="hike"?"Hike: ":"Day trip to ")+esc(t.name)+'</span><span class="mp-sub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9" cy="14" r=".6" fill="currentColor"/><circle cx="15" cy="14" r=".6" fill="currentColor"/></svg> '+hm(t.train.min)+'</span></span>'+city(t.city||"ge")+'</button>'+(op?tripPlanBody(t,x.day):'')+'</div>'}});
     h+='</div>'}
   const past=EVENTS.filter(e=>goingSet.has(e.id)&&(e.dayEnd||e.day)<TODAY&&(e.dayEnd||e.day)>=isoAdd(TODAY,-30)).sort((a,b)=>b.day.localeCompare(a.day));
   const toRate=past.filter(e=>!(S.hist[e.id]||{}).r);
@@ -3145,9 +3180,9 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
 (function(){
   const LV={Easy:0,Moderate:1};
   function hikeRow(t){const h=t.hike,open=ui.tripOpen===t.id,ds=tripDates(t.id),sat=isoAdd(nextSat(),7*(ui.tripWe||0)),w=TWX[t.id]||{};
-    const wx=[sat,isoAdd(sat,1)].filter(x=>w[x]).map(x=>(x===sat?"Sat ":"Sun ")+wxIcon(w[x][1]).replace("️","")+" "+w[x][0]+"°").join(" · ");
+    const wx=[sat,isoAdd(sat,1)].filter(x=>w[x]).map(x=>(x===sat?"Sat ":"Sun ")+wxIcon(w[x][1])+" "+w[x][0]+"°").join(" · ");
     const f1=[hm(h.min)+" walk",h.km+" km","↑ "+h.up+" m",h.level].join(" · ");
-    const f2=["🚆 "+hm(t.train.min)+" from Geneva",wx].filter(Boolean).join(" · ");
+    const f2=["<svg class='ic' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'><rect x='5' y='3' width='14' height='14' rx='3'/><path d='M5 11h14M9 21l1.5-4M15 21l-1.5-4'/><circle cx='9' cy='14' r='.6' fill='currentColor'/><circle cx='15' cy='14' r='.6' fill='currentColor'/></svg> "+hm(t.train.min)+" from Geneva",wx].filter(Boolean).join(" · ");
     let b='<article class="hk'+(ds.length?' is-planned':'')+'" id="trip-'+t.id+'"><button class="hk-sum" data-hike="'+t.id+'" aria-expanded="'+open+'"><span class="hk-name"><span>'+esc(t.name)+'</span><small>'+(ds.length?'✓ '+ds.map(dLbl).join(", "):esc(h.area))+'</small></span><span class="hk-f">'+f1+'</span><span class="hk-f">'+f2+'</span></button>';
     if(open){const dv=isoAdd(nextSat(),7*(ui.tripWe||0))<TODAY?TODAY:isoAdd(nextSat(),7*(ui.tripWe||0));
       b+='<div class="hk-body"><p>'+esc(t.hook)+'</p><p><b>Views:</b> '+esc(h.views)+'</p><p><b>Getting there:</b> '+esc(t.train.route)+'. '+esc(t.train.fare)+'.</p><p><b>Dogs:</b> '+esc(t.dog)+'</p><p><b>When:</b> '+esc(t.season)+'</p><p><b>Route:</b> '+h.km+' km, ↑ '+h.up+' m ↓ '+h.down+' m, highest point '+h.top+' m. About '+hm(h.min)+' of walking without breaks.</p>'+
@@ -3238,7 +3273,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     const i=interval(e);if(!i)return false;const multi=hi>lo;
     if(i.s>=a&&i.s<b)return !(s.k==="e"&&i.s<990&&!multi);
     if(s.k==="e")return multi?i.s>=990:(i.s>=930&&i.en>=1140);
-    return (multi||i.en-i.s>=240)&&i.s<b-60&&i.en>a+90}
+    return (multi||i.en-i.s>=240)&&i.s<b-60&&i.en>a+150}
   /* --- scoring --- */
   function city(){return ui.city==="both"?(S.home||"ge"):ui.city}
   const PICKS=()=>(window.AUTO&&AUTO.picks)||[];
@@ -3305,8 +3340,8 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     const e=r.pick.e;const tag='';
     return '<div class="pl-slot pl-k-'+s.k+(r.going?' pl-on':r.kept?' pl-kept':'')+'" data-slot="'+s.key+'" data-ev="'+esc(e.id)+'">'+(r.going?'<span class="pl-badge">✓ In My plans</span>':'')+head+
       '<button class="pl-body" data-plmenu="'+s.key+'"><span class="pl-t">'+esc(e.title)+'</span>'+tag+'<span class="pl-m">'+esc(meta(e))+'</span>'+(why(e)?'<span class="pl-w">'+esc(why(e))+'</span>':'')+'</button>'+
-      '<div class="pl-acts"><button data-plswap="'+s.key+'"'+(r.n<2||r.going?' disabled':'')+'>↻ Swap'+(r.n>1?' <small>'+(r.n-1)+'</small>':'')+'</button>'+(r.going?'<button class="on" data-plunkeep="'+s.key+'">✓ In My plans</button>':'<button data-plkeep="'+s.key+'">＋ My plans</button>')+'<button class="x" data-plnope="'+s.key+'">Not for me</button></div></div>'}
-  function view(){const ctx=ui.planCtx||"we";const c=cur(ctx);const P=prof();
+      '<div class="pl-acts"><button data-plswap="'+s.key+'"'+(r.n<2||r.going?' disabled':'')+'>↻ Swap'+(r.n>1?' <small>'+(r.n-1)+'</small>':'')+'</button>'+(r.going?'<button class="on" data-plunkeep="'+s.key+'">Remove</button>':'<button data-plkeep="'+s.key+'">＋ My plans</button>')+'<button class="x" data-plnope="'+s.key+'">Not for me</button></div></div>'}
+  function view(){if(ui.planAuto&&ui.planCtx==="wk"&&!(prof().eves||[]).length)ui.planCtx="we";const ctx=ui.planCtx||"we";const c=cur(ctx);const P=prof();
     if(ui.planAll){const r=build(ctx).find(x=>x.s.key===ui.planAll);if(r)return allView(r,ctx)}
     const ds=ctx==="we"?weRange():wkDays();const res=build(ctx);const dm=dontMiss(ctx);
     const chips=MOODS.map(([k,n])=>'<button class="pl-chip" data-plmood="'+k+'" aria-pressed="'+c.moods.includes(k)+'">'+n+'</button>').join("");
@@ -3393,7 +3428,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(!t.closest("#planview")&&!t.closest("#plsheet"))return;
     const ctx=ui.planCtx||"we";const st=()=>store(ctx);const res=()=>build(ctx);const pickOf=k=>{const r=res().find(x=>x.s.key===k);return r&&r.pick&&r.pick.e};
     if(t.closest("[data-plclose]")){closeSheet();return}
-    if(b=t.closest("[data-plctx]")){ui.planCtx=b.dataset.plctx;ui.planAll=null;render();window.scrollTo({top:0});return}
+    if(b=t.closest("[data-plctx]")){ui.planCtx=b.dataset.plctx;ui.planAuto=false;ui.planAll=null;render();window.scrollTo({top:0});return}
     if(t.closest("[data-pltune]")){openSetup();return}
     if(t.closest("[data-plusual]")){const c=cur(ctx);S.prof=JSON.parse(JSON.stringify(prof()));delete S.prof.legacy;S.prof[ctx]={who:c.who,moods:c.moods.slice()};try{localStorage.removeItem("oa-mood-"+wkey(ctx))}catch(x){}persist();render();toast("Saved as your usual");return}
     if(t.closest("[data-plreset]")){try{localStorage.removeItem("oa-mood-"+wkey(ctx))}catch(x){}render();return}
@@ -3442,7 +3477,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   /* keep profile and plan when syncing */
   const _ad=adopt;adopt=function(b){const p=S.prof,pl=S.plan,gd=S.goDay,gs=S.goSlot;_ad(b);S.prof=b.prof||p;S.plan=Object.assign({},pl||{},b.plan||{});S.goDay=Object.assign({},gd||{},b.goDay||{});S.goSlot=Object.assign({},gs||{},b.goSlot||{});try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}};
   /* first time: ask what they like (after the welcome screen) */
-  {const w=new Date(TODAY+"T12:00:00").getDay();if(!ui.planCtx)ui.planCtx=(w>=1&&w<=4)?"wk":"we"}
+  {const w=new Date(TODAY+"T12:00:00").getDay();if(!ui.planCtx){ui.planCtx=(w>=1&&w<=4)?"wk":"we";ui.planAuto=true}}
   if(!location.hash){ui.tab="plan";setTimeout(()=>{try{render()}catch(e){}},0)}
 })();
 
