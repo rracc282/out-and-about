@@ -874,6 +874,7 @@ html:root:root:root[data-theme="dark"]{--on-lake:#08181d;--pt:var(--lake);--shee
 @media (prefers-color-scheme:dark){html:root:root:root:not([data-theme="light"]){--on-lake:#08181d;--pt:var(--lake);--sheet:#1e2830}}
 #onb .box{background:var(--surface)!important;color:var(--ink)}
 .pl-sheet{background:var(--sheet,var(--surface))!important;border-top:1px solid var(--line)}
+.pl-dm .pl-sl b{color:#b8284f}
 html[data-theme="dark"] .pl-dm .pl-sl b{color:#ff8fa8}
 @media (prefers-color-scheme:dark){html:not([data-theme="light"]) .pl-dm .pl-sl b{color:#ff8fa8}}
 /* tab bar: line icons, filled when active */
@@ -931,6 +932,22 @@ html[data-theme="dark"] .pl-k-e{--rail:#8e9ee6}
 .pl-acts button{min-height:40px}
 .pl-chip,.chip{min-height:38px}
 :focus-visible{outline:2px solid var(--pt,var(--p));outline-offset:2px}
+/* iPhone: no auto-zoom when typing (inputs at 16px on iOS only) */
+@supports (-webkit-touch-callout:none){input,select,textarea{font-size:16px!important}}
+/* iPhone pass: safe areas, labels in the body font, quieter cards, two-line titles */
+#onb{padding-top:max(16px,env(safe-area-inset-top,0px))!important;padding-bottom:max(16px,env(safe-area-inset-bottom,0px))!important}
+.eyebrow,.pick .k,.filters .lbl,.going-badge,.tile .k,.upcoming .up-h,.todayplan .k,.themepanel .lbl,.cbadge,.mp-next .mp-k,.mp-day,.cine .cdh,.nb-k,.prog-h{font-family:var(--body)!important;font-weight:600!important;letter-spacing:.06em}
+.going-badge{background:var(--lake)!important;color:var(--on-lake,#fff)!important}
+.trip{border-top-width:1px!important;border-top-color:var(--line)!important}
+.ev-sum[aria-expanded="false"] .ev-t{white-space:normal!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.acts .lnk.cal{flex:0 0 auto;padding-inline:12px!important}
+.views button[aria-pressed="true"],.modes button[aria-pressed="true"],.cityseg button[aria-pressed="true"],.zw button[aria-pressed="true"],.filtersbtn.active,#sheetdone,.acctrow button,.pushbtn{background:var(--lake)!important;color:var(--on-lake,#fff)!important;border-color:var(--lake)!important}
+#sheetclear{background:none!important;color:var(--ink)!important;border:0!important}
+/* look picker: each swatch button carries its palette's colours as variables, so pin its own background to the panel */
+button[data-pal]{background:transparent!important;color:inherit!important}
+button[data-pal][aria-pressed="false"]{border-color:rgba(128,128,128,.3)!important}
+.pl-acts button{white-space:nowrap}
+@media (max-width:380px){.pl-acts{gap:6px!important;flex-wrap:wrap;row-gap:6px}.pl-acts button{padding-inline:10px!important;font-size:13.5px!important}nav.tabs button{font-size:10.5px!important;white-space:nowrap;letter-spacing:-.01em}}
 /* toasts: above the tab bar, short, with a tick and a clear action */
 .toast{bottom:calc(76px + env(safe-area-inset-bottom,0px))!important;width:max-content;padding:10px 10px 10px 14px!important;font-size:14px;line-height:1.35;animation:toastin .18s ease-out}
 .toast>span::before{content:"✓";display:inline-block;margin-right:8px;font-weight:700;color:#7fd3e3}
@@ -1088,7 +1105,7 @@ const PERIODS = [
  {"id":"wd2","kind":"weekday","title":"Next week","range":"Mon 12 – Fri 16 Oct","from":"2026-10-12","to":"2026-10-16","note":"Monday has a beginner bachata/salsa trial, Tuesday F*ck the Small Talk, Thursday the free choir and free salsa at BDG."},
  {"id":"we2","kind":"weekend","title":"Next weekend","range":"Sat 17 – Sun 18 Oct","from":"2026-10-17","to":"2026-10-18","note":""},
  {"id":"big","kind":"weekend","title":"Big concerts & shows","range":"next months","note":"Bigger nights out to book ahead: musicals, opera, arena concerts and stand-up in English."},
- {"id":"on","kind":"weekend","title":"Exhibitions, any day","range":"Open throughout","note":"Good fallbacks for a rainy weekend afternoon."}
+ {"id":"on","kind":"weekend","title":"Exhibitions","range":"open any day","note":"Good fallbacks for a rainy weekend afternoon."}
 ];
 
 const EVENTS = [
@@ -1931,13 +1948,13 @@ function evHTML(e,p){
     const also=others.length?'<p class="also">'+others.map(id=>esc((R.names[id]&&R.names[id].name)||"A friend")).join(", ")+(others.length>1?' are':' is')+' going too</p>':'';
     const site=siteOf(e);
     const tk=TICKETS[e.id]&&!isDead(TICKETS[e.id])?TICKETS[e.id]:null;const tix=tk?'<a class="lnk tix" href="'+tk+'" target="_blank" rel="noopener">'+(tk===site?'Tickets & info ↗':'Tickets ↗')+'</a>':(e.book?'<a class="lnk tix" href="'+site+'" target="_blank" rel="noopener">Book ↗</a>':'');
-    const go=g?'<button class="goundo" data-go="'+e.id+'">✓ In My plans · undo</button><a class="lnk" href="'+calURL(e)+'" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="17" x="3" y="4.5" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></svg> Calendar ↗</a>':'<button class="gocta" data-go="'+e.id+'">＋ My plans</button>';
+    const go=g?'<button class="goundo" data-go="'+e.id+'">✓ In My plans · undo</button><a class="lnk cal" href="'+calURL(e)+'" target="_blank" rel="noopener" aria-label="Add to calendar" title="Add to calendar"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="17" x="3" y="4.5" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 10h18"/></svg></a>':'<button class="gocta" data-go="'+e.id+'">＋ My plans</button>';
     const moreOpen=ui.more===e.id;
     det='<div class="ev-detail" id="det-'+e.id+'"><p class="desc">'+esc(e.desc)+'</p><div class="ev-meta">'+meta.map(m=>'<span>'+m+'</span>').join("")+'</div>'+clash+also+
       '<div class="acts">'+go+tix+'<a class="lnk" data-share="'+e.id+'" href="'+inviteURL(e)+'" target="_blank" rel="noopener">Share</a>'+(e.src||!TICKETS[e.id]?'':'')+'<button class="morebtn" data-more="'+e.id+'" aria-expanded="'+moreOpen+'" aria-label="More options">⋯</button></div>'+(moreOpen?moreHTML(e):'')+noteHTML(e)+'</div>';
   }
   return '<article class="ev'+(isBigName(e)?' bigname':'')+(g?' is-going':'')+(hidden.has(e.id)?' is-hidden':'')+(isPast(e)&&!g?' is-past':'')+'" id="ev-'+e.id+'">'+
-    (g?'<span class="going-badge" style="margin:10px 0 0 4px">✓ You\'re going</span>':'')+
+    (g?'<span class="going-badge" style="margin:10px 0 0 4px">✓ In My plans</span>':'')+
     '<button class="ev-sum" data-toggle="'+e.id+'" aria-expanded="'+open+'" aria-controls="det-'+e.id+'">'+
       '<span class="when">'+(e.dayEnd&&e.dayEnd>e.day&&!isFlexible(e)?(()=>{const d1=new Date(e.day+'T12:00:00'),d2=new Date(e.dayEnd+'T12:00:00');return d1.getMonth()===d2.getMonth()?d1.getDate()+'–'+d2.getDate()+' '+MON[d2.getMonth()]:d1.getDate()+' '+MON[d1.getMonth()]+'–<br>'+d2.getDate()+' '+MON[d2.getMonth()]})():(w=>{const [a,b]=w.split(' · ');return b&&b.length<=12?a+'<br>'+b:a})(String(whenShort(e,p)).replace(/<b>Tonight<\/b>\s*(?:·\s*)?/,'').replace(/^Tonight\s*(?:·\s*)?/,'')))+'</span>'+
       '<span class="ev-main"><span class="ev-t">'+(isNew(e)&&!isPast(e)?'<span class="newdot" title="New since your last visit"></span>':'')+(ui.city==="both"&&!ui.inCol?'<span class="cbadge">'+(cityOf(e)==="zh"?"ZRH":"GVA")+'</span>':'')+esc(e.title)+'</span>'+(open?'<span class="ev-s">'+sub+'</span>':'<span class="ev-s ev-en">'+gloss(e)+'</span>')+'</span>'+
