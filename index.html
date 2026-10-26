@@ -949,15 +949,15 @@ button[data-pal][aria-pressed="false"]{border-color:rgba(128,128,128,.3)!importa
 .pl-acts button{white-space:nowrap}
 @media (max-width:380px){.pl-acts{gap:6px!important;flex-wrap:wrap;row-gap:6px}.pl-acts button{padding-inline:10px!important;font-size:13.5px!important}nav.tabs button{font-size:10.5px!important;white-space:nowrap;letter-spacing:-.01em}}
 /* custom colours: keep text readable when a light colour is chosen */
-html[data-pal="custom"].c1-light{--on-lake:#14212b!important;--pt:var(--ink)!important}
-html[data-pal="custom"].c2-light:not([data-theme="dark"]){--sun:color-mix(in srgb,var(--c2) 45%,#000)!important}
+html:root[data-pal="custom"].c1-light{--p:color-mix(in srgb,var(--c1) 50%,#000)!important}
+html:root[data-pal="custom"].c2-light{--a:color-mix(in srgb,var(--c2) 50%,#000)!important}
 /* older iPhones (iOS 15–16.1) have no color-mix: use plain colours that still read well */
 @supports not (color:color-mix(in srgb,red,red)){
  html:root{--lake-soft:#e3eff2!important;--night-soft:#e3eff2!important;--go-soft:#e3eff2!important;--sun-soft:#fbeae6!important}
  html:root:root:root[data-theme="dark"]{--lake:var(--p)!important;--on-lake:#fff!important;--pt:var(--ink)!important;--lake-soft:#1b2b30!important;--night-soft:#1b2b30!important;--go-soft:#1b2b30!important;--sun:#ec9b8a!important;--sun-soft:#2a2120!important;--band:var(--p)!important;--night:var(--ink)!important;--go:var(--ink)!important}
  @media (prefers-color-scheme:dark){html:root:root:root:not([data-theme="light"]){--lake:var(--p)!important;--on-lake:#fff!important;--pt:var(--ink)!important;--lake-soft:#1b2b30!important;--night-soft:#1b2b30!important;--go-soft:#1b2b30!important;--sun:#ec9b8a!important;--sun-soft:#2a2120!important;--band:var(--p)!important;--night:var(--ink)!important;--go:var(--ink)!important}}}
 /* 320px: settings panel and event buttons stay on screen */
-@media (max-width:380px){#acctpanel{position:fixed!important;left:10px!important;right:10px!important;width:auto!important;top:calc(env(safe-area-inset-top,0px) + 64px)!important;max-height:calc(100vh - 160px)!important}.ev-detail .acts{flex-wrap:wrap!important;row-gap:6px}}
+@media (max-width:380px){.cfilm .ev-sum{grid-template-columns:58px minmax(0,1fr) auto!important}.mp-next .mp-acts>*{font-size:13px!important;padding-inline:6px!important}#acctpanel{position:fixed!important;left:10px!important;right:10px!important;width:auto!important;top:calc(env(safe-area-inset-top,0px) + 64px)!important;max-height:calc(100vh - 160px)!important}.ev-detail .acts{flex-wrap:wrap!important;row-gap:6px}}
 #acctpanel{width:min(320px,calc(100vw - 24px))}
 /* Culture & Explore date column: body font, mono only for times elsewhere */
 .ev-sum .when{font-family:var(--body)!important;font-size:12.5px!important;font-weight:500}
@@ -976,7 +976,8 @@ html[data-pal="custom"].c2-light:not([data-theme="dark"]){--sun:color-mix(in srg
 .modes button[aria-pressed="true"]{background:var(--surface)!important;color:var(--ink)!important;box-shadow:0 1px 2px rgba(0,0,0,.08)}
 button[data-pal][aria-pressed="true"]{border-color:var(--lake)!important;box-shadow:0 0 0 1px var(--lake) inset}
 #q:focus,input:focus{border-color:var(--lake)!important;outline:none;box-shadow:0 0 0 3px var(--lake-soft)}
-.cine .imdb{white-space:nowrap;flex-shrink:0}
+.cfilm .ev-s{white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
+.cine .imdb{white-space:nowrap}
 .rainy{color:var(--pt,var(--p))!important}
 /* toasts: above the tab bar, short, with a tick and a clear action */
 .toast{bottom:calc(76px + env(safe-area-inset-bottom,0px))!important;width:max-content;padding:10px 10px 10px 14px!important;font-size:14px;line-height:1.35;animation:toastin .18s ease-out}
@@ -2065,7 +2066,7 @@ function buildAutoPicks(){const sec=document.getElementById("picks");if(!sec)ret
     if(!items.length)return;
     html+='<div class="pick-block"><div class="pick-sep"><span>'+b.label+'</span><em>'+b.rng+'</em></div><div class="picks-grid">'+items.map(({e,k,why:w})=>{const c=cityOf(e);
       const t=(e.when.match(/\d{1,2}:\d{2}/)||[""])[0];const sub=[t,(e.place||"").split(",")[0],e.price].filter(Boolean).join(" · ");
-      return '<div class="pick" data-city="'+c+'" data-ev="'+esc(e.id)+'"><div class="k"><span class="pcity">'+(c==="zh"?"Zurich":"Geneva")+' · </span>'+esc(k||label(e))+'</div><b>'+(e.dog?DOGICON:'')+esc(e.title)+'</b><span>'+esc(sub)+'</span><span class="why">'+esc(w||why(e))+'</span></div>'}).join("")+'</div></div>'});
+      return '<div class="pick" data-city="'+c+'" data-ev="'+esc(e.id)+'"><div class="k"><span class="pcity">'+(c==="zh"?"Zurich":"Geneva")+' · </span>'+esc(e.day<=TODAY?label(e):(k||label(e)))+'</div><b>'+(e.dog?DOGICON:'')+esc(e.title)+'</b><span>'+esc(sub)+'</span><span class="why">'+esc(w||why(e))+'</span></div>'}).join("")+'</div></div>'});
   sec.insertAdjacentHTML("beforeend",html)}
 function injectZhPicks(){if(window.AUTO&&AUTO.week&&AUTO.week!=="2026-10-05"){try{buildAutoPicks()}catch(err){console.error(err)}return}
   const blocks=document.querySelectorAll("#picks .pick-block");
@@ -2082,7 +2083,7 @@ function renderPicks(){
     p.classList.toggle("is-going",goingSet.has(id));
     p.setAttribute("role","button");p.tabIndex=0;
     const k=p.querySelector(".k");
-    if(k&&!k.querySelector(".pk-go")){const b=document.createElement("span");b.className="pk-go";b.textContent="✓ Going";k.appendChild(b)}
+    if(k&&!k.querySelector(".pk-go")){const b=document.createElement("span");b.className="pk-go";b.textContent="✓ In My plans";k.appendChild(b)}
   });
   if(ui.city==="both")document.querySelectorAll(".pick-block").forEach((b,bi)=>{const per={ge:0,zh:0};const ev0=EVENTS.find(e=>e.id===(b.querySelector(".pick")||{dataset:{}}).dataset.ev);const here=hereCity(bi===0?nextSat():isoAdd(nextSat(),7));
     const g=b.querySelector(".picks-grid");if(g)cityOrder(here).forEach(c=>g.querySelectorAll('.pick[data-city="'+c+'"]').forEach(p=>g.appendChild(p)));
@@ -2451,7 +2452,7 @@ document.getElementById("todayplan").addEventListener("click",ev=>{
   const j=ev.target.closest("[data-tpjump]");if(j){focusEvent(j.dataset.tpjump);return}
   const t=ev.target.closest("[data-tptrip]");if(t){ui.tab="trips";ui.tripOpen=t.dataset.tptrip;render();const a=document.getElementById("trip-"+t.dataset.tptrip);if(a)a.scrollIntoView({block:"start"})}});
 let toastT=null;
-function toast(msg,undo){const el=document.getElementById("toast");el.classList.toggle("warn",/broken|couldn.t|can.t|doesn.t look|wrong|failed|error|not available|offline/i.test(msg));el.innerHTML='<span>'+esc(msg)+'</span>'+(undo?'<button>Undo</button>':'');el.hidden=false;
+function toast(msg,undo){const el=document.getElementById("toast");el.classList.toggle("warn",/broken|couldn.t|can.t|doesn.t look|wrong|failed|error|not available|offline|not found|wasn.t found|⚠/i.test(msg));el.innerHTML='<span>'+esc(msg)+'</span>'+(undo?'<button>Undo</button>':'');el.hidden=false;
   const b=el.querySelector("button");if(b)b.onclick=()=>{el.hidden=true;undo()};clearTimeout(toastT);toastT=setTimeout(()=>{el.hidden=true},undo?4500:3000)}
 document.addEventListener("click",ev=>{if(ev.target.closest("nav.tabs button")){const t=document.getElementById("toast");if(t&&!/Undo/.test(t.textContent))t.hidden=true}},true);
 document.getElementById("filtersbtn").addEventListener("click",()=>setSheet(!document.body.classList.contains("sheet-open")));
