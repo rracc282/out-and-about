@@ -1,1 +1,10 @@
 2026-10-29T05:48:26Z started
+step 0 ok
+step 1 ok
+step 2 ok
+step 3 ok
+step 4 ok
+step 5 ok
+step 6 ok
+step 7 ok
+watch-list adds this week: Hallenstadion (Placebo 4 Nov), Kongresshaus (Blickfang 20-22 Nov), plus Räbechilbi Richterswil (14 Nov)
