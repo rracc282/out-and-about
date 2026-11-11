@@ -172,7 +172,8 @@ async function riffraff() {
    subtitles, "F/d" has no English at all and is skipped. */
 const FP_EN = /^(e|en|engl|englisch|english)\.?$/i;
 function fpLang(code) {
-  const p = String(code || "").split("/").map(x => x.trim().replace(/\.$/, "")).filter(Boolean);
+  /* subtitle lists appear both as "Jap/d/e" and as "Jap/d,e" */
+  const p = String(code || "").split(/[/,]/).map(x => x.trim().replace(/\.$/, "")).filter(Boolean);
   if (!p.length) return null;
   if (FP_EN.test(p[0])) return "en";
   if (p.slice(1).some(s => FP_EN.test(s))) return "sub";
@@ -185,11 +186,17 @@ async function filmpodium() {
   for (const blk of az.split('class="byMovie-filmtitle"').slice(1)) {
     const head = blk.slice(0, 1500);
     const m = head.match(/href="(\/film\/\d+\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/); if (!m) continue;
-    const lm = head.match(/>\s*([A-Za-zÄÖÜäöüéè.]+(?:\/[A-Za-zÄÖÜäöüéè.]+)+)\s*,\s*(\d+)\s*Min/);
+    /* language and running time are read separately: a missing or reformatted running time must
+       not cost us the language, which is the only thing that decides whether we keep the film */
+    const lm = head.match(/>\s*([A-Za-zÄÖÜäöüéè.]{1,8}(?:\s*[/,]\s*[A-Za-zÄÖÜäöüéè.]{1,8})+)\s*(?:[,.]|<|\d)/);
+    const mm = head.match(/(\d{2,3})\s*min\b/i);
     const cy = head.match(/class="onlydesktop">\s*([^<]*?)\s*((?:19|20)\d\d)\s*</);
-    meta[m[1]] = { t: txt(m[2]), lang: lm ? lm[1] : "", m: lm ? +lm[2] : 0,
+    meta[m[1]] = { t: txt(m[2]), lang: lm ? lm[1] : "", m: mm ? +mm[1] : 0,
       country: cy ? txt(cy[1]) : "", y: cy ? +cy[2] : 0 };
   }
+  /* a zero-film parse means the markup moved, which otherwise looks exactly like "no English films" */
+  report["filmpodium.listed"] = Object.keys(meta).length;
+  if (!Object.keys(meta).length) { report["filmpodium!"] = "a-z page parsed 0 films — markup changed?"; return; }
   const day = await get(base + "/programm-nach-datum"); if (!day) { report[cin + "!"] = "no date page"; return; }
   const want = new Map();
   for (const f of day.split("<form action=").slice(1)) {

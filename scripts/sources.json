@@ -134,7 +134,8 @@
   },
   {
    "url": "https://kaufleuten.ch/en/events/",
-   "city": "zh"
+   "city": "zh",
+   "big": true
   },
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve",
