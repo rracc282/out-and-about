@@ -42,7 +42,31 @@ const CITY = { ge: [46.2044, 6.1432], zh: [47.3769, 8.5417] };
 const km = (a, b) => { const R = 6371, r = x => x * Math.PI / 180, dl = r(b[0] - a[0]), dn = r(b[1] - a[1]); const h = Math.sin(dl / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
 const LOCAL = { ge: /\b(gen[eè]v[ae]|geneva|genf|carouge|lancy|vernier|meyrin|plan-les-ouates|ch[eê]ne|th[oô]nex|onex|cologny|plainpalais|eaux-vives|p[aâ]quis|servette|champel|versoix|bernex|veyrier)\b/i,
   zh: /\b(z[uü]rich|zurich|oerlikon|altstetten|wiedikon|seebach|wollishofen|schwamendingen|affoltern|h[oö]ngg|enge|wipkingen|aussersihl|hottingen|dübendorf|wallisellen|schlieren|kilchberg|zollikon|adliswil)\b/i };
-function placeOf(geo, text, srcCity) {
+/* Towns an event can name in its title while carrying no venue of its own. Meetup events are the
+   usual case: with no place text they used to inherit the search city, so a ski day in Andermatt
+   or life drawing in Zug was filed as "Zurich". Ambiguous names need context — "Zug" is also the
+   German for a train and "Baden" for bathing — so those only match after a preposition or comma. */
+const TOWNS = [
+  [/\b(?:in|nach|bei|near|@|,)\s*Zug\b/i, [47.1662, 8.5155]], [/\b(?:in|nach|bei|near|@|,)\s*Baden\b/i, [47.4733, 8.3064]],
+  [/\bwinterthur\b/i, [47.4997, 8.7241]], [/\b(?:luzern|lucerne)\b/i, [47.0502, 8.3093]],
+  [/\bst\.?\s?gallen\b/i, [47.4245, 9.3767]], [/\bschaffhausen\b/i, [47.6960, 8.6346]],
+  [/\brapperswil\b/i, [47.2260, 8.8180]], [/\buster\b/i, [47.3470, 8.7210]],
+  [/\baltdorf\b/i, [46.8803, 8.6444]], [/\bandermatt\b/i, [46.6364, 8.5944]],
+  [/\bchur\b/i, [46.8508, 9.5320]], [/\bbasel\b/i, [47.5596, 7.5886]],
+  [/\bbern\b/i, [46.9480, 7.4474]], [/\bthun\b/i, [46.7580, 7.6280]],
+  [/\binterlaken\b/i, [46.6863, 7.8632]], [/\bdavos\b/i, [46.8027, 9.8360]],
+  [/\barosa\b/i, [46.7833, 9.6800]], [/\bengelberg\b/i, [46.8208, 8.4017]],
+  [/\baarau\b/i, [47.3909, 8.0455]], [/\bolten\b/i, [47.3500, 7.9030]],
+  [/\blausanne\b/i, [46.5197, 6.6323]], [/\bmontreux\b/i, [46.4312, 6.9107]],
+  [/\bvevey\b/i, [46.4628, 6.8419]], [/\bnyon\b/i, [46.3833, 6.2394]],
+  [/\bmorges\b/i, [46.5113, 6.4981]], [/\byverdon\b/i, [46.7785, 6.6410]],
+  [/\bfribourg\b/i, [46.8065, 7.1619]], [/\bneuch[âa]tel\b/i, [46.9900, 6.9293]],
+  [/\bsion\b/i, [46.2331, 7.3606]], [/\bverbier\b/i, [46.0961, 7.2286]],
+  [/\bzermatt\b/i, [46.0207, 7.7491]], [/\bannecy\b/i, [45.8992, 6.1294]],
+  [/\bchamonix\b/i, [45.9237, 6.8694]], [/\bthonon\b/i, [46.3700, 6.4800]],
+];
+const townGeo = t => { for (const [re, g] of TOWNS) if (re.test(t)) return g; return null; };
+function placeOf(geo, text, srcCity, title) {
   if (geo) {
     const d = { ge: km(geo, CITY.ge), zh: km(geo, CITY.zh) }; const city = d.ge < d.zh ? "ge" : "zh"; const k = d[city];
     if (k > 110) return null;
@@ -50,7 +74,11 @@ function placeOf(geo, text, srcCity) {
   }
   for (const c of ["ge", "zh"]) if (LOCAL[c].test(text || "")) return { city: c, zone: c, trip: c === "ge" ? "Geneva" : "Zurich" };
   for (const [re, city, zone, trip] of NEAR) if (re.test(text || "")) return { city, zone, trip };
-  if (srcCity && !text) return { city: srcCity, zone: srcCity, trip: srcCity === "ge" ? "Geneva" : "Zurich" };
+  if (srcCity && !text) {
+    const g = title && townGeo(title);
+    if (g) return placeOf(g, "", srcCity, "");
+    return { city: srcCity, zone: srcCity, trip: srcCity === "ge" ? "Geneva" : "Zurich" };
+  }
   return null;
 }
 
@@ -351,9 +379,9 @@ for (const x of raw) {
   if (s.day > BIG_UNTIL) { drop("far future"); continue; }
   const exhibit = /Exhibition/i.test(x.type || "") || (multi && (Date.parse(e.day) - Date.parse(s.day)) / 864e5 >= 6);
   const gc = x.src.kind === "meetup" ? (/z[uü]e?rich/i.test(x.src.url) ? "zh" : /lausanne/i.test(x.src.url) ? null : /gen[eè]v|geneva/i.test(x.src.url) ? "ge" : x.src.city) : x.src.city;
-  const ptmp = placeOf(x.geo, x.place, gc);
+  const ptmp = placeOf(x.geo, x.place, gc, title);
   if (ptmp && ptmp.city === "zh") { const t = title + " " + clean(x.desc).slice(0, 400); if (DEONLY.test(t) || (SPOKEN.test(t) && langOf(t) === "de" && !/english|englisch|übertitel|surtit/i.test(t))) { drop("Zurich: German-only spoken event", x); continue; } }
-  const pl = placeOf(x.geo, x.place, gc) || (gc && /^\s*$/.test(x.place || "") ? null : null); if (!pl) { drop(x.geo ? "too far" : "unknown place", x); continue; }
+  const pl = placeOf(x.geo, x.place, gc, title) || (gc && /^\s*$/.test(x.place || "") ? null : null); if (!pl) { drop(x.geo ? "too far" : "unknown place", x); continue; }
   let p, day = s.day < TODAY && multi ? TODAY : s.day;
   if (exhibit) { p = "on"; }
   else if (day <= LAST) { p = periodOf(day); if (!p) { drop("outside weeks"); continue; } }
