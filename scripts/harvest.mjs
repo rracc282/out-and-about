@@ -363,6 +363,18 @@ const notes = { ge: {}, zh: {} };
 for (const p of periods) for (const c of ["ge", "zh"]) notes[c][p.id] = (fresh && cur.notes && cur.notes[c] && cur.notes[c][p.id]) || wetNote(c, p);
 periods.forEach(p => { p.note = notes.ge[p.id]; });
 const add = (cur.add || []).filter(e => (e.dayEnd || e.day) >= TODAY).map(e => ({ ...e, p: e.p === "big" || e.p === "on" ? e.p : periodOf(e.day < TODAY ? TODAY : e.day) || "later" }));
+/* The weekly curation is merged after the harvest has already deduped, so a hand-written entry
+   and a scraped one for the same night at the same hall both survive — the titles differ
+   ("Nico Santos" vs "Nico Santos — live at Hallenstadion") so the title key never matches.
+   The hand-written one is the better entry, so drop the scraped night it covers. */
+{
+  const curVenueDay = new Set(add.filter(e => e.place).map(e => e.day + "|" + norm(String(e.place).split(",")[0])));
+  if (curVenueDay.size) {
+    const before = events.length;
+    events = events.filter(e => !(e.auto && e.place && curVenueDay.has(e.day + "|" + norm(String(e.place).split(",")[0]))));
+    if (before !== events.length) report.curatedOverlap = before - events.length;
+  }
+}
 
 /* ---------- English: translate German/French titles and descriptions (free MyMemory API, cached in data/tr.json) ---------- */
 let TR = {}; try { TR = JSON.parse(rd("data/tr.json")); } catch {}
