@@ -215,7 +215,7 @@ async function filmpodium() {
     const p = await get(base + fu); if (!p) continue;
     const og = (p.match(/<meta[^>]+property="og:description"[^>]*content="([^"]*)"/) || [])[1]
       || (p.match(/<meta[^>]+name="description"[^>]*content="([^"]*)"/) || [])[1] || "";
-    desc[fu] = txt(og).slice(0, 400);
+    desc[fu] = txt(og).replace(/^[“”"'\s]+|[“”"'\s]+$/g, "").slice(0, 400);
   }
   for (const x of want.values()) {
     const f = { t: x.info.t, k: "", m: x.info.m, d: desc[x.fu] || "", y: x.info.y };

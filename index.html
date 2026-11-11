@@ -3339,7 +3339,9 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   /* One row per film per slot — the best showtime that fits: English original ahead of English
      subtitles, then the earliest. Offering every screening would bury everything else, since one
      film can run a dozen times across three cinemas on the same evening. */
-  const fRank=e=>(e._lang==="en"?0:1)*10000+((interval(e)||{}).s||0);
+  /* A showtime already in My plans wins outright — otherwise the Plan would offer a different
+     showtime of a film she has already booked, and "＋ My plans" would add it a second time. */
+  const fRank=e=>(filmIn(e)?0:1)*100000+(e._lang==="en"?0:1)*10000+((interval(e)||{}).s||0);
   function filmCands(s,c){const C=window.CINE;if(!C||!C.films)return [];const best=new Map();
     C.films.forEach(f=>{
       if(hidden.has("filmid~"+f.id))return;
@@ -3363,7 +3365,9 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     else{const m=String(e.trip||"").match(/(\d+)\s*km/);if(m&&+m[1]>15)f=true}
     if(/\b(?:lausanne|vevey|montreux|nyon|morges|rolle|winterthur|baden|lucerne|luzern|zug|basel|bern|thun|st\.? ?gallen|aarau|olten|schaffhausen|rapperswil)\b/i.test(townPart(e)))f=true;
     return e._far=f}
-  function cands(s,ctx,moods,who){const c=city();const pricey=e=>{const m=String(e.price||"").match(/CHF\s*(\d+)/);return m&&+m[1]>150&&!goingSet.has(e.id)};let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!pricey(e)&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&fits(e,s)&&!never(e)&&(goingSet.has(e.id)||(isLocal(e)&&!e.fr&&!far(e))));
+  function cands(s,ctx,moods,who){const c=city();/* read the dearest figure anywhere in the price, with or without a CHF in front: ticketed shows
+   write "CHF 27–137", "ab 80.-" and plenty else, and only the top of the range tells us anything */
+    const pricey=e=>{const n=(String(e.price||"").match(/\d{2,4}/g)||[]).map(Number);return n.length&&Math.max(...n)>150&&!goingSet.has(e.id)};let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!pricey(e)&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&fits(e,s)&&!never(e)&&(goingSet.has(e.id)||(isLocal(e)&&!e.fr&&!far(e))));
     if(ctx==="we"&&s.k==="m")L=L.concat(hikes());
     L=L.concat(filmCands(s,c));
     return L.map(e=>({e,v:score(e,s,ctx,moods,who)})).sort((a,b)=>b.v-a.v)}

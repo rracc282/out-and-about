@@ -26,6 +26,15 @@ Batch 6 is built on branch `batch-6`, not live:
 - **36** Only Kaufleuten added. 22 candidates were tested by running the real collector on a throwaway branch; see "What was tried for Zurich feeds" below.
 - **38** Filmpodium added as a scraped cinema. Arthouse, blue Cinema, Xenix and Kosmos stay as links — see below.
 
+Challenger review: two blockers and five should-fixes, all fixed and re-verified by driving the page; verdict **Ship**. Checked separately: with "Film" and "Concerts" off, `batch-6` produces plans identical to `main` on the same data, in both cities.
+
+Three known residuals, none a regression and none loses data:
+- `pricey` reads a figure out of the price string, so a ticketed show priced only as "Tickets" or "price to check" still passes. It carries a "Book ahead" chip but no price. Note the owner's saved profile has Concerts **on**, so the −7 penalty that would otherwise bury these does not apply to her.
+- The Plan offers one showtime per film, so a later showing of the same film can only be chosen from the Culture tab. It does prefer whichever showtime is already in My plans, so it can't create a duplicate.
+- The Filmpodium language regex caps each code at 8 characters and wants a comma before the running time; anything else shows up as a drop in `report["filmpodium.listed"]` (currently 10 listed → 4 English).
+
+Note the branch also carries two bot commits ("Nightly events", "Cinema times") — pushing `scripts/sources.json` or `scripts/cinema.mjs` to any branch triggers those workflows, so they ran against `batch-6`. Harmless: the nightly job regenerates that data on `main` anyway.
+
 ## Still to do (from the six-reviewer feedback list)
 - **Batch 7 · Under the hood:** 33 nightly quality check (duplicates, wrong categories, too-far events, odd times); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
 - **Batch 8 · Niche extras:** the owner decides do/skip for items 19–25, 43, 56, 66–68, 70–73.
