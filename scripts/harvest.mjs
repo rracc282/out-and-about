@@ -67,7 +67,7 @@ const TOWNS = [
 ];
 const townGeo = t => { for (const [re, g] of TOWNS) if (re.test(t)) return g; return null; };
 /* the matched town, title-cased, so the list row can say "Andermatt" instead of "Zurich" */
-const townName = t => { for (const [re] of TOWNS) { const m = t.match(re); if (m) { const w = m[0].split(/\s+/).pop(); return w.charAt(0).toUpperCase() + w.slice(1); } } return ""; };
+const townName = t => { for (const [re] of TOWNS) { const m = t.match(re); if (m) { const w = m[0].replace(/^(?:in|nach|bei|near|@)\s+/i, "").trim(); return w.charAt(0).toUpperCase() + w.slice(1); } } return ""; };
 function placeOf(geo, text, srcCity, title) {
   if (geo) {
     const d = { ge: km(geo, CITY.ge), zh: km(geo, CITY.zh) }; const city = d.ge < d.zh ? "ge" : "zh"; const k = d[city];
@@ -425,6 +425,7 @@ for (const x of raw) {
      English on the same day would lose the English one. Keyed by city as well as day, or a
      Geneva event would suppress the Zurich one with the same name. */
   const tw = twords(title);
+  const vkey = day + "|" + (s.time || "") + "|" + norm(String(x.place || "").split(",")[0]);
   if (tw.size >= 3) {
     const dkey = pl.city + "|" + day;
     const prior = dayWords.get(dkey) || [];
@@ -439,10 +440,13 @@ for (const x of raw) {
     if (hit) {
       /* the cleaner title wins, not whichever happened to be parsed first */
       if (tw.size >= hit.words.size) { drop("near-duplicate title", x); continue; }
-      out.delete(hit.key); hit.words = tw; hit.key = key;
-    } else dayWords.set(dkey, prior.concat([{ words: tw, key }]));
+      /* The loser's venue key has to go with it. A cross-post from one site shares day, time and
+         venue, so leaving it behind makes the venue check below drop the winner too and the pair
+         disappears with no drop recorded. */
+      out.delete(hit.key); seenVenue.delete(hit.vkey); drop("near-duplicate title");
+      hit.words = tw; hit.key = key; hit.vkey = vkey;
+    } else dayWords.set(dkey, prior.concat([{ words: tw, key, vkey }]));
   }
-  const vkey = day + "|" + (s.time || "") + "|" + norm(String(x.place || "").split(",")[0]);
   if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate"); continue; } seenVenue.add(vkey);
   const free = x.isFree === true || x.price === 0 || x.price === "0" || /\b(free|gratuit|gratis|kostenlos)\b/i.test(title);
   const price = free ? "Free" : x.price ? `${x.cur || "CHF"} ${Math.round(+x.price) || x.price}` : "Price to check";
