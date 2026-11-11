@@ -6,7 +6,13 @@
   "historical-walks",
   "les-talents-du-grand-genevois",
   "lausanne-board-games",
-  "networking-afterwork-geneve"
+  "networking-afterwork-geneve",
+  "deep-conversations-zurich",
+  "alpine-trekkers-zurich",
+  "the-connection-lab",
+  "connectionspacezurich",
+  "english-yes-please",
+  "amigas-hispanas-en-suiza"
  ],
  "pages": [
   {
@@ -22,8 +28,9 @@
    "city": "zh"
   },
   {
-   "url": "https://www.zuerichunbezahlbar.ch/",
-   "city": "zh"
+   "url": "https://www.zuerichunbezahlbar.ch/events/",
+   "city": "zh",
+   "kind": "unbezahlbar"
   },
   {
    "url": "https://newinzurich.com/events/",
@@ -188,6 +195,51 @@
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=hiking",
    "kind": "meetup",
    "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=photography",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=pottery",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=expats",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=women",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=walking",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=brunch",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=photography",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=pottery",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=expats",
+   "kind": "meetup",
+   "city": "ge"
   }
  ]
 }

@@ -182,6 +182,40 @@ async function harvest(src) {
   if (src.kind === "ladecadanse") { const seen = new Map(); let st = 0, bytes = 0;
     for (let i = 0; i < 14; i += 7) await Promise.all([...Array(7)].map(async (_, k) => { const d = new Date(TODAY + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + i + k); const r = await get("https://www.ladecadanse.ch/index.php?courant=" + d.toISOString().slice(0, 10)); st = r.status; bytes += r.body.length; fromDecadanse(r.body).forEach(x => seen.set(x.url + x.start.slice(0, 10), x)); }));
     report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed: 14, markers: "day agenda" }); seen.forEach(x => raw.push({ ...x, src })); return; }
+  /* Zürich unbezahlbar lists only free events, server-rendered, 24 to a page. No structured data
+     at all, which is why the generic path saw nothing — but the title, date and times are right
+     there in the markup. The <time datetime=…> attribute is unreliable (it reads 2026-11-11 for a
+     12 November event), so the German date in the visible text is what we parse. */
+  if (src.kind === "unbezahlbar") {
+    const MON = { januar: 1, februar: 2, "märz": 3, maerz: 3, april: 4, mai: 5, juni: 6, juli: 7, august: 8, september: 9, oktober: 10, november: 11, dezember: 12 };
+    const base = "https://www.zuerichunbezahlbar.ch/events/";
+    const seen = new Map(); let st = 0, bytes = 0, followed = 0;
+    for (let p = 1; p <= 4; p++) {
+      const r0 = await get(base + (p > 1 ? "?page=" + p : "")); st = r0.status; bytes += r0.body.length; followed++;
+      const arts = r0.body.split('<article class="poster').slice(1);
+      if (!arts.length) break;
+      for (const a of arts) {
+        const href = (a.match(/href="\s*([^"]+?)\s*"/) || [])[1];
+        const title = unent((a.match(/data-js-poster-title[^>]*>([\s\S]*?)<\/span>/) || [])[1] || "").replace(/\s+/g, " ").trim();
+        const tt = unent((a.match(/<time[^>]*>([\s\S]*?)<\/time>/) || [])[1] || "").replace(/\s+/g, " ").trim();
+        const dm = tt.match(/(\d{1,2})\.\s*([A-Za-zÄÖÜäöü]+)/);
+        const hh = tt.match(/(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})/) || tt.match(/(\d{1,2}):(\d{2})/);
+        if (!href || !title || !dm || !hh) continue;
+        const mo = MON[dm[2].toLowerCase()]; if (!mo) continue;
+        let day = `${+TODAY.slice(0, 4)}-${String(mo).padStart(2, "0")}-${String(+dm[1]).padStart(2, "0")}`;
+        if (day < TODAY) day = `${+TODAY.slice(0, 4) + 1}` + day.slice(4);
+        const s0 = hh[1].padStart(2, "0") + ":" + hh[2], e0 = hh[3] ? hh[3].padStart(2, "0") + ":" + hh[4] : "";
+        /* permanently-open facilities (a bouldering cube, a parkour park) are listed with
+           00:00–23:59 — they are places, not things happening tonight */
+        if (/^00:0[01]$/.test(s0) && (!e0 || /^(23:59|00:00|23:5\d)$/.test(e0))) continue;
+        const url = new URL(href, base).href;
+        seen.set(url + day + s0, { title, start: day + "T" + s0, end: e0 && e0 > s0 ? day + "T" + e0 : null,
+          url, place: "Zurich", isFree: true, desc: "" });
+      }
+    }
+    report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed, markers: "poster list" });
+    seen.forEach(x => raw.push({ ...x, src })); return;
+  }
   /* Hallenstadion's listing carries no event data and its JSON-LD is breadcrumbs only, which is
      why the generic path found nothing. Every event page does carry an AddEvent block with a
      clean start, so read the listing for links and the dates off the pages themselves. */
