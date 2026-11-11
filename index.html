@@ -979,6 +979,18 @@ button[data-pal][aria-pressed="true"]{border-color:var(--lake)!important;box-sha
 .cfilm .ev-s{white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
 .cine .imdb{white-space:nowrap}
 .rainy{color:var(--pt,var(--p))!important}
+/* ===== Batch 6: Zurich ===== */
+/* 37 · Zurich is marked "beta". It sits under the header, not in the title row: the title row is
+   already nowrap at 320 px and anything added there runs under the settings button. Dismissing the
+   sentence collapses it to a chip, so the label itself never goes away. */
+.betatag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.055em;text-transform:uppercase;border:1px solid currentColor;border-radius:999px;padding:0 4px;margin-left:5px;opacity:.75;vertical-align:1.5px;line-height:1.5}
+.zhnote{display:flex;align-items:flex-start;gap:8px;margin:10px 0 0;padding:9px 10px 9px 12px;border:1px solid var(--line);border-left:3px solid var(--sun);border-radius:10px;background:var(--surface);color:var(--muted);font-size:13px;line-height:1.4}
+.zhnote b{color:var(--ink);font-weight:700}
+.zhnote>button{flex:0 0 auto;align-self:center;margin-left:auto;border:0;background:none;color:var(--muted);font:inherit;font-size:18px;line-height:1;padding:4px 2px;min-width:32px;min-height:32px;cursor:pointer}
+.zhnote>button:focus-visible{outline:2px solid var(--sun);outline-offset:2px;border-radius:8px}
+.zhmini{border:0;background:none;padding:0;margin:8px 0 -2px}
+.zhmini>button{margin:0;padding:2px 0;min-height:28px;font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:.01em}
+.zhmini .betatag{opacity:.9}
 /* toasts: above the tab bar, short, with a tick and a clear action */
 .toast{bottom:calc(76px + env(safe-area-inset-bottom,0px))!important;width:max-content;padding:10px 10px 10px 14px!important;font-size:14px;line-height:1.35;animation:toastin .18s ease-out}
 .toast.warn>span::before{content:"!";}
@@ -3719,6 +3731,39 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   document.addEventListener("click",()=>setTimeout(sync,30),true);
   new MutationObserver(()=>setTimeout(sync,30)).observe(document.body,{childList:true});
   setTimeout(sync,800);
+})();
+</script>
+
+<script>
+/* ===== Batch 6 · item 37: Zurich is marked "beta" =====
+   Under the header, whenever Zurich is in view (so also in "Both", where half the list is Zurich).
+   Tapping × collapses the sentence to a small "Zurich beta" chip, which stays for good and can be
+   tapped to read the sentence again. Not in the title row: that row is nowrap at 320 px and an extra
+   chip there overlaps the settings button. ===== */
+(function(){
+  const KEY="oa-zh-beta";
+  const small=()=>{try{return localStorage.getItem(KEY)==="1"}catch(e){return false}};
+  const set=v=>{try{localStorage.setItem(KEY,v)}catch(e){}};
+  function draw(){
+    const want=(ui.city==="zh"||ui.city==="both");
+    let n=document.getElementById("zhbeta");
+    if(!want){if(n)n.remove();return}
+    if(!n){const head=document.querySelector("header.top");if(!head||!head.parentNode)return;
+      n=document.createElement("p");n.id="zhbeta";head.parentNode.insertBefore(n,head.nextSibling);
+      n.addEventListener("click",ev=>{
+        if(ev.target.closest("[data-zhbetax]")){set("1");draw()}
+        else if(ev.target.closest("[data-zhbetao]")){set("0");draw()}});}
+    const mini=small();
+    if(n.dataset.mini===String(mini))return;
+    n.dataset.mini=String(mini);
+    n.className="zhnote"+(mini?" zhmini":"");
+    n.innerHTML=mini
+      ?'<button type="button" data-zhbetao aria-label="Zurich is in beta — what this means">Zurich <span class="betatag">beta</span></button>'
+      :'<span><b>Zurich is in beta.</b> Fewer venues are covered than Geneva, so expect gaps — especially midweek.</span><button type="button" data-zhbetax aria-label="Hide this note">×</button>';
+  }
+  const _s=syncCityTog;
+  syncCityTog=function(){_s.apply(this,arguments);try{draw()}catch(e){}};
+  setTimeout(syncCityTog,0);setTimeout(syncCityTog,60);
 })();
 </script>
 
