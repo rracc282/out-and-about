@@ -28,6 +28,7 @@ C("grutli", "Cinémas du Grütli", "ge", "Rue du Général-Dufour 16, Genève", 
 C("arena-sihlcity", "Arena Sihlcity", "zh", "Kalanderplatz 1, Zürich", "https://www.arena.ch/de/sihlcity/programm", [47.3587, 8.5235]);
 C("riffraff", "Riffraff", "zh", "Neugasse 57, Zürich", "https://www.riffraff-houdini.ch/de-ch/programm.html", [47.3828, 8.5293]);
 C("houdini", "Houdini", "zh", "Badenerstrasse 173, Zürich", "https://www.riffraff-houdini.ch/de-ch/programm.html", [47.3746, 8.5203]);
+C("filmpodium", "Filmpodium", "zh", "Nüschelerstrasse 11, Zürich", "https://www.filmpodium.ch/programm-nach-datum", [47.3736, 8.5340]);
 const links = [
   { n: "Cinélux", c: "ge", u: "https://www.cinelux.ch/" },
   { n: "Cinéma Bio (Carouge)", c: "ge", u: "https://www.cinema-bio.ch/programme" },
@@ -165,6 +166,56 @@ async function riffraff() {
   }
 }
 
+/* ---- Filmpodium (the A–Z page carries the language, the by-date page the times) ----
+   Language is in Swiss notation: what is spoken comes before the first slash, the subtitles after.
+   "E/d" is spoken English with German subtitles, "Jap/d/e" is Japanese with German and English
+   subtitles, "F/d" has no English at all and is skipped. */
+const FP_EN = /^(e|en|engl|englisch|english)\.?$/i;
+function fpLang(code) {
+  const p = String(code || "").split("/").map(x => x.trim().replace(/\.$/, "")).filter(Boolean);
+  if (!p.length) return null;
+  if (FP_EN.test(p[0])) return "en";
+  if (p.slice(1).some(s => FP_EN.test(s))) return "sub";
+  return null;
+}
+async function filmpodium() {
+  const base = "https://www.filmpodium.ch", cin = "filmpodium";
+  const az = await get(base + "/programm-a-bis-z"); if (!az) { report[cin + "!"] = "no a-z page"; return; }
+  const meta = {};
+  for (const blk of az.split('class="byMovie-filmtitle"').slice(1)) {
+    const head = blk.slice(0, 1500);
+    const m = head.match(/href="(\/film\/\d+\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/); if (!m) continue;
+    const lm = head.match(/>\s*([A-Za-zÄÖÜäöüéè.]+(?:\/[A-Za-zÄÖÜäöüéè.]+)+)\s*,\s*(\d+)\s*Min/);
+    const cy = head.match(/class="onlydesktop">\s*([^<]*?)\s*((?:19|20)\d\d)\s*</);
+    meta[m[1]] = { t: txt(m[2]), lang: lm ? lm[1] : "", m: lm ? +lm[2] : 0,
+      country: cy ? txt(cy[1]) : "", y: cy ? +cy[2] : 0 };
+  }
+  const day = await get(base + "/programm-nach-datum"); if (!day) { report[cin + "!"] = "no date page"; return; }
+  const want = new Map();
+  for (const f of day.split("<form action=").slice(1)) {
+    const fu = (f.match(/^"(\/film\/\d+\/[^"]+)"/) || [])[1]; if (!fu) continue;
+    const st = (f.match(/value="(\d{12})"\s+name="showtime"/) || [])[1]; if (!st) continue;
+    const info = meta[fu]; if (!info) continue;
+    const lang = fpLang(info.lang); if (!lang) continue;
+    const d = st.slice(0, 4) + "-" + st.slice(4, 6) + "-" + st.slice(6, 8), tm = st.slice(8, 10) + ":" + st.slice(10, 12);
+    if (!DAYS.includes(d)) continue;
+    const book = (f.match(/href="(https:\/\/www\.advance-ticket\.ch\/[^"]+)"/) || [])[1] || "";
+    want.set(fu + "|" + d + "|" + tm, { fu, info, lang, d, tm, book });
+  }
+  /* one page per film that actually screens in English, for the synopsis */
+  const desc = {};
+  for (const fu of [...new Set([...want.values()].map(x => x.fu))].slice(0, 25)) {
+    const p = await get(base + fu); if (!p) continue;
+    const og = (p.match(/<meta[^>]+property="og:description"[^>]*content="([^"]*)"/) || [])[1]
+      || (p.match(/<meta[^>]+name="description"[^>]*content="([^"]*)"/) || [])[1] || "";
+    desc[fu] = txt(og).slice(0, 400);
+  }
+  for (const x of want.values()) {
+    const f = { t: x.info.t, k: "", m: x.info.m, d: desc[x.fu] || "", y: x.info.y };
+    add(f, cin, x.d, x.tm, x.lang, x.book || (base + x.fu), x.info.country);
+  }
+}
+
 /* ---- English descriptions: translate German/French ones (free MyMemory, cached) ---- */
 let TR = {}; try { TR = JSON.parse(fs.readFileSync(new URL("data/cine-tr.json", root), "utf8")); } catch {}
 async function toEn(t, lang) {
@@ -196,7 +247,7 @@ async function imdbRatings(ids) {
   return out;
 }
 export async function run(write = true) {
-  for (const [n, fn] of Object.entries({ pathe, scala, grutli, arena, riffraff })) { try { await fn(); } catch (e) { report[n + "!"] = String(e).slice(0, 120); } }
+  for (const [n, fn] of Object.entries({ pathe, scala, grutli, arena, riffraff, filmpodium })) { try { await fn(); } catch (e) { report[n + "!"] = String(e).slice(0, 120); } }
   const out = [];
   for (const F of films.values()) {
     const L = LANG[norm(F.t)];
