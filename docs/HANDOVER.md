@@ -51,6 +51,13 @@ Still zero, with the reason, so nobody re-probes them: **guidle**, **infomaniak.
 
 Known and left for next time: three unbezahlbar detail pages (under `clubs-parties`, `bildende-kunst-performance`, `sport-freizeit/diverse`) use a second address markup the `detailpost__address` pattern misses, so those fall back to "Zurich" and also pick up a page-dump description; `BIGHALL` includes Kaufleuten and Volkshaus, which are multi-room, so a curated night there could still suppress a different event in another room (it is named in `report.curatedOverlapDropped` if it happens); all-day entries with a date and no time are still discarded by the unbezahlbar collector, which loses exactly the free markets this source is for; the detail fetching is sequential and is now the slowest source in the run.
 
+### Batch 7d — branch `batch-7d`, not live, not yet reviewed
+**Item 54 was already done.** Accents have folded away on both sides for some time: `geneve` finds all 388 Genève events, `cafe` finds `café`, `musee` finds `musée`, `zurcher` finds `Zürcher`. Measured, not assumed — don't rebuild it.
+
+The real gap was German, which goes the other way: `zuerich` returned **0** where `zurich` returned 538, because Swiss-German writes ü as "ue" (Zuerich, Muenstergasse). `qOk()` now folds ue→u, oe→o, ae→a and ß→ss as a *second* chance, after the normal test. Purely additive — a word that matched before still matches, so "Neue Musik" is unaffected (verified: still 19 hits). Live: `zuerich` now returns 563, the same as `zurich`.
+
+Only `index.html` changed. Nothing else in Batch 7 is started: 53 "Updated X ago" (the data exists as `AUTO.generated`; the `.stamp` line that would show it is hidden by the Batch 5 CSS, so it needs a new home that doesn't crowd the title row), 52 speed, 51 sync merge, 50 "new version" prompt (note the service worker currently calls `skipWaiting()`, i.e. it already auto-updates — worth asking whether a prompt is wanted at all), 57 cleanup.
+
 ## Still to do (from the six-reviewer feedback list)
 - **Batch 7 · Under the hood:** the rest of 33 (duplicates, wrong categories, too-far events, odd times); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
 - **Batch 8 · Niche extras:** the owner decides do/skip for items 19–25, 43, 56, 66–68, 70–73.
