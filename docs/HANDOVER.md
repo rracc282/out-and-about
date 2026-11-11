@@ -51,6 +51,13 @@ Still zero, with the reason, so nobody re-probes them: **guidle**, **infomaniak.
 
 Known and left for next time: three unbezahlbar detail pages (under `clubs-parties`, `bildende-kunst-performance`, `sport-freizeit/diverse`) use a second address markup the `detailpost__address` pattern misses, so those fall back to "Zurich" and also pick up a page-dump description; `BIGHALL` includes Kaufleuten and Volkshaus, which are multi-room, so a curated night there could still suppress a different event in another room (it is named in `report.curatedOverlapDropped` if it happens); all-day entries with a date and no time are still discarded by the unbezahlbar collector, which loses exactly the free markets this source is for; the detail fetching is sequential and is now the slowest source in the run.
 
+### Batch 7c — branch `batch-7c`, not live, not yet reviewed
+Part of 33, "too-far events". `placeOf()` only ever read an event's `place` field, so anything with no venue of its own inherited the city its source searched. For Meetup that is most events and the town sits in the title, so a ski day in Andermatt, bouldering in Altdorf, life drawing in Zug and a bar evening in Winterthur were all filed as in-city Zurich. Titles are now matched against a `TOWNS` list and fed back through the existing distance logic, so they land as "≈ 24 km away" and the app's own distance filter applies. 7 of the 8 out-of-town events in the live data are now labelled correctly.
+
+Deliberate limitation: ambiguous town names (`Zug`, `Baden`) only match after a preposition or comma, because "Zug" is also the German for a train and "Baden" for bathing. That leaves "Hike & Hot Springs Baden" still marked in-city. Matching a bare `Baden` would fix that one row but would also catch "Baden gehen" and push genuine Zurich swimming events 24 km away, hiding them — the wrong trade, so it was left.
+
+Still open in 33: duplicates across sites with different titles, wrong categories, odd times.
+
 ## Still to do (from the six-reviewer feedback list)
 - **Batch 7 · Under the hood:** the rest of 33 (duplicates, wrong categories, too-far events, odd times); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
 - **Batch 8 · Niche extras:** the owner decides do/skip for items 19–25, 43, 56, 66–68, 70–73.
