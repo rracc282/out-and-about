@@ -241,5 +241,17 @@
    "kind": "meetup",
    "city": "ge"
   }
+ ],
+ "meetupSkip": [
+  "enjoy-geneve",
+  "les-amis-zurich",
+  "les-amis-geneva",
+  "zurich-expats",
+  "zurich-social-club",
+  "internations-zurich",
+  "zurich-language-exchange",
+  "geneva-language-exchange",
+  "zurich-hiking",
+  "geneva-hiking-group"
  ]
 }
