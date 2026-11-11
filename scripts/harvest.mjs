@@ -360,6 +360,10 @@ const urlKey = u => /\.php\?|[?&](id[A-Z]?|event|e)=/.test(u) ? u.replace(/#.*$/
 const NIGHTLIFE = /\b(club|party|rave|afterhour|after[- ]?party|pub crawl|nightlife|dj\b|techno|sunrise|dawn|silvester|new year)\b/i;
 const NOTEVENT = /\b(post it here|introduce yourself|read me|welcome thread|say hello|ask me anything|house rules|announcement|test event)\b/i;
 const dayWords = new Map();
+/* The pipeline's norm() squashes out spaces and truncates to 28 chars, which is right for an
+   exact key but useless for comparing word by word, so titles get their own normaliser here. */
+const twords = t => new Set(clean(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  .replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(w => w.length > 3));
 const existingUrl = new Set([...html.matchAll(/"url": ?"([^"]+)"/g)].map(m => urlKey(m[1])));
 /* day + venue, for sources that cover a single big hall. A hand-written entry for the night is
    always the better one ("Nico Santos — live at Hallenstadion", with a description), and the
@@ -405,7 +409,7 @@ for (const x of raw) {
   if (NOTEVENT.test(title)) { drop("a forum post, not an event", x); continue; }
   /* 33 · the same thing posted twice with slightly different wording, which the exact title key
      misses: "Ice Climbing beginner course" and "Ice climbing beginner course *2 Places". */
-  const tw = new Set(norm(title).split(" ").filter(w => w.length > 3));
+  const tw = twords(title);
   if (tw.size >= 3) {
     const prior = dayWords.get(day) || [];
     const dupish = prior.some(p => {
