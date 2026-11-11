@@ -177,6 +177,27 @@ async function harvest(src) {
   if (src.kind === "ladecadanse") { const seen = new Map(); let st = 0, bytes = 0;
     for (let i = 0; i < 14; i += 7) await Promise.all([...Array(7)].map(async (_, k) => { const d = new Date(TODAY + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + i + k); const r = await get("https://www.ladecadanse.ch/index.php?courant=" + d.toISOString().slice(0, 10)); st = r.status; bytes += r.body.length; fromDecadanse(r.body).forEach(x => seen.set(x.url + x.start.slice(0, 10), x)); }));
     report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed: 14, markers: "day agenda" }); seen.forEach(x => raw.push({ ...x, src })); return; }
+  /* Hallenstadion's listing carries no event data and its JSON-LD is breadcrumbs only, which is
+     why the generic path found nothing. Every event page does carry an AddEvent block with a
+     clean start, so read the listing for links and the dates off the pages themselves. */
+  if (src.kind === "hallenstadion") {
+    const seen = new Map(); let st = 0, bytes = 0, followed = 0; const links = new Set();
+    for (const p of ["", "page/2/"]) {
+      const r0 = await get("https://hallenstadion.ch/events/" + p); st = r0.status; bytes += r0.body.length;
+      for (const m of r0.body.matchAll(/href="(https:\/\/hallenstadion\.ch\/events\/[a-z0-9-]+\?availability_id=\d+)"/g)) links.add(m[1]);
+    }
+    for (const u of [...links].slice(0, 30)) {
+      const d = await get(u); bytes += d.body.length; followed++;
+      const m = d.body.match(/<span class="start">\s*(\d{2})\.(\d{2})\.(\d{4})\s+(\d{1,2}):(\d{2})\s*<\/span>/);
+      const t = (d.body.match(/<span class="title">\s*([^<]+?)\s*<\/span>/) || [])[1];
+      if (!m || !t) continue;
+      const desc = ((d.body.match(/<meta[^>]+(?:property|name)="og:description"[^>]*content="([^"]*)"/) || [])[1] || "").trim();
+      seen.set(u, { title: clean(t), start: `${m[3]}-${m[2]}-${m[1]}T${m[4].padStart(2, "0")}:${m[5]}`, end: null,
+        url: u, place: "Hallenstadion, Wallisellenstrasse 45, Zürich", geo: [47.4114, 8.5516], price: null, desc });
+    }
+    report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed, markers: "addevent block" });
+    seen.forEach(x => raw.push({ ...x, src })); return;
+  }
   const r = await get(src.url); let items = [];
   if (r.body) {
     if (src.kind === "ics" || /^BEGIN:VCALENDAR/.test(r.body)) items = fromIcs(r.body);

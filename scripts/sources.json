@@ -1,16 +1,7 @@
 {
  "_help": "Pages the nightly collector reads. kind: page = any web page with schema.org event data (JSON-LD or embedded app data); ics = calendar feed. city = which city's list it belongs to if the event has no map position. big = concerts/shows to book ahead. Meetup groups already in the app are added automatically.",
  "meetupExtra": [
-  "les-amis-zurich",
-  "les-amis-geneva",
-  "zurich-expats",
-  "zurich-social-club",
   "geneva-social-club",
-  "internations-zurich",
-  "zurich-language-exchange",
-  "geneva-language-exchange",
-  "zurich-hiking",
-  "geneva-hiking-group",
   "drink-paint-and-make-friends",
   "historical-walks",
   "les-talents-du-grand-genevois",
@@ -62,7 +53,8 @@
   {
    "url": "https://hallenstadion.ch/events/",
    "city": "zh",
-   "big": true
+   "big": true,
+   "kind": "hallenstadion"
   },
   {
    "url": "https://www.opernhaus.ch/spielplan/kalendarium/",
