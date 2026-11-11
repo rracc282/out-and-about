@@ -408,7 +408,16 @@ for (const x of raw) {
   const tw = new Set(norm(title).split(" ").filter(w => w.length > 3));
   if (tw.size >= 3) {
     const prior = dayWords.get(day) || [];
-    if (prior.some(p => { const i = [...tw].filter(w => p.has(w)).length; return i / (tw.size + p.size - i) >= 0.7; })) { drop("near-duplicate title", x); continue; }
+    const dupish = prior.some(p => {
+      const i = [...tw].filter(w => p.has(w)).length;
+      if (i / (tw.size + p.size - i) >= 0.7) return true;
+      /* one title is the other plus extra words — a cross-post with a tag bolted on, like
+         "Ice Climbing beginner course" against "Ice climbing beginner course *2 Places free*".
+         A plain overlap threshold cannot do this without also merging two different inaugural
+         lectures, whose titles share just as many words but neither contains the other. */
+      return i >= 3 && (i === tw.size || i === p.size);
+    });
+    if (dupish) { drop("near-duplicate title", x); continue; }
     dayWords.set(day, prior.concat([tw]));
   }
   const vkey = day + "|" + (s.time || "") + "|" + norm(String(x.place || "").split(",")[0]);
