@@ -176,7 +176,8 @@ const unent = s => String(s || "").replace(/&#(\d+);/g, (_, n) => cp(+n))
   .replace(/&#x([0-9a-f]+);/gi, (_, h) => cp(parseInt(h, 16)))
   .replace(/&nbsp;/g, " ").replace(/&quot;/g, '"').replace(/&apos;/g, "'")
   .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
-const isoAddDay = d => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + 1); return x.toISOString().slice(0, 10); };
+const isoAddDays = (d, n) => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + n); return x.toISOString().slice(0, 10); };
+const isoAddDay = d => isoAddDays(d, 1);
 async function harvest(src) {
   if (src.kind === "openagenda") { const items = []; let st = 0, bytes = 0;
     for (let off = 0; off < 400; off += 100) { const r = await get(src.url + (src.url.includes("?") ? "&" : "?") + "limit=100&offset=" + off); st = r.status; bytes += r.body.length; let d; try { d = JSON.parse(r.body); } catch { break; } items.push(...fromOpenAgenda(d)); if (!d.events || d.events.length < 100) break; }
@@ -224,8 +225,14 @@ async function harvest(src) {
        card and collides in the day+time+venue dedupe, and an empty description means the
        German-language filter has only the title to work with and lets German-only talks through.
        The detail pages carry a clean <address> and real copy, so read them. */
-    for (const x of [...seen.values()].slice(0, 50)) {
-      const d = await get(x.url); if (!d.body) continue; bytes += d.body.length; followed++;
+    /* Only the ones that can still be kept — the pipeline drops anything beyond about a fortnight.
+       A flat "first 50" missed three near-term events that happened to sit on a later listing page,
+       and they shipped with no venue and a page-dump description. Four at a time, because this is
+       otherwise the slowest source in the run. */
+    const horizon = isoAddDays(TODAY, 24);
+    const soon = [...seen.values()].filter(x => x.start.slice(0, 10) <= horizon).slice(0, 70);
+    const detail = async x => {
+      const d = await get(x.url); if (!d.body) return; bytes += d.body.length; followed++;
       const ad = (d.body.match(/<address[^>]*detailpost__address[^>]*>([\s\S]*?)<\/address>/i) || [])[1];
       if (ad) {
         const parts = unent(ad).replace(/<br\s*\/?>/gi, "|").replace(/<[^>]+>/g, "").split("|").map(s => s.trim()).filter(Boolean);
@@ -237,7 +244,9 @@ async function harvest(src) {
         if (ps.length) dd = ps.sort((a, b) => b.length - a.length)[0];
       }
       if (dd) x.desc = dd.slice(0, 500);
-    }
+    };
+    for (let i = 0; i < soon.length; i += 4) await Promise.all(soon.slice(i, i + 4).map(detail));
+    report["unbezahlbar.detailed"] = soon.length;
     seen.forEach(x => { if (!x.place) x.place = "Zurich"; });
     report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed, markers: "poster list" });
     seen.forEach(x => raw.push({ ...x, src })); return;
@@ -429,7 +438,7 @@ const tgeo = {}; for (const id in TRIPMAP) if (GEO[TRIPMAP[id]]) tgeo[id] = GEO[
 /* Only single-stage halls, where one night means one event and a hand-written entry is certainly
    the same show as a scraped one. A square, a street or an arts centre can host several different
    things on one day, so day+venue must not be treated as proof of a duplicate there. */
-const BIGHALL = /hallenstadion|kongresshaus|opernhaus|tonhalle|samsung hall|the hall\b|volkshaus|kaufleuten/i;
+const BIGHALL = /hallenstadion|kongresshaus|opernhaus|tonhalle|samsung hall|the hall\b/i;
 /* ---------- weekly curation (written by the short Claude run) ---------- */
 let cur = {}; try { cur = JSON.parse(rd("data/curated.json")); } catch {}
 const fresh = cur.week === MON;
