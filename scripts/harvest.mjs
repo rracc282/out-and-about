@@ -170,6 +170,13 @@ function fromOpenAgenda(d) {
   return out;
 }
 const raw = [];
+/* numeric and named HTML entities: these venue pages print titles like "Let&#8217;s Dance" */
+const cp = n => (n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : "");
+const unent = s => String(s || "").replace(/&#(\d+);/g, (_, n) => cp(+n))
+  .replace(/&#x([0-9a-f]+);/gi, (_, h) => cp(parseInt(h, 16)))
+  .replace(/&nbsp;/g, " ").replace(/&quot;/g, '"').replace(/&apos;/g, "'")
+  .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+const isoAddDay = d => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + 1); return x.toISOString().slice(0, 10); };
 async function harvest(src) {
   if (src.kind === "openagenda") { const items = []; let st = 0, bytes = 0;
     for (let off = 0; off < 400; off += 100) { const r = await get(src.url + (src.url.includes("?") ? "&" : "?") + "limit=100&offset=" + off); st = r.status; bytes += r.body.length; let d; try { d = JSON.parse(r.body); } catch { break; } items.push(...fromOpenAgenda(d)); if (!d.events || d.events.length < 100) break; }
@@ -177,6 +184,85 @@ async function harvest(src) {
   if (src.kind === "ladecadanse") { const seen = new Map(); let st = 0, bytes = 0;
     for (let i = 0; i < 14; i += 7) await Promise.all([...Array(7)].map(async (_, k) => { const d = new Date(TODAY + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + i + k); const r = await get("https://www.ladecadanse.ch/index.php?courant=" + d.toISOString().slice(0, 10)); st = r.status; bytes += r.body.length; fromDecadanse(r.body).forEach(x => seen.set(x.url + x.start.slice(0, 10), x)); }));
     report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed: 14, markers: "day agenda" }); seen.forEach(x => raw.push({ ...x, src })); return; }
+  /* Zürich unbezahlbar lists only free events, server-rendered, 24 to a page. No structured data
+     at all, which is why the generic path saw nothing — but the title, date and times are right
+     there in the markup. The <time datetime=…> attribute is unreliable (it reads 2026-11-11 for a
+     12 November event), so the German date in the visible text is what we parse. */
+  if (src.kind === "unbezahlbar") {
+    const MON = { januar: 1, februar: 2, "märz": 3, maerz: 3, april: 4, mai: 5, juni: 6, juli: 7, august: 8, september: 9, oktober: 10, november: 11, dezember: 12 };
+    const base = "https://www.zuerichunbezahlbar.ch/events/";
+    const seen = new Map(); let st = 0, bytes = 0, followed = 0;
+    for (let p = 1; p <= 4; p++) {
+      const r0 = await get(base + (p > 1 ? "?page=" + p : "")); st = r0.status; bytes += r0.body.length; followed++;
+      const arts = r0.body.split('<article class="poster').slice(1);
+      if (!arts.length) break;
+      for (const a of arts) {
+        const href = (a.match(/href="\s*([^"]+?)\s*"/) || [])[1];
+        const title = unent((a.match(/data-js-poster-title[^>]*>([\s\S]*?)<\/span>/) || [])[1] || "").replace(/\s+/g, " ").trim();
+        const tt = unent((a.match(/<time[^>]*>([\s\S]*?)<\/time>/) || [])[1] || "").replace(/\s+/g, " ").trim();
+        const dm = tt.match(/(\d{1,2})\.\s*([A-Za-zÄÖÜäöü]+)/);
+        const hh = tt.match(/(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})/) || tt.match(/(\d{1,2}):(\d{2})/);
+        if (!href || !title || !dm || !hh) continue;
+        const mo = MON[dm[2].toLowerCase()]; if (!mo) continue;
+        /* The listing prints no year. Roll forward only when the date is well behind us, i.e.
+           genuinely next year's occurrence — a date that has merely just passed (yesterday, or a
+           run that started earlier this month) must stay in this year and be dropped as past,
+           not become an event twelve months away. */
+        let day = `${+TODAY.slice(0, 4)}-${String(mo).padStart(2, "0")}-${String(+dm[1]).padStart(2, "0")}`;
+        if (day < TODAY && (new Date(TODAY) - new Date(day)) > 60 * 864e5) day = `${+TODAY.slice(0, 4) + 1}` + day.slice(4);
+        const s0 = hh[1].padStart(2, "0") + ":" + hh[2], e0 = hh[3] ? hh[3].padStart(2, "0") + ":" + hh[4] : "";
+        /* permanently-open facilities (a bouldering cube, a parkour park) are listed with
+           00:00–23:59 — they are places, not things happening tonight */
+        if (/^00:0[01]$/.test(s0) && (!e0 || /^(23:59|00:00|23:5\d)$/.test(e0))) continue;
+        let url; try { url = new URL(href, base).href; } catch { continue; }
+        /* an end before the start means it runs past midnight */
+        const end = e0 ? (e0 > s0 ? day + "T" + e0 : isoAddDay(day) + "T" + e0) : null;
+        seen.set(url + day + s0, { title, start: day + "T" + s0, end, url, place: "", isFree: true, desc: "" });
+      }
+    }
+    /* The listing gives no venue and no text. Both matter: "Zurich" as the venue is useless on a
+       card and collides in the day+time+venue dedupe, and an empty description means the
+       German-language filter has only the title to work with and lets German-only talks through.
+       The detail pages carry a clean <address> and real copy, so read them. */
+    for (const x of [...seen.values()].slice(0, 50)) {
+      const d = await get(x.url); if (!d.body) continue; bytes += d.body.length; followed++;
+      const ad = (d.body.match(/<address[^>]*detailpost__address[^>]*>([\s\S]*?)<\/address>/i) || [])[1];
+      if (ad) {
+        const parts = unent(ad).replace(/<br\s*\/?>/gi, "|").replace(/<[^>]+>/g, "").split("|").map(s => s.trim()).filter(Boolean);
+        x.place = parts.filter((p, i) => parts.indexOf(p) === i).join(", ").replace(/\bCH-(\d{4})\b/, "$1").slice(0, 120);
+      }
+      let dd = unent((d.body.match(/<meta[^>]+(?:property|name)="(?:og:)?description"[^>]*content="([^"]*)"/i) || [])[1] || "").trim();
+      if (dd.length < 60) {
+        const ps = [...d.body.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(m => unent(m[1].replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim()).filter(s => s.length >= 60);
+        if (ps.length) dd = ps.sort((a, b) => b.length - a.length)[0];
+      }
+      if (dd) x.desc = dd.slice(0, 500);
+    }
+    seen.forEach(x => { if (!x.place) x.place = "Zurich"; });
+    report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed, markers: "poster list" });
+    seen.forEach(x => raw.push({ ...x, src })); return;
+  }
+  /* Hallenstadion's listing carries no event data and its JSON-LD is breadcrumbs only, which is
+     why the generic path found nothing. Every event page does carry an AddEvent block with a
+     clean start, so read the listing for links and the dates off the pages themselves. */
+  if (src.kind === "hallenstadion") {
+    const seen = new Map(); let st = 0, bytes = 0, followed = 0; const links = new Set();
+    for (const p of ["", "page/2/"]) {
+      const r0 = await get("https://hallenstadion.ch/events/" + p); st = r0.status; bytes += r0.body.length;
+      for (const m of r0.body.matchAll(/href="(https:\/\/hallenstadion\.ch\/events\/[a-z0-9-]+\?availability_id=\d+)"/g)) links.add(m[1]);
+    }
+    for (const u of [...links].slice(0, 30)) {
+      const d = await get(u); bytes += d.body.length; followed++;
+      const m = d.body.match(/<span class="start">\s*(\d{2})\.(\d{2})\.(\d{4})\s+(\d{1,2}):(\d{2})\s*<\/span>/);
+      const t = (d.body.match(/<span class="title">\s*([^<]+?)\s*<\/span>/) || [])[1];
+      if (!m || !t) continue;
+      const desc = unent(((d.body.match(/<meta[^>]+(?:property|name)="og:description"[^>]*content="([^"]*)"/) || [])[1] || "")).trim();
+      seen.set(u, { title: clean(unent(t)), start: `${m[3]}-${m[2]}-${m[1]}T${m[4].padStart(2, "0")}:${m[5]}`, end: null,
+        url: u, place: "Hallenstadion, Wallisellenstrasse 45, Zürich", geo: [47.4114, 8.5516], price: null, desc });
+    }
+    report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed, markers: "addevent block" });
+    seen.forEach(x => raw.push({ ...x, src })); return;
+  }
   const r = await get(src.url); let items = [];
   if (r.body) {
     if (src.kind === "ics" || /^BEGIN:VCALENDAR/.test(r.body)) items = fromIcs(r.body);
@@ -208,12 +294,19 @@ async function harvest(src) {
   report.sources.push({ url: src.url, status: r.status, bytes: r.body.length, found: items.length, followed, markers: mk });
   items.forEach(x => raw.push({ ...x, src: src }));
 }
-const groups = new Set([...html.matchAll(/meetup\.com\/([A-Za-z0-9_-]+)\/events/g)].map(m => m[1]).concat(cfg.meetupExtra || []));
+/* meetupSkip holds slugs meetup.com answers with its "Group not found" placeholder. They are
+   fetched from the group links inside index.html, so removing them from meetupExtra isn't enough. */
+const skipG = new Set(cfg.meetupSkip || []);
+const groups = new Set([...html.matchAll(/meetup\.com\/([A-Za-z0-9_-]+)\/events/g)].map(m => m[1]).concat(cfg.meetupExtra || []).filter(g => !skipG.has(g)));
 const jobs = [...[...groups].map(g => ({ url: `https://www.meetup.com/${g}/events/`, kind: "meetup" })), ...cfg.pages];
 /* Eventfrog rate-limits parallel requests: run those one after another, alongside the rest */
 const frog = jobs.filter(j => /eventfrog\./.test(j.url)), rest = jobs.filter(j => !/eventfrog\./.test(j.url));
-const frogRun = (async () => { for (const j of frog) { await harvest(j); await new Promise(r => setTimeout(r, 4000)); } })();
-for (let i = 0; i < rest.length; i += 6) await Promise.all(rest.slice(i, i + 6).map(harvest));
+/* One bad page must not cost us the whole night: an unhandled throw anywhere in here rejects the
+   batch, the script exits non-zero, the workflow never reaches its Save step and the app quietly
+   keeps yesterday's events. Record the failure against the source instead, as cinema.mjs does. */
+const harvestSafe = async j => { try { await harvest(j); } catch (e) { report.sources.push({ url: j.url, status: 0, bytes: 0, found: 0, followed: 0, markers: "FAILED: " + String(e && e.message || e).slice(0, 120) }); } };
+const frogRun = (async () => { for (const j of frog) { await harvestSafe(j); await new Promise(r => setTimeout(r, 4000)); } })();
+for (let i = 0; i < rest.length; i += 6) await Promise.all(rest.slice(i, i + 6).map(harvestSafe));
 await frogRun;
 
 const DE = /\b(und|von|nach|einem|einer|drei|akten|vom|am|den|dem|des|sich|wird|sind|ist|zu|der|die|das|mit|für|ein|eine|im|zum|zur|auf|bei|wir|ihr|nicht|oder|auch|ab|uhr|eintritt|anmeldung|führung|abend|kinder|markt)\b/gi;
@@ -227,6 +320,10 @@ const norm = t => clean(t).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, 
 const existing = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})"[^{}]*?"title": ?"([^"]+)"/g)].map(m => m[1] + "|" + norm(m[2])));
 const urlKey = u => /\.php\?|[?&](id[A-Z]?|event|e)=/.test(u) ? u.replace(/#.*$/, "") : u.replace(/[?#].*$/, "");
 const existingUrl = new Set([...html.matchAll(/"url": ?"([^"]+)"/g)].map(m => urlKey(m[1])));
+/* day + venue, for sources that cover a single big hall. A hand-written entry for the night is
+   always the better one ("Nico Santos — live at Hallenstadion", with a description), and the
+   title dedupe above misses it because the scraped title is just "Nico Santos". */
+const existingVenueDay = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})"[^{}]*?"place": ?"([^",]+)/g)].map(m => m[1] + "|" + norm(m[2])));
 const slug = s => clean(s).toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
 const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
 const SRCNAME = { "meetup.com": "Meetup", "eventbrite.ch": "Eventbrite", "eventbrite.com": "Eventbrite", "eventfrog.ch": "Eventfrog", "songkick.com": "Songkick" };
@@ -257,6 +354,7 @@ for (const x of raw) {
   const url = urlKey(x.url || x.src.url);
   const key = day + "|" + norm(title);
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
+  if (x.src.kind === "hallenstadion" && existingVenueDay.has(day + "|" + norm(String(x.place || "").split(",")[0]))) { drop("already in app"); continue; }
   if (out.has(key)) { drop("duplicate"); continue; }
   const vkey = day + "|" + (s.time || "") + "|" + norm(String(x.place || "").split(",")[0]);
   if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate"); continue; } seenVenue.add(vkey);
@@ -287,7 +385,10 @@ function dedupeSites() { const STOP = new Set("the and for with from your this t
   events = events.filter(e => !drop2.has(e.id)); }
 dedupeSites();
 /* keep the list readable: at most 40 per city per day; meeting people, creative, markets and Meetup first */
-const per = {}; const pri = e => (e.src === "Meetup" ? 3 : 0) + ((e.cat || []).some(c => /rencontre|creatif|marche/.test(c)) ? 2 : 0) + (e.free ? 1 : 0);
+/* Ticketed halls score nothing on the rules below, so once a day fills up they are the first
+   thing cut — which quietly undid the Kaufleuten and Hallenstadion coverage. Give them a lift. */
+const BIGV = new Set((cfg.pages || []).filter(p => p.big).map(p => host(p.url)).filter(Boolean));
+const per = {}; const pri = e => (e.src === "Meetup" ? 3 : 0) + ((e.cat || []).some(c => /rencontre|creatif|marche/.test(c)) ? 2 : 0) + (e.free ? 1 : 0) + (BIGV.has(host(e.url)) ? 2 : 0);
 events.sort((a, b) => pri(b) - pri(a));
 events = events.filter(e => { const k = e.city + e.day + e.p; per[k] = (per[k] || 0) + 1; return e.p === "on" || e.p === "big" || per[k] <= 40; });
 report.kept = events.length;
@@ -325,6 +426,10 @@ for (let i = 0; i < tids.length; i += 25) {
 }
 const tgeo = {}; for (const id in TRIPMAP) if (GEO[TRIPMAP[id]]) tgeo[id] = GEO[TRIPMAP[id]];
 
+/* Only single-stage halls, where one night means one event and a hand-written entry is certainly
+   the same show as a scraped one. A square, a street or an arts centre can host several different
+   things on one day, so day+venue must not be treated as proof of a duplicate there. */
+const BIGHALL = /hallenstadion|kongresshaus|opernhaus|tonhalle|samsung hall|the hall\b|volkshaus|kaufleuten/i;
 /* ---------- weekly curation (written by the short Claude run) ---------- */
 let cur = {}; try { cur = JSON.parse(rd("data/curated.json")); } catch {}
 const fresh = cur.week === MON;
@@ -332,6 +437,22 @@ const notes = { ge: {}, zh: {} };
 for (const p of periods) for (const c of ["ge", "zh"]) notes[c][p.id] = (fresh && cur.notes && cur.notes[c] && cur.notes[c][p.id]) || wetNote(c, p);
 periods.forEach(p => { p.note = notes.ge[p.id]; });
 const add = (cur.add || []).filter(e => (e.dayEnd || e.day) >= TODAY).map(e => ({ ...e, p: e.p === "big" || e.p === "on" ? e.p : periodOf(e.day < TODAY ? TODAY : e.day) || "later" }));
+/* The weekly curation is merged after the harvest has already deduped, so a hand-written entry
+   and a scraped one for the same night at the same hall both survive — the titles differ
+   ("Nico Santos" vs "Nico Santos — live at Hallenstadion") so the title key never matches.
+   The hand-written one is the better entry, so drop the scraped night it covers. */
+{
+  const curVenueDay = new Set(add.filter(e => e.place && BIGHALL.test(String(e.place))).map(e => e.day + "|" + norm(String(e.place).split(",")[0])));
+  if (curVenueDay.size) {
+    const before = events.length, gone = [];
+    events = events.filter(e => {
+      const hit = e.auto && e.place && BIGHALL.test(String(e.place)) && curVenueDay.has(e.day + "|" + norm(String(e.place).split(",")[0]));
+      if (hit) gone.push(e.day + " " + e.title);
+      return !hit;
+    });
+    if (before !== events.length) { report.curatedOverlap = before - events.length; report.curatedOverlapDropped = gone; }
+  }
+}
 
 /* ---------- English: translate German/French titles and descriptions (free MyMemory API, cached in data/tr.json) ---------- */
 let TR = {}; try { TR = JSON.parse(rd("data/tr.json")); } catch {}
@@ -374,7 +495,7 @@ const metaDesc = h => { const c = [];
   const body = h.replace(/<(script|style|nav|footer|header|form)[\s\S]*?<\/\1>/gi, " "); const ps = [...body.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(m => clean(m[1].replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&#0?39;|&rsquo;/g, "'").replace(/&amp;/g, "&"))).filter(x => x.length >= 80 && !/cookie|newsletter|inbox|abonne|subscribe|javascript|copyright|©/i.test(x));
   if (ps.length) c.push(ps.slice(0, 2).join(" "));
   return c.map(x => clean(x.replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/<[^>]+>/g, " "))).filter(x => x.length >= 40 && !JUNK.test(x) && !/cookie|javascript|newsletter|inbox|delivered to your|abonnez|subscribe/i.test(x)).sort((a, b) => b.length - a.length)[0] || ""; };
-{ const todo = events.concat(add).filter(e => e.url && (!e.desc || e.desc.length < 70 || WEAK.test(e.desc.trim())) && !/songkick|meetup\.com/.test(e.url)).slice(0, 140);
+{ const todo = events.concat(add).filter(e => e.url && (!e.desc || e.desc.length < 70 || WEAK.test(e.desc.trim())) && !/songkick|meetup\.com|hallenstadion\.ch/.test(e.url)).slice(0, 140);
   for (let i = 0; i < todo.length; i += 6) await Promise.all(todo.slice(i, i + 6).map(async e => {
     let d = DESC[e.url]; if (d != null && (/inbox|newsletter|delivered to your|boîte|chaque lundi|meilleur de gen|dans le cadre du festival/i.test(d) || JUNK.test(d) || d.length < 100)) d = null; if (d == null) { const r = await get(e.url); d = r.body ? metaDesc(r.body) : ""; DESC[e.url] = d; }
     const fest = (String(e.desc || "").match(/(?:dans le cadre du|as part of the|im rahmen des?)\s+((?:festival\s+)?[^.,;]{3,60}?festival|festival\s+[^.,;]{3,50})/i) || [])[1];

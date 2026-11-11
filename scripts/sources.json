@@ -1,21 +1,18 @@
 {
  "_help": "Pages the nightly collector reads. kind: page = any web page with schema.org event data (JSON-LD or embedded app data); ics = calendar feed. city = which city's list it belongs to if the event has no map position. big = concerts/shows to book ahead. Meetup groups already in the app are added automatically.",
  "meetupExtra": [
-  "les-amis-zurich",
-  "les-amis-geneva",
-  "zurich-expats",
-  "zurich-social-club",
   "geneva-social-club",
-  "internations-zurich",
-  "zurich-language-exchange",
-  "geneva-language-exchange",
-  "zurich-hiking",
-  "geneva-hiking-group",
   "drink-paint-and-make-friends",
   "historical-walks",
   "les-talents-du-grand-genevois",
   "lausanne-board-games",
-  "networking-afterwork-geneve"
+  "networking-afterwork-geneve",
+  "deep-conversations-zurich",
+  "alpine-trekkers-zurich",
+  "the-connection-lab",
+  "connectionspacezurich",
+  "english-yes-please",
+  "amigas-hispanas-en-suiza"
  ],
  "pages": [
   {
@@ -31,8 +28,9 @@
    "city": "zh"
   },
   {
-   "url": "https://www.zuerichunbezahlbar.ch/",
-   "city": "zh"
+   "url": "https://www.zuerichunbezahlbar.ch/events/",
+   "city": "zh",
+   "kind": "unbezahlbar"
   },
   {
    "url": "https://newinzurich.com/events/",
@@ -62,7 +60,8 @@
   {
    "url": "https://hallenstadion.ch/events/",
    "city": "zh",
-   "big": true
+   "big": true,
+   "kind": "hallenstadion"
   },
   {
    "url": "https://www.opernhaus.ch/spielplan/kalendarium/",
@@ -196,6 +195,63 @@
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=hiking",
    "kind": "meetup",
    "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=photography",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=pottery",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=expats",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=women",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=walking",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=brunch",
+   "kind": "meetup",
+   "city": "zh"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=photography",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=pottery",
+   "kind": "meetup",
+   "city": "ge"
+  },
+  {
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=expats",
+   "kind": "meetup",
+   "city": "ge"
   }
+ ],
+ "meetupSkip": [
+  "enjoy-geneve",
+  "les-amis-zurich",
+  "les-amis-geneva",
+  "zurich-expats",
+  "zurich-social-club",
+  "internations-zurich",
+  "zurich-language-exchange",
+  "geneva-language-exchange",
+  "zurich-hiking",
+  "geneva-hiking-group"
  ]
 }
