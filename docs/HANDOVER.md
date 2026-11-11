@@ -35,8 +35,16 @@ Three known residuals, none a regression and none loses data:
 
 Note the branch also carries two bot commits ("Nightly events", "Cinema times") — pushing `scripts/sources.json` or `scripts/cinema.mjs` to any branch triggers those workflows, so they ran against `batch-6`. Harmless: the nightly job regenerates that data on `main` anyway.
 
+## Batch 7, started — branch `batch-7`, not live
+Part of item 33: the dead Zurich feeds. Each was diagnosed by fetching it from Actions, since the dev sandbox cannot reach these sites.
+- **Hallenstadion** now has its own collector and yields ~11 events (was 0). Its listing has no event data and its JSON-LD is breadcrumbs only; every event page carries an AddEvent block (`<span class="start">11.11.2026 19:30</span>`), so links come from the listing and dates from the pages.
+- **Nine of fifteen hand-added Meetup slugs do not exist** — meetup.com serves an identical ~59.6 KB placeholder for all of them. Removed, so the nightly run stops wasting nine fetches and the report shows real failures.
+- Two general bugs this surfaced: numeric HTML entities were never decoded (`Let&#8217;s Dance`), and the weekly curation is merged *after* dedupe, so a hand-written entry and a scraped one for the same night both survived. Both fixed; `report.curatedOverlap` counts the second.
+
+Still zero, with the reason, so nobody re-probes them: **guidle** and **infomaniak.events** are Vue apps that render events client-side; **zuerichunbezahlbar** and **tonhalle-orchester** expose no structured data at all; **newinzurich**'s events page is hand-written prose and its RSS feed is empty. **zuri.net** is the one unexplored lead — it has per-day server-rendered pages at `/de/zurich/agenda/DD-MM-YYYY`.
+
 ## Still to do (from the six-reviewer feedback list)
-- **Batch 7 · Under the hood:** 33 nightly quality check (duplicates, wrong categories, too-far events, odd times); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
+- **Batch 7 · Under the hood:** the rest of 33 (duplicates, wrong categories, too-far events, odd times) (duplicates, wrong categories, too-far events, odd times); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
 - **Batch 8 · Niche extras:** the owner decides do/skip for items 19–25, 43, 56, 66–68, 70–73.
 - **Batch 9 · Big ideas:** items 74–79 (owner decides).
 - Item 44 was skipped by the owner.
