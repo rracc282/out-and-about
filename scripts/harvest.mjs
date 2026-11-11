@@ -170,6 +170,11 @@ function fromOpenAgenda(d) {
   return out;
 }
 const raw = [];
+/* numeric and named HTML entities: these venue pages print titles like "Let&#8217;s Dance" */
+const unent = s => String(s || "").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+  .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+  .replace(/&nbsp;/g, " ").replace(/&quot;/g, '"').replace(/&apos;/g, "'")
+  .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
 async function harvest(src) {
   if (src.kind === "openagenda") { const items = []; let st = 0, bytes = 0;
     for (let off = 0; off < 400; off += 100) { const r = await get(src.url + (src.url.includes("?") ? "&" : "?") + "limit=100&offset=" + off); st = r.status; bytes += r.body.length; let d; try { d = JSON.parse(r.body); } catch { break; } items.push(...fromOpenAgenda(d)); if (!d.events || d.events.length < 100) break; }
@@ -191,8 +196,8 @@ async function harvest(src) {
       const m = d.body.match(/<span class="start">\s*(\d{2})\.(\d{2})\.(\d{4})\s+(\d{1,2}):(\d{2})\s*<\/span>/);
       const t = (d.body.match(/<span class="title">\s*([^<]+?)\s*<\/span>/) || [])[1];
       if (!m || !t) continue;
-      const desc = ((d.body.match(/<meta[^>]+(?:property|name)="og:description"[^>]*content="([^"]*)"/) || [])[1] || "").trim();
-      seen.set(u, { title: clean(t), start: `${m[3]}-${m[2]}-${m[1]}T${m[4].padStart(2, "0")}:${m[5]}`, end: null,
+      const desc = unent(((d.body.match(/<meta[^>]+(?:property|name)="og:description"[^>]*content="([^"]*)"/) || [])[1] || "")).trim();
+      seen.set(u, { title: clean(unent(t)), start: `${m[3]}-${m[2]}-${m[1]}T${m[4].padStart(2, "0")}:${m[5]}`, end: null,
         url: u, place: "Hallenstadion, Wallisellenstrasse 45, Zürich", geo: [47.4114, 8.5516], price: null, desc });
     }
     report.sources.push({ url: src.url, status: st, bytes, found: seen.size, followed, markers: "addevent block" });
@@ -248,6 +253,10 @@ const norm = t => clean(t).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, 
 const existing = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})"[^{}]*?"title": ?"([^"]+)"/g)].map(m => m[1] + "|" + norm(m[2])));
 const urlKey = u => /\.php\?|[?&](id[A-Z]?|event|e)=/.test(u) ? u.replace(/#.*$/, "") : u.replace(/[?#].*$/, "");
 const existingUrl = new Set([...html.matchAll(/"url": ?"([^"]+)"/g)].map(m => urlKey(m[1])));
+/* day + venue, for sources that cover a single big hall. A hand-written entry for the night is
+   always the better one ("Nico Santos — live at Hallenstadion", with a description), and the
+   title dedupe above misses it because the scraped title is just "Nico Santos". */
+const existingVenueDay = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})"[^{}]*?"place": ?"([^",]+)/g)].map(m => m[1] + "|" + norm(m[2])));
 const slug = s => clean(s).toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
 const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
 const SRCNAME = { "meetup.com": "Meetup", "eventbrite.ch": "Eventbrite", "eventbrite.com": "Eventbrite", "eventfrog.ch": "Eventfrog", "songkick.com": "Songkick" };
@@ -278,6 +287,7 @@ for (const x of raw) {
   const url = urlKey(x.url || x.src.url);
   const key = day + "|" + norm(title);
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
+  if (x.src.kind === "hallenstadion" && existingVenueDay.has(day + "|" + norm(String(x.place || "").split(",")[0]))) { drop("already in app"); continue; }
   if (out.has(key)) { drop("duplicate"); continue; }
   const vkey = day + "|" + (s.time || "") + "|" + norm(String(x.place || "").split(",")[0]);
   if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate"); continue; } seenVenue.add(vkey);
