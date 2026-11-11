@@ -991,6 +991,9 @@ button[data-pal][aria-pressed="true"]{border-color:var(--lake)!important;box-sha
 .zhmini{border:0;background:none;padding:0;margin:8px 0 -2px}
 .zhmini>button{margin:0;padding:2px 0;min-height:28px;font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:.01em}
 .zhmini .betatag{opacity:.9}
+/* 39 · what kind of thing a plan card is, when it isn't just "turn up" */
+.pl-kind{display:inline-block;align-self:flex-start;margin:1px 0 3px;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--lake-soft);color:var(--lake)}
+.pl-kind.book{background:var(--sun-soft);color:var(--sun)}
 /* toasts: above the tab bar, short, with a tick and a clear action */
 .toast{bottom:calc(76px + env(safe-area-inset-bottom,0px))!important;width:max-content;padding:10px 10px 10px 14px!important;font-size:14px;line-height:1.35;animation:toastin .18s ease-out}
 .toast.warn>span::before{content:"!";}
@@ -3297,12 +3300,53 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     {const base=(prof()[ctx]||{}).moods||[];if(moods.some(x=>tg.has(x)&&!base.includes(x)))v+=5}
     if(moods.length)v+=m?6+2*(m-1):-5;
     if(who==="solo"&&tg.has("meet"))v+=3;if(who==="partner"&&tg.has("meet")&&!tg.has("concerts")&&!tg.has("festivals")&&!tg.has("games"))v-=4;if(who!=="solo"&&/singles|tables for singles/i.test(e.title))v-=6;
-    if(String(e.desc||"").length<40)v-=3;if(/[\u{1F300}-\u{1FAFF}]/u.test(e.title)||(e.title.match(/\b[A-Z]{4,}\b/g)||[]).length>=2)v-=1;
-    if(PICKS().some(p=>p.id===e.id))v+=4;if(goingSet.has(e.id)&&goOn(e,s.d))v+=100;
+    if(!e.film&&String(e.desc||"").length<40)v-=3;if(/[\u{1F300}-\u{1FAFF}]/u.test(e.title)||(e.title.match(/\b[A-Z]{4,}\b/g)||[]).length>=2)v-=1;
+    /* 39 · a film or a ticketed show is a deliberate choice, so it only floats up when asked for.
+       Without this they would crowd out the free, walk-in things the Plan is mostly for. */
+    if(e.film)v+=(moods.includes("film")?6:-8)+Math.max(0,(e._imdb||0)-6.6)*1.6;
+    else if(e.p==="big")v+=moods.some(x=>x==="concerts"||x==="film"?tg.has(x):false)?3:-7;
+    if(PICKS().some(p=>p.id===e.id))v+=4;if((e.film?filmIn(e):goingSet.has(e.id)&&goOn(e,s.d)))v+=100;
     const w=wx(s.d,s.k);if(w&&w.r>=55&&!isIndoor(e))v-=4;
     if(e.p==="on"&&!moods.includes("exhibitions"))v-=3;
     return v-kindPenalty(e)}
   function hikes(){return city()!=="ge"?[]:TRIPS.filter(t=>t.kind==="hike").map(t=>({id:t.id,hike:t,title:t.name,day:"",when:"",cat:["corps","chien"],place:t.hike.area,desc:t.hook}))}
+  /* ===== Batch 6 · item 39: cinema screenings and ticketed shows can be planned too =====
+     A screening is turned into an event-shaped object so fits(), score() and the cards keep
+     working unchanged. .film carries exactly what My plans stores, which is a screening
+     (film|cinema|day|time), not an event — so keeping one writes to S.films, not goingSet. */
+  const CINEMAS=()=>((window.CINE||{}).cinemas||{});
+  const filmKey=e=>e.film.k;
+  const filmIn=e=>(S.films||[]).some(x=>x.k===filmKey(e));
+  function filmOn(e){S.films=S.films||[];if(!filmIn(e))S.films.push(Object.assign({},e.film))}
+  function filmOff(e){S.films=(S.films||[]).filter(x=>x.k!==filmKey(e))}
+  function filmEv(f,sh){
+    const cid=sh[0],day=sh[1],tm=sh[2],lang=sh[3],book=sh[4];const c=CINEMAS()[cid];if(!c)return null;
+    const s0=(+tm.slice(0,2))*60+(+tm.slice(3,5));const run=f.m||0;
+    const end=run?pad(Math.floor((s0+run)%1440/60))+":"+pad((s0+run)%60):"";
+    const k=f.id+"|"+cid+"|"+day+"|"+tm;
+    const e={id:"film~"+k,film:{k,id:f.id,t:f.t,c:cid,cn:c.n||"",city:c.c||"ge",d:day,tm,u:book||c.u||""},
+      title:f.t,day,dayEnd:day,when:DAYNAMES[dow(day)].slice(0,3)+" "+(+day.slice(8))+" · "+tm+(end?"–"+end:""),
+      place:(c.n||"")+(c.q?", "+c.q:""),city:c.c||"ge",zone:c.c||"ge",cat:["culture"],kind:"Film",
+      desc:String(f.d||""),price:"",url:book||c.u||"",geo:c.ll||null,indoor:true,book:true,
+      _lang:lang,_mins:run,_genre:f.k||"",_imdb:f.imdb||0,
+      _pk:"Film",_ptg:new Set(["film"]),_ptx:(f.t+" film cinema "+(f.k||"")).toLowerCase()};
+    return e}
+  /* Rebuild one screening from a plan id, so the detail sheet survives a re-render. */
+  function planFilm(id){if(!/^film~/.test(id))return null;const k=id.slice(5);const fid=k.split("|")[0];
+    const f=((window.CINE||{}).films||[]).find(x=>x.id===fid);if(!f)return null;
+    const sh=(f.shows||[]).find(x=>x[0]+"|"+x[1]+"|"+x[2]===k.split("|").slice(1).join("|"));
+    return sh?filmEv(f,sh):null}
+  function filmCands(s,c){const C=window.CINE;if(!C||!C.films)return [];const out=[];
+    C.films.forEach(f=>(f.shows||[]).forEach(sh=>{
+      if(sh[1]!==s.d)return;const cin=CINEMAS()[sh[0]];if(!cin||cin.c!==c)return;
+      const e=filmEv(f,sh);if(!e)return;
+      if(isPast(e)||never(e))return;
+      if(s.d===TODAY){const i=interval(e);if(i&&i.s<nowMin()+45)return}
+      if(fits(e,s))out.push(e)}));
+    return out}
+  /* Ticketed shows were kept out of the Plan entirely. They are allowed in now; fits() still
+     decides whether there is a real time to place them at, and score() keeps them down unless
+     the matching mood is on. */
   function hikeScore(h,s,moods){const t=h.hike;const w=(TWX[t.id]||{})[s.d]||((city()==="ge"?WX:WX_ZH)[s.d]);let v=moods.includes("outdoors")?16:2;
     if(w){if(w[1]>=50)v-=20;else if(w[1]>=30)v-=4;else v+=4}
     if(s.d===TODAY&&nowMin()>9*60)v-=50;if((S.nope||{})[t.id])v-=50;return v-t.hike.min/120}
@@ -3312,8 +3356,9 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     else{const m=String(e.trip||"").match(/(\d+)\s*km/);if(m&&+m[1]>15)f=true}
     if(/\b(?:lausanne|vevey|montreux|nyon|morges|rolle|winterthur|baden|lucerne|luzern|zug|basel|bern|thun|st\.? ?gallen|aarau|olten|schaffhausen|rapperswil)\b/i.test(townPart(e)))f=true;
     return e._far=f}
-  function cands(s,ctx,moods,who){const c=city();const pricey=e=>{const m=String(e.price||"").match(/CHF\s*(\d+)/);return m&&+m[1]>150&&!goingSet.has(e.id)};let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!pricey(e)&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&e.p!=="big"&&fits(e,s)&&!never(e)&&(goingSet.has(e.id)||(isLocal(e)&&!e.fr&&!far(e))));
+  function cands(s,ctx,moods,who){const c=city();const pricey=e=>{const m=String(e.price||"").match(/CHF\s*(\d+)/);return m&&+m[1]>150&&!goingSet.has(e.id)};let L=EVENTS.filter(e=>cityOf(e)===c&&!e.folded&&!pricey(e)&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&(wantsDating()||!isDating(e))&&fits(e,s)&&!never(e)&&(goingSet.has(e.id)||(isLocal(e)&&!e.fr&&!far(e))));
     if(ctx==="we"&&s.k==="m")L=L.concat(hikes());
+    L=L.concat(filmCands(s,c));
     return L.map(e=>({e,v:score(e,s,ctx,moods,who)})).sort((a,b)=>b.v-a.v)}
   /* --- building a plan --- */
   function wkey(ctx){return ctx+"|"+(ctx==="we"?weRange()[0]:wkDays()[0])+"|"+city()}
@@ -3323,19 +3368,21 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   try{const keep=new Set(["we","wk"].map(c=>"oa-mood-"+wkey(c)));Object.keys(localStorage).filter(k=>k.startsWith("oa-mood-")&&!keep.has(k)&&!keep.has(k.replace(/\|(ge|zh)$/,""))).forEach(k=>{const m=k.match(/\|(\d{4}-\d{2}-\d{2})\|/);if(m&&m[1]<isoAdd(TODAY,-7))localStorage.removeItem(k)})}catch(x){}
   function clearCur(){try{Object.keys(localStorage).filter(k=>k.startsWith("oa-mood-")).forEach(k=>localStorage.removeItem(k))}catch(x){}}
   const swaps={};
-  function build(ctx){const {who,moods}=cur(ctx);const st=store(ctx);const sl=slots(ctx);const used=new Set(),usedTags={},usedT=new Set(),usedV=new Set();let usedHike=false;const nz=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ").trim();const tn=e=>nz(e.title).split(" ").slice(0,4).join(" ");const vn=e=>e.hike?"":nz(String(e.place||"").split(",")[0]).replace(/\b(geneve|geneva|zurich|genf)\b/g,"").trim();const res=[];
+  function build(ctx){const {who,moods}=cur(ctx);const st=store(ctx);const sl=slots(ctx);const used=new Set(),usedTags={},usedT=new Set(),usedV=new Set();let usedHike=false,nFilm=0;const maxFilm=ctx==="we"?2:1;const nz=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ").trim();const tn=e=>nz(e.title).split(" ").slice(0,4).join(" ");const vn=e=>e.hike?"":nz(String(e.place||"").split(",")[0]).replace(/\b(geneve|geneva|zurich|genf)\b/g,"").trim();const res=[];
     sl.forEach(s=>{const o=st[s.key];if(o&&o.id){used.add(o.id)}});
     for(const s of sl){const o=st[s.key]||{};
       if(o.skip){res.push({s,skip:true});continue}
       if(ctx==="we"&&s.k==="a"){const prev=res.find(r=>r.s.d===s.d&&r.s.k==="m");if(prev&&prev.pick&&prev.pick.e.hike&&prev.pick.e.hike.hike.min>=150){res.push({s,cont:prev.pick});continue}}
       const all=cands(s,ctx,moods,who);
       let list=all.filter(x=>(!used.has(x.e.id)&&!usedT.has(tn(x.e)))||(o.id===x.e.id));
-      list.forEach(x=>{const t=[...tags(x.e)][0];if(t&&usedTags[t]&&!(o.id===x.e.id))x.v-=3*usedTags[t];if(usedV.has(vn(x.e))&&!(o.id===x.e.id))x.v-=8;if(x.e.hike&&usedHike&&!(o.id===x.e.id))x.v-=12});list.sort((a,b)=>b.v-a.v);
-      let pick=null;if(o.id){pick=all.find(x=>x.e.id===o.id)||(()=>{const e=EVENTS.find(x=>x.id===o.id)||hikes().find(x=>x.id===o.id);return e?{e,v:0}:null})()}
-      const going=list.find(x=>goingSet.has(x.e.id)&&goOn(x.e,s.d));if(!pick&&going)pick=going;
+      list.forEach(x=>{const t=[...tags(x.e)][0];if(t&&usedTags[t]&&!(o.id===x.e.id))x.v-=3*usedTags[t];if(usedV.has(vn(x.e))&&!(o.id===x.e.id))x.v-=8;if(x.e.hike&&usedHike&&!(o.id===x.e.id))x.v-=12;
+        /* 39 · a plan full of cinema isn't a plan. Past the cap a film only wins an empty slot. */
+        if(x.e.film&&nFilm&&!(o.id===x.e.id))x.v-=nFilm>=maxFilm?40:10});list.sort((a,b)=>b.v-a.v);
+      let pick=null;if(o.id){pick=all.find(x=>x.e.id===o.id)||(()=>{const e=EVENTS.find(x=>x.id===o.id)||hikes().find(x=>x.id===o.id)||planFilm(o.id);return e?{e,v:0}:null})()}
+      const going=list.find(x=>x.e.film?filmIn(x.e):goingSet.has(x.e.id)&&goOn(x.e,s.d));if(!pick&&going)pick=going;
       if(!pick){const i=(swaps[s.key]||0)%Math.max(1,list.length);pick=list[i]||null}
-      if(pick){if(pick.e.hike)usedHike=true;used.add(pick.e.id);usedT.add(tn(pick.e));if(vn(pick.e))usedV.add(vn(pick.e));[...tags(pick.e)].slice(0,1).forEach(t=>usedTags[t]=(usedTags[t]||0)+1)}
-      res.push({s,pick,kept:!!o.id,going:pick&&(pick.e.hike?tripDates(pick.e.id).includes(s.d):goingSet.has(pick.e.id)&&goOn(pick.e,s.d)),n:list.length,all:list})}
+      if(pick){if(pick.e.hike)usedHike=true;if(pick.e.film)nFilm++;used.add(pick.e.id);usedT.add(tn(pick.e));if(vn(pick.e))usedV.add(vn(pick.e));[...tags(pick.e)].slice(0,1).forEach(t=>usedTags[t]=(usedTags[t]||0)+1)}
+      res.push({s,pick,kept:!!o.id,going:pick&&(pick.e.hike?tripDates(pick.e.id).includes(s.d):pick.e.film?filmIn(pick.e):goingSet.has(pick.e.id)&&goOn(pick.e,s.d)),n:list.length,all:list})}
     return res}
   function dontMiss(ctx){const ds=ctx==="we"?weRange():wkDays();const lo=ds[0],hi=ds[ds.length-1];const c=city();
     return EVENTS.filter(e=>cityOf(e)===c&&!isPast(e)&&!isDel(e)&&!hidden.has(e.id)&&!e.folded&&!e.fr&&!far(e)&&!never(e)&&e.day<=hi&&(e.dayEnd||e.day)>=lo&&((e.dayEnd&&e.dayEnd>e.day&&(new Date(e.dayEnd)-new Date(e.day))<=24*864e5&&/festival|fest\b|f[êe]te/i.test(e.title+" "+(e.kind||"")))||PICKS().some(p=>p.id===e.id&&/festival/i.test(e.title+p.why))))
@@ -3343,6 +3390,8 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   /* --- rendering --- */
   function why(e){const p=PICKS().find(x=>x.id===e.id);if(p&&p.why)return p.why;let d=String(e.desc||"").replace(/^Age range:[^.]*\.\s*/,"").replace(/\s+/g," ").trim();if(!d)return "";const m=d.match(/^(.{40,150}?[.!?])(\s|$)/);d=m?m[1]:d.slice(0,140)+(d.length>140?"…":"");return d}
   function meta(e){if(e.hike){const h=e.hike.hike;return "Hike · "+hm(h.min)+" · "+h.km+" km · ↑ "+h.up+" m · 🐕 · GPX"}
+    if(e.film)return [e._genre||"Film",(e.when.split(" · ")[1]||""),String(e.place||"").split(",")[0],
+      e._lang==="en"?"English":"EN subs",e._mins?hm(e._mins):"",e._imdb?"IMDb "+e._imdb.toFixed(1):""].filter(Boolean).join(" · ");
     const t=(e.when||"").replace(/^[A-Z][a-z]{2} \d{1,2} · /,"");const pl=String(e.place||"").split(",")[0];let k="";try{k=gloss(e).replace(/<[^>]+>/g,"").replace(/&amp;/g,"&").replace(/ · free| · 🌧 outdoors/g,"")}catch(x){}
     return [k,t,pl,e.free?"free":(e.price&&!/^\s*$/.test(e.price)&&e.price.length<18?e.price:"")].filter(Boolean).join(" · ")+((e.cat||[]).includes("chien")?" · 🐕":"")}
   function card(r,ctx){const s=r.s,w=wx(s.d,s.k);const wtx=r._short?"":w?(w.r>=50?"🌧 ":w.r>=25?"⛅ ":"☀️ ")+w.t+"° · 💧"+w.r+"%":"";
@@ -3350,7 +3399,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(r.skip)return '<div class="pl-slot pl-skip" data-slot="'+s.key+'">'+head+'<div class="pl-m">Skipped · <button class="pl-lnk" data-plunskip="'+s.key+'">Plan something</button></div></div>';
     if(r.cont)return '<div class="pl-slot pl-cont">'+head+'<div class="pl-m">↳ Still on '+esc(r.cont.e.title)+'</div></div>';
     if(!r.pick)return '<div class="pl-slot">'+head+'<div class="pl-m">Nothing listed for this '+SL[s.k][2]+' yet nearby. New events arrive every night; <button class="pl-lnk" data-plall="'+s.key+'">see all options</button> or browse Explore.</div></div>';
-    const e=r.pick.e;const tag='';
+    const e=r.pick.e;const tag=e.film?'<span class="pl-kind">Cinema</span>':e.p==="big"?'<span class="pl-kind book">Book ahead</span>':'';
     return '<div class="pl-slot pl-k-'+s.k+(r.going?' pl-on':r.kept?' pl-kept':'')+'" data-slot="'+s.key+'" data-ev="'+esc(e.id)+'">'+(r.going?'<span class="pl-badge">✓ In My plans</span>':'')+head+
       '<button class="pl-body" data-plmenu="'+s.key+'"><span class="pl-t">'+esc(e.title)+'</span>'+tag+'<span class="pl-m">'+esc(meta(e))+'</span>'+(why(e)?'<span class="pl-w">'+esc(why(e))+'</span>':'')+'</button>'+
       '<div class="pl-acts"><button data-plswap="'+s.key+'"'+(r.n<2||r.going?' disabled':'')+'>↻ Swap'+(r.n>1?' <small>'+(r.n-1)+'</small>':'')+'</button>'+(r.going?'<button class="on" data-plunkeep="'+s.key+'">Remove</button>':'<button data-plkeep="'+s.key+'">＋ My plans</button>')+'<button class="x" data-plnope="'+s.key+'">Not for me</button></div></div>'}
@@ -3387,14 +3436,14 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
       '<button class="pl-opt" data-plopen="'+esc(e.id)+'">Details</button><button class="pl-opt" data-plskip="'+key+'">Skip this slot</button><button class="pl-opt x" data-plnope="'+key+'">Not for me</button></div>';
     document.body.appendChild(d)}
   /* event info inside the Plan (no jump to other tabs) */
-  function detail(id,key){closeSheet();const ctx=ui.planCtx||"we";let e=EVENTS.find(x=>x.id===id);if(!e)return openEv(id);
+  function detail(id,key){closeSheet();const ctx=ui.planCtx||"we";let e=EVENTS.find(x=>x.id===id)||planFilm(id);if(!e)return openEv(id);
     let menu="";if(key){const res=build(ctx);const r=res.find(x=>x.s.key===key);if(r&&r.pick&&r.pick.e.id===id){
       menu=res.filter(x=>x.s.key!==key&&!x.cont&&fits(e,x.s)).map(o=>{const w=wx(o.s.d,o.s.k);return '<button class="pl-opt" data-plmove="'+esc(key+"~"+o.s.key)+'">↔ Move to '+slotName(o.s,ctx)+(w?' <span'+(w.r>=50?' class="warn"':'')+'>'+(w.r>=50?"🌧":w.r>=25?"⛅":"☀️")+' '+w.r+'%</span>':'')+'</button>'}).join("")+
         '<button class="pl-opt" data-plall="'+key+'">☰ See all options for '+slotName(r.s,ctx)+' <span>'+r.n+' →</span></button><button class="pl-opt" data-plskip="'+key+'">Skip this slot</button><button class="pl-opt x" data-plnope="'+key+'">Not for me</button>'}}
-    const kd=key?key.split("|")[0]:"";const g=goingSet.has(e.id)&&(!key||goOn(e,kd));const elsewhere=goingSet.has(e.id)&&!g;const desc=String(e.desc||"").trim();const map="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(e.place||e.title);
+    const kd=key?key.split("|")[0]:"";const g=e.film?filmIn(e):(goingSet.has(e.id)&&(!key||goOn(e,kd)));const elsewhere=!e.film&&goingSet.has(e.id)&&!g;const desc=String(e.desc||"").trim();const map="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(e.place||e.title);
     const d=document.createElement("div");d.id="plsheet";d.innerHTML='<div class="pl-dim" data-plclose></div><div class="pl-sheet" role="dialog" aria-label="'+esc(e.title)+'"><div class="pl-grab"></div><h3>'+esc(e.title)+'</h3>'+(enLine(e)?'<p class="pl-en">In English: '+esc(enLine(e))+'</p>':'')+'<p>'+esc(meta(e))+'</p>'+
       '<div class="pl-info"><div><b>When</b> '+esc(e.dayEnd&&e.dayEnd>e.day?dLbl(e.day)+' – '+dLbl(e.dayEnd)+(e.when&&/\d:\d/.test(e.when)?' · '+e.when.replace(/^[A-Z][a-z]{2} \d{1,2} · /,""):''):e.when)+'</div><div><b>Where</b> '+esc(e.place||"")+(e.trip&&!isLocal(e)?' · '+esc(e.trip):'')+'</div>'+(e.price?'<div><b>Price</b> '+esc(e.price)+'</div>':'')+
-      (desc?'<p>'+esc(desc)+'</p>':'')+'</div><div class="pl-iacts">'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">More info'+(needsTicketSafe(e)?' & tickets':'')+'</a>':'')+'<a href="'+map+'" target="_blank" rel="noopener">Map</a><button data-plgo="'+esc(e.id)+'" data-plgod="'+esc(kd)+'" data-plgok="'+esc(key?key.split("|")[1]:"")+'" data-plswitch="'+(elsewhere?1:"")+'">'+(g?'✓ In My plans · undo':elsewhere?'＋ My plans on this day instead':'＋ My plans')+'</button><a href="#" data-shev="'+esc(e.id)+'" data-shd="'+esc(key?key.split("|")[0]:"")+'">Invite a friend</a></div>'+menu+'</div>';
+      (desc?'<p>'+esc(desc)+'</p>':'')+'</div><div class="pl-iacts">'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+(e.film?'Book':'More info'+(needsTicketSafe(e)?' & tickets':''))+'</a>':'')+'<a href="'+map+'" target="_blank" rel="noopener">Map</a><button data-plgo="'+esc(e.id)+'" data-plgod="'+esc(kd)+'" data-plgok="'+esc(key?key.split("|")[1]:"")+'" data-plswitch="'+(elsewhere?1:"")+'">'+(g?'✓ In My plans · undo':elsewhere?'＋ My plans on this day instead':'＋ My plans')+'</button>'+(e.film?(g?'<button data-shfilm="'+esc(e.film.k)+'">Invite a friend</button>':''):'<a href="#" data-shev="'+esc(e.id)+'" data-shd="'+esc(key?key.split("|")[0]:"")+'">Invite a friend</a>')+'</div>'+menu+'</div>';
     document.body.appendChild(d)}
   /* the English title as a hint, only when it really says something different (not names, not just capitals) */
   function enLine(e){let x=String(e.titleEn||"").trim();if(!x)return "";const n=v=>v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ").trim();
@@ -3407,11 +3456,14 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     ["picks","filterpanel","toolbar","pickresult","agenda","trips","jumps","todayplan","rate","fullgate","weekly","netbox","pastbox","deletedbox","exseg"].forEach(id=>{const x=document.getElementById(id);if(x)x.hidden=true});
     el.innerHTML=view()}
   /* --- actions --- */
-  function nope(e){if(e.hike){S.nope=S.nope||{};S.nope[e.id]={k:"Hike",tg:["outdoors"]};return}hidden.add(e.id);S.nope=S.nope||{};txt(e);S.nope[e.id]={c:e.cat||[],p:e.place||"",g:e.grp||GRP[e.rep||e.id]||e.src||"",k:e._pk||"",tg:[...tags(e)]}}
+  function nope(e){if(e.hike){S.nope=S.nope||{};S.nope[e.id]={k:"Hike",tg:["outdoors"]};return}
+    if(e.film){S.nope=S.nope||{};S.nope[e.id]={k:"Film",tg:["film"]};filmOff(e);return}
+    hidden.add(e.id);S.nope=S.nope||{};txt(e);S.nope[e.id]={c:e.cat||[],p:e.place||"",g:e.grp||GRP[e.rep||e.id]||e.src||"",k:e._pk||"",tg:[...tags(e)]}}
   function chosen(ctx,mode){return build(ctx).filter(r=>r.pick&&!r.skip&&!r.cont&&(mode!=="kept"||r.going))}
   function goSet(id,d,k){S.goDay=S.goDay||{};const same=S.goDay[id]===d;S.goDay[id]=d;if(same&&S.goSlot&&S.goSlot[id])k=S.goSlot[id];S.goSlot=S.goSlot||{};if(k)S.goSlot[id]=k;ensureHist(id);if(S.hist[id])S.hist[id].d=d}
   function addAll(ctx,mode){const res=chosen(ctx,mode);let n=0;res.forEach(r=>{const e=r.pick.e;
       if(e.hike){S.trips=S.trips||{};const a=S.trips[e.id]||[];if(!a.includes(r.s.d))a.push(r.s.d);S.trips[e.id]=a.sort();n++}
+      else if(e.film){if(!filmIn(e))n++;filmOn(e)}
       else{if(!goingSet.has(e.id)||(S.goDay||{})[e.id]!==r.s.d)n++;goingSet.add(e.id);hidden.delete(e.id);goSet(e.id,r.s.d,r.s.k)}
       store(ctx)[r.s.key]={id:e.id}});persist();render();toast(n?n+" added to My plans":"Already in My plans")}
   function ics(ctx,mode){const res=chosen(ctx,mode);const SW={m:["100000","120000"],a:["140000","170000"],e:["190000","220000"]};const st=new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z";const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Out and About//EN"];
@@ -3449,17 +3501,19 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(b=t.closest("[data-plmood]")){const c=cur(ctx);const k=b.dataset.plmood;const i=c.moods.indexOf(k);if(i>=0)c.moods.splice(i,1);else c.moods.push(k);setCur(ctx,c);Object.keys(swaps).forEach(k=>delete swaps[k]);render();return}
     if(b=t.closest("[data-plswap]")){const k=b.dataset.plswap;swaps[k]=(swaps[k]||0)+1;render();return}
     if(b=t.closest("[data-plkeep]")){const k=b.dataset.plkeep;const e=pickOf(k);if(e){const [d,sl]=k.split("|");st()[k]={id:e.id};
-        if(e.hike){S.trips=S.trips||{};const a=tripDates(e.id);if(!a.includes(d))a.push(d);S.trips[e.id]=a.sort()}else{goingSet.add(e.id);hidden.delete(e.id);goSet(e.id,d,sl)}
+        if(e.hike){S.trips=S.trips||{};const a=tripDates(e.id);if(!a.includes(d))a.push(d);S.trips[e.id]=a.sort()}else if(e.film){filmOn(e)}else{goingSet.add(e.id);hidden.delete(e.id);goSet(e.id,d,sl)}
         persist();render();toast("Added to My plans · "+dLbl(d),()=>{const r=document.querySelector('[data-plunkeep="'+k+'"]');if(r)r.click()})}return}
     if(b=t.closest("[data-plunkeep]")){const k=b.dataset.plunkeep;const e=pickOf(k);delete st()[k];if(e){const d=k.split("|")[0];
-        if(e.hike){const a=tripDates(e.id).filter(x=>x!==d);if(a.length)S.trips[e.id]=a;else delete S.trips[e.id]}else goingSet.delete(e.id)}
+        if(e.hike){const a=tripDates(e.id).filter(x=>x!==d);if(a.length)S.trips[e.id]=a;else delete S.trips[e.id]}else if(e.film)filmOff(e);else goingSet.delete(e.id)}
         persist();render();toast("Removed from My plans");return}
-    if(b=t.closest("[data-plnope]")){const k=b.dataset.plnope;const e=pickOf(k);closeSheet();if(e){const wasGo=goingSet.has(e.id),wasSt=st()[k];nope(e);if((st()[k]||{}).id===e.id)delete st()[k];goingSet.delete(e.id);persist();render();
-        toast("Hidden · fewer like this",()=>{hidden.delete(e.id);if(S.nope)delete S.nope[e.id];if(wasGo)goingSet.add(e.id);if(wasSt)st()[k]=wasSt;persist();render()})}return}
+    if(b=t.closest("[data-plnope]")){const k=b.dataset.plnope;const e=pickOf(k);closeSheet();if(e){const wasFilm=!!e.film,was=wasFilm?filmIn(e):goingSet.has(e.id),wasSt=st()[k];nope(e);if((st()[k]||{}).id===e.id)delete st()[k];if(!wasFilm)goingSet.delete(e.id);persist();render();
+        toast(wasFilm?"Hidden · fewer films":"Hidden · fewer like this",()=>{hidden.delete(e.id);if(S.nope)delete S.nope[e.id];if(was)wasFilm?filmOn(e):goingSet.add(e.id);if(wasSt)st()[k]=wasSt;persist();render()})}return}
     if(b=t.closest("[data-plskip]")){closeSheet();st()[b.dataset.plskip]={skip:true};persist();render();return}
     if(b=t.closest("[data-plunskip]")){delete st()[b.dataset.plunskip];persist();render();return}
     if(b=t.closest("[data-plmenu]")){const k=b.dataset.plmenu;const e=pickOf(k);if(e&&!e.hike)detail(e.id,k);else sheet(k);return}
-    if(b=t.closest("[data-plgo]")){const id=b.dataset.plgo,gd=b.dataset.plgod,gk=b.dataset.plgok;if(goingSet.has(id)&&!b.dataset.plswitch){goingSet.delete(id);if(S.goDay)delete S.goDay[id]}else{goingSet.add(id);hidden.delete(id);if(gd)goSet(id,gd,gk);else ensureHist(id)}persist();closeSheet();render();toast(goingSet.has(id)?"Added to My plans":"Removed from My plans");return}
+    if(b=t.closest("[data-plgo]")){const id=b.dataset.plgo,gd=b.dataset.plgod,gk=b.dataset.plgok;
+      if(/^film~/.test(id)){const e=planFilm(id);if(e){const had=filmIn(e);had?filmOff(e):filmOn(e);persist();closeSheet();render();toast(had?"Removed from My plans":"Added to My plans · "+dLbl(e.day)+" "+e.film.tm)}return}
+      if(goingSet.has(id)&&!b.dataset.plswitch){goingSet.delete(id);if(S.goDay)delete S.goDay[id]}else{goingSet.add(id);hidden.delete(id);if(gd)goSet(id,gd,gk);else ensureHist(id)}persist();closeSheet();render();toast(goingSet.has(id)?"Added to My plans":"Removed from My plans");return}
     if(b=t.closest("[data-plmove]")){const [from,to]=b.dataset.plmove.split("~");const e=pickOf(from);closeSheet();if(e){delete st()[from];st()[to]={id:e.id};if(goingSet.has(e.id)&&!e.hike){const [td,tk]=to.split("|");goSet(e.id,td,tk)}if(st()[from]===undefined)swaps[from]=0;persist();render();toast("Moved to "+slotName(slots(ctx).find(s=>s.key===to)||{d:to.split("|")[0],k:to.split("|")[1]},ctx))}return}
     if(b=t.closest("[data-plall]")){closeSheet();ui.planAll=b.dataset.plall;ui.planAllF="all";render();window.scrollTo({top:0});return}
     if(b=t.closest("[data-plallf]")){ui.planAllF=b.dataset.plallf;render();return}
