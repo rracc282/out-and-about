@@ -356,6 +356,10 @@ const SPOKEN = /bühne|bühnenprogramm|programm\b|solo\b|satire|humor|witz|theat
 const norm = t => clean(t).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "").slice(0, 28);
 const existing = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})"[^{}]*?"title": ?"([^"]+)"/g)].map(m => m[1] + "|" + norm(m[2])));
 const urlKey = u => /\.php\?|[?&](id[A-Z]?|event|e)=/.test(u) ? u.replace(/#.*$/, "") : u.replace(/[?#].*$/, "");
+/* 33 · nightly quality check helpers */
+const NIGHTLIFE = /\b(club|party|rave|afterhour|after[- ]?party|pub crawl|nightlife|dj\b|techno|sunrise|dawn|silvester|new year)\b/i;
+const NOTEVENT = /\b(post it here|introduce yourself|read me|welcome thread|say hello|ask me anything|house rules|announcement|test event)\b/i;
+const dayWords = new Map();
 const existingUrl = new Set([...html.matchAll(/"url": ?"([^"]+)"/g)].map(m => urlKey(m[1])));
 /* day + venue, for sources that cover a single big hall. A hand-written entry for the night is
    always the better one ("Nico Santos — live at Hallenstadion", with a description), and the
@@ -393,6 +397,20 @@ for (const x of raw) {
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
   if (x.src.kind === "hallenstadion" && existingVenueDay.has(day + "|" + norm(String(x.place || "").split(",")[0]))) { drop("already in app"); continue; }
   if (out.has(key)) { drop("duplicate"); continue; }
+  /* 33 · odd hours. A start between 01:00 and 06:00 is almost always an online event hosted in
+     another timezone rather than something to turn up to — the conversion in when() is right, the
+     event simply isn't local. Real nightlife is the exception, and early markets start at 06:00+. */
+  if (s.time && s.time >= "01:00" && s.time < "06:00" && !NIGHTLIFE.test(title + " " + (x.place || ""))) { drop("odd hour (01:00–06:00)", x); continue; }
+  /* 33 · forum threads that Meetup lists as if they were events. */
+  if (NOTEVENT.test(title)) { drop("a forum post, not an event", x); continue; }
+  /* 33 · the same thing posted twice with slightly different wording, which the exact title key
+     misses: "Ice Climbing beginner course" and "Ice climbing beginner course *2 Places". */
+  const tw = new Set(norm(title).split(" ").filter(w => w.length > 3));
+  if (tw.size >= 3) {
+    const prior = dayWords.get(day) || [];
+    if (prior.some(p => { const i = [...tw].filter(w => p.has(w)).length; return i / (tw.size + p.size - i) >= 0.7; })) { drop("near-duplicate title", x); continue; }
+    dayWords.set(day, prior.concat([tw]));
+  }
   const vkey = day + "|" + (s.time || "") + "|" + norm(String(x.place || "").split(",")[0]);
   if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate"); continue; } seenVenue.add(vkey);
   const free = x.isFree === true || x.price === 0 || x.price === "0" || /\b(free|gratuit|gratis|kostenlos)\b/i.test(title);
