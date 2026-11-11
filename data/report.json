@@ -3,7 +3,7 @@
   {
    "url": "https://www.ladecadanse.ch/",
    "status": 200,
-   "bytes": 9203587,
+   "bytes": 9203592,
    "found": 629,
    "followed": 14,
    "markers": "day agenda"
@@ -27,8 +27,8 @@
   {
    "url": "https://openagenda.com/agendas/96959970/events.json?lang=en",
    "status": 200,
-   "bytes": 1730257,
-   "found": 199,
+   "bytes": 1738102,
+   "found": 200,
    "followed": 0,
    "markers": "openagenda json"
   },
@@ -60,14 +60,14 @@
    "url": "https://eventfrog.ch/en/events/ch/comedy.html",
    "status": 200,
    "bytes": 595927,
-   "found": 98,
-   "followed": 40,
+   "found": 87,
+   "followed": 37,
    "markers": ""
   },
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=social",
    "status": 200,
-   "bytes": 592378,
+   "bytes": 592380,
    "found": 84,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -75,10 +75,18 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=art",
    "status": 200,
-   "bytes": 435410,
+   "bytes": 435414,
    "found": 81,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/http-www-freewalk-ch-geneva-index-php/events/",
+   "status": 200,
+   "bytes": 214221,
+   "found": 80,
+   "followed": 0,
+   "markers": "ld+json __NEXT_DATA__"
   },
   {
    "url": "https://www.meetup.com/afterwork-bachata-salsa-2-jours-de-initiation-gratuit/events/",
@@ -92,14 +100,6 @@
    "url": "https://www.meetup.com/lausanne-acroyoga/events/",
    "status": 200,
    "bytes": 242744,
-   "found": 80,
-   "followed": 0,
-   "markers": "ld+json __NEXT_DATA__"
-  },
-  {
-   "url": "https://www.meetup.com/http-www-freewalk-ch-geneva-index-php/events/",
-   "status": 200,
-   "bytes": 214221,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -147,7 +147,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=board%20games",
    "status": 200,
-   "bytes": 421276,
+   "bytes": 421278,
    "found": 75,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -156,7 +156,7 @@
    "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
    "status": 200,
    "bytes": 421844,
-   "found": 62,
+   "found": 71,
    "followed": 40,
    "markers": ""
   },
@@ -203,7 +203,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=social",
    "status": 200,
-   "bytes": 333622,
+   "bytes": 333620,
    "found": 48,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -211,7 +211,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=hiking",
    "status": 200,
-   "bytes": 277033,
+   "bytes": 277029,
    "found": 48,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -227,7 +227,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=language%20exchange",
    "status": 200,
-   "bytes": 378204,
+   "bytes": 378206,
    "found": 42,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -251,7 +251,7 @@
   {
    "url": "https://kaufleuten.ch/en/events/",
    "status": 200,
-   "bytes": 186130,
+   "bytes": 186128,
    "found": 37,
    "followed": 39,
    "markers": "ld+json wp-json"
@@ -267,7 +267,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=hiking",
    "status": 200,
-   "bytes": 234711,
+   "bytes": 234713,
    "found": 36,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -283,7 +283,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=art",
    "status": 200,
-   "bytes": 242269,
+   "bytes": 242160,
    "found": 33,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -299,7 +299,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve",
    "status": 200,
-   "bytes": 322007,
+   "bytes": 322009,
    "found": 27,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -353,17 +353,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/artists-meetup-group-english-speaking/events/",
+   "url": "https://www.meetup.com/meetnewpeoplegeneva/events/",
    "status": 200,
-   "bytes": 137364,
+   "bytes": 190951,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/meetnewpeoplegeneva/events/",
+   "url": "https://www.meetup.com/artists-meetup-group-english-speaking/events/",
    "status": 200,
-   "bytes": 190951,
+   "bytes": 137364,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -417,17 +417,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/historical-walks/events/",
+   "url": "https://www.meetup.com/networking-afterwork-geneve/events/",
    "status": 200,
-   "bytes": 139584,
+   "bytes": 141755,
    "found": 20,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/networking-afterwork-geneve/events/",
+   "url": "https://www.meetup.com/historical-walks/events/",
    "status": 200,
-   "bytes": 141755,
+   "bytes": 139584,
    "found": 20,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -451,7 +451,7 @@
   {
    "url": "https://hallenstadion.ch/events/",
    "status": 200,
-   "bytes": 2334024,
+   "bytes": 2333961,
    "found": 12,
    "followed": 12,
    "markers": "addevent block"
@@ -459,7 +459,7 @@
   {
    "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=language%20exchange",
    "status": 200,
-   "bytes": 273404,
+   "bytes": 273406,
    "found": 12,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -515,7 +515,7 @@
   {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 77079,
+   "bytes": 77024,
    "found": 0,
    "followed": 11,
    "markers": "ld+json"
@@ -593,26 +593,27 @@
    "markers": ""
   }
  ],
- "kept": 535,
+ "kept": 538,
  "dropped": {
-  "later than 2 weeks": 1432,
+  "later than 2 weeks": 1431,
   "past": 586,
   "duplicate": 581,
-  "far future": 124,
-  "weekday daytime": 445,
-  "unknown place": 581,
+  "weekday daytime": 442,
+  "far future": 123,
   "niche (card games, wargaming…)": 86,
-  "Zurich: German-only spoken event": 118,
+  "unknown place": 581,
+  "Zurich: German-only spoken event": 117,
   "not relevant": 78,
   "children's event": 58,
   "same event on two sites": 6
  },
  "geocoded": 0,
+ "curatedOverlap": 1,
  "descEnriched": 41,
- "translated": 2,
+ "translated": 0,
  "byCity": {
-  "ge": 271,
-  "zh": 264
+  "ge": 275,
+  "zh": 263
  },
  "samples": {
   "unknown place": [
