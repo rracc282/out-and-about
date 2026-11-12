@@ -3,7 +3,7 @@
   {
    "url": "https://www.ladecadanse.ch/",
    "status": 200,
-   "bytes": 9336056,
+   "bytes": 9336195,
    "found": 631,
    "followed": 14,
    "markers": "day agenda"
@@ -43,7 +43,7 @@
   {
    "url": "https://lesgenevois.com/calendrier/ce-weekend",
    "status": 200,
-   "bytes": 2097958,
+   "bytes": 2097964,
    "found": 171,
    "followed": 0,
    "markers": "ld+json schema.org/Event"
@@ -153,7 +153,7 @@
    "markers": "poster list"
   },
   {
-   "url": "https://infomaniak.events/en-ch/comedy/geneva",
+   "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
    "status": 200,
    "bytes": 418597,
    "found": 74,
@@ -161,7 +161,7 @@
    "markers": ""
   },
   {
-   "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
+   "url": "https://infomaniak.events/en-ch/comedy/geneva",
    "status": 200,
    "bytes": 418710,
    "found": 72,
@@ -307,7 +307,7 @@
   {
    "url": "https://kaufleuten.ch/en/events/",
    "status": 200,
-   "bytes": 187264,
+   "bytes": 187263,
    "found": 37,
    "followed": 39,
    "markers": "ld+json wp-json"
@@ -337,17 +337,17 @@
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=photography",
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=women",
    "status": 200,
-   "bytes": 283545,
+   "bytes": 232283,
    "found": 36,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Zurich&keywords=women",
+   "url": "https://www.meetup.com/find/?source=EVENTS&location=ch--Geneve&keywords=photography",
    "status": 200,
-   "bytes": 232283,
+   "bytes": 283545,
    "found": 36,
    "followed": 0,
    "markers": "ld+json schema.org/Event __NEXT_DATA__"
@@ -563,7 +563,7 @@
   {
    "url": "https://hallenstadion.ch/events/",
    "status": 200,
-   "bytes": 2349990,
+   "bytes": 2350044,
    "found": 12,
    "followed": 12,
    "markers": "addevent block"
@@ -633,6 +633,14 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
+   "url": "https://zuri.net/de/zurich/agenda/",
+   "status": 200,
+   "bytes": 86897,
+   "found": 0,
+   "followed": 14,
+   "markers": "ld+json"
+  },
+  {
    "url": "https://newinzurich.com/events/",
    "status": 200,
    "bytes": 164171,
@@ -641,17 +649,9 @@
    "markers": "ld+json wp-json"
   },
   {
-   "url": "https://zuri.net/de/zurich/agenda/",
-   "status": 200,
-   "bytes": 86561,
-   "found": 0,
-   "followed": 13,
-   "markers": "ld+json"
-  },
-  {
    "url": "https://www.comedykiss.ch/",
    "status": 200,
-   "bytes": 1473635,
+   "bytes": 1473144,
    "found": 0,
    "followed": 0,
    "markers": "ld+json"
@@ -699,7 +699,7 @@
   {
    "url": "https://www.tonhalle-orchester.ch/en/concerts/kalender/",
    "status": 200,
-   "bytes": 91146,
+   "bytes": 91155,
    "found": 0,
    "followed": 33,
    "markers": ""
@@ -712,7 +712,7 @@
   "duplicate: same title and day": 953,
   "far future": 138,
   "weekday daytime": 241,
-  "duplicate: same venue and time": 83,
+  "duplicate: same venue and time": 82,
   "niche (card games, wargaming…)": 85,
   "Zurich: German-only spoken event": 284,
   "a forum post, not an event": 11,
@@ -721,13 +721,12 @@
   "already in app": 4,
   "near-duplicate title": 3,
   "same event on two sites": 13,
-  "day full (40 per city per day)": 249
+  "day full (40 per city per day)": 250
  },
  "unbezahlbar.detailed": 59,
- "weather": "failed TypeError",
  "geocoded": 0,
  "descEnriched": 34,
- "translated": 0,
+ "translated": 2,
  "byCity": {
   "ge": 417,
   "zh": 312
@@ -978,46 +977,46 @@
   ],
   "day full (40 per city per day)": [
    [
-    "Toutes les femmes sont des aliens",
-    "2026-11-13",
-    "Scènes du Grütli, rue Général-Dufour 16 - Plainpalais - Genève",
+    "Shearwater + LOMA",
+    "2026-11-15",
+    "Le Rez de L'Usine - PTR|REZ",
     "",
-    "https://lesgenevois.com/calendrier/e/toutes-les-femmes-sont-des-aliens"
+    "https://www.ladecadanse.ch/event/evenement.php?idE=527508"
    ],
    [
-    "Sept",
-    "2026-11-13",
-    "Scènes du Grütli - Scène du Bas, rue Général-Dufour 16 - Plainpalais -",
+    "SINNTHESE + FAIRYMARICHEL (+ passage de disques: Le Horla & Sofy Malad",
+    "2026-11-15",
+    "Cave12",
     "",
-    "https://lesgenevois.com/calendrier/e/sept-514494"
+    "https://www.ladecadanse.ch/event/evenement.php?idE=527269"
    ],
    [
-    "Thésée, sa vie nouvelle - Guy Cassiers & Valérie Dréville",
-    "2026-11-13",
-    "Maison Saint-Gervais, 5, rue du Temple (Saint-Gervais) - Genève",
+    "PIANO CHANTANT",
+    "2026-11-15",
+    "Musée d'Histoire des Sciences, Villa Bartholoni",
     "",
-    "https://lesgenevois.com/calendrier/e/thesee-sa-vie-nouvelle-guy-cassie"
+    "https://www.ladecadanse.ch/event/evenement.php?idE=526878"
    ],
    [
-    "HEKA",
-    "2026-11-13",
-    "Théâtre Forum Meyrin, Place des cinq-continents 1 - Meyrin - Genève",
+    "Les antibrouillards 2026 - Tabernae musique",
+    "2026-11-15",
+    "Maison de Quartier de St-Jean",
     "",
-    "https://lesgenevois.com/calendrier/e/heka-515454"
+    "https://www.ladecadanse.ch/event/evenement.php?idE=526686"
    ],
    [
-    "La Nuit du conte aux Jardins de la Jonction",
-    "2026-11-13",
-    "Jardins de la Jonction, avenue de la Jonction 19, Genève",
+    "Récital Clairières dans le ciel",
+    "2026-11-15",
+    "Salle Trocmé",
     "",
-    "https://lesgenevois.com/calendrier/e/nuit-du-conte-aux-jardins"
+    "https://www.ladecadanse.ch/event/evenement.php?idE=526426"
    ],
    [
-    "Nuit du conte 2026",
-    "2026-11-13",
-    "BiblioQuartier des Grands-Hutins, Rue de la Tambourine 3, 1227 Carouge",
+    "Romantisme français",
+    "2026-11-15",
+    "temple de Rolle",
     "",
-    "https://lesgenevois.com/calendrier/e/nuit-du-conte-2026"
+    "https://www.ladecadanse.ch/event/evenement.php?idE=525347"
    ]
   ]
  }
