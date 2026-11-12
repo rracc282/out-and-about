@@ -426,13 +426,7 @@ const existingVenueDay = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})
 const slug = s => clean(s).toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
 const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
 const SRCNAME = { "meetup.com": "Meetup", "eventbrite.ch": "Eventbrite", "eventbrite.com": "Eventbrite", "eventfrog.ch": "Eventfrog", "songkick.com": "Songkick" };
-const out = new Map(), seenVenue = new Map();
-/* When two sites list the same thing at the same venue, day and time, keep the entry that makes
-   the better card rather than whichever site happened to be fetched first. A full street address
-   beats a bare venue name, and a real description beats none. Before this, a bulk listing that
-   gives only "Chat Noir" could silently replace a curated entry that gave the street and number,
-   and which one survived changed from night to night because sources are fetched six at a time. */
-const vScore = (place, desc) => (/,/.test(String(place || "")) ? 2 : 0) + (/\b\d{4}\b/.test(String(place || "")) ? 1 : 0) + (String(desc || "").length > 120 ? 1 : 0);
+const out = new Map(), seenVenue = new Set();
 for (const x of raw) {
   const s = when(x.start); if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s.day)) { drop("no date"); continue; }
   const e = when(x.end); const title = clean(x.title).slice(0, 110);
@@ -460,7 +454,7 @@ for (const x of raw) {
   const key = day + "|" + norm(title);
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
   if (x.src.kind === "hallenstadion" && existingVenueDay.has(day + "|" + norm(String(x.place || "").split(",")[0]))) { drop("already in app"); continue; }
-  if (out.has(key)) { drop("duplicate"); continue; }
+  if (out.has(key)) { drop("duplicate: same title and day", x); continue; }
   /* 33 · forum threads that Meetup lists as if they were events. */
   if (NOTEVENT.test(title)) { drop("a forum post, not an event", x); continue; }
   /* 33 · the same thing posted twice with slightly different wording, which the exact title key
@@ -495,14 +489,7 @@ for (const x of raw) {
       hit.words = tw; hit.key = key; hit.vkey = vkey;
     } else dayWords.set(dkey, prior.concat([{ words: tw, key, vkey }]));
   }
-  const vs = vScore(x.place, x.desc);
-  if (s.time && x.place && seenVenue.has(vkey)) {
-    const prev = seenVenue.get(vkey);
-    if (vs <= prev.score) { drop("duplicate"); continue; }
-    /* this one is better: take the earlier entry out, and its title key with it */
-    out.delete(prev.key); drop("duplicate");
-  }
-  if (s.time && x.place) seenVenue.set(vkey, { key, score: vs });
+  if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate: same venue and time", x); continue; } seenVenue.add(vkey);
   const free = x.isFree === true || x.price === 0 || x.price === "0" || /\b(free|gratuit|gratis|kostenlos)\b/i.test(title);
   const price = free ? "Free" : x.price ? `${x.cur || "CHF"} ${Math.round(+x.price) || x.price}` : "Price to check";
   const cat = catsOf(title, x.desc, x.src.kind);
@@ -559,6 +546,9 @@ for (const list of cells.values()) {
     for (const x of live) { keep.add(x.shift()); if (++n >= 40) break; }
   }
 }
+/* the cap used to discard silently, with no report entry, so a day quietly losing curated
+   listings looked identical to a day where nothing was found */
+for (const e of events) if (!keep.has(e)) drop("day full (40 per city per day)", { title: e.title, start: e.day, place: e.place, src: { url: e.url } });
 events = events.filter(e => keep.has(e));
 report.kept = events.length;
 
