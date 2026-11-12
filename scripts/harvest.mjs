@@ -534,26 +534,29 @@ const srcKey = e => host(e.url) || e.src || "?";
    They go to the back of their source's queue, so they are the first thing cut. */
 let cur = {}; try { cur = JSON.parse(rd("data/curated.json")); } catch {}
 const hiddenById = new Set(cur.drop || []);
+const CAP = 40, SOFT = 16;
 const cells = new Map();
 for (const e of events) { const k = e.city + e.day + e.p; if (!cells.has(k)) cells.set(k, []); cells.get(k).push(e); }
 const keep = new Set();
 for (const list of cells.values()) {
   if (list[0].p === "on" || list[0].p === "big") { for (const e of list) keep.add(e); continue; }
-  const q = new Map();
-  for (const e of list.slice().sort((a, b) => (hiddenById.has(a.id) ? 1 : 0) - (hiddenById.has(b.id) ? 1 : 0) || pri(b) - pri(a) || String(a.id).localeCompare(String(b.id)))) {
-    const s = srcKey(e); if (!q.has(s)) q.set(s, []); q.get(s).push(e);
+  const sorted = list.slice().sort((a, b) => (hiddenById.has(a.id) ? 1 : 0) - (hiddenById.has(b.id) ? 1 : 0) || pri(b) - pri(a) || String(a.id).localeCompare(String(b.id)));
+  /* First pass takes the best events but lets no single site hold more than SOFT of the day, so
+     one bulk listing cannot own a Friday. Giving every site an equal share instead was worse:
+     the curated agenda only publishes for the coming weekend, so on exactly the days it covers
+     it was cut to an eighth of the day alongside sites that had nothing to say. The second pass
+     hands any slots nobody else wanted back to whoever is left. */
+  const used = new Map(); let n = 0;
+  for (const e of sorted) {
+    if (n >= CAP) break;
+    const s = srcKey(e); if ((used.get(s) || 0) >= SOFT) continue;
+    used.set(s, (used.get(s) || 0) + 1); keep.add(e); n++;
   }
-  const queues = [...q.values()]; let n = 0;
-  while (n < 40) {
-    /* each round, the source whose next event scores highest goes first */
-    const live = queues.filter(x => x.length).sort((a, b) => pri(b[0]) - pri(a[0]) || String(a[0].id).localeCompare(String(b[0].id)));
-    if (!live.length) break;
-    for (const x of live) { keep.add(x.shift()); if (++n >= 40) break; }
-  }
+  for (const e of sorted) { if (n >= CAP) break; if (!keep.has(e)) { keep.add(e); n++; } }
 }
 /* the cap used to discard silently, with no report entry, so a day quietly losing curated
    listings looked identical to a day where nothing was found */
-for (const e of events) if (!keep.has(e)) drop("day full (40 per city per day)", { title: e.title, start: e.day, place: e.place, src: { url: e.url } });
+for (const e of events) if (!keep.has(e)) drop("day full (" + CAP + " per city per day)", { title: e.title, start: e.day, place: e.place, src: { url: e.url } });
 events = events.filter(e => keep.has(e));
 report.kept = events.length;
 
