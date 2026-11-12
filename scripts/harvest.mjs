@@ -142,7 +142,12 @@ const BAD = /bourse (?:aux |d.)?(?:jouets|enfan|pu[ée]ricult)|pu[ée]riculture|
 const catsOf = (t, d, srcKind) => { const s = t + " " + (d || "").slice(0, 300); const c = CATS.filter(([, re]) => re.test(s)).map(([k]) => k); if (!c.length) c.push(srcKind === "meetup" ? "rencontre" : "culture"); return c.slice(0, 3); };
 
 /* ---------- parsing ---------- */
-const clean = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+const clean = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim()
+/* venue strings arrive with empty segments ("Rue du Rhône 46, , Switzerland") and a repeated
+   first line ("Dorfblick, Dorfblick, …"); both show on the card */
+const cleanPlace = s => { const p = clean(s).split(",").map(x => x.trim()).filter(Boolean)
+    .filter(x => !/^(switzerland|suisse|schweiz|ch)$/i.test(x));
+  return p.filter((x, i) => i === 0 || x.toLowerCase() !== p[i - 1].toLowerCase()).join(", "); };
 const short = (s, n = 230) => { s = clean(s); if (s.length <= n) return s; const cut = s.slice(0, n); const i = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! ")); return (i > 80 ? cut.slice(0, i + 1) : cut.replace(/\s\S*$/, "") + "…"); };
 function walk(o, f, seen = new Set()) { if (!o || typeof o !== "object" || seen.has(o)) return; seen.add(o); f(o); for (const v of Array.isArray(o) ? o : Object.values(o)) walk(v, f, seen); }
 function blobs(page) {
@@ -480,7 +485,7 @@ for (const x of raw) {
   const tE = e && e.time && !multi ? "–" + e.time : "";
   const whenTxt = p === "on" ? `Until ${nice(lastDay)}` : p === "big" ? `${nice(day)}${s.time ? " · " + s.time : ""}` : `${DN[dow(day)]} ${+day.slice(8)}${s.time && s.time !== "00:00" ? " · " + s.time + tE : ""}`;
   const _ag = ageOf(title + " " + (x.desc || ""));
-  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: clean(x.place).replace(/^(autre lieu|other venue|divers lieux|lieu à définir)\s*,\s*/i, "").split(/,\s*/).filter((x, i, A) => !i || x.toLowerCase() !== A[i - 1].toLowerCase()).join(", ").slice(0, 120) || pl.townName || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: (_ag ? "Age range: " + _ag + ". " : "") + (short(x.desc) || ""), auto: 1, src: SRCNAME[host(url)] || host(url) };
+  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: cleanPlace(x.place).replace(/^(autre lieu|other venue|divers lieux|lieu à définir)\s*,\s*/i, "").split(/,\s*/).filter((x, i, A) => !i || x.toLowerCase() !== A[i - 1].toLowerCase()).join(", ").slice(0, 120) || pl.townName || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: (_ag ? "Age range: " + _ag + ". " : "") + (short(x.desc) || ""), auto: 1, src: SRCNAME[host(url)] || host(url) };
   if (x.geo) ev.geo = x.geo.map(v => Math.round(v * 1e4) / 1e4);
   if (multi) ev.dayEnd = e.day; if (free) ev.free = true; if (cat.includes("chien")) ev.dog = true;
   if (x.src.kind === "meetup" && x.organizer) ev.grp = clean(x.organizer);
