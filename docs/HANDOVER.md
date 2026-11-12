@@ -7,7 +7,7 @@ Live app: https://rracc282.github.io/out-and-about/ (repo rracc282/out-and-about
 1. Build each batch on a branch `batch-N` and push it (not live).
 2. Test with Playwright (Chromium at /opt/pw-browsers/chromium; block network with `page.route`; `page.clock.install` to fake the date). Check iPhone sizes 393, 375 and 320 px, light and dark.
 3. Independent review ("challenger"): a fresh agent does three passes: (a) the owner's phone walkthrough first, (b) a code read of the diff, (c) a data sweep, then the walkthrough again. Findings are tagged blocker / should-fix / nit; verdict Ship / Fix first. Then one short re-check after fixes. Only for batches that change looks or behaviour.
-4. Merge to `main` and push = publish. Bump the cache name in `sw.js` (currently oa-v89) on every publish.
+4. Merge to `main` and push = publish. Bump the cache name in `sw.js` (currently oa-v90) on every publish.
 5. Never put secrets in the repo (Supabase secret key, database password). Event names stay in their original language; the interface is in English.
 
 ## Code map
