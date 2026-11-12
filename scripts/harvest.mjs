@@ -71,8 +71,13 @@ const townName = t => { for (const [re] of TOWNS) { const m = t.match(re); if (m
 function placeOf(geo, text, srcCity, title) {
   if (geo) {
     const d = { ge: km(geo, CITY.ge), zh: km(geo, CITY.zh) }; const city = d.ge < d.zh ? "ge" : "zh"; const k = d[city];
-    if (k > 110) return null;
-    return { city, zone: k <= 9 ? city : k <= 50 ? "45" : "90", trip: k <= 9 ? (city === "ge" ? "Geneva" : "Zurich") : `≈ ${Math.round(k)} km away` };
+    /* Beyond 110 km this used to return null, which the caller records as "unknown place" and
+       drops — about 580 events a night, including ski-resort days whose address was known
+       exactly. They are labelled "far" instead: zoneOk() keeps that out of In town / Nearby /
+       Day out, so they surface under "Any" and the Further chip rather than crowding the
+       everyday lists. Past 400 km it stops being a day trip, so those are still dropped. */
+    if (k > 400) return null;
+    return { city, zone: k <= 9 ? city : k <= 50 ? "45" : k <= 110 ? "90" : "far", trip: k <= 9 ? (city === "ge" ? "Geneva" : "Zurich") : `≈ ${Math.round(k)} km away` };
   }
   for (const c of ["ge", "zh"]) if (LOCAL[c].test(text || "")) return { city: c, zone: c, trip: c === "ge" ? "Geneva" : "Zurich" };
   for (const [re, city, zone, trip] of NEAR) if (re.test(text || "")) return { city, zone, trip };
@@ -85,7 +90,7 @@ function placeOf(geo, text, srcCity, title) {
     const g = title && townGeo(title);
     if (g) {
       const k = km(g, CITY[srcCity]);
-      return { city: srcCity, zone: k <= 9 ? srcCity : k <= 50 ? "45" : "90",
+      return { city: srcCity, zone: k <= 9 ? srcCity : k <= 50 ? "45" : k <= 110 ? "90" : "far",
         trip: k <= 9 ? (srcCity === "ge" ? "Geneva" : "Zurich") : `≈ ${Math.round(k)} km away`,
         townName: townName(title) };
     }
