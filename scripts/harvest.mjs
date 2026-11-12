@@ -98,7 +98,11 @@ function placeOf(geo, text, srcCity, title) {
     if (nearGe || nearZh) { const c = nearGe ? "ge" : "zh"; return { city: c, zone: "45", trip: town, townName: town }; }
     return { city: srcCity || (pc < 3000 ? "ge" : "zh"), zone: "far", trip: town, townName: town };
   }
-  if (srcCity && !text) {
+  /* An address we could not place, from a source that only ever covers one city, is almost
+     certainly in that city: "Ruby Claire Hotel Bar, Rue du Rhône 46" is Geneva, and was being
+     dropped nightly as "unknown place". The postcode and TOWNS checks above already catch the
+     genuine out-of-town cases, so this falls back to the source's own city rather than deleting. */
+  if (srcCity) {
     /* A town named in the title tells us how far away the event is, but NOT which city's list it
        belongs in: a Geneva group's day trip to Bern is still a Geneva group's outing, and Bern is
        nearer Zurich. So keep the source's city and use the distance only for the zone and label.
