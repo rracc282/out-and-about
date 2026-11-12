@@ -42,7 +42,33 @@ const CITY = { ge: [46.2044, 6.1432], zh: [47.3769, 8.5417] };
 const km = (a, b) => { const R = 6371, r = x => x * Math.PI / 180, dl = r(b[0] - a[0]), dn = r(b[1] - a[1]); const h = Math.sin(dl / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
 const LOCAL = { ge: /\b(gen[eè]v[ae]|geneva|genf|carouge|lancy|vernier|meyrin|plan-les-ouates|ch[eê]ne|th[oô]nex|onex|cologny|plainpalais|eaux-vives|p[aâ]quis|servette|champel|versoix|bernex|veyrier)\b/i,
   zh: /\b(z[uü]rich|zurich|oerlikon|altstetten|wiedikon|seebach|wollishofen|schwamendingen|affoltern|h[oö]ngg|enge|wipkingen|aussersihl|hottingen|dübendorf|wallisellen|schlieren|kilchberg|zollikon|adliswil)\b/i };
-function placeOf(geo, text, srcCity) {
+/* Towns an event can name in its title while carrying no venue of its own. Meetup events are the
+   usual case: with no place text they used to inherit the search city, so a ski day in Andermatt
+   or life drawing in Zug was filed as "Zurich". Ambiguous names need context — "Zug" is also the
+   German for a train and "Baden" for bathing — so those only match after a preposition or comma. */
+const TOWNS = [
+  [/\b(?:in|nach|bei|near|@)\s+Zug\b/i, [47.1662, 8.5155]], [/\b(?:in|nach|bei|near|@)\s+Baden\b/i, [47.4733, 8.3064]],
+  [/\bwinterthur\b/i, [47.4997, 8.7241]], [/\b(?:luzern|lucerne)\b/i, [47.0502, 8.3093]],
+  [/\bst\.?\s?gallen\b/i, [47.4245, 9.3767]], [/\bschaffhausen\b/i, [47.6960, 8.6346]],
+  [/\brapperswil\b/i, [47.2260, 8.8180]], [/\buster\b/i, [47.3470, 8.7210]],
+  [/\baltdorf\b/i, [46.8803, 8.6444]], [/\bandermatt\b/i, [46.6364, 8.5944]],
+  [/\bchur\b/i, [46.8508, 9.5320]], [/\bbasel\b/i, [47.5596, 7.5886]],
+  [/\bbern\b/i, [46.9480, 7.4474]], [/\bthun\b/i, [46.7580, 7.6280]],
+  [/\binterlaken\b/i, [46.6863, 7.8632]], [/\bdavos\b/i, [46.8027, 9.8360]],
+  [/\barosa\b/i, [46.7833, 9.6800]], [/\bengelberg\b/i, [46.8208, 8.4017]],
+  [/\baarau\b/i, [47.3909, 8.0455]], [/\bolten\b/i, [47.3500, 7.9030]],
+  [/\blausanne\b/i, [46.5197, 6.6323]], [/\bmontreux\b/i, [46.4312, 6.9107]],
+  [/\bvevey\b/i, [46.4628, 6.8419]], [/\bnyon\b/i, [46.3833, 6.2394]],
+  [/\bmorges\b/i, [46.5113, 6.4981]], [/\byverdon\b/i, [46.7785, 6.6410]],
+  [/\bfribourg\b/i, [46.8065, 7.1619]], [/\bneuch[âa]tel\b/i, [46.9900, 6.9293]],
+  [/\bsion\b/i, [46.2331, 7.3606]], [/\bverbier\b/i, [46.0961, 7.2286]],
+  [/\bzermatt\b/i, [46.0207, 7.7491]], [/\bannecy\b/i, [45.8992, 6.1294]],
+  [/\bchamonix\b/i, [45.9237, 6.8694]], [/\bthonon\b/i, [46.3700, 6.4800]],
+];
+const townGeo = t => { for (const [re, g] of TOWNS) if (re.test(t)) return g; return null; };
+/* the matched town, title-cased, so the list row can say "Andermatt" instead of "Zurich" */
+const townName = t => { for (const [re] of TOWNS) { const m = t.match(re); if (m) { const w = m[0].replace(/^(?:in|nach|bei|near|@)\s+/i, "").trim(); return w.charAt(0).toUpperCase() + w.slice(1); } } return ""; };
+function placeOf(geo, text, srcCity, title) {
   if (geo) {
     const d = { ge: km(geo, CITY.ge), zh: km(geo, CITY.zh) }; const city = d.ge < d.zh ? "ge" : "zh"; const k = d[city];
     if (k > 110) return null;
@@ -50,7 +76,21 @@ function placeOf(geo, text, srcCity) {
   }
   for (const c of ["ge", "zh"]) if (LOCAL[c].test(text || "")) return { city: c, zone: c, trip: c === "ge" ? "Geneva" : "Zurich" };
   for (const [re, city, zone, trip] of NEAR) if (re.test(text || "")) return { city, zone, trip };
-  if (srcCity && !text) return { city: srcCity, zone: srcCity, trip: srcCity === "ge" ? "Geneva" : "Zurich" };
+  if (srcCity && !text) {
+    /* A town named in the title tells us how far away the event is, but NOT which city's list it
+       belongs in: a Geneva group's day trip to Bern is still a Geneva group's outing, and Bern is
+       nearer Zurich. So keep the source's city and use the distance only for the zone and label.
+       Nor is a far town a reason to delete the event — above 110 km placeOf returns null, which
+       the caller counts as "unknown place", so these are labelled rather than dropped. */
+    const g = title && townGeo(title);
+    if (g) {
+      const k = km(g, CITY[srcCity]);
+      return { city: srcCity, zone: k <= 9 ? srcCity : k <= 50 ? "45" : "90",
+        trip: k <= 9 ? (srcCity === "ge" ? "Geneva" : "Zurich") : `≈ ${Math.round(k)} km away`,
+        townName: townName(title) };
+    }
+    return { city: srcCity, zone: srcCity, trip: srcCity === "ge" ? "Geneva" : "Zurich" };
+  }
   return null;
 }
 
@@ -328,6 +368,14 @@ const SPOKEN = /bühne|bühnenprogramm|programm\b|solo\b|satire|humor|witz|theat
 const norm = t => clean(t).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "").slice(0, 28);
 const existing = new Set([...html.matchAll(/"day": ?"(\d{4}-\d{2}-\d{2})"[^{}]*?"title": ?"([^"]+)"/g)].map(m => m[1] + "|" + norm(m[2])));
 const urlKey = u => /\.php\?|[?&](id[A-Z]?|event|e)=/.test(u) ? u.replace(/#.*$/, "") : u.replace(/[?#].*$/, "");
+/* 33 · nightly quality check helpers */
+const NOTEVENT = /\b(post it here|welcome thread|house rules|test event)\b/i;
+const dayWords = new Map();
+const NOISEWORD = /^(free|gratis|gratuit|kostenlos|place|places|platz|plaetze|spot|spots|seat|seats|ticket|tickets|left|last|limited|extra|more|added|neu|news|update|updated|repeat|again|sold|full|waitlist|only|open|join|more|\d+)$/i;
+/* The pipeline's norm() squashes out spaces and truncates to 28 chars, which is right for an
+   exact key but useless for comparing word by word, so titles get their own normaliser here. */
+const twords = t => new Set(clean(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  .replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(w => w.length > 3));
 const existingUrl = new Set([...html.matchAll(/"url": ?"([^"]+)"/g)].map(m => urlKey(m[1])));
 /* day + venue, for sources that cover a single big hall. A hand-written entry for the night is
    always the better one ("Nico Santos — live at Hallenstadion", with a description), and the
@@ -351,9 +399,9 @@ for (const x of raw) {
   if (s.day > BIG_UNTIL) { drop("far future"); continue; }
   const exhibit = /Exhibition/i.test(x.type || "") || (multi && (Date.parse(e.day) - Date.parse(s.day)) / 864e5 >= 6);
   const gc = x.src.kind === "meetup" ? (/z[uü]e?rich/i.test(x.src.url) ? "zh" : /lausanne/i.test(x.src.url) ? null : /gen[eè]v|geneva/i.test(x.src.url) ? "ge" : x.src.city) : x.src.city;
-  const ptmp = placeOf(x.geo, x.place, gc);
+  const ptmp = placeOf(x.geo, x.place, gc, title);
   if (ptmp && ptmp.city === "zh") { const t = title + " " + clean(x.desc).slice(0, 400); if (DEONLY.test(t) || (SPOKEN.test(t) && langOf(t) === "de" && !/english|englisch|übertitel|surtit/i.test(t))) { drop("Zurich: German-only spoken event", x); continue; } }
-  const pl = placeOf(x.geo, x.place, gc) || (gc && /^\s*$/.test(x.place || "") ? null : null); if (!pl) { drop(x.geo ? "too far" : "unknown place", x); continue; }
+  const pl = placeOf(x.geo, x.place, gc, title) || (gc && /^\s*$/.test(x.place || "") ? null : null); if (!pl) { drop(x.geo ? "too far" : "unknown place", x); continue; }
   let p, day = s.day < TODAY && multi ? TODAY : s.day;
   if (exhibit) { p = "on"; }
   else if (day <= LAST) { p = periodOf(day); if (!p) { drop("outside weeks"); continue; } }
@@ -365,7 +413,40 @@ for (const x of raw) {
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
   if (x.src.kind === "hallenstadion" && existingVenueDay.has(day + "|" + norm(String(x.place || "").split(",")[0]))) { drop("already in app"); continue; }
   if (out.has(key)) { drop("duplicate"); continue; }
+  /* 33 · forum threads that Meetup lists as if they were events. */
+  if (NOTEVENT.test(title)) { drop("a forum post, not an event", x); continue; }
+  /* 33 · the same thing posted twice with slightly different wording, which the exact title key
+     misses: "Ice Climbing beginner course" and "Ice climbing beginner course *2 Places". */
+  /* Only a cross-post counts: one title is the other plus words that carry no meaning of their
+     own ("*2 Places free*"). Anything else that distinguishes the two — "in English", "nocturne",
+     "(2e représentation)", "Oerlikon" — means they are different events and both stay. A plain
+     overlap threshold cannot make that distinction: a three-word title against the same title
+     plus one word scores 0.75 either way, so a museum running one tour in French and one in
+     English on the same day would lose the English one. Keyed by city as well as day, or a
+     Geneva event would suppress the Zurich one with the same name. */
+  const tw = twords(title);
   const vkey = day + "|" + (s.time || "") + "|" + norm(String(x.place || "").split(",")[0]);
+  if (tw.size >= 3) {
+    const dkey = pl.city + "|" + day;
+    const prior = dayWords.get(dkey) || [];
+    const hit = prior.find(p => {
+      const shared = [...tw].filter(w => p.words.has(w)).length;
+      if (shared < 3 || (shared !== tw.size && shared !== p.words.size)) return false;
+      const extra = [...(tw.size > p.words.size ? tw : p.words)].filter(w => !(tw.size > p.words.size ? p.words : tw).has(w));
+      /* identical word sets mean the titles differ only in words too short to compare —
+         initials or a surname, as in two inaugural lectures — so treat them as different. */
+      return extra.length > 0 && extra.every(w => NOISEWORD.test(w));
+    });
+    if (hit) {
+      /* the cleaner title wins, not whichever happened to be parsed first */
+      if (tw.size >= hit.words.size) { drop("near-duplicate title", x); continue; }
+      /* The loser's venue key has to go with it. A cross-post from one site shares day, time and
+         venue, so leaving it behind makes the venue check below drop the winner too and the pair
+         disappears with no drop recorded. */
+      out.delete(hit.key); seenVenue.delete(hit.vkey); drop("near-duplicate title");
+      hit.words = tw; hit.key = key; hit.vkey = vkey;
+    } else dayWords.set(dkey, prior.concat([{ words: tw, key, vkey }]));
+  }
   if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate"); continue; } seenVenue.add(vkey);
   const free = x.isFree === true || x.price === 0 || x.price === "0" || /\b(free|gratuit|gratis|kostenlos)\b/i.test(title);
   const price = free ? "Free" : x.price ? `${x.cur || "CHF"} ${Math.round(+x.price) || x.price}` : "Price to check";
@@ -373,7 +454,7 @@ for (const x of raw) {
   const tE = e && e.time && !multi ? "–" + e.time : "";
   const whenTxt = p === "on" ? `Until ${nice(lastDay)}` : p === "big" ? `${nice(day)}${s.time ? " · " + s.time : ""}` : `${DN[dow(day)]} ${+day.slice(8)}${s.time && s.time !== "00:00" ? " · " + s.time + tE : ""}`;
   const _ag = ageOf(title + " " + (x.desc || ""));
-  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: clean(x.place).replace(/^(autre lieu|other venue|divers lieux|lieu à définir)\s*,\s*/i, "").split(/,\s*/).filter((x, i, A) => !i || x.toLowerCase() !== A[i - 1].toLowerCase()).join(", ").slice(0, 120) || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: (_ag ? "Age range: " + _ag + ". " : "") + (short(x.desc) || ""), auto: 1, src: SRCNAME[host(url)] || host(url) };
+  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: clean(x.place).replace(/^(autre lieu|other venue|divers lieux|lieu à définir)\s*,\s*/i, "").split(/,\s*/).filter((x, i, A) => !i || x.toLowerCase() !== A[i - 1].toLowerCase()).join(", ").slice(0, 120) || pl.townName || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: (_ag ? "Age range: " + _ag + ". " : "") + (short(x.desc) || ""), auto: 1, src: SRCNAME[host(url)] || host(url) };
   if (x.geo) ev.geo = x.geo.map(v => Math.round(v * 1e4) / 1e4);
   if (multi) ev.dayEnd = e.day; if (free) ev.free = true; if (cat.includes("chien")) ev.dog = true;
   if (x.src.kind === "meetup" && x.organizer) ev.grp = clean(x.organizer);
