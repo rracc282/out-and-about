@@ -72,6 +72,84 @@ Only `index.html` changed. Nothing else in Batch 7 is started: 53 "Updated X ago
 ### Found while publishing 7c/7d — not yet acted on
 **Far events with a real venue are deleted under a reason that says the place was unknown.** `placeOf()` returns null above 110 km, and the caller counts that as "unknown place": 582 rows on the 12 Nov 06:48 run, about 10% of everything harvested. The samples are things like "Season Start Saas-Fee" with a full address — the place was known exactly. This is pre-existing, not from 7c: the same ~582 appears in the 11:37 and 14:02 runs on 11 Nov, before `TOWNS` existed, and the count oscillates between ~95 and ~585 depending on which Eventfrog category pages answer that night. It is the same mistake 7c fixed for title-matched towns, still live for venue-matched ones. Fixing it would surface ski-resort and mountain events (Saas-Fee, Zermatt) labelled by distance rather than dropping them — worth asking her first, since it would add a lot of 2–4 hour-away events.
 
+## Batch 8 — far events, running clubs, and what that did to the Geneva day
+
+Two things she chose explicitly: show far-away events labelled by distance instead of deleting
+them, and keep running clubs in the app but let them be filtered out.
+
+**The first review of this batch came back "fix first", and was right: neither worked.**
+- The "Further" chip was a duplicate of "Any". `zoneOk()` is a threshold test and `far` is the
+  maximum, so selecting it admitted every zone — 605 of 605 events. The chip is gone; far events
+  are kept, labelled, and show under "Any", which is what was asked for. Do not re-add a `far`
+  chip without first making `zoneOk` treat it as its own bucket.
+- The running filter tested the description, so it hid an English comedy night whose blurb said
+  "running since 2022" and a "long-running" kizomba night — and hid no running clubs at all,
+  because all six sat in `curated.json`'s `drop` list and were spliced out of `EVENTS` before
+  `never()` ever saw them. Removed from `drop`; `running` now has a title-only branch in
+  `never()`, films exempt so "Blade Runner" stays in the Culture tab. Verified: hides exactly
+  the eight running items and nothing else, over 507 live titles.
+
+**What actually recovered the events** was none of the above: it was widening the `srcCity`
+fallback from `if (srcCity && !text)` to `if (srcCity)`. Measured against a *same-night* `main`
+baseline (a branch off main, collector run minutes apart — do this, don't compare against an
+older run, source variance is large): **Geneva 241 -> 408, Zurich 261 -> 276, "unknown place"
+579 -> 0, "too far" 20 -> 0.** La Décadanse alone went 42 -> 234.
+
+### The cost, and the open question for her
+The 40-per-city-per-day cap never used to bite in Geneva. With three times the events it now
+discards ~250 a night. It also discarded them **silently**, with no report entry, which is why
+this took four runs to find — it now reports as `day full (40 per city per day)` with samples.
+
+Two cap attempts, both measured, both wrong before the third:
+1. Equal round-robin across sources — wrong shape. `lesgenevois.com` only publishes for the
+   coming weekend, so on exactly the days it covers it was cut to an eighth of the day alongside
+   sources that had nothing to say. It went 58 -> 31.
+2. "Keep the better listing" at the venue check — a guess, and it made things worse (Geneva
+   titles absent went 34 -> 43). Reverted. Only 5 of 43 losses were venue clashes at all, three
+   of those the same Acroyoga session and one a correct French/English cross-post.
+3. What shipped: a soft ceiling of 16 of the 40 per site, then a second pass handing unwanted
+   slots back. `lesgenevois` 31 -> 42, and Kurtág, La Nuit du conte, HEKA and FILMAR returned.
+
+**Still open, and hers to decide:** 33 Geneva titles that were on `main` are still not on the
+branch, among them the Ballet du Grand Théâtre public rehearsal and "L'ADC fête ses 40 ans".
+The curated theatre agenda and the bulk nightlife agenda are genuinely competing for the same
+40 slots on a busy Friday. Raising the cap, or ranking curated venues above nightlife, changes
+what she sees every day — ask, don't pick.
+
+### Smaller fixes in the same batch
+- The postcode path matched any four digits before a capitalised word: "Salle 1000 Places" became
+  the town "Places". It now requires the postcode to start an address segment. 11 cases tested.
+- Postcode ranges were wrong at the edges. 1200–1299 is not all Geneva (1260 Nyon, 1296 Coppet
+  are Vaud, 20–30 km out) so in-town stops at 1252; 8600–8999 was swallowing Glarus and
+  Walenstadt as a "30 min" hop. A dead `8700–8799` clause inside `8600–8999` was removed.
+- "Usine à gaz" (Nyon) and Ville-la-Grand (France) arrive as bare venue names with no town, so
+  they were being labelled Geneva, In town. Named in `NEAR`. **Unverified, worth a look when
+  something has network: "La Turbine", "Espace Léman" and "Chant'Grange" may also be out of
+  canton.** The sandbox cannot reach the web, so this was not checked.
+- Events hidden by hand in `curated.json` were still taking a slot in a full day.
+
+### Two process notes
+- Don't trigger `Collect events` by hand right after pushing — the push already triggers it and
+  the two runs race, the second dying on a rebase conflict in `data/*.json`. Harmless, but noisy.
+- I quoted before-numbers three times from an intermediate commit rather than `main`, and was
+  wrong three times. Always generate the baseline by running the collector on a branch off main
+  the same night, then compare.
+
+### Item 33 and item 52 — investigated, not started
+Full notes were written up during this batch:
+- **33 (wrong categories), two measured defects.** 224 of 745 events land in "Culture & shows"
+  purely by the `catsOf()` fallback with no culture keyword — 30% of the app. And three regexes
+  lack word boundaries: `disco` matches "discover"/"discussion" (**31 events** wrongly in Fairs &
+  festivals), `velo` matches "develop" (5 in Sports), `wine` matches "intertwine" (2). The
+  boundary fix is tiny and has no judgement calls; the fallback needs her decision on whether to
+  add an "Other" chip to a row that is already five wide at 320px.
+- **52 (speed).** ~1.37 MB at boot (index.html 735K + auto.js 564K + cine.js 74K); `data/*.json`
+  are collector-only and not fetched. All three scripts are in `<head>` with no `defer`, one of
+  them a third-party CDN. **Do not just add `defer`:** the main inline script at :1149 calls
+  `applyAuto()` at :1847 at parse time, would find `window.AUTO` undefined, hit its
+  `if(!A||!A.periods)return` guard and bring the app up empty with no error. Measure cold vs warm
+  first.
+
 ## Still to do (from the six-reviewer feedback list)
 - **Batch 7 · Under the hood:** the rest of 33 (duplicates, wrong categories, too-far events, odd times); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
 - **Batch 8 · Niche extras:** the owner decides do/skip for items 19–25, 43, 56, 66–68, 70–73.
