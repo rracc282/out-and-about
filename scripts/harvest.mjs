@@ -529,13 +529,18 @@ const pri = e => (e.src === "Meetup" ? 3 : 0) + ((e.cat || []).some(c => /rencon
    which is non-deterministic (sources are fetched six at a time), so which listings
    survived changed from night to night for no reason the owner could see. */
 const srcKey = e => host(e.url) || e.src || "?";
+/* Events hidden by hand in curated.json still took up a slot in a full day, so a day could
+   evict a Grand Theatre listing to make room for something the app then refused to show.
+   They go to the back of their source's queue, so they are the first thing cut. */
+let cur = {}; try { cur = JSON.parse(rd("data/curated.json")); } catch {}
+const hiddenById = new Set(cur.drop || []);
 const cells = new Map();
 for (const e of events) { const k = e.city + e.day + e.p; if (!cells.has(k)) cells.set(k, []); cells.get(k).push(e); }
 const keep = new Set();
 for (const list of cells.values()) {
   if (list[0].p === "on" || list[0].p === "big") { for (const e of list) keep.add(e); continue; }
   const q = new Map();
-  for (const e of list.slice().sort((a, b) => pri(b) - pri(a) || String(a.id).localeCompare(String(b.id)))) {
+  for (const e of list.slice().sort((a, b) => (hiddenById.has(a.id) ? 1 : 0) - (hiddenById.has(b.id) ? 1 : 0) || pri(b) - pri(a) || String(a.id).localeCompare(String(b.id)))) {
     const s = srcKey(e); if (!q.has(s)) q.set(s, []); q.get(s).push(e);
   }
   const queues = [...q.values()]; let n = 0;
@@ -590,7 +595,6 @@ const tgeo = {}; for (const id in TRIPMAP) if (GEO[TRIPMAP[id]]) tgeo[id] = GEO[
    things on one day, so day+venue must not be treated as proof of a duplicate there. */
 const BIGHALL = /hallenstadion|kongresshaus|opernhaus|tonhalle|samsung hall|the hall\b/i;
 /* ---------- weekly curation (written by the short Claude run) ---------- */
-let cur = {}; try { cur = JSON.parse(rd("data/curated.json")); } catch {}
 const fresh = cur.week === MON;
 const notes = { ge: {}, zh: {} };
 for (const p of periods) for (const c of ["ge", "zh"]) notes[c][p.id] = (fresh && cur.notes && cur.notes[c] && cur.notes[c][p.id]) || wetNote(c, p);
