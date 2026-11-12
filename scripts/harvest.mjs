@@ -87,9 +87,16 @@ function placeOf(geo, text, srcCity, title) {
      keeps it out of the everyday lists and under the Further chip. */
   const ch = String(text || "").match(/\b(\d{4})\s+([A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*(?:[ -][A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*){0,2})/);
   if (ch) {
-    const town = ch[2].replace(/,.*$/, "").trim();
-    const side = srcCity || (/^[12]/.test(ch[1]) ? "ge" : "zh");
-    return { city: side, zone: "far", trip: town, townName: town };
+    const town = ch[2].replace(/,.*$/, "").trim(), pc = +ch[1];
+    /* Swiss postcodes are geographic, so the number itself says whether this is a city district,
+       the surrounding canton, or genuinely far. 1227 Les Acacias is Geneva; 8152 Opfikon is a
+       Zurich suburb; 3906 Saas-Fee is neither. */
+    const inGe = pc >= 1200 && pc <= 1299, inZh = pc >= 8000 && pc <= 8099;
+    const nearGe = (pc >= 1000 && pc <= 1199) || (pc >= 1300 && pc <= 1349);
+    const nearZh = (pc >= 8100 && pc <= 8499) || (pc >= 8600 && pc <= 8999) || (pc >= 8700 && pc <= 8799);
+    if (inGe || inZh) { const c = inGe ? "ge" : "zh"; return { city: c, zone: c, trip: c === "ge" ? "Geneva" : "Zurich", townName: town }; }
+    if (nearGe || nearZh) { const c = nearGe ? "ge" : "zh"; return { city: c, zone: "45", trip: town, townName: town }; }
+    return { city: srcCity || (pc < 3000 ? "ge" : "zh"), zone: "far", trip: town, townName: town };
   }
   if (srcCity && !text) {
     /* A town named in the title tells us how far away the event is, but NOT which city's list it
