@@ -74,7 +74,7 @@ function placeOf(geo, text, srcCity, title) {
     /* Beyond 110 km this used to return null, which the caller records as "unknown place" and
        drops — about 580 events a night, including ski-resort days whose address was known
        exactly. They are labelled "far" instead: zoneOk() keeps that out of In town / Nearby /
-       Day out, so they surface under "Any" and the Further chip rather than crowding the
+       Day out, so they surface under "Any" alone rather than crowding the
        everyday lists. Past 400 km it stops being a day trip, so those are still dropped. */
     if (k > 400) return null;
     return { city, zone: k <= 9 ? city : k <= 50 ? "45" : k <= 110 ? "90" : "far", trip: k <= 9 ? (city === "ge" ? "Geneva" : "Zurich") : `≈ ${Math.round(k)} km away` };
@@ -84,16 +84,24 @@ function placeOf(geo, text, srcCity, title) {
   /* A Swiss address we cannot place exactly — "Dorfblick, Mischistrasse 10, 3906 Saas-Fee" is a
      ski-resort day, not a mystery. Rather than dropping it as "unknown place", read the town off
      the postcode and label it with that. No distance is claimed, because none is known; "far"
-     keeps it out of the everyday lists and under the Further chip. */
-  const ch = String(text || "").match(/\b(\d{4})\s+([A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*(?:[ -][A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*){0,2})/);
+     keeps it out of the everyday lists, so it shows under "Any". */
+  /* The postcode must start an address segment — "…, 1204 Genève". Matching any four digits
+     followed by a capitalised word turned "Salle 1000 Places" into the town "Places" and
+     "Expo 2026 Palexpo" into the town "Palexpo". */
+  const ch = String(text || "").match(/(?:^|,)\s*(\d{4})\s+([A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*(?:[ -][A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*){0,2})/);
   if (ch) {
     const town = ch[2].replace(/,.*$/, "").trim(), pc = +ch[1];
     /* Swiss postcodes are geographic, so the number itself says whether this is a city district,
        the surrounding canton, or genuinely far. 1227 Les Acacias is Geneva; 8152 Opfikon is a
-       Zurich suburb; 3906 Saas-Fee is neither. */
-    const inGe = pc >= 1200 && pc <= 1299, inZh = pc >= 8000 && pc <= 8099;
-    const nearGe = (pc >= 1000 && pc <= 1199) || (pc >= 1300 && pc <= 1349);
-    const nearZh = (pc >= 8100 && pc <= 8499) || (pc >= 8600 && pc <= 8999) || (pc >= 8700 && pc <= 8799);
+       Zurich suburb; 3906 Saas-Fee is neither.
+       The ranges are deliberately narrow at the edges. 1200-1299 is not all Geneva: 1260 Nyon,
+       1295 Mies and 1296 Coppet are Vaud, 20-30 km out, so the in-town range stops at 1252 and
+       the rest is "nearby". On the Zurich side 8200 Kreuzlingen, 8750 Glarus and 8880 Walenstadt
+       are an hour or more away and must not be called a 30-minute hop. */
+    const inGe = pc >= 1200 && pc <= 1252, inZh = pc >= 8000 && pc <= 8099;
+    const nearGe = (pc >= 1000 && pc <= 1199) || (pc >= 1253 && pc <= 1349);
+    const nearZh = (pc >= 8100 && pc <= 8199) || (pc >= 8300 && pc <= 8499) || (pc >= 8600 && pc <= 8646)
+      || (pc >= 8700 && pc <= 8739) || (pc >= 8800 && pc <= 8859) || (pc >= 8900 && pc <= 8999);
     if (inGe || inZh) { const c = inGe ? "ge" : "zh"; return { city: c, zone: c, trip: c === "ge" ? "Geneva" : "Zurich", townName: town }; }
     if (nearGe || nearZh) { const c = nearGe ? "ge" : "zh"; return { city: c, zone: "45", trip: town, townName: town }; }
     return { city: srcCity || (pc < 3000 ? "ge" : "zh"), zone: "far", trip: town, townName: town };
@@ -121,7 +129,10 @@ function placeOf(geo, text, srcCity, title) {
 }
 
 const NEAR = [
-  [/\b(nyon|ferney|divonne|gex|saint-julien|st-julien|annemasse|coppet|rolle|gland|thoiry|saint-genis)\b/i, "ge", "45", "≈ 30 min from Geneva"],
+  /* "Usine à gaz" is Nyon and "Ville-la-Grand" is over the French border: both arrive as a bare
+     venue name with no town, so without naming them here they fall through to the source's own
+     city and get labelled Geneva, In town. */
+  [/\b(nyon|ferney|divonne|gex|saint-julien|st-julien|annemasse|coppet|rolle|gland|thoiry|saint-genis|ville-la-grand)\b|\busine [àa] gaz\b/i, "ge", "45", "≈ 30 min from Geneva"],
   [/\b(lausanne|morges|annecy|thonon|[eé]vian|vevey|montreux|pully|renens)\b/i, "ge", "45", "≈ 45 min from Geneva"],
   [/\b(fribourg|neuch[aâ]tel|gruy[eè]res|bulle|yverdon|chamonix|sion)\b/i, "ge", "90", "≈ 1h30 from Geneva"],
   [/\b(winterthur|baden|zug|uster|w[aä]denswil|rapperswil|thalwil|horgen|k[uü]snacht|meilen|kloten|dietikon|bülach|wetzikon)\b/i, "zh", "45", "≈ 30 min from Zurich"],
@@ -509,9 +520,33 @@ dedupeSites();
 /* Ticketed halls score nothing on the rules below, so once a day fills up they are the first
    thing cut — which quietly undid the Kaufleuten and Hallenstadion coverage. Give them a lift. */
 const BIGV = new Set((cfg.pages || []).filter(p => p.big).map(p => host(p.url)).filter(Boolean));
-const per = {}; const pri = e => (e.src === "Meetup" ? 3 : 0) + ((e.cat || []).some(c => /rencontre|creatif|marche/.test(c)) ? 2 : 0) + (e.free ? 1 : 0) + (BIGV.has(host(e.url)) ? 2 : 0);
-events.sort((a, b) => pri(b) - pri(a));
-events = events.filter(e => { const k = e.city + e.day + e.p; per[k] = (per[k] || 0) + 1; return e.p === "on" || e.p === "big" || per[k] <= 40; });
+const pri = e => (e.src === "Meetup" ? 3 : 0) + ((e.cat || []).some(c => /rencontre|creatif|marche/.test(c)) ? 2 : 0) + (e.free ? 1 : 0) + (BIGV.has(host(e.url)) ? 2 : 0);
+/* Fill each day by taking the best remaining event from every source in turn, rather than
+   sorting the whole day by score and cutting at 40. A plain sort let one bulk listing take
+   most of a full day: on a Saturday, 15 nightlife entries from a single site displaced the
+   Grand Theatre rehearsal, the Concours de Geneve laureates and "L'ADC fete ses 40 ans",
+   all of which scored exactly the same. The old tie was broken by harvest arrival order,
+   which is non-deterministic (sources are fetched six at a time), so which listings
+   survived changed from night to night for no reason the owner could see. */
+const srcKey = e => host(e.url) || e.src || "?";
+const cells = new Map();
+for (const e of events) { const k = e.city + e.day + e.p; if (!cells.has(k)) cells.set(k, []); cells.get(k).push(e); }
+const keep = new Set();
+for (const list of cells.values()) {
+  if (list[0].p === "on" || list[0].p === "big") { for (const e of list) keep.add(e); continue; }
+  const q = new Map();
+  for (const e of list.slice().sort((a, b) => pri(b) - pri(a) || String(a.id).localeCompare(String(b.id)))) {
+    const s = srcKey(e); if (!q.has(s)) q.set(s, []); q.get(s).push(e);
+  }
+  const queues = [...q.values()]; let n = 0;
+  while (n < 40) {
+    /* each round, the source whose next event scores highest goes first */
+    const live = queues.filter(x => x.length).sort((a, b) => pri(b[0]) - pri(a[0]) || String(a[0].id).localeCompare(String(b[0].id)));
+    if (!live.length) break;
+    for (const x of live) { keep.add(x.shift()); if (++n >= 40) break; }
+  }
+}
+events = events.filter(e => keep.has(e));
 report.kept = events.length;
 
 /* ---------- weather (Open-Meteo, free) ---------- */
