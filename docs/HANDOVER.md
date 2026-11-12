@@ -69,6 +69,9 @@ The real gap was German, which goes the other way: `zuerich` returned **0** wher
 
 Only `index.html` changed. Nothing else in Batch 7 is started: 53 "Updated X ago" (the data exists as `AUTO.generated`; the `.stamp` line that would show it is hidden by the Batch 5 CSS, so it needs a new home that doesn't crowd the title row), 52 speed, 51 sync merge, 50 "new version" prompt (note the service worker currently calls `skipWaiting()`, i.e. it already auto-updates — worth asking whether a prompt is wanted at all), 57 cleanup.
 
+### Found while publishing 7c/7d — not yet acted on
+**Far events with a real venue are deleted under a reason that says the place was unknown.** `placeOf()` returns null above 110 km, and the caller counts that as "unknown place": 582 rows on the 12 Nov 06:48 run, about 10% of everything harvested. The samples are things like "Season Start Saas-Fee" with a full address — the place was known exactly. This is pre-existing, not from 7c: the same ~582 appears in the 11:37 and 14:02 runs on 11 Nov, before `TOWNS` existed, and the count oscillates between ~95 and ~585 depending on which Eventfrog category pages answer that night. It is the same mistake 7c fixed for title-matched towns, still live for venue-matched ones. Fixing it would surface ski-resort and mountain events (Saas-Fee, Zermatt) labelled by distance rather than dropping them — worth asking her first, since it would add a lot of 2–4 hour-away events.
+
 ## Still to do (from the six-reviewer feedback list)
 - **Batch 7 · Under the hood:** the rest of 33 (duplicates, wrong categories, too-far events, odd times); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
 - **Batch 8 · Niche extras:** the owner decides do/skip for items 19–25, 43, 56, 66–68, 70–73.
