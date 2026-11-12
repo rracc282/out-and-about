@@ -81,6 +81,16 @@ function placeOf(geo, text, srcCity, title) {
   }
   for (const c of ["ge", "zh"]) if (LOCAL[c].test(text || "")) return { city: c, zone: c, trip: c === "ge" ? "Geneva" : "Zurich" };
   for (const [re, city, zone, trip] of NEAR) if (re.test(text || "")) return { city, zone, trip };
+  /* A Swiss address we cannot place exactly — "Dorfblick, Mischistrasse 10, 3906 Saas-Fee" is a
+     ski-resort day, not a mystery. Rather than dropping it as "unknown place", read the town off
+     the postcode and label it with that. No distance is claimed, because none is known; "far"
+     keeps it out of the everyday lists and under the Further chip. */
+  const ch = String(text || "").match(/\b(\d{4})\s+([A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*(?:[ -][A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*){0,2})/);
+  if (ch) {
+    const town = ch[2].replace(/,.*$/, "").trim();
+    const side = srcCity || (/^[12]/.test(ch[1]) ? "ge" : "zh");
+    return { city: side, zone: "far", trip: town, townName: town };
+  }
   if (srcCity && !text) {
     /* A town named in the title tells us how far away the event is, but NOT which city's list it
        belongs in: a Geneva group's day trip to Bern is still a Geneva group's outing, and Bern is
