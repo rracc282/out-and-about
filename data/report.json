@@ -3,7 +3,7 @@
   {
    "url": "https://www.ladecadanse.ch/",
    "status": 200,
-   "bytes": 9329089,
+   "bytes": 9329099,
    "found": 631,
    "followed": 14,
    "markers": "day agenda"
@@ -81,17 +81,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/http-www-freewalk-ch-geneva-index-php/events/",
+   "url": "https://www.meetup.com/lausanne-acroyoga/events/",
    "status": 200,
-   "bytes": 214534,
+   "bytes": 242746,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/lausanne-acroyoga/events/",
+   "url": "https://www.meetup.com/http-www-freewalk-ch-geneva-index-php/events/",
    "status": 200,
-   "bytes": 242746,
+   "bytes": 214534,
    "found": 80,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -155,16 +155,16 @@
   {
    "url": "https://infomaniak.events/en-ch/comedy/geneva",
    "status": 200,
-   "bytes": 418708,
-   "found": 73,
+   "bytes": 418596,
+   "found": 74,
    "followed": 40,
    "markers": ""
   },
   {
    "url": "https://infomaniak.events/en-ch/humour-and-comedy/geneva",
    "status": 200,
-   "bytes": 418708,
-   "found": 73,
+   "bytes": 418596,
+   "found": 74,
    "followed": 40,
    "markers": ""
   },
@@ -307,7 +307,7 @@
   {
    "url": "https://kaufleuten.ch/en/events/",
    "status": 200,
-   "bytes": 187265,
+   "bytes": 187263,
    "found": 37,
    "followed": 39,
    "markers": "ld+json wp-json"
@@ -441,14 +441,6 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/artists-meetup-group-english-speaking/events/",
-   "status": 200,
-   "bytes": 137364,
-   "found": 22,
-   "followed": 0,
-   "markers": "ld+json __NEXT_DATA__"
-  },
-  {
    "url": "https://www.meetup.com/aktzeichnen-im-kreis-zurich/events/",
    "status": 200,
    "bytes": 124826,
@@ -460,6 +452,14 @@
    "url": "https://www.meetup.com/meetnewpeoplegeneva/events/",
    "status": 200,
    "bytes": 190951,
+   "found": 22,
+   "followed": 0,
+   "markers": "ld+json __NEXT_DATA__"
+  },
+  {
+   "url": "https://www.meetup.com/artists-meetup-group-english-speaking/events/",
+   "status": 200,
+   "bytes": 137364,
    "found": 22,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -513,17 +513,17 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/historical-walks/events/",
+   "url": "https://www.meetup.com/geneva-social-club/events/",
    "status": 200,
-   "bytes": 139582,
+   "bytes": 146209,
    "found": 20,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://www.meetup.com/geneva-social-club/events/",
+   "url": "https://www.meetup.com/historical-walks/events/",
    "status": 200,
-   "bytes": 146209,
+   "bytes": 139582,
    "found": 20,
    "followed": 0,
    "markers": "ld+json __NEXT_DATA__"
@@ -563,7 +563,7 @@
   {
    "url": "https://hallenstadion.ch/events/",
    "status": 200,
-   "bytes": 2350111,
+   "bytes": 2350058,
    "found": 12,
    "followed": 12,
    "markers": "addevent block"
@@ -633,25 +633,25 @@
    "markers": "ld+json __NEXT_DATA__"
   },
   {
-   "url": "https://newinzurich.com/events/",
-   "status": 202,
-   "bytes": 176,
-   "found": 0,
-   "followed": 0,
-   "markers": ""
-  },
-  {
    "url": "https://zuri.net/de/zurich/agenda/",
    "status": 200,
-   "bytes": 86832,
+   "bytes": 86420,
    "found": 0,
    "followed": 13,
    "markers": "ld+json"
   },
   {
+   "url": "https://newinzurich.com/events/",
+   "status": 200,
+   "bytes": 164171,
+   "found": 0,
+   "followed": 3,
+   "markers": "ld+json wp-json"
+  },
+  {
    "url": "https://www.comedykiss.ch/",
    "status": 200,
-   "bytes": 1473635,
+   "bytes": 1473144,
    "found": 0,
    "followed": 0,
    "markers": "ld+json"
@@ -667,7 +667,7 @@
   {
    "url": "https://infomaniak.events/en-ch/comedy/zurich",
    "status": 200,
-   "bytes": 136629,
+   "bytes": 136630,
    "found": 0,
    "followed": 0,
    "markers": ""
@@ -705,76 +705,31 @@
    "markers": ""
   }
  ],
- "kept": 574,
+ "kept": 720,
  "dropped": {
+  "later than 2 weeks": 1572,
   "past": 656,
-  "later than 2 weeks": 1454,
-  "duplicate": 930,
-  "far future": 151,
-  "weekday daytime": 230,
+  "duplicate": 986,
+  "far future": 145,
+  "weekday daytime": 264,
   "niche (card games, wargaming…)": 85,
-  "unknown place": 562,
   "Zurich: German-only spoken event": 276,
   "a forum post, not an event": 11,
   "not relevant": 37,
   "already in app": 4,
   "children's event": 42,
   "near-duplicate title": 3,
-  "same event on two sites": 7
+  "same event on two sites": 13
  },
  "unbezahlbar.detailed": 59,
  "geocoded": 0,
- "descEnriched": 39,
- "translated": 2,
+ "descEnriched": 41,
+ "translated": 210,
  "byCity": {
-  "ge": 274,
-  "zh": 300
+  "ge": 419,
+  "zh": 301
  },
  "samples": {
-  "unknown place": [
-   [
-    "FRENCH conversation SUNDAY 18h",
-    "2026-11-15T18:00:00+01:00",
-    "Ruby Claire Hotel Bar, Rue du Rhône 46,, Switzerland",
-    "",
-    "https://www.meetup.com/practice-french-geneva/events/"
-   ],
-   [
-    "FRENCH conversation SUNDAY 18h",
-    "2026-11-22T18:00:00+01:00",
-    "Ruby Claire Hotel Bar, Rue du Rhône 46,, Switzerland",
-    "",
-    "https://www.meetup.com/practice-french-geneva/events/"
-   ],
-   [
-    "FRENCH conversation SUNDAY 18h",
-    "2026-11-29T18:00:00+01:00",
-    "Ruby Claire Hotel Bar, Rue du Rhône 46,, Switzerland",
-    "",
-    "https://www.meetup.com/practice-french-geneva/events/"
-   ],
-   [
-    "FRENCH conversation SUNDAY 18h",
-    "2026-12-06T18:00:00+01:00",
-    "Ruby Claire Hotel Bar, Rue du Rhône 46,, Switzerland",
-    "",
-    "https://www.meetup.com/practice-french-geneva/events/"
-   ],
-   [
-    "FRENCH conversation SUNDAY 18h",
-    "2026-12-13T18:00:00+01:00",
-    "Ruby Claire Hotel Bar, Rue du Rhône 46,, Switzerland",
-    "",
-    "https://www.meetup.com/practice-french-geneva/events/"
-   ],
-   [
-    "FRENCH conversation SUNDAY 18h",
-    "2026-12-20T18:00:00+01:00",
-    "Ruby Claire Hotel Bar, Rue du Rhône 46,, Switzerland",
-    "",
-    "https://www.meetup.com/practice-french-geneva/events/"
-   ]
-  ],
   "Zurich: German-only spoken event": [
    [
     "LONG NIGHT OF PHILOSOPHY: The \"und\" Problem",
@@ -888,6 +843,27 @@
   ],
   "same event on two sites": [
    [
+    "Layāli & Amanés – Maroc, Espagne, Grèce à Genève",
+    "2026-11-14",
+    "Temple de la Madeleine, Genève, Rue de la Madeleine 15 15, Genf",
+    "",
+    "https://eventfrog.ch/fr/p/concerts/monde-ethno/layli-amanes-maroc-espa"
+   ],
+   [
+    "Pratique \"FRENCH\" du dimanche",
+    "2026-11-15",
+    "Ruby claire BAR",
+    "",
+    "https://www.ladecadanse.ch/event/evenement.php?idE=516787"
+   ],
+   [
+    "Pratique \"FRENCH\" du dimanche",
+    "2026-11-22",
+    "Ruby claire BAR",
+    "",
+    "https://www.ladecadanse.ch/event/evenement.php?idE=516788"
+   ],
+   [
     "Music-Jam Dance Games Gyros Planet❤️ SIMPLY meet FRIENDS!",
     "2026-11-13",
     "Auer & Co., Sihlquai 131, 8005 Zürich, Switzerland, Zürich, ZH, Zürich",
@@ -902,32 +878,11 @@
     "https://www.meetup.com/zurich-fun-social-indoor-and-outdoor-activities"
    ],
    [
-    "Interstellar : Hommage à Hans Zimmer par Mystery Ensemble",
-    "2026-11-13",
-    "Salle Centrale de la Madeleine, Rue de la Madeleine 10, 1204 Genève, G",
-    "",
-    "https://lesgenevois.com/calendrier/e/interstellar-hommage-hans-zimmer-"
-   ],
-   [
-    "Balades Théâtralisées - De la haute-ville aux bas-fonds",
-    "2026-11-15",
-    "Genève",
-    "",
-    "https://lesgenevois.com/calendrier/e/balade-theatrale-geneve-insolite"
-   ],
-   [
-    "80e Concours de Genève – Concert Lauréat·es",
-    "2026-11-15",
-    "Les Salons, Rue Jean-François-BARTHOLONI 6, 1204 Genève, Genève",
-    "",
-    "https://lesgenevois.com/calendrier/e/concours-geneve-concert-laureates"
-   ],
-   [
-    "Donald MacInley and the Witch of Caisteal Abhail : A Musical Scottish ",
+    "Creative Workshop at La Tour en Communs",
     "2026-11-14",
-    "MEG, Boulevard Carl-VOGT 65, 1205 Genève, Genève",
+    "Quai Ernest-Ansermet, 1205 Genève, Genève",
     "",
-    "https://infomaniak.events/fr-ch/shop/festival-celtique-entre-ecosse-et"
+    "https://lesgenevois.com/calendrier/e/atelier-creation-oeuvre-collectiv"
    ]
   ]
  }
