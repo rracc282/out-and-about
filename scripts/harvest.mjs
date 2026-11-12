@@ -71,12 +71,46 @@ const townName = t => { for (const [re] of TOWNS) { const m = t.match(re); if (m
 function placeOf(geo, text, srcCity, title) {
   if (geo) {
     const d = { ge: km(geo, CITY.ge), zh: km(geo, CITY.zh) }; const city = d.ge < d.zh ? "ge" : "zh"; const k = d[city];
-    if (k > 110) return null;
-    return { city, zone: k <= 9 ? city : k <= 50 ? "45" : "90", trip: k <= 9 ? (city === "ge" ? "Geneva" : "Zurich") : `≈ ${Math.round(k)} km away` };
+    /* Beyond 110 km this used to return null, which the caller records as "unknown place" and
+       drops — about 580 events a night, including ski-resort days whose address was known
+       exactly. They are labelled "far" instead: zoneOk() keeps that out of In town / Nearby /
+       Day out, so they surface under "Any" alone rather than crowding the
+       everyday lists. Past 400 km it stops being a day trip, so those are still dropped. */
+    if (k > 400) return null;
+    return { city, zone: k <= 9 ? city : k <= 50 ? "45" : k <= 110 ? "90" : "far", trip: k <= 9 ? (city === "ge" ? "Geneva" : "Zurich") : `≈ ${Math.round(k)} km away` };
   }
   for (const c of ["ge", "zh"]) if (LOCAL[c].test(text || "")) return { city: c, zone: c, trip: c === "ge" ? "Geneva" : "Zurich" };
   for (const [re, city, zone, trip] of NEAR) if (re.test(text || "")) return { city, zone, trip };
-  if (srcCity && !text) {
+  /* A Swiss address we cannot place exactly — "Dorfblick, Mischistrasse 10, 3906 Saas-Fee" is a
+     ski-resort day, not a mystery. Rather than dropping it as "unknown place", read the town off
+     the postcode and label it with that. No distance is claimed, because none is known; "far"
+     keeps it out of the everyday lists, so it shows under "Any". */
+  /* The postcode must start an address segment — "…, 1204 Genève". Matching any four digits
+     followed by a capitalised word turned "Salle 1000 Places" into the town "Places" and
+     "Expo 2026 Palexpo" into the town "Palexpo". */
+  const ch = String(text || "").match(/(?:^|,)\s*(\d{4})\s+([A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*(?:[ -][A-ZÄÖÜ][\wÄÖÜäöüéèàâ'’.\-]*){0,2})/);
+  if (ch) {
+    const town = ch[2].replace(/,.*$/, "").trim(), pc = +ch[1];
+    /* Swiss postcodes are geographic, so the number itself says whether this is a city district,
+       the surrounding canton, or genuinely far. 1227 Les Acacias is Geneva; 8152 Opfikon is a
+       Zurich suburb; 3906 Saas-Fee is neither.
+       The ranges are deliberately narrow at the edges. 1200-1299 is not all Geneva: 1260 Nyon,
+       1295 Mies and 1296 Coppet are Vaud, 20-30 km out, so the in-town range stops at 1252 and
+       the rest is "nearby". On the Zurich side 8200 Kreuzlingen, 8750 Glarus and 8880 Walenstadt
+       are an hour or more away and must not be called a 30-minute hop. */
+    const inGe = pc >= 1200 && pc <= 1252, inZh = pc >= 8000 && pc <= 8099;
+    const nearGe = (pc >= 1000 && pc <= 1199) || (pc >= 1253 && pc <= 1349);
+    const nearZh = (pc >= 8100 && pc <= 8199) || (pc >= 8300 && pc <= 8499) || (pc >= 8600 && pc <= 8646)
+      || (pc >= 8700 && pc <= 8739) || (pc >= 8800 && pc <= 8859) || (pc >= 8900 && pc <= 8999);
+    if (inGe || inZh) { const c = inGe ? "ge" : "zh"; return { city: c, zone: c, trip: c === "ge" ? "Geneva" : "Zurich", townName: town }; }
+    if (nearGe || nearZh) { const c = nearGe ? "ge" : "zh"; return { city: c, zone: "45", trip: town, townName: town }; }
+    return { city: srcCity || (pc < 3000 ? "ge" : "zh"), zone: "far", trip: town, townName: town };
+  }
+  /* An address we could not place, from a source that only ever covers one city, is almost
+     certainly in that city: "Ruby Claire Hotel Bar, Rue du Rhône 46" is Geneva, and was being
+     dropped nightly as "unknown place". The postcode and TOWNS checks above already catch the
+     genuine out-of-town cases, so this falls back to the source's own city rather than deleting. */
+  if (srcCity) {
     /* A town named in the title tells us how far away the event is, but NOT which city's list it
        belongs in: a Geneva group's day trip to Bern is still a Geneva group's outing, and Bern is
        nearer Zurich. So keep the source's city and use the distance only for the zone and label.
@@ -85,7 +119,7 @@ function placeOf(geo, text, srcCity, title) {
     const g = title && townGeo(title);
     if (g) {
       const k = km(g, CITY[srcCity]);
-      return { city: srcCity, zone: k <= 9 ? srcCity : k <= 50 ? "45" : "90",
+      return { city: srcCity, zone: k <= 9 ? srcCity : k <= 50 ? "45" : k <= 110 ? "90" : "far",
         trip: k <= 9 ? (srcCity === "ge" ? "Geneva" : "Zurich") : `≈ ${Math.round(k)} km away`,
         townName: townName(title) };
     }
@@ -95,7 +129,10 @@ function placeOf(geo, text, srcCity, title) {
 }
 
 const NEAR = [
-  [/\b(nyon|ferney|divonne|gex|saint-julien|st-julien|annemasse|coppet|rolle|gland|thoiry|saint-genis)\b/i, "ge", "45", "≈ 30 min from Geneva"],
+  /* "Usine à gaz" is Nyon and "Ville-la-Grand" is over the French border: both arrive as a bare
+     venue name with no town, so without naming them here they fall through to the source's own
+     city and get labelled Geneva, In town. */
+  [/\b(nyon|ferney|divonne|gex|saint-julien|st-julien|annemasse|coppet|rolle|gland|thoiry|saint-genis|ville-la-grand)\b|\busine [àa] gaz\b/i, "ge", "45", "≈ 30 min from Geneva"],
   [/\b(lausanne|morges|annecy|thonon|[eé]vian|vevey|montreux|pully|renens)\b/i, "ge", "45", "≈ 45 min from Geneva"],
   [/\b(fribourg|neuch[aâ]tel|gruy[eè]res|bulle|yverdon|chamonix|sion)\b/i, "ge", "90", "≈ 1h30 from Geneva"],
   [/\b(winterthur|baden|zug|uster|w[aä]denswil|rapperswil|thalwil|horgen|k[uü]snacht|meilen|kloten|dietikon|bülach|wetzikon)\b/i, "zh", "45", "≈ 30 min from Zurich"],
@@ -116,7 +153,12 @@ const BAD = /bourse (?:aux |d.)?(?:jouets|enfan|pu[ée]ricult)|pu[ée]riculture|
 const catsOf = (t, d, srcKind) => { const s = t + " " + (d || "").slice(0, 300); const c = CATS.filter(([, re]) => re.test(s)).map(([k]) => k); if (!c.length) c.push(srcKind === "meetup" ? "rencontre" : "culture"); return c.slice(0, 3); };
 
 /* ---------- parsing ---------- */
-const clean = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+const clean = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim()
+/* venue strings arrive with empty segments ("Rue du Rhône 46, , Switzerland") and a repeated
+   first line ("Dorfblick, Dorfblick, …"); both show on the card */
+const cleanPlace = s => { const p = clean(s).split(",").map(x => x.trim()).filter(Boolean)
+    .filter(x => !/^(switzerland|suisse|schweiz|ch)$/i.test(x));
+  return p.filter((x, i) => i === 0 || x.toLowerCase() !== p[i - 1].toLowerCase()).join(", "); };
 const short = (s, n = 230) => { s = clean(s); if (s.length <= n) return s; const cut = s.slice(0, n); const i = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! ")); return (i > 80 ? cut.slice(0, i + 1) : cut.replace(/\s\S*$/, "") + "…"); };
 function walk(o, f, seen = new Set()) { if (!o || typeof o !== "object" || seen.has(o)) return; seen.add(o); f(o); for (const v of Array.isArray(o) ? o : Object.values(o)) walk(v, f, seen); }
 function blobs(page) {
@@ -412,7 +454,7 @@ for (const x of raw) {
   const key = day + "|" + norm(title);
   if (existing.has(key) || existingUrl.has(url)) { drop("already in app"); continue; }
   if (x.src.kind === "hallenstadion" && existingVenueDay.has(day + "|" + norm(String(x.place || "").split(",")[0]))) { drop("already in app"); continue; }
-  if (out.has(key)) { drop("duplicate"); continue; }
+  if (out.has(key)) { drop("duplicate: same title and day", x); continue; }
   /* 33 · forum threads that Meetup lists as if they were events. */
   if (NOTEVENT.test(title)) { drop("a forum post, not an event", x); continue; }
   /* 33 · the same thing posted twice with slightly different wording, which the exact title key
@@ -447,14 +489,14 @@ for (const x of raw) {
       hit.words = tw; hit.key = key; hit.vkey = vkey;
     } else dayWords.set(dkey, prior.concat([{ words: tw, key, vkey }]));
   }
-  if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate"); continue; } seenVenue.add(vkey);
+  if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate: same venue and time", x); continue; } seenVenue.add(vkey);
   const free = x.isFree === true || x.price === 0 || x.price === "0" || /\b(free|gratuit|gratis|kostenlos)\b/i.test(title);
   const price = free ? "Free" : x.price ? `${x.cur || "CHF"} ${Math.round(+x.price) || x.price}` : "Price to check";
   const cat = catsOf(title, x.desc, x.src.kind);
   const tE = e && e.time && !multi ? "–" + e.time : "";
   const whenTxt = p === "on" ? `Until ${nice(lastDay)}` : p === "big" ? `${nice(day)}${s.time ? " · " + s.time : ""}` : `${DN[dow(day)]} ${+day.slice(8)}${s.time && s.time !== "00:00" ? " · " + s.time + tE : ""}`;
   const _ag = ageOf(title + " " + (x.desc || ""));
-  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: clean(x.place).replace(/^(autre lieu|other venue|divers lieux|lieu à définir)\s*,\s*/i, "").split(/,\s*/).filter((x, i, A) => !i || x.toLowerCase() !== A[i - 1].toLowerCase()).join(", ").slice(0, 120) || pl.townName || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: (_ag ? "Age range: " + _ag + ". " : "") + (short(x.desc) || ""), auto: 1, src: SRCNAME[host(url)] || host(url) };
+  const ev = { id: `a-${pl.city}-${slug(title)}-${day.slice(5)}`, p, day, when: whenTxt, title, url, place: cleanPlace(x.place).replace(/^(autre lieu|other venue|divers lieux|lieu à définir)\s*,\s*/i, "").split(/,\s*/).filter((x, i, A) => !i || x.toLowerCase() !== A[i - 1].toLowerCase()).join(", ").slice(0, 120) || pl.townName || (pl.city === "ge" ? "Geneva" : "Zurich"), trip: pl.trip, price, cat, zone: pl.zone, city: pl.city, desc: (_ag ? "Age range: " + _ag + ". " : "") + (short(x.desc) || ""), auto: 1, src: SRCNAME[host(url)] || host(url) };
   if (x.geo) ev.geo = x.geo.map(v => Math.round(v * 1e4) / 1e4);
   if (multi) ev.dayEnd = e.day; if (free) ev.free = true; if (cat.includes("chien")) ev.dog = true;
   if (x.src.kind === "meetup" && x.organizer) ev.grp = clean(x.organizer);
@@ -478,9 +520,44 @@ dedupeSites();
 /* Ticketed halls score nothing on the rules below, so once a day fills up they are the first
    thing cut — which quietly undid the Kaufleuten and Hallenstadion coverage. Give them a lift. */
 const BIGV = new Set((cfg.pages || []).filter(p => p.big).map(p => host(p.url)).filter(Boolean));
-const per = {}; const pri = e => (e.src === "Meetup" ? 3 : 0) + ((e.cat || []).some(c => /rencontre|creatif|marche/.test(c)) ? 2 : 0) + (e.free ? 1 : 0) + (BIGV.has(host(e.url)) ? 2 : 0);
-events.sort((a, b) => pri(b) - pri(a));
-events = events.filter(e => { const k = e.city + e.day + e.p; per[k] = (per[k] || 0) + 1; return e.p === "on" || e.p === "big" || per[k] <= 40; });
+const pri = e => (e.src === "Meetup" ? 3 : 0) + ((e.cat || []).some(c => /rencontre|creatif|marche/.test(c)) ? 2 : 0) + (e.free ? 1 : 0) + (BIGV.has(host(e.url)) ? 2 : 0);
+/* Fill each day by taking the best remaining event from every source in turn, rather than
+   sorting the whole day by score and cutting at 40. A plain sort let one bulk listing take
+   most of a full day: on a Saturday, 15 nightlife entries from a single site displaced the
+   Grand Theatre rehearsal, the Concours de Geneve laureates and "L'ADC fete ses 40 ans",
+   all of which scored exactly the same. The old tie was broken by harvest arrival order,
+   which is non-deterministic (sources are fetched six at a time), so which listings
+   survived changed from night to night for no reason the owner could see. */
+const srcKey = e => host(e.url) || e.src || "?";
+/* Events hidden by hand in curated.json still took up a slot in a full day, so a day could
+   evict a Grand Theatre listing to make room for something the app then refused to show.
+   They go to the back of their source's queue, so they are the first thing cut. */
+let cur = {}; try { cur = JSON.parse(rd("data/curated.json")); } catch {}
+const hiddenById = new Set(cur.drop || []);
+const CAP = 40, SOFT = 16;
+const cells = new Map();
+for (const e of events) { const k = e.city + e.day + e.p; if (!cells.has(k)) cells.set(k, []); cells.get(k).push(e); }
+const keep = new Set();
+for (const list of cells.values()) {
+  if (list[0].p === "on" || list[0].p === "big") { for (const e of list) keep.add(e); continue; }
+  const sorted = list.slice().sort((a, b) => (hiddenById.has(a.id) ? 1 : 0) - (hiddenById.has(b.id) ? 1 : 0) || pri(b) - pri(a) || String(a.id).localeCompare(String(b.id)));
+  /* First pass takes the best events but lets no single site hold more than SOFT of the day, so
+     one bulk listing cannot own a Friday. Giving every site an equal share instead was worse:
+     the curated agenda only publishes for the coming weekend, so on exactly the days it covers
+     it was cut to an eighth of the day alongside sites that had nothing to say. The second pass
+     hands any slots nobody else wanted back to whoever is left. */
+  const used = new Map(); let n = 0;
+  for (const e of sorted) {
+    if (n >= CAP) break;
+    const s = srcKey(e); if ((used.get(s) || 0) >= SOFT) continue;
+    used.set(s, (used.get(s) || 0) + 1); keep.add(e); n++;
+  }
+  for (const e of sorted) { if (n >= CAP) break; if (!keep.has(e)) { keep.add(e); n++; } }
+}
+/* the cap used to discard silently, with no report entry, so a day quietly losing curated
+   listings looked identical to a day where nothing was found */
+for (const e of events) if (!keep.has(e)) drop("day full (" + CAP + " per city per day)", { title: e.title, start: e.day, place: e.place, src: { url: e.url } });
+events = events.filter(e => keep.has(e));
 report.kept = events.length;
 
 /* ---------- weather (Open-Meteo, free) ---------- */
@@ -521,7 +598,6 @@ const tgeo = {}; for (const id in TRIPMAP) if (GEO[TRIPMAP[id]]) tgeo[id] = GEO[
    things on one day, so day+venue must not be treated as proof of a duplicate there. */
 const BIGHALL = /hallenstadion|kongresshaus|opernhaus|tonhalle|samsung hall|the hall\b/i;
 /* ---------- weekly curation (written by the short Claude run) ---------- */
-let cur = {}; try { cur = JSON.parse(rd("data/curated.json")); } catch {}
 const fresh = cur.week === MON;
 const notes = { ge: {}, zh: {} };
 for (const p of periods) for (const c of ["ge", "zh"]) notes[c][p.id] = (fresh && cur.notes && cur.notes[c] && cur.notes[c][p.id]) || wetNote(c, p);

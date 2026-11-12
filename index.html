@@ -3227,7 +3227,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
 (function(){
   const MOODS=[["markets","Markets"],["concerts","Concerts"],["festivals","Festivals"],["outdoors","Outdoors & hikes"],["creative","Creative"],["exhibitions","Exhibitions"],["meet","Meet people"],["games","Games"],["yoga","Yoga & dance"],["comedy","Comedy"],["film","Film"],["language","Language exchange"],["food","Food & drink"],["party","Parties"]];
   const MLBL=Object.fromEntries(MOODS);
-  const NEVER=[["meetups","Meetups, mixers & language exchanges"],["clubs","Nightclubs & late parties"],["talks","Talks & lectures"],["sports","Watching sports"],["classical","Classical music"],["kids","Kids & family"]];
+  const NEVER=[["meetups","Meetups, mixers & language exchanges"],["clubs","Nightclubs & late parties"],["talks","Talks & lectures"],["sports","Watching sports"],["running","Running clubs & group runs"],["classical","Classical music"],["kids","Kids & family"]];
   const WHO=[["partner","With my partner"],["solo","Solo"],["friends","With friends"]];
   const DEF={we:{who:"partner",moods:["markets","concerts","festivals","outdoors"]},wk:{who:"solo",moods:["meet","games","creative"]},never:["talks","sports"],eves:[1,2,3,4],dog:true};
   const LIKE2MOOD={rencontre:["meet"],creatif:["creative"],marche:["markets"],fete:["festivals"],culture:["concerts","exhibitions"],chien:["outdoors"],corps:["outdoors","yoga"]};
@@ -3250,7 +3250,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     food:/food|wine|vin\b|tasting|d[ée]gustation|brunch|dinner|cook|street food|beer|bi[èe]re|cocktail/i,
     party:/party|soir[ée]e|club\b|dj set|clubbing|techno|house music|disco|karaoke/i};
   const NRX={kids:/\b(?:kids|enfants?|children|kinder|for families|en famille|family[- ]friendly|famili[ae]l|b[ée]b[ée]s?|toddlers?)\b/i,sports:/football|soccer|hockey|league|\bmatch\b|ravens|\bvs\.?\b|championship|meisterschaft/i,
-    talks:/\b(?:a talk|talk by|talks? (?:on|about|with)|lecture by|public lecture|lecture on|panel discussion|webinar|vortrag|round ?table)\b/i,clubs:/club night|\btechno\b|clubbing|\brave\b|after.?party/i,classical:/orchestr|symphon|recital|philharm|quartet|sonata|opera\b|op[ée]ra/i};
+    talks:/\b(?:a talk|talk by|talks? (?:on|about|with)|lecture by|public lecture|lecture on|panel discussion|webinar|vortrag|round ?table)\b/i,clubs:/club night|\btechno\b|clubbing|\brave\b|after.?party/i,running:/running(?! of )|\b(?:run|runs|runners?|run club|group run|social run|laufgruppe|lauftreff|jogging|joggen|course [àa] pied|\d+ ?k ?run|parkrun|hash house harriers|tempo run|long run)\b|\bhash\b/i,classical:/orchestr|symphon|recital|philharm|quartet|sonata|opera\b|op[ée]ra/i};
   function txt(e){if(e._ptx==null){let k="";try{k=gloss(e).replace(/<[^>]+>/g,"")}catch(x){}e._ptx=(e.title+" "+(e.titleOrig||"")+" "+(e.titleEn||"")+" "+k+" "+String(e.desc||"").slice(0,220)).toLowerCase();e._pk=k.split(" · ")[0]}return e._ptx}
   function tags(e){if(e._ptg)return e._ptg;if(e.hike)return e._ptg=new Set(["outdoors"]);const t=txt(e),c=e.cat||[],s=new Set();
     for(const k in RX)if(RX[k].test(t))s.add(k);
@@ -3266,6 +3266,10 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     return N.some(k=>k==="meetups"?(MEETK.test(e._pk||"")||MEETUP.test(e.title+" "+(e.titleOrig||"")))
       :k==="clubs"?(!NOTCLUB.test(e.title)&&(NRX.clubs.test(e.title+" "+(e._pk||""))||(/party|club|\bdj\b|rave|techno|house|disco|soir[ée]e|night/i.test(e.title+" "+(e._pk||""))&&late(e))||((interval(e)||{}).s>=23*60)))
       :k==="classical"||k==="sports"?((NRX[k].test(e.title+" "+(e._pk||""))||(k==="classical"&&/^Classical|^Opera/i.test(e._pk||"")))&&!(k==="classical"&&/guided tour/i.test(e.title))&&!/hip.?hop|disco|jazz|milonga|tango|pop|rock|language|swing/i.test(e.title))
+      /* running: title only. Matching the description hid an English comedy night whose blurb
+         said "running since 2022" and a "long-running" kizomba night. Films are exempt so
+         "Blade Runner" and "The Running Man" stay in the Culture tab. */
+      :k==="running"?(!e.film&&NRX.running.test(e.title+" "+(e._pk||"")))
       :NRX[k]&&NRX[k].test(t))}
   /* --- dates and slots --- */
   const dow=d=>new Date(d+"T12:00:00").getDay();
