@@ -143,14 +143,32 @@ const CATS = [
   ["rencontre", /meet ?up|social|language exchange|tandem|expat|networking|ap[eé]ro|afterwork|after-work|rencontre|stammtisch|board ?game|jeux de soci|spieleabend|quiz|speed friend|circle|newcomer|internations|mixer|meet new|make friends|conversation|philosoph|book club|lesekreis|club de lecture|walk ?& ?talk|les amis/i],
   ["creatif", /workshop|atelier|drawing|dessin|zeichn|painting|peinture|malen|ceramic|c[eé]ramique|pottery|poterie|t[oö]pfer|craft|bastel|sketch|knit|tricot|strick|printmaking|gravure|linocut|collage|watercolou?r|aquarelle|calligraph|embroider|broderie|sticken|life drawing|croquis|creative writing|[eé]criture/i],
   ["culture", /concert|konzert|jazz|comedy|stand-?up|humou?r|th[eé][aâ]tre|theater|theatre|film|cin[eé]ma|kino|opera|op[eé]ra|oper\b|exhibition|exposition|ausstellung|vernissage|museum|mus[eé]e|lecture|conf[eé]rence|vortrag|lesung|reading|poetry|po[eé]sie|slam|ballet|recital|r[eé]cital|orchestr|choir|chorale|chor\b|live music|musique live|improv|cabaret|kabarett/i],
-  ["fete", /festival|f[eê]te\b|fest\b|party|soir[eé]e|\bball\b|\bbal\b|carnival|carnaval|chilbi|kilbi|dance night|clubbing|disco|halloween|oktoberfest|street food|food festival|wine|vin\b|wein/i],
+  ["fete", /festival|f[eê]te\b|fest\b|party|soir[eé]e|\bball\b|\bbal\b|carnival|carnaval|chilbi|kilbi|dance night|clubbing|\bdisco\b|dj set|club night|karaoke|halloween|oktoberfest|street food|food festival|\bwine\b|vin\b|wein|gl[uü]hwein|punsch/i],
   ["marche", /market|march[eé]|markt|brocante|flea|vide-grenier|flohmarkt|brocki|bazaar|bazar|braderie|vintage sale|troc/i],
-  ["corps", /yoga|\brun\b|running|hike|hiking|randonn|wander|salsa|bachata|kizomba|tango|swing|dance class|cours de danse|tanzkurs|climb|grimp|kletter|swim|pilates|meditation|m[eé]ditation|bike|v[eé]lo|velo|sauna|walk\b|balade|spaziergang/i],
+  ["corps", /yoga|\brun\b|running|hike|hiking|randonn|wander|salsa|bachata|kizomba|tango|swing|dance class|cours de danse|tanzkurs|climb|grimp|kletter|swim|pilates|meditation|m[eé]ditation|bike|\bv[eé]lo\b|sauna|walk\b|balade|spaziergang/i],
   ["chien", /\bdog|chien|hund/i],
 ];
 const NICHE = /riftbound|swiss rounds|organized play|store tournament|kabooom|one piece store|pok[eé]mon|yu-?gi-?oh|magic:? the gathering|\bmtg\b|commander (event|night|league|game)|trading card|\btcg\b|\bccg\b|card game|kartenspiel|jeux? de cartes|flesh and blood|lorcana|one piece card|digimon|star wars unlimited|warhammer|kill team|age of sigmar|\b40k\b|wargam|miniature painting|tabletop wargame|\blarp\b|cosplay|anime|manga|furry|vtuber|e-?sports|lan party/i;
 const BAD = /bourse (?:aux |d.)?(?:jouets|enfan|pu[ée]ricult)|pu[ée]riculture|vide[- ]maison|bourse enfance|webinar|online only|virtual|zoom|livestream|kids?\b|children|enfants?\b|kinder|family day|familien|baby|b[eé]b[eé]|crypto|forex|trading|investor|invest |mlm|real estate|immobilier|sales training|job fair|career fair|recruit|bootcamp|certification|hackathon|church service|messe\b|gottesdienst|culte\b|speed jeune public|d[eè]s \d+ ans|ab \d+ jahren|f[uü]r kinder|marionnette|puppentheater|conte pour|contes pour|bébés lecteurs|seniors?\b|retrait[eé]s|employer une|citizen committee|comité de quartier|citizen assembly|assemblée citoyenne|democracy week|semaine de la démocratie|urbansgemeinde|conseil municipal|gemeindeversammlung|adolescen/i;
-const catsOf = (t, d, srcKind) => { const s = t + " " + (d || "").slice(0, 300); const c = CATS.filter(([, re]) => re.test(s)).map(([k]) => k); if (!c.length) c.push(srcKind === "meetup" ? "rencontre" : "culture"); return c.slice(0, 3); };
+/* When nothing in the title or description matches, fall back to what the SOURCE is rather than
+   calling everything "Culture & shows". A blanket culture default put 224 of 745 events — 30% of
+   the app — under a heading they had never been tested against: a DJ night, a mulled-wine stall
+   and a city walk all arrived as "culture". A concert hall really does mean a concert, and a flea
+   market site really does mean a market, so those defaults are honest; a general ticketing site
+   means nothing in particular, and those events get no category at all instead of a wrong one. */
+const SRC_CAT = [
+  [/hallenstadion|kaufleuten|filmpodium|musee-reforme|theatre|th[eé][aâ]tre|opera|museum|mus[eé]e/i, "culture"],
+  [/brocabrac|brocante/i, "marche"],
+];
+const catsOf = (t, d, srcKind, srcUrl) => {
+  const s = t + " " + (d || "").slice(0, 300);
+  const c = CATS.filter(([, re]) => re.test(s)).map(([k]) => k);
+  if (!c.length) {
+    if (srcKind === "meetup") c.push("rencontre");
+    else { const hit = SRC_CAT.find(([re]) => re.test(String(srcUrl || ""))); if (hit) c.push(hit[1]); }
+  }
+  return c.slice(0, 3);
+};
 
 /* ---------- parsing ---------- */
 const clean = s => String(s || "").replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&#0?39;|&rsquo;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim()
@@ -492,7 +510,7 @@ for (const x of raw) {
   if (s.time && x.place && seenVenue.has(vkey)) { drop("duplicate: same venue and time", x); continue; } seenVenue.add(vkey);
   const free = x.isFree === true || x.price === 0 || x.price === "0" || /\b(free|gratuit|gratis|kostenlos)\b/i.test(title);
   const price = free ? "Free" : x.price ? `${x.cur || "CHF"} ${Math.round(+x.price) || x.price}` : "Price to check";
-  const cat = catsOf(title, x.desc, x.src.kind);
+  const cat = catsOf(title, x.desc, x.src.kind, x.src.url || x.url);
   const tE = e && e.time && !multi ? "–" + e.time : "";
   const whenTxt = p === "on" ? `Until ${nice(lastDay)}` : p === "big" ? `${nice(day)}${s.time ? " · " + s.time : ""}` : `${DN[dow(day)]} ${+day.slice(8)}${s.time && s.time !== "00:00" ? " · " + s.time + tE : ""}`;
   const _ag = ageOf(title + " " + (x.desc || ""));
