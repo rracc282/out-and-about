@@ -186,6 +186,58 @@ its data commit before that step fails, so the output is usable — rebase the b
 remote and carry on. Don't re-trigger; and don't dispatch by hand right after a push, since the
 push already triggers it and the two race.
 
+## Batch 10 — item 53 (updated-when) and item 52 (speed)
+
+**53.** `AUTO.generated` was already a full ISO timestamp; the only reason nothing showed was the
+Batch 5 rule `.top .stamp{display:none!important}`, added to declutter the title row. The row
+lives in `.tl`, the LEFT column of the `.top` flex container, so a second line sits under the
+title and cannot push into `#acctbtn`/`#themebtn` on the right — which is exactly what went wrong
+with the Zurich beta label in batch 6. Measured at 393/375/320 in both themes: no overlap with
+either button, no overflow, header 59-65px. Relative wording ("Updated 3 hours ago"), exact time
+in the `title` attribute; the hours branch stops at 1320 minutes so it rolls to "yesterday"
+instead of saying "24 hours ago". Also deleted a hardcoded "Geneva updated Mon 5 Oct" that had
+been sitting `hidden` in the markup since October.
+
+**Still hidden on purpose:** that same Batch 5 rule also hid `#sync` (the "On this device" status)
+and the `?` icon legend, and neither has another home anywhere in the app — so three useful
+things were switched off to fix one crowding problem. They are re-hidden by
+`.top .stamp #sync,.top .stamp .legend-btn{display:none}` because showing all three wraps to a
+second line at 320px and doubles the header. Her decision, offered and not yet taken. The sync
+status matters for item 51, so revisit it then.
+
+**52.** Measure first — and the earlier note's headline figure was WRONG, because the local test
+server does not compress and GitHub Pages does. Raw vs gzipped: index.html 736KB/211KB, auto.js
+527KB/121KB, cine.js 57KB/9KB. **Always test speed through a gzipping server**; there is one at
+`scratchpad/gzserve.py <port> <dir>`.
+
+Through that, at 1.6 Mbps / 150ms latency:
+
+| | first paint |
+|---|---|
+| fast wifi, before | 580ms |
+| 1.6 Mbps, before | 1768ms |
+| 1.6 Mbps + CDN round trip, before | 2496ms |
+| fast wifi, after | **132ms** |
+| 1.6 Mbps + CDN, after | **1784ms** |
+
+The whole win was taking the Supabase `<script>` out of `<head>`. It is third-party, so a cold
+load needed a DNS lookup, TLS handshake and download before the first pixel, costing ~730ms for
+a library no first screen uses. `loadSB()` now injects it on idle after `load`, and `initSync`
+awaits it. **A bare `defer` would have broken sync silently** — `initSync` runs at parse time,
+would have found no library and taken the "Saved on this device" branch on every cold start.
+Tested with a stubbed CDN (library loads, auth listener wires up) and with the CDN unreachable
+(clean fallback), one script tag injected, no page errors either way.
+
+**Deliberately not done:** auto.js still costs ~1.5s of a cold load, but repeat loads measured
+304ms and 316ms with the service worker active, so the boot sequence stays as it is. The empty-app
+failure mode is not worth 1.5s on the first load of the day.
+
+### Test fixtures — read this before touching scratchpad
+`scratchpad/shot.py` is a SHARED FIXTURE holding `CHROME`, `FAKE` and `STATE`; `full.py` and
+others import from it. I overwrote it with a screenshot script and broke the matrix run, then
+recovered the constants from `__pycache__/shot.cpython-313.pyc`. Don't reuse that filename —
+one-off screenshot scripts go in `shot_header.py` and friends.
+
 ## Still to do (from the six-reviewer feedback list)
 - **Batch 7 · Under the hood:** the rest of 33 (duplicates and odd times; wrong categories and too-far events are done); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
 - **Batch 8 · Niche extras:** the owner decides do/skip for items 19–25, 43, 56, 66–68, 70–73.
