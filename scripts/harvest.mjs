@@ -140,12 +140,12 @@ const NEAR = [
 ];
 /* ---------- categories ---------- */
 const CATS = [
-  ["rencontre", /meet ?up|social|language exchange|tandem|expat|networking|ap[eé]ro|afterwork|after-work|rencontre|stammtisch|board ?game|jeux de soci|spieleabend|quiz|speed friend|circle|newcomer|internations|mixer|meet new|make friends|conversation|philosoph|book club|lesekreis|club de lecture|walk ?& ?talk|les amis/i],
+  ["rencontre", /meet ?up|social|language exchange|tandem|expat|networking|ap[eé]ro|afterwork|after-work|rencontre|stammtisch|treffen|kennenlernen|board ?game|jeux de soci|spieleabend|quiz|speed friend|circle|newcomer|internations|mixer|meet new|make friends|conversation|philosoph|book club|lesekreis|club de lecture|walk ?& ?talk|les amis/i],
   ["creatif", /workshop|atelier|drawing|dessin|zeichn|painting|peinture|malen|ceramic|c[eé]ramique|pottery|poterie|t[oö]pfer|craft|bastel|sketch|knit|tricot|strick|printmaking|gravure|linocut|collage|watercolou?r|aquarelle|calligraph|embroider|broderie|sticken|life drawing|croquis|creative writing|[eé]criture/i],
   ["culture", /concert|konzert|jazz|comedy|stand-?up|humou?r|th[eé][aâ]tre|theater|theatre|film|cin[eé]ma|kino|opera|op[eé]ra|oper\b|exhibition|exposition|ausstellung|vernissage|museum|mus[eé]e|lecture|conf[eé]rence|vortrag|lesung|reading|poetry|po[eé]sie|slam|ballet|recital|r[eé]cital|orchestr|choir|chorale|chor\b|live music|musique live|improv|cabaret|kabarett/i],
-  ["fete", /festival|f[eê]te\b|fest\b|party|soir[eé]e|\bball\b|\bbal\b|carnival|carnaval|chilbi|kilbi|dance night|clubbing|\bdisco\b|dj set|club night|karaoke|halloween|oktoberfest|street food|food festival|\bwine\b|vin\b|wein|gl[uü]hwein|punsch/i],
+  ["fete", /festival|f[eê]te\b|fest\b|party|soir[eé]e|\bball\b|\bbal\b|carnival|carnaval|chilbi|kilbi|dance night|clubbing|\bdisco(?:s|th[eè]que)?\b|dj set|club night|karaoke|halloween|oktoberfest|street food|food festival|\bwine|vin\b|wein|gl[uü]hwein|punsch/i],
   ["marche", /market|march[eé]|markt|brocante|flea|vide-grenier|flohmarkt|brocki|bazaar|bazar|braderie|vintage sale|troc/i],
-  ["corps", /yoga|\brun\b|running|hike|hiking|randonn|wander|salsa|bachata|kizomba|tango|swing|dance class|cours de danse|tanzkurs|climb|grimp|kletter|swim|pilates|meditation|m[eé]ditation|bike|\bv[eé]lo\b|sauna|walk\b|balade|spaziergang/i],
+  ["corps", /yoga|\brun\b|running|hike|hiking|randonn|wander|salsa|bachata|kizomba|tango|swing|dance class|cours de danse|tanzkurs|climb|grimp|kletter|swim|pilates|meditation|m[eé]ditation|bike|\bv[eé]lo|sauna|walk\b|balade|spaziergang/i],
   ["chien", /\bdog|chien|hund/i],
 ];
 const NICHE = /riftbound|swiss rounds|organized play|store tournament|kabooom|one piece store|pok[eé]mon|yu-?gi-?oh|magic:? the gathering|\bmtg\b|commander (event|night|league|game)|trading card|\btcg\b|\bccg\b|card game|kartenspiel|jeux? de cartes|flesh and blood|lorcana|one piece card|digimon|star wars unlimited|warhammer|kill team|age of sigmar|\b40k\b|wargam|miniature painting|tabletop wargame|\blarp\b|cosplay|anime|manga|furry|vtuber|e-?sports|lan party/i;
