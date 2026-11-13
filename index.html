@@ -497,7 +497,14 @@ body.city-both .pick .pcity{display:inline}
 .wetb{margin-left:8px;font-size:11px;font-weight:700;background:rgba(255,255,255,.2);border-radius:999px;padding:1px 7px;letter-spacing:0}
 .trip-why{display:block;font-size:12.5px;margin-top:6px;opacity:.85}
 #onb input{width:100%;box-sizing:border-box;font:inherit;padding:9px 11px;border:1px solid var(--line,#ccc);border-radius:10px;margin:0 0 8px;background:transparent;color:inherit}
-.top .stamp{display:none!important}
+/* Batch 5 hid this whole row to declutter the title line, which also hid the sync status and
+   the "?" icon legend — three useful things gone to fix a crowding problem. It lives in .tl, the
+   left column, so it sits BELOW the title and cannot push into the two buttons on the right. */
+.top .stamp{font-size:11.5px;gap:8px;flex-wrap:wrap;row-gap:2px}
+/* Only the update time comes back for now. The sync status and the legend were hidden by the
+   same rule and are worth restoring too, but showing all three wraps to a second line at 320px
+   and doubles the header, so that is a separate decision rather than a side effect of this one. */
+.top .stamp #sync,.top .stamp .legend-btn{display:none}
 .period-note{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
 .period-note.open{-webkit-line-clamp:unset;display:block}
 #fullgate{text-align:center;margin:14px 0 6px}
@@ -1009,7 +1016,7 @@ html[data-theme="dark"] .toast>span::before,html[data-theme="dark"] .toast butto
 <div class="wrap">
 <header class="top">
   <div class="tl"><h1>Out &amp; About <button class="citytog" id="citytog" aria-label="Switch city">Geneva ⇄</button></h1>
-  <div class="stamp"><span hidden>Geneva updated Mon 5 Oct</span><span id="stamp-zh" hidden></span><span class="sync" id="sync"><i></i><span>On this device</span></span> <button class="legend-btn" id="legendbtn" aria-expanded="false" aria-controls="legend" title="What the icons mean">?</button></div></div>
+  <div class="stamp"><span id="stamp-upd" hidden></span><span id="stamp-zh" hidden></span><span class="sync" id="sync"><i></i><span>On this device</span></span> <button class="legend-btn" id="legendbtn" aria-expanded="false" aria-controls="legend" title="What the icons mean">?</button></div></div>
   <button class="themebtn" id="acctbtn" aria-expanded="false" aria-controls="acctpanel" title="Settings" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
   <button class="themebtn" id="themebtn" aria-expanded="false" aria-controls="themepanel" title="Colours and dark mode" aria-label="Colours and dark mode">🎨</button>
   <div class="themepanel" id="acctpanel" hidden role="dialog" aria-label="Sign in and notifications">
@@ -2532,6 +2539,20 @@ document.getElementById("deletedlist").addEventListener("click",ev=>{const b=ev.
 function renderGroups(){document.getElementById("groups").innerHTML=GROUPS.filter(g=>ui.city==="both"||g.city===ui.city).map(g=>'<div class="group"><span class="eyebrow">'+(ui.city==="both"?CITY[g.city].name+' · ':'')+g.c+'</span><b>'+esc(g.t)+'</b><p>'+esc(g.d)+'</p><a href="'+g.u+'" target="_blank" rel="noopener">Open →</a></div>').join("");
 document.getElementById("sources").innerHTML=SOURCES.filter(s=>ui.city==="both"||s[2]===ui.city).map(s=>'<li><a href="'+s[1]+'" target="_blank" rel="noopener">'+(ui.city==="both"?CITY[s[2]].name+' — ':'')+esc(s[0])+'</a></li>').join("")}
 document.getElementById("stamp-zh").textContent="Zurich updated "+STAMP_ZH;
+/* Item 53: "when was this last updated". AUTO.generated is a full ISO timestamp, so this was
+   only ever a display job. Relative, because the question being asked is "is this stale?", with
+   the exact time on hover. */
+(function(){
+  const el=document.getElementById("stamp-upd");
+  const g=(window.AUTO&&AUTO.generated)||"";const t=g?new Date(g):null;
+  if(!el||!t||isNaN(+t))return;
+  const m=Math.round((Date.now()-(+t))/60000);
+  el.textContent=m<2?"Updated just now":m<60?"Updated "+m+" min ago":m<120?"Updated an hour ago"
+    :m<1320?"Updated "+Math.round(m/60)+" hours ago":m<2880?"Updated yesterday"
+    :"Updated "+Math.round(m/1440)+" days ago";
+  el.title="Event list generated "+t.toLocaleString();
+  el.hidden=false;
+})();
 document.getElementById("cityseg").addEventListener("click",ev=>{const b=ev.target.closest("[data-city]");if(!b)return;setCity(b.dataset.city);ui.dayOpen=new Set();renderGroups();render()});
 setCity(ui.city);renderGroups();
 /* ---- account, notifications, install ---- */
