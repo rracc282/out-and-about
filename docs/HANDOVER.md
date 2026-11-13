@@ -150,8 +150,44 @@ Full notes were written up during this batch:
   `if(!A||!A.periods)return` guard and bring the app up empty with no error. Measure cold vs warm
   first.
 
+## Batch 9 — item 33, wrong categories (done, live)
+
+Two defects, both measured by extracting `catsOf` from the old and new `harvest.mjs` and running
+BOTH over the same live events. Do it this way: comparing new rules against the categories already
+stored in `auto.js` is not a like-for-like comparison, and it hid a bug for a while.
+
+1. **Three patterns had no word boundary.** `disco` matched inside "discover" and "discussion"
+   (31 events wrongly under Fairs & festivals), `velo` inside "development" (11 under Sports —
+   every single one a false positive, confirmed: the word was develop/developed/development each
+   time), `wine` inside "intertwine". Note the asymmetry: `velo` and `wine` need a LEADING
+   boundary only, because a trailing one blocks plurals ("vélos"); `disco` needs the trailing one
+   too, since it is a prefix of "discover", so discos/discothèque are spelled out.
+2. **The fallback filed 30% of the app under "Culture & shows"** — 224 of 745 events under a
+   heading they had never been tested against (a DJ night, a mulled-wine stall, a city walk). The
+   fallback is now the SOURCE: `SRC_CAT` maps concert halls and museums to culture and
+   flea-market sites to markets, Meetup still defaults to meet-ups, and a general ticketing site
+   maps to nothing — its unmatched events get NO category rather than a wrong one, show under
+   "All", and stay out of the category filters. **This is why there is no "Other" chip** — the
+   row is already full at 320px. `index.html` reads `(e.cat||[]).includes(...)` in the two places
+   that matter, so an empty list is safe.
+
+Same inputs, old -> new: culture 370 -> 216, fete 88 -> 63, corps 52 -> 41, marche 35 -> 44,
+rencontre 108 -> 112, none 0 -> 148. A real collector run agrees (culture 347 -> 200, none 143).
+Full device matrix passes with the empty categories in place.
+
+Still uncategorised and not fixable from text alone: Eventfrog theatre shows whose titles never
+say "theatre" ("Harry P.Otter und die Zauberprüfung"). A venue list for Eventfrog would catch
+them; not worth it yet.
+
+### Note on running the collector from a branch
+The workflow's Save step rebases its new data commit onto main, and generated JSON conflicts
+whenever main has had a nightly run since the branch was cut. The run still HARVESTS and pushes
+its data commit before that step fails, so the output is usable — rebase the branch onto its own
+remote and carry on. Don't re-trigger; and don't dispatch by hand right after a push, since the
+push already triggers it and the two race.
+
 ## Still to do (from the six-reviewer feedback list)
-- **Batch 7 · Under the hood:** the rest of 33 (duplicates, wrong categories, too-far events, odd times); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
+- **Batch 7 · Under the hood:** the rest of 33 (duplicates and odd times; wrong categories and too-far events are done); 51 sync merge / magic-link sign-in; 53 "Updated X ago"; 52 speed; 54 search that ignores accents; 50 "new version" prompt; 57 code cleanup.
 - **Batch 8 · Niche extras:** the owner decides do/skip for items 19–25, 43, 56, 66–68, 70–73.
 - **Batch 9 · Big ideas:** items 74–79 (owner decides).
 - Item 44 was skipped by the owner.
