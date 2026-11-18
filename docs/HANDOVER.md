@@ -299,3 +299,9 @@ question · 21 skip · 22 do · 23 skip · 24 only better singles detection · 2
 Friday is today · 66/67/68/74 show a mockup first · 70 do · 71 remove all dog mentions unless setup says "I have a
 dog"; then dog flag in all cities, no rules · 72 do · 73 trip cost per person · 75 do · 76 explained, awaiting
 answer · 77 in English, as a notification: Thursday (weekend) and Sunday (week) · 78 do · 79 do.
+- Review: first pass "Fix first" (a stale device could overwrite the account on Confirm; invites to cut events;
+  legacy Never list; mood merging; loose patterns; notify.mjs). All fixed; re-check verdict **Ship**.
+  Real 18 Nov pool: 1028 events kept (was ~780), auto.js 723 KB vs 594 KB; Sat 21 Nov Geneva 98 → 40 per person;
+  re-cut takes 1–4 ms. Open question for the owner: rule 3 is absolute, so a Parties fan loses most club nights on
+  a busy Saturday (2 of 5 kept). Known nits: check opens after 30 s even if sync is still pending; prefsV uploads
+  only with the next save.

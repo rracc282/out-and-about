@@ -3913,7 +3913,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   const NIGHT=/\bparty\b|\bparties\b|soir[ée]e (?:dansante|clubbing|electro|techno|house|disco|dj)|\bclubbing\b|\bclub night\b|\bdj\b|dj set|techno|house music|deep house|tech house|\bdisco\b|\brave\b|after.?party|karaoke|pub crawl|bar night|afterwork/i;
   const tg=e=>{try{return OA.tags(e)}catch(x){return new Set()}};
   const isCur=e=>{if(e._cur!=null)return e._cur;const t=e.title+" "+(e.titleOrig||"");
-    tg(e);return e._cur=!NIGHT.test(t)&&(CULT.test(t)||CULT.test(e._pk||"")||CULT.test(String(e.desc||"").slice(0,240))||((CURSRC.test(e.url||"")||/lesgenevois\.com/.test(e.url||""))&&(e.cat||[]).includes("culture")&&!NIGHT.test(String(e.desc||"").slice(0,240)))||STAGEURL.test(String(e.url||"").replace(/^https?:\/\/[^/]+/,"")))};
+    tg(e);return e._cur=!NIGHT.test(t)&&(CULT.test(t)||CULT.test(e._pk||"")||/th[ée][aâ]tre|theater|\bballet|op[ée]ra\b|mise en sc[èe]ne|to the stage|on stage|staging|chor[ée]graph|museum|mus[ée]e/i.test(String(e.desc||"").slice(0,240))||((CURSRC.test(e.url||"")||/lesgenevois\.com/.test(e.url||""))&&(e.cat||[]).includes("culture")&&!NIGHT.test(String(e.desc||"").slice(0,240)))||STAGEURL.test(String(e.url||"").replace(/^https?:\/\/[^/]+/,"")))};
   const isNight=e=>{if(e._nl!=null)return e._nl;return e._nl=!isCur(e)&&NIGHT.test(e.title+" "+(e.titleOrig||""))};
   function pinnedIds(){const P=new Set([].concat(S.going||[],S.stars||[],[...goingSet],[...stars],Object.keys(S.goDay||{}),Object.keys(S.goSlot||{})));
     Object.values(S.plan||{}).forEach(w=>Object.values(w||{}).forEach(o=>{if(o&&o.id)P.add(o.id)}));
