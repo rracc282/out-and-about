@@ -97,7 +97,9 @@ if (KIND === "nudge" || (AUTOK && H === nudgeHour && !(DOW === 1 && H === 12))) 
   for (const uid of users) {
     const st = byUser.get(uid) || {}, city = st.home || "ge", likes = st.likes || [];
     const skip = new Set([...(st.hidden || []), ...(st.going || []), ...Object.keys(st.deleted || {})]);
-    const mine = ALL.filter(e => (e.city || "ge") === city && !skip.has(e.id) && (e.dayEnd || e.day) >= TODAY && e.p !== "later");
+    /* auto.js now carries a bigger pool and each phone keeps its own 40 a day, so only suggest what this person can see */
+    let vis = null; try { vis = W.OA_visibleFor ? W.OA_visibleFor(st) : null; } catch {}
+    const mine = ALL.filter(e => (e.city || "ge") === city && !skip.has(e.id) && (e.dayEnd || e.day) >= TODAY && e.p !== "later" && (!vis || vis.has(e.id)));
     let msg = null;
     // 1) Thu/Fri: rainy weekend at home
     const wx = d => { try { return W.wxOf(d, city); } catch { return null; } };

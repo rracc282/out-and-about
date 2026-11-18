@@ -2805,7 +2805,7 @@ function openSetup(){if(document.getElementById("onb"))return;
   const P0=JSON.parse(JSON.stringify(O?O.prof():{we:{who:"solo",moods:[]},wk:{who:"solo",moods:[]},never:[],eves:[1,2,3,4]}));
   let home=S.home||null,wkWho=P0.legacy&&!must?null:P0.wk.who,weWho=P0.legacy&&!must?null:P0.we.who;
   const M=new Set(P0.legacy&&first?[]:[...new Set([].concat(P0.we.moods||[],P0.wk.moods||[]))]);let dating=wantsDating();
-  const blank=first||(P0.legacy&&!must);const N=new Set(blank?[]:(P0.never||[])),E=new Set(blank?[]:(P0.eves||[1,2,3,4]));let touched=false;const who0=[P0.wk.who,P0.we.who].join();
+  const blank=first||(P0.legacy&&!must);const N=new Set(blank||P0.legacy?[]:(P0.never||[])),E=new Set(blank?[]:(P0.eves||[1,2,3,4]));let touched=false;const who0=[P0.wk.who,P0.we.who].join();
   const MO=(O?O.MOODS:[]),NV=(O?O.NEVER:[]),WH=[["solo","Solo"],["partner","With my partner"],["friends","With friends"]];
   const d=document.createElement("div");d.id="onb";
   const keep=()=>{const g=d.querySelector("#addr-ge"),z=d.querySelector("#addr-zh");return [g?g.value:((S.addr||{}).ge||{}).q||"",z?z.value:((S.addr||{}).zh||{}).q||""]};
@@ -2821,10 +2821,12 @@ function openSetup(){if(document.getElementById("onb"))return;
     '<h3>Home (optional)</h3><p>Your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(ag)+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(az)+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Your address stays private to your account.</p>'+
     '<button class="go" '+(ok()?'':'disabled')+'>'+(first?'Show me my plan':must?'Confirm':'Save')+'</button>'+(ok()?'':'<p class="onb-need">'+(!home?'Pick your city':!wkWho||!weWho?'Tell us who you usually go out with':'Pick at least one thing you enjoy')+'</p>')+
     '<p style="margin:10px 0 0;font-size:13px">You can change this any time with the ⚙︎ button at the top right.</p></div>';d.scrollTop=sy};
-  draw();document.body.appendChild(d);d.scrollTop=0;const a0=keep().join("|");
-  d.addEventListener("click",ev=>{const t=ev.target;let b;if(t.closest("[data-home],[data-who],[data-mood],[data-dating],[data-eve],[data-never]"))dirty=true;
-    /* confirming without changing anything must leave every saved setting exactly as it was */
-    if(must&&t.closest(".go")&&ok()&&!dirty&&keep().join("|")===a0){window.__prefsMust=false;markPrefs();persist();d.remove();return}
+  const snap=()=>JSON.stringify([home,wkWho,weWho,[...M].sort(),dating,[...E].sort(),[...N].sort(),keep()]);
+  const M0=new Set(M);draw();document.body.appendChild(d);d.scrollTop=0;const s0=snap();
+  d.addEventListener("click",ev=>{const t=ev.target;let b;
+    /* confirming without changing anything must leave every saved setting exactly as it was. It must not
+       bump S.updated either: that would make this device look newest and overwrite the account on sync. */
+    if(must&&t.closest(".go")&&ok()&&snap()===s0){window.__prefsMust=false;markPrefs();try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}d.remove();return}
     if(t.closest("[data-close]")){d.remove();return}
     if(b=t.closest("[data-home]")){home=b.dataset.home;draw();return}
     if(b=t.closest("[data-who]")){const [w,k]=b.dataset.who.split("~");if(w==="wk")wkWho=k;else weWho=k;draw();return}
@@ -2834,7 +2836,9 @@ function openSetup(){if(document.getElementById("onb"))return;
     if(b=t.closest("[data-never]")){const k=b.dataset.never;N.has(k)?N.delete(k):N.add(k);draw();return}
     if(t.closest(".go")&&ok()){const moods=[...M];
       const keepSep=!touched&&!P0.legacy;const changed=touched||[wkWho,weWho].join()!==who0;
-      S.home=home;S.prof={we:{who:weWho,moods:keepSep?P0.we.moods.slice():moods.slice()},wk:{who:wkWho,moods:keepSep?P0.wk.moods.slice():moods.slice()},never:[...N],eves:[...E].sort(),dog:moods.includes("outdoors")};
+      /* a tapped interest is added to (or removed from) both weekday and weekend lists, instead of merging the two */
+      const sep=k=>{const base=(P0[k].moods||[]).filter(x=>M.has(x));moods.forEach(x=>{if(!M0.has(x)&&!base.includes(x))base.push(x)});return base.length?base:moods.slice()};
+      S.home=home;S.prof={we:{who:weWho,moods:keepSep?P0.we.moods.slice():P0.legacy?moods.slice():sep("we")},wk:{who:wkWho,moods:keepSep?P0.wk.moods.slice():P0.legacy?moods.slice():sep("wk")},never:[...N],eves:[...E].sort(),dog:moods.includes("outdoors")};
       const MC={meet:"rencontre",games:"rencontre",language:"rencontre",creative:"creatif",markets:"marche",festivals:"fete",party:"fete",food:"fete",concerts:"culture",theatre:"culture",comedy:"culture",film:"culture",exhibitions:"culture",outdoors:"chien",yoga:"corps"};
       S.likes=[...new Set(moods.map(k=>MC[k]).filter(Boolean))].concat(dating?["dating"]:[]);S.dating=dating;
       const [ag,az]=keep();saveAddr(ag,az);try{localStorage.setItem("oa-home",home)}catch(e){}
@@ -3286,7 +3290,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     outdoors:/hike|hiking|walk|randonn|balade|promenade|nature|forest|for[êe]t|garden|jardin|park\b|lake|lac\b|outdoor|dog|chien|picnic/i,
     creative:/workshop|atelier|ceramic|c[ée]ramique|pottery|poterie|drawing|dessin|draw\b|painting|peinture|sketch|craft|print|knit|sewing|collage|creative|cr[ée]atif|life drawing|calligraph/i,
     exhibitions:/exhibition|exposition|expo\b|museum|mus[ée]e|gallery|galerie|vernissage|ausstellung/i,
-    theatre:/th[ée][aâ]tre|theater|schauspiel|\bballet|op[ée]ra\b|\bplay\b|spectacle|com[ée]die musicale|musical\b|chor[ée]graph|danse contemporaine|contemporary dance|dance performance|r[ée]p[ée]tition publique|performance\b|\bADC\b|marionnett|puppet/i,
+    theatre:/th[ée][aâ]tre|theater|schauspiel|\bballet|op[ée]ra\b|spectacle|com[ée]die musicale|\bmusical\b|chor[ée]graph|danse contemporaine|contemporary dance|dance performance|r[ée]p[ée]tition publique|\bADC\b|marionnett|puppet/i,
     meet:/meetup|meet new|make friends|social|mixer|afterwork|networking|newcomers|expat|community|rencontre|apéro|quiz/i,
     games:/board ?game|jeux|jeu de|game night|games night|quiz|loup.garou|clocktower|trivia|spieleabend|ludoth/i,
     yoga:/yoga|dance|danse|tango|salsa|bachata|swing|acro|pilates|meditation|m[ée]ditation|forr[óo]|kizomba|ecstatic/i,
@@ -3903,13 +3907,14 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
    Only nightly-collected events count towards the 40, as before; hand-picked ones are never cut. */
 (function(){
   const CAP=40;
-  const CURSRC=/lesgenevois\.com|openagenda\.com|museesdegeneve|artageneve|billetterie-mhng|opernhaus\.ch|tonhalle|grandtheatre|geneveopera|adc-geneve|comedie\.ch|schauspielhaus|theatre/i;
-  const CULT=/th[ée][aâ]tre|theater|schauspiel|\bballet|op[ée]ra\b|mus[ée]e|museum|exposition|exhibition|vernissage|r[ée]p[ée]tition publique|concert (?:classique|laur[ée]at)|orchestr|r[ée]cital|chor[ée]graph|danse contemporaine|visites? (?:guid|comment)|guided tour|\bADC\b|concours de gen/i;
-  const NIGHT=/\bparty\b|soir[ée]e|\bclub\b|clubbing|\bdj\b|techno|\bhouse\b|\bdisco\b|\brave\b|after.?party|karaoke|pub crawl|bar night|afterwork/i;
+  const CURSRC=/openagenda\.com\/(?:mah|ville-de-geneve-musee|ariana|mhn|museum)|museesdegeneve|artageneve|billetterie-mhng|opernhaus\.ch|tonhalle|grandtheatre|geneveopera|adc-geneve|comedie\.ch|schauspielhaus/i;
+  const CULT=/th[ée][aâ]tre|theater|schauspiel|\bballet|op[ée]ra\b|mus[ée]e|museum|exposition|exhibition|vernissage|r[ée]p[ée]tition publique|concert (?:classique|laur[ée]at)|orchestr|r[ée]cital|chor[ée]graph|danse contemporaine|visites? (?:guid|comment)|guided tour|\bADC\b|concours de gen|\bstage\b|staging|mise en sc[èe]ne|theatre play|stage show|spectacle|\bplay by\b/i;
+  const STAGEURL=/theat|th[ée][aâ]tre|-scene\/|\/stage|buehne|b%C3%BChne|opera|ballet|museum|musee|mus%C3%A9e/i;
+  const NIGHT=/\bparty\b|\bparties\b|soir[ée]e (?:dansante|clubbing|electro|techno|house|disco|dj)|\bclubbing\b|\bclub night\b|\bdj\b|dj set|techno|house music|deep house|tech house|\bdisco\b|\brave\b|after.?party|karaoke|pub crawl|bar night|afterwork/i;
   const tg=e=>{try{return OA.tags(e)}catch(x){return new Set()}};
   const isCur=e=>{if(e._cur!=null)return e._cur;const t=e.title+" "+(e.titleOrig||"");
-    return e._cur=!NIGHT.test(t)&&(CULT.test(t)||(CURSRC.test(e.url||"")&&(e.cat||[]).includes("culture")&&!tg(e).has("party")))};
-  const isNight=e=>{if(e._nl!=null)return e._nl;return e._nl=!isCur(e)&&(tg(e).has("party")||NIGHT.test(e.title+" "+(e.titleOrig||"")))};
+    tg(e);return e._cur=!NIGHT.test(t)&&(CULT.test(t)||CULT.test(e._pk||"")||CULT.test(String(e.desc||"").slice(0,240))||((CURSRC.test(e.url||"")||/lesgenevois\.com/.test(e.url||""))&&(e.cat||[]).includes("culture")&&!NIGHT.test(String(e.desc||"").slice(0,240)))||STAGEURL.test(String(e.url||"").replace(/^https?:\/\/[^/]+/,"")))};
+  const isNight=e=>{if(e._nl!=null)return e._nl;return e._nl=!isCur(e)&&NIGHT.test(e.title+" "+(e.titleOrig||""))};
   function pinnedIds(){const P=new Set([].concat(S.going||[],S.stars||[],[...goingSet],[...stars],Object.keys(S.goDay||{}),Object.keys(S.goSlot||{})));
     Object.values(S.plan||{}).forEach(w=>Object.values(w||{}).forEach(o=>{if(o&&o.id)P.add(o.id)}));
     try{const h=decodeURIComponent(location.hash||"");if(h.startsWith("#ev-"))P.add(h.slice(4))}catch(x){}
@@ -3944,13 +3949,34 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   applyDeleted=function(){if(!ALL_EVENTS)return _ad0();let cut;try{cut=cutSet()}catch(x){console.error(x);cut=new Set()}
     EVENTS.length=0;ALL_EVENTS.forEach(e=>{if(!isDel(e)&&!cut.has(e))EVENTS.push(e)})};
   window.OA_CAP=()=>last;
+  /* re-cut whenever what she has saved changes (accepting an invite, starring, keeping a Plan slot) */
+  let pinSig="";const sig=()=>[...pinnedIds()].sort().join("|");
+  const _ps=persist;persist=function(){const r=_ps.apply(this,arguments);try{const g=sig();if(g!==pinSig){pinSig=g;applyDeleted()}}catch(e){}return r};
+  /* a notification tap while the app is open only changes #ev-…: show that event even if it was cut */
+  window.addEventListener("hashchange",()=>{let h="";try{h=decodeURIComponent(location.hash||"")}catch(e){}if(!h.startsWith("#ev-"))return;const id=h.slice(4);
+    if(EVENTS.some(e=>e.id===id)||!ALL_EVENTS.some(e=>e.id===id))return;applyDeleted();const e=EVENTS.find(x=>x.id===id);if(!e)return;if(!inCity(e))setCity("both");try{focusEvent(id)}catch(x){render()}});
+  /* the nightly notification job asks which events a given person can see */
+  window.OA_visibleFor=function(st){const keep=[S,stars,hidden,goingSet];
+    try{S=Object.assign({stars:[],hidden:[],going:[],deleted:{}},st||{});stars=new Set(S.stars||[]);hidden=new Set(S.hidden||[]);goingSet=new Set(S.going||[]);
+      const cut=cutSet();return new Set(ALL_EVENTS.filter(e=>!cut.has(e)).map(e=>e.id))}
+    finally{S=keep[0];stars=keep[1];hidden=keep[2];goingSet=keep[3];try{cutSet()}catch(e){}}};
   /* sync: keep the "preferences checked" mark from either side, then re-cut with the synced profile */
+  let settled=false;const _pl=pull;pull=async function(){try{return await _pl.apply(this,arguments)}finally{settled=true}};
+  /* every way the first sync can end reports through setSync: signed out, library unreachable, synced, or failed */
+  const _ss=setSync;setSync=function(on){const r=_ss.apply(this,arguments);if(!R.uid||on===true||on==="warn")settled=true;return r};
   const _adp=adopt;adopt=function(b){const v=S.prefsV||0;_adp(b);const nv=Math.max(v,(b&&b.prefsV)||0);if(nv)S.prefsV=nv;
     try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}try{applyDeleted()}catch(e){}};
   try{applyDeleted();render()}catch(e){console.error(e)}
   /* the one-time preferences check for people who already use the app (first-timers get the normal setup) */
   const first=!S.home||!(S.likes||[]).length;
-  if(!first&&prefsDue()){window.__prefsMust=true;setTimeout(()=>{try{openSetup()}catch(e){}},350)}
+  /* Wait for the first sync before asking: if she taps Confirm while an older copy is still on this phone,
+     nothing may overwrite the account, and a check already confirmed on another device should not reappear.
+     Signed-out users (no account) are asked after a short wait. */
+  if(!first&&prefsDue()){let n=0;const go=()=>{n++;
+      const waiting=!settled&&n<60;
+      if(waiting)return setTimeout(go,500);
+      if(!prefsDue())return;window.__prefsMust=true;try{openSetup()}catch(e){}};
+    setTimeout(go,350)}
 })();
 </script>
 
