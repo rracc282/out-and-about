@@ -534,7 +534,7 @@ function dedupeSites() { const STOP = new Set("the and for with from your this t
     if (n >= 5 || (n >= 4 && n >= 0.35 * Math.min(wa.size, wb.size))) { const lose = rank(a) >= rank(b) ? b : a; drop2.add(lose.id); drop("same event on two sites", { title: lose.title, start: lose.day, place: lose.place, src: { url: lose.url } }); } }
   events = events.filter(e => !drop2.has(e.id)); }
 dedupeSites();
-/* keep the list readable: at most 40 per city per day; meeting people, creative, markets and Meetup first */
+/* pool limit per city per day (the 40-a-day cut now happens per person in the app); meeting people, creative, markets and Meetup first */
 /* Ticketed halls score nothing on the rules below, so once a day fills up they are the first
    thing cut — which quietly undid the Kaufleuten and Hallenstadion coverage. Give them a lift. */
 const BIGV = new Set((cfg.pages || []).filter(p => p.big).map(p => host(p.url)).filter(Boolean));
@@ -552,7 +552,10 @@ const srcKey = e => host(e.url) || e.src || "?";
    They go to the back of their source's queue, so they are the first thing cut. */
 let cur = {}; try { cur = JSON.parse(rd("data/curated.json")); } catch {}
 const hiddenById = new Set(cur.drop || []);
-const CAP = 40, SOFT = 16;
+/* Owner decision 18 Nov: the app still shows at most 40 per city per day, but the phone picks which 40
+   from each person's interests (index.html, "Batch 11"). So this is now only a size limit on the shipped
+   pool, set well above a busy Geneva day (~65), and the order below only matters past it. */
+const CAP = 100, SOFT = 40;
 const cells = new Map();
 for (const e of events) { const k = e.city + e.day + e.p; if (!cells.has(k)) cells.set(k, []); cells.get(k).push(e); }
 const keep = new Set();

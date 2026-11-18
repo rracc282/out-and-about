@@ -866,6 +866,7 @@ nav.tabs [data-tab="this"]::before{content:"🔎"!important}
 .pl-ask{display:block;width:100%;text-align:left;border:1px solid var(--lake);background:var(--lake-soft);color:var(--ink);border-radius:14px;padding:11px 13px;margin:0 0 12px;font:inherit;cursor:pointer}.pl-ask b{display:block;font-size:15px;color:var(--lake)}.pl-ask span{font-size:13px;color:var(--muted)}
 .pl-usual{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;font-size:13px;color:var(--muted);margin:-4px 0 12px}
 .onb-x{position:absolute;top:10px;right:12px;border:0;background:none;font-size:26px;line-height:1;color:var(--muted);cursor:pointer}#onb .box{position:relative}
+.onb-must{font-size:14px;margin:0 0 12px;color:var(--muted)}
 .onb-need{font-size:13px;color:var(--muted);margin:6px 0 0;text-align:center}
 #onb{overflow-y:auto;align-items:flex-start;-webkit-overflow-scrolling:touch}#onb .box{margin:auto 0}
 #onb .box h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--lake);margin:18px 0 8px}#onb .box h3:first-of-type{margin-top:8px}
@@ -1424,7 +1425,7 @@ const TODAY=(()=>{const d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()
 let S={stars:[],hidden:[],going:[],hist:{},deleted:{},trips:{},updated:0};
 let ALL_EVENTS=null;
 function delKey(e){return e.rep||e.id}
-function isDel(e){const d=S.deleted||{};if(d[delKey(e)])return true;return Object.values(d).some(x=>x&&x.t===e.title)}
+function isDel(e){const d=S.deleted||{};if(d[delKey(e)])return true;return Object.values(d).some(x=>x&&(x.t===e.title||(x.t&&x.t.normalize&&x.t.normalize("NFC")===e.title)))}
 function applyDeleted(){if(!ALL_EVENTS)return;EVENTS.length=0;ALL_EVENTS.forEach(e=>{if(!isDel(e))EVENTS.push(e)})}
 let stars=new Set(), hidden=new Set(), openP=new Set(), goingSet=new Set(), noteEdit=null;
 function readLS(k){try{return localStorage.getItem(k)}catch(e){return null}}
@@ -1884,7 +1885,9 @@ function wxOf(d,c){return (c==="zh"?WX_ZH:WX)[d]}
   EVENTS.forEach(e=>{if(e.p==="on"&&!e.dayEnd&&e.day){const x=new Date(e.day+"T12:00:00");x.setDate(x.getDate()+90);e.dayEnd=x.toISOString().slice(0,10)}});
   if(A.tEn)EVENTS.forEach(e=>{const t=A.tEn[e.rep||e.id];if(t&&!e.titleEn)e.titleEn=t});
   /* titles stay in their own language (local names like "La Revue genevoise"); only non-Latin scripts use the English title */
-  EVENTS.forEach(e=>{if(e.titleEn&&e.titleEn!==e.title&&/[^\u0000-\u024F\u2000-\u206F\u20A0-\u20CF\u2100-\u214F\u2190-\u21FF\u25A0-\u27BF\u1E00-\u1EFF«»“”‘’–—•·…]/.test(e.title)){e.titleOrig=e.title;e.title=e.titleEn}});
+  /* some feeds send accents decomposed (e + U+0302), which looked like a non-Latin script and swapped "L’ADC fête ses 40 ans" for its English translation */
+  EVENTS.forEach(e=>{if(e.title&&e.title.normalize)e.title=e.title.normalize("NFC")});
+  EVENTS.forEach(e=>{if(e.titleEn&&e.titleEn!==e.title&&/[^\u0000-\u024F\u0300-\u036F\u2000-\u206F\u20A0-\u20CF\u2100-\u214F\u2190-\u21FF\u25A0-\u27BF\u1E00-\u1EFF«»“”‘’–—•·…]/.test(e.title)){e.titleOrig=e.title;e.title=e.titleEn}});
   const dr=new Set(A.drop||[]);for(let i=EVENTS.length-1;i>=0;i--)if(dr.has(EVENTS[i].id))EVENTS.splice(i,1);
   Object.entries(A.edits||{}).forEach(([id,f])=>{const e=EVENTS.find(x=>x.id===id);if(e)Object.assign(e,f)});
 })();
@@ -2793,18 +2796,22 @@ render();
   else if(h.startsWith("#trip-")){ui.tab="trips";ui.tripOpen=h.slice(6);render()}})();
 
 /* ---------- first-open setup: home city + interests (any user) ---------- */
+/* Batch 11 · a one-time preferences check for every user (new and existing). Bump PREFS_V to ask again. */
+const PREFS_V=1;
+function prefsDue(){if((S.prefsV||0)>=PREFS_V)return false;try{if(+(localStorage.getItem("oa-prefs-v")||0)>=PREFS_V)return false}catch(e){}return true}
+function markPrefs(){S.prefsV=Math.max(S.prefsV||0,PREFS_V);try{localStorage.setItem("oa-prefs-v",String(PREFS_V))}catch(e){}}
 function openSetup(){if(document.getElementById("onb"))return;
-  const O=window.OA;const first=!S.home||!(S.likes||[]).length;
+  const O=window.OA;const first=!S.home||!(S.likes||[]).length;const must=!first&&!!window.__prefsMust;let dirty=false;
   const P0=JSON.parse(JSON.stringify(O?O.prof():{we:{who:"solo",moods:[]},wk:{who:"solo",moods:[]},never:[],eves:[1,2,3,4]}));
-  let home=S.home||null,wkWho=P0.legacy?null:P0.wk.who,weWho=P0.legacy?null:P0.we.who;
+  let home=S.home||null,wkWho=P0.legacy&&!must?null:P0.wk.who,weWho=P0.legacy&&!must?null:P0.we.who;
   const M=new Set(P0.legacy&&first?[]:[...new Set([].concat(P0.we.moods||[],P0.wk.moods||[]))]);let dating=wantsDating();
-  const blank=first||P0.legacy;const N=new Set(blank?[]:(P0.never||[])),E=new Set(blank?[]:(P0.eves||[1,2,3,4]));let touched=false;const who0=[P0.wk.who,P0.we.who].join();
+  const blank=first||(P0.legacy&&!must);const N=new Set(blank?[]:(P0.never||[])),E=new Set(blank?[]:(P0.eves||[1,2,3,4]));let touched=false;const who0=[P0.wk.who,P0.we.who].join();
   const MO=(O?O.MOODS:[]),NV=(O?O.NEVER:[]),WH=[["solo","Solo"],["partner","With my partner"],["friends","With friends"]];
   const d=document.createElement("div");d.id="onb";
   const keep=()=>{const g=d.querySelector("#addr-ge"),z=d.querySelector("#addr-zh");return [g?g.value:((S.addr||{}).ge||{}).q||"",z?z.value:((S.addr||{}).zh||{}).q||""]};
   const ok=()=>home&&wkWho&&weWho&&M.size;
   const row=(name,val)=>WH.map(([k,n])=>'<button data-who="'+name+'~'+k+'" aria-pressed="'+(val===k)+'">'+n+'</button>').join("");
-  const draw=()=>{const [ag,az]=keep();const sy=d.scrollTop;d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About">'+(first?'':'<button class="onb-x" data-close aria-label="Close">×</button>')+'<h2>'+(first?'Welcome to Out & About':'Your preferences')+'</h2>'+
+  const draw=()=>{const [ag,az]=keep();const sy=d.scrollTop;d.innerHTML='<div class="box" role="dialog" aria-modal="true" aria-label="Set up Out & About">'+(first||must?'':'<button class="onb-x" data-close aria-label="Close">×</button>')+'<h2>'+(first?'Welcome to Out & About':must?'Check your preferences':'Your preferences')+'</h2>'+(must?'<p class="onb-must">The app now picks events from what you enjoy. Check these are still right, then tap <b>Confirm</b>. Your saved plans stay as they are.</p>':'')+
     '<h3>You</h3><p>Where are you based?</p><div class="opts">'+[["ge","Geneva"],["zh","Zurich"]].map(([k,n])=>'<button data-home="'+k+'" aria-pressed="'+(home===k)+'">'+n+'</button>').join("")+'</div>'+
     '<p>On <b>weekday evenings</b> I usually go out…</p><div class="opts">'+row("wk",wkWho)+'</div>'+
     '<p>At <b>weekends</b> I usually go out…</p><div class="opts">'+row("we",weWho)+'</div>'+
@@ -2812,10 +2819,12 @@ function openSetup(){if(document.getElementById("onb"))return;
     '<h3>Your week</h3><p>Tap the evenings you\'re usually free</p><div class="opts">'+[[1,"Mon"],[2,"Tue"],[3,"Wed"],[4,"Thu"]].map(([k,n])=>'<button data-eve="'+k+'" aria-pressed="'+E.has(k)+'">'+n+'</button>').join("")+'</div>'+
     '<p>Never show me (tap to hide)</p><div class="opts">'+NV.map(([k,n])=>'<button data-never="'+k+'" aria-pressed="'+N.has(k)+'">'+n+'</button>').join("")+'</div>'+
     '<h3>Home (optional)</h3><p>Your address in each city, so travel times start from home</p><input id="addr-ge" autocomplete="off" data-city="ge" placeholder="Geneva: street and number" value="'+esc(ag)+'"><div class="addrsug" id="sug-ge"></div><div class="addrok" id="ok-ge">'+addrState("ge")+'</div><input id="addr-zh" autocomplete="off" data-city="zh" placeholder="Zurich: street and number" value="'+esc(az)+'"><div class="addrsug" id="sug-zh"></div><div class="addrok" id="ok-zh">'+addrState("zh")+'</div><p style="font-size:12.5px;margin:-2px 0 12px">Your address stays private to your account.</p>'+
-    '<button class="go" '+(ok()?'':'disabled')+'>'+(first?'Show me my plan':'Save')+'</button>'+(ok()?'':'<p class="onb-need">'+(!home?'Pick your city':!wkWho||!weWho?'Tell us who you usually go out with':'Pick at least one thing you enjoy')+'</p>')+
+    '<button class="go" '+(ok()?'':'disabled')+'>'+(first?'Show me my plan':must?'Confirm':'Save')+'</button>'+(ok()?'':'<p class="onb-need">'+(!home?'Pick your city':!wkWho||!weWho?'Tell us who you usually go out with':'Pick at least one thing you enjoy')+'</p>')+
     '<p style="margin:10px 0 0;font-size:13px">You can change this any time with the ⚙︎ button at the top right.</p></div>';d.scrollTop=sy};
-  draw();document.body.appendChild(d);d.scrollTop=0;
-  d.addEventListener("click",ev=>{const t=ev.target;let b;
+  draw();document.body.appendChild(d);d.scrollTop=0;const a0=keep().join("|");
+  d.addEventListener("click",ev=>{const t=ev.target;let b;if(t.closest("[data-home],[data-who],[data-mood],[data-dating],[data-eve],[data-never]"))dirty=true;
+    /* confirming without changing anything must leave every saved setting exactly as it was */
+    if(must&&t.closest(".go")&&ok()&&!dirty&&keep().join("|")===a0){window.__prefsMust=false;markPrefs();persist();d.remove();return}
     if(t.closest("[data-close]")){d.remove();return}
     if(b=t.closest("[data-home]")){home=b.dataset.home;draw();return}
     if(b=t.closest("[data-who]")){const [w,k]=b.dataset.who.split("~");if(w==="wk")wkWho=k;else weWho=k;draw();return}
@@ -2826,10 +2835,10 @@ function openSetup(){if(document.getElementById("onb"))return;
     if(t.closest(".go")&&ok()){const moods=[...M];
       const keepSep=!touched&&!P0.legacy;const changed=touched||[wkWho,weWho].join()!==who0;
       S.home=home;S.prof={we:{who:weWho,moods:keepSep?P0.we.moods.slice():moods.slice()},wk:{who:wkWho,moods:keepSep?P0.wk.moods.slice():moods.slice()},never:[...N],eves:[...E].sort(),dog:moods.includes("outdoors")};
-      const MC={meet:"rencontre",games:"rencontre",language:"rencontre",creative:"creatif",markets:"marche",festivals:"fete",party:"fete",food:"fete",concerts:"culture",comedy:"culture",film:"culture",exhibitions:"culture",outdoors:"chien",yoga:"corps"};
+      const MC={meet:"rencontre",games:"rencontre",language:"rencontre",creative:"creatif",markets:"marche",festivals:"fete",party:"fete",food:"fete",concerts:"culture",theatre:"culture",comedy:"culture",film:"culture",exhibitions:"culture",outdoors:"chien",yoga:"corps"};
       S.likes=[...new Set(moods.map(k=>MC[k]).filter(Boolean))].concat(dating?["dating"]:[]);S.dating=dating;
       const [ag,az]=keep();saveAddr(ag,az);try{localStorage.setItem("oa-home",home)}catch(e){}
-      if(O&&changed)O.clearCur();EVENTS.forEach(e=>{delete e._ptg;delete e._dt;delete e._dt2});try{buildAutoPicks()}catch(x){}d.remove();setCity(home);persist();render()}});
+      if(O&&changed)O.clearCur();EVENTS.forEach(e=>{delete e._ptg;delete e._dt;delete e._dt2});try{buildAutoPicks()}catch(x){}window.__prefsMust=false;markPrefs();d.remove();setCity(home);persist();try{applyDeleted()}catch(x){}render()}});
 }
 (function(){let h=null;try{h=localStorage.getItem("oa-home")}catch(e){}if(!S.home&&h)S.home=h;if(!S.home||!(S.likes||[]).length)setTimeout(()=>openSetup(),300);})();
 
@@ -3261,12 +3270,12 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
    Picks one event per time slot from who you're with + today's mood chips + your profile, weather and feedback.
    State: S.prof (what you like), S.plan (kept/moved/skipped slots, per week). ===== */
 (function(){
-  const MOODS=[["markets","Markets"],["concerts","Concerts"],["festivals","Festivals"],["outdoors","Outdoors & hikes"],["creative","Creative"],["exhibitions","Exhibitions"],["meet","Meet people"],["games","Games"],["yoga","Yoga & dance"],["comedy","Comedy"],["film","Film"],["language","Language exchange"],["food","Food & drink"],["party","Parties"]];
+  const MOODS=[["markets","Markets"],["concerts","Concerts"],["festivals","Festivals"],["outdoors","Outdoors & hikes"],["creative","Creative"],["exhibitions","Exhibitions"],["theatre","Theatre & dance"],["meet","Meet people"],["games","Games"],["yoga","Yoga & dance"],["comedy","Comedy"],["film","Film"],["language","Language exchange"],["food","Food & drink"],["party","Parties"]];
   const MLBL=Object.fromEntries(MOODS);
   const NEVER=[["meetups","Meetups, mixers & language exchanges"],["clubs","Nightclubs & late parties"],["talks","Talks & lectures"],["sports","Watching sports"],["running","Running clubs & group runs"],["classical","Classical music"],["kids","Kids & family"]];
   const WHO=[["partner","With my partner"],["solo","Solo"],["friends","With friends"]];
   const DEF={we:{who:"partner",moods:["markets","concerts","festivals","outdoors"]},wk:{who:"solo",moods:["meet","games","creative"]},never:["talks","sports"],eves:[1,2,3,4],dog:true};
-  const LIKE2MOOD={rencontre:["meet"],creatif:["creative"],marche:["markets"],fete:["festivals"],culture:["concerts","exhibitions"],chien:["outdoors"],corps:["outdoors","yoga"]};
+  const LIKE2MOOD={rencontre:["meet"],creatif:["creative"],marche:["markets"],fete:["festivals"],culture:["concerts","exhibitions","theatre"],chien:["outdoors"],corps:["outdoors","yoga"]};
   function prof(){if(!S.prof){const L=S.likes||[];const p=JSON.parse(JSON.stringify(DEF));p.legacy=true;
       const x=[...new Set([].concat(...L.map(k=>LIKE2MOOD[k]||[])))];if(x.length){p.wk.moods=x.slice();p.we.moods=x.slice()}
       return p}return S.prof}
@@ -3277,6 +3286,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     outdoors:/hike|hiking|walk|randonn|balade|promenade|nature|forest|for[êe]t|garden|jardin|park\b|lake|lac\b|outdoor|dog|chien|picnic/i,
     creative:/workshop|atelier|ceramic|c[ée]ramique|pottery|poterie|drawing|dessin|draw\b|painting|peinture|sketch|craft|print|knit|sewing|collage|creative|cr[ée]atif|life drawing|calligraph/i,
     exhibitions:/exhibition|exposition|expo\b|museum|mus[ée]e|gallery|galerie|vernissage|ausstellung/i,
+    theatre:/th[ée][aâ]tre|theater|schauspiel|\bballet|op[ée]ra\b|\bplay\b|spectacle|com[ée]die musicale|musical\b|chor[ée]graph|danse contemporaine|contemporary dance|dance performance|r[ée]p[ée]tition publique|performance\b|\bADC\b|marionnett|puppet/i,
     meet:/meetup|meet new|make friends|social|mixer|afterwork|networking|newcomers|expat|community|rencontre|apéro|quiz/i,
     games:/board ?game|jeux|jeu de|game night|games night|quiz|loup.garou|clocktower|trivia|spieleabend|ludoth/i,
     yoga:/yoga|dance|danse|tango|salsa|bachata|swing|acro|pilates|meditation|m[ée]ditation|forr[óo]|kizomba|ecstatic/i,
@@ -3584,7 +3594,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
     if(t.closest("[data-plopenplans]")){openPlans(true);return}
     if(b=t.closest("[data-plcal]")){ics(ctx,b.dataset.plcal);return}
   });
-  window.OA={MOODS,NEVER,WHO,DEF,prof,never,clearCur,LIKE2MOOD};
+  window.OA={MOODS,NEVER,WHO,DEF,prof,never,clearCur,LIKE2MOOD,tags};
   setTimeout(()=>{try{buildAutoPicks();renderPicks()}catch(x){}},0);
   /* --- tabs: Plan · Explore (This week / Next week / Culture) · Trips & hikes · My plans --- */
   const nav=document.querySelector("nav.tabs");
@@ -3832,7 +3842,7 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
 (function(){let guard=false,ignore=false;
   const OVL=["shname","shinv","shsheet","plsheet","pltune","onb"];
   const firstRun=()=>!S.home||!(S.likes||[]).length;
-  const ovl=()=>{for(let i=OVL.length-1;i>=0;i--){}const L=OVL.map(id=>document.getElementById(id)).filter(Boolean);const nb=document.querySelector(".notebox");if(nb)L.push(nb);const ap=document.getElementById("acctpanel");if(ap&&!ap.hidden)L.unshift(ap);return L.filter(x=>!(x.id==="onb"&&firstRun()))};
+  const ovl=()=>{for(let i=OVL.length-1;i>=0;i--){}const L=OVL.map(id=>document.getElementById(id)).filter(Boolean);const nb=document.querySelector(".notebox");if(nb)L.push(nb);const ap=document.getElementById("acctpanel");if(ap&&!ap.hidden)L.unshift(ap);return L.filter(x=>!(x.id==="onb"&&(firstRun()||window.__prefsMust)))};
   const open=()=>ovl().length>0||document.body.classList.contains("sheet-open")||(ui.tab==="trips"&&!!ui.tripOpen)||!!ui.planAll||!!ui.plans||(ui.tab!=="plan");
   function sync(){const o=open();if(o&&!guard){try{history.pushState({oa:1},"")}catch(e){}guard=true}else if(!o&&guard){guard=false;ignore=true;try{history.back()}catch(e){ignore=false}}}
   function closeTop(){const L=ovl();if(L.length){const x=L[L.length-1];if(x.id==="acctpanel"){x.hidden=true;const ab=document.getElementById("acctbtn");if(ab)ab.setAttribute("aria-expanded","false")}else if(x.id==="shinv"){x.remove();if(!ui.plans&&ui.tab!=="plan"){const b=document.querySelector('nav.tabs [data-tab="plan"]');if(b)b.click()}window.__afterInvite&&window.__afterInvite()}else if(x.classList&&x.classList.contains("notebox")){const b=x.querySelector("button");b?b.click():x.remove()}else x.remove();return}
@@ -3880,6 +3890,70 @@ if(!location.hash){ui.tab="this";ui.plans=false;setTimeout(()=>{try{render()}cat
   setTimeout(syncCityTog,0);setTimeout(syncCityTog,60);
 })();
 </script>
+<script>
+/* ===== Batch 11 · owner decision 1 (18 Nov): at most 40 events per city per day, chosen per person =====
+   The nightly collector used to cut every busy day to 40 for everybody, before anyone's interests were
+   known, so a theatre-goer lost the Grand Théâtre rehearsal to bulk nightlife listings. It now ships a
+   bigger pool, and the cut happens here, on the phone, ranked by what this person enjoys.
+   Rules, in order:
+   1. Anything in this person's plans (going, starred, kept in a Plan slot, opened from a link) is always kept.
+   2. The rest is ranked by their interests, the categories they like, "Never show me", dating opt-in and distance.
+   3. A curated culture listing (theatre, ballet, museums, classical) never loses its place to a nightlife
+      listing on the same day, whatever the scores say.
+   Only nightly-collected events count towards the 40, as before; hand-picked ones are never cut. */
+(function(){
+  const CAP=40;
+  const CURSRC=/lesgenevois\.com|openagenda\.com|museesdegeneve|artageneve|billetterie-mhng|opernhaus\.ch|tonhalle|grandtheatre|geneveopera|adc-geneve|comedie\.ch|schauspielhaus|theatre/i;
+  const CULT=/th[ée][aâ]tre|theater|schauspiel|\bballet|op[ée]ra\b|mus[ée]e|museum|exposition|exhibition|vernissage|r[ée]p[ée]tition publique|concert (?:classique|laur[ée]at)|orchestr|r[ée]cital|chor[ée]graph|danse contemporaine|visites? (?:guid|comment)|guided tour|\bADC\b|concours de gen/i;
+  const NIGHT=/\bparty\b|soir[ée]e|\bclub\b|clubbing|\bdj\b|techno|\bhouse\b|\bdisco\b|\brave\b|after.?party|karaoke|pub crawl|bar night|afterwork/i;
+  const tg=e=>{try{return OA.tags(e)}catch(x){return new Set()}};
+  const isCur=e=>{if(e._cur!=null)return e._cur;const t=e.title+" "+(e.titleOrig||"");
+    return e._cur=!NIGHT.test(t)&&(CULT.test(t)||(CURSRC.test(e.url||"")&&(e.cat||[]).includes("culture")&&!tg(e).has("party")))};
+  const isNight=e=>{if(e._nl!=null)return e._nl;return e._nl=!isCur(e)&&(tg(e).has("party")||NIGHT.test(e.title+" "+(e.titleOrig||"")))};
+  function pinnedIds(){const P=new Set([].concat(S.going||[],S.stars||[],[...goingSet],[...stars],Object.keys(S.goDay||{}),Object.keys(S.goSlot||{})));
+    Object.values(S.plan||{}).forEach(w=>Object.values(w||{}).forEach(o=>{if(o&&o.id)P.add(o.id)}));
+    try{const h=decodeURIComponent(location.hash||"");if(h.startsWith("#ev-"))P.add(h.slice(4))}catch(x){}
+    return P}
+  function moodsOf(){try{const p=OA.prof();return [...new Set([].concat(p.we.moods||[],p.wk.moods||[]))]}catch(x){return []}}
+  function rank(e,M,L,P){
+    if(P.has(e.id)||(e.rep&&P.has(e.rep)))return 1e6;
+    if(hidden.has(e.id)||(!wantsDating()&&isDating(e)))return -1e6;
+    try{if(S.prof&&OA.never(e))return -1e6}catch(x){}
+    const t=tg(e);const m=M.filter(x=>t.has(x)).length;let v=m?6+2*(m-1):(M.length?-3:0);
+    if((e.cat||[]).some(c=>L.includes(c)))v+=2;
+    if(isCur(e))v+=3;if(isNight(e)&&!M.includes("party"))v-=4;
+    if(!isLocal(e)||e.fr)v-=2;if(e.free)v+=.5;if(String(e.desc||"").length<40)v-=1;
+    return v}
+  let last={cells:0,cut:0,list:[]};
+  function cutSet(){const out=new Set();if(!ALL_EVENTS||!window.OA)return out;
+    const M=moodsOf(),L=S.likes||[],P=pinnedIds();const cells=new Map();
+    ALL_EVENTS.forEach((e,i)=>{if(!e||!e.auto||!e.day||e.p==="on"||e.p==="big"||isDel(e))return;const k=cityOf(e)+"|"+e.day;if(!cells.has(k))cells.set(k,[]);cells.get(k).push([e,i])});
+    let nc=0;const list=[];
+    cells.forEach(arr=>{if(arr.length<=CAP)return;nc++;
+      const r=arr.map(([e,i])=>({e,i,v:rank(e,M,L,P)})).sort((a,b)=>b.v-a.v||a.i-b.i);
+      const keep=r.slice(0,CAP),drop=r.slice(CAP);
+      /* pinned items beyond 40 are kept too: never cut something she has saved */
+      for(let j=drop.length-1;j>=0;j--)if(drop[j].v>=1e6){keep.push(drop[j]);drop.splice(j,1)}
+      /* rule 3: swap the weakest kept nightlife listing for the best dropped curated one, until none is left */
+      for(;;){const c=drop.find(x=>isCur(x.e)&&x.v>-1e6);if(!c)break;let w=-1;
+        for(let j=keep.length-1;j>=0;j--)if(keep[j].v<1e6&&isNight(keep[j].e)){w=j;break}
+        if(w<0)break;const out2=keep.splice(w,1)[0];keep.push(c);drop.splice(drop.indexOf(c),1);drop.push(out2)}
+      drop.forEach(x=>{out.add(x.e);list.push(x.e.day+" "+x.e.title)})});
+    last={cells:nc,cut:out.size,list};return out}
+  const _ad0=applyDeleted;
+  applyDeleted=function(){if(!ALL_EVENTS)return _ad0();let cut;try{cut=cutSet()}catch(x){console.error(x);cut=new Set()}
+    EVENTS.length=0;ALL_EVENTS.forEach(e=>{if(!isDel(e)&&!cut.has(e))EVENTS.push(e)})};
+  window.OA_CAP=()=>last;
+  /* sync: keep the "preferences checked" mark from either side, then re-cut with the synced profile */
+  const _adp=adopt;adopt=function(b){const v=S.prefsV||0;_adp(b);const nv=Math.max(v,(b&&b.prefsV)||0);if(nv)S.prefsV=nv;
+    try{localStorage.setItem("sorties-state",JSON.stringify(S))}catch(e){}try{applyDeleted()}catch(e){}};
+  try{applyDeleted();render()}catch(e){console.error(e)}
+  /* the one-time preferences check for people who already use the app (first-timers get the normal setup) */
+  const first=!S.home||!(S.likes||[]).length;
+  if(!first&&prefsDue()){window.__prefsMust=true;setTimeout(()=>{try{openSetup()}catch(e){}},350)}
+})();
+</script>
+
 
 
 </body></html>
