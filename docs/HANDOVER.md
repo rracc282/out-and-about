@@ -261,3 +261,17 @@ Tested by running the real collector on a throwaway branch — the dev sandbox c
 - No Zurich hikes yet. Multi-day past plans don't appear in the rating loop.
 - The Plan's mood-chip row scrolls sideways and its last chip is clipped at every width. That is how it already was; worth a look some time.
 - Not yet checked on a real iPhone: the top status bar of the installed app, and colours on iOS 15–16.1.
+
+
+## Owner decisions, 18 Nov 2026 (binding)
+
+1. **Per-day cap stays at 40 per city, but ranked by the user's preferences.** Do not raise it. When a day has more than 40,
+   keep the events that best match the person's chosen interests, filters, city and saved plans; curated picks (theatre, museums,
+   ballet, etc.) must never lose out to bulk nightlife listings. Add a **mandatory first-open check**: on first open of the new
+   version, every user, new and existing, is shown the interests/preferences setup once (existing users get their current choices
+   pre-filled and just confirm). Existing users' saved plans and settings must survive untouched. Needs tests for: new user,
+   existing user with old saved data, both cities, 320/375 px, light and dark. Owner approves before it goes live.
+2. **Header "Saved on this device / Synced" status and "?" legend stay hidden.**
+3. **Item 50 ("new version" prompt): skipped.**
+4. **Niche extras (19-25, 43, 56, 66-68, 70-73) and big ideas (74-79):** present each as a one-line do/skip choice
+   (one AskUserQuestion, or a short numbered list); the owner answers once; then build only the "do" ones.
