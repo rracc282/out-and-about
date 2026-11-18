@@ -275,3 +275,27 @@ Tested by running the real collector on a throwaway branch — the dev sandbox c
 3. **Item 50 ("new version" prompt): skipped.**
 4. **Niche extras (19-25, 43, 56, 66-68, 70-73) and big ideas (74-79):** present each as a one-line do/skip choice
    (one AskUserQuestion, or a short numbered list); the owner answers once; then build only the "do" ones.
+
+## Batch 11 — decision 1 (branch `batch-11`, NOT live until the owner says so)
+- **Cap moved to the phone.** `harvest.mjs` now ships a pool (CAP 100, SOFT 40 per city per day). The last
+  `<script>` in index.html ("Batch 11") overrides `applyDeleted()`: per city+day, collected events (`e.auto`,
+  not on/big) above 40 are ranked per person (moods, liked categories, Never-show, dating, distance) and cut.
+  Pinned = going, stars, `S.plan` slot ids, `S.goDay/goSlot`, `#ev-` deep link — always kept. Rule 3: a curated
+  culture item (`isCur`) is never cut while a non-pinned nightlife item (`isNight`) is kept that day.
+  `OA_CAP()` returns the last cut (cells, count, titles) for testing. Auto.js grows ~90 KB raw / ~20 KB gz.
+- **One-time preferences check:** `PREFS_V`/`prefsDue()`/`markPrefs()` near `openSetup`; `S.prefsV` (synced, max
+  of both sides in the adopt wrapper) plus `oa-prefs-v` in localStorage. Existing users get "Check your
+  preferences" (pre-filled, no ×, Back doesn't close it). Confirm with no change writes only `prefsV`.
+  Bump `PREFS_V` to ask everyone again.
+- New interest **"Theatre & dance"** (`RX.theatre`). Legacy profiles (likes, no prof) now include it via `LIKE2MOOD.culture`.
+- Fixed: decomposed accents (e + U+0302) made French titles look non-Latin, so "L’ADC fête ses 40 ans" showed
+  in English. Titles are NFC-normalised; `isDel` compares normalised titles so old deletions still match.
+- Before/after replay (12 Nov data, theatre lover): Ballet rehearsal and ADC 40 ans absent on main, present on branch.
+
+## Owner answers on niche extras / big ideas (18 Nov)
+19 setup question: which event languages you'll attend (language exchanges always count as English) · 20 setup
+question · 21 skip · 22 do · 23 skip · 24 only better singles detection · 25 as before (set by setup) · 43 do
+(with 76?) · 56 do: "Geneva" (not Genève), "Hide forever", merge "Tonight" with "Friday evening" only when that
+Friday is today · 66/67/68/74 show a mockup first · 70 do · 71 remove all dog mentions unless setup says "I have a
+dog"; then dog flag in all cities, no rules · 72 do · 73 trip cost per person · 75 do · 76 explained, awaiting
+answer · 77 in English, as a notification: Thursday (weekend) and Sunday (week) · 78 do · 79 do.
