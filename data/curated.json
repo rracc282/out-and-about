@@ -1,171 +1,126 @@
 {
- "week": "2026-11-16",
+ "week": "2026-11-23",
  "notes": {
   "ge": {
-   "wd1": "F*ck the Small Talk on Monday, English comedy on Tuesday and Wednesday, and Noël au Quai's opening plus Drink, Paint & Meet on Thursday; rain likely Wednesday and Thursday.",
-   "we1": "The Garderobes slow-fashion fair in Carouge, Drink and Draw and the Plainpalais flea market on Saturday, a makers' market at the Jonction on Sunday, and Noël au Quai all weekend; rain likely most days.",
-   "wd2": "A writers' workshop on Tuesday, a language exchange at the Halles de l'Île on Wednesday, a free community choir and a clay-and-face-yoga night on Thursday, and Lancy's Christmas market from Wednesday; rain likely most days.",
-   "we2": "Annecy's Christmas market opens, the Marché des ressources and the Pâquis craft Christmas market, the Plainpalais flea market and a Fast Friends meet-up on Saturday."
+   "wd1": "Language exchanges, English comedy at Caustic and Flanagans' Expat Comedy Night, the Festival Les Créatives and a clay-and-face-yoga workshop on Thursday; rain likely Wednesday and Thursday.",
+   "we1": "Social Roulette on Friday, Fast Friends, the Pâquis craft Christmas market and the Plainpalais flea market on Saturday, the Marché des ressources all weekend and Noël au Quai by the lake.",
+   "wd2": "A sustainable-fashion evening on Tuesday, the Halle de l'Île language exchange and Pub Philosophy on Wednesday, then a free community choir and Expat Comedy Night on Thursday.",
+   "we2": "Carouge's Christmas market, the Plainpalais flea market, a make-your-own Escalade marmite workshop and Geneva's Christmas market day in the Old Town, with the Fête de l'Escalade the weekend after."
   },
   "zh": {
-   "wd1": "A beginners' pottery course on Monday, Kon-Tiki comedy on Tuesday, a mixed-media workshop on Wednesday, and the Christmas markets plus a free Kunsthaus opening on Thursday; rain likely Wednesday and Thursday.",
-   "we1": "Blickfang design fair at the Kongresshaus, Circus Conelli's Christmas season opening, a Craft Brunch and free English comedy on Sunday, and all of Zurich's Christmas markets; rain likely most days.",
-   "wd2": "Arlo Parks and Kon-Tiki comedy on Tuesday, Sketch Circle on Wednesday, Drawing Animals at the Zoological Museum on Thursday, and Basel's and Winterthur's Christmas markets opening Thursday; rain likely most days.",
-   "we2": "Le Dolzze art bazaar, pottery and watercolour workshops, Bern's and Einsiedeln's Christmas markets opening, and day trips to the Colmar and Strasbourg markets."
+   "wd1": "A Sofar x Social Circle Christmas concert and Stranger Games on Wednesday, then watercolour, Drawing Animals and a pottery workshop on Thursday; rain likely Wednesday and Thursday.",
+   "we1": "English stand-up and Circus Monti on Friday, the Kanzlei flea market and a collage circle on Saturday, and the Hardgutbrache winter market plus the Underwater Festival's last day on Sunday.",
+   "wd2": "Christmas-card watercolours and free comedy at the Weihnachtsallee on Tuesday, English stand-up and a Christmas pottery workshop on Wednesday, and Lucerne's Christmas market opens Thursday.",
+   "we2": "Dynamo's DIY Christmas market, Sip N' Paint baubles at Kanzlei, the Kanzlei flea market, urban sketching and the SunJam Christmas market on Sunday."
   }
  },
  "picks": [
   {
    "block": "we1",
-   "id": "c-ge-garderobes-11-21",
-   "k": "Sat & Sun",
-   "why": "An indoor slow-fashion fair in Carouge: independent labels, vintage and repairs, perfect for a rainy weekend."
-  },
-  {
-   "block": "we1",
-   "id": "a-ge-drink-and-draw-11-21",
-   "k": "Saturday afternoon",
-   "why": "A friendly English-speaking sketch meetup over drinks; bring a sketchbook and meet fellow artists."
-  },
-  {
-   "block": "we1",
-   "id": "a-ge-marche-des-cre-ateur-icexs-11-22",
-   "k": "Sunday",
-   "why": "A makers' market at the Jonction for handmade, local Christmas gifts."
-  },
-  {
-   "block": "we1",
-   "id": "c-ge-noel-au-quai-11-19",
+   "id": "a-ge-social-roulette-gene-ve-chf-5-11-27",
    "k": "Friday evening",
-   "why": "Geneva's lakeside Christmas market in its first weekend: fondue, mulled wine and chalets."
-  },
-  {
-   "block": "wd2",
-   "id": "a-ge-writers-workshop-11-24",
-   "k": "Tuesday evening",
-   "why": "An English fiction writers' group: read, discuss and meet other writers."
-  },
-  {
-   "block": "wd2",
-   "id": "a-ge-language-exchange-geneva-11-25",
-   "k": "Wednesday evening",
-   "why": "A big, easy-going language exchange at the Halles de l'Île; great for meeting people solo."
-  },
-  {
-   "block": "wd2",
-   "id": "a-ge-community-choir-free-11-26",
-   "k": "Thursday evening",
-   "why": "A free, welcoming community choir in English; no experience needed."
-  },
-  {
-   "block": "wd2",
-   "id": "a-ge-atelier-face-night-yoga-du-visage-modela-11-26",
-   "k": "Thursday evening",
-   "why": "A playful evening of clay modelling and face yoga at La Nativa."
+   "why": "Easy, cheap way to meet new people over a drink — just CHF 5."
   },
   {
    "block": "we1",
-   "id": "c-zh-blickfang-11-20",
+   "id": "a-ge-meet-new-people-make-friends-ages-25-45--11-28",
+   "k": "Saturday evening",
+   "why": "Friendly hosted mixer for 25–45s at Spoon Food Hall — come alone, leave with names."
+  },
+  {
+   "block": "we1",
+   "id": "a-ge-marche-de-noe-l-artisanal-et-associatif--11-28",
    "k": "Saturday",
-   "why": "Indoor design fair at the Kongresshaus: buy furniture, jewellery and homeware straight from the makers."
+   "why": "Neighbourhood craft Christmas market in the Pâquis — handmade gifts and local stalls, all indoors."
   },
   {
    "block": "we1",
-   "id": "a-zh-craft-brunch-11-22",
+   "id": "a-ge-marche-des-ressources-11-29",
    "k": "Sunday",
-   "why": "Brunch plus a guided craft project at House of Craft; take your creation home."
-  },
-  {
-   "block": "we1",
-   "id": "c-zh-weihnachtsmarkt-doerfli-11-19",
-   "k": "Friday evening",
-   "why": "Stroll the Niederdorf's Christmas market in its first weekend for mulled wine and gifts."
-  },
-  {
-   "block": "we1",
-   "id": "c-zh-gratis-comedy-robins-11-22",
-   "k": "Sunday evening",
-   "why": "Free English stand-up to round off the weekend."
+   "why": "Upcycled finds and creative materials at the old Charmilles post office — great for makers."
   },
   {
    "block": "wd2",
-   "id": "a-zh-arlo-parks-konzert-11-24",
+   "id": "a-ge-mode-durable-de-la-fibre-a-la-seconde-vi-12-01",
    "k": "Tuesday evening",
-   "why": "British singer-songwriter Arlo Parks live in the intimate Kaufleuten hall."
+   "why": "Meet Geneva's repair, upcycling and second-hand crowd at a sustainable-fashion evening."
   },
   {
    "block": "wd2",
-   "id": "a-zh-kon-tiki-comedy-tuesday-11-24",
-   "k": "Tuesday evening",
-   "why": "Zurich's longest-running weekly English stand-up night."
-  },
-  {
-   "block": "wd2",
-   "id": "a-zh-sketch-circle-zu-rich-dr-brauwolf-11-25",
+   "id": "a-ge-language-exchange-geneva-12-02",
    "k": "Wednesday evening",
-   "why": "Monthly social sketching over beer; all levels welcome."
+   "why": "Weekly language exchange at the Halle de l'Île — the easiest place to start a conversation."
   },
   {
    "block": "wd2",
-   "id": "a-zh-drawing-animals-11-26",
+   "id": "a-ge-community-choir-free-12-03",
    "k": "Thursday evening",
-   "why": "Sketch the animals of the Zoological Museum with a friendly guide."
+   "why": "Free choir, no experience needed, mostly English-speaking — singing is a great icebreaker."
+  },
+  {
+   "block": "wd2",
+   "id": "a-ge-expat-comedy-night-in-geneva-12-03",
+   "k": "Thursday evening",
+   "why": "English stand-up at Flanagans with pub food — a fun after-work night out."
+  },
+  {
+   "block": "we1",
+   "id": "a-zh-soft-sorry-stand-up-comedy-in-english-11-27",
+   "k": "Friday evening",
+   "why": "Gentle, funny English stand-up in a brewery in Oerlikon."
+  },
+  {
+   "block": "we1",
+   "id": "c-zh-flohmarkt-kanzlei-11-28",
+   "k": "Saturday",
+   "why": "Zurich's classic Saturday flea market — vintage, records and curiosities; dogs welcome."
+  },
+  {
+   "block": "we1",
+   "id": "a-zh-collage-circle-handcraft-sustainable-pos-11-28",
+   "k": "Saturday afternoon",
+   "why": "Make collage postcards from recycled paper and meet people while you craft."
+  },
+  {
+   "block": "we1",
+   "id": "a-zh-wintermarket-hardgutbrache-11-29",
+   "k": "Sunday",
+   "why": "Small winter market in Zurich West with local stalls and warm drinks."
+  },
+  {
+   "block": "wd2",
+   "id": "a-zh-christmas-card-watercolor-workshop-12-01",
+   "k": "Tuesday evening",
+   "why": "Paint your own Christmas cards in watercolour — relaxed and beginner-friendly."
+  },
+  {
+   "block": "wd2",
+   "id": "a-zh-english-stand-up-comedy-night-12-02",
+   "k": "Wednesday evening",
+   "why": "An English stand-up night at the Swiss Casino's ROOM21."
+  },
+  {
+   "block": "wd2",
+   "id": "a-zh-build-your-own-christmas-special-pottery-12-02",
+   "k": "Wednesday evening",
+   "why": "Hand-build a Christmas piece in clay at a cosy pottery studio."
+  },
+  {
+   "block": "wd2",
+   "id": "c-zh-luzern-weihnachtsmarkt-12-03",
+   "k": "Thursday evening",
+   "why": "Lucerne's Christmas market opens — an easy after-work trip by train."
   }
  ],
  "edits": {
-  "a-ge-f-ck-the-small-talk-geneva-15-11-16": {
-   "desc": "A guided evening of deeper conversations with strangers, using question cards to skip the small talk. Ages 22–49; a paid ticket is required."
-  },
-  "a-ge-the-comedy-line-presents-craig-cardiff-a-11-18": {
-   "desc": "An evening of music and English comedy at El Catrín with award-winning Canadian singer-songwriter Craig Cardiff and comedian Jenna Clarke."
-  },
-  "a-ge-drink-paint-and-meet-peoples-11-19": {
-   "desc": "A creative after-work: paint your own tote bag over a drink and meet new people. Materials provided."
-  },
-  "a-zh-learn-the-basics-of-pottery-beginners-co-11-16": {
-   "desc": "A four-week beginners' pottery course at Ceramics on Wheels: learn hand-building and wheel basics and take your pieces home."
-  },
-  "a-zh-atelier-workshop-mischtechnik-11-18": {
-   "desc": "A guided mixed-media art workshop at KreativWerkstatt: experiment freely with colours, shapes and materials. Registration required."
-  },
-  "a-zh-comedy-brew-english-stand-up-two-minutes-11-19": {
-   "desc": "Zurich's weekly English stand-up open mic near Central: about ten comedians a night, from pros testing new jokes to first-timers."
-  },
-  "a-ge-atelier-pictura-espace-du-quartier-saint-11-18": {
-   "desc": "An evening life-drawing session with a model at the Saint-Jean community space; bring your own drawing materials."
-  },
-  "a-ge-carousing-in-carouge-11-18": {
-   "desc": "A casual evening meetup for drinks and conversation in Carouge, Geneva's charming old quarter."
-  },
-  "a-ge-mah-pause-cre-ative-11-22": {
-   "desc": "A drop-in creative paper workshop with Superpapier at the Musée d'art et d'histoire, open all afternoon."
-  },
-  "a-zh-knit-n-sip-11-17": {
-   "desc": "A relaxed evening of knitting over drinks; bring your project and meet fellow crafters."
-  },
-  "a-ge-vide-grenier-11-22": {
-   "desc": "A pre-Christmas car-boot-style sale run by the Val d'Arve women's club, with crêpes, cakes and sandwiches on sale."
-  },
-  "a-ge-marche-des-cre-ateur-icexs-11-22": {
-   "desc": "A Sunday makers' market at the Jardins de la Jonction: local, handmade and artisanal products, ideal for Christmas gifts."
-  },
   "a-ge-language-exchange-geneva-11-25": {
    "desc": "A weekly language exchange at the Halles de l'Île: swap languages over a drink and meet friendly locals and expats. Free to join."
   },
   "a-ge-atelier-face-night-yoga-du-visage-modela-11-26": {
    "desc": "A playful evening at La Nativa with Renaissance Studio: face-yoga exercises and modelling a face in clay, with drinks."
   },
-  "a-zh-sketch-circle-zu-rich-dr-brauwolf-11-25": {
-   "desc": "Sketch Circle Zürich's monthly meet-up at Dr. Brauwolf brewery: local artists and friends draw together over a beer. All levels welcome."
-  },
   "a-zh-drawing-animals-11-26": {
    "desc": "An evening sketching session at the Zoological Museum: the host demonstrates pencil and colour-pencil techniques, then you draw the animals."
-  },
-  "a-ge-acroyoga-jams-in-lausanne-11-23": {
-   "desc": "An open acroyoga jam in Lausanne: partner balances and flying for all levels, a friendly way to meet people."
-  },
-  "a-ge-acroyoga-jams-in-lausanne-11-20": {
-   "desc": "An open acroyoga jam in Lausanne: partner balances and flying for all levels, a friendly way to meet people."
   },
   "a-ge-acroyoga-jams-in-lausanne-11-27": {
    "desc": "An open acroyoga jam in Lausanne: partner balances and flying for all levels, a friendly way to meet people."
@@ -177,9 +132,6 @@
    "desc": "American folk-pop singer Noah Kahan plays the Hallenstadion on his The Great Divide world tour."
   },
   "a-zh-elektra-11-26": {
-   "desc": "Richard Strauss's intense one-act opera Elektra, based on Sophocles' tragedy, at the Zurich Opera House."
-  },
-  "a-zh-elektra-11-22": {
    "desc": "Richard Strauss's intense one-act opera Elektra, based on Sophocles' tragedy, at the Zurich Opera House."
   },
   "a-ge-marche-des-ressources-11-28": {
@@ -194,144 +146,183 @@
   "a-ge-marche-de-noe-l-artisanal-et-associatif--11-29": {
    "desc": "The Pâquis neighbourhood's craft and charity Christmas market, with handmade gifts and stalls from over fifteen local associations."
   },
-  "a-ge-marche-aux-puces-brocante-de-plainpalais-11-21": {
-   "desc": "Geneva's big flea market on the Plaine de Plainpalais: vintage clothes, furniture, books and curiosities. Dog-friendly; come early."
-  },
   "a-ge-marche-aux-puces-brocante-de-plainpalais-11-28": {
    "desc": "Geneva's big flea market on the Plaine de Plainpalais: vintage clothes, furniture, books and curiosities. Dog-friendly; come early."
   },
   "a-zh-papa-roach-11-30": {
-   "desc": "American rock band Papa Roach live at the Hallenstadion."
+   "desc": "US rock band Papa Roach play the Hallenstadion."
   },
   "a-zh-bryan-adams-11-27": {
-   "desc": "Canadian rock legend Bryan Adams plays his hits at the Hallenstadion."
+   "desc": "Canadian rock star Bryan Adams plays the Hallenstadion."
+  },
+  "a-ge-social-roulette-gene-ve-chf-5-11-27": {
+   "desc": "A relaxed social evening at the CornerPub where you rotate tables to meet new people, with optional language exchange and games. CHF 5 paid on site."
+  },
+  "a-ge-meet-new-people-make-friends-ages-25-45--11-28": {
+   "desc": "Fast Friends meet-up at Spoon Food Hall for 25–45s who want to widen their circle before December gets busy, with hosts mixing the groups so nobody stands alone."
+  },
+  "a-ge-language-exchange-geneva-12-02": {
+   "desc": "Weekly language exchange at the Halle de l'Île: grab a drink, join a table for the language you want to practise and chat with locals and expats."
+  },
+  "a-ge-community-choir-free-12-03": {
+   "desc": "Free community choir at Holy Trinity, the English church: no experience needed, songs from every continent and a friendly, mostly English-speaking crowd."
+  },
+  "a-ge-expat-comedy-night-in-geneva-11-26": {
+   "desc": "Stand-up comedy in English at Flanagans with local and international comedians, plus drinks and pub food."
+  },
+  "a-ge-expat-comedy-night-in-geneva-12-03": {
+   "desc": "Stand-up comedy in English at Flanagans with local and international comedians, plus drinks and pub food."
+  },
+  "a-zh-wintermarket-hardgutbrache-11-29": {
+   "desc": "A small Sunday winter market at Kommas on the Hardgutbrache in Zurich West, with local stalls and seasonal food and drinks."
+  },
+  "a-zh-collage-circle-handcraft-sustainable-pos-11-28": {
+   "desc": "Social Circle craft session at Headsquarter: make collage postcards and small artworks from recycled paper while meeting new people. Ticket via social-circle.ch."
+  },
+  "a-zh-christmas-card-watercolor-workshop-12-01": {
+   "desc": "Paint your own Christmas cards in watercolour at the Quartierhaus Kreis 6 — beginner-friendly and sociable. Ticket via social-circle.ch."
+  },
+  "a-zh-english-stand-up-comedy-night-12-02": {
+   "desc": "An evening of live English stand-up at ROOM21 in the Swiss Casino Zurich, organised by Social Circle. Ticket via social-circle.ch."
+  },
+  "a-zh-build-your-own-christmas-special-pottery-12-02": {
+   "desc": "Hand-build your own Christmas piece in clay at CeramicsOnWheels — a relaxed, beginner-friendly evening pottery workshop."
+  },
+  "a-zh-build-your-own-christmas-special-pottery-11-29": {
+   "desc": "Hand-build your own Christmas piece in clay at CeramicsOnWheels — a relaxed, beginner-friendly pottery workshop."
+  },
+  "a-zh-soft-sorry-stand-up-comedy-in-english-11-27": {
+   "desc": "English stand-up at Brauerei Oerlikon from two gentle comedians, including Canada's Dan Belkin, joking about life's small failures."
+  },
+  "a-ge-le-renc-art-11-30": {
+   "desc": "Free weekly open creative evening at the Pavillon Bleu: drop in to draw, paint, write or make music alongside others."
+  },
+  "a-ge-marche-des-abeilles-11-29": {
+   "desc": "A small market for creative minds at La Traboule: independent creators, publishers, writers and illustrators selling their work."
+  },
+  "a-ge-pop-up-store-2026-11-29": {
+   "desc": "The Trajets gallery becomes a pop-up shop for about twenty local designers and makers until 3 December — good for handmade gifts."
+  },
+  "a-ge-pop-up-store-2026-11-27": {
+   "desc": "The Trajets gallery becomes a pop-up shop for about twenty local designers and makers until 3 December — good for handmade gifts."
+  },
+  "a-ge-pop-up-store-2026-11-28": {
+   "desc": "The Trajets gallery becomes a pop-up shop for about twenty local designers and makers until 3 December — good for handmade gifts."
+  },
+  "a-ge-pop-up-store-2026-12-03": {
+   "desc": "The Trajets gallery becomes a pop-up shop for about twenty local designers and makers until 3 December — good for handmade gifts."
+  },
+  "a-zh-circus-monti-poussie-re-d-e-toiles-in-zu-11-25": {
+   "desc": "Circus Monti's winter show 'Poussière d'étoiles' in its tent on the Kasernenareal: acrobatics and poetic circus around a quirky fortune teller."
+  },
+  "a-zh-circus-monti-poussie-re-d-e-toiles-11-26": {
+   "desc": "Circus Monti's winter show 'Poussière d'étoiles' in its tent on the Kasernenareal: acrobatics and poetic circus around a quirky fortune teller."
+  },
+  "a-zh-circus-monti-poussie-re-d-e-toiles-11-27": {
+   "desc": "Circus Monti's winter show 'Poussière d'étoiles' in its tent on the Kasernenareal: acrobatics and poetic circus around a quirky fortune teller."
+  },
+  "a-zh-circus-monti-poussie-re-d-e-toiles-11-28": {
+   "desc": "Circus Monti's winter show 'Poussière d'étoiles' in its tent on the Kasernenareal: acrobatics and poetic circus around a quirky fortune teller."
+  },
+  "a-zh-circus-monti-poussie-re-d-e-toiles-11-29": {
+   "desc": "Circus Monti's winter show 'Poussière d'étoiles' in its tent on the Kasernenareal: acrobatics and poetic circus around a quirky fortune teller."
+  },
+  "a-zh-draw-laugh-meet-new-people-playful-drawi-11-27": {
+   "desc": "A playful, beginner-friendly drawing evening built around quick drawing games that get strangers laughing and chatting."
+  },
+  "a-zh-bap-12-02": {
+   "desc": "Cologne rock band BAP, sung in Kölsch dialect, play the Hallenstadion."
+  },
+  "a-zh-muse-12-07": {
+   "desc": "British rock band Muse bring their big arena show to the Hallenstadion."
+  },
+  "a-zh-muse-12-08": {
+   "desc": "British rock band Muse bring their big arena show to the Hallenstadion."
+  },
+  "a-zh-bonez-mc-raf-camora-12-12": {
+   "desc": "German-Austrian rap duo Bonez MC & RAF Camora play the Hallenstadion."
   }
  },
  "drop": [
   "a-ge-111-kamikaze-ki-keynote-ki-baut-live-ein-11-26",
-  "a-ge-atelier-sur-l-e-ducation-sans-violence-11-21",
-  "a-ge-ateliers-boumix-brico-recup-musique-11-21",
-  "a-ge-ateliers-boumix-brico-recup-musique-11-28",
-  "a-ge-ateliers-nume-riques-de-novembre-permane-11-20",
-  "a-ge-auditions-macbeth-11-21",
-  "a-ge-auditions-macbeth-11-22",
-  "a-ge-become-a-fast-friends-host-11-21",
   "a-ge-car17-talents-microsoft-azure-local-11-26",
   "a-ge-ce-re-monie-de-remise-du-prix-d-histoire-11-25",
-  "a-ge-christa-perrine-le-querrec-11-20",
-  "a-ge-cine-dimanche-x-filmarcito-futures-on-a--11-22",
-  "a-ge-confe-rence-surmenage-et-ayurveda-retrou-11-19",
-  "a-ge-cosmos-de-lumie-re-11-28",
-  "a-ge-dimanches-sportifs-2026-grand-lancy-11-22",
-  "a-ge-friday-pickleball-jonction-all-levels-11-20",
-  "a-ge-from-bourg-en-bresse-to-the-stars-je-ro--11-18",
-  "a-ge-grandeur-nature-11-29",
-  "a-ge-jdi-paris-trip-11-20",
-  "a-ge-l-ia-et-le-mythe-de-l-apprentissage-auto-11-18",
-  "a-ge-meetup-30-kiro-nights-11-17",
-  "a-ge-meg-x-les-cre-atives-a-child-friendly-fu-11-20",
-  "a-ge-meg-x-les-cre-atives-the-future-from-a-c-11-20",
   "a-ge-mindstone-geneva-november-ai-meetup-11-25",
-  "a-ge-monday-pickleball-jonction-all-levels-11-16",
-  "a-ge-monday-pickleball-jonction-all-levels-11-23",
-  "a-ge-ne-pour-lire-11-21",
-  "a-ge-november-monday-16th-our-163rd-networkin-11-16",
-  "a-ge-pre-t-d-uvres-de-gabriela-lo-ffel-pour-s-11-18",
-  "a-ge-pre-ts-de-plusieurs-vide-os-pour-l-expos-11-28",
-  "a-ge-rendez-vous-citoyen-11-20",
-  "a-ge-shadow-makers-11-21",
-  "a-ge-shadow-makers-11-28",
-  "a-ge-sunday-football-11-22",
-  "a-ge-sunday-football-11-29",
-  "a-ge-sunday-volleyball-plainpalais-2pm-all-le-11-22",
   "a-ge-the-thanksgiving-hash-deadline-dinner-si-11-25",
-  "a-ge-troc-de-jeux-et-jouets-11-21",
-  "a-ge-tuesday-ping-pong-rive-all-levels-11-17",
-  "a-ge-tuesday-ping-pong-rive-all-levels-11-24",
-  "a-ge-vide-appartement-complet-de-me-nagement--11-21",
-  "a-ge-vide-appartement-complet-de-me-nagement--11-22",
-  "a-ge-volleyball-mixte-inte-rmediate-de-butant-11-16",
-  "a-ge-volleyball-mixte-inte-rmediate-de-butant-11-23",
-  "a-zh-alice-im-wunderland-11-21",
-  "a-zh-alice-im-wunderland-11-28",
-  "a-zh-all-you-can-eat-wednesday-11-18",
   "a-zh-all-you-can-eat-wednesday-11-25",
-  "a-zh-alles-klar-amerika-podcast-11-17",
-  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-11-18",
-  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-11-21",
-  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-11-22",
-  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-11-28",
-  "a-zh-allgemeine-ma-nnersprechstunde-fu-r-bezi-11-29",
-  "a-zh-b-arbie-in-not-11-21",
-  "a-zh-b-arbie-in-not-11-22",
-  "a-zh-badminton-wednesday-11-18",
-  "a-zh-buchstart-geschichten-fu-r-die-kleinsten-11-18",
-  "a-zh-carolin-emcke-literatur-11-23",
-  "a-zh-cityrunning-nord-11-24",
   "a-zh-das-mikrobiom-schlu-ssel-zur-gesundheit-11-25",
-  "a-zh-designing-for-the-ear-not-the-eye-with-p-11-26",
   "a-zh-ehrenwort-podcast-12-14",
-  "a-zh-fake-science-isolated-cases-or-a-systemi-11-24",
-  "a-zh-flammenspiesse-im-restaurant-iwaz-clubha-11-18",
-  "a-zh-flammenspiesse-im-restaurant-iwaz-clubha-11-21",
-  "a-zh-flammenspiesse-im-restaurant-iwaz-clubha-11-28",
-  "a-zh-game-day-cevi-spielt-11-20",
-  "a-zh-harry-p-otter-und-die-zauberpru-fung-11-21",
-  "a-zh-harry-p-otter-und-die-zauberpru-fung-11-22",
-  "a-zh-hype-vs-shipped-what-ai-really-changes-i-11-16",
-  "a-zh-inaugural-lecture-prof-dr-jean-christoph-11-16",
-  "a-zh-indoor-bouldering-session-altdorf-11-18",
-  "a-zh-kafi-wernli-podcast-11-23",
-  "a-zh-kulturelle-auszeichnungen-der-stadt-zu-r-11-25",
-  "a-zh-let-s-practice-russian-language-b1-b2-le-11-16",
   "a-zh-literatur-in-einfacher-sprache-mit-vea-k-11-26",
   "a-zh-marketing-meetup-wednesday-meet-other-ma-11-25",
   "a-zh-meet-international-energy-expert-gemston-11-26",
   "a-zh-mehr-kulturschaffende-frauen-auf-wikiped-11-25",
-  "a-zh-meiers-advents-und-weihnachtsausstellung-11-18",
-  "a-zh-meiers-advents-und-weihnachtsausstellung-11-21",
-  "a-zh-meiers-advents-und-weihnachtsausstellung-11-28",
-  "a-zh-mein-liebesbrief-11-28",
   "a-zh-michael-tsokos-11-29",
-  "a-zh-mini-day-11-21",
-  "a-zh-mit-squillo-ins-zauberland-oper-11-28",
   "a-zh-networking-event-drinks-links-in-zu-rich-11-25",
-  "a-zh-networking-in-winti-let-s-connect-11-19",
   "a-zh-philipp-loser-literatur-11-30",
   "a-zh-rolf-dobelli-clara-maria-bagus-literatur-12-13",
-  "a-zh-rummikub-club-zu-rich-11-23",
-  "a-zh-skyjo-game-night-11-16",
-  "a-zh-tag-der-digitalen-inklusion-11-21",
-  "a-zh-tinta-y-dinero-11-21",
   "a-zh-u-bertribe-mit-stiu-podcast-12-07",
-  "a-zh-world-cup-fever-skills-zone-11-21",
-  "a-zh-world-cup-fever-skills-zone-11-22",
-  "a-zh-wtf-die-riskanteste-und-verru-ckteste-im-11-19",
   "a-zh-zeit-verbrechen-mit-sabine-ru-ckert-und--11-30",
-  "a-zh-zfg-sunday-smashes-social-badminton-in-z-11-22",
-  "a-zh-zirkus-chnopf-11-21",
-  "a-zh-zu-rcher-literaturwerkstatt-patricia-bu--11-21"
+  "a-zh-escape-room-die-nachtbibliothek-11-25",
+  "a-zh-escape-room-die-nachtbibliothek-11-28",
+  "a-zh-simulation-workshop-climate-law-under-re-11-25",
+  "a-zh-mitgliederversammlung-dva-year-end-apero-11-25",
+  "a-ge-sunday-football-12-06",
+  "a-zh-happy-money-abundance-mindset-for-2027-12-01",
+  "a-ge-b-arbie-in-not-11-25",
+  "a-ge-b-arbie-in-not-11-29",
+  "a-ge-b-arbie-in-not-12-05",
+  "a-ge-b-arbie-in-not-12-06",
+  "a-ge-harry-p-otter-und-die-zauberpru-fung-11-25",
+  "a-ge-harry-p-otter-und-die-zauberpru-fung-12-05",
+  "a-ge-harry-p-otter-und-die-zauberpru-fung-12-06",
+  "a-ge-run-fondue-11-26",
+  "a-ge-se-minaire-pourquoi-re-agissons-nous-tou-11-27",
+  "a-ge-soire-e-inter-colle-ge-fluo-voltaire-x-d-11-27",
+  "a-zh-ku-nzi-frei-fingern-im-advent-11-26",
+  "a-zh-ku-nzi-frei-fingern-im-advent-11-27",
+  "a-zh-fro-lein-da-capo-halbzeit-show-11-27",
+  "a-zh-fro-lein-da-capo-halbzeit-show-11-28",
+  "a-zh-spaghettiplausch-fu-r-schulklassen-by-bl-11-25",
+  "a-zh-nordic-noir-mit-klaus-mu-ller-wille-mart-11-27",
+  "a-zh-zirkus-chnopf-11-28",
+  "a-zh-inaugural-lecture-prof-dr-katharina-geru-11-30",
+  "a-zh-zu-ri-ra-nnt-multikulturell-bu-rkliplatz-12-01",
+  "a-zh-single-rundlauf-12-02",
+  "a-zh-werde-sozialprofi-12-02",
+  "a-zh-la-geopolitica-e-un-umanismo-12-03",
+  "a-zh-care-city-statt-christmas-city-12-04",
+  "a-ge-la-magie-des-cartes-11-27",
+  "a-ge-grand-conseil-11-25",
+  "a-ge-soire-es-jeux-a-la-ludothe-que-1-2-3-pla-11-27",
+  "a-ge-soire-e-jeux-a-la-ludothe-que-centre-et--11-27",
+  "a-ge-ateliers-nume-riques-de-novembre-permane-11-27",
+  "a-ge-confe-rence-et-table-ronde-ville-cyclabl-11-28",
+  "a-ge-cre-ation-d-un-jeu-vide-o-narratif-une-i-11-28",
+  "a-ge-atelier-familles-en-nature-explorez-votr-11-29",
+  "a-ge-dimanches-sportifs-2026-petit-lancy-11-29",
+  "a-ge-tournoi-de-jass-quand-c-a-fait-froid-12-05",
+  "a-zh-ronja-ra-ubertochter-11-29",
+  "a-zh-chris-tall-12-06",
+  "a-ge-bourse-numismatique-11-29",
+  "a-ge-wednesday-futsal-in-paquis-hockey-goals--11-25",
+  "a-zh-ehrenwort-podcast-12-15",
+  "a-zh-coffee-walk-women-in-business-networking-12-05",
+  "a-zh-in-person-azure-zurich-ai-infrastructure-11-30",
+  "a-zh-navigating-the-shift-a-2026-ux-community-11-26",
+  "a-ge-nov-30-monday-postponed-nov-16-163rd-net-11-30",
+  "a-zh-magie-der-effektfarben-11-27",
+  "a-zh-rummikub-club-zu-rich-11-30",
+  "a-zh-district-runners-community-run-11-26",
+  "a-zh-cityrunning-nord-12-01",
+  "a-zh-b-i-t-ch-h3-trainspotting-3-12-01",
+  "a-zh-techtalk-30-nine-12-01",
+  "a-zh-zh3-hash-1766-euler-s-ko-nigsberg-hash-11-26",
+  "a-zh-cityrunning-west-11-26",
+  "a-zh-easy-flat-short-run-no-excuses-11-27",
+  "a-zh-zh3-hash-1768-location-soon-12-05",
+  "a-ge-volleyball-mixte-inte-rmediate-de-butant-11-30"
  ],
  "add": [
-  {
-   "id": "c-zh-blickfang-11-20",
-   "city": "zh",
-   "day": "2026-11-20",
-   "dayEnd": "2026-11-22",
-   "when": "Fri 20 – Sun 22 Nov",
-   "title": "Blickfang Zürich — design fair",
-   "url": "https://www.blickfang.com",
-   "place": "Kongresshaus, Claridenstrasse 5, Zürich",
-   "trip": "Zurich",
-   "price": "Tickets",
-   "indoor": true,
-   "cat": [
-    "creatif",
-    "marche"
-   ],
-   "zone": "zh",
-   "desc": "Independent design fair at the Kongresshaus: furniture, jewellery, fashion and homeware sold directly by the designers who make them."
-  },
   {
    "id": "c-ge-noel-au-quai-11-19",
    "city": "ge",
@@ -522,25 +513,6 @@
    "desc": "A Christmas avenue next to the main station with chalets, a Glühstube and a fondue chalet; opens 19 Nov at 16:00."
   },
   {
-   "id": "c-ge-garderobes-11-21",
-   "city": "ge",
-   "day": "2026-11-21",
-   "dayEnd": "2026-11-22",
-   "when": "Sat 21 – Sun 22 Nov · from 11:00",
-   "title": "Garderobes — slow fashion fair",
-   "url": "https://www.geneve.ch/actualites/garderobes-rendez-repenser-mode",
-   "place": "Salle des Fêtes de Carouge, Carouge",
-   "trip": "Geneva",
-   "price": "See website",
-   "indoor": true,
-   "cat": [
-    "marche",
-    "creatif"
-   ],
-   "zone": "ge",
-   "desc": "Third edition of Geneva's sustainable fashion fair: second-hand and local designer clothing, repair and upcycling ideas, all under one roof."
-  },
-  {
    "id": "c-ge-lancy-noel-11-25",
    "city": "ge",
    "day": "2026-11-25",
@@ -663,43 +635,6 @@
    ],
    "zone": "zh",
    "desc": "Zurich's much-loved Christmas circus in a heated tent on the Bauschänzli island by Bürkliplatz: acrobats, clowns and live music. Several shows a day; tickets via Ticketcorner."
-  },
-  {
-   "id": "c-zh-gratis-comedy-robins-11-22",
-   "city": "zh",
-   "day": "2026-11-22",
-   "when": "Sun 22 · 20:00–22:00",
-   "title": "Gratis Comedy Zum Mitnehmen — free English stand-up",
-   "url": "https://zuri.net/de/zurich/agenda/22-11-2026",
-   "place": "ROBIN's bar & coffee, Zähringerstrasse, Zürich",
-   "trip": "Zurich",
-   "price": "Free",
-   "free": true,
-   "indoor": true,
-   "cat": [
-    "culture"
-   ],
-   "zone": "zh",
-   "desc": "A free Sunday-night English stand-up show where comedians try out new material. A relaxed way to end the weekend."
-  },
-  {
-   "id": "c-zh-kunsthaus-lemon-beasley-11-19",
-   "city": "zh",
-   "day": "2026-11-19",
-   "when": "Thu 19 · 17:00–20:00 opening, free",
-   "title": "Ralph Lemon & Kevin Beasley — exhibition opening at Kunsthaus",
-   "url": "https://kunsthaus.ch/en/",
-   "place": "Kunsthaus Zürich, Heimplatz 1, Zürich",
-   "trip": "Zurich",
-   "price": "Free",
-   "free": true,
-   "indoor": true,
-   "cat": [
-    "culture",
-    "creatif"
-   ],
-   "zone": "zh",
-   "desc": "Free opening evening of the Kunsthaus's new show pairing American artists Ralph Lemon and Kevin Beasley, working across sculpture, sound and performance."
   },
   {
    "id": "c-zh-st-gallen-weihnachtsmarkt-11-26",
@@ -848,6 +783,65 @@
    ],
    "zone": "ge",
    "desc": "Carouge's three-day Christmas market on its pretty Italian-style market square: local makers, crafts, food and mulled wine."
+  },
+  {
+   "id": "c-ge-escalade-12-11",
+   "city": "ge",
+   "day": "2026-12-11",
+   "dayEnd": "2026-12-13",
+   "when": "Fri 11 – Sun 13 Dec",
+   "title": "Fête de l'Escalade — Geneva's historic festival",
+   "url": "https://www.geneve.com/en/events/la-fete-de-lescalade-2026",
+   "place": "Vieille Ville (Old Town), Geneva",
+   "trip": "Geneva",
+   "price": "Free",
+   "free": true,
+   "dog": true,
+   "indoor": false,
+   "cat": [
+    "fete",
+    "culture"
+   ],
+   "zone": "ge",
+   "desc": "Geneva's biggest folk festival marks the defeat of the 1602 night attack: costumed troops, musket fire, mulled wine and soup in the Old Town, ending with a torch-lit parade and bonfire."
+  },
+  {
+   "id": "c-zh-flohmarkt-kanzlei-11-28",
+   "city": "zh",
+   "day": "2026-11-28",
+   "when": "Sat 28 · 08:00–16:00",
+   "title": "Flohmarkt Kanzlei — Zurich's Saturday flea market",
+   "url": "https://www.flohmarktkanzlei.ch",
+   "place": "Kanzleiareal, Kanzleistrasse 56, Zürich",
+   "trip": "Zurich",
+   "price": "Free",
+   "free": true,
+   "dog": true,
+   "indoor": false,
+   "cat": [
+    "marche"
+   ],
+   "zone": "zh",
+   "desc": "Zurich's big year-round flea market in Kreis 4: vintage clothes, furniture, records, crockery and curiosities from hundreds of stalls."
+  },
+  {
+   "id": "c-zh-flohmarkt-kanzlei-12-05",
+   "city": "zh",
+   "day": "2026-12-05",
+   "when": "Sat 5 · 08:00–16:00",
+   "title": "Flohmarkt Kanzlei — Zurich's Saturday flea market",
+   "url": "https://www.flohmarktkanzlei.ch",
+   "place": "Kanzleiareal, Kanzleistrasse 56, Zürich",
+   "trip": "Zurich",
+   "price": "Free",
+   "free": true,
+   "dog": true,
+   "indoor": false,
+   "cat": [
+    "marche"
+   ],
+   "zone": "zh",
+   "desc": "Zurich's big year-round flea market in Kreis 4: vintage clothes, furniture, records, crockery and curiosities from hundreds of stalls."
   }
  ]
 }

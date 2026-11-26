@@ -1,2 +1,10 @@
 2026-11-26T05:48:06Z started
 step 0 ok (add_repo tool not available; used existing clone)
+step 1 ok
+step 2 ok (web fetch blocked by proxy; search-only, 3 adds)
+step 3 ok
+step 4 ok
+step 5 ok
+step 6 ok
+step 7 ok
+watch-list added this week: Escalade (Fête de l'Escalade 11–13 Dec); also Flohmarkt Kanzlei (28 Nov, 5 Dec). Palexpo/Arena/GTG/Heiliger Bimbam checked, nothing added (no confirmable dates).
